@@ -37,11 +37,6 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickDown;
 		Data.Instance.events.OnJoystickRight += OnJoystickUp;
-//
-//		if (Data.Instance.totalJoysticks == 1)
-//			playersField.text = "PLAYER (1)";
-//		else 
-//			playersField.text = "PLAYERS (" + Data.Instance.totalJoysticks.ToString () + ")";
 		
 		foreach (MainMenuButton m in buttons)
 			m.SetOn (false);
@@ -54,7 +49,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		SetButtons ();
 		activeButton.SetOn (true);
-		float _separation = 6;
+		float _separation = 4.5f;
 		for (int a = 0; a < 4; a++) {
 			Player p = Instantiate (player_to_instantiate);
 			p.isPlaying = false;
@@ -83,12 +78,6 @@ public class MainMenu : MonoBehaviour {
 	}
 	void OnJoystickClick()
 	{
-//		if (Data.Instance.DEBUG) {
-//			Data.Instance.playMode = Data.PlayModes.COMPETITION;
-//			Data.Instance.multiplayerData.player1 = true;
-//			Data.Instance.LoadLevel("Game");
-//			return;
-//		}
 		if (Data.Instance.isArcadeMultiplayer) {
 			if (activeID == 0)
 				Compite ();
@@ -130,7 +119,6 @@ public class MainMenu : MonoBehaviour {
 	void MissionsScene()
 	{
 		Reset ();
-        //Data.Instance.playMode = Data.PlayModes.STORY;
         if (Data.Instance.isAndroid)
             Data.Instance.LoadLevel("LevelSelectorMobile");
         else
@@ -139,7 +127,6 @@ public class MainMenu : MonoBehaviour {
 	void Compite()
 	{
 		Reset ();
-        //Data.Instance.playMode = Data.PlayModes.COMPETITION;
         if (Data.Instance.isAndroid)
             Data.Instance.LoadLevel("LevelSelectorMobile");
         else
@@ -148,7 +135,6 @@ public class MainMenu : MonoBehaviour {
 	void Versus()
 	{
 		Reset ();
-		//Data.Instance.playMode = Data.PlayModes.VERSUS;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 
