@@ -1,0 +1,3199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.34509805, g: 0.73333335, b: 0.9607844, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.015
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.58823526, g: 0.58823526, b: 0.58823526, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 0.55
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e64ae1eed0ce5e4459b511e72afcaf34, type: 2}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 0.641
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.43732905, g: 0.6102481, b: 0.7539359, a: 0.641}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 11
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 0
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 0
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+  m_LightingDataAsset: {fileID: 112000002, guid: ce989447cad62e740911e1882542f935,
+    type: 2}
+  m_UseShadowmask: 1
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &638307436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 638307438}
+  - component: {fileID: 638307437}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &638307437
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638307436}
+  m_Enabled: 1
+  serializedVersion: 9
+  m_Type: 1
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 21
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &638307438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638307436}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.62, y: 1000, z: -0.4}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &829266496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 829266500}
+  - component: {fileID: 829266499}
+  - component: {fileID: 829266498}
+  m_Layer: 8
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!23 &829266498
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829266496}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &829266499
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829266496}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &829266500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829266496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.4, y: -1.25, z: 0}
+  m_LocalScale: {x: 6, y: 1, z: 78}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1658128247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658128249}
+  - component: {fileID: 1658128248}
+  m_Layer: 0
+  m_Name: LevelData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1658128248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658128247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a902be19d4c554ab2fae2a398d31c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isArcadeMultiplayer: 0
+  playOnlyBosses: 0
+  isDebbug: 0
+  videogameID: 0
+  missionID: 0
+  testArea: 
+  playMode: 0
+--- !u!4 &1658128249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658128247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.0390625, y: 22.757812, z: 30.203125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1607946064814444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4695943535630044}
+  - component: {fileID: 114729658151120070}
+  - component: {fileID: 114914902966106284}
+  - component: {fileID: 114427155742550844}
+  - component: {fileID: 114040369022825928}
+  - component: {fileID: 114588440116649342}
+  m_Layer: 0
+  m_Name: LevelCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4695943535630044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607946064814444}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114040369022825928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607946064814444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab44f13bc183274b8eeaae1f09f4065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  all:
+  - {fileID: 100000, guid: 04f541ea11fcda949b7ad0fda55876c2, type: 3}
+  - {fileID: 1847089743971178, guid: 4e1f19a96286cb0498a00880b60f42f4, type: 3}
+  - {fileID: 193530, guid: d79c9af1e1b12a144bfee8425c4bc968, type: 3}
+  - {fileID: 100002, guid: 1dd5a85b2be04d544a11b49ad2daaaec, type: 3}
+  - {fileID: 124994, guid: 27238b07b99b1ff44afdeca2726e26dd, type: 3}
+  - {fileID: 1287416178506796, guid: a5fdc3d0270445d4e8e092b12d2f7492, type: 3}
+  - {fileID: 100002, guid: f1932c29503ce744baae148613ddb8be, type: 3}
+  - {fileID: 100000, guid: 47bff6f612f9b2149a66f6001f1c0485, type: 3}
+  - {fileID: 182034, guid: 7d57075e26c4cd64c8f9f3a46897718e, type: 3}
+  - {fileID: 1000011758640326, guid: d9db476d7e57d6942b4c1347596b4482, type: 3}
+  - {fileID: 100010, guid: 997ee58a3b46e474990a74f42680be28, type: 3}
+  - {fileID: 172596, guid: fb9a174d1266dfa4e8c6a78e91e39cbb, type: 3}
+  - {fileID: 100006, guid: 69a703e0a6fdad4489fe00ea91f6a158, type: 3}
+  - {fileID: 100002, guid: 3267f8dea11cd0e4cb5437d9f7c684ac, type: 3}
+  - {fileID: 100012, guid: 5f030396c262c654595ea619e91e51e7, type: 3}
+  - {fileID: 176648, guid: 3cc0b3ddc1ff0b14fa84439a1d73dec2, type: 3}
+  - {fileID: 100008, guid: 8a8d9496da0f3cc41b0e701d3b92b753, type: 3}
+  - {fileID: 100012, guid: 84cd4a2afb138444bb466415ab86bb83, type: 3}
+  - {fileID: 100008, guid: d0c6af6905198e84c9a5277734cc5836, type: 3}
+  - {fileID: 100008, guid: 62caac097b565d8459628e2e7bf9247a, type: 3}
+  - {fileID: 100000, guid: b510451716a11284b9a155e370d854de, type: 3}
+  - {fileID: 100004, guid: 656f388a7af1f7a48884495a31afe9d5, type: 3}
+  - {fileID: 100018, guid: 62dbfc4c769ace6449900422c88c964f, type: 3}
+  - {fileID: 151176, guid: 121e2101784bdcd49af32415184472bb, type: 3}
+  - {fileID: 1347103648544084, guid: ec99fba3bec2ba942876a31538a7e71e, type: 3}
+  - {fileID: 195276, guid: 86ffe71490762c546af708e16b53055e, type: 3}
+  - {fileID: 100000, guid: b3dc4455641ef31419339c5b6448c5ff, type: 3}
+  - {fileID: 166934, guid: c0016b0bf03db654bba6da6b8fb7f6bc, type: 3}
+  - {fileID: 178882, guid: 80c34558b8fc36a4ab1ddb5260dc62f4, type: 3}
+  - {fileID: 100040, guid: 80228e5d99331214da846ce76d00d0a2, type: 3}
+  - {fileID: 100008, guid: 05d3cf11d468df84e8fbef3d258f8bea, type: 3}
+  - {fileID: 1339584943100236, guid: d6e71abddbed57547bdca39202abf9dc, type: 3}
+  - {fileID: 143844, guid: 85317b66c88b5794e9346843bac0985f, type: 3}
+  - {fileID: 139680, guid: 7d9c7c0e51aec474e980296260522f6f, type: 3}
+  - {fileID: 186492, guid: 9eb20f8440015b244bd18c7f1818c5c4, type: 3}
+  - {fileID: 168430, guid: ac294785855e8fa4e886203ad2671273, type: 3}
+  - {fileID: 100000, guid: 201abc42df3a95e4d83b78f2517d3dd3, type: 3}
+  - {fileID: 100000, guid: ca0526ef00245ad43b44505adab54a3c, type: 3}
+  - {fileID: 100000, guid: bc060424343ea194dbd7ee737f7f00d9, type: 3}
+  - {fileID: 1396955462274316, guid: e1452184645acbf409e74f32902545d0, type: 3}
+  - {fileID: 100000, guid: 615bfd330dd691f4ab6e552d4a109123, type: 3}
+  - {fileID: 100002, guid: 837330c9b4297254f9b02f14d6f45a44, type: 3}
+  - {fileID: 1077648628173366, guid: 1a957addcd3e64447942f1937cc4fc80, type: 3}
+  - {fileID: 1661224935454588, guid: c27f2ea05fbcb5e44a286694d3a1608f, type: 3}
+  - {fileID: 1697620837230792, guid: d7060ce9247a2874ca3faf8dbf3127b6, type: 3}
+  - {fileID: 100000, guid: 3eb114427e3b1a4419ccd9187fd43a6e, type: 3}
+  - {fileID: 1063175934787028, guid: 1306467ef7bc2244192e1a9d6b131db8, type: 3}
+  - {fileID: 100000, guid: 727a2ac2a6b3da64a8cad2885011c31d, type: 3}
+  - {fileID: 1267719545963350, guid: b51deaf6eb001894f9a43278576c0766, type: 3}
+  - {fileID: 1267719545963350, guid: 9f5e4ee14a85d2a4793cefac16ecc364, type: 3}
+  - {fileID: 1635396225673464, guid: f69ba345237617940a54c4a0e261a60b, type: 3}
+  - {fileID: 1566978641759686, guid: 7d87b232fe1770046b42571cb025a089, type: 3}
+  - {fileID: 1000011758640326, guid: d9db476d7e57d6942b4c1347596b4482, type: 3}
+  - {fileID: 100000, guid: 727a2ac2a6b3da64a8cad2885011c31d, type: 3}
+  - {fileID: 100000, guid: c9deef114639891459f0b9caa5931a7c, type: 3}
+  - {fileID: 1915077750947988, guid: 45c40a9da05f3be45a2c56bf30132da9, type: 3}
+  - {fileID: 1038310608625340, guid: 6d483f42af32b4b4f82c10375d1f4367, type: 3}
+  - {fileID: 1745931679137620, guid: e02d7d0dfcf9afc46bfe7d42c2bf2f5b, type: 3}
+  - {fileID: 1097749689260456, guid: 136d3d79b1d253544aa5e22f450f6eb1, type: 3}
+  - {fileID: 1932540205835374, guid: be065bf284cca6f40b618f9194153e07, type: 3}
+  - {fileID: 1716521505445076, guid: c3797617356e4574f8bcb47b0a586e83, type: 3}
+  - {fileID: 1069298003719236, guid: 6c66fd5418586e14e8861b45efed95be, type: 3}
+  - {fileID: 1500584169818516, guid: 681ce6bb3e9bfb94b9adb5bafa1aa154, type: 3}
+  - {fileID: 1639499334497142, guid: 0923428ee1a466b479488d26cb88ea28, type: 3}
+  - {fileID: 1222416966033632, guid: b017d568f1cc49947909551c7a621254, type: 3}
+  - {fileID: 100000, guid: 185203f1843e1404fa3b824bacc0e818, type: 3}
+  - {fileID: 1690008919195294, guid: 5c7be9ce0ca51034f8f4451a9fcca3ea, type: 3}
+  - {fileID: 1664583324907192, guid: c55c040d54173044abe9fe50cebe342f, type: 3}
+  - {fileID: 1507540803180602, guid: 82f43c68aaa75614c9be56e04f71402a, type: 3}
+  - {fileID: 1828965868549400, guid: c154dc0c5ae0da546b23446b32f750a0, type: 3}
+  - {fileID: 1803826038245924, guid: 99ad158cc88be55488b78350f0c530a7, type: 3}
+  - {fileID: 1894415772853504, guid: bb524bd96a58f41419514784f316dbbc, type: 3}
+  - {fileID: 1372818947916778, guid: afb294de0edf55140badf8094c691c70, type: 3}
+  - {fileID: 1396458149989926, guid: e766758fa8a8eac45899474c9840114e, type: 3}
+  - {fileID: 100002, guid: 0acae3dd267f32848b5c587f842d8646, type: 3}
+  - {fileID: 1928439620005346, guid: cf909ccc1ca6d6d4a9d0a3ddbc9b7435, type: 3}
+  - {fileID: 1939780866839528, guid: 267a862faa0b8db4aa07b6eb04b25cbc, type: 3}
+  areaSceneObjectManager: {fileID: 114914902966106284}
+--- !u!114 &114427155742550844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607946064814444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb0e659668c76943ba74f29a06d5a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaData:
+    totalCoins: 0
+    z_length: 0
+    data: []
+  data:
+  - name: Cascade
+    pos: {x: 3, y: 6.2, z: 2.32}
+    rot: {x: 0, y: 270, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Cascade
+    pos: {x: -3, y: 6.2, z: -2.38}
+    rot: {x: -0, y: 90, z: -0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  areaCreatorSceneObject: {fileID: 114040369022825928}
+--- !u!114 &114588440116649342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607946064814444}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c09387fd1372140a72bc39ea3b489e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasReachedBoss: 0
+  _all: {fileID: 4900000, guid: 365998f28398e2045983c718d25476f5, type: 3}
+  all:
+    missionsVideoGame1:
+    - boy_init_jump
+    - boy_ene_easy
+    - boy_ene_SubeyBajan
+    - boy_sliders
+    - boy_helices
+    - boy_barrancas
+    - boy_pisosMueven
+    - boy_plataformas1
+    - boy_sapos
+    - boy_ruedas
+    - boy_peces
+    - boy_estrellas
+    - boy_throwers
+    - boy_sombrillas
+    - boy_helices_altas
+    - boy_cepillos
+    - boy_ene_easy2
+    missionsVideoGame2:
+    - gallax_jumps
+    - gallax_curvo
+    - gallax_rays_yellow_army
+    - gallax_backPlatforms
+    - gallax_blue_Army_fortress
+    - gallax_curvo2
+    - gallax_space_eyes_shooters
+    - gallax_navesOcultas
+    - gallax_subibaja
+    - gallax_space_circles
+    - gallax_dark_hills
+    - gallax_firewalls
+    missionsVideoGame3:
+    - per_init_jumps
+    - per_ene_easy
+    - per_snakes
+    - per_vienen_de_atras
+    - per_lava_gargolas
+    - per_catapultas
+    - per_barrancas
+    - per_curvo
+    - per_pisoAlto
+    - per_7
+    - per_sliders
+  extraAreasManager: {fileID: 0}
+  times_trying_same_mission: 0
+  videogames:
+  - missions:
+    - title: 
+      data:
+      - jsonName: boy_init_jump
+        title: THE SILLY GHOSTS
+        id: 0
+        maxScore: 3000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -6
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: -12
+          randomize: 0
+          areas:
+          - coinsJump1
+          - descanso1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -1
+          randomize: 0
+          areas:
+          - doubleJump1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: -17
+          randomize: 1
+          areas:
+          - coinsEasy1
+          - coinsEasy2
+          - coinsEasy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - jumpAncho
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAncho
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - jumpAncho2
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: -8
+          randomize: 1
+          areas:
+          - descansoAncho2
+          - descansoAncho3
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 1
+          total_areas: 3
+          bending: -12
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          - boss_Pacmans_intro_free_simple
+          - boss_Pacmans_intro
+          - boss_Pacmans_intro_free
+          cameraOrientation: {x: 0, y: -2, z: -1.25}
+        - boss: 0
+          total_areas: 1000
+          bending: -18
+          randomize: 1
+          areas:
+          - boss_Pacmans_intro_free
+          - boss_Pacmans_intro_free2
+          cameraOrientation: {x: 0, y: -3, z: -1.5}
+    - title: 
+      data:
+      - jsonName: boy_ene_easy
+        title: KILL THE RABBITS FAMILY
+        id: 0
+        maxScore: 5000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: -12
+          randomize: 1
+          areas:
+          - CoinsHard1
+          - coinsHard2
+          - coinsHard3
+          cameraOrientation: {x: 0, y: -1, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -2, z: -0.5}
+        - boss: 0
+          total_areas: 1
+          bending: -13
+          randomize: 0
+          areas:
+          - killRunnerSimple_4
+          cameraOrientation: {x: 0, y: 1, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner2
+          - killRunner2_b
+          - killRunner2_c
+          cameraOrientation: {x: 0, y: 1, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -20
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -3, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: -15
+          randomize: 1
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 1
+          total_areas: 4
+          bending: 0
+          randomize: 0
+          areas:
+          - bossVienen
+          - bossVienenFree
+          cameraOrientation: {x: 0, y: -2.5, z: -1.25}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - bossVienenFree
+          - bossVienenFree
+          - anchoFences
+          cameraOrientation: {x: 0, y: -2.6, z: -1}
+    - title: 
+      data:
+      - jsonName: boy_ene_SubeyBajan
+        title: DESTROY THE GHOSTS WALL
+        id: 0
+        maxScore: 5000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - housesSmall1
+          - housesSmall2
+          - housesSmall3
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: -3
+          randomize: 1
+          areas:
+          - ancho_agua_simple1
+          - ancho_agua_simple2
+          cameraOrientation: {x: 0, y: -1.5, z: -0.5}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 5
+          bending: -15
+          randomize: 1
+          areas:
+          - singleRunnerJump1
+          - singleRunnerJump2
+          - enemiesLineaJump
+          - enemiesLineaJumpSmall
+          - enemiesRunners3_Salto2
+          - enemiesRunnersSmall
+          - enemiesRunnersSmall_2Palms
+          - singleRunnerJump_linea1
+          - singleRunnerJump_linea2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_lineaFlota
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - coinsEasy1
+          - coinsEasy2
+          - coinsEasy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - container_descanso_cruz
+          cameraOrientation: {x: 0, y: 2, z: -0.8}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_zigzag_free2
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_Pacmans
+          - boss_zigzag_free
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - boss_zigzag_free
+          cameraOrientation: {x: 0, y: -3.5, z: -1}
+    - title: 
+      data:
+      - jsonName: boy_sliders
+        title: KILL THE BUTTERFLY GANG
+        id: 0
+        maxScore: 0
+        fondo: wonderland_ghosts
+        areaSetData:
+        - boss: 0
+          total_areas: 3
+          bending: -15
+          randomize: 0
+          areas:
+          - slider_intro3
+          - slider_intro4
+          - slider_intro5_doble
+          - slider_intro1
+          - slider_intro2
+          - slider_intro6_doble_trees
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - sliderHard1
+          - sliderHard2
+          - sliderHard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: -30
+          randomize: 0
+          areas:
+          - sliderWalls_seguidas1
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 1
+          total_areas: 3
+          bending: -15
+          randomize: 0
+          areas:
+          - slider1
+          - sliderBossCubos
+          - sliderWalls_seguidas1
+          - sliderWalls_seguidas2
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - sliderWalls_seguidas1
+          - sliderWalls_seguidas2
+          cameraOrientation: {x: 0, y: -2, z: 0}
+    - title: 
+      data:
+      - jsonName: boy_helices
+        title: THE DIRTY PIGS
+        id: 0
+        maxScore: 460
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 8
+          bending: 0
+          randomize: 1
+          areas:
+          - heliceSmall
+          - heliceSmall2
+          - heliceDoubleSmall
+          - helicesx4
+          - helicesx4_enemies
+          - pisoCurvo_helices
+          - container_helice
+          - helicesx2_larga
+          cameraOrientation: {x: 0, y: -1, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_cruz
+          - container_cruz_2
+          cameraOrientation: {x: 0, y: -5, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - heliceSmall
+          - heliceSmall2
+          - heliceDoubleSmall
+          - helicesx4
+          - helicesx4_enemies
+          - pisoCurvo_helices
+          - container_helice
+          - helicesx2_larga
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 1
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_naves_boyland
+          - boss_ancho_free
+          cameraOrientation: {x: 0, y: -3.7, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - boss_free_agua
+          cameraOrientation: {x: 0, y: -1.5, z: 0.25}
+        - boss: 0
+          total_areas: 1000
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoCurvo0
+          - pisoCurvo0
+          - pisoCurvo1
+          - pisoCurvo2
+          - pisoCurvo4
+          - pisoCurvo5
+          cameraOrientation: {x: 0, y: -1.6, z: 1.5}
+    - title: 
+      data:
+      - jsonName: boy_barrancas
+        title: DESTROY THE BARRANCA-FROGS
+        id: 0
+        maxScore: 460
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -1
+          randomize: 1
+          areas:
+          - barrancas_1
+          cameraOrientation: {x: 0, y: -3, z: -1.5}
+        - boss: 0
+          total_areas: 6
+          bending: -22
+          randomize: 1
+          areas:
+          - barrancas_1
+          - barrancas_1_2
+          - barrancas_2
+          - barrancas_2_2
+          - barrancas_2_2_rueda
+          - barrancas_helices
+          - barrancas_3
+          - barrancas_3_2
+          - barrancas_descanso_coins_1
+          - barrancas_3_2planes
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 0
+          total_areas: 3
+          bending: -14
+          randomize: 1
+          areas:
+          - barrancas_descanso_coins_1
+          - barrancas_descanso_x2
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 0
+          total_areas: 5
+          bending: -12
+          randomize: 1
+          areas:
+          - barrancas_1
+          - barrancas_1_2
+          - barrancas_2
+          - barrancas_descanso_x2
+          - barrancas_2_2
+          - barrancas_3
+          - barrancas_3_2
+          - barrancas_3_2planes
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: -12
+          randomize: 1
+          areas:
+          - boss_free_agua
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 1
+          total_areas: 2
+          bending: -12
+          randomize: 0
+          areas:
+          - boss_Ball
+          - barrancas_free
+          cameraOrientation: {x: 0, y: -2.7, z: -2}
+    - title: 
+      data:
+      - jsonName: boy_pisosMueven
+        title: ROTATIVES
+        id: 0
+        maxScore: 5000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - rampaHuge
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - saposLinea
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - container_cruz_enemy2
+          - container_cruz_enemy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_lineaFlota
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - container_lineaLargaEnemy
+          - container_lineaLargaEnemy2
+          - container_lineaLargaEnemyDoble
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - container_boss
+          - container_boss_centro
+          cameraOrientation: {x: 0, y: -1, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - container_boss_centro
+          cameraOrientation: {x: 0, y: -1.5, z: -1.5}
+    - title: 
+      data:
+      - jsonName: boy_plataformas1
+        title: PLATAFORMS
+        id: 0
+        maxScore: 0
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 6
+          bending: -17
+          randomize: 1
+          areas:
+          - subibaja1Horizontal
+          - subibaja2Horizontal
+          cameraOrientation: {x: 0, y: -4.5, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: -15
+          randomize: 1
+          areas:
+          - pisoCurvo_helices
+          cameraOrientation: {x: 0, y: -1.5, z: -1}
+        - boss: 0
+          total_areas: 10
+          bending: -10
+          randomize: 1
+          areas:
+          - pisoCurvo_helices
+          - enemiesRunnersSmall_2Palms
+          - pisoCurvo_helices
+          - enemiesRunnersSmall_2Back
+          cameraOrientation: {x: 0, y: -1.5, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: -12
+          randomize: 1
+          areas:
+          - plataforma_estrella1
+          cameraOrientation: {x: 4, y: -3, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: -20
+          randomize: 1
+          areas:
+          - plataforma_estrella1
+          cameraOrientation: {x: -4, y: -3, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: -15
+          randomize: 1
+          areas:
+          - container_cruz
+          - container_cruz_2
+          - container_cruz_enemy
+          - container_cruz_enemy2
+          cameraOrientation: {x: 0, y: -1.5, z: -1}
+        - boss: 1
+          total_areas: 8
+          bending: -4
+          randomize: 0
+          areas:
+          - curvo_av_retro_boss
+          - pisoCurvo_boss_free
+          - pisoCurvo_helices
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: -3.5, z: -2}
+        - boss: 0
+          total_areas: 2
+          bending: -15
+          randomize: 1
+          areas:
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: -4, z: -2.5}
+    - title: 
+      data:
+      - jsonName: boy_sapos
+        title: DESTROY THE FUNNY FROGS
+        id: 0
+        maxScore: 3000
+        fondo: wonderland_ghosts
+        areaSetData:
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          - ancho2Sapos
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - saposLinea
+          - ancho2Sapos
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - enemiesLineaJumpYSapos
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_lineaLargaSapos
+          cameraOrientation: {x: 0, y: -3, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_descanso_cruz
+          cameraOrientation: {x: 0, y: -1, z: -1}
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - subibajaSapos1
+          - subibajaSapos2
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 1
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - subibajaBoss
+          - subibajaBossFree
+          cameraOrientation: {x: 0, y: 1, z: -2}
+    - title: 
+      data:
+      - jsonName: boy_ruedas
+        title: DESTROY THE HELICOPTERS WHEEL
+        id: 0
+        maxScore: 150
+        fondo: wonderland_castles_boss
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaSimple
+          - ruedasEnemigos
+          - ruedaSimple
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaDoble
+          - ruedaDoble2
+          - ruedaDoble1
+          cameraOrientation: {x: 0, y: -3, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: 1.5, z: -3.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaSimple
+          - ruedaSimple2
+          cameraOrientation: {x: 0, y: 1, z: -3}
+        - boss: 1
+          total_areas: 10000
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_circular
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: 0, z: -2}
+    - title: 
+      data:
+      - jsonName: boy_peces
+        title: THE DOLPHINS FAMILY
+        id: 0
+        maxScore: 460
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - agua_lados
+          - ancho_agua_simple
+          - ancho_agua_simple_lados
+          - agua_lados
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - doble_agua
+          - doble_agua_simple
+          - doble_1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_cruz
+          - container_cruz_2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - ancho_agua_simple1
+          - ancho_agua_simple2
+          cameraOrientation: {x: 0, y: 1, z: 0}
+        - boss: 1
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_agua
+          - boss_agua_free2
+          cameraOrientation: {x: 0, y: -2, z: -0.5}
+        - boss: 0
+          total_areas: 100
+          bending: 0
+          randomize: 1
+          areas:
+          - boss_agua_free2
+          - boss_agua_free2
+          - boss_agua_free
+          cameraOrientation: {x: 0, y: -4.5, z: -1}
+    - title: 
+      data:
+      - jsonName: boy_estrellas
+        title: THE ANGRY STARS
+        id: 0
+        maxScore: 3000
+        fondo: wonderland_ghosts
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - estrellas simple
+          - estrellas simple 1
+          - estrellas simple 2
+          - estrellas simple 3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - housesSmall_Stars
+          - housesSmall_Stars2
+          cameraOrientation: {x: 0, y: -2.2, z: 0.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - houses1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_cruz
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - estrellas simple_doble
+          - estrellas simple
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_2filas_boyland
+          - boss_2_filas_boyland_free
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+    - title: 
+      data:
+      - jsonName: boy_throwers
+        title: DESTROY THE VOMIT-HEADS
+        id: 0
+        maxScore: 0
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - lava_1
+          - lava_2
+          cameraOrientation: {x: 0, y: 1, z: -3}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - ancho_agua_simple1
+          - ancho_agua_simple2
+          cameraOrientation: {x: 0, y: -1, z: -2}
+        - boss: 0
+          total_areas: 10
+          bending: 0
+          randomize: 1
+          areas:
+          - throw_center
+          - throw_left
+          - throw_right
+          - calecita_x1
+          - slider_intro1
+          - throw_double
+          - throw_center
+          - throw_left
+          - throw_right
+          - throw_double
+          cameraOrientation: {x: 0, y: 1.2, z: -3}
+        - boss: 1
+          total_areas: 4
+          bending: 0
+          randomize: 0
+          areas:
+          - descanso1
+          - descanso2
+          - boss_anche_lineaVienen
+          - boss_ancho_free
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - boss_ancho_free
+          - boss_ancho_free_throws
+          - boss_ancho_free_throws_2
+          - boss_ancho_free
+          cameraOrientation: {x: 0, y: -2, z: 0}
+    - title: 
+      data:
+      - jsonName: boy_sombrillas
+        title: JUMP OVER MUSHROOMS
+        id: 0
+        maxScore: 0
+        fondo: wonderland_ghosts
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 6
+          bending: 0
+          randomize: 0
+          areas:
+          - sombrillaIntro
+          - sombrillaPozo
+          - sombrilla2Caminos
+          - sombrillaEnemigos
+          - sombrillaIntro2
+          - sombrillaIntro3
+          - sombrillaPozo
+          - sombrillaEnemigos
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_Crusader
+          - areaFree_boss1
+          - areaFree_boss1
+          cameraOrientation: {x: 0, y: -3.6, z: -2}
+        - boss: 0
+          total_areas: 10000
+          bending: 0
+          randomize: 0
+          areas:
+          - areaFree_boss1
+          cameraOrientation: {x: 0, y: 0, z: -1}
+    - title: 
+      data:
+      - jsonName: boy_helices_altas
+        title: FROGGS IN THE SKY
+        id: 0
+        maxScore: 1000
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 10
+          bending: 0
+          randomize: 0
+          areas:
+          - anchoCalleHelices
+          - anchoCalleHelicesSapos
+          - anchoCalleHelicesEnemigos
+          - anchoCalleHelicesEnemigosBack
+          cameraOrientation: {x: 0, y: 1, z: -1}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - anchoCalleHelicesBoss
+          - anchoCalleHelicesBossFree
+          - anchoCalleHelicesBossFree2
+          cameraOrientation: {x: 0, y: -1.5, z: -1}
+        - boss: 0
+          total_areas: 100
+          bending: 0
+          randomize: 0
+          areas:
+          - anchoCalleHelicesBossFree
+          - anchoCalleHelicesBossFree2
+          cameraOrientation: {x: 0, y: -3, z: -1.5}
+    - title: 
+      data:
+      - jsonName: boy_cepillos
+        title: CRAZY FLOORS
+        id: 0
+        maxScore: 1000
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - cepillo1
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - cepillo1
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 1
+          total_areas: 10000
+          bending: 0
+          randomize: 0
+          areas:
+          - water_1
+          - boss_circular
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: 0, z: -2}
+    - title: 
+      data:
+      - jsonName: boy_ene_easy2
+        title: KILL THE RABBITS FAMILY
+        id: 0
+        maxScore: 5000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 2
+          bending: -12
+          randomize: 1
+          areas:
+          - CoinsHard1
+          - coinsHard2
+          - coinsHard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -1, z: -0.5}
+        - boss: 0
+          total_areas: 2
+          bending: -20
+          randomize: 0
+          areas:
+          - killRunnerSimple_1
+          - killRunnerSimple_2
+          - killRunnerSimple_3
+          cameraOrientation: {x: 0, y: 0, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - killRunnerSimple_4
+          cameraOrientation: {x: 0, y: -1.5, z: -1.7}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner2
+          - killRunner2_b
+          - killRunner2_c
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner_2Caminos
+          cameraOrientation: {x: 0, y: -1.5, z: -1.25}
+        - boss: 0
+          total_areas: 1
+          bending: -20
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -4, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: -15
+          randomize: 1
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 1
+          total_areas: 4
+          bending: 0
+          randomize: 0
+          areas:
+          - bossVienen
+          - bossVienenFree
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - bossVienenFree
+          - bossVienenFree
+          - anchoFences
+          cameraOrientation: {x: 0, y: -2.6, z: -1}
+    missionUnblockedID: 2
+  - missions:
+    - title: 
+      data:
+      - jsonName: gallax_jumps
+        title: INSIDE THE DARK FORCE
+        id: 0
+        maxScore: 3000
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -20
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 2
+          bending: -15
+          randomize: 0
+          areas:
+          - coinsJump1
+          - descanso1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -2
+          randomize: 0
+          areas:
+          - doubleJump1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -5
+          randomize: 0
+          areas:
+          - container_cruz_enemy
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: -20
+          randomize: 1
+          areas:
+          - coinsEasy1
+          - coinsEasy2
+          - coinsEasy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - jumpAncho
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAncho
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - jumpAncho2
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: -5
+          randomize: 1
+          areas:
+          - bombas_pisoMueve1
+          - bombas_pisoMueve2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAncho
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 1
+          total_areas: 3
+          bending: -2
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          - boss_naves
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 10000
+          bending: -18
+          randomize: 1
+          areas:
+          - boss_zigzag_free
+          - boss_free_fences
+          - boss_zigzag_free
+          - boss_ancho_free
+          - boss_zigzag_jumpers_free
+          - boss_Pacmans_intro_free_simple
+          - boss_zigzag_free_simple_fences
+          cameraOrientation: {x: 0, y: -2, z: -1}
+    - title: 
+      data:
+      - jsonName: gallax_curvo
+        title: CURVATURE OF DARKNESS
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 70
+          bending: -15
+          randomize: 1
+          areas:
+          - pisoCurvo1
+          - pisoCurvo2
+          - pisoCurvo3
+          - pisoCurvo4
+          - pisoCurvo5
+          - pisoCurvo_helices
+          - pisoCurvo6
+          - pisoCurvo7
+          - pisoCurvo8
+          - pisoCurvo1
+          - pisoCurvo9
+          - pisoCurvo9 1
+          - pisoCurvo_helices
+          - pisoCurvo1 1
+          - pisoCurvo3
+          - pisoCurvo1 1
+          - pisoCurvo_Rays2
+          - pisoCurvo1
+          - pisoCurvo5
+          - pisoCurvo_helices
+          - pisoCurvo6
+          - pisoCurvo7
+          - pisoCurvo9 1
+          - pisoCurvo_helices
+          - pisoCurvo8
+          - pisoCurvo9
+          - pisoCurvo9 1
+          - pisoCurvo1
+          - pisoCurvo_helices
+          - pisoCurvo1 1
+          - pisoCurvo1
+          - pisoCurvo3
+          - pisoCurvo2
+          - pisoCurvo8
+          - pisoCurvo9 1
+          - pisoCurvo8
+          - pisoCurvo3
+          - pisoCurvo_helices
+          - pisoCurvo1 1
+          - pisoCurvo1
+          cameraOrientation: {x: 0, y: -1.5, z: -1}
+        - boss: 1
+          total_areas: 8
+          bending: -12
+          randomize: 0
+          areas:
+          - pisoCurvo_boss
+          - pisoCurvo_boss_free
+          - pisoCurvo_helices
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: -2.5, z: -1.6}
+        - boss: 0
+          total_areas: 2
+          bending: -20
+          randomize: 1
+          areas:
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_Rays1
+          cameraOrientation: {x: 0, y: -3, z: -2}
+    - title: 
+      data:
+      - jsonName: gallax_rays_yellow_army
+        title: GOD-MADNESS AND THE YELLOW ARMY
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          - zigzag
+          cameraOrientation: {x: 0, y: 2, z: -2}
+        - boss: 0
+          total_areas: 2
+          bending: -17
+          randomize: 1
+          areas:
+          - subibaja_escupe1
+          - subibaja_escupe2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - raysAncho
+          - zigzag_Rays_1
+          - zigzag_Rays_2
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple2
+          cameraOrientation: {x: 0, y: -1, z: -1}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - raysAncho
+          - zigzag_Rays_1
+          - zigzag_Rays_2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple3
+          - navesSimple3 1
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_2_filas
+          - boss_2_filas_free
+          - boss_2_filas_free
+          cameraOrientation: {x: 0, y: -4, z: -2}
+    - title: 
+      data:
+      - jsonName: gallax_backPlatforms
+        title: BACK PLATFORMS
+        id: 0
+        maxScore: 3000
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -20
+          randomize: 0
+          areas:
+          - backPlatforms_init
+          cameraOrientation: {x: 0, y: 0, z: -40}
+        - boss: 0
+          total_areas: 2
+          bending: -5
+          randomize: 0
+          areas:
+          - backPlatforms_boss
+          - backPlatforms_init
+          cameraOrientation: {x: 0, y: -1, z: -40}
+        - boss: 0
+          total_areas: 1000
+          bending: -15
+          randomize: 1
+          areas:
+          - backPlatforms_init
+          - backPlatforms_init2
+          - backPlatforms_init3
+          cameraOrientation: {x: 0, y: 0, z: -40}
+    - title: 
+      data:
+      - jsonName: gallax_blue_Army_fortress
+        title: BLUE ARMY FORTRESS
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - laserHorizontal
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple1
+          - navesSimple2
+          cameraOrientation: {x: 0, y: -1, z: -1}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - laserHorizontal
+          - laserMultiplesBigWalls1
+          - lasersrWalls_x4
+          - lasersrWalls_x4Hard
+          - lasersrWalls_x4Hard1
+          - lasersrx4
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple3
+          cameraOrientation: {x: 0, y: -1, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - lasersr_container_gira
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 1
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - paredes1Boss
+          - paredes1BossFree1
+          cameraOrientation: {x: 0, y: -5.5, z: -3}
+    - title: 
+      data:
+      - jsonName: gallax_curvo2
+        title: THE DARK TROUPE
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - container_cruz_enemy
+          - container_cruz_enemy2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 4
+          bending: 0
+          randomize: 0
+          areas:
+          - pisoCurvo_V_boss_avanzan
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss: 0
+          total_areas: 100
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free_rays
+          - pisoCurvo_boss_free
+          - pisoCurvo_heliceAlta
+          cameraOrientation: {x: 0, y: 2, z: -1}
+    - title: 
+      data:
+      - jsonName: gallax_space_eyes_shooters
+        title: SPACE EYES SHOOTERS
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          - zigzag
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - raysAncho
+          - zigzag_Rays_1
+          - zigzag_Rays_2
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss: 0
+          total_areas: 6
+          bending: 0
+          randomize: 1
+          areas:
+          - escupe_frontal1 (1)
+          - escupe_frontal1 (1) 1
+          - escupe_frontal1 (1) 2
+          - escupe_frontal1 1
+          - escupe_frontal1 (2)
+          - escupe_frontal1
+          - escupe_frontal_fila
+          - escupe_frontal_fila 1
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_2_filas_eyes
+          - boss_2_filas_free_eyes
+          cameraOrientation: {x: 0, y: 0, z: 0}
+    - title: 
+      data:
+      - jsonName: gallax_navesOcultas
+        title: DARK EYES
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 10
+          bending: -3
+          randomize: 1
+          areas:
+          - escupe_frontal1 (1)
+          - escupe_frontal1 (1) 1
+          - escupe_frontal1 (1) 2
+          - escupe_frontal1 1
+          - escupe_frontal1 (2)
+          - escupe_frontal1
+          - escupe_frontal_fila
+          - escupe_frontal_fila 1
+          cameraOrientation: {x: 0, y: -4, z: 0}
+        - boss: 0
+          total_areas: 8
+          bending: -17
+          randomize: 1
+          areas:
+          - subibaja_escupe1
+          - subibaja_escupe2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: -22
+          randomize: 0
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -4, z: 0}
+        - boss: 1
+          total_areas: 6
+          bending: -15
+          randomize: 0
+          areas:
+          - descansoMuyAnchoEntrance
+          - descansoMuyAncho
+          - descansoMuyAncho
+          - boss_navesOcultas
+          - descansoMuyAncho
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: -15
+          randomize: 1
+          areas:
+          - descansoMuyAncho
+          - descansoMuyAnchoSalto
+          - descansoMuyAnchoEscupen
+          cameraOrientation: {x: 0, y: -4, z: -2}
+    - title: 
+      data:
+      - jsonName: gallax_subibaja
+        title: ISOLATON
+        id: 0
+        maxScore: 1000
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - cepillo1
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - cepillo1
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - calecita_x1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - naves_3_filas
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 1
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - subibajaBoss
+          - subibajaBossFree
+          cameraOrientation: {x: 0, y: 1, z: -2}
+    - title: 
+      data:
+      - jsonName: gallax_space_circles
+        title: SPACE CIRCLES
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 6
+          bending: 0
+          randomize: 1
+          areas:
+          - cilindro1
+          - cilindro2
+          - cilindro1b
+          - cilindro2b
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - cilindroDouble1
+          - cilindroDouble2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - cilindroDouble2b
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - cilindro1
+          - cilindro2
+          - cilindro1b
+          - cilindro2b
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 10
+          bending: 0
+          randomize: 0
+          areas:
+          - cilindroDoubleBoss
+          - cilindroDoubleBossFree
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss: 0
+          total_areas: 100
+          bending: 0
+          randomize: 1
+          areas:
+          - cilindroDoubleBossFree
+          - cilindroDoubleBossFreeRays
+          cameraOrientation: {x: 0, y: 2, z: -1}
+    - title: 
+      data:
+      - jsonName: gallax_dark_hills
+        title: THE DARK HILLS
+        id: 0
+        maxScore: 1000
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoSalta1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - pisoSaltaAlto
+          - pisoSaltaAlto 1
+          - pisoSaltaAlto 1 1
+          - pisoSaltaAlto
+          - pisoSaltaAlto 1
+          - pisoSaltaAlto 1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - pisoSaltaAlto
+          - pisoSaltaAlto 1
+          - pisoSaltaAlto 1 1
+          - pisoSaltaAlto
+          - pisoSaltaAlto 1
+          - pisoSaltaAlto 1 1
+          cameraOrientation: {x: 0, y: 2, z: -2}
+        - boss: 1
+          total_areas: 6
+          bending: 0
+          randomize: 0
+          areas:
+          - resorteMovedizo_Boss
+          - resorteMovedizo_Boss_free
+          cameraOrientation: {x: 0, y: 3, z: -4}
+    - title: 
+      data:
+      - jsonName: gallax_firewalls
+        title: UNBREAKABLE FIREWALLS
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - container_descanso_cruz
+          - firewallsSimple
+          cameraOrientation: {x: 0, y: 2, z: 0}
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - firewallsSimple
+          - firewallsSimple2
+          cameraOrientation: {x: 0, y: -3, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - firewalls_lasers
+          cameraOrientation: {x: 0, y: -3, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_firewalls
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 0
+          areas:
+          - firewallsSimple3
+          - firewallsSimple3b
+          - firewallsSimple3
+          - firewallsSimple3b
+          cameraOrientation: {x: 0, y: -5, z: -2}
+        - boss: 0
+          total_areas: 3
+          bending: 0
+          randomize: 1
+          areas:
+          - firewallsSimple
+          - firewallsSimple2
+          cameraOrientation: {x: 0, y: -3, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_descanso_cruz
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - escupe_frontal1 (1)
+          - escupe_frontal1 (1) 1
+          - escupe_frontal1 (1) 2
+          - escupe_frontal1 1
+          - escupe_frontal1 (2)
+          - escupe_frontal1
+          - escupe_frontal_fila
+          - escupe_frontal_fila 1
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 4
+          bending: 0
+          randomize: 0
+          areas:
+          - firewallsBoss
+          - firewallsBossFree
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - firewallsBossFree
+          - firewallsBossFree2
+          cameraOrientation: {x: 0, y: -4, z: -2}
+    missionUnblockedID: 0
+  - missions:
+    - title: 
+      data:
+      - jsonName: per_init_jumps
+        title: ENTERING INFERNO
+        id: 0
+        maxScore: 3000
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -10
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 2
+          bending: -15
+          randomize: 0
+          areas:
+          - coinsJump1
+          - descanso1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -2
+          randomize: 0
+          areas:
+          - doubleJump1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 3
+          bending: -18
+          randomize: 0
+          areas:
+          - coinsJumpHard1
+          - coinsJumpFence
+          - tiposWalkers2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -14
+          randomize: 1
+          areas:
+          - bombas_pisoMueve1
+          - bombas_pisoMueve2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - jumpAncho
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAncho
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - jumpAncho2
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          - boss_serpientes
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          total_areas: 10000
+          bending: 0
+          randomize: 1
+          areas:
+          - boss_zigzag_free
+          - boss_free_fences
+          - boss_zigzag_free
+          - boss_ancho_free
+          - boss_zigzag_jumpers_free
+          - boss_Pacmans_intro_free_simple
+          - boss_zigzag_free_simple_fences
+          cameraOrientation: {x: 0, y: -2, z: -1}
+    - title: 
+      data:
+      - jsonName: per_ene_easy
+        title: HUNTING HOUNDS
+        id: 0
+        maxScore: 1000
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - 2lados_intro
+          - 2lados_intro 1
+          - 2lados_intro 1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 6
+          bending: 0
+          randomize: 1
+          areas:
+          - 2lados
+          - 2lados 1
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - cilindro_simple
+          - cilindro_simple 1
+          cameraOrientation: {x: 0, y: 1, z: -4}
+        - boss: 1
+          total_areas: 3
+          bending: -20
+          randomize: 0
+          areas:
+          - boss_calle_CentroFree
+          - boss_calle_Centro_boss
+          - boss_calle_CentroFree
+          cameraOrientation: {x: 0, y: -8, z: -8}
+        - boss: 0
+          total_areas: 3
+          bending: -15
+          randomize: 1
+          areas:
+          - boss_calle_CentroFree
+          - boss_calle_CentroFree 1
+          - boss_calle_Centro_Cruz
+          cameraOrientation: {x: 0, y: -12, z: -14}
+    - title: 
+      data:
+      - jsonName: per_snakes
+        title: SNAKES INFRAMUNDO
+        id: 0
+        maxScore: 460
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 10
+          bending: 0
+          randomize: 1
+          areas:
+          - snakes1
+          - snakes2
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: -2
+          randomize: 1
+          areas:
+          - snakes1
+          - snakes2
+          cameraOrientation: {x: 0, y: -1, z: 0}
+        - boss: 1
+          total_areas: 3
+          bending: -25
+          randomize: 0
+          areas:
+          - boss_circulo_gigante
+          - boss_circulo_gigante_free
+          - boss_circulo_gigante_free_snakes
+          cameraOrientation: {x: 0, y: 3, z: -1}
+        - boss: 1
+          total_areas: 100
+          bending: -15
+          randomize: 1
+          areas:
+          - boss_circulo_gigante_free
+          - boss_circulo_gigante_free_snakes
+          cameraOrientation: {x: 0, y: -5, z: -1}
+    - title: 
+      data:
+      - jsonName: per_vienen_de_atras
+        title: KILL THE HOUNDS
+        id: 0
+        maxScore: 150
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -16
+          randomize: 1
+          areas:
+          - ruedasEnemigos
+          - ruedaSimple
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        - boss: 0
+          total_areas: 14
+          bending: -8
+          randomize: 0
+          areas:
+          - boss1Corre
+          - boss1Corre2
+          - boss1Corre3
+          - boss1Corre2
+          - boss1Corre2
+          - boss1Corre3
+          - boss1Corre2
+          - boss1Corre2_fences
+          - boss1Corre
+          - boss1Corre2
+          - boss1Corre3
+          cameraOrientation: {x: 0, y: 6, z: -18}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: 7, z: -16}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaSimple
+          - ruedaSimple2
+          cameraOrientation: {x: 0, y: 6, z: -15}
+        - boss: 1
+          total_areas: 10000
+          bending: -15
+          randomize: 0
+          areas:
+          - bossHuyenCorriendo
+          - barrancas_free_ancha
+          cameraOrientation: {x: 0, y: 7, z: -14}
+    - title: 
+      data:
+      - jsonName: per_lava_gargolas
+        title: GORGONAS
+        id: 0
+        maxScore: 1000
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - gargolaDeforme1
+          - gargolaDeforme2
+          cameraOrientation: {x: 0, y: 5, z: 0}
+        - boss: 0
+          total_areas: 5
+          bending: 0
+          randomize: 1
+          areas:
+          - gargola1
+          - gargola2
+          - gargola3
+          cameraOrientation: {x: 0, y: 1, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - gargolaDeforme1
+          - gargolaDeforme2
+          cameraOrientation: {x: 0, y: 1, z: 1}
+        - boss: 1
+          total_areas: 100
+          bending: 0
+          randomize: 0
+          areas:
+          - escupe_boss
+          - escupeBoss_free1
+          cameraOrientation: {x: 0, y: 2, z: -1}
+    - title: 
+      data:
+      - jsonName: per_catapultas
+        title: CATAPULTS & HELICOPTERS
+        id: 0
+        maxScore: 0
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -6
+          randomize: 1
+          areas:
+          - cataputas_x2
+          cameraOrientation: {x: 0, y: -4, z: -18}
+        - boss: 0
+          total_areas: 2
+          bending: -10
+          randomize: 1
+          areas:
+          - cataputas_x2
+          - lasersrWalls_x4Hard
+          - lasersrWalls_x4Hard1
+          cameraOrientation: {x: 0, y: -6, z: -13}
+        - boss: 1
+          total_areas: 10000
+          bending: -15
+          randomize: 0
+          areas:
+          - water_1
+          - cataputas_x2_boss
+          - cataputas_x2_free
+          cameraOrientation: {x: 0, y: -1, z: -13}
+    - title: 
+      data:
+      - jsonName: per_barrancas
+        title: MORTAL BARRANCAS
+        id: 0
+        maxScore: 0
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 6
+          bending: 0
+          randomize: 1
+          areas:
+          - barrancas_1
+          - barrancas_2
+          - barrancas_3
+          - curved1
+          cameraOrientation: {x: 0, y: -0.5, z: 1}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - cilindro1
+          - cilindroBossPer
+          - cilindro1
+          - cilindro1
+          cameraOrientation: {x: 0, y: -0.1, z: -0.5}
+    - title: 
+      data:
+      - jsonName: per_curvo
+        title: CURVES TO HELL
+        id: 0
+        maxScore: 0
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 55
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoCurvo1
+          - pisoCurvoSnakes
+          - pisoCurvoSnakes2
+          - pisoCurvo2
+          - pisoCurvo3
+          - pisoCurvo4
+          - pisoCurvo5
+          - pisoCurvo_helices
+          - pisoCurvo6
+          - pisoCurvo7
+          - pisoCurvo8
+          - pisoCurvo9
+          - pisoCurvo9 1
+          - pisoCurvo_helices
+          - pisoCurvo1 1
+          - pisoCurvo3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 6
+          bending: 0
+          randomize: 0
+          areas:
+          - pisoCurvo_boss
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 16
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_heliceAlta
+          cameraOrientation: {x: 0, y: 0, z: 0}
+    - title: 
+      data:
+      - jsonName: per_pisoAlto
+        title: SLIDE TO HELL
+        id: 0
+        maxScore: 0
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoAlto1
+          - pisoAlto_rueda
+          - pisoAlto_helices
+          - enemigosx2
+          cameraOrientation: {x: 0, y: -16, z: -6}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - descanso1
+          - boss_Calecitas_altas
+          - boss_45grados_free
+          cameraOrientation: {x: 0, y: -2, z: -8}
+        - boss: 0
+          total_areas: 200
+          bending: -2
+          randomize: 1
+          areas:
+          - pisoAlto1
+          - pisoAlto_rueda
+          - pisoAlto_helices
+          cameraOrientation: {x: 0, y: -20, z: -10}
+    - title: 
+      data:
+      - jsonName: per_7
+        title: INFERNAL WHEELS
+        id: 0
+        maxScore: 460
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 6
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaSimple
+          - ruedaSimple2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaBifurca
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 6
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaDoble1
+          - ruedaDoble2
+          - enemigosDoble
+          - enemigosDobleJump
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 5
+          bending: 0
+          randomize: 0
+          areas:
+          - ruedaBoss
+          - ruedaBossFree1
+          - ruedaBossFree2
+          - ruedaBossFree3
+          - ruedaBossFree4
+          - ruedaBossFree1
+          - ruedaBossFree2
+          - ruedaBossFree3
+          - ruedaBossFree4
+          cameraOrientation: {x: 0, y: -2, z: -1}
+    - title: 
+      data:
+      - jsonName: per_sliders
+        title: 
+        id: 0
+        maxScore: 0
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - slider_intro3
+          - slider_intro4
+          - slider_intro5_doble
+          - slider_intro1
+          - slider_intro2
+          - slider_intro6_doble_trees
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - sliderHard1
+          - sliderHard2
+          - sliderHard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 1
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - slider1
+          - sliderBossCubosPer
+          - sliderWalls_seguidas1
+          - sliderWalls_seguidas2
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - sliderWalls_seguidas1
+          - sliderWalls_seguidas2
+          cameraOrientation: {x: 0, y: -2, z: 0}
+    missionUnblockedID: 3
+  MissionActiveID: 0
+  MissionActive:
+    jsonName: 
+    title: 
+    id: 0
+    maxScore: 0
+    fondo: 
+    areaSetData: []
+  areaDataActive:
+    totalCoins: 0
+    z_length: 0
+    data: []
+--- !u!114 &114729658151120070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607946064814444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c144ae37d835c4bba5516e3f8057cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playMode: 4
+  playOnlyBosses: 0
+  isArcadeMultiplayer: 1
+  Debbug: 1
+  videoGameID: 1
+  missionID: 3
+  mission: {fileID: 0}
+  missions: {fileID: 114588440116649342}
+  areaCreator: {fileID: 114427155742550844}
+  area: {fileID: 0}
+--- !u!114 &114914902966106284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607946064814444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f87b5eb51fe38248a1e5fb64a8922ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

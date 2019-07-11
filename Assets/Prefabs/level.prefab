@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400000}
+  - component: {fileID: 11400002}
+  - component: {fileID: 11400004}
+  - component: {fileID: 11447020}
+  - component: {fileID: 11434522}
+  m_Layer: 0
+  m_Name: level
+  m_TagString: level
+  m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2000, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03c0db26a56c19459f5067ff3571945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitingToStart: 1
+  Dificulty: 0
+  explotion: {fileID: 11400000, guid: 50fdb467619881f4aa547e6b153134a9, type: 2}
+  wallExplotion: {fileID: 11400000, guid: 95ab21400fb2ed040b249d6db346f81e, type: 2}
+  explotionEffect: {fileID: 11400002, guid: f4110f490ed9dd643a33cb1e5544305a, type: 2}
+  explotionGift: {fileID: 11400004, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  limitObject: {fileID: 100000, guid: d8aea211dcf29554faaed560b9fb8f4c, type: 2}
+  scoreSignal: {fileID: 11400000, guid: c5b80f37f19281f4482edbca75395028, type: 2}
+  missionBar: {fileID: 0}
+  missionDesc: {fileID: 0}
+  nextDistanceVictoryArea: 0
+  victoryAreaLastLevel: {fileID: 114213309450561236, guid: 77a91d3e15eaa4d40bdc999392a3632c,
+    type: 2}
+  victoryArea: {fileID: 11464506, guid: b029d1bdc4abc894a8e600cec0f2bfd6, type: 2}
+  areasLength: 0
+  sceneObjects: {fileID: 0}
+  missions: {fileID: 0}
+  charactersManager: {fileID: 0}
+  isLastArea: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6f94c595b7de1498a693e38567934d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingFloor: {fileID: 11400000, guid: 5eff93be3a522e14c8cdda6e6c8ee0b2, type: 2}
+--- !u!114 &11434522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c827a0b24c63bf140879a5e794551632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moods: []
+--- !u!114 &11447020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b97b7b6a21f194485e3406b30cd8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Invencible: {fileID: 11440376, guid: 76a57c8a176aded4a9dd613fe9908163, type: 2}
+  Missile: {fileID: 114124173801513360, guid: eab705d3e839a834eb62e0e0b70ae09c, type: 2}
+  all: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabAsset: 1
