@@ -53,8 +53,20 @@ public class Breakable : MonoBehaviour {
 		sceneObject.broken = true;
 
         Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
-        
-		foreach (Breakable breakable in childs)
+
+        // si no es un enemigo agrega una explosion que rompe los objetos cercanos:
+        if(gameObject.layer != 17)
+        {
+            MeshRenderer firstMeshRenderer = GetComponentInChildren<MeshRenderer>();
+            Color color = Color.black;
+            if(firstMeshRenderer != null)
+                color = firstMeshRenderer.material.color;
+            Data.Instance.events.AddWallExplotion(transform.position, color);
+        }
+            
+
+
+        foreach (Breakable breakable in childs)
 		{
             if (breakable && breakable.isOn) breakable.hasGravity();
 		}

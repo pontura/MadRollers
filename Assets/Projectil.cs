@@ -150,9 +150,8 @@ public class Projectil : SceneObject {
 				break;
 		case "enemy":
 				MmoCharacter enemy = other.gameObject.GetComponent<MmoCharacter> ();
-
-			//esto funca para los bosses:-----------------------
-				if (enemy) {
+                //esto funca para los bosses:-----------------------
+                if (enemy) {
 					if (enemy.state == MmoCharacter.states.DEAD)
 						return;
 					SetScore( ScoresManager.score_for_killing, ScoresManager.types.KILL);

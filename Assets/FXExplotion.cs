@@ -46,7 +46,7 @@ public class FXExplotion : SceneObject {
 		if (lastColor == color)
 			return;		
 		lastColor = color;
-		color.a = 0.075f;
+		color.a = 0.1f;
 		meshRenderer.material.color = color;
 	}
 	void Update()

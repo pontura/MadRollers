@@ -13,6 +13,7 @@ public class WeakPlatform : SceneObject {
 	Rigidbody rb;
 	bool falling;
 	public BorderVideogameCollider[] borders;
+    public bool ignoreBorders;
 
 	public types type;
 	public enum types
@@ -23,9 +24,17 @@ public class WeakPlatform : SceneObject {
 
 	public override void OnRestart(Vector3 pos)
 	{
-		
-		foreach (BorderVideogameCollider border in borders)
-			border.Init ();
+
+        if (!ignoreBorders)
+        {
+            foreach (BorderVideogameCollider border in borders)
+                border.Init();
+        }
+        else
+        {
+            foreach (BorderVideogameCollider border in borders)
+                border.gameObject.SetActive(false);
+        }
 		
 		falling = false;
 

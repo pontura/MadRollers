@@ -26,7 +26,7 @@ public class GameCamera : MonoBehaviour
 	public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, -0.8f);
 	public Vector3 newCameraOrientationVector;
 
-	public Vector3 defaultRotation =  new Vector3 (47,0,0);
+	public Vector3 defaultRotation =  new Vector3 (48,0,0);
 //	public Vector3 newRotation;
     
     public bool onExplotion;
@@ -391,33 +391,33 @@ public class GameCamera : MonoBehaviour
 	}
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
-		Data.Instance.events.FreezeCharacters (true);
+		//Data.Instance.events.FreezeCharacters (true);
 		//Data.Instance.events.ForceFrameRate (0.5f);
-		Data.Instance.events.RalentaTo (0.5f, 0.2f);
-		this.snapTargetPosition = targetPos;
+		Data.Instance.events.RalentaTo (0.5f, 0.1f);
+		//this.snapTargetPosition = targetPos;
 
-		if(snapTargetPosition.y < 1)
-			snapTargetPosition.y = 1;
+		//if(snapTargetPosition.y < 1)
+		//	snapTargetPosition.y = 1;
 		
-		state = states.SNAPPING_TO;
+		//state = states.SNAPPING_TO;
 
-        if (!Data.Instance.isAndroid)
-            ResetSnapping(3);
-    }
-    public void ResetSnapping(float delay)
-    {
-        StartCoroutine(ResetSnappingCoroutine(delay));
+  //      if (!Data.Instance.isAndroid)
+  //          ResetSnapping(3);
+  //  }
+  //  public void ResetSnapping(float delay)
+  //  {
+        StartCoroutine(ResetSnappingCoroutine(3));
     }
 	IEnumerator ResetSnappingCoroutine(float delay)
 	{
 		yield return new WaitForSecondsRealtime(delay);
-		if (state != states.SNAPPING_TO)
-			yield return null;
-		else {			
-			StopAllCoroutines ();
-			Data.Instance.events.RalentaTo (1f, 0.005f);
-			state = states.PLAYING;
-			Data.Instance.events.FreezeCharacters (false);
-		}
+		//if (state != states.SNAPPING_TO)
+		//	yield return null;
+		//else {			
+		//	StopAllCoroutines ();
+			Data.Instance.events.RalentaTo (1f, 0.01f);
+		//	state = states.PLAYING;
+			//Data.Instance.events.FreezeCharacters (false);
+		//}
 	}
 }
