@@ -147,7 +147,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "BichoVuela":
 			case "palm":
 			case "palmTall":
-				if (go.name == "extralargeBlock1" || go.name == "largeBlock1")
+            case "palmSmall":
+                    if (go.name == "extralargeBlock1" || go.name == "largeBlock1")
 					pos.y += (float)Random.Range (-10, 10) / 1000;
 				if (go.name == "smallBlock1" || go.name == "extraSmallBlock1")
 					sceneObject = Pool.GetObjectForType (go.name + "_real", true);

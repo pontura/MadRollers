@@ -6,9 +6,17 @@ public class SettingsModeScreen : MonoBehaviour {
 
 	void Start()
 	{
-		//InitStoryMode ();
-	}
-	public void ContinueMode () {
+        Data.Instance.events.OnJoystickClick += OnJoystickClick;
+    }
+    void OnDestroy()
+    {
+        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+    }
+    void OnJoystickClick()
+    {
+        ContinueMode();
+    }
+    public void ContinueMode () {
 		Data.Instance.playMode = Data.PlayModes.CONTINUEMODE;
 		Go ();
 	}
