@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsModeScreen : MonoBehaviour {
 
-	void Start()
+    public Toggle toggleControls;
+
+    void Start()
 	{
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
     }
@@ -51,4 +54,30 @@ public class SettingsModeScreen : MonoBehaviour {
         Cursor.visible = false;
 		Data.Instance.LoadLevel("MainMenu");
 	}
+    public void Controls()
+    {
+        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+        Data.Instance.controlMapper.Open();
+    }
+    public void ToogleControls()
+    {
+
+        Rewired.UI.ControlMapper.ControlMapper controlMapper = Data.Instance.controlMapper;
+
+        if (toggleControls.isOn)
+        {
+            foreach (Rewired.Player player in Rewired.ReInput.players.AllPlayers)
+            {
+                player.controllers.maps.SetMapsEnabled(true, "Default");
+            }
+        }
+        else
+        {
+            foreach (Rewired.Player player in Rewired.ReInput.players.AllPlayers)
+            {
+                player.controllers.maps.SetMapsEnabled(false, "Default");
+            }
+        }
+
+    }
 }

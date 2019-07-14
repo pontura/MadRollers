@@ -53,6 +53,8 @@ public class Data : MonoBehaviour {
 	[HideInInspector]
 	public Texts texts;
 
+    public Rewired.UI.ControlMapper.ControlMapper controlMapper;
+
     static Data mInstance = null;
 
     public modes mode;

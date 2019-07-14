@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class JoystickController : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class JoystickController : MonoBehaviour {
 	bool processAxis;
 	bool isOff;
 	float delayToReact = 0.4f;
+
     void Start()
     {
         if (Data.Instance.isAndroid)
