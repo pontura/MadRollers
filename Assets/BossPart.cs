@@ -51,7 +51,7 @@ public class BossPart : MonoBehaviour {
 	{
 		if (!isOn)
 			return;
-        if (transform.position.y < -15)
+        if (transform.position.y < -22)
             Die();
 
     }
