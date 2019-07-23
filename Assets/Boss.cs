@@ -33,12 +33,13 @@ public class Boss : SceneObject {
 		return false;
 	}
 	public void breakOut()
-	{
-		Data.Instance.events.OnSoundFX("FX break", -1);
+	{      
+
+        Data.Instance.events.OnSoundFX("FX break", -1);
 		hits++;
 		Hit ();
-
-		Data.Instance.events.OncharacterCheer ();
+        
+        Data.Instance.events.OncharacterCheer ();
 
 		if (hits >= totalHits)
 			Killed ();
@@ -50,7 +51,6 @@ public class Boss : SceneObject {
 	{
 		Data.Instance.events.OnSoundFX("FX explot00", -1);
 		Death ();
-		// 	Data.Instance.events.AddExplotion (transform.position, Color.white);
 		Invoke ("Died", 0.2f);
 	}
 	void Died()

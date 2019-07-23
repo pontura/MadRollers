@@ -4,60 +4,97 @@ using UnityEngine;
 
 public class BossPart : MonoBehaviour {
 
+    [HideInInspector]
 	public Boss boss;
 	bool called;
 	bool isOn;
-	BossPartMarker marker;
+    public Vector3 progressBarPosition = new Vector3(0,5,0);
+    public int lifes = 2;
+    int totalLife;
+    Vector3 initialScale;
+    ProgressBar progressBar;
+    GameObject asset;
+   // [HideInInspector]
+    public Animation anim;
+    BossAttacksManager bossAttackManager;
 
-	public void Init(Boss _boss, string bossAssetPath = null)
+    private void Start()
+    {
+        this.bossAttackManager = GetComponent<BossAttacksManager>();
+    }
+    public void Init(Boss _boss, string bossAssetPath = null)
 	{
-		this.boss = _boss;
+        
+        this.totalLife = lifes;
+
+        initialScale = transform.localScale;
+        this.boss = _boss;
 		Utils.RemoveAllChildsIn (transform);
 		if (bossAssetPath != null) {
-			GameObject newGO = Instantiate(Resources.Load("bosses/" + bossAssetPath, typeof(GameObject))) as GameObject;
-			newGO.transform.SetParent (transform);
-			newGO.transform.localScale = Vector3.one;
-			newGO.transform.localEulerAngles = Vector3.zero;
-			newGO.transform.localPosition = Vector3.zero;
-		}
+            asset = Instantiate(Resources.Load("bosses/" + bossAssetPath, typeof(GameObject))) as GameObject;
+            asset.transform.SetParent (transform);
+            asset.transform.localScale = Vector3.one;
+            asset.transform.localEulerAngles = Vector3.zero;
+            asset.transform.localPosition = Vector3.zero;
+            anim = asset.GetComponentInChildren<Animation>();
+        }
 		isOn = true;
 
-		if(gameObject.activeSelf)
-		{
-			marker = ObjectPool.instance.GetObjectForType("BossPartMarker", false) as BossPartMarker;
-			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(marker, transform.position, transform);
-			marker.transform.localEulerAngles = Vector3.zero;
-		}
-	}
+        progressBar = (Instantiate(Resources.Load("ProgressBar", typeof(GameObject))) as GameObject).GetComponent<ProgressBar>();
+        progressBar.SetProgression(1);
+        progressBar.transform.SetParent(transform);
+        progressBar.transform.localScale = Vector3.one;       
+        progressBar.transform.localEulerAngles = Vector3.zero;
+        progressBar.transform.localPosition = progressBarPosition;
+    }
 	void Update()
 	{
 		if (!isOn)
 			return;
-		if (transform.position.y < -15)
-			OnActivate ();
-	}
-	public void OnActivate()
+        if (transform.position.y < -15)
+            Die();
+
+    }
+	public void Hitted()
 	{
 		if (called)
 			return;
+        if (bossAttackManager != null)
+            bossAttackManager.Reset();
 
-		ParticlesSceneObject effect = ObjectPool.instance.GetObjectForType("ExplotionEffectBoss", false) as ParticlesSceneObject;
-		effect.SetColor (Color.red);
-		Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(effect, transform.position);
+        ParticlesSceneObject effect = ObjectPool.instance.GetObjectForType("ExplotionEffectBoss", false) as ParticlesSceneObject;
+        Data.Instance.events.OnSoundFX("punch", -1);
+        lifes--;
+        if (lifes > 0)
+        {
+            progressBar.SetProgression((float)lifes / (float)totalLife);
+            HittedAnim();
+            effect.SetColor(Color.green);
+            Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(effect, transform.position);
+        }
+        else
+        {
+            effect.SetColor(Color.red);
+            Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(effect, transform.position);
+        }
+        
+    }
 
-		if(marker != null)
-			marker.Pool ();
-		
-		called = true;
-		CancelInvoke ();
 
-		if( boss.HasOnlyOneLifeLeft() )
-			Data.Instance.events.OnProjectilStartSnappingTarget (transform.position);		
+    //lo llama breakable:
+    public void Die()
+    {
+        lifes = 0;
 
-		boss.OnPartBroken (this);
-		gameObject.SetActive (false);
+        called = true;
+        CancelInvoke();
 
-	}
+        if (boss.HasOnlyOneLifeLeft())
+            Data.Instance.events.OnProjectilStartSnappingTarget(transform.position);
+
+        boss.OnPartBroken(this);
+        gameObject.SetActive(false);
+    }
 	public void OnActive()
 	{
 		SendMessage ("OnBossPartActive", SendMessageOptions.DontRequireReceiver);
@@ -68,4 +105,32 @@ public class BossPart : MonoBehaviour {
 	{
 		gameObject.SetActive (true);
 	}
+    private void HittedAnim()
+    {        
+        transform.localScale = initialScale * 2.5f;
+        iTween.ScaleTo(gameObject, iTween.Hash(
+             "scale", initialScale,
+             "islocal", true,
+             "time", 0.5f,
+             "easetype", iTween.EaseType.easeOutCirc
+            // "axis", "x"
+         ));
+        PlayAnim("hit");
+        Invoke("ResetAnim", 0.5f);
+    }
+    void ResetAnim()
+    {
+        PlayAnim("idle");
+    }
+    void PlayAnim(string animName)
+    {        
+        if (anim != null)
+        {
+            AnimationClip clip = anim.GetClip(animName);
+            if(clip != null)
+                anim.Play(animName);
+            else
+                print("no tiene la anim " + animName);
+        }
+    }
 }

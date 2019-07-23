@@ -30,9 +30,13 @@ public class Breakable : MonoBehaviour {
     public System.Action OnBreak = delegate { };
     public int score;
 	SceneObject sceneObject;
+    BossPart bossPart;
+
 	void Start()
 	{
-		sceneObject = GetComponent<SceneObject> ();
+        bossPart = GetComponent<BossPart>();
+
+        sceneObject = GetComponent<SceneObject> ();
 		if (sceneObject == null)
 			sceneObject = GetComponentInParent<SceneObject> ();
 
@@ -43,12 +47,22 @@ public class Breakable : MonoBehaviour {
     }
 
 	public void breakOut (Vector3 position) {
-        if (!isOn) return;
 
-        OnBreak();
+        if (!isOn || sceneObject == null)
+            return;
 
-		if (sceneObject == null)
-			return;
+        if (bossPart != null)
+        {
+            bossPart.Hitted();
+            if (bossPart.lifes > 0)
+                return;
+        }
+        else
+        {
+            SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
+        }
+
+        OnBreak();		
 
 		sceneObject.broken = true;
 
@@ -59,31 +73,28 @@ public class Breakable : MonoBehaviour {
         {
             MeshRenderer firstMeshRenderer = GetComponentInChildren<MeshRenderer>();
             Color color = Color.black;
-            if(firstMeshRenderer != null)
-                color = firstMeshRenderer.material.color;
+          //  if(firstMeshRenderer != null)
+           //     color = firstMeshRenderer.material.color;
             Data.Instance.events.AddWallExplotion(transform.position, color);
-        }
-            
-
+        }        
 
         foreach (Breakable breakable in childs)
-		{
             if (breakable && breakable.isOn) breakable.hasGravity();
-		}
 
-		breaker();      
+		breaker();
+
+        if (bossPart != null)
+            bossPart.Die();
+
 
         isOn = false;
-		SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
 
 		if (dontDieOnHit)
 			dontKillPlayers = true;
 		else
 			Destroy(gameObject);
-		
-     //   SendMessage("Die", SendMessageOptions.DontRequireReceiver);
-        
-	}
+
+    }
 	public void hasGravity() {
         isOn = false;
 		dontKillPlayers = true;

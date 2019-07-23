@@ -25,7 +25,6 @@ public class LevelCreator : MonoBehaviour {
 
 	void Start () {
 		if (Debbug) {
-
             LevelDataDebug.Instance.playOnlyBosses = playOnlyBosses;
             LevelDataDebug.Instance.isArcadeMultiplayer = isArcadeMultiplayer;
 			LevelDataDebug.Instance.isDebbug = true;

@@ -29,7 +29,7 @@ public class BossCreator : Boss {
 	}
 	void Delayed()
 	{
-		GameObject assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
+		GameObject assets = Instantiate(Resources.Load("bosses/_modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
 		//GameObject assets = Instantiate (settings.assets);
 		assets.transform.SetParent (transform);
 		assets.transform.localPosition = Vector3.zero;

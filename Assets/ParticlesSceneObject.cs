@@ -29,7 +29,16 @@ public class ParticlesSceneObject : SceneObject {
 		color.a = alpha;
 
         foreach (ParticleSystem ps in explotions_to_colorize)
-            ps.startColor = color;
+        {
+            try
+            {
+                var parts = ps.main;
+                parts.startColor = color;
+            } catch
+            {
+                Debug.Log("no pudo cambiar el color");
+            }
+        }
     }
 
 }

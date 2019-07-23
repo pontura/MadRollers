@@ -290,7 +290,6 @@ public class Missions : MonoBehaviour {
     }
     public void CreateCurrentArea(string areaName, bool isXtra = false)
     {
-        print(isXtra + "___SetExtraArea " + Time.time);
         //DEBUG:::::
         if (Data.Instance.testAreaName != "")
             AddAreaByName(Data.Instance.testAreaName);
