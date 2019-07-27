@@ -94,7 +94,7 @@ public class GameCamera : MonoBehaviour
         } else {
             cam.sensorSize = new Vector2(18, cam.sensorSize.y);
             state = states.START;
-            transform.localPosition = new Vector3(0, 2, -1.5f);
+            transform.localPosition = new Vector3(0, 0, -1.5f);
             newPos.y = 0;
         }
 
@@ -131,7 +131,7 @@ public class GameCamera : MonoBehaviour
 	//	cam.transform.localPosition = new Vector3 (0, cam.transform.localPosition.y, 0);
 
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
-			"position", new Vector3 (0, 2, 0),
+			"position", new Vector3 (0, 0, 0),
 			"islocal", true,
 			"time", 4f,
 			"easetype", iTween.EaseType.easeOutCirc
@@ -269,13 +269,6 @@ public class GameCamera : MonoBehaviour
 			cam.transform.LookAt (snapTargetPosition);
 			return;	
 		}       
-		//else if (state == states.END && Data.Instance.playMode == Data.PlayModes.VERSUS) {
-		//	if (flow_target != null) {
-		//		cam.transform.LookAt (flow_target.transform);
-		//		cam.transform.RotateAround (Vector3.zero, cam.transform.up, 50 * Time.deltaTime);
-		//	}
-		//	return;
-		//}
 		if (state == states.END || state == states.WAITING_TO_TRAVEL)
         {
             return;
@@ -296,10 +289,7 @@ public class GameCamera : MonoBehaviour
 
             transform.localEulerAngles = rot;
         }
-		//if (team_id == 0)
 			newPos = charactersManager.getCameraPosition ();
-	//	else
-		//	newPos = charactersManager.getPositionByTeam (team_id);
 
 		Vector3 _newPos  = newPos;
 		_newPos += newCameraOrientationVector;

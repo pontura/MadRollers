@@ -18,14 +18,16 @@ public class CurvedWorldManager : MonoBehaviour {
     void StartMultiplayerRace()
     {
         curvedWorld_Controller = GameObject.Find("CurvedWorld_Controller").GetComponent<CurvedWorld_Controller>();
-        curvedWorld_Controller._V_CW_Bend_X = -15;
+        curvedWorld_Controller._V_CW_Bend_X = -12;
     }
     void ChangeCurvedWorldX(float _x)
     {
         if(curvedWorld_Controller==null)
             return;
 
-        return;
+        _x /= 1.4f;
+
+        // return;
         Hashtable ht = new Hashtable();
         ht.Add("from",curvedWorld_Controller._V_CW_Bend_X);
         ht.Add("to",_x);

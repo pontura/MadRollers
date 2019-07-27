@@ -327,7 +327,7 @@ public class CharactersManager : MonoBehaviour {
             normalPosition /= totalCharacters;
             normalPosition.y += 0.15f + (totalCharacters / 3f);
             //	normalPosition.z -= 0.3f + (MaxDistance/26);
-            normalPosition.z = distance - 1.5f - (totalCharacters/2.5f);
+            normalPosition.z = distance - 1.75f - (totalCharacters / 2.5f);
 
             return normalPosition;
         }
@@ -337,7 +337,8 @@ public class CharactersManager : MonoBehaviour {
         else
         {
             Vector3 p = characters[0].transform.position;
-            p.z = distance - 1.3f;
+            p.y += 0.5f;
+            p.z = distance - 2f;
             return p;
         }
     }

@@ -10,6 +10,7 @@ public class SettingsModeScreen : MonoBehaviour {
     void Start()
 	{
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
+        ToogleControls();
     }
     void OnDestroy()
     {
@@ -38,19 +39,6 @@ public class SettingsModeScreen : MonoBehaviour {
     void Go()
 	{
         Data.Instance.missions.Init();
-        //Data.Instance.events.OnMusicStatus (true);
-        //Data.Instance.events.OnSFXStatus (true);
-        //Data.Instance.events.OnMadRollersSFXStatus (true);
-        //Data.Instance.events.OnVoicesStatus (true);
-
-        //Data.Instance.canContinue = true;
-        //Data.Instance.musicOn = true;
-        //Data.Instance.soundsFXOn = true;
-        //Data.Instance.madRollersSoundsOn = true;
-        //Data.Instance.voicesOn = true;
-
-        //Data.Instance.switchPlayerInputs = false;
-
         Cursor.visible = false;
 		Data.Instance.LoadLevel("MainMenu");
 	}
