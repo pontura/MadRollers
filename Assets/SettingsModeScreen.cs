@@ -9,6 +9,7 @@ public class SettingsModeScreen : MonoBehaviour {
 
     void Start()
 	{
+        Cursor.visible = true;
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
         ToogleControls();
     }
@@ -67,5 +68,9 @@ public class SettingsModeScreen : MonoBehaviour {
             }
         }
 
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }
