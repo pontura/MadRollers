@@ -22,12 +22,5 @@ public class VideogameBossPanelsManager : MonoBehaviour {
 			actualBossPanel = Instantiate (boosPanel3) ;
 			break;
 		}
-
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

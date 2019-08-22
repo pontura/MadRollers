@@ -170,10 +170,10 @@ public class CharacterControls : MonoBehaviour {
         if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
             characterBehavior.shooter.CheckFire();
 
-        //if (InputManager.getDash(player.id) && InputManager.getHorizontal(player.id) == 0)
-        //{
-        //    characterBehavior.characterMovement.DashForward();
-        //}
+        if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) <-0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) ==0)
+        {
+            characterBehavior.characterMovement.DashForward();
+        }
 
         if (characterBehavior.state == CharacterBehavior.states.RUN)
         {

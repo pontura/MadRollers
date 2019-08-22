@@ -127,8 +127,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "extraSmallBlock1":
 			case "Coin":
 			case "bloodx1":
-			//case "Yuyo":
-			case "enemyFrontal":   
+                //case "Yuyo":
+            case "enemyRunner":
+            case "enemyFrontal":   
 			case "enemyShooter": 
 			case "enemyWater":   
 			case "enemySide":  
@@ -146,7 +147,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
             case "enemyNaveSimple":  
 			case "BichoVuela":
 			case "palm":
-			case "palmTall":
+           
+                case "palmTall":
             case "palmSmall":
                     if (go.name == "extralargeBlock1" || go.name == "largeBlock1")
 					pos.y += (float)Random.Range (-10, 10) / 1000;

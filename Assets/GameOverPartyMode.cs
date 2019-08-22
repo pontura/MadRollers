@@ -33,9 +33,9 @@ public class GameOverPartyMode : MonoBehaviour {
 	}
 	IEnumerator Loop()
 	{
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (3);
 		panel.SetActive (true);
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (3);
 		canClick = true;
 	}
 	void Update()

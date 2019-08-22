@@ -64,7 +64,7 @@ public class ExtraAreasManager : MonoBehaviour
         Mission_Xtras = missions.LoadDataFromMission("survival", "boyland_extras").data[0];
        
     }    
-    void SetExtraArea()
+    public void SetExtraArea()
     {
         MissionData.AreaSetData areaSetData;
         if (id % nextBossArea == 0 && !isBossOn)

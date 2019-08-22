@@ -143,8 +143,8 @@ public class Missions : MonoBehaviour {
             AddAreaByName("continue_Multiplayer");
         }
         else {
-            if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-				ShuffleMissions ();
+            //if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+			//	ShuffleMissions ();
 			AddAreaByName ("start_Multiplayer");
 		} 
 	}
@@ -165,10 +165,11 @@ public class Missions : MonoBehaviour {
 	{
         hasReachedBoss = false;
         times_trying_same_mission = 0;
-		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
-			AddAreaByName ("areaChangeLevel");
-			return;
-		} else if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1) {
+		//if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
+		//	AddAreaByName ("areaChangeLevel");
+		//	return;
+		//} else 
+        if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1) {
 			Game.Instance.GotoVideogameComplete ();
 		} else {
 			NextMission ();
@@ -199,9 +200,10 @@ public class Missions : MonoBehaviour {
 		ResetAreaSet ();
 
 		//HACK
-		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE && MissionActiveID >= videogames[videogamesData.actualID].missions.Count)
-			MissionActiveID = 1;
-		else if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
+		//if (Data.Instance.playMode == Data.PlayModes.PARTYMODE && MissionActiveID >= videogames[videogamesData.actualID].missions.Count)
+		//	MissionActiveID = 1;
+		//else 
+        if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
 			MissionActive = videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
 		this.missionCompletedPercent = 0;
 	}
@@ -244,7 +246,7 @@ public class Missions : MonoBehaviour {
 	void SetNextArea()
 	{
         MissionData.AreaSetData data = MissionActive.areaSetData[areaSetId];
-        if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && MissionActiveID != 0 && (Data.Instance.playOnlyBosses || hasReachedBoss) && !data.boss && areaSetId < MissionActive.areaSetData.Count - 2)
+        if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && (Data.Instance.playOnlyBosses || hasReachedBoss) && !data.boss && areaSetId < MissionActive.areaSetData.Count - 2)
         {
             areaSetId++;
             ResetAreaSet();
@@ -336,6 +338,9 @@ public class Missions : MonoBehaviour {
 	int tutorialID = 0;
 	void CheckTutorial(float distance)
 	{
+        if (hasReachedBoss)
+            return;
+
 		if(tutorialID >= 3 || Data.Instance.playMode == Data.PlayModes.VERSUS )
 			return;
 

@@ -58,15 +58,19 @@ public class HiscoresComparison : MonoBehaviour {
 		));
         StartCoroutine(DrawHiscores());
 	}
-	IEnumerator DrawHiscores()
-	{
-		puesto = 0;
-		int num = 1;
-		bool isCompleted = false;
-		foreach(ArcadeRanking.Hiscore data in arcadeRanking.all)
+    IEnumerator DrawHiscores()
+    {
+        puesto = 0;
+        int num = 1;
+        bool isCompleted = false;
+        int rankingNum = 5;
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            rankingNum = 1;
+
+        foreach (ArcadeRanking.Hiscore data in arcadeRanking.all)
 		{		
 			if (isCompleted) { }	
-			else if (num > 10) {
+			else if (num > rankingNum) {
 				isCompleted = true;
 				SetPuesto ();
 				yield return new WaitForSeconds (3f);

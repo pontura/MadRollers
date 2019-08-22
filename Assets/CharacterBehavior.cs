@@ -138,13 +138,41 @@ public class CharacterBehavior : MonoBehaviour {
 	float rotationZ = 0;
 	float rotationX = 0;
     public float rotationY = 0;
+    public RunDirections runDirection;
+    public enum RunDirections
+    {
+        CENTER,
+        RIGHT,
+        LEFT
+    }
     public void SetRotation(float rotationY)
 	{
         this.rotationY = rotationY;
-        transform.localEulerAngles = new Vector3(0, rotationY, 0);
-		madRoller.transform.localEulerAngles = new Vector3(rotationX, 0, rotationZ);
-	}
-
+        transform.localEulerAngles = new Vector3(rotationX, rotationY, -rotationY/2);
+        madRoller.transform.localEulerAngles = new Vector3(rotationX, 0, rotationZ);
+        SetRunState();
+    }
+    void SetRunState()
+    {
+        if (state == states.RUN)
+        {
+            if (rotationY > 0.1f && runDirection != RunDirections.LEFT)
+            {
+                runDirection = RunDirections.LEFT;
+                madRoller.Play("run_right");
+            }
+            else if (rotationY < -0.1f && runDirection != RunDirections.RIGHT)
+            {
+                runDirection = RunDirections.RIGHT;
+                madRoller.Play("run_left");
+            }
+            else if (rotationY == 0 && runDirection != RunDirections.CENTER)
+            {
+                madRoller.Play("run");
+                runDirection = RunDirections.CENTER;
+            }
+        }
+    }
 	/// <summary>
 	/// /////////////////////////////over
 	/// </summary>
@@ -224,8 +252,8 @@ public class CharacterBehavior : MonoBehaviour {
 					SliderFloor sliderFloor = coverHit.transform.gameObject.GetComponent<SliderFloor>();
 					if (sliderFloor == null) {
 						sliderEffect.speed = 0;
-						madRoller.Play("run");
-					}
+                        SetRunState();
+                    }
 				}
 				if (coverHit.transform.tag == "floor") {
 					rotationZ = coverHit.transform.up.x * -30;
@@ -286,8 +314,8 @@ public class CharacterBehavior : MonoBehaviour {
 	void OnFloorDone()
 	{
 		if (state == states.RUN) {
-			madRoller.Play ("run");
-			Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
+            SetRunState();
+            Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
 		}
 	}
 	public void Run()
@@ -299,11 +327,12 @@ public class CharacterBehavior : MonoBehaviour {
 		jumpsNumber = 0;
 		state = states.RUN;
 
-		if(isOver != null)
-			RunOverOther();
-		else
-			madRoller.Play("run");
-	}
+        if (isOver != null)
+            RunOverOther();
+        else
+            SetRunState();
+
+    }
 	public void AllButtonsReleased()
 	{
 		//if (player.transport != null)

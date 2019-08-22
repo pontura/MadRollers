@@ -20,6 +20,7 @@ public class SettingsModeScreen : MonoBehaviour {
     void OnJoystickClick()
     {
         ContinueMode();
+        //CreditsMode();
     }
     public void ContinueMode () {
 		Data.Instance.playMode = Data.PlayModes.CONTINUEMODE;
@@ -27,7 +28,7 @@ public class SettingsModeScreen : MonoBehaviour {
 	}
 
 	public void CreditsMode() {
-		Data.Instance.totalCredits = 4;
+		//Data.Instance.totalCredits = 4;
 		Data.Instance.playMode = Data.PlayModes.PARTYMODE;
 		Go ();
 	}

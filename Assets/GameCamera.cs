@@ -38,6 +38,7 @@ public class GameCamera : MonoBehaviour
 	float pixel_speed_recovery = 8;
 	private GameObject flow_target;
 	float _Y_correction;
+    float targetZOffset = 6.5f;
 
     float camSensorSpeed = 1.25f;
     float maxCamSensor = 18f;
@@ -87,10 +88,10 @@ public class GameCamera : MonoBehaviour
             newPos.y = 4.5f;
             cam.sensorSize = new Vector2(6, cam.sensorSize.y);
 
-            transform.localEulerAngles = new Vector3(3,0,0);
+            transform.localEulerAngles = new Vector3(0,0,0);
             transform.localPosition = new Vector3(0, 11, 0);
             cam.transform.localEulerAngles = new Vector3(26, 0, 0);
-            cam.transform.localPosition = new Vector3(0,0,-15);
+            cam.transform.localPosition = new Vector3(0,0,-18);
         } else {
             cam.sensorSize = new Vector2(18, cam.sensorSize.y);
             state = states.START;
@@ -104,6 +105,10 @@ public class GameCamera : MonoBehaviour
             transform.localPosition = new Vector3(0, 0, -1.5f);
         }
 
+        flow_target = new GameObject();
+        flow_target.transform.SetParent(transform.parent);
+        flow_target.name = "Camera_TARGET";
+        flow_target.transform.localPosition = new Vector3(0, 5, targetZOffset);
     }
     void OnDestroy()
     {
@@ -124,7 +129,6 @@ public class GameCamera : MonoBehaviour
 	}
     void StartMultiplayerRace()
     {
-       // anim.Stop();
         Init();
         state = states.PLAYING;
 
@@ -133,7 +137,7 @@ public class GameCamera : MonoBehaviour
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
 			"position", new Vector3 (0, 0, 0),
 			"islocal", true,
-			"time", 4f,
+			"time", 2f,
 			"easetype", iTween.EaseType.easeOutCirc
 			// "axis", "x"
 		));
@@ -151,12 +155,7 @@ public class GameCamera : MonoBehaviour
         } catch
         {
 
-        }        
-		if (flow_target == null) {
-			flow_target = new GameObject ();
-			flow_target.transform.SetParent (transform.parent);
-			flow_target.name = "Camera_TARGET";
-		}
+        } 
 	}
 	IEnumerator DoExploteCoroutine;
 	void OncharacterCheer()
@@ -210,9 +209,9 @@ public class GameCamera : MonoBehaviour
 	void LookAtFlow()
 	{
 		Vector3 newPosTarget = flow_target.transform.localPosition;
-		newPosTarget.x = Mathf.Lerp(newPosTarget.x, newPos.x, Time.deltaTime*3f);
-		newPosTarget.z = transform.localPosition.z+6.5f;
-        newPosTarget.y= Mathf.Lerp(newPosTarget.y, newPos.y, Time.deltaTime * 4f);
+		newPosTarget.x = Mathf.Lerp(newPosTarget.x, newPos.x, Time.deltaTime*10f);
+		newPosTarget.z = transform.localPosition.z+targetZOffset;
+        newPosTarget.y= Mathf.Lerp(newPosTarget.y, newPos.y, Time.deltaTime * 1f);
         //newPosTarget.y = 2;
 		flow_target.transform.localPosition = newPosTarget;
 
@@ -315,7 +314,7 @@ public class GameCamera : MonoBehaviour
 		cam.gameObject.transform.localEulerAngles = new Vector3 (40, 0, 0);
 
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
-			"z", cam.gameObject.transform.position.z+140,
+			"z", cam.gameObject.transform.position.z+85,
 			"time", 1,
 			"easetype", iTween.EaseType.easeOutCubic
 			// "axis", "x"

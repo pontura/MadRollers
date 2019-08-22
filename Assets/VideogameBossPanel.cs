@@ -20,7 +20,6 @@ public class VideogameBossPanel : MonoBehaviour {
 
 	void Start()
 	{
-      
         panel.SetActive (false);
 
         Data.Instance.events.OnGameStart += OnGameStart;
