@@ -70,7 +70,10 @@ public class GameOverPartyMode : MonoBehaviour {
 		canClick = false;
 		Data.Instance.events.OnResetScores ();
 		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
-		Game.Instance.GotoMainMenu ();	
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            Game.Instance.LoadGame();
+        else
+            Game.Instance.GotoMainMenu();	
 	}
 	void LoadHiscores()
 	{

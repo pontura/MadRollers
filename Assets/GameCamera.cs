@@ -71,7 +71,7 @@ public class GameCamera : MonoBehaviour
 		Data.Instance.events.OnGameOver += OnGameOver;
 
         //Data.Instance.events.OnGameStart += OnGameStart;
-        if (!Data.Instance.isAndroid)
+        if (Data.Instance.useRetroPixelPro)
         {
             Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
             retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
@@ -223,7 +223,7 @@ public class GameCamera : MonoBehaviour
 
 	public void SetPixels(float _pixelSize)
 	{
-        if (Data.Instance.isAndroid)
+        if (!Data.Instance.useRetroPixelPro)
             return;
 
         this.pixelSize = _pixelSize;
@@ -231,8 +231,9 @@ public class GameCamera : MonoBehaviour
 	}
 	void UpdatePixels()
 	{
-        if (Data.Instance.isAndroid)
+        if (!Data.Instance.useRetroPixelPro)
             return;
+
         if (pixelSize < 1)
 			pixelSize = 1;
 		else 
@@ -272,7 +273,7 @@ public class GameCamera : MonoBehaviour
         {
             return;
         }
-        if (!Data.Instance.isAndroid)
+        if (Data.Instance.useRetroPixelPro)
         {
             if (retroPixelPro.pixelSize > 1)
                 UpdatePixels();
@@ -380,33 +381,13 @@ public class GameCamera : MonoBehaviour
 	}
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
-		//Data.Instance.events.FreezeCharacters (true);
-		//Data.Instance.events.ForceFrameRate (0.5f);
 		Data.Instance.events.RalentaTo (0.5f, 0.1f);
-		//this.snapTargetPosition = targetPos;
-
-		//if(snapTargetPosition.y < 1)
-		//	snapTargetPosition.y = 1;
-		
-		//state = states.SNAPPING_TO;
-
-  //      if (!Data.Instance.isAndroid)
-  //          ResetSnapping(3);
-  //  }
-  //  public void ResetSnapping(float delay)
-  //  {
         StartCoroutine(ResetSnappingCoroutine(3));
     }
 	IEnumerator ResetSnappingCoroutine(float delay)
 	{
-		yield return new WaitForSecondsRealtime(delay);
-		//if (state != states.SNAPPING_TO)
-		//	yield return null;
-		//else {			
-		//	StopAllCoroutines ();
+		    yield return new WaitForSecondsRealtime(delay);
 			Data.Instance.events.RalentaTo (1f, 0.01f);
-		//	state = states.PLAYING;
-			//Data.Instance.events.FreezeCharacters (false);
 		//}
 	}
 }

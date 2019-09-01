@@ -29,8 +29,6 @@ public class Gui : MonoBehaviour {
             hiscorePanel.gameObject.SetActive(false);
         }
 		centerPanel.SetActive (false);
-        //		missionIcon = Instantiate (missionIcon_to_instantiate);
-        //		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
 

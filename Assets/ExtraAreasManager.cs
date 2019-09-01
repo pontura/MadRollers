@@ -21,7 +21,7 @@ public class ExtraAreasManager : MonoBehaviour
         Data.Instance.events.OnGameOver += OnGameOver;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
     }
-    void NotAvailable()
+    void OnDestroy()
     {
         Data.Instance.events.OnBossActive -= OnBossActive;
         Data.Instance.events.OnGameOver -= OnGameOver;
@@ -31,7 +31,7 @@ public class ExtraAreasManager : MonoBehaviour
     {
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
         {
-            NotAvailable();
+            //NotAvailable();
             return;
         }  
         Reset();
@@ -48,6 +48,8 @@ public class ExtraAreasManager : MonoBehaviour
     {
         Invoke("Loop", delayToExtraArea);
         SetExtraArea();
+        if (delayToExtraArea > 2)
+            delayToExtraArea -= 0.1f;
     }
     void Reset()
     {

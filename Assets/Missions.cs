@@ -62,6 +62,7 @@ public class Missions : MonoBehaviour {
 
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
+            all = null;
             MissionActive = LoadDataFromMission("survival", "boyland").data[0];
             extraAreasManager.Init();              
         }

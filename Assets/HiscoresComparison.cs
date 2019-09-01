@@ -15,8 +15,9 @@ public class HiscoresComparison : MonoBehaviour {
 	HiscoresComparisonSignal mySignal;
 	int score;
 	int puesto;
+    int rankingNum = 5;
 
-	void Start () {
+    void Start () {
 		panel.SetActive (false);
 		arcadeRanking = Data.Instance.GetComponent<ArcadeRanking> ();
 	}
@@ -24,7 +25,6 @@ public class HiscoresComparison : MonoBehaviour {
 	public void Init() {
 
         Data.Instance.videogamesData.SetOtherGameActive();
-
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && Data.Instance.playMode != Data.PlayModes.PARTYMODE) {
 			GetComponent<GameOverPartyMode> ().Init ();
 			return;
@@ -63,9 +63,7 @@ public class HiscoresComparison : MonoBehaviour {
         puesto = 0;
         int num = 1;
         bool isCompleted = false;
-        int rankingNum = 5;
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            rankingNum = 1;
+        
 
         foreach (ArcadeRanking.Hiscore data in arcadeRanking.all)
 		{		
@@ -74,7 +72,7 @@ public class HiscoresComparison : MonoBehaviour {
 				isCompleted = true;
 				SetPuesto ();
 				yield return new WaitForSeconds (3f);
-				if (puesto != 0) {
+				if (puesto < rankingNum) {
 					GotoNewHiscore ();
 					Reset ();
 				} else {
@@ -107,7 +105,7 @@ public class HiscoresComparison : MonoBehaviour {
 		newSignal.transform.SetParent (container);
 		newSignal.transform.localScale = Vector3.one;
 
-		if(puesto ==1 || puesto >10)
+		if(puesto ==1 || puesto > 10)
 			newSignal.Init (data.username, data.hiscore, puesto);
 		else
 			newSignal.Init ("",0, 0);

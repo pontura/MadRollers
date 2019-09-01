@@ -15,14 +15,15 @@ public class BossAttacksManager : MonoBehaviour
     public enum sounds
     {
         NONE,
-        LASER
+        LASER,
+        LATIGO
     }
     public float delayToSoundAttack;
     public int RandomBetween;    
     public float attackDuration;
     BossPart bossPart;
     Animation bossPartAnim;
-    bool attacking;
+    public bool attacking;
     float speedAnim;
    // public SceneObject myProjectile;
 
@@ -36,8 +37,7 @@ public class BossAttacksManager : MonoBehaviour
             RandomAttack();
     }
     void RandomAttack()
-    {
-        
+    {        
         Invoke("Loop", 3);
     }
     void Loop()
@@ -70,7 +70,9 @@ public class BossAttacksManager : MonoBehaviour
     }
     void PlaySound()
     {
-       // if(sound == sounds.LASER)
+        if(sound == sounds.LATIGO)
+            Data.Instance.events.OnSoundFX("whip", -1); 
+        else
             Data.Instance.events.OnSoundFX("laser", -1);
     }
     void ResetAttack()
@@ -81,23 +83,12 @@ public class BossAttacksManager : MonoBehaviour
     }
     public void Reset()
     {
-        CancelInvoke();
         if(attacking)
         {
+            CancelInvoke();
+            Invoke("Loop", 0.5f);
             attacking = false;
             bossPartAnim[bossPartAnim.clip.name].normalizedSpeed = speedAnim;
         }           
     }
-    //public void Shoot()
-    //{
-    //    if (!CanAttackByRandom())
-    //        return;
-    //    PlaySound();
-    //    Vector3 pos = transform.position;
-    //    pos.y += 3;
-    //    pos.z -= 3;
-    //    SceneObject sceneObject = Instantiate(myProjectile, pos, Quaternion.identity) as SceneObject;
-    //    Game.Instance.sceneObjectsManager.AddSceneObject(sceneObject, pos);
-    //    sceneObject.transform.localEulerAngles = new Vector3(0, 180, 0);
-    //}
 }

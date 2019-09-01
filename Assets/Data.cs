@@ -68,7 +68,10 @@ public class Data : MonoBehaviour {
 	public LoadingAsset loadingAsset;
    
     public int FORCE_LOCAL_SCORE;
+
     public bool isAndroid;
+    public bool useRetroPixelPro;
+    public bool useOptimizedSettings;
 
     public PlayModes playMode;
     public enum PlayModes
@@ -100,6 +103,8 @@ public class Data : MonoBehaviour {
         }
     }
 	void Awake () {
+
+        Application.targetFrameRate = 60;
 
 		if (RESET)
 			PlayerPrefs.DeleteAll ();
