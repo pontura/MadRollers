@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BossPart : MonoBehaviour {
 
@@ -108,13 +109,7 @@ public class BossPart : MonoBehaviour {
     private void HittedAnim()
     {        
         transform.localScale = initialScale * 2.5f;
-        iTween.ScaleTo(gameObject, iTween.Hash(
-             "scale", initialScale,
-             "islocal", true,
-             "time", 0.5f,
-             "easetype", iTween.EaseType.easeOutCirc
-            // "axis", "x"
-         ));
+        gameObject.transform.DOScale(initialScale, 0.5f);
         PlayAnim("hit");
         Invoke("ResetAnim", 0.5f);
     }

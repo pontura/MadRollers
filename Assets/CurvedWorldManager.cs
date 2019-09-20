@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using VacuumShaders.CurvedWorld;
+using DG.Tweening;
 
 public class CurvedWorldManager : MonoBehaviour {
 
@@ -25,19 +26,9 @@ public class CurvedWorldManager : MonoBehaviour {
         if(curvedWorld_Controller==null)
             return;
 
-        _x /= 1.4f;
+        _x /= 1.2f;
 
-        // return;
-        Hashtable ht = new Hashtable();
-        ht.Add("from",curvedWorld_Controller._V_CW_Bend_X);
-        ht.Add("to",_x);
-        ht.Add("time",3);
-        ht.Add("onupdate","SetNewBending");
-        iTween.ValueTo(gameObject,ht);
-    }
-    void SetNewBending(float value)
-    {
-        curvedWorld_Controller._V_CW_Bend_X = value;
+        DOTween.To(() => curvedWorld_Controller._V_CW_Bend_X, x => curvedWorld_Controller._V_CW_Bend_X = x, _x, 3);
     }
    
 }

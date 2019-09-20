@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class TimelineAnimation : MonoBehaviour {
 
@@ -27,49 +28,35 @@ public class TimelineAnimation : MonoBehaviour {
 		else if (timeLineData [id].move)
 			MoveInTimeLine ();
 	}
-	iTween.EaseType GetEaseType(TimelineData.easetypes type)
+	Ease GetEaseType(TimelineData.easetypes type)
 	{
 		switch (type) {
 		case TimelineData.easetypes.IN_OUT:
-			return iTween.EaseType.easeInCubic;
+                return Ease.InCubic;
 		case TimelineData.easetypes.OUT_IN:
-			return iTween.EaseType.easeOutCubic;
-		default:
-			return iTween.EaseType.linear;
+                return Ease.OutCubic;
+            default:
+                return Ease.Linear;
 		}
 	}
 	void MoveInTimeLine()
 	{
 		if (timeLineData [id].duration == 0)
 			return;
+        transform.DOMove(
+            new Vector3(initialPosition.x + timeLineData[id].data.x, initialPosition.y + timeLineData[id].data.y, initialPosition.z + timeLineData[id].data.z), 
+            timeLineData[id].duration).OnComplete(TweenCompleted).SetEase(GetEaseType(timeLineData[id].easeType));
 
-		iTween.MoveTo(gameObject, iTween.Hash(
-			"x", initialPosition.x + timeLineData[id].data.x,
-			"y", initialPosition.y + timeLineData[id].data.y,
-			"z", initialPosition.z + timeLineData[id].data.z,
-			"islocal", false,
-			"time", timeLineData[id].duration,
-			"easetype", GetEaseType(timeLineData[id].easeType),
-			"oncomplete", "TweenCompleted",
-			"onCompleteTarget", this.gameObject
-		));
+
 	}
 	void RotateInTimeLine()
 	{
 		if (timeLineData [id].duration == 0)
 			return;
-		iTween.RotateTo(gameObject, iTween.Hash(
-			"x",  initialRotation.x + timeLineData[id].data.x,
-			"y",  initialRotation.y + timeLineData[id].data.y,
-			"z",  initialRotation.z + timeLineData[id].data.z,
-			"islocal", false,
-			"time", timeLineData[id].duration,
-			"easetype", GetEaseType(timeLineData[id].easeType),
-			"oncomplete", "TweenCompleted",
-			"onCompleteTarget", this.gameObject
-			// "axis", "x"
-		));
-	}
+        transform.DORotate(new Vector3(initialRotation.x + timeLineData[id].data.x, initialRotation.y + timeLineData[id].data.y, initialRotation.z + timeLineData[id].data.z), 
+            timeLineData[id].duration).OnComplete(TweenCompleted).SetEase(GetEaseType(timeLineData[id].easeType));
+
+    }
 	void TweenCompleted()
 	{
 		id++;
@@ -79,11 +66,7 @@ public class TimelineAnimation : MonoBehaviour {
 	}
 	public void OnComponentDisposed()
 	{
-		iTween.Stop (this.gameObject);
 		Destroy (this);
 	}
-//	void OnDisable()
-//	{
-//		//iTween.Stop (this.gameObject);
-//	}
+
 }

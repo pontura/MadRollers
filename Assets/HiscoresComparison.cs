@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class HiscoresComparison : MonoBehaviour {
 
@@ -51,11 +52,8 @@ public class HiscoresComparison : MonoBehaviour {
 		pos.x = 0;
 		mySignal.transform.localPosition = pos;
 
-		iTween.MoveTo(mySignal.gameObject, iTween.Hash(
-			"x", gotoX,
-			"islocal", true,
-			"time", 2
-		));
+        mySignal.gameObject.transform.DOLocalMoveX(gotoX, 2);
+
         StartCoroutine(DrawHiscores());
 	}
     IEnumerator DrawHiscores()

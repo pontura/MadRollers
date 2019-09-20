@@ -40,16 +40,6 @@ public class Weapon : MonoBehaviour {
     }
     virtual public void Rebuild()
     {
-        DestroyImmediate(GetComponent<iTween>());
         transform.localScale = Vector3.one*0.001f;
-
-        return;
-        iTween.ScaleTo(gameObject,
-            iTween.Hash(
-            "scale", Vector3.one * 2,
-            "easetype", iTween.EaseType.easeInCubic,
-            "time", 0.5f
-            )
-        );       
     }
 }

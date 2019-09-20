@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using AlpacaSound.RetroPixelPro;
+using DG.Tweening;
 
 public class GameCamera : MonoBehaviour 
 {
@@ -129,34 +130,13 @@ public class GameCamera : MonoBehaviour
 	}
     void StartMultiplayerRace()
     {
-        Init();
         state = states.PLAYING;
-
-	//	cam.transform.localPosition = new Vector3 (0, cam.transform.localPosition.y, 0);
-
-		iTween.MoveTo(cam.gameObject, iTween.Hash(
-			"position", new Vector3 (0, 0, 0),
-			"islocal", true,
-			"time", 2f,
-			"easetype", iTween.EaseType.easeOutCirc
-			// "axis", "x"
-		));
-
+        cam.gameObject.transform.DOLocalMove(Vector3.zero, 2);
     }
     void OnChangeMood(int id)
     {
 		return;
     }
-    public void Init() 
-	{
-        try
-        {
-             iTween.Stop();
-        } catch
-        {
-
-        } 
-	}
 	IEnumerator DoExploteCoroutine;
 	void OncharacterCheer()
 	{
@@ -313,13 +293,8 @@ public class GameCamera : MonoBehaviour
 		state = states.END;
 
 		cam.gameObject.transform.localEulerAngles = new Vector3 (40, 0, 0);
+        cam.gameObject.transform.DOMoveZ(cam.gameObject.transform.position.z + 85, 1);
 
-		iTween.MoveTo(cam.gameObject, iTween.Hash(
-			"z", cam.gameObject.transform.position.z+85,
-			"time", 1,
-			"easetype", iTween.EaseType.easeOutCubic
-			// "axis", "x"
-		));
 	}
     public void OnAvatarCrash(CharacterBehavior player)
     {
@@ -331,13 +306,9 @@ public class GameCamera : MonoBehaviour
 		StartCoroutine (DoExploteCoroutine);
 
         state = states.END;
-		iTween.MoveTo(cam.gameObject, iTween.Hash(
-            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 1.5f, transform.localPosition.z - 0.8f),
-            "time", 2f,
-            "easetype", iTween.EaseType.easeOutCubic,
-            "looktarget", player.transform
-           // "axis", "x"
-            ));
+
+        cam.gameObject.transform.DOMove(new Vector3(player.transform.localPosition.x, transform.localPosition.y - 1.5f, transform.localPosition.z - 1f), 3).SetDelay(0.1f);
+        cam.gameObject.transform.DOLookAt(player.transform.localPosition, 1.5f).SetDelay(0.2f);
     }
 
     public void OnAvatarFall(CharacterBehavior player)
@@ -347,20 +318,14 @@ public class GameCamera : MonoBehaviour
         if (state == states.END) return;
 
         state = states.END;
-		iTween.MoveTo(cam.gameObject, iTween.Hash(
-            "position", new Vector3(transform.localPosition.x, transform.localPosition.y+3f, transform.localPosition.z-3.5f),
-            "time", 2f,
-            "easetype", iTween.EaseType.easeOutCubic,
-            "looktarget", player.transform,
-            "axis", "x"
-            ));
-	}
+        cam.gameObject.transform.DOMove(new Vector3(transform.localPosition.x, transform.localPosition.y + 3f, transform.localPosition.z - 3.5f), 2);
+        cam.gameObject.transform.DOLookAt(player.transform.localPosition, 2);
+
+    }
 	public void SetOrientation(Vector4 orientation)
 	{
-       // if (Data.Instance.isAndroid)
-            orientation /= 8;
+        orientation /= 6;
         newCameraOrientationVector = cameraOrientationVector + new Vector3 (orientation.x, orientation.y, orientation.z);
-	//	newRotation = defaultRotation + new Vector3 (orientation.w, 0, 0);
 	}
     public void fallDown(int fallDownHeight)
     {
@@ -386,8 +351,7 @@ public class GameCamera : MonoBehaviour
     }
 	IEnumerator ResetSnappingCoroutine(float delay)
 	{
-		    yield return new WaitForSecondsRealtime(delay);
-			Data.Instance.events.RalentaTo (1f, 0.01f);
-		//}
+		yield return new WaitForSecondsRealtime(delay);
+		Data.Instance.events.RalentaTo (1f, 0.01f);
 	}
 }

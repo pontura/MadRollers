@@ -47,7 +47,7 @@ public class Game : MonoBehaviour {
 			Invoke ("Delayed", 0.5f);
 			state = states.PLAYING;
 		} else {
-            gameCamera.Init ();
+           // gameCamera.Init ();
 		}
 		GetComponent<CharactersManager>().Init();
 		//GetComponent<RainManager> ().Init ();
@@ -61,7 +61,7 @@ public class Game : MonoBehaviour {
     }
 	void Delayed()
 	{
-		gameCamera.Init ();
+		//gameCamera.Init ();
 		Data.Instance.events.OnGameStart();
 		Data.Instance.events.StartMultiplayerRace();
 	}
@@ -83,8 +83,8 @@ public class Game : MonoBehaviour {
     {
         Data.Instance.events.OnGamePaused(false);
 
-		if(gameCamera != null)
-        	gameCamera.Init();
+		//if(gameCamera != null)
+  //      	gameCamera.Init();
         
         CharacterBehavior cb = level.charactersManager.character;
         
