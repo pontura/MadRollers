@@ -34,7 +34,8 @@ public class MissionSignal : MonoBehaviour {
 			string text = "";			
 			text += "MISSION " + (missions.MissionActiveID+1) + "\n";
 			text += missionData.title;
-			Data.Instance.handWriting.WriteTo(subtitle,text , DoneText2);
+
+            Data.Instance.handWriting.WriteTo(subtitle,text , DoneText2);
 		}
 	}
 	void DoneText2()

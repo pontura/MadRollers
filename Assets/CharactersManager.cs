@@ -102,7 +102,7 @@ public class CharactersManager : MonoBehaviour {
 		float _y = 4;
 
 		if (Data.Instance.isReplay || Data.Instance.isAndroid) {
-			_y = 15;
+			_y = 25;
 		} else {
 			canStartPlayers = true;
 		}
@@ -331,12 +331,14 @@ public class CharactersManager : MonoBehaviour {
 
             return normalPosition;
         }
-        else if (totalCharacters == 0)
-            return Vector3.zero;
-        //else return characterPosition = characters[0].transform.position;
         else
         {
-            Vector3 p = characters[0].transform.position;
+            Vector3 p;
+            if (totalCharacters == 0)
+                p = Vector3.zero;
+            else
+                p = characters[0].transform.position;
+
             p.y += 0.5f;
             p.z = distance - 2f;
             return p;

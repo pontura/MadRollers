@@ -84,19 +84,11 @@ public class GameCamera : MonoBehaviour
 
 		_Y_correction = 2;
 		if (!Data.Instance.isReplay) {
-           // Data.Instance.events.OnBossActive(true);
-            //anim.Play ("cameraIntro");
-            newPos.y = 4.5f;
-            cam.sensorSize = new Vector2(6, cam.sensorSize.y);
-
-            transform.localEulerAngles = new Vector3(0,0,0);
-            transform.localPosition = new Vector3(0, 11, 0);
-            cam.transform.localEulerAngles = new Vector3(26, 0, 0);
-            cam.transform.localPosition = new Vector3(0,0,-18);
+            
         } else {
             cam.sensorSize = new Vector2(18, cam.sensorSize.y);
             state = states.START;
-            transform.localPosition = new Vector3(0, 0, -1.5f);
+            transform.localPosition = new Vector3(0, 2, -1.5f);
             newPos.y = 0;
         }
 
@@ -105,6 +97,11 @@ public class GameCamera : MonoBehaviour
             maxCamSensor = 8f;
             transform.localPosition = new Vector3(0, 0, -1.5f);
         }
+
+        Vector3 p = cam.transform.localPosition;
+        p.z = -2.4f;
+        p.y = 0.2f;
+        cam.transform.localPosition = p;
 
         flow_target = new GameObject();
         flow_target.transform.SetParent(transform.parent);
@@ -131,7 +128,7 @@ public class GameCamera : MonoBehaviour
     void StartMultiplayerRace()
     {
         state = states.PLAYING;
-        cam.gameObject.transform.DOLocalMove(Vector3.zero, 2);
+        cam.gameObject.transform.DOLocalMove(Vector3.zero, 3);
     }
     void OnChangeMood(int id)
     {
@@ -225,9 +222,6 @@ public class GameCamera : MonoBehaviour
    
 	void LateUpdate () 
 	{
-        if (state == states.START || state == states.WAITING_TO_TRAVEL)
-            return;
-
         if (cam.sensorSize.x < maxCamSensor)
         {
             float cms = cam.sensorSize.x;
@@ -238,7 +232,6 @@ public class GameCamera : MonoBehaviour
         {
             cam.sensorSize = new Vector2(maxCamSensor, cam.sensorSize.y);
         }
-
         if (state == states.SNAPPING_TO) { 
 			Vector3 dest = snapTargetPosition;
 			dest.y += 1.5f;
@@ -248,8 +241,7 @@ public class GameCamera : MonoBehaviour
 			transform.localPosition = Vector3.Lerp (transform.localPosition, dest, 0.02f);
 			cam.transform.LookAt (snapTargetPosition);
 			return;	
-		}       
-		if (state == states.END || state == states.WAITING_TO_TRAVEL)
+		}  else if (state == states.END)
         {
             return;
         }
@@ -259,22 +251,19 @@ public class GameCamera : MonoBehaviour
                 UpdatePixels();
         }
         else
-        {
-            
+        {            
             Vector3 rot = transform.localEulerAngles;
             CharacterBehavior cb = charactersManager.getMainCharacter();
-
             if(cb)
                 rot.z = -(cb.rotationY / 6);
-
             transform.localEulerAngles = rot;
         }
-			newPos = charactersManager.getCameraPosition ();
+        newPos = charactersManager.getCameraPosition ();
 
 		Vector3 _newPos  = newPos;
 		_newPos += newCameraOrientationVector;
 
-		if (_newPos.x < -15) _newPos.x = -15;
+        if (_newPos.x < -15) _newPos.x = -15;
 		else if (_newPos.x > 15) _newPos.x = 15;
 
 		//_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*10);
@@ -318,8 +307,8 @@ public class GameCamera : MonoBehaviour
         if (state == states.END) return;
 
         state = states.END;
-        cam.gameObject.transform.DOMove(new Vector3(transform.localPosition.x, transform.localPosition.y + 3f, transform.localPosition.z - 3.5f), 2);
-        cam.gameObject.transform.DOLookAt(player.transform.localPosition, 2);
+        cam.gameObject.transform.DOMove(new Vector3(transform.localPosition.x, transform.localPosition.y + 3f, transform.localPosition.z - 4f), 1f).SetEase(Ease.OutCubic);
+        cam.gameObject.transform.DOLookAt(player.transform.localPosition, 1.5f);
 
     }
 	public void SetOrientation(Vector4 orientation)

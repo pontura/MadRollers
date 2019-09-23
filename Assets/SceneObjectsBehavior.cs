@@ -91,28 +91,24 @@ public class SceneObjectsBehavior : MonoBehaviour {
 		go.GetComponentInChildren<Renderer>().enabled = true;
 	}
 
-	public void AddSceneObjects(AreaData areaData, float z_length)
-	{
-		//print (area.name + " AREA");
-		bool nubesOn = false;
-
-		foreach (AreaSceneObjectData go in areaData.data)
-		{
-			if (!canBeDisplayed(go)) 
-				continue;
+    public void AddSceneObjects(AreaData areaData, float z_length)
+    {
+        id = 0;
+        StartCoroutine(AddSingleSO(areaData, z_length));
+    }
+    int id;
+    IEnumerator AddSingleSO(AreaData areaData, float z_length)
+    {
+        foreach (AreaSceneObjectData go in areaData.data)
+        {
+            if(id%2==0)
+                yield return new WaitForEndOfFrame();
+            id++;
+            if (!canBeDisplayed(go)) 
+				    continue;
 			SceneObject sceneObject = null;
 			Vector3 pos = go.pos;
 			pos.z += z_length;
-//			pos.x += areasX;
-//			if (oposite) {
-//				pos.z *= -1;
-//			}
-			//  if (!nubesOn)
-			//  {
-			//  nubesOn = true;
-			//   addDecoration("Nubes_real", pos, new Vector3(0, Random.Range(0,2), 5));
-
-			//  }
 
 			switch (go.name)
 			{
@@ -147,8 +143,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
             case "enemyNaveSimple":  
 			case "BichoVuela":
 			case "palm":
-           
-                case "palmTall":
+            case "palmTall":
             case "palmSmall":
                     if (go.name == "extralargeBlock1" || go.name == "largeBlock1")
 					pos.y += (float)Random.Range (-10, 10) / 1000;
