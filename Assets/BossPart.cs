@@ -110,8 +110,8 @@ public class BossPart : MonoBehaviour {
     {        
         transform.localScale = initialScale * 2.5f;
         gameObject.transform.DOScale(initialScale, 0.5f);
-        PlayAnim("hit");
-        Invoke("ResetAnim", 0.5f);
+        //PlayAnim("hit");
+        //Invoke("ResetAnim", 0.5f);
     }
     void ResetAnim()
     {

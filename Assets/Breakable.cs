@@ -21,13 +21,12 @@ public class Breakable : MonoBehaviour {
     public bool dontKillPlayers;
 
 	//una vez roto no mata
-	public bool dontDieOnHit;
+	[SerializeField] private bool dontDieOnHit;
 
 	//si está saltando vuelve a hacer un salto y no muere:
 	public bool ifJumpingDontKill;
 
     private Vector3 originalPosition;
-    public System.Action OnBreak = delegate { };
     public int score;
 	SceneObject sceneObject;
     BossPart bossPart;
@@ -62,7 +61,7 @@ public class Breakable : MonoBehaviour {
             SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
         }
 
-        OnBreak();		
+       // OnBreak();		
 
 		sceneObject.broken = true;
 

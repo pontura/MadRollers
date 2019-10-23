@@ -11,14 +11,18 @@ public class Bomb : SceneObject {
     public AudioClip soundFX;
     public bool alive;
     public TrailRenderer trailRenderer;
+    AudioSource audioSource;
 
-
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     public override void OnRestart(Vector3 pos)
     {
         trailRenderer = GetComponent<TrailRenderer>();
         pos.y = start_Y;
         base.OnRestart(pos);
-        breakable.OnBreak += OnBreak;
+       // breakable.OnBreak += OnBreak;
         alive = true;        
     }
     public void OnBreak()
@@ -74,7 +78,8 @@ public class Bomb : SceneObject {
     public override void OnPool()
     {
 		StopAllCoroutines ();
-        GetComponent<AudioSource>().Stop();
+        if (audioSource != null)
+            audioSource.Stop();
 
 		if(trailRenderer!=null)
        		trailRenderer.time = 0;

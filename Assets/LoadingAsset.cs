@@ -45,11 +45,11 @@ public class LoadingAsset : MonoBehaviour {
 		yield return new WaitForSeconds (0.2f);
 		AddText("Buenos Aires USER ALLOWING ACCESS!");
 		yield return new WaitForSeconds (0.35f);
-        AddText("tumba-gallardo<location_pin>");
+        AddText("Ana-Maria version");
 		yield return new WaitForSeconds (0.4f);
         AddText("-> GOTO 1985 ");
 		yield return new WaitForSeconds (0.5f);
-		AddText("Hacking the system ...");
+		AddText("Hacking Destello-Bar system ...");
         UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
 		yield return new WaitForSeconds (0.5f);
 

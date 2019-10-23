@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class MainHiscores : MonoBehaviour {
 
+    public GameObject hiscoreInput;
     public ScoreLine scoreLineNewHiscore;
     public ScoreLine scoreLine;
     public Transform container;
@@ -42,6 +43,13 @@ public class MainHiscores : MonoBehaviour {
         puesto = 1;
         Screen.fullScreen = true;
 		LoadHiscores(Data.Instance.GetComponent<ArcadeRanking>().path);
+        if (puesto > 15)
+        {
+            hiscoreInput.SetActive(false);
+            Invoke("Reset", 4);
+            return;
+        }
+
         puestoField.text = "PUESTO " + puesto;
 		field.text = _hiscore.ToString ();
 
@@ -189,6 +197,10 @@ public class MainHiscores : MonoBehaviour {
 		}
 		File.WriteAllLines (fileName, arrLines);
 		Invoke ("grabaEnd", 0.25f);
+    }
+    void Reset()
+    {
+        grabaEnd();
     }
     void grabaEnd()
     {

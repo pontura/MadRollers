@@ -68,15 +68,7 @@ public class HiscoresComparison : MonoBehaviour {
 			if (isCompleted) { }	
 			else if (num > rankingNum) {
 				isCompleted = true;
-				SetPuesto ();
-				yield return new WaitForSeconds (3f);
-				if (puesto < rankingNum) {
-					GotoNewHiscore ();
-					Reset ();
-				} else {
-					yield return new WaitForSeconds (3f);
-					Reset ();
-				}
+				SetPuesto ();				
 			} else {
 				if (puesto == 0 && data.hiscore < score)
 					puesto = num;
@@ -85,7 +77,19 @@ public class HiscoresComparison : MonoBehaviour {
 				num++;
 			}
 		}
-	}
+        yield return new WaitForSeconds(3f);
+        if (puesto < rankingNum)
+        {
+            print("____________puesto: " + puesto + "     raningNum " + rankingNum);
+            GotoNewHiscore();
+            Reset();
+        }
+        else
+        {
+            yield return new WaitForSeconds(3f);
+            Reset();
+        }
+    }
 	void SetPuesto()
 	{
 		GetComponent<GameOverPartyMode> ().Init ();

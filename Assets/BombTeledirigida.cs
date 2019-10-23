@@ -12,7 +12,7 @@ public class BombTeledirigida : Bomb {
         pos.y = 0f;
         base.OnRestart(pos);
         pos.x = -10;
-        breakable.OnBreak += OnBreak;
+        //breakable.OnBreak += OnBreak;
         alive = true;
         startedAnim = false;
         if (Random.Range(0, 10) < 5)
