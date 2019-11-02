@@ -7,19 +7,29 @@ public class AreaSceneObjectManager : MonoBehaviour {
 	public void AddComponentsToJson(AreaSceneObjectData newSOdata, GameObject go)
 	{
 		FullRotation fullRotation = go.GetComponent<FullRotation> ();
-		TimelineAnimation timelineAnimation = go.GetComponent<TimelineAnimation> ();
+        MaterialSwapper mat = go.GetComponent<MaterialSwapper>();
+        TimelineAnimation timelineAnimation = go.GetComponent<TimelineAnimation> ();
 		BossSettings bossSettings = go.GetComponent<BossSettings> ();
 		MoveForward moveForward = go.GetComponent<MoveForward> ();
 		Bumper bumper = go.GetComponent<Bumper> ();
 		SceneObjectData soData = go.GetComponent<SceneObjectData> ();
 
-		if (soData != null) {
+        if (newSOdata.name == "wallSmall")
+        {
+            newSOdata.mat = new List<MaterialChanger>();
+            MaterialChanger mc = new MaterialChanger();
+            mc.name = go.GetComponent<MeshRenderer>().sharedMaterial.ToString().Split(" "[0])[0];
+            newSOdata.mat.Add(mc);
+        }
+
+        if (soData != null) {
 			newSOdata.soData = new List<SceneObjectDataGeneric> ();
 			SceneObjectDataGeneric data = new SceneObjectDataGeneric ();
 			data.size = soData.size;
 			data.random_pos_x = soData.random_pos_x;
 			data.minPayers = soData.minPayers;
-			newSOdata.soData.Add (data);
+            data.minPayers = soData.minPayers;
+            newSOdata.soData.Add (data);
 		} 
 		if (bumper != null) {
 			newSOdata.soData = new List<SceneObjectDataGeneric> ();
@@ -95,9 +105,16 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			}
 		}
 
+        MaterialSwapper mat = so.GetComponent<MaterialSwapper>();
+        if (jsonData.mat.Count > 0)
+        {
+            MaterialChanger data = jsonData.mat[0];
+            //if (mat == null)
+            //    mat = so.gameObject.AddComponent<MaterialSwapper>();
+            mat.Init(data.name);
+        }
 
-
-		FullRotation fullRotation = so.GetComponent<FullRotation> ();
+        FullRotation fullRotation = so.GetComponent<FullRotation> ();
 		if (jsonData.fullRotationData.Count > 0) {
 			FullRotationData data = jsonData.fullRotationData [0];
 
@@ -152,7 +169,7 @@ public class AreaSceneObjectManager : MonoBehaviour {
 		SceneObjectData sceneObjectData = so.GetComponent<SceneObjectData> ();
 		FullRotation fullRotation = so.GetComponent<FullRotation> ();
 
-		if (timelineAnimation != null) {
+        if (timelineAnimation != null) {
 			timelineAnimation.OnComponentDisposed ();
 		}
 		if (sceneObjectData != null) {
@@ -161,5 +178,5 @@ public class AreaSceneObjectManager : MonoBehaviour {
 		if (fullRotation != null) {
 			fullRotation.OnComponentDisposed ();
 		}
-	}
+    }
 }

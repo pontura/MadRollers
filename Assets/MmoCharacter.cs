@@ -20,9 +20,11 @@ public class MmoCharacter : SceneObject
 
     private Animation _animation;
     private ObjectPool ObjectPool;
+    [SerializeField] private Breakable breakable;
 
     void Start()
     {
+        breakable = GetComponent<Breakable>();
         ObjectPool = Data.Instance.sceneObjectsPool;
     }
     void OnEnable()
@@ -49,7 +51,8 @@ public class MmoCharacter : SceneObject
 		
 		Vector3 pos = transform.position;
 		pos.y+= 2.1f;
-		SendMessage("breakOut",pos,SendMessageOptions.DontRequireReceiver);        
+        breakable.breakOut(pos, false);
+		//SendMessage("breakOut",pos,SendMessageOptions.DontRequireReceiver);        
         gameObject.GetComponent<Collider>().enabled = false;
 
 		//nuevo:

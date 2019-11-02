@@ -45,7 +45,7 @@ public class Breakable : MonoBehaviour {
         isOn = true;
     }
 
-	public void breakOut (Vector3 position) {
+	public void breakOut (Vector3 position, bool destroyedByWeapon) {
 
         if (!isOn || sceneObject == null)
             return;
@@ -59,23 +59,21 @@ public class Breakable : MonoBehaviour {
         else
         {
             SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
-        }
-
-       // OnBreak();		
+        }		
 
 		sceneObject.broken = true;
-
-        Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
-
-        // si no es un enemigo agrega una explosion que rompe los objetos cercanos:
-        if(gameObject.layer != 17)
+        if (destroyedByWeapon)
         {
-            MeshRenderer firstMeshRenderer = GetComponentInChildren<MeshRenderer>();
-            Color color = Color.black;
-          //  if(firstMeshRenderer != null)
-           //     color = firstMeshRenderer.material.color;
-            Data.Instance.events.AddWallExplotion(transform.position, color);
-        }        
+            Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
+
+            // si no es un enemigo agrega una explosion que rompe los objetos cercanos:
+            if (gameObject.layer != 17)
+            {
+                MeshRenderer firstMeshRenderer = GetComponentInChildren<MeshRenderer>();
+                Color color = Color.black;
+                Data.Instance.events.AddWallExplotion(transform.position, color);
+            }
+        }
 
         foreach (Breakable breakable in childs)
             if (breakable && breakable.isOn) breakable.hasGravity();
@@ -168,7 +166,9 @@ public class Breakable : MonoBehaviour {
 		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
 		Color[] colors = new Color[all.Length];
 		Vector3[] pos = new Vector3[all.Length];
-		int id = 0;
+        float[] scale = new float[all.Length];
+
+        int id = 0;
 		foreach (MeshRenderer mr in all) {
 			if ( mr.material.HasProperty ("_Color"))
 				colors [id] = mr.material.color;
@@ -176,8 +176,9 @@ public class Breakable : MonoBehaviour {
 				colors [id] = Color.black;
 			
 			pos [id] = mr.transform.position;
-			id++;
+            scale[id] = mr.transform.localScale.x;
+            id++;
 		}
-		ObjectPool.instance.pixelsPool.AddPixelsByBreaking(transform.position, colors, pos);
+		ObjectPool.instance.pixelsPool.AddPixelsByBreaking(transform.position, colors, pos, scale);
 	}
 }

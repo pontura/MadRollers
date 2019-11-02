@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4737334079440698781}
   - component: {fileID: 5063832638424697760}
   - component: {fileID: 4364840693239718569}
-  - component: {fileID: 4867434167358324827}
+  - component: {fileID: 6445833463845306445}
+  - component: {fileID: 7331586835859755039}
   m_Layer: 10
   m_Name: wallSmall_real
   m_TagString: destroyable
@@ -114,7 +115,7 @@ MonoBehaviour:
   dontDieOnHit: 0
   ifJumpingDontKill: 1
   score: 75
---- !u!114 &4867434167358324827
+--- !u!114 &6445833463845306445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +124,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dc24a74968f09e4c8fa2954535865d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mats:
+  - {fileID: 2100000, guid: fa9dc31407ae0344ea0efd69c0cdf52b, type: 2}
+  - {fileID: 2100000, guid: 5d2c1fd073002954b8e7aee70a20cb6e, type: 2}
+  - {fileID: 2100000, guid: 15a46615b9824d84cb0bc9bd7a914736, type: 2}
+  - {fileID: 2100000, guid: 2122496102fafd84c8089592e327fab8, type: 2}
+  - {fileID: 2100000, guid: 3c4714de7038f084e977b9178ec0537d, type: 2}
+  - {fileID: 2100000, guid: 56726fc790a96bb499d2564ad222d31b, type: 2}
+  - {fileID: 2100000, guid: 3fafd14f0dfd9294cb5623f9a9f4d040, type: 2}
+  - {fileID: 2100000, guid: aaaa0ed75bbe9d942a90633cb7521e86, type: 2}
+  - {fileID: 2100000, guid: e59cc76272398a146aab9f74140aa7e0, type: 2}
+  - {fileID: 2100000, guid: 464a74b870ff6334d88a2b1e83fb00bf, type: 2}
+  - {fileID: 2100000, guid: 6b8230ab8758c6641be25835ff33648c, type: 2}
+  meshRenderer: {fileID: 5063832638424697760}
+--- !u!114 &7331586835859755039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd58db221323c354da3f4d1fe72fe201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0

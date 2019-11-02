@@ -37,7 +37,7 @@ public class MissionButton : MonoBehaviour {
             anim.Play("MissionButtonOn");
         }
         missionField.text = videogameData.name;
-        usernameField.text = "MISSION 0";
+        usernameField.text = "MISION 0";
     }
     public void SetMobile(LevelSelectorMobile levelSelectorMobile)
     {

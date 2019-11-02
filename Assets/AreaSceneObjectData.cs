@@ -13,7 +13,13 @@ public class AreaSceneObjectData  {
 	public List<BossSettingsData> bossSettings;
 	public List<MoveForwardData> moveForward;
 	public List<SceneObjectDataGeneric> soData;
-	public bool isChild;
+    public List<MaterialChanger> mat;
+    public bool isChild;
+}
+[Serializable]
+public class MaterialChanger
+{
+    public string name;
 }
 [Serializable]
 public class SceneObjectDataGeneric  {

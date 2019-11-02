@@ -61,6 +61,7 @@ public class AreaCreator : MonoBehaviour {
 		var a = new AreaData { data = data };
 		a.totalCoins = totalCoins;
 		a.z_length = areaReal.z_length;
+
 		string json = JsonUtility.ToJson (a);
 		using (FileStream fs = new FileStream ("Assets/Resources/areas/" + area.name + ".json", FileMode.Create)) {
 			using (StreamWriter writer = new StreamWriter (fs)) {

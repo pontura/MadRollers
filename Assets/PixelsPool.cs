@@ -33,7 +33,7 @@ public class PixelsPool : MonoBehaviour {
 		all.Add (pp);
 		pp.transform.SetParent (poolContainer);
 	}
-	public void AddPixelsByBreaking(Vector3 position, Color[] colors, Vector3[] pos)
+	public void AddPixelsByBreaking(Vector3 position, Color[] colors, Vector3[] pos, float[] scale)
 	{
 		int force = 6;
 		int NumOfParticles = colors.Length;
@@ -44,7 +44,18 @@ public class PixelsPool : MonoBehaviour {
 				pp.transform.SetParent (sceneContainer);
 				pp.gameObject.SetActive (true);
 				pp.transform.position = pos[a];
-				pp.transform.localEulerAngles = new Vector3 (0, a * (360 / NumOfParticles), 0);
+                float s = scale[a];
+                if (s > .8f)
+                    s = .7f;
+                else if (s > .4f)
+                    s /= 1.2f;
+                pp.transform.localScale = new Vector3(s,s,s);
+                float rot_y;
+                if (NumOfParticles < 2)
+                    rot_y = Random.Range(-90, 90);
+                else
+                    rot_y = a * (360 / NumOfParticles);
+                pp.transform.localEulerAngles = new Vector3 (0, rot_y, 0);
 				Vector3 direction = ((pp.transform.forward * force) + (Vector3.up * (force * 2)));
 				Rigidbody rb = pp.GetComponent<Rigidbody> ();
 				rb.velocity = Vector3.zero;

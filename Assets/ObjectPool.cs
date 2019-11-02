@@ -87,7 +87,6 @@ public class ObjectPool : MonoBehaviour
     }
 	SceneObject CreateSceneObject(SceneObject so)
 	{
-        print(so.name);
 		SceneObject newSO = Instantiate(so) as SceneObject;
 		newSO.name = so.name;
 		return newSO;

@@ -157,7 +157,8 @@ public class Projectil : SceneObject {
 					SetScore( ScoresManager.score_for_killing, ScoresManager.types.KILL);
 					enemy.Die ();
 				} else {
-					other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+                    other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
+                    //other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
 				}
 			//---------------------------------------------------
 
@@ -165,12 +166,15 @@ public class Projectil : SceneObject {
 				break;
 			case "destroyable":
 				SetScore( ScoresManager.score_for_breaking, ScoresManager.types.BREAKING);
-				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+                other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
+               // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
 				Reset();
 				break;
 			case "boss":
 				SetScore( ScoresManager.score_for_boss, ScoresManager.types.BOSS);
-				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+                other.gameObject.GetComponent<Boss>().breakOut();
+
+               // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
 				Reset();
 				break;
 		case "firewall":
