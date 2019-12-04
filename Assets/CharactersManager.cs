@@ -102,7 +102,7 @@ public class CharactersManager : MonoBehaviour {
 		float _y = 4;
 
 		if (Data.Instance.isReplay || Data.Instance.isAndroid) {
-			_y = 25;
+			_y = 30;
 		} else {
 			canStartPlayers = true;
 		}
@@ -222,8 +222,8 @@ public class CharactersManager : MonoBehaviour {
 			newCharacter = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
 		else
 			deadCharacters.Remove(newCharacter);
-
-		Player player = newCharacter.GetComponent<Player> ();
+       
+        Player player = newCharacter.GetComponent<Player> ();
 		player.Init(id);
 		player.SetInvensible (3);
 		player.id = id;

@@ -12,7 +12,10 @@ public class MainMenuButton : MonoBehaviour {
 
 	public void SetOn(bool isOn)
 	{
-		if (isOn) {
+        if (Data.Instance.isAndroid)
+            isOn = true;
+
+        if (isOn) {
 			foreach (Text m in overs)
 				m.color = onColor;
 			selected.SetActive (true);
@@ -29,7 +32,6 @@ public class MainMenuButton : MonoBehaviour {
     public int id;
     public void OnClicked()
     {
-
         switch (id)
         {
             case 0:

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class Gui : MonoBehaviour {
     
 	public LevelComplete levelComplete;
+    public GameObject[] scaleInAndroidGO;
 
     private Data data;   
 
@@ -23,6 +24,8 @@ public class Gui : MonoBehaviour {
         {
             hiscorePanel.gameObject.SetActive(true);
             Data.Instance.events.OnMissionStart += OnMissionStart;
+            foreach (GameObject go in scaleInAndroidGO)
+                go.transform.localScale *= 1.75f;
         }
         else
         {

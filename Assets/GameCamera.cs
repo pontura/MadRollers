@@ -336,7 +336,8 @@ public class GameCamera : MonoBehaviour
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
 		Data.Instance.events.RalentaTo (0.5f, 0.1f);
-        StartCoroutine(ResetSnappingCoroutine(3));
+        if(!Data.Instance.isAndroid)
+            StartCoroutine(ResetSnappingCoroutine(3));
     }
 	IEnumerator ResetSnappingCoroutine(float delay)
 	{

@@ -104,7 +104,7 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
 		if (RESET)
 			PlayerPrefs.DeleteAll ();
@@ -112,6 +112,10 @@ public class Data : MonoBehaviour {
 #if UNITY_ANDROID
        // isAndroid = true;
 #endif
+        if(isAndroid)
+        {
+            useRetroPixelPro = false;
+        }
         //  Cursor.visible = false;
 
         if (FORCE_LOCAL_SCORE > 0 )

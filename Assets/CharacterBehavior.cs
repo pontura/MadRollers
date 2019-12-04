@@ -4,7 +4,9 @@ using System.Collections;
 
 public class CharacterBehavior : MonoBehaviour {
 
-	public int team_for_versus;
+    float LimitRotationToAnm = 0.1f;
+
+    public int team_for_versus;
 	public Animation madRoller;
 	public float speed;
 	private bool walking1;
@@ -71,8 +73,10 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 
 	void Start () {
+        if (Data.Instance.isAndroid)
+            LimitRotationToAnm = 20f;
 
-		sliderEffect = GetComponent<SliderEffect> ();
+        sliderEffect = GetComponent<SliderEffect> ();
 		characterMovement = GetComponent<CharacterMovement> ();
 		data = Data.Instance;  
 		player = GetComponent<Player>();
@@ -154,14 +158,15 @@ public class CharacterBehavior : MonoBehaviour {
     }
     void SetRunState()
     {
+        
         if (state == states.RUN)
         {
-            if (rotationY > 0.1f && runDirection != RunDirections.LEFT)
+            if (rotationY > LimitRotationToAnm && runDirection != RunDirections.LEFT)
             {
                 runDirection = RunDirections.LEFT;
                 madRoller.Play("run_right");
             }
-            else if (rotationY < -0.1f && runDirection != RunDirections.RIGHT)
+            else if (rotationY < -LimitRotationToAnm && runDirection != RunDirections.RIGHT)
             {
                 runDirection = RunDirections.RIGHT;
                 madRoller.Play("run_left");
@@ -288,7 +293,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if(player!=null && !player.IsDebbugerPlayer())
 			rb.useGravity = true;
 		
-		rb.velocity = Vector3.zero;
+		rb.velocity = new Vector3(0,2,0);
 		transform.localEulerAngles = Vector3.zero;
 		rb.freezeRotation = true;
 		state = states.RUN;
