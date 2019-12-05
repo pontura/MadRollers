@@ -22,6 +22,12 @@ public class Gui : MonoBehaviour {
 	{
         if (Data.Instance.isAndroid)
         {
+
+            //sube el panel de la izquierda:
+            Vector3 pos = scaleInAndroidGO[0].transform.position;
+            pos.y = 115;
+            scaleInAndroidGO[0].transform.position = pos;
+
             hiscorePanel.gameObject.SetActive(true);
             Data.Instance.events.OnMissionStart += OnMissionStart;
             foreach (GameObject go in scaleInAndroidGO)

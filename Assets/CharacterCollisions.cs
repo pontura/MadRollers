@@ -26,7 +26,7 @@ public class CharacterCollisions : MonoBehaviour {
             if (characterBehavior.state == CharacterBehavior.states.SHOOT) return;
             if (player.fxState == Player.fxStates.NORMAL)
             {
-                characterBehavior.data.events.AddExplotion(transform.position, Color.red);
+                Data.Instance.events.AddExplotion(transform.position, Color.red);
                 characterBehavior.Hit();
             }
          //  else

@@ -30,8 +30,8 @@ public class CharacterBehavior : MonoBehaviour {
 		FALL,
 		CRASH
 	}
-	public CharacterBehavior hasSomeoneOver;
-	public CharacterBehavior isOver;
+	//public CharacterBehavior hasSomeoneOver;
+	//public CharacterBehavior isOver;
 	public CharacterControls controls;
 	public CharacterShooter shooter;
 	public CharacterMovement characterMovement;
@@ -49,7 +49,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public Player player;
 
-	public Data data;
+	Data data;
 
 	public int jumpsNumber;
 
@@ -183,7 +183,7 @@ public class CharacterBehavior : MonoBehaviour {
 	/// </summary>
 	public void OnAvatarOverOther(CharacterBehavior other)
 	{
-		isOver = other;
+	//	isOver = other;
 	}
 	void RunOverOther()
 	{
@@ -206,14 +206,14 @@ public class CharacterBehavior : MonoBehaviour {
 		Jump();
 		Reset();
 	}
-	public void OnAvatarStartCarringSomeone(CharacterBehavior other)
-	{
-		hasSomeoneOver = other;
-	}
+	//public void OnAvatarStartCarringSomeone(CharacterBehavior other)
+	//{
+	//	hasSomeoneOver = other;
+	//}
 	public void Reset()
 	{
-		isOver = null;
-		hasSomeoneOver = null;
+		//isOver = null;
+		//hasSomeoneOver = null;
 	}
 
 	void StartMultiplayerRace()
@@ -332,9 +332,9 @@ public class CharacterBehavior : MonoBehaviour {
 		jumpsNumber = 0;
 		state = states.RUN;
 
-        if (isOver != null)
-            RunOverOther();
-        else
+        //if (isOver != null)
+        //    RunOverOther();
+        //else
             SetRunState();
 
     }
@@ -535,7 +535,7 @@ public class CharacterBehavior : MonoBehaviour {
 	public void Hit()
 	{
 		if (state == states.DEAD) return;
-		SaveDistance();
+		//SaveDistance();
 
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CRASH, player.id);
 
@@ -562,40 +562,40 @@ public class CharacterBehavior : MonoBehaviour {
 		Data.Instance.events.RalentaTo (1, 0.15f);
 
 	}
-	void SaveDistance()
-	{
+	//void SaveDistance()
+	//{
 		//if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
 		//    SocialEvents.OnFinalDistance(distance);
-	}
+	//}
 	public void Die()
 	{		
 		if(state == states.DEAD) return;
 
-		SaveDistance();
+	//	SaveDistance();
 
 		state = states.DEAD;
 	}
 
-	void OnCollisionEnter(Collision other)
-	{
-		if (other.gameObject.tag == "Player2")
-		{
-			if (state == CharacterBehavior.states.JUMP)
-			{
-				CharacterBehavior cb = other.gameObject.GetComponent<CharacterBehavior>();
-				if (cb != null)
-				{
-					// if (cb.transform.localPosition.y > characterBehavior.transform.localPosition.y) return;
-					if (cb.state != CharacterBehavior.states.RUN) return;
-					if (cb.isOver != null) return;
-					if (isOver != null) return;
+	//void OnCollisionEnter(Collision other)
+	//{
+	//	if (other.gameObject.tag == "Player2")
+	//	{
+	//		if (state == CharacterBehavior.states.JUMP)
+	//		{
+	//			CharacterBehavior cb = other.gameObject.GetComponent<CharacterBehavior>();
+	//			if (cb != null)
+	//			{
+	//				// if (cb.transform.localPosition.y > characterBehavior.transform.localPosition.y) return;
+	//				if (cb.state != CharacterBehavior.states.RUN) return;
+	//				//if (cb.isOver != null) return;
+	//				//if (isOver != null) return;
 
-					//print("Player " + player.id + " con " + cb.player.id);
-					cb.OnAvatarStartCarringSomeone(this);
-					OnAvatarOverOther(cb);
-				}
-			}
-		} 
-	}
+	//				//print("Player " + player.id + " con " + cb.player.id);
+	//			//	cb.OnAvatarStartCarringSomeone(this);
+	//				OnAvatarOverOther(cb);
+	//			}
+	//		}
+	//	} 
+	//}
 }
 

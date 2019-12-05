@@ -51,11 +51,11 @@ public class FXExplotion : SceneObject {
 	}
 	void Update()
 	{
-		if (!isActive)
-			return;
-
-		if (transform.localScale.x <= 0.2f && !getBigger)
-			Pool ();
+		if (!isActive || transform.localScale.x <= 0.2f && !getBigger)
+        {
+            Pool();
+            return;
+        }
 		
 		if(getBigger)
 			transform.localScale = Vector3.Lerp(transform.localScale , new Vector3(finalScale,finalScale,finalScale), Time.deltaTime*speed);

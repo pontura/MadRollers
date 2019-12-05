@@ -19,10 +19,10 @@ public class Player : MonoBehaviour {
     public int id; //numero de player;
    // public EnergyBar progressBar;
 
-    [HideInInspector]
-    public Transport transport;
-    public Transport[] transports;
-    public GameObject transportContainer;
+    //[HideInInspector]
+    //public Transport transport;
+    //public Transport[] transports;
+    //public GameObject transportContainer;
 
     public fxStates fxState;
 
@@ -37,8 +37,6 @@ public class Player : MonoBehaviour {
         SUPER
     }
 
-   // public float energy = 90;
-    private Material originalMaterial;
     public CharactersManager charactersManager;
 
 
@@ -172,7 +170,7 @@ public class Player : MonoBehaviour {
 
        // foreach (Transform child in transportContainer.transform)  Destroy(child.gameObject);
 
-        transport = null;
+      //  transport = null;
     }
     public void OnAvatarProgressBarUnFill(float qty )
     {
