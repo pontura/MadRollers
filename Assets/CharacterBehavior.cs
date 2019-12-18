@@ -28,7 +28,8 @@ public class CharacterBehavior : MonoBehaviour {
 		SHOOT,
 		DEAD,
 		FALL,
-		CRASH
+		CRASH,
+        COLLISIONED
 	}
 	//public CharacterBehavior hasSomeoneOver;
 	//public CharacterBehavior isOver;
@@ -237,8 +238,31 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void UpdateByController(float rotationY)
 	{
-		if (state == states.DEAD)
-			return;
+        if (state == states.COLLISIONED)
+        {
+            if (collisionToRight)
+            {
+                collisionedValue -= Time.deltaTime * collisionReactValue;
+                if (collisionedValue < 0)
+                {
+                    madRoller.Play("run");
+                    state = states.RUN;
+                }
+                else
+                    characterMovement.UpdateByController(collisionedValue);
+            }
+            else
+            {
+                collisionedValue += Time.deltaTime * collisionReactValue;
+                if (collisionedValue > 0)
+                {
+                    madRoller.Play("run");
+                    state = states.RUN;
+                }
+                else
+                    characterMovement.UpdateByController(collisionedValue);
+            }
+        } else
 		if(!grounded)
 		{
 			ResetRotations ();
@@ -303,9 +327,10 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (state == states.DEAD) return;
 		if (state == states.IDLE) return;
+        if (state == states.COLLISIONED) return;
 
 
-		jumpsNumber = 0;
+        jumpsNumber = 0;
 		state = states.RUN;
 
 		Data.Instance.events.OnSoundFX ("floor", player.id);
@@ -416,8 +441,8 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		jumpingPressed = false;
 
-		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.DOUBLEJUMP) 
-			return;	
+		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.DOUBLEJUMP || state == states.COLLISIONED)
+            return;	
 
 		jumpsNumber++;
 		if (jumpsNumber > 3) return;
@@ -530,8 +555,33 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void HitWithObject(Vector3 objPosition)
 	{
-		Hit();
-	}
+		//Hit();
+        CollideToObject();
+        if (objPosition.x < transform.position.x)
+        {
+            collisionToRight = true;
+            madRoller.Play("hit_right");
+            collisionedValue = collisionForce;
+        }
+        else
+        {
+            collisionToRight = false;
+            madRoller.Play("hit_left");
+            collisionedValue = -collisionForce;
+        }
+
+    }
+
+    public float collisionForce = 50;
+    public float collisionReactValue = 5;
+    public float collisionedValue;
+    bool collisionToRight;
+    public void CollideToObject()
+    {
+        state = states.COLLISIONED;
+        rb.velocity = Vector3.zero;
+        rb.AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);
+    }
 	public void Hit()
 	{
 		if (state == states.DEAD) return;
