@@ -246,8 +246,16 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	void PlayAnim(string animName)
 	{
-		if(anim != null)
-			anim.Play (animName);
+        if (anim != null)
+        {
+            foreach (AnimationClip clip in anim.runtimeAnimatorController.animationClips)
+            {
+                if (clip.name == animName)
+                {
+                    anim.Play(animName);
+                }
+            }
+        }
 	}
 	void SetOff()
 	{

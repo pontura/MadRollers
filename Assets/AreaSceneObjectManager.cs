@@ -106,7 +106,7 @@ public class AreaSceneObjectManager : MonoBehaviour {
 		}
 
         MaterialSwapper mat = so.GetComponent<MaterialSwapper>();
-        if (jsonData.mat.Count > 0)
+        if (mat != null && jsonData.mat.Count > 0)
         {
             MaterialChanger data = jsonData.mat[0];
             //if (mat == null)

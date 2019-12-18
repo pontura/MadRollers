@@ -41,22 +41,19 @@ public class Tutorial : MonoBehaviour
     void Start()
     {
         ResetSignals();
-        if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
-        {
-            Destroy(this);
-            return;
-        }
         ResetAnim();
         if (!Data.Instance.isAndroid || PlayerPrefs.GetString("tutorial") == "done")
+        {
+            Destroy(anim.gameObject);
             Destroy(this);
+        }            
         else
         {
             
             mobileInputs.ButtonJump.SetActive(false);
             mobileInputs.ButtonFire1.SetActive(false);
             mobileInputs.ButtonFire2.SetActive(false);
-
-            Data.Instance.events.OnBossActive += OnBossActive;
+            
             Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
             Data.Instance.events.OnAvatarJump += OnAvatarJump;
             Data.Instance.events.OnAvatarDie += OnAvatarDie;
@@ -65,7 +62,6 @@ public class Tutorial : MonoBehaviour
    
     private void OnDestroy()
     {
-        Data.Instance.events.OnBossActive += OnBossActive;
         Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
         Data.Instance.events.OnAvatarJump -= OnAvatarJump;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
@@ -73,14 +69,6 @@ public class Tutorial : MonoBehaviour
     void OnAvatarDie(CharacterBehavior cb)
     {
         ResetTimeScale();
-    }
-    void OnBossActive(bool isActive)
-    {
-        if (!isActive)
-        {
-            PlayerPrefs.SetString("tutorial", "done");
-            Destroy(this);
-        }
     }
     void ResetMove()
     {
@@ -184,6 +172,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (distance > 425 && state == states.DONE_SHOOT)
         {
+            PlayerPrefs.SetString("tutorial", "done");
             Anim("fire2");
             mobileInputs.ButtonFire2.SetActive(true);
             signalFire2.SetActive(true);
@@ -193,6 +182,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (distance > 490 && voiceSaid == 2)
         {
+            PlayerPrefs.SetString("tutorial", "done");
             Data.Instance.voicesManager.PlayClip(Data.Instance.voicesManager.tutorials[2].audioClip);
             voiceSaid++;
             state = states.DONE;

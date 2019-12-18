@@ -45,7 +45,9 @@ public class CharacterControls : MonoBehaviour {
 	void LateUpdate () {
 		if (characterBehavior == null || characterBehavior.player == null)
 			return;
-		if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) 
+        if (Game.Instance == null || Game.Instance.state != Game.states.PLAYING)
+            return;
+        if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) 
 			return;
 		if (Time.deltaTime == 0) return;
 
@@ -98,13 +100,13 @@ public class CharacterControls : MonoBehaviour {
 	}
     void RotateAccelerometer(float _speed)
     {
-        _speed *= 10;
-        if (_speed > -0.1f && _speed < 0.1f)
+        _speed *= 8;
+        if (_speed > -0.2f && _speed < 0.2f)
             _speed = 0;
-        else if (_speed > 30)
-            _speed = 30;
-        else if (_speed < -30)
-            _speed = -30;
+        else if (_speed > 25)
+            _speed = 25;
+        else if (_speed < -25)
+            _speed = -25;
 
         rotationY = _speed;
     }

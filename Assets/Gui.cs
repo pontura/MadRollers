@@ -22,12 +22,7 @@ public class Gui : MonoBehaviour {
 	{
         if (Data.Instance.isAndroid)
         {
-
-            //sube el panel de la izquierda:
-            Vector3 pos = scaleInAndroidGO[0].transform.position;
-            pos.y = 115;
-            scaleInAndroidGO[0].transform.position = pos;
-
+           // GetComponent<CanvasScaler>().referenceResolution = new Vector2(260, 593);
             hiscorePanel.gameObject.SetActive(true);
             Data.Instance.events.OnMissionStart += OnMissionStart;
             foreach (GameObject go in scaleInAndroidGO)
@@ -35,6 +30,7 @@ public class Gui : MonoBehaviour {
         }
         else
         {
+            GetComponent<CanvasScaler>().referenceResolution = new Vector2(381, 593);
             hiscorePanel.gameObject.SetActive(false);
         }
 		centerPanel.SetActive (false);

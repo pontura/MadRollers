@@ -28,7 +28,7 @@ public class SceneObject : MonoBehaviour {
 
     //se dibuja solo si hay mas de un avatar vivo:
     public bool onlyMultiplayers;
-	SceneObjectsManager manager;
+    public SceneObjectsManager manager;
 
 	public void Init(SceneObjectsManager manager)
 	{

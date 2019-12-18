@@ -10,15 +10,22 @@ public class TimelineAnimation : MonoBehaviour {
 	int id = 0;
 	Vector3 initialPosition;
 	Vector3 initialRotation;
+    bool isOn;
 
 	void OnEnable () {
 		id = 0;
 		initialPosition = transform.position;
 		initialRotation = transform.eulerAngles;
-		Init ();
-	}
+        isOn = true;
+        Init ();
+        
+    }
 	void Init()
 	{
+        if (!isOn)
+            return;
+        if (!gameObject.activeSelf)
+            return;
 		if (timeLineData == null)
 			return;
 		if (timeLineData.Count==0)
@@ -43,18 +50,22 @@ public class TimelineAnimation : MonoBehaviour {
 	{
 		if (timeLineData [id].duration == 0)
 			return;
-        transform.DOMove(
-            new Vector3(initialPosition.x + timeLineData[id].data.x, initialPosition.y + timeLineData[id].data.y, initialPosition.z + timeLineData[id].data.z), 
-            timeLineData[id].duration).OnComplete(TweenCompleted).SetEase(GetEaseType(timeLineData[id].easeType));
-
-
+        if (transform != null)
+        {
+            transform.DOMove(
+                new Vector3(initialPosition.x + timeLineData[id].data.x, initialPosition.y + timeLineData[id].data.y, initialPosition.z + timeLineData[id].data.z),
+                timeLineData[id].duration).OnComplete(TweenCompleted).SetEase(GetEaseType(timeLineData[id].easeType));
+        }
 	}
 	void RotateInTimeLine()
 	{
 		if (timeLineData [id].duration == 0)
 			return;
-        transform.DORotate(new Vector3(initialRotation.x + timeLineData[id].data.x, initialRotation.y + timeLineData[id].data.y, initialRotation.z + timeLineData[id].data.z), 
+        if (transform != null)
+        {
+            transform.DORotate(new Vector3(initialRotation.x + timeLineData[id].data.x, initialRotation.y + timeLineData[id].data.y, initialRotation.z + timeLineData[id].data.z),
             timeLineData[id].duration).OnComplete(TweenCompleted).SetEase(GetEaseType(timeLineData[id].easeType));
+        }
 
     }
 	void TweenCompleted()
@@ -64,9 +75,15 @@ public class TimelineAnimation : MonoBehaviour {
 			id = 0;
 		Init ();
 	}
-	public void OnComponentDisposed()
+    private void OnDisable()
+    {
+        isOn = false;
+        Destroy(this);
+    }
+    public void OnComponentDisposed()
 	{
-		Destroy (this);
+        isOn = false;
+        Destroy (this);
 	}
 
 }

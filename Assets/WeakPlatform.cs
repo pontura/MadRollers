@@ -21,8 +21,7 @@ public class WeakPlatform : SceneObject {
 		FLOOR,
 		WALL
 	}
-
-	public override void OnRestart(Vector3 pos)
+    public override void OnRestart(Vector3 pos)
 	{
 
         if (!ignoreBorders)
@@ -78,18 +77,19 @@ public class WeakPlatform : SceneObject {
 		float MidZ = transform.lossyScale.z / 4;
 
 		Transform container = null;
+
 		SceneObject soc = transform.parent.gameObject.GetComponent<SceneObject> ();
 		if(soc!=null)
 			container = soc.transform;
 		
-		SceneObjectsManager som = Game.Instance.sceneObjectsManager;
+		
 		Vector3 pos = transform.position;
 
 		for (int a = 0; a < 4; a++)
 		{
 			SceneObject newSO = ObjectPool.instance.GetObjectForType(to.name, false);
-			if (newSO.name != "extraSmallBlock1_real" && newSO.name != "extraSmallBlock1_real")
-				som.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
+		//	if (newSO.name != "extraSmallBlock1_real" && newSO.name != "extraSmallBlock1_real")
+			//	som.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
 
 			Vector3 newPos = new Vector3(0, 0, 0);
 			switch (a)
@@ -100,7 +100,7 @@ public class WeakPlatform : SceneObject {
 			case 3: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
 			}
 
-			som.AddSceneObjectAndInitIt(newSO, newPos, container);
+			manager.AddSceneObjectAndInitIt(newSO, newPos, container);
 			newSO.transform.rotation = transform.rotation;
 		}
 		Pool();

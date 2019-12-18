@@ -44,8 +44,12 @@ public class Breakable : MonoBehaviour {
     {               
         isOn = true;
     }
+    public void breakOut(Vector3 position)
+    {
+        breakOut(position, true);
+    }
 
-	public void breakOut (Vector3 position, bool destroyedByWeapon) {
+    public void breakOut (Vector3 position, bool destroyedByWeapon) {
 
         if (!isOn || sceneObject == null)
             return;
