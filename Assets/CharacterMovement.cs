@@ -88,7 +88,7 @@ public class CharacterMovement : MonoBehaviour {
 			if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
 				speedRotation = 2.2f;
 			} else {
-				speedRotation = 3;
+				speedRotation = 4;
 			}
 
 			if (DHMoveTo == 0)

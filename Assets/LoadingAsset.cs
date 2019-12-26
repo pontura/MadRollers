@@ -49,7 +49,7 @@ public class LoadingAsset : MonoBehaviour {
 		yield return new WaitForSeconds (0.4f);
         AddText("-> GOTO 1985 ");
 		yield return new WaitForSeconds (0.5f);
-		AddText("Hacking Destello-Bar system ...");
+		AddText("Club-Social-911 >system ...");
         UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
 		yield return new WaitForSeconds (0.5f);
 

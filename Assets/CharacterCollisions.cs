@@ -42,7 +42,7 @@ public class CharacterCollisions : MonoBehaviour {
 					if (breakable.ifJumpingDontKill && characterBehavior.IsJumping () && breakable.transform.position.y<transform.position.y)
 						characterBehavior.SuperJumpByHittingSomething ();
 					else if (!breakable.dontKillPlayers)
-						characterBehavior.HitWithObject (other.transform.position);
+						characterBehavior.HitWithObject (other.transform.position, breakable.killAtHit);
 				}
 			}
         }
@@ -85,7 +85,6 @@ public class CharacterCollisions : MonoBehaviour {
         }
         else if ( other.tag == "enemy" )
         {
-            print("______________" + characterBehavior.state + characterBehavior.IsJumping());
 
             if (characterBehavior.IsJumping()) {	
 				MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();

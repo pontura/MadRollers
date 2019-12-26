@@ -127,7 +127,6 @@ public class Fade : MonoBehaviour
     {
 		StopAllCoroutines ();
 		fading = false;
-		print ("load: " + aLevelName);
         if (fading) return;
         m_LevelName = aLevelName;
         StartFade(aFadeTime, aColor);

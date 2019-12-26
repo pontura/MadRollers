@@ -32,13 +32,11 @@ public class ArcadeGUI : MonoBehaviour {
 	}
     void Update()
     {
-		if (Game.Instance.state ==  Game.states.INTRO)
-			return;
-        if (ended) return;
         if (Data.Instance.isAndroid)
-        {
             return;
-        }
+
+        if (Game.Instance.state ==  Game.states.INTRO || ended || Game.Instance.level.charactersManager.gameOver) return;
+        
         if ((Data.Instance.inputManager.GetButton(0, InputAction.action1) || Data.Instance.inputManager.GetButton(0, InputAction.action2)) && joysticksCanvas.CanRevive(0))
         {
             if (!characterManager.existsPlayer(0))

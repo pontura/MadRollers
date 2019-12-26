@@ -13,6 +13,7 @@ public class Breakable : MonoBehaviour {
     public bool isOn;
 	public float NumOfParticles = 30;
 	public Breakable[] childs;
+    public bool killAtHit;
 
     //nunca mata
     public bool dontBeKilledByFloorExplotions;

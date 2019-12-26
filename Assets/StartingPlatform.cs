@@ -40,6 +40,7 @@ public class StartingPlatform : SceneObject {
     void OnDestroy()
     {
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Data.Instance.events.OnCharacterInit -= OnCharacterInit;
     }
 	public override void OnPool()
 	{

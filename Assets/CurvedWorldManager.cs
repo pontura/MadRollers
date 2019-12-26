@@ -16,6 +16,13 @@ public class CurvedWorldManager : MonoBehaviour {
         Data.Instance.events.ChangeCurvedWorldX += ChangeCurvedWorldX;
 
 	}
+    public void OnDestroy()
+    {
+
+        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Data.Instance.events.ChangeCurvedWorldX -= ChangeCurvedWorldX;
+
+    }
     void StartMultiplayerRace()
     {
         curvedWorld_Controller = GameObject.Find("CurvedWorld_Controller").GetComponent<CurvedWorld_Controller>();

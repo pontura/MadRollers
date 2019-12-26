@@ -19,8 +19,8 @@ public class SettingsModeScreen : MonoBehaviour {
     }
     void OnJoystickClick()
     {
-        //ContinueMode();
-        CreditsMode();
+        ContinueMode();
+        // CreditsMode();
     }
     public void ContinueMode () {
 		Data.Instance.playMode = Data.PlayModes.CONTINUEMODE;

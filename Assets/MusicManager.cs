@@ -3,13 +3,13 @@ using System.Collections;
 
 public class MusicManager : MonoBehaviour {
 
-    public AudioClip interfaces;
-    public AudioClip heartClip;
-    public AudioClip consumeHearts;
-    public AudioClip deathFX;
-    public AudioClip enemyShout;
-    public AudioClip enemyDead;
-    public AudioClip credits;
+    [SerializeField] private AudioClip interfaces;
+    [SerializeField] private AudioClip heartClip;
+    [SerializeField] private AudioClip consumeHearts;
+    [SerializeField] private AudioClip deathFX;
+    [SerializeField] private AudioClip enemyShout;
+    [SerializeField] private AudioClip enemyDead;
+    [SerializeField] private AudioClip credits;
 
     private float heartsDelay = 0.1f;
     private AudioSource audioSource;

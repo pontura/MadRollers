@@ -25,13 +25,14 @@ public class BossPart : MonoBehaviour {
     }
     public void Init(Boss _boss, string bossAssetPath = null)
 	{
-        
+        isOn = true;
         this.totalLife = lifes;
 
         initialScale = transform.localScale;
         this.boss = _boss;
 		Utils.RemoveAllChildsIn (transform);
-		if (bossAssetPath != null) {
+
+		if (asset == null && bossAssetPath != null) {
             asset = Instantiate(Resources.Load("bosses/" + bossAssetPath, typeof(GameObject))) as GameObject;
             asset.transform.SetParent (transform);
             asset.transform.localScale = Vector3.one;
@@ -39,14 +40,15 @@ public class BossPart : MonoBehaviour {
             asset.transform.localPosition = Vector3.zero;
             anim = asset.GetComponentInChildren<Animation>();
         }
-		isOn = true;
-
-        progressBar = (Instantiate(Resources.Load("ProgressBar", typeof(GameObject))) as GameObject).GetComponent<ProgressBar>();
-        progressBar.SetProgression(1);
-        progressBar.transform.SetParent(transform);
-        progressBar.transform.localScale = Vector3.one;       
-        progressBar.transform.localEulerAngles = Vector3.zero;
-        progressBar.transform.localPosition = progressBarPosition;
+        if (progressBar == null)
+        {
+            progressBar = (Instantiate(Resources.Load("ProgressBar", typeof(GameObject))) as GameObject).GetComponent<ProgressBar>();
+            progressBar.SetProgression(1);
+            progressBar.transform.SetParent(transform);
+            progressBar.transform.localScale = Vector3.one;
+            progressBar.transform.localEulerAngles = Vector3.zero;
+            progressBar.transform.localPosition = progressBarPosition;
+        }
     }
 	void Update()
 	{

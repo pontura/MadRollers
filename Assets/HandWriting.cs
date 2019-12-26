@@ -6,16 +6,38 @@ using UnityEngine.UI;
 public class HandWriting : MonoBehaviour {
 	
 	float speed = 0.05f;
-
-	public void WriteTo(Text field, string textToWrite,  System.Action OnReadyFunc)
+    private void Start()
+    {
+        Data.Instance.events.OnGameOver += OnGameOver;
+    }
+    void OnDestroy()
+    {
+        StopAllCoroutines();
+        Data.Instance.events.OnGameOver -= OnGameOver;
+    }
+    void OnGameOver(bool isOn)
+    {
+        StopAllCoroutines();
+        if (field != null)
+            field.text = "";
+        field = null;
+    }
+    Text field;
+    public void WriteTo(Text field, string textToWrite,  System.Action OnReadyFunc)
 	{
+        this.field = field;
         StopAllCoroutines();
 		field.text = "";
-		StartCoroutine (WriteLoop (field, textToWrite, OnReadyFunc));
+		StartCoroutine (WriteLoop (textToWrite, OnReadyFunc));
 	}
-	IEnumerator WriteLoop(Text field, string textToWrite,  System.Action OnReadyFunc)
+	IEnumerator WriteLoop(string textToWrite,  System.Action OnReadyFunc)
 	{
-		field.text = ">";
+        if (field == null)
+        {
+            yield return null;
+            StopAllCoroutines();
+        }
+        field.text = ">";
 		int letterId = 0;
 		int totalWords = textToWrite.Length;
 		while (letterId < totalWords) {		
@@ -34,12 +56,9 @@ public class HandWriting : MonoBehaviour {
 			OnReadyFunc ();
 		yield return null;
 	}
-	void OnDestroy()
-	{
-		StopAllCoroutines ();
-	}
 	void OnDisable()
 	{
+        field = null;
 		StopAllCoroutines ();
 	}
 }

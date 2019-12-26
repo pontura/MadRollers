@@ -78,7 +78,7 @@ public class TimelineAnimation : MonoBehaviour {
     private void OnDisable()
     {
         isOn = false;
-        Destroy(this);
+        //Destroy(this);
     }
     public void OnComponentDisposed()
 	{

@@ -41,13 +41,9 @@ public class VideogameBossPanel : MonoBehaviour {
     }
     void StartMultiplayerRace()
     {
-        print("StartMultiplayerRace");
         if(!Data.Instance.isReplay)
-        {
             OnBossActive(false);
-        }
     }
-
     void OnGameStart()
 	{
 		StartCoroutine (InitCoroutine ());

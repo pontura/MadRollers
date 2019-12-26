@@ -15,7 +15,7 @@ public class Intro : MonoBehaviour {
     public MeshRenderer gorro4;
 
     public GameObject fonts;
-    private string title = "ROMPAN-TODO " ;
+
     private int id;
 
 	void Start () {

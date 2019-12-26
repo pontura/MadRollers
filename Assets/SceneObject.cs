@@ -58,8 +58,11 @@ public class SceneObject : MonoBehaviour {
       		transform.position = newPos;  
 		
         ObjectPool.instance.PoolObject(this);
-		if (manager == null)
-			Debug.LogError ("manager null " + gameObject.name);
+        if (manager == null)
+        {
+            OnPool();
+            return;
+        }
 		manager.RemoveSceneObject (this);
         OnPool();
     }

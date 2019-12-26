@@ -8,12 +8,12 @@ public class CharacterAutomata : MonoBehaviour {
 
 	void Start()
 	{
-		cb = GetComponent<CharacterBehavior> ();
+		//cb = GetComponent<CharacterBehavior> ();
 	}
 	public void Init()
 	{
-		Invoke("LoopShoot", Random.Range(1,8));
-		Invoke("LoopJump", Random.Range(1,8));
+		//Invoke("LoopShoot", Random.Range(1,8));
+		//Invoke("LoopJump", Random.Range(1,8));
 	}
 	public void Reset()
 	{

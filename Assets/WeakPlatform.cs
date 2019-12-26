@@ -4,7 +4,7 @@ using System.Collections;
 public class WeakPlatform : SceneObject {
 
 	Collider collider;
-	public GameObject to;
+	[SerializeField] private  GameObject to;
 	public int videoGame_ID;
 
 	Color floor_top;
@@ -12,8 +12,8 @@ public class WeakPlatform : SceneObject {
 
 	Rigidbody rb;
 	bool falling;
-	public BorderVideogameCollider[] borders;
-    public bool ignoreBorders;
+	//public BorderVideogameCollider[] borders;
+   // public bool ignoreBorders;
 
 	public types type;
 	public enum types
@@ -24,16 +24,16 @@ public class WeakPlatform : SceneObject {
     public override void OnRestart(Vector3 pos)
 	{
 
-        if (!ignoreBorders)
-        {
-            foreach (BorderVideogameCollider border in borders)
-                border.Init();
-        }
-        else
-        {
-            foreach (BorderVideogameCollider border in borders)
-                border.gameObject.SetActive(false);
-        }
+        //if (!ignoreBorders)
+        //{
+        //    foreach (BorderVideogameCollider border in borders)
+        //        border.Init();
+        //}
+        //else
+        //{
+        //    foreach (BorderVideogameCollider border in borders)
+        //        border.gameObject.SetActive(false);
+        //}
 		
 		falling = false;
 

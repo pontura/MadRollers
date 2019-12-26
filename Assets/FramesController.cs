@@ -12,7 +12,12 @@ public class FramesController : MonoBehaviour {
 		Data.Instance.events.RalentaTo += RalentaTo;
 		Data.Instance.events.ForceFrameRate += ForceFrameRate;
 	}
-	public void ForceFrameRate(float newFrameRate)
+    void OnDestroy()
+    {
+        Data.Instance.events.RalentaTo -= RalentaTo;
+        Data.Instance.events.ForceFrameRate -= ForceFrameRate;
+    }
+    public void ForceFrameRate(float newFrameRate)
 	{
 		if (ralentaCoroutine != null)
 			StopCoroutine (ralentaCoroutine);

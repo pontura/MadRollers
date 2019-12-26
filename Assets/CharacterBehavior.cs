@@ -553,23 +553,26 @@ public class CharacterBehavior : MonoBehaviour {
 			Game.Instance.gameCamera.OnAvatarFall (this);
 	}
 
-	public void HitWithObject(Vector3 objPosition)
+	public void HitWithObject(Vector3 objPosition, bool killAtHit)
 	{
-		//Hit();
-        CollideToObject();
-        if (objPosition.x < transform.position.x)
-        {
-            collisionToRight = true;
-            madRoller.Play("hit_right");
-            collisionedValue = collisionForce;
-        }
+        if (killAtHit)
+            Hit();
         else
         {
-            collisionToRight = false;
-            madRoller.Play("hit_left");
-            collisionedValue = -collisionForce;
+            CollideToObject();
+            if (objPosition.x < transform.position.x)
+            {
+                collisionToRight = true;
+                madRoller.Play("hit_right");
+                collisionedValue = collisionForce;
+            }
+            else
+            {
+                collisionToRight = false;
+                madRoller.Play("hit_left");
+                collisionedValue = -collisionForce;
+            }
         }
-
     }
 
     public float collisionForce = 50;
@@ -578,6 +581,7 @@ public class CharacterBehavior : MonoBehaviour {
     bool collisionToRight;
     public void CollideToObject()
     {
+        Data.Instance.events.OnSoundFX("hit", player.id);
         state = states.COLLISIONED;
         rb.velocity = Vector3.zero;
         rb.AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);

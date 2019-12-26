@@ -16,17 +16,8 @@ public class Player : MonoBehaviour {
 
     public GameObject particles;
 
-    public int id; //numero de player;
-   // public EnergyBar progressBar;
-
-    //[HideInInspector]
-    //public Transport transport;
-    //public Transport[] transports;
-    //public GameObject transportContainer;
-
+    public int id; 
     public fxStates fxState;
-
-	//public bool canJump = false;
 
     private CharacterBehavior characterBehavior;
     private IEnumerator progressBarCoroutine;
@@ -52,8 +43,6 @@ public class Player : MonoBehaviour {
 		} 
 		madRoller.SetFxOff ();
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
-	//	Data.Instance.events.OnMissionStart += OnMissionStart;
-	//	Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
 		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 
@@ -67,14 +56,13 @@ public class Player : MonoBehaviour {
     void OnDestroy()
     {
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
-   //     Data.Instance.events.OnMissionStart -= OnMissionStart;
-   //     Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnAvatarGetItem -= OnAvatarGetItem;
         Data.Instance.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
     }
 	void SetSettings()
 	{
-		shadow.SetActive (true);
+        if(Data.Instance.isAndroid)
+		    shadow.SetActive (true);
 
 
 		if(id>3)
@@ -86,13 +74,6 @@ public class Player : MonoBehaviour {
 			color = Data.Instance.GetComponent<MultiplayerData>().colors[4];
 		else
 			color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
-
-		//foreach (TrailRenderer tr in GetComponentsInChildren<TrailRenderer>()) {
-		//	if (id == 0)
-		//		tr.enabled = false;
-		//	else
-		//		tr.material.color = color; 
-	//	}
 	}
     public void Init(int _id)
     {
@@ -104,18 +85,9 @@ public class Player : MonoBehaviour {
 		else
 			color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
 
-		//foreach (TrailRenderer tr in GetComponentsInChildren<TrailRenderer>()) {
-			//if (id == 0)
-			//	tr.enabled = false;
-			//else
-			//	tr.material.color = color; 
-		//}
-
-
         characterBehavior = GetComponent<CharacterBehavior>();
 		characterBehavior.shooter.ResetWeapons ();
 
-        this.id = id;
        
         particles.SetActive(false);
         OnAvatarProgressBarEmpty();
@@ -140,12 +112,6 @@ public class Player : MonoBehaviour {
         }
         cb.Die();
     }
-    public void OnAvatarProgressBarStart(Color color)
-    {
-        //if (progressBar.isOn) return;
-      //  progressBar.Init(color);
-      //  progressBar.gameObject.SetActive(true);
-    }
 	public bool IsDebbugerPlayer()
 	{
 		if (Data.Instance.isEditor && id == 3)
@@ -154,27 +120,13 @@ public class Player : MonoBehaviour {
 	}
     public void OnAvatarProgressBarEmpty()
     {
-
-        //print("OnAvatarProgressBarEmpty " + fxState);
-       // progressBar.gameObject.SetActive(false);
-
-		//DEBUG: para hacer inmortal al player 1
 		if ( IsDebbugerPlayer() )
 			return;
-		
-        if (fxState == fxStates.SUPER )
+
+        if (fxState == fxStates.SUPER)
         {
             setNormalState();
-            return;
         }
-
-       // foreach (Transform child in transportContainer.transform)  Destroy(child.gameObject);
-
-      //  transport = null;
-    }
-    public void OnAvatarProgressBarUnFill(float qty )
-    {
-     //   progressBar.UnFill(qty);
     }
     private void OnAvatarGetItem(int playerID, Powerup.types item)
     {
@@ -222,47 +174,23 @@ public class Player : MonoBehaviour {
 		yield return new WaitForSeconds(timer);
         OnAvatarProgressBarEmpty();
     }
-//   private void OnListenerDispatcher(string message)
-//    {
-//        if (message == "ShowMissionName")
-//			OnMissionStart(Data.Instance.missions.MissionActiveID);
-//   }
-//   public void OnMissionStart(int missionID)
-//   {
-//
-////       if (Data.Instance.DEBUG 
-////			|| Data.Instance.playMode == Data.PlayModes.COMPETITION)
-////       {
-////           canJump = true;
-////       }
-////       else
-////       {
-////
-////           if (missionID > 1)
-////               canJump = true;
-////       }
-//   }
    private void setStartingState()
    {
        fxState = fxStates.SUPER;
-        //   gameObject.layer = LayerMask.NameToLayer("SuperFX");
     }
     private void setStartingState2()
    {
        fxState = fxStates.NORMAL;
-        // gameObject.layer = LayerMask.NameToLayer("Character");
     }
     private void setNormalState()
     {
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.NORMAL);
         fxState = fxStates.NORMAL;
-        //  gameObject.layer = LayerMask.NameToLayer("Character");
         particles.SetActive(false);        
     }
     private void setSuperState()
     {        
         fxState = fxStates.SUPER;        
-       // gameObject.layer = LayerMask.NameToLayer("SuperFX");
         particles.SetActive(true);
     }
 }

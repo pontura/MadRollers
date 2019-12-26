@@ -19,8 +19,10 @@ public class MainMenu : MonoBehaviour {
 	public Player player_to_instantiate;
 
 	void Start()
-	{		
-		Cursor.visible = false;
+	{
+        Resources.UnloadUnusedAssets();
+
+        Cursor.visible = false;
 		buttons = new List<MainMenuButton> ();
 		if (Data.Instance.isArcadeMultiplayer) {
 			partyGameButtons.SetActive (false);

@@ -51,13 +51,15 @@ public class CharacterControls : MonoBehaviour {
 			return;
 		if (Time.deltaTime == 0) return;
 
+        if (characterBehavior.player.charactersManager == null || characterBehavior.player.charactersManager.gameOver)
+            return;
+
         if (Data.Instance.isAndroid)
             UpdateAccelerometer();
         else
             UpdateStandalone();
 
-        if (characterBehavior.player.charactersManager == null || characterBehavior.player.charactersManager.gameOver)
-			return;
+        
 		characterBehavior.UpdateByController(rotationY); 
 	}
   
@@ -78,8 +80,8 @@ public class CharacterControls : MonoBehaviour {
 			|| _speed==0 && (lastHorizontalKeyPressed <0  ||  lastHorizontalKeyPressed >0)
 		) {			
 			lastHorizontalKeyPressed = _speed;
-			if(!isAutomata)
-				Data.Instance.inputSaver.MoveInX (transform.position.x);
+		//	if(!isAutomata)
+			//	Data.Instance.inputSaver.MoveInX (transform.position.x);
 		}
 
 		MoveInX (_speed);
@@ -112,7 +114,7 @@ public class CharacterControls : MonoBehaviour {
     }
     void RotateStandalone(float _speed)
     {
-        if (_speed < -0.5f || _speed > 0.5f)
+        if (_speed < -0.2f || _speed > 0.2f)
         {
             if (!playerPlayed)
             {

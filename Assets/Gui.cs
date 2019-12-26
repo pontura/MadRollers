@@ -41,6 +41,7 @@ public class Gui : MonoBehaviour {
             Data.Instance.events.OnBossActive += OnBossActive;
 
 		Data.Instance.events.OnGenericUIText += OnGenericUIText;
+        Data.Instance.events.OnGameOver += OnGameOver;
     }
     void OnDestroy()
     {
@@ -49,10 +50,15 @@ public class Gui : MonoBehaviour {
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
 		Data.Instance.events.OnBossActive -= OnBossActive;
 		Data.Instance.events.OnGenericUIText -= OnGenericUIText;
+        Data.Instance.events.OnGameOver -= OnGameOver;
 
         levelComplete = null;
     }
-
+    void OnGameOver(bool isOver)
+    {
+        CancelInvoke();
+        Reset();
+    }
     void OnBossActive(bool isOn)
 	{
 		CancelInvoke ();

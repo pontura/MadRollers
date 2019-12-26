@@ -161,9 +161,8 @@ public class Data : MonoBehaviour {
 	}
 	void Start()
 	{
-
 #if UNITY_EDITOR
-		isEditor= true;
+        isEditor = true;
 #endif
 		loadingAsset.SetOn (false);
         //GetComponent<PhotosManager>().LoadPhotos();

@@ -12,7 +12,7 @@ public class PixelsPool : MonoBehaviour {
 	public void Init (Transform poolContainer, Transform sceneContainer) {
 		this.poolContainer = poolContainer;
 		this.sceneContainer = sceneContainer;
-		for (int a = 0; a < 150; a++) {
+		for (int a = 0; a < 120; a++) {
 			PixelPart pp = Instantiate (pixelPart);
 			pp.gameObject.SetActive (false);
 			all.Add (pp);
@@ -29,7 +29,8 @@ public class PixelsPool : MonoBehaviour {
 	}
 	public void Pool(PixelPart pp)
 	{
-		pp.gameObject.SetActive (false);
+        pp.Rb.isKinematic = true;
+        pp.gameObject.SetActive (false);
 		all.Add (pp);
 		pp.transform.SetParent (poolContainer);
 	}
@@ -57,9 +58,9 @@ public class PixelsPool : MonoBehaviour {
                     rot_y = a * (360 / NumOfParticles);
                 pp.transform.localEulerAngles = new Vector3 (0, rot_y, 0);
 				Vector3 direction = ((pp.transform.forward * force) + (Vector3.up * (force * 2)));
-				Rigidbody rb = pp.GetComponent<Rigidbody> ();
-				rb.velocity = Vector3.zero;
-				rb.AddForce (direction, ForceMode.Impulse);
+				pp.Rb.velocity = Vector3.zero;
+                pp.Rb.isKinematic = false;
+                pp.Rb.AddForce (direction, ForceMode.Impulse);
 				pp.Init(colors[a]);
 			}
 		}

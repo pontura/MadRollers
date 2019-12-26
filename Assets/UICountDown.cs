@@ -49,5 +49,6 @@ public class UICountDown : MonoBehaviour {
     {
         Data.Instance.events.StartMultiplayerRace();
         panel.SetActive(false);
+        Data.Instance.events.OnGenericUIText("ROMPAN TODO!");
     }
 }

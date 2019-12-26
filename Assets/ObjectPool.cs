@@ -19,18 +19,15 @@ public class ObjectPool : MonoBehaviour
     }
     #endregion
     public ObjectPoolEntry[] Entries;
+
     [HideInInspector]
-    public GameObject Scene;
+    public GameObject Scene, containerObject;
 
     public static ObjectPool instance;
-    
-	List<SceneObject> pooledObjects;
-    public List<SceneObject> pooledObjects_smallBlock;
-    public List<SceneObject> pooledObjects_extraSmallBlock;
 
-    protected GameObject containerObject;
+    private Dictionary<string, List<SceneObject>> pool = new Dictionary<string, List<SceneObject>>();
 
-	public PixelsPool pixelsPool;
+    public PixelsPool pixelsPool;
 
     void Awake()
     {
@@ -39,61 +36,39 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
-		
-		pixelsPool = GetComponent<PixelsPool> ();
-		pooledObjects = new List<SceneObject> ();
-		pooledObjects_smallBlock = new List<SceneObject> ();
-		pooledObjects_extraSmallBlock = new List<SceneObject> ();
-
+        pixelsPool = GetComponent<PixelsPool>();
         DontDestroyOnLoad(this);
 
         containerObject = new GameObject("ObjectPool");
         Scene = new GameObject("Scene");
 
-		pixelsPool.Init (containerObject.transform, Scene.transform);
+        pixelsPool.Init(containerObject.transform, Scene.transform);
 
         DontDestroyOnLoad(containerObject);
         DontDestroyOnLoad(Scene);
-        
-//		foreach (ObjectPoolEntry poe in Entries) {
-//			for (int a=0; a<poe.Count; a++) {
-//				pooledObjects.Add (poe.Prefab);
-//			}
-//		}
 
+        pool = new Dictionary<string, List<SceneObject>>();
 
-        int id = 0;
-        for (int i = 0; i < Entries.Length; i++)
+        foreach (ObjectPoolEntry poe in Entries)
         {
-            var objectPrefab = Entries[i];
-            //create the repository
-
-
-            for (int n = 0; n < objectPrefab.Count; n++)
+            for (int a = 0; a < poe.Count; a++)
             {
-				SceneObject newObj = CreateSceneObject (objectPrefab.Prefab);
-				newObj.gameObject.SetActive(false);
-//                SceneObject newObj = Instantiate(objectPrefab.Prefab) as SceneObject;
-//				pooledObjects.Add (newObj);
-//                newObj.name = objectPrefab.Prefab.name;
-				PoolObject(newObj);
-                newObj.id = id;
-                id++;
-
+                if (pool.ContainsKey(poe.Prefab.name) == false)
+                {
+                    pool.Add(poe.Prefab.name, new List<SceneObject>());
+                }
+                SceneObject so = CreateSceneObject(poe.Prefab);
+                pool[so.name].Add(so);
             }
         }
-        Restart();
-        
     }
-	SceneObject CreateSceneObject(SceneObject so)
-	{
-		SceneObject newSO = Instantiate(so) as SceneObject;
-		newSO.name = so.name;
-		return newSO;
-	}
-    void Restart()
+    SceneObject CreateSceneObject(SceneObject so)
     {
-
+        SceneObject instance = Instantiate(so) as SceneObject;        
+        instance.name = so.name;
+        instance.transform.SetParent(containerObject.transform);
+        instance.gameObject.SetActive(false);
+        return instance;
     }
     private int GetTotalObjectsOfType(string objectType)
     {
@@ -108,82 +83,49 @@ public class ObjectPool : MonoBehaviour
         return qty;
     }
 
-
-    public SceneObject GetObjectForType(string objectType, bool onlyPooled)
+    public SceneObject GetObjectForType(string instanceName, bool onlyPooled)
     {
-
-		SceneObject pooledObject = null;
-		if (objectType == "extraSmallBlock1_real") {
-			if (pooledObjects_extraSmallBlock.Count > 0) {
-				pooledObject = pooledObjects_extraSmallBlock [0];
-				pooledObjects_extraSmallBlock.Remove (pooledObject);	
-				pooledObject.transform.SetParent (Scene.transform);
-				return pooledObject;
-			}
-		} else if (objectType == "smallBlock1_real") {
-			if (pooledObjects_smallBlock.Count > 0) {
-				pooledObject = pooledObjects_smallBlock [0];
-				pooledObjects_smallBlock.Remove (pooledObject);	
-				pooledObject.transform.SetParent (Scene.transform);
-				return pooledObject;
-			}
-		} else {
-			
-			int i = pooledObjects.Count;
-			while (i > 0) {
-				SceneObject soPooled = pooledObjects [i - 1];
-				if (soPooled.name == objectType || soPooled.name + "(Clone)" == objectType) {
-					pooledObject = soPooled;
-					pooledObject.transform.SetParent (Scene.transform);
-					pooledObjects.Remove (pooledObject);	
-					return pooledObject;
-				}
-				i--;
-			}	
-		}
-		if (!onlyPooled)
-		{
-			foreach (ObjectPoolEntry poe in Entries) {
-				if (poe.Prefab.name == objectType || poe.Prefab.name + "(Clone)" == objectType) {	
-					SceneObject newSceneObject = CreateSceneObject(poe.Prefab);
-					newSceneObject.transform.SetParent( Scene.transform );
-					//pooledObjects.Remove(newSceneObject);
-					return newSceneObject;
-				}
-			}
-		} 
-		//Debug.LogError("_________________NO HAY: " + objectType + "  bool " + onlyPooled);
-		return null;
+        if (pool.ContainsKey(instanceName))
+        {
+            
+            if (pool[instanceName].Count > 0)
+            {
+                SceneObject instance = pool[instanceName][0];
+                pool[instanceName].Remove(instance);
+                return instance;
+            }
+            else
+            {
+                foreach (ObjectPoolEntry poe in Entries)
+                {
+                    if (poe.Prefab.name == instanceName)
+                        return CreateSceneObject(poe.Prefab);
+                }
+            }
+            return null;
+        }
+        else
+        {
+            Debug.LogError(" no existe: " + instanceName);
+            return null;
+        }
     }
-
-
-
 
     public void PoolObject(SceneObject obj)
     {
-		if (obj.broken) {
-			//print ("____________broken " + obj.name);
-			Destroy (obj.gameObject);
-			return;
-		}
-        for (int i = 0; i < Entries.Length; i++)
+        if (obj.broken)
         {
-            if (Entries[i].Prefab.name == obj.name || Entries[i].Prefab.name + "(Clone)" == obj.name)
-            {        				
-				obj.transform.SetParent(containerObject.transform);
-				obj.gameObject.SetActive(false);
-				if(obj.name == "extraSmallBlock1_real")
-					pooledObjects_extraSmallBlock.Add(obj);
-				else if(obj.name == "smallBlock1_real")
-					pooledObjects_smallBlock.Add(obj);
-				else
-                	pooledObjects.Add(obj);
-                return;
-            }
+            Destroy(obj.gameObject);
+            return;
         }
-        Destroy(obj.gameObject);
+        else
+        if (pool.ContainsKey(obj.name))
+        {
+            obj.transform.SetParent(containerObject.transform);
+            obj.gameObject.SetActive(false);
+            pool[obj.name].Add(obj);
+        }
+        else
+            Destroy(obj.gameObject);
     }
-
-
-
 }

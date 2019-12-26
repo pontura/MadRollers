@@ -6,7 +6,12 @@ public class PixelPart : MonoBehaviour {
 
 	public MeshRenderer mr;
 	Color color;
+    [SerializeField] private Rigidbody rb;
 
+    public Rigidbody Rb
+    {
+        get { return rb; }
+    }
 	public void Init(Color newColor)
 	{
 		Invoke ("Reset", 2);

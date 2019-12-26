@@ -63,7 +63,7 @@ public class CharactersManager : MonoBehaviour {
 		if (freezed)
 			return;
 		
-		OnUpdate ();
+		
 
 //		if(Input.GetKeyDown(KeyCode.M))
 //			AddChildPlayer( getMainCharacter() );
@@ -71,7 +71,9 @@ public class CharactersManager : MonoBehaviour {
 		if (Game.Instance.level.waitingToStart) return;
         if (gameOver) return;
 
-		if(speedRun >= MAX_SPEED)
+        OnUpdate();
+
+        if (speedRun >= MAX_SPEED)
 			speedRun = MAX_SPEED;
 		else
 			speedRun += acceleration * Time.deltaTime;
@@ -177,7 +179,7 @@ public class CharactersManager : MonoBehaviour {
         bool exists = false;
         characters.ForEach((cb) =>
         {
-            if (cb.player.id == id) exists = true;
+            if (cb.player != null && cb.player.id == id) exists = true;
         });
         return exists;
     }
@@ -278,8 +280,7 @@ public class CharactersManager : MonoBehaviour {
     {
         if (gameOver)
             return;
-
-        print("killCharacter . characters count: " + characters.Count);
+        
         characters.Remove(characterBehavior);
         totalCharacters = characters.Count;
         deadCharacters.Add(characterBehavior);

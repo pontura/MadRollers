@@ -48,7 +48,7 @@ public class Missions : MonoBehaviour {
 
 	public AreaData areaDataActive;
 	float areasLength;
-	int offset = 60;
+	int offset = 100;
 	int areaSetId = 0;
 	int areaNum = 0;
 	int areaID = 0;
@@ -56,7 +56,10 @@ public class Missions : MonoBehaviour {
 	VideogamesData videogamesData;
 
     public void Init()
-	{
+    {
+        if (Data.Instance.isAndroid)
+            offset -= 40;
+
         videogamesData = GetComponent<VideogamesData> ();
 		data = Data.Instance;
 

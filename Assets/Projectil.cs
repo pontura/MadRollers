@@ -86,7 +86,7 @@ public class Projectil : SceneObject {
 
     }
     
-	void Update()
+	void LateUpdate()
 	{
 		if (!isActive)
 			return;
@@ -109,7 +109,7 @@ public class Projectil : SceneObject {
 		RectificaRotation ();
 		
        // rotation.y = 0;
-		if (pos.y < - 3) Reset();
+		if (pos.y < - 3) ResetProjectil();
         else
 		if(myDist >= myRange)
 		{
@@ -141,12 +141,12 @@ public class Projectil : SceneObject {
             case "wall":
                 addExplotionWall();
 				SetScore( ScoresManager.score_for_destroying_wall, ScoresManager.types.DESTROY_WALL);
-                Reset();
+                ResetProjectil();
                 break;
 			case "floor":
 				addExplotion(0.2f);
 				SetScore( ScoresManager.score_for_destroying_floor, ScoresManager.types.DESTROY_FLOOR);
-				Reset();
+                ResetProjectil();
 				break;
 		case "enemy":
 				MmoCharacter enemy = other.gameObject.GetComponent<MmoCharacter> ();
@@ -160,22 +160,22 @@ public class Projectil : SceneObject {
                     other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
                     //other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
 				}
-			//---------------------------------------------------
+                //---------------------------------------------------
 
-				Reset();
+                ResetProjectil();
 				break;
 			case "destroyable":
 				SetScore( ScoresManager.score_for_breaking, ScoresManager.types.BREAKING);
                 other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
-               // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
-				Reset();
+                // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+                ResetProjectil();
 				break;
 			case "boss":
 				SetScore( ScoresManager.score_for_boss, ScoresManager.types.BOSS);
                 other.gameObject.GetComponent<Boss>().breakOut();
 
-               // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
-				Reset();
+                // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+                ResetProjectil();
 				break;
 		case "firewall":
 				//SetScore(70);
@@ -202,7 +202,7 @@ public class Projectil : SceneObject {
 			Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.05f);
 			Data.Instance.events.RalentaTo (1, 0.05f);
 			cb.Hit ();
-			Reset();
+                ResetProjectil();
 			break;
 		}
 	}
@@ -223,7 +223,7 @@ public class Projectil : SceneObject {
         exploted = true;
         Data.Instance.events.AddWallExplotion(transform.position, color);
     }
-	void Reset()
+	void ResetProjectil()
     {
 		target = null;
         Pool();
