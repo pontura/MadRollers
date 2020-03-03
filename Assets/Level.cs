@@ -143,6 +143,7 @@ public class Level : MonoBehaviour {
 		VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData ();
 		RenderSettings.fogColor = videogameData.fog;
         Game.Instance.gameCamera.cam.backgroundColor = videogameData.fog;
+        Game.Instance.gameCamera.backgrundImage.sprite = videogameData.normalBackgrouond;
     }
 	private void  reset()
 	{

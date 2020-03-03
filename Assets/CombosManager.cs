@@ -23,7 +23,7 @@ public class CombosManager : MonoBehaviour {
 		value++;
 		if(value>=total)
 		{
-			Data.Instance.events.OnGenericUIText("Perfect Combo! (x" + total + ")");
+			Data.Instance.events.OnGenericUIText("x" + total + " Combo!");
 			Data.Instance.events.OnScoreOn (total * 100, Vector3.zero, -1, ScoresManager.types.COMBO);
 		}	
 			

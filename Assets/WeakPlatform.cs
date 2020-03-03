@@ -10,10 +10,8 @@ public class WeakPlatform : SceneObject {
 	Color floor_top;
 	Color floor_border ;
 
-	Rigidbody rb;
+	//Rigidbody rb;
 	bool falling;
-	//public BorderVideogameCollider[] borders;
-   // public bool ignoreBorders;
 
 	public types type;
 	public enum types
@@ -21,36 +19,31 @@ public class WeakPlatform : SceneObject {
 		FLOOR,
 		WALL
 	}
+    public override void Init(SceneObjectsManager manager)
+    {
+        base.Init(manager);
+        collider = GetComponent<Collider>();
+    }
     public override void OnRestart(Vector3 pos)
-	{
-
-        //if (!ignoreBorders)
-        //{
-        //    foreach (BorderVideogameCollider border in borders)
-        //        border.Init();
-        //}
-        //else
-        //{
-        //    foreach (BorderVideogameCollider border in borders)
-        //        border.gameObject.SetActive(false);
-        //}
-		
+	{		
 		falling = false;
 
 		base.OnRestart(pos);
-
-		collider = GetComponent<Collider> ();
 		collider.enabled = true;
 
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
 		if (newVideoGameID != videoGame_ID) {
 			if (type == types.FLOOR) {
-				floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
-				floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
-				videoGame_ID = newVideoGameID;
-				Renderer[] renderers = GetComponentsInChildren<Renderer> ();
-				foreach (Renderer r in renderers)
-					ChangeMaterials (r);
+                Color newColorTop = Data.Instance.videogamesData.GetActualVideogameData().floor_top;
+                if (floor_top == null || newColorTop != floor_top)
+                {
+                    floor_top = newColorTop;
+                    floor_border = Data.Instance.videogamesData.GetActualVideogameData().floor_border;
+                    videoGame_ID = newVideoGameID;
+                    Renderer[] renderers = GetComponentsInChildren<Renderer>();
+                    foreach (Renderer r in renderers)
+                        ChangeMaterials(r);
+                }
 			} else {
 				GetComponent<Renderer>().material = Data.Instance.videogamesData.GetActualVideogameData ().wallMaterial;
 			}
@@ -79,8 +72,11 @@ public class WeakPlatform : SceneObject {
 		Transform container = null;
 
 		SceneObject soc = transform.parent.gameObject.GetComponent<SceneObject> ();
-		if(soc!=null)
-			container = soc.transform;
+        if (soc != null)
+        {
+            container = soc.transform;
+            soc = null;
+        }
 		
 		
 		Vector3 pos = transform.position;
@@ -88,8 +84,8 @@ public class WeakPlatform : SceneObject {
 		for (int a = 0; a < 4; a++)
 		{
 			SceneObject newSO = ObjectPool.instance.GetObjectForType(to.name, false);
-		//	if (newSO.name != "extraSmallBlock1_real" && newSO.name != "extraSmallBlock1_real")
-			//	som.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
+			if (newSO.name != "extraSmallBlock1_real" && newSO.name != "extraSmallBlock1_real")
+                manager.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
 
 			Vector3 newPos = new Vector3(0, 0, 0);
 			switch (a)
@@ -111,37 +107,43 @@ public class WeakPlatform : SceneObject {
 		if (falling)
 			return;
 		falling = true;
-		float r = (float)Random.Range (1f, 10f) / 50f;
 
-		Invoke("Pool", r );
-		return;
+        Pool();
+		//float r = (float)Random.Range (1f, 10f) / 50f;
+
+		//Invoke("Pool", r );
+		//return;
 
 
 
-		//if(rb==null)
-		//	rb = gameObject.AddComponent<Rigidbody>();
+		////if(rb==null)
+		////	rb = gameObject.AddComponent<Rigidbody>();
 
-		rb.isKinematic = false;
-		rb.useGravity = true;
-		if (type == types.FLOOR) {
-			rb.mass = 40;
-			rb.velocity = Vector3.zero;
-			Vector3 dir = (Vector3.up * Random.Range(120,260));
-			rb.AddForce(dir, ForceMode.Impulse);
-		} else {
-			rb.mass = 10;
-			rb.velocity = Vector3.zero;
-			Vector3 dir = (Vector3.forward * Random.Range(250,460));
-			dir += new Vector3 (Random.Range (-5, 5), Random.Range (0, 20), 0);
-			rb.AddForce(dir, ForceMode.Impulse);
-		}
+		//rb.isKinematic = false;
+		//rb.useGravity = true;
+		//if (type == types.FLOOR) {
+		//	rb.mass = 40;
+		//	rb.velocity = Vector3.zero;
+		//	Vector3 dir = (Vector3.up * Random.Range(120,260));
+		//	rb.AddForce(dir, ForceMode.Impulse);
+		//} else {
+		//	rb.mass = 10;
+		//	rb.velocity = Vector3.zero;
+		//	Vector3 dir = (Vector3.forward * Random.Range(250,460));
+		//	dir += new Vector3 (Random.Range (-5, 5), Random.Range (0, 20), 0);
+		//	rb.AddForce(dir, ForceMode.Impulse);
+		//}
 	}
 	public override void OnPool()
 	{
-		if (collider != null)
+        if (falling)
+            CancelInvoke();
+        falling = false;
+
+        if (collider != null)
 			collider.enabled = false;
-		if (rb != null)
-			Destroy (rb);
+		//if (rb != null)
+		//	Destroy (rb);
 		//rb.useGravity = false;
 		//rb.isKinematic = true;
 	}

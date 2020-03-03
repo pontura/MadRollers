@@ -36,7 +36,7 @@ public class ParticlesSceneObject : SceneObject {
                 parts.startColor = color;
             } catch
             {
-                Debug.Log("no pudo cambiar el color");
+               // Debug.Log("no pudo cambiar el color");
             }
         }
     }

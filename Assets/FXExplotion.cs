@@ -5,7 +5,7 @@ public class FXExplotion : SceneObject {
 
 	public MeshRenderer meshRenderer;
 	float finalScale = 8;
-	float speed = 6;	
+	float speed = 3;	
 
 	float timer;
 	bool getBigger;
@@ -64,10 +64,6 @@ public class FXExplotion : SceneObject {
 
 		if (getBigger && transform.localScale.x >= (finalScale - 0.4f))
 			getBigger = false;
-	}
-    private void die()
-    {
-        Pool();
 	}
 	void OnTriggerEnter(Collider other)
 	{

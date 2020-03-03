@@ -156,12 +156,14 @@ public class VideogameBossPanel : MonoBehaviour {
         if (isOn) {
             
             Game.Instance.gameCamera.cam.backgroundColor = vd.bossFog;
+            Game.Instance.gameCamera.backgrundImage.sprite = vd.bossBackgrouond;
             RenderSettings.fogColor = vd.bossFog;
             panel.SetActive (true);
 			state = states.IDLE;
 			Laugh(3);
 		} else {
             Game.Instance.gameCamera.cam.backgroundColor = vd.fog;
+            Game.Instance.gameCamera.backgrundImage.sprite = vd.normalBackgrouond;
             RenderSettings.fogColor = vd.fog;
             Mad (3);
 		}

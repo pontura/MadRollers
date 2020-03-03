@@ -68,6 +68,7 @@ public class ObjectPool : MonoBehaviour
         instance.name = so.name;
         instance.transform.SetParent(containerObject.transform);
         instance.gameObject.SetActive(false);
+        
         return instance;
     }
     private int GetTotalObjectsOfType(string objectType)
@@ -99,7 +100,10 @@ public class ObjectPool : MonoBehaviour
                 foreach (ObjectPoolEntry poe in Entries)
                 {
                     if (poe.Prefab.name == instanceName)
-                        return CreateSceneObject(poe.Prefab);
+                    {
+                        SceneObject so = CreateSceneObject(poe.Prefab);
+                        return so;
+                    }
                 }
             }
             return null;
@@ -118,8 +122,7 @@ public class ObjectPool : MonoBehaviour
             Destroy(obj.gameObject);
             return;
         }
-        else
-        if (pool.ContainsKey(obj.name))
+        else  if (pool.ContainsKey(obj.name))
         {
             obj.transform.SetParent(containerObject.transform);
             obj.gameObject.SetActive(false);

@@ -365,6 +365,7 @@ MonoBehaviour:
   isOn: 0
   NumOfParticles: 15
   childs: []
+  killAtHit: 0
   dontBeKilledByFloorExplotions: 0
   dontKillPlayers: 0
   dontDieOnHit: 1
@@ -383,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
-  progressBarPosition: {x: 0, y: 5, z: 0}
+  progressBarPosition: {x: 0, y: 6, z: 0}
   lifes: 14
   anim: {fileID: 0}
 --- !u!111 &111108363923616194
@@ -432,9 +433,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   sound: 1
-  delayToSoundAttack: 1.6
+  delayToSoundAttack: 0.8
   RandomBetween: 2
-  attackDuration: 2
+  attackDuration: 1
   attacking: 0
 --- !u!1 &1357743015770502
 GameObject:

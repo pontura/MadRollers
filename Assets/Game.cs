@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class Game : MonoBehaviour {
 
@@ -42,7 +43,8 @@ public class Game : MonoBehaviour {
 		Data.Instance.GetComponent<Fade> ().FadeOut ();
     }
     void Start()
-    {		
+    {
+        DOTween.Clear();
 		if (Data.Instance.isReplay) {
 			Invoke ("Delayed", 0.5f);
 			state = states.PLAYING;

@@ -19,8 +19,7 @@ public class GrabbableItem : SceneObject
     [HideInInspector]
     public Player player;
    // public AudioClip heartClip;
-
-	public Color[] titila;
+   
 
     public float areaID;
     public int totalGrabbablesInArea;
@@ -66,9 +65,7 @@ public class GrabbableItem : SceneObject
 	{
 		if (!isActive)
 			return;
-		if (titila.Length > 0) {
-			//meshRenderer.material.color = titila[0];
-		}
+
 		if(hitted)
 		{
             if (player == null) return;
@@ -102,9 +99,7 @@ public class GrabbableItem : SceneObject
                 player = other.transform.parent.GetComponent<Player>();
 
             if (player.GetComponent<CharacterBehavior>().state == CharacterBehavior.states.DEAD) return;
-
-           // if (gameObject.GetComponent<TrailRenderer>())
-            //    gameObject.GetComponent<TrailRenderer>().enabled = false;
+            
 			hitted = true;
             TriggerCollider.enabled = false;
             FloorCollider.enabled = false;

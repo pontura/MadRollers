@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class GameCamera : MonoBehaviour 
 {
+    public SpriteRenderer backgrundImage;
     public float fieldOfView;
 	public int team_id;
 	RetroPixelPro retroPixelPro;

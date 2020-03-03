@@ -20,5 +20,7 @@ public class VideogameData {
 	public Sprite intro_logo;
 	public RetroPixelPro retroPixelPro;
 	public string credits;
+    public Sprite normalBackgrouond;
+    public Sprite bossBackgrouond;
 
 }

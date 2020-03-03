@@ -36,6 +36,10 @@ public class BossAttacksManager : MonoBehaviour
         if (type == types.RANDOM_ATTACK)
             RandomAttack();
     }
+    private void OnDisable()
+    {
+        CancelInvoke();
+    }
     void RandomAttack()
     {        
         Invoke("Loop", 3);
@@ -83,6 +87,7 @@ public class BossAttacksManager : MonoBehaviour
     }
     public void Reset()
     {
+        return;
         if(attacking)
         {
             CancelInvoke();

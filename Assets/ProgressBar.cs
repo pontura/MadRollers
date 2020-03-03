@@ -4,9 +4,9 @@ using System.Collections;
 
 public class ProgressBar : MonoBehaviour {
 
-    public Image sprite;
-    public GameObject bar;
-    public float progression;
+    [SerializeField] private Image sprite;
+    [SerializeField] private GameObject bar;
+    [SerializeField] private float progression;
 
 	public void SetProgression(float progression)
 	{

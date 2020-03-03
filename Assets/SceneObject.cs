@@ -30,7 +30,7 @@ public class SceneObject : MonoBehaviour {
     public bool onlyMultiplayers;
     public SceneObjectsManager manager;
 
-	public void Init(SceneObjectsManager manager)
+	public virtual void Init(SceneObjectsManager manager)
 	{
 		this.manager = manager;
 	}
