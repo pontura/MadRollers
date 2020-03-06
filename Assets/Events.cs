@@ -18,7 +18,8 @@ public class Events : MonoBehaviour {
 
 	public System.Action<int> OnCharacterInit = delegate { };
 	public System.Action<int, string> OnDrawScore = delegate { };
-	public System.Action<bool> OnGameOver = delegate { };
+    public System.Action ResetHandwritingText = delegate { };
+    public System.Action<bool> OnGameOver = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };
     public System.Action<string, int> OnSoundFX = delegate { };
 	public System.Action<MadRollersSFX.types, int> OnMadRollerFX = delegate { };

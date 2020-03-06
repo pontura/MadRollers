@@ -42,6 +42,7 @@ public class Gui : MonoBehaviour {
 
 		Data.Instance.events.OnGenericUIText += OnGenericUIText;
         Data.Instance.events.OnGameOver += OnGameOver;
+        Data.Instance.events.ResetHandwritingText += ResetHandwritingText;
     }
     void OnDestroy()
     {
@@ -51,6 +52,7 @@ public class Gui : MonoBehaviour {
 		Data.Instance.events.OnBossActive -= OnBossActive;
 		Data.Instance.events.OnGenericUIText -= OnGenericUIText;
         Data.Instance.events.OnGameOver -= OnGameOver;
+        Data.Instance.events.ResetHandwritingText -= ResetHandwritingText;
 
         levelComplete = null;
     }
@@ -86,7 +88,12 @@ public class Gui : MonoBehaviour {
 		CancelInvoke ();
 		Invoke ("Reset", 2);
 	}
-	void Reset()
+    void ResetHandwritingText()
+    {
+        CancelInvoke();
+        genericField.text = "";
+    }
+    void Reset()
 	{
 		levelComplete.gameObject.SetActive(false); 
 		centerPanel.SetActive (false);

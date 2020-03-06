@@ -11,17 +11,25 @@ public class MissionSignal : MonoBehaviour {
 	void Start () {
 		missions =  Data.Instance.GetComponent<Missions> ();
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-		SetState(false);
+        Data.Instance.events.ResetHandwritingText += ResetHandwritingText;
+
+        SetState(false);
 	}
     void OnDestroy()
     {
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+        Data.Instance.events.ResetHandwritingText -= ResetHandwritingText;
     }
 	void SetState(bool isOff)
     {
 		panel.SetActive (isOff);
     }
-	private void OnListenerDispatcher(ListenerDispatcher.myEnum message)
+    void ResetHandwritingText()
+    {
+        subtitle.text = "";
+    }
+
+    private void OnListenerDispatcher(ListenerDispatcher.myEnum message)
     {
 		if (message == ListenerDispatcher.myEnum.LevelFinish)
 		{

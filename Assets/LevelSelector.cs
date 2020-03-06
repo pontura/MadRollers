@@ -63,12 +63,13 @@ public class LevelSelector : MonoBehaviour {
 
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
+        Data.Instance.events.ResetHandwritingText += ResetHandwritingText;
 
-		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-
+        Data.Instance.events.OnJoystickClick += OnJoystickClick;
 
 	}
-	void SetCanInteract()
+   
+    void SetCanInteract()
 	{
 		canInteract = true;
 	}
@@ -83,8 +84,10 @@ public class LevelSelector : MonoBehaviour {
 		Data.Instance.events.OnJoystickUp -= OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight -= OnJoystickRight;
-	}
-	void OnJoystickClick()
+        Data.Instance.events.ResetHandwritingText -= ResetHandwritingText;
+
+    }
+    void OnJoystickClick()
 	{
 		if (!canInteract)
 			return;
@@ -169,7 +172,11 @@ public class LevelSelector : MonoBehaviour {
 		else
 			Data.Instance.handWriting.WriteTo (creditsParty, videogameData.credits, null);
 	}
-	public void OnJoystickBack()
+    void ResetHandwritingText()
+    {
+        creditsParty.text = "";
+    }
+    public void OnJoystickBack()
 	{
 		Data.Instance.LoadLevel("MainMenu");
 	}
