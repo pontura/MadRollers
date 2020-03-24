@@ -207,7 +207,9 @@ public class CharacterControls : MonoBehaviour {
 
         if (characterBehavior.player.charactersManager.distance < 12)
             return;
-        moveByKeyboard();
+
+        if(!isAutomata)
+             moveByKeyboard();
     }
     private void UpdateAccelerometer()
     {

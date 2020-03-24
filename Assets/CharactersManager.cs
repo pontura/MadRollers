@@ -29,7 +29,7 @@ public class CharactersManager : MonoBehaviour {
     void Start()
     {
         missions = Data.Instance.GetComponent<Missions>();
-
+        gameObject.AddComponent<AutomatasManager>();
     }
 	bool freezed;
 	void FreezeCharacters(bool _freezed)
@@ -183,6 +183,11 @@ public class CharactersManager : MonoBehaviour {
         });
         return exists;
     }
+    public CharacterBehavior AddAutomata(int id)
+    {
+        addNewCharacter(id);
+        return characters[characters.Count - 1];
+    }
     public void addNewCharacter(int id)
     {
 		if(!canStartPlayers)
@@ -328,7 +333,7 @@ public class CharactersManager : MonoBehaviour {
             normalPosition /= totalCharacters;
             normalPosition.y += 0.15f + (totalCharacters / 3f);
             //	normalPosition.z -= 0.3f + (MaxDistance/26);
-            normalPosition.z = distance - 1.75f - (totalCharacters / 2.5f);
+            normalPosition.z = distance - 2.3f - (totalCharacters / 2.5f);
 
             return normalPosition;
         }

@@ -114,7 +114,7 @@ public class Player : MonoBehaviour {
     }
 	public bool IsDebbugerPlayer()
 	{
-		if (Data.Instance.isEditor && id == 3)
+		if (Data.Instance.isEditor && id == 3 && 1 == 2)
 			return true;
 		return false;
 	}

@@ -111,7 +111,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 //DEBUG: para que el player ultimo nunca muera
 		#if UNITY_EDITOR
-		if(player.id == 3)
+		if(player.IsDebbugerPlayer())
 		{
 		rb.isKinematic = true;
 		rb.useGravity = false;

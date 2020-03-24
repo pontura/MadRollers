@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SettingsModeScreen : MonoBehaviour {
 
     public Toggle toggleControls;
+    public Toggle togglePlayers;
 
     void Start()
 	{
@@ -48,6 +49,10 @@ public class SettingsModeScreen : MonoBehaviour {
     {
         Data.Instance.events.OnJoystickClick -= OnJoystickClick;
         Data.Instance.controlMapper.Open();
+    }
+    public void TooglePlayers()
+    {
+        Data.Instance.singlePlayer = !Data.Instance.singlePlayer;
     }
     public void ToogleControls()
     {

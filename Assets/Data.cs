@@ -23,7 +23,6 @@ public class Data : MonoBehaviour {
     public bool switchPlayerInputs;
 	public int timeToRespawn;
 	public bool isReplay;
-	public int totalJoysticks;
 	public bool RESET;
 
     public int competitionID = 1;
@@ -69,6 +68,7 @@ public class Data : MonoBehaviour {
    
     public int FORCE_LOCAL_SCORE;
 
+    public bool singlePlayer;
     public bool isAndroid;
     public bool useRetroPixelPro;
     public bool useOptimizedSettings;
