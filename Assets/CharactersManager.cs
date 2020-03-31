@@ -26,12 +26,24 @@ public class CharactersManager : MonoBehaviour {
     {
 		distance = 0;
     }
-    void Start()
+    public virtual void Init()
     {
         missions = Data.Instance.GetComponent<Missions>();
         gameObject.AddComponent<AutomatasManager>();
+
+        Data.Instance.inputSavedAutomaticPlay.Init(this);
+        Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
+        Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
+        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
+        Data.Instance.events.OnAvatarFall += OnAvatarFall;
+        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
+        Data.Instance.events.FreezeCharacters += FreezeCharacters;
+
+        StartCoroutine(AddCharactersInitials());
     }
-	bool freezed;
+
+    public bool freezed;
 	void FreezeCharacters(bool _freezed)
 	{
 		foreach (CharacterBehavior cb in characters) {
@@ -47,9 +59,6 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.isReplay) {
 			speedRun = MAX_SPEED;
 		}
-        if (Data.Instance.isAndroid)
-            return;
-
         if (!Data.Instance.isAndroid)
             Loop ();
     }
@@ -63,8 +72,6 @@ public class CharactersManager : MonoBehaviour {
 		if (freezed)
 			return;
 		
-		
-
 //		if(Input.GetKeyDown(KeyCode.M))
 //			AddChildPlayer( getMainCharacter() );
 		
@@ -79,35 +86,19 @@ public class CharactersManager : MonoBehaviour {
 			speedRun += acceleration * Time.deltaTime;
 
         distance += speedRun * Time.deltaTime;
-
 		
     }
 	public virtual void OnUpdate(){ }
-
-    public virtual void Init()
+   
+    IEnumerator AddCharactersInitials()
     {
-		Data.Instance.inputSavedAutomaticPlay.Init (this);
-        Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
-        Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall += OnAvatarFall;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-		Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
-		Data.Instance.events.FreezeCharacters += FreezeCharacters;
-
-		StartCoroutine (AddCharactersInitials ());
-    }
-	IEnumerator AddCharactersInitials()
-	{
 		Vector3 pos;
-
 		float _y = 4;
 
-		if (Data.Instance.isReplay || Data.Instance.isAndroid) {
+		if (Data.Instance.isReplay || Data.Instance.isAndroid)
 			_y = 30;
-		} else {
+		else
 			canStartPlayers = true;
-		}
 
 		pos = new Vector3(0, _y, 0);
 
@@ -119,12 +110,8 @@ public class CharactersManager : MonoBehaviour {
 			yield return null;
 		
 		if (Data.Instance.multiplayerData.player1) { addCharacter(CalculateInitialPosition(pos, positionID), 0); playerPositions.Add(0); };
-		//float timeToAppear = 0.08f;
-		//yield return new WaitForSeconds (timeToAppear);
 		if (Data.Instance.multiplayerData.player2) { addCharacter(CalculateInitialPosition(pos, positionID+1), 1); playerPositions.Add(1); };
-		//yield return new WaitForSeconds (timeToAppear);
 		if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID+2), 2); playerPositions.Add(2); };
-		//yield return new WaitForSeconds (timeToAppear);
 		if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID+3), 3); playerPositions.Add(3); };
 
 		yield return null;
@@ -132,7 +119,6 @@ public class CharactersManager : MonoBehaviour {
     void OnDestroy()
     {
 		Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarFall;
         Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
@@ -195,10 +181,8 @@ public class CharactersManager : MonoBehaviour {
 		if (characters.Count == 0 && Game.Instance.gameCamera.state != GameCamera.states.WAITING_TO_TRAVEL)
 			return;
 
-		Data.Instance.multiplayerData.AddNewCharacter (id);
-		
+		Data.Instance.multiplayerData.AddNewCharacter (id);		
         Data.Instance.events.OnSoundFX("coin", id);
-
 		Vector3 pos = Vector3.zero;
 
 		if(characters.Count >0)
@@ -211,7 +195,6 @@ public class CharactersManager : MonoBehaviour {
              pos.x = (separationX * id) - ((separationX * 2) - separationX / 2);
 		
         addCharacter(pos, id);
-
 		Data.Instance.events.ForceFrameRate(1);
     }
 	public CharacterBehavior addCharacter(Vector3 pos, int id)
@@ -221,9 +204,7 @@ public class CharactersManager : MonoBehaviour {
 		foreach (CharacterBehavior cb in deadCharacters)
 		{
 			if (cb.player.id == id)
-			{
 				newCharacter = cb;
-			}
 		}
 		if (newCharacter == null)
 			newCharacter = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
@@ -232,16 +213,16 @@ public class CharactersManager : MonoBehaviour {
        
         Player player = newCharacter.GetComponent<Player> ();
 		player.Init(id);
-		player.SetInvensible (3);
-		player.id = id;
+
+        player.id = id;
 		newCharacter.Revive();
 		characters.Add(newCharacter);
         totalCharacters = characters.Count;
 
         newCharacter.transform.position = pos;
 		Data.Instance.events.OnCharacterInit (id);
-
-		return newCharacter;
+        player.SetInvensible(3);
+        return newCharacter;
 	}
 	int automaticIdPosition = 0;
 	public CharacterBehavior AddAutomaticPlayer(int id)
@@ -271,8 +252,6 @@ public class CharactersManager : MonoBehaviour {
 		else
 			_x = (separationX * positionID+1) - ((separationX*2)- separationX/2);
 
-		//print ("positionID : " + positionID + "   separationOnReplay: " + separationOnReplay  + "    CalculateInitialPosition " + _x + "  totalCharacters " + totalCharacters);
-
 		return new Vector3(_x,pos.y);
 	}
 
@@ -291,12 +270,13 @@ public class CharactersManager : MonoBehaviour {
         deadCharacters.Add(characterBehavior);
         Data.Instance.events.OnAvatarDie(characterBehavior);
 
-        if (characters.Count == 0)
+        if (characters.Count == 0 || (!characterBehavior.controls.isAutomata && Data.Instance.isAndroid))
             StartCoroutine(restart(characterBehavior));        
 
     }
     IEnumerator restart(CharacterBehavior cb)
     {
+        print("RESTART");
 		Data.Instance.events.OnCameraChroma (CameraChromaManager.types.RED);
 		Data.Instance.events.OnSoundFX("dead", -1);
 

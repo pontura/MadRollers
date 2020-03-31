@@ -110,8 +110,9 @@ public class CharacterMovement : MonoBehaviour {
 			 cb.Fall ();
 		}
 
-		if(cb.controls.isAutomata || cb.controls.ControlsEnabled)
-			transform.position = Vector3.Lerp(transform.position, goTo, 6);
+
+        if (cb.controls.isAutomata || cb.controls.ControlsEnabled)
+            transform.position = goTo;
 	}
 	void StartMultiplayerRace()
 	{

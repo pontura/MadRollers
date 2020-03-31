@@ -66,15 +66,10 @@ public class SceneObject : MonoBehaviour {
 		manager.RemoveSceneObject (this);
         OnPool();
     }
-	public void Updated(float distance)
+	public virtual void Updated(float distance)
 	{
 		distanceFromCharacter = (int)(transform.position.z - distance);
-	//	OnSceneObjectUpdate();
 	}
-//    public virtual void OnSceneObjectUpdate()
-//    {
-//        SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
-//    }
     public virtual void OnRestart(Vector3 pos)
     {
         transform.position = pos;

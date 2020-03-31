@@ -249,7 +249,7 @@ public class CharacterBehavior : MonoBehaviour {
                     state = states.RUN;
                 }
                 else
-                    characterMovement.UpdateByController(collisionedValue);
+                    rotationY = (collisionedValue);
             }
             else
             {
@@ -260,7 +260,7 @@ public class CharacterBehavior : MonoBehaviour {
                     state = states.RUN;
                 }
                 else
-                    characterMovement.UpdateByController(collisionedValue);
+                    rotationY = (collisionedValue);
             }
         } else
 		if(!grounded)
@@ -291,7 +291,9 @@ public class CharacterBehavior : MonoBehaviour {
 					ResetRotations ();
 			}
 		}
-		characterMovement.UpdateByController (rotationY);
+        
+
+        characterMovement.UpdateByController (rotationY);
 	}
 	void ResetRotations()
 	{
@@ -605,9 +607,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (player.charactersManager.characters.Count >1) return;
 
 		Invoke("CrashReal", 0.2f);
-
-		if(team_for_versus == 0)
-			Game.Instance.gameCamera.OnAvatarCrash (this);
+        
 	}
 	void CrashReal()
 	{

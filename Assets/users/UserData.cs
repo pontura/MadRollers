@@ -62,11 +62,13 @@ public class UserData : MonoBehaviour
         serverConnect = GetComponent<ServerConnect>();
         avatarImages = GetComponent<AvatarImages>();
         hiscoresByMissions = GetComponent<HiscoresByMissions>();
-
+       
+    }
+    private void Start()
+    {
         LoadUser();
 
         hiscoresByMissions.Init();
-       
     }
     void LoadUser()
     {
@@ -100,7 +102,9 @@ public class UserData : MonoBehaviour
     }
     public bool IsLogged()
     {
-        if (username == null || username.Length == 0)
+        if (userID != null && userID.Length > 0)
+            return true;
+        else if (username == null || username.Length == 0)
             return false;
         return true;
     }
@@ -112,7 +116,6 @@ public class UserData : MonoBehaviour
 
     public void UserCreation()
     {
-
         PlayerPrefs.SetString("username", username);
         PlayerPrefs.SetString("userID", userID);
     }

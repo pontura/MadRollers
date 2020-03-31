@@ -61,8 +61,8 @@ public class Player : MonoBehaviour {
     }
 	void SetSettings()
 	{
-        if(Data.Instance.isAndroid)
-		    shadow.SetActive (true);
+       // if(Data.Instance.isAndroid)
+		//    shadow.SetActive (true);
 
 
 		if(id>3)

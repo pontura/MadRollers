@@ -51,7 +51,12 @@ public class WeakPlatform : SceneObject {
 	}
 	void ChangeMaterials(Renderer renderer)
 	{
-		if(renderer.gameObject.name == "top")
+        if (renderer.gameObject.name == "floorAllInOne")
+        {
+            renderer.materials[1].color = floor_top;
+            renderer.materials[0].color = floor_border;
+        }
+        else if (renderer.gameObject.name == "top")
 			renderer.material.color = floor_top;
 		else
 			renderer.material.color = floor_border;

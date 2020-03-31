@@ -305,6 +305,7 @@ public class Missions : MonoBehaviour {
     }
     void AddAreaByName(string areaName, bool isXtra = false)
     {
+       // Debug.Log("AREA: " + areaName);
 		TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
 		if (asset != null) {					
 			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);

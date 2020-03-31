@@ -29,12 +29,10 @@ public class GameCamera : MonoBehaviour
 	public Vector3 newCameraOrientationVector;
 
 	public Vector3 defaultRotation =  new Vector3 (48,0,0);
-//	public Vector3 newRotation;
-    
+    bool started;
+
     public bool onExplotion;
 	float explotionForce = 0.25f;
-
-   // public Animation anim;
 
 	public float pixelSize;
 	float pixel_speed_recovery = 8;
@@ -45,6 +43,10 @@ public class GameCamera : MonoBehaviour
     float camSensorSpeed = 1.25f;
     float maxCamSensor = 18f;
 
+    private void Awake()
+    {
+        cam.enabled = false;
+    }
     Component CopyComponent(Component original, GameObject destination)
 	{
 		System.Type type = original.GetType();
@@ -56,9 +58,9 @@ public class GameCamera : MonoBehaviour
 		}
 		return copy;
 	}
-    void Start()
+    public void Init()
 	{
-
+        cam.enabled = true;
         fieldOfView = cam.fieldOfView;
 
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
@@ -109,6 +111,7 @@ public class GameCamera : MonoBehaviour
         flow_target.transform.SetParent(transform.parent);
         flow_target.name = "Camera_TARGET";
         flow_target.transform.localPosition = new Vector3(0, 5, targetZOffset);
+        started = true;
     }
     void OnDestroy()
     {
@@ -224,6 +227,8 @@ public class GameCamera : MonoBehaviour
    
 	void LateUpdate () 
 	{
+        if (!started)
+            return;
         if (cam.sensorSize.x < maxCamSensor)
         {
             float cms = cam.sensorSize.x;
@@ -304,9 +309,10 @@ public class GameCamera : MonoBehaviour
 
     public void OnAvatarFall(CharacterBehavior player)
 	{
-		
+        print("FALL");
 		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
+        print("FAL L state" + state);
 
         state = states.END;
         cam.gameObject.transform.DOMove(new Vector3(transform.localPosition.x, transform.localPosition.y + 3f, transform.localPosition.z - 4f), 1f).SetEase(Ease.OutCubic);
@@ -337,13 +343,13 @@ public class GameCamera : MonoBehaviour
 	}
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
-		Data.Instance.events.RalentaTo (0.5f, 0.1f);
-        if(!Data.Instance.isAndroid)
-            StartCoroutine(ResetSnappingCoroutine(3));
+		//Data.Instance.events.RalentaTo (0.5f, 0.1f);
+  //      if(!Data.Instance.isAndroid)
+  //          StartCoroutine(ResetSnappingCoroutine(3));
     }
-	IEnumerator ResetSnappingCoroutine(float delay)
-	{
-		yield return new WaitForSecondsRealtime(delay);
-		Data.Instance.events.RalentaTo (1f, 0.01f);
-	}
+	//IEnumerator ResetSnappingCoroutine(float delay)
+	//{
+	//	yield return new WaitForSecondsRealtime(delay);
+	//	Data.Instance.events.RalentaTo (1f, 0.01f);
+	//}
 }

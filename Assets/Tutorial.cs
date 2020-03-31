@@ -79,7 +79,8 @@ public class Tutorial : MonoBehaviour
     }
     void OnAvatarJump(int a)
     {
-        if(state == states.JUMP)
+        print("JUMP " + state);
+        if (state == states.JUMP)
         {
             ResetAnim();
             ResetSignals();
@@ -96,6 +97,7 @@ public class Tutorial : MonoBehaviour
     }
     void OnAvatarShoot(int a)
     {
+        print("Shoot " + state);
         if (state == states.SHOOT)
         {
             ResetAnim();
@@ -158,6 +160,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (distance > 315 && state == states.DONE_DOUBLE_JUMP)
         {
+            print("Souble jump");
             Anim("fire1");
             mobileInputs.ButtonFire1.SetActive(true);
             signalFire.SetActive(true);
@@ -165,14 +168,15 @@ public class Tutorial : MonoBehaviour
             Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
             state = states.SHOOT;
         }
-        else if (distance > 405 && voiceSaid == 1)
+        else if (distance > 390 && voiceSaid == 1)
         {
+            print("die: " + Data.Instance.voicesManager.tutorials[4].audioClip.name);
             Data.Instance.voicesManager.PlayClip(Data.Instance.voicesManager.tutorials[4].audioClip);
             voiceSaid++;
         }
-        else if (distance > 425 && state == states.DONE_SHOOT)
+        else if (distance > 400 && state == states.DONE_SHOOT)
         {
-            PlayerPrefs.SetString("tutorial", "done");
+            print("__________________");
             Anim("fire2");
             mobileInputs.ButtonFire2.SetActive(true);
             signalFire2.SetActive(true);

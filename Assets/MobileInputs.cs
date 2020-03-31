@@ -42,13 +42,10 @@ public class MobileInputs : MonoBehaviour
     }
     CharacterBehavior GetCharacter()
     {
-        CharacterBehavior cb = Game.Instance.level.charactersManager.getMainCharacter();
-        if (cb == null)
-        {
-            panel.SetActive(false);
-            Destroy(this);
+        CharactersManager cm = Game.Instance.level.charactersManager;
+        if (cm == null)
             return null;
-        }
+        CharacterBehavior cb = cm.getMainCharacter();
         return cb;
     }
     void Update()

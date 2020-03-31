@@ -39,27 +39,32 @@ public class Game : MonoBehaviour {
     }
     void Awake()
     {
-        mInstance = this;  
-		Data.Instance.GetComponent<Fade> ().FadeOut ();
+        mInstance = this;  		
     }
     void Start()
     {
+        
         DOTween.Clear();
 		if (Data.Instance.isReplay) {
 			Invoke ("Delayed", 0.5f);
 			state = states.PLAYING;
 		} else {
-           // gameCamera.Init ();
+           // 
 		}
-		GetComponent<CharactersManager>().Init();
-		//GetComponent<RainManager> ().Init ();
+        Invoke("Timeout", 0.5f);
 		level.Init();
         Data.Instance.events.OnGamePaused += OnGamePaused;
         
         Init();
-      //  Data.Instance.GetComponent<Tracker>().TrackScreen("Game Screen");
+
         Data.Instance.events.SetSettingsButtonStatus(false);
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+    }
+    void Timeout()
+    {
+        gameCamera.Init();
+        Data.Instance.GetComponent<Fade>().FadeOut();
+        GetComponent<CharactersManager>().Init();
     }
 	void Delayed()
 	{

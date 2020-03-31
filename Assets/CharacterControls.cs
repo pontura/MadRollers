@@ -102,8 +102,8 @@ public class CharacterControls : MonoBehaviour {
 	}
     void RotateAccelerometer(float _speed)
     {
-        _speed *= 8;
-        if (_speed > -0.2f && _speed < 0.2f)
+        _speed *= 5;
+        if (_speed > -2 && _speed < 2)
             _speed = 0;
         else if (_speed > 25)
             _speed = 25;
@@ -217,7 +217,7 @@ public class CharacterControls : MonoBehaviour {
             return;
 
         if (characterBehavior.player.charactersManager.distance < 12)
-            return;        
+            return;
 
         //if (Input.touchCount > 0)
         //{
@@ -252,9 +252,13 @@ public class CharacterControls : MonoBehaviour {
         //{
         //    characterBehavior.AllButtonsReleased();
         //}
-        
-        float _speed = Input.acceleration.x * 10;
-        MoveInX(_speed);
+
+        float _speed = 0;
+        if (!isAutomata)
+        {
+            _speed = Input.acceleration.x * 10;
+            MoveInX(_speed);
+        }
 
         //if (Time.deltaTime == 0) return;
        // transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 50, rotationZ);

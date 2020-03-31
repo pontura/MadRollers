@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.025769148, y: 0.49567991, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 442094}
@@ -309,7 +309,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.82, y: 2.8, z: 1.47}
+  m_Size: {x: 2, y: 2, z: 1}
   m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &11400004
 MonoBehaviour:
@@ -346,8 +346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateX: 0
-  rotateY: 1
-  rotateZ: 0
+  rotateY: 0
+  rotateZ: 1
   inverse: 0
   randomRotation: 1
   startRotation: 0
@@ -3726,7 +3726,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4654353984802174}
-  - component: {fileID: 114448405405637276}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -3743,33 +3742,12 @@ Transform:
   m_GameObject: {fileID: 1307269166102328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.14, y: 0.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4840037725712436}
   m_Father: {fileID: 400004}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114448405405637276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307269166102328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb8094c9ac6e73489c47b3efc87d864, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateX: 0
-  rotateY: 0
-  rotateZ: 1
-  inverse: 0
-  randomRotation: 1
-  startRotation: 0
-  speed: 100
-  inverseRotation: 0
-  frameByFrame: 0
 --- !u!1 &1323341974359048
 GameObject:
   m_ObjectHideFlags: 0
@@ -4889,7 +4867,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449334539677734}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 54975736d36d2d140a2e0cb1fb43038f, type: 2}
   m_Animations:

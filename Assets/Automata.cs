@@ -79,7 +79,6 @@ public class Automata : MonoBehaviour
             float f = i * _x;
             cb.GetComponent<CharacterControls>().MoveInX(f);
             yield return new WaitForEndOfFrame();
-            print("Move " + _x + " timer : " + timer + "    f: " + f);
         }
     }
 }
