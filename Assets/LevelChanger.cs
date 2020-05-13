@@ -69,9 +69,10 @@ public class LevelChanger : SceneObject {
 			return;
 
 		Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.videogames_names, videogameId);
-		Game.Instance.level.charactersManager.gameOver = true;
+        //Game.Instance.level.charactersManager.gameOver = true;
+        Game.Instance.GameOver();
 
-		Data.Instance.events.OnCameraZoomTo (t.position);
+        Data.Instance.events.OnCameraZoomTo (t.position);
 		StartCoroutine (GotoVideogame(videogameId));
 
 	}

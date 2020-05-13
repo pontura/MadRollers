@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
 		Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnAvatarDie += OnAvatarDie;
+        Data.Instance.events.OnGameOver += OnGameOver;
         Data.Instance.events.OnGamePaused += OnGamePaused;
         Data.Instance.events.SetVolume += SetVolume;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -158,11 +158,9 @@ public class MusicManager : MonoBehaviour {
 //        else
 //            playSound(IndestructibleFX);
 //    }
-    void OnAvatarDie(CharacterBehavior player)
+    void OnGameOver(bool gameOver)
     {
-        if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
 		ChangePitch (0.2f);
-       // playSound(deathFX, false);
     }
     public void stopAllSounds()
     {

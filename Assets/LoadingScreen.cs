@@ -10,6 +10,10 @@ public class LoadingScreen : MonoBehaviour {
             Data.Instance.missions.Init();
             // Data.Instance.isReplay = true;
             Data.Instance.LoadLevel("LevelSelector");
+        } else if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        {
+            Data.Instance.missions.Init();
+            Data.Instance.LoadLevel("LevelSelector");
         } else
         Invoke("Next", 1);
 	}

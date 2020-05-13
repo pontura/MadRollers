@@ -283,12 +283,13 @@ public class GameCamera : MonoBehaviour
 	}
 	void OnGameOver(bool isTimeOver)
 	{
-		if (!isTimeOver)
-			return;
-		if (state == states.END) return;
-		state = states.END;
+        print("_____CAM OnGameOver " + isTimeOver + " state: " + state);
 
-		cam.gameObject.transform.localEulerAngles = new Vector3 (40, 0, 0);
+        if (state == states.END) return;
+		state = states.END;
+        if (!isTimeOver)
+            return;
+        cam.gameObject.transform.localEulerAngles = new Vector3 (40, 0, 0);
         cam.gameObject.transform.DOMoveZ(cam.gameObject.transform.position.z + 85, 1);
 
 	}
@@ -309,10 +310,8 @@ public class GameCamera : MonoBehaviour
 
     public void OnAvatarFall(CharacterBehavior player)
 	{
-        print("FALL");
 		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
-        print("FAL L state" + state);
 
         state = states.END;
         cam.gameObject.transform.DOMove(new Vector3(transform.localPosition.x, transform.localPosition.y + 3f, transform.localPosition.z - 4f), 1f).SetEase(Ease.OutCubic);

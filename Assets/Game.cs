@@ -23,7 +23,8 @@ public class Game : MonoBehaviour {
 	{
 		INTRO,
 		ALLOW_ADDING_CHARACTERS,
-		PLAYING
+		PLAYING,
+        GAME_OVER
 	}
 
     public static Game Instance
@@ -42,10 +43,10 @@ public class Game : MonoBehaviour {
         mInstance = this;  		
     }
     void Start()
-    {
-        
+    {        
         DOTween.Clear();
-		if (Data.Instance.isReplay) {
+     
+        if (Data.Instance.isReplay) {
 			Invoke ("Delayed", 0.5f);
 			state = states.PLAYING;
 		} else {
@@ -68,8 +69,8 @@ public class Game : MonoBehaviour {
     }
 	void Delayed()
 	{
-		//gameCamera.Init ();
-		Data.Instance.events.OnGameStart();
+        //gameCamera.Init ();
+        Data.Instance.events.OnGameStart();
 		Data.Instance.events.StartMultiplayerRace();
 	}
     void OnDestroy()
@@ -77,7 +78,12 @@ public class Game : MonoBehaviour {
         Data.Instance.events.OnGamePaused -= OnGamePaused;
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
     }
-	void StartMultiplayerRace()
+    public void GameOver()
+    {
+        state = states.GAME_OVER;
+    }
+
+    void StartMultiplayerRace()
 	{
 		state = states.PLAYING;
 	}

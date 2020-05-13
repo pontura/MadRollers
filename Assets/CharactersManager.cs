@@ -17,7 +17,6 @@ public class CharactersManager : MonoBehaviour {
 	private float acceleration = 10;
     private Missions missions;
     public List<int> playerPositions;
-	public bool gameOver;
 	bool canStartPlayers;
     private IEnumerator RalentaCoroutine;
     public int totalCharacters;
@@ -25,13 +24,6 @@ public class CharactersManager : MonoBehaviour {
     void Awake()
     {
 		distance = 0;
-    }
-    public virtual void Init()
-    {
-        missions = Data.Instance.GetComponent<Missions>();
-        gameObject.AddComponent<AutomatasManager>();
-
-        Data.Instance.inputSavedAutomaticPlay.Init(this);
         Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -39,7 +31,12 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
         Data.Instance.events.FreezeCharacters += FreezeCharacters;
-
+    }
+    public virtual void Init()
+    {
+        missions = Data.Instance.GetComponent<Missions>();
+        gameObject.AddComponent<AutomatasManager>();
+        Data.Instance.inputSavedAutomaticPlay.Init(this);
         StartCoroutine(AddCharactersInitials());
     }
 
@@ -55,6 +52,7 @@ public class CharactersManager : MonoBehaviour {
 	}
     void StartMultiplayerRace()
     {
+        print("______________StartMultiplayerRace ");
 		canStartPlayers = true;
 		if (Data.Instance.isReplay) {
 			speedRun = MAX_SPEED;
@@ -76,7 +74,7 @@ public class CharactersManager : MonoBehaviour {
 //			AddChildPlayer( getMainCharacter() );
 		
 		if (Game.Instance.level.waitingToStart) return;
-        if (gameOver) return;
+        if (Game.Instance.state == Game.states.GAME_OVER) return;
 
         OnUpdate();
 
@@ -171,17 +169,23 @@ public class CharactersManager : MonoBehaviour {
     }
     public CharacterBehavior AddAutomata(int id)
     {
-        addNewCharacter(id);
-        return characters[characters.Count - 1];
+        print("__ADD Auatomata " + id);
+        CharacterBehavior cb = AddNewCharacter(id, true);
+        if (cb != null)
+        {
+            cb.controls.isAutomata = true;
+            return cb;
+        }
+        else return null;
     }
-    public void addNewCharacter(int id)
+    public CharacterBehavior AddNewCharacter(int id, bool isAutomata)
     {
-		if(!canStartPlayers)
-			return;
-		if (characters.Count == 0 && Game.Instance.gameCamera.state != GameCamera.states.WAITING_TO_TRAVEL)
-			return;
-
-		Data.Instance.multiplayerData.AddNewCharacter (id);		
+        print("characters.Count " + characters.Count + "  gameCamera.state  " + Game.Instance.gameCamera.state + " isAutomata " + isAutomata  + " canStartPlayers " + canStartPlayers);
+        if (!canStartPlayers)
+            return null;
+        if (characters.Count == 0 && Game.Instance.gameCamera.state != GameCamera.states.WAITING_TO_TRAVEL)
+            return null;
+        
         Data.Instance.events.OnSoundFX("coin", id);
 		Vector3 pos = Vector3.zero;
 
@@ -193,9 +197,16 @@ public class CharactersManager : MonoBehaviour {
 
 		if(distance<20)
              pos.x = (separationX * id) - ((separationX * 2) - separationX / 2);
-		
-        addCharacter(pos, id);
-		Data.Instance.events.ForceFrameRate(1);
+
+        CharacterBehavior cb = addCharacter(pos, id);
+
+        if (Data.Instance.isAndroid || isAutomata)
+            cb.controls.isAutomata = true;
+        else
+           Data.Instance.multiplayerData.AddNewCharacter(id);
+
+        Data.Instance.events.ForceFrameRate(1);
+        return cb;
     }
 	public CharacterBehavior addCharacter(Vector3 pos, int id)
 	{
@@ -262,7 +273,8 @@ public class CharactersManager : MonoBehaviour {
 	}
     public void killCharacter(CharacterBehavior characterBehavior)
     {
-        if (gameOver)
+        print("killCharacter characters.Count " + characters.Count + " id:" + characterBehavior.player.id + " automata: " + characterBehavior.controls.isAutomata);
+        if (Game.Instance.state == Game.states.GAME_OVER)
             return;
         
         characters.Remove(characterBehavior);
@@ -270,17 +282,30 @@ public class CharactersManager : MonoBehaviour {
         deadCharacters.Add(characterBehavior);
         Data.Instance.events.OnAvatarDie(characterBehavior);
 
-        if (characters.Count == 0 || (!characterBehavior.controls.isAutomata && Data.Instance.isAndroid))
-            StartCoroutine(restart(characterBehavior));        
+        if (characters.Count == 0)
+            StartCoroutine(restart(characterBehavior));
+        else
+        {
+            bool stillPlayingRealCharacters = false;
+            foreach(CharacterBehavior cb in characters)
+            {
+                if (!cb.controls.isAutomata)
+                    stillPlayingRealCharacters = true;
+            }
+            if (!stillPlayingRealCharacters)
+            {                   
+                StartCoroutine(restart(characterBehavior));
+            }
+        }
 
     }
     IEnumerator restart(CharacterBehavior cb)
     {
-        print("RESTART");
+        print("_______________ RESTART");
 		Data.Instance.events.OnCameraChroma (CameraChromaManager.types.RED);
 		Data.Instance.events.OnSoundFX("dead", -1);
 
-        gameOver = true;
+        Game.Instance.GameOver();
         yield return new WaitForSeconds(0.05f);
         Data.Instance.events.OnGameOver(false);
         yield return new WaitForSeconds(1.32f);
@@ -289,7 +314,7 @@ public class CharactersManager : MonoBehaviour {
     {
         if (getTotalCharacters() <= 0)
         {
-          //  Debug.LogError("[ERROR] No hay más characters y sigue pidiendo...");
+            Debug.LogError("[ERROR] No hay más characters y sigue pidiendo...");
           //  print("[ERROR] No hay más characters y sigue pidiendo...");
             return null;
         }

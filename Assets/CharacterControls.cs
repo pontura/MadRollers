@@ -51,7 +51,7 @@ public class CharacterControls : MonoBehaviour {
 			return;
 		if (Time.deltaTime == 0) return;
 
-        if (characterBehavior.player.charactersManager == null || characterBehavior.player.charactersManager.gameOver)
+        if (characterBehavior.player.charactersManager == null || Game.Instance.state == Game.states.GAME_OVER)
             return;
 
         if (Data.Instance.isAndroid)
@@ -92,7 +92,7 @@ public class CharacterControls : MonoBehaviour {
         if (Time.deltaTime == 0) return;
 
         if (Data.Instance.isAndroid)
-            RotateAccelerometer(_speed);
+            RotateAccelerometer(_speed*80);
         else
             RotateStandalone(_speed);
 

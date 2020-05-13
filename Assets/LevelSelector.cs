@@ -26,7 +26,13 @@ public class LevelSelector : MonoBehaviour {
 	float timePassed;
 	MissionSelector missionSelector;
 
-	void Start()
+    public Animation button_left;
+    public Animation button_right;
+
+    public Animation button_up;
+    public Animation button_down;
+
+    void Start()
 	{
         Data.Instance.missions.hasReachedBoss = false;
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL || Data.Instance.playMode == Data.PlayModes.PARTYMODE || Data.Instance.playMode == Data.PlayModes.CONTINUEMODE) {
@@ -67,7 +73,10 @@ public class LevelSelector : MonoBehaviour {
 
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
 
-	}
+        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            camAnimnation.Play("levelSelectorCameraIdleStoryMode");
+
+    }
    
     void SetCanInteract()
 	{
@@ -105,11 +114,13 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickUp()
 	{
-		print ("up");
 		if (!canInteract)
 			return;
-		
-		int MissionActiveID = Data.Instance.missions.MissionActiveID;
+
+        button_up.Play();
+
+
+        int MissionActiveID = Data.Instance.missions.MissionActiveID;
 		if (MissionActiveID < Data.Instance.missions.GetMissionsByVideoGame (videgameID).missionUnblockedID) {
 			Data.Instance.missions.MissionActiveID++;
 			missionSelector.ChangeMission (Data.Instance.missions.MissionActiveID);
@@ -117,12 +128,13 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickDown()
 	{
-		print ("down");
 
 		if (!canInteract)
 			return;
 
-		int MissionActiveID = Data.Instance.missions.MissionActiveID;
+        button_down.Play();
+
+        int MissionActiveID = Data.Instance.missions.MissionActiveID;
 		if (MissionActiveID > 0) {
 			Data.Instance.missions.MissionActiveID--;
 			missionSelector.ChangeMission (Data.Instance.missions.MissionActiveID);
@@ -133,23 +145,29 @@ public class LevelSelector : MonoBehaviour {
 		if (!canInteract)
 			return;
 
-		int total =  Data.Instance.videogamesData.all.Length-1;
+        button_left.Play();
+
+        int total =  Data.Instance.videogamesData.all.Length-1;
 		if (videgameID < total)
 			videgameID++;
 		else
 			return;
+
 		SetSelected ();
 	}
 	void OnJoystickRight()
 	{
 		if (!canInteract)
 			return;
-		if(videgameID>0)
+
+        button_right.Play();
+
+        if (videgameID>0)
 			videgameID--;
 		else
 			return;
 
-		SetSelected ();	
+        SetSelected ();	
 	}
 	void SetSelected()
 	{

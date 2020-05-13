@@ -89,20 +89,20 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	void OnAvatarDie(CharacterBehavior cb)
 	{
-		if (gameOver)
+		if (Game.Instance.state == Game.states.GAME_OVER)
 			return;
 		if (cb.team_for_versus == 1)
 			charactersTeam1.Remove (cb);
 		else if (cb.team_for_versus == 2)
 			charactersTeam2.Remove (cb);
 
-		if (charactersTeam1.Count == 0) {			
-			Data.Instance.events.OnVersusTeamWon (2);
-			gameOver = true;
-		} else if (charactersTeam2.Count == 0) {
-			Data.Instance.events.OnVersusTeamWon (1);
-			gameOver = true;
-		}
+		//if (charactersTeam1.Count == 0) {			
+		//	Data.Instance.events.OnVersusTeamWon (2);
+		//	gameOver = true;
+		//} else if (charactersTeam2.Count == 0) {
+		//	Data.Instance.events.OnVersusTeamWon (1);
+		//	gameOver = true;
+		//}
 		
 	}
 	public override Vector3 getPositionByTeam(int teamId)

@@ -35,7 +35,7 @@ public class Automata : MonoBehaviour
             else if (rand < 20)
                 cb.shooter.SetFire(Weapon.types.SIMPLE, 0.3f);
         }
-        if (!Game.Instance.level.charactersManager.gameOver)
+        if (Game.Instance.state != Game.states.GAME_OVER)
             Invoke("ShootLoop", shootRandomTry);
     }
     void JumpLoop()
@@ -46,12 +46,12 @@ public class Automata : MonoBehaviour
             if (rand < 30)
                 cb.Jump();
         }
-        if (!Game.Instance.level.charactersManager.gameOver)
+        if (Game.Instance.state != Game.states.GAME_OVER)
             Invoke("JumpLoop", jumpRandomTry);
     }
     void MoveLoop()
     {
-        if (!Game.Instance.level.charactersManager.gameOver && CanDoIt())
+        if (Game.Instance.state != Game.states.GAME_OVER && CanDoIt())
         {
             StopAllCoroutines();
             int rand = Random.Range(0, 100);

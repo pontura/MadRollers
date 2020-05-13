@@ -15,8 +15,7 @@ public class Continue : MonoBehaviour {
 		canClick = false;
 		panel.SetActive (false);
 
-		if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-			return;
+		
 		if (Data.Instance.playMode == Data.PlayModes.CONTINUEMODE) {
 			countdown_txt.fontSize = 41;
 			icon.enabled = false;
@@ -46,6 +45,11 @@ public class Continue : MonoBehaviour {
 	}	
 	public void OnGameOverDelayed()
 	{
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        {
+            Invoke("Done", 2);
+            return;
+        } else
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             Invoke("Done", 2);
@@ -86,10 +90,14 @@ public class Continue : MonoBehaviour {
 	}	
 	void Done()
 	{
-		//GetComponent<SummaryCompetitions> ().SetOn ();
-		//if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
-			GetComponent<HiscoresComparison> ().Init ();
-		//}
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        {
+            GetComponent<SummaryCompetitions>().SetOn();
+        }
+        else
+        {
+            GetComponent<HiscoresComparison>().Init();
+        }
 		panel.SetActive (false);
 	}
 	void OnJoystickClick()

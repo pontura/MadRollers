@@ -35,27 +35,27 @@ public class ArcadeGUI : MonoBehaviour {
         if (Data.Instance.isAndroid)
             return;
 
-        if (Game.Instance.state ==  Game.states.INTRO || ended || Game.Instance.level.charactersManager.gameOver) return;
+        if (Game.Instance.state ==  Game.states.INTRO || ended || Game.Instance.state == Game.states.GAME_OVER) return;
         
         if ((Data.Instance.inputManager.GetButton(0, InputAction.action1) || Data.Instance.inputManager.GetButton(0, InputAction.action2)) && joysticksCanvas.CanRevive(0))
         {
             if (!characterManager.existsPlayer(0))
-                characterManager.addNewCharacter(0);
+                characterManager.AddNewCharacter(0, false);
         }
 		else if ((Data.Instance.inputManager.GetButton(1, InputAction.action1) || Data.Instance.inputManager.GetButton(1, InputAction.action2)) && joysticksCanvas.CanRevive(1))
         {
             if (!characterManager.existsPlayer(1))
-                characterManager.addNewCharacter(1);
+                characterManager.AddNewCharacter(1, false);
         }
 		else if ((Data.Instance.inputManager.GetButton(2, InputAction.action1) || Data.Instance.inputManager.GetButton(2, InputAction.action2)) && joysticksCanvas.CanRevive(2))
         {
             if (!characterManager.existsPlayer(2))
-                characterManager.addNewCharacter(2);
+                characterManager.AddNewCharacter(2, false);
         }
 		else if ((Data.Instance.inputManager.GetButton(3, InputAction.action1) || Data.Instance.inputManager.GetButton(3, InputAction.action2)) && joysticksCanvas.CanRevive(3))
         {
             if (!characterManager.existsPlayer(3))
-                characterManager.addNewCharacter(3);
+                characterManager.AddNewCharacter(3, false);
         }
     }
     void OnDestroy()
