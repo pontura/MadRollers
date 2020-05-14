@@ -6,8 +6,7 @@ using System;
 using UnityEngine.SceneManagement;
 
 public class Summary : MonoBehaviour {
-
-    public GameObject panel;
+    
     private int countDown;
     public Animation anim;
 
@@ -20,13 +19,27 @@ public class Summary : MonoBehaviour {
 
     void Start()
     {
-        panel.SetActive(false);
+        mobilePanel.SetActive(false);
         if (Data.Instance.isAndroid)
-        {
-            mobilePanel.SetActive(true);
-        }
+            Data.Instance.events.OnGameOver += OnGameOver;
     }
-	public void Restart()
+    void OnDestroy()
+    {
+        Data.Instance.events.OnGameOver -= OnGameOver;
+    }
+    void OnGameOver(bool isTimeOver)
+    {
+        if (isOn) return;
+        isOn = true;
+        Invoke("SetOn", 2F);
+    }
+    void SetOn()
+    {
+        Data.Instance.events.RalentaTo(1, 0.05f);
+        mobilePanel.SetActive(true);
+        StartCoroutine(Play(anim, "popupOpen", false, null));
+    }
+    public void Restart()
 	{
 		Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();        

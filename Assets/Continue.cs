@@ -15,15 +15,21 @@ public class Continue : MonoBehaviour {
 		canClick = false;
 		panel.SetActive (false);
 
-		
-		if (Data.Instance.playMode == Data.PlayModes.CONTINUEMODE) {
+        
+
+        if (Data.Instance.isAndroid)
+            return;
+
+
+        if (Data.Instance.playMode == Data.PlayModes.CONTINUEMODE) {
 			countdown_txt.fontSize = 41;
 			icon.enabled = false;
 		}
-		
-		Data.Instance.events.OnGameOver += OnGameOver;
+        Data.Instance.events.OnGameOver += OnGameOver;
 
-	}
+
+
+    }
 	void Update()
 	{
 		if (canClick) {

@@ -256,7 +256,7 @@ public class CharacterControls : MonoBehaviour {
         float _speed = 0;
         if (!isAutomata)
         {
-            _speed = Input.acceleration.x * 10;
+            _speed = Input.acceleration.x;
             MoveInX(_speed);
         }
 
