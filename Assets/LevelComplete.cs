@@ -27,10 +27,11 @@ public class LevelComplete : MonoBehaviour {
 
 		foreach (Text label in fields)
 			Data.Instance.handWriting.WriteTo(label, titleText, null);
-      
-       // Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
 
-		CloseAfter (3);
+        // Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
+        if (Data.Instance.isAndroid)
+            return;
+        CloseAfter (3);
     }
 	void CloseAfter(float delay)
 	{

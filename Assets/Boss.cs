@@ -19,7 +19,8 @@ public class Boss : SceneObject {
 		data.voicesManager.PlayRandom (Data.Instance.voicesManager.killThemAll);
 	}
 	public void SetTotal(int totalHits)
-	{		
+	{
+        print("SEt total : " + totalHits);
 		this.totalHits = totalHits;
 		Data.Instance.events.OnBossInit (totalHits);
 	}
@@ -35,18 +36,24 @@ public class Boss : SceneObject {
 	public void breakOut()
 	{      
 
-        Data.Instance.events.OnSoundFX("FX break", -1);
-		hits++;
-		Hit ();
+  //      Data.Instance.events.OnSoundFX("FX break", -1);
+		//hits++;
+		//Hit ();
         
-        Data.Instance.events.OncharacterCheer ();
+  //      Data.Instance.events.OncharacterCheer ();
 
 		if (hits >= totalHits)
 			Killed ();
-		else
-			Data.Instance.events.OnBossHitsUpdate (hits);
+	//	else
+		//	Data.Instance.events.OnBossHitsUpdate (hits);
 		
 	}
+    public void Hitted()
+    {
+        hits++;
+        print("Hitted total hits: " + totalHits + " hits: " + hits);
+        Data.Instance.events.OnBossHitsUpdate(hits);
+    }
 	public void Killed()
 	{
 		Data.Instance.events.OnSoundFX("FX explot00", -1);

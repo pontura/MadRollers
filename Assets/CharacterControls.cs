@@ -92,7 +92,7 @@ public class CharacterControls : MonoBehaviour {
         if (Time.deltaTime == 0) return;
 
         if (Data.Instance.isAndroid)
-            RotateAccelerometer(_speed*80);
+            RotateAccelerometer(_speed*15);
         else
             RotateStandalone(_speed);
 
@@ -103,6 +103,7 @@ public class CharacterControls : MonoBehaviour {
     void RotateAccelerometer(float _speed)
     {
         _speed *= 5;
+
         if (_speed > -2 && _speed < 2)
             _speed = 0;
         else if (_speed > 25)

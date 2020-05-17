@@ -7,6 +7,7 @@ using System;
 
 public class AvatarImages : MonoBehaviour
 {
+    public Texture2D defaultTexture;
     public List<Data> all;
     [Serializable]
     public class Data
@@ -44,11 +45,13 @@ public class AvatarImages : MonoBehaviour
     IEnumerator DownloadImage(string userID, System.Action<Texture2D> OnLoaded)
     {
         string url = userData.URL + userData.imagesURL + userID + ".png";
-        print("DownloadImage from url " + url);
+        //Debug.Log("DownloadImage from url " + url);
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
         yield return request.SendWebRequest();
         if (request.isNetworkError || request.isHttpError)
-            Debug.Log(request.error);
+        {
+            OnLoaded(defaultTexture);
+        } 
         else
         {
             Texture2D t = ((DownloadHandlerTexture)request.downloadHandler).texture;
@@ -56,7 +59,7 @@ public class AvatarImages : MonoBehaviour
             data.userID = userID;
             data.texture = t;
             all.Add(data);
-            if(OnLoaded != null)
+            if (OnLoaded != null)
                 OnLoaded(t);
         }
     }

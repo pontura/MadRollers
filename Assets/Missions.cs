@@ -258,7 +258,7 @@ public class Missions : MonoBehaviour {
             return;
         }
 
-        if (data.boss)
+        if (data.boss && !Data.Instance.isAndroid)
             hasReachedBoss = true;
 
         CreateCurrentArea ();

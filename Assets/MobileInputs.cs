@@ -12,6 +12,8 @@ public class MobileInputs : MonoBehaviour
     public GameObject ButtonJump;
     public GameObject ButtonFire1;
     public GameObject ButtonFire2;
+    public GameObject ButtonDash;
+
     public Tutorial tutorial;
 
     private void Start()
@@ -50,11 +52,10 @@ public class MobileInputs : MonoBehaviour
     }
     void Update()
     {
-        if (GetCharacter() == null)
-            return;
         if (!jumping)
             return;
-
+        if (Game.Instance.state == Game.states.GAME_OVER)
+            return;
         jumpingPressedSince += Time.deltaTime;
         if (jumpingPressedSince > jumpingPressedTime)
             DOJump();
@@ -66,6 +67,7 @@ public class MobileInputs : MonoBehaviour
         jumping = false;
         jumpingPressedSince = 0;
         GetCharacter().Jump();
+        ButtonJump.GetComponent<Animation>().Play();
     }
     public void Jump()
     {
@@ -94,6 +96,15 @@ public class MobileInputs : MonoBehaviour
         if (GetCharacter() == null)
             return;
         GetCharacter().shooter.SetFire(Weapon.types.SIMPLE, 0.25f);
+        ButtonFire1.GetComponent<Animation>().Play();
+    }
+    public void Dash()
+    {
+        ResetTutorial();
+        if (GetCharacter() == null)
+            return;
+        GetCharacter().characterMovement.DashForward();
+        ButtonDash.GetComponent<Animation>().Play();
     }
     public void ShootTriple()
     {
@@ -101,6 +112,7 @@ public class MobileInputs : MonoBehaviour
         if (GetCharacter() == null)
             return;
         GetCharacter().shooter.SetFire(Weapon.types.TRIPLE, 0.45f);
+        ButtonFire2.GetComponent<Animation>().Play();
     }
     void ResetTutorial()
     {

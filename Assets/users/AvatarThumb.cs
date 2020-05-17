@@ -12,8 +12,9 @@ public class AvatarThumb : MonoBehaviour
     {
         UserData.Instance.avatarImages.GetImageFor(userID, OnLoaded);      
     }
-    void OnLoaded(Texture2D texture2d)
+    public void OnLoaded(Texture2D texture2d)
     {
+        print("Thumb loaded " + texture2d);
         image.sprite = Sprite.Create(texture2d, new Rect(0, 0, texture2d.width, texture2d.height), new Vector2(0.5f, 0.5f));
     }
     public void Reset()

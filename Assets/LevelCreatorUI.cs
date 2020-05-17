@@ -15,8 +15,10 @@ public class LevelCreatorUI : Editor {
 
 	int _choiceIndex = 0;
 	int _videogameIndex = 0;
+    
 
-	public override void OnInspectorGUI()
+
+    public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI ();
 		LevelCreator levelCreator = (LevelCreator)target;
@@ -29,16 +31,19 @@ public class LevelCreatorUI : Editor {
 		videogameData = new string[levelCreator.missions.videogames[vid].missions.Count];
 		int id = 0;
 		foreach (Missions.MissionsData c in levelCreator.missions.videogames[vid].missions) {
-			videogameData [id] = id + "-" + c.data[0].title + " - " + c.data[0].jsonName;
+            MissionData md = c.data[0];
+            
+            videogameData [id] = id + "-" + md.title + " - " + md.jsonName;
 			id++;
 		}
 
 		levelCreator.missionID = _choiceIndex;
 		levelCreator.videoGameID = _videogameIndex+1;
 
-	
+        levelCreator.missionAsset = Resources.Load("missions/" + levelCreator.missions.videogames[vid].missions[_choiceIndex].data[0].jsonName) as TextAsset;
 
-		EditorUtility.SetDirty (target);
+
+        EditorUtility.SetDirty (target);
 
 		if(GUILayout.Button("Load Area"))
 		{

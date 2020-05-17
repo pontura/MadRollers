@@ -33,7 +33,6 @@ public class Data : MonoBehaviour {
 	public bool webcamOff;
    // public int WebcamID;
 
-    public UserData userData;
     [HideInInspector]
     public Events events;
     public ObjectPool sceneObjectsPool;
@@ -109,10 +108,12 @@ public class Data : MonoBehaviour {
 		if (RESET)
 			PlayerPrefs.DeleteAll ();
 
-#if UNITY_ANDROID
-       // isAndroid = true;
+#if UNITY_EDITOR
+
+#elif UNITY_ANDROID
+        isAndroid = true;
 #endif
-        if(isAndroid)
+        if (isAndroid)
         {
             useRetroPixelPro = false;
         }

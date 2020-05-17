@@ -20,7 +20,7 @@ public class UserUIRegistrationPanel : MonoBehaviour
     {
         PhotoPanel.SetActive(false);
         this.userDataUI = userDataUI;
-        field.text = _username;
+
         if (_username != "")
         {
             field.text = _username;
@@ -66,9 +66,13 @@ public class UserUIRegistrationPanel : MonoBehaviour
         foreach (GameObject go in hideOnScreenshot)
             go.SetActive(true);
 
+        Texture2D screenshotTexture = new Texture2D(Screen.width, Screen.height);
+        UserData.Instance.sprite = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0, 0));
+        avatarThumb.OnLoaded(screenshotTexture);
+
         ShowEditPanel();
         userDataUI.userRegistrationForm.SavePhoto();
-       
+        
     }
     public void ClickedNewPhoto()
     {
@@ -97,5 +101,9 @@ public class UserUIRegistrationPanel : MonoBehaviour
             else
                 userDataUI.OnSubmit(field.text);
         }
+    }
+    public void Back()
+    {
+        ShowEditPanel();
     }
 }

@@ -6,7 +6,7 @@ public class MobileMenu : MonoBehaviour
 {
     public GameObject panel;
     public MobileMenuScreen mobileMenuScreen;
-
+    public AvatarThumb avatarThumb;
     void Start()
     {
         if (!Data.Instance.isAndroid)
@@ -43,6 +43,8 @@ public class MobileMenu : MonoBehaviour
     public void Open()
     {
         mobileMenuScreen.gameObject.SetActive(true);
+        if (UserData.Instance.IsLogged())
+            avatarThumb.Init(UserData.Instance.userID);
     }
     public void Close()
     {

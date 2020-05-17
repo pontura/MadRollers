@@ -15,12 +15,13 @@ public class UserData : MonoBehaviour
     public string userID;
     public string username;
     public Sprite sprite;
-    public bool RESET_ALL_DATA;
+
 	public string path;
     public HiscoresByMissions hiscoresByMissions;
     public AvatarImages avatarImages;
     public ServerConnect serverConnect;
     public int playerID;
+    public bool logged;
 
     public static UserData Instance
     {
@@ -49,9 +50,6 @@ public class UserData : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
-
-        if (RESET_ALL_DATA)
-            PlayerPrefs.DeleteAll();
 
 #if UNITY_EDITOR
         path = Application.persistentDataPath + "/";
@@ -83,8 +81,10 @@ public class UserData : MonoBehaviour
 			userID = SystemInfo.deviceUniqueIdentifier;
 			SetUserID(userID);            
 #endif
+            logged = false;
         } else
         {
+            logged = true;
             userID = PlayerPrefs.GetString("userID");
             username = PlayerPrefs.GetString("username");
             avatarImages.GetImageFor(userID, null);
@@ -95,6 +95,7 @@ public class UserData : MonoBehaviour
     {
         if (dataLoaded != null && dataLoaded.username != "")
         {
+            logged = true;
             userID = dataLoaded.userID;
             username = dataLoaded.username;
             print("User data loaded: " + userID + "   username: " + username);
@@ -102,11 +103,10 @@ public class UserData : MonoBehaviour
     }
     public bool IsLogged()
     {
-        if (userID != null && userID.Length > 0)
+        if (logged)
             return true;
-        else if (username == null || username.Length == 0)
+        else
             return false;
-        return true;
     }
     public void SetUserID(string userID)
     {
@@ -116,29 +116,30 @@ public class UserData : MonoBehaviour
 
     public void UserCreation()
     {
+        logged = true;
         PlayerPrefs.SetString("username", username);
         PlayerPrefs.SetString("userID", userID);
     }
 
-	System.Action func;
-	public void LoopUntilPhotoIsLoaded(System.Action func)
-	{
-		this.func = func;
-		LoopUntilPhotoIsLoadedLoop();
-	}
-	public void LoopUntilPhotoIsLoadedLoop()
-	{
-		Debug.Log("Loading image from local...");
-		if(sprite == null)
-			Invoke("LoopUntilPhotoIsLoadedLoop", 2);
-		else
-			func();
-		LoadUserPhoto();
-	}
-    void LoadUserPhoto()
-    {
-        sprite = LoadSprite(path + userID + ".png");
-    }
+	//System.Action func;
+	//public void LoopUntilPhotoIsLoaded(System.Action func)
+	//{
+	//	this.func = func;
+	//	LoopUntilPhotoIsLoadedLoop();
+	//}
+	//public void LoopUntilPhotoIsLoadedLoop()
+	//{
+	//	Debug.Log("Loading image from local...");
+	//	if(sprite == null)
+	//		Invoke("LoopUntilPhotoIsLoadedLoop", 2);
+	//	else
+	//		func();
+	//	LoadUserPhoto();
+	//}
+ //   void LoadUserPhoto()
+ //   {
+ //       sprite = LoadSprite(path + userID + ".png");
+ //   }
     private Sprite LoadSprite(string path)
     {
         Debug.Log("Busca imagen en: " + path);

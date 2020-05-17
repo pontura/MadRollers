@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class Gui : MonoBehaviour {
     
 	public LevelComplete levelComplete;
-    public GameObject[] scaleInAndroidGO;
 
     private Data data;   
 
@@ -16,23 +15,8 @@ public class Gui : MonoBehaviour {
 	public Text genericField;
 	public GameObject centerPanel;
 
-    public ScoreLine hiscorePanel;
-
 	void Start()
 	{
-        if (Data.Instance.isAndroid)
-        {
-           // GetComponent<CanvasScaler>().referenceResolution = new Vector2(260, 593);
-            hiscorePanel.gameObject.SetActive(true);
-            Data.Instance.events.OnMissionStart += OnMissionStart;
-            foreach (GameObject go in scaleInAndroidGO)
-                go.transform.localScale *= 1.75f;
-        }
-        else
-        {
-            GetComponent<CanvasScaler>().referenceResolution = new Vector2(381, 593);
-            hiscorePanel.gameObject.SetActive(false);
-        }
 		centerPanel.SetActive (false);
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
@@ -46,7 +30,6 @@ public class Gui : MonoBehaviour {
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnMissionStart -= OnMissionStart;
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
 		Data.Instance.events.OnBossActive -= OnBossActive;
@@ -102,26 +85,5 @@ public class Gui : MonoBehaviour {
     {
         levelComplete.gameObject.SetActive(false); 
     }
-    public void Settings()
-    {
-        //Data.Instance.GetComponent<GameMenu>().Init();
-    }
-    void OnMissionStart(int missionID)
-    {
-        if (Data.Instance.isAndroid)
-        {
-            int videoGameID = Data.Instance.videogamesData.actualID;
-            HiscoresByMissions.MissionHiscoreUserData hiscoreData = UserData.Instance.hiscoresByMissions.GetHiscore(videoGameID, missionID);
-            if (hiscoreData == null)
-            {
-                print("no hay hiscore de videoGameID: " + videoGameID + " mission " + missionID);
-                hiscorePanel.gameObject.SetActive(false);
-            }
-            else
-            {
-                hiscorePanel.Init(0, hiscoreData.username, hiscoreData.score);
-                hiscorePanel.SetImage(hiscoreData.userID);
-            }
-        }
-    }
+   
 }

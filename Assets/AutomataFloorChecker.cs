@@ -21,6 +21,8 @@ public class AutomataFloorChecker : MonoBehaviour
     
     private void Update()
     {
+        if (cb == null)
+            return;
         if (cb.grounded)
             num += Time.deltaTime;
         if (num > 0.05f)

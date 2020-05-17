@@ -35,11 +35,13 @@ public class BossCreator : Boss {
 		assets.transform.localPosition = Vector3.zero;
 		parts = assets.GetComponentsInChildren<BossPart> ();
 
+        int totalHits = 0;
 		foreach (BossPart part in parts) {
-			part.gameObject.SetActive (false);
+            totalHits += part.lifes;
+            part.gameObject.SetActive (false);
 		}
 
-		SetTotal (parts.Length);
+		SetTotal (totalHits);
 		Init ();
 	}
 	void LateUpdate()

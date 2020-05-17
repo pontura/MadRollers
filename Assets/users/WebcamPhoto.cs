@@ -88,13 +88,16 @@ public class WebcamPhoto : MonoBehaviour
         print("____________ GUARDA SCREENSHOT en : " + UserData.Instance.path + UserData.Instance.userID + ".png");
 
         ScreenCapture.CaptureScreenshot(fileName);
+
        
+
         Invoke("Delayed", 0.5f);
     }
     void Delayed()
     {
-        UserData.Instance.sprite = null;
+      
         StopCamera();
-        UserData.Instance.LoopUntilPhotoIsLoaded(OnDone);
+        //UserData.Instance.LoopUntilPhotoIsLoaded(OnDone);
+        OnDone();
     }
 }

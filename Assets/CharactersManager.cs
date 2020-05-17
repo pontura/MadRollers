@@ -20,10 +20,12 @@ public class CharactersManager : MonoBehaviour {
 	bool canStartPlayers;
     private IEnumerator RalentaCoroutine;
     public int totalCharacters;
+    bool isAndroid;
 
     void Awake()
     {
-		distance = 0;
+        isAndroid = Data.Instance.isAndroid;
+        distance = 0;
         Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -57,7 +59,7 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.isReplay) {
 			speedRun = MAX_SPEED;
 		}
-        if (!Data.Instance.isAndroid)
+        if (!isAndroid)
             Loop ();
     }
 	void Loop()	{
@@ -93,7 +95,7 @@ public class CharactersManager : MonoBehaviour {
 		Vector3 pos;
 		float _y = 4;
 
-		if (Data.Instance.isReplay || Data.Instance.isAndroid)
+		if (Data.Instance.isReplay || isAndroid)
 			_y = 30;
 		else
 			canStartPlayers = true;
@@ -200,7 +202,7 @@ public class CharactersManager : MonoBehaviour {
 
         CharacterBehavior cb = addCharacter(pos, id);
 
-        if (Data.Instance.isAndroid || isAutomata)
+        if (isAndroid || isAutomata)
             cb.controls.isAutomata = true;
         else
            Data.Instance.multiplayerData.AddNewCharacter(id);
@@ -256,7 +258,7 @@ public class CharactersManager : MonoBehaviour {
 	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
 	{		
 		float _x;
-        if (Data.Instance.isAndroid)
+        if (isAndroid)
             _x = 0;
         else if (Data.Instance.isReplay)
 			_x = ((float)positionID * separationOnReplay)  - (((((float)totalCharacters-1))/2)*separationOnReplay);
@@ -331,15 +333,21 @@ public class CharactersManager : MonoBehaviour {
         if (totalCharacters > 1)
         {
             Vector3 normalPosition = Vector3.zero;
+            totalCharacters = 0;
             foreach (CharacterBehavior cb in characters)
-                normalPosition += cb.transform.localPosition;
-
-
-            normalPosition /= totalCharacters;
-            normalPosition.y += 0.15f + (totalCharacters / 3f);
-            //	normalPosition.z -= 0.3f + (MaxDistance/26);
-            normalPosition.z = distance - 2.3f - (totalCharacters / 2.5f);
-
+            {
+                if (!cb.controls.isAutomata)
+                {
+                    totalCharacters++;
+                    normalPosition += cb.transform.localPosition;
+                }
+            }
+            if (totalCharacters > 0)
+            {
+                normalPosition /= totalCharacters;
+                normalPosition.y += 0.15f + (totalCharacters / 3f);
+                normalPosition.z = distance - 2.3f - (totalCharacters / 2.5f);
+            }
             return normalPosition;
         }
         else

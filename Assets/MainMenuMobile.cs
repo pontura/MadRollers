@@ -32,7 +32,7 @@ public class MainMenuMobile : MonoBehaviour
     }
     void AddPlayers()
     {
-        float _separation = 6;
+        float _separation = 5;
         for (int a = 0; a < 4; a++)
         {
             Player p = Instantiate(player_to_instantiate);

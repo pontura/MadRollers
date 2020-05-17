@@ -18,8 +18,8 @@ public class LevelCreator : MonoBehaviour {
 	public TextAsset mission;
 	public Missions missions;
 	public AreaCreator areaCreator;
-
-	public TextAsset area;
+    public TextAsset missionAsset;
+    public TextAsset area;
 
 	float totalDistance;
 

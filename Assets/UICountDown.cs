@@ -39,7 +39,8 @@ public class UICountDown : MonoBehaviour {
 		countDownField.text = countDown.ToString ();
 		panel.GetComponent<Animation>().Play("logo");
 		if (countDown <= 0) {
-            Done();
+            if(!Data.Instance.isAndroid)
+                Done();
             return;
 		}
 		countDown--;

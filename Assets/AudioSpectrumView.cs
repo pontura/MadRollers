@@ -16,7 +16,7 @@ public class AudioSpectrumView : MonoBehaviour {
 	AudioSpectrum audioSpectrum;
 
 	void Start () {
-        if(Data.Instance.useOptimizedSettings)
+        if(Data.Instance.useOptimizedSettings || Data.Instance.isAndroid)
         {
             Destroy(this.gameObject);
             return;

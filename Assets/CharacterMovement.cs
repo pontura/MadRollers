@@ -22,13 +22,11 @@ public class CharacterMovement : MonoBehaviour {
 	void Start()
 	{
 		cb = GetComponent<CharacterBehavior> ();
-	//	Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 	}
 
 	void OnDestroy()
 	{
-	//	Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
 	}
 	public void DH(float value)
@@ -55,7 +53,8 @@ public class CharacterMovement : MonoBehaviour {
 				type = types.DASHING_BACK;
 			offset.z += Time.deltaTime * 100;
 		} else if (type == types.DASHING_BACK)
-		offset.z -= Time.deltaTime * 10;
+		    offset.z -= Time.deltaTime * 10;
+
 		if (offset.z < 0) {
 			offset.z = 0;
 			type = types.NORMAL;
@@ -65,39 +64,18 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		Vector3 goTo = transform.position;
 
-        //		if (cb.isOver)
-        //		{
-        //			goTo.x = cb.isOver.transform.localPosition.x;
-        //			goTo.y = cb.isOver.transform.localPosition.y + 1;
-        //			goTo.z = cb.isOver.transform.localPosition.z+0.2f;
-        //		}
-        //		else
-        //		{
-
         float _z = cb.player.charactersManager.distance;
-        if(!Data.Instance.isAndroid)
-             _z -= (characterScorePosition/1f);
 
-		//if (cb.controls.isAutomata)
-				//_z -= 2;
-	//		if (team_for_versus == 2) {
-	//			rotationY *= -1;
-	//			_z *= -1;
-	//		}
-			float speedRotation;
-			if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
-				speedRotation = 2.2f;
-			} else {
-				speedRotation = 4;
-			}
+        _z -= characterScorePosition;
 
-			if (DHMoveTo == 0)
-				goTo.x += (rotationY / speedRotation) * Time.deltaTime;
-			else
-				goTo.x += DHMoveTo * Time.deltaTime;
+		float speedRotation= 4;
+
+		if (DHMoveTo == 0)
+			goTo.x += (rotationY / speedRotation) * Time.deltaTime;
+		else
+			goTo.x += DHMoveTo * Time.deltaTime;
 		
-			goTo.z = _z;
-		//}
+		goTo.z = _z;
 
 		goTo += offset;
 		
@@ -116,7 +94,6 @@ public class CharacterMovement : MonoBehaviour {
 	}
 	void StartMultiplayerRace()
 	{
-		//StartCoroutine (RecalculatePosition ());
 		this.characterScorePosition = cb.player.id;
 	}
 	public void SetCharacterScorePosition()

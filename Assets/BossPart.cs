@@ -80,7 +80,7 @@ public class BossPart : MonoBehaviour {
             effect.SetColor(Color.red);
             Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(effect, transform.position);
         }
-        
+        boss.Hitted();
     }
 
 

@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreBarMultiplayer : MonoBehaviour {
 
-
 	public GameObject panel;
-	public GameObject hiscoreFields;
 	public Text myScoreFields;
 	public Text scoreAdviseNum;
 	public Text scoreAdviseDesc;
@@ -22,24 +20,10 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     void Start () {
         if (Data.Instance.isAndroid)
             isAndroid = true;
-        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE) {
-			Vector2 pos = panel.transform.localPosition;
-			pos.y += 20;
-			panel.transform.localPosition = pos;
-		}
+
 		RefreshScore ();
 		Data.Instance.events.OnDrawScore += OnDrawScore;
 
-//		bar.fillAmount = 0;
-//
-//		ArcadeRanking arcadeRanking = Data.Instance.GetComponent<ArcadeRanking> ();
-//		if (arcadeRanking.all.Count > 0) {
-//			hiscore = arcadeRanking.all [0].score;
-//			foreach (Text textfield in hiscoreFields.GetComponentsInChildren<Text>())
-//				textfield.text = hiscore.ToString ();
-//
-//			hiscoreImage.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
-//		}
 		scoreAdviseNum.text = "";
 		scoreAdviseDesc.text = "";
 	}
