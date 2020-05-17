@@ -34,24 +34,14 @@ public class Boss : SceneObject {
 		return false;
 	}
 	public void breakOut()
-	{      
-
-  //      Data.Instance.events.OnSoundFX("FX break", -1);
-		//hits++;
-		//Hit ();
-        
-  //      Data.Instance.events.OncharacterCheer ();
-
+	{     
 		if (hits >= totalHits)
-			Killed ();
-	//	else
-		//	Data.Instance.events.OnBossHitsUpdate (hits);
-		
+			Killed ();		
 	}
     public void Hitted()
     {
+        Data.Instance.events.OncharacterCheer();
         hits++;
-        print("Hitted total hits: " + totalHits + " hits: " + hits);
         Data.Instance.events.OnBossHitsUpdate(hits);
     }
 	public void Killed()
