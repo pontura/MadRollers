@@ -1,13 +1,26 @@
 {
 	"data": [{
-		"title": "ROMPAN TODO!",
+		"title": "BOSQUE PULPOSO",
 		"fondo": "wonderland_castles",
 		"id": 0,
 		"maxScore": 3000,
-		"areaSetData": [	
+		"areaSetData": [
 		{
-			"total_areas": 2,
-			"bending":-6,
+			"total_areas": 1,
+			"bending":-1,
+			"randomize": true,
+			"areas": [
+			"jumpTall"
+			],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": -4,
+				"z": -2
+			}
+		},
+		{
+			"total_areas": 1,
+			"bending":-10,
 			"randomize": false,
 			"areas": ["descansoAnchoMinimal"],
 			"cameraOrientation": {
@@ -18,11 +31,11 @@
 		},
 		{
 			"total_areas": 2,
-			"bending":-12,
+			"bending":-17,
 			"randomize": false,
 			"areas": [
-			"coinsJump1",
-			"descanso1"
+			"ancho_agua_simple1",
+			"ancho_agua_simple2"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
@@ -32,55 +45,38 @@
 		},
 		{
 			"total_areas": 1,
-			"bending":-1,
+			"bending":-10,
 			"randomize": false,
 			"areas": [
-			"doubleJump1"
+			"jumpAncho"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0
+				"y": -4.0,
+				"z": -2.0
 			}
 		},
 		{
-			"total_areas": 2,
-			"bending":-17,
-			"randomize": true,
+			"total_areas": 1,
+			"randomize": false,
 			"areas": [
-			"coinsEasy1",
-			"coinsEasy2",
-			"coinsEasy3"],
-			"cameraOrientation": {
-				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0
-			}
-		},
-		{
-			"total_areas": 2,
-			"bending":-8,
-			"randomize": true,
-			"areas": [
-			"descansoAncho2",
-			"descansoAncho3"
+			"container_cruz"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -4.0,
 				"z": -1
 			}
-		},
+		},		
 		{
-			"total_areas": 3,
+			"total_areas": 1,
 			"randomize": false,
-			"bending":-12,
+			"bending":-18,
 			"boss": true,
-			"areas": [			
-			"descansoAnchoMinimal",
-			"boss_Pacmans_intro_free_simple",
-			"boss_Pacmans_intro",
-			"boss_Pacmans_intro_free"],
+			"areas": [
+			"boss_Pulpo",
+			"boss_Pulpo_free"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 3,
@@ -90,10 +86,9 @@
 		{
 			"total_areas": 1000,
 			"randomize": true,
-			"bending":-18,
+			"bending":-12,
 			"areas": [
-			"boss_Pacmans_intro_free",
-			"boss_Pacmans_intro_free2"
+			"boss_Pulpo_free"
 			],
 			"cameraOrientation": {
 				"x": 0.0,

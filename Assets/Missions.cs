@@ -252,6 +252,7 @@ public class Missions : MonoBehaviour {
         MissionData.AreaSetData data = MissionActive.areaSetData[areaSetId];
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && (Data.Instance.playOnlyBosses || hasReachedBoss) && !data.boss && areaSetId < MissionActive.areaSetData.Count - 2)
         {
+            print("_________________area set id ++");
             areaSetId++;
             ResetAreaSet();
             SetNextArea();
@@ -269,11 +270,11 @@ public class Missions : MonoBehaviour {
 		
 		if(bending != 0)
 			Data.Instance.events.ChangeCurvedWorldX(bending);
-	//	if (MissionActive.areaSetData [areaSetId].randomize && Game.Instance.level.charactersManager.getTotalCharacters()==1) 
-		//	total_areas /= 1.25f;
-        
-		
-		if (areaNum >= total_areas) {
+        areaNum++;
+
+      //  print("___________areaNum: " + areaNum + "  areaSetId " + areaSetId + "     total_areas: " + total_areas);
+
+        if (areaNum >= total_areas) {
 			if (areaSetId < MissionActive.areaSetData.Count - 1) {
 				areaSetId++;
 				ResetAreaSet ();
@@ -281,7 +282,7 @@ public class Missions : MonoBehaviour {
 				areaNum--;
 			}
 		}
-		areaNum++;
+		
 	}
 	void ResetAreaSet()
 	{
@@ -305,13 +306,12 @@ public class Missions : MonoBehaviour {
     }
     void AddAreaByName(string areaName, bool isXtra = false)
     {
-       // Debug.Log("AREA: " + areaName);
 		TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
 		if (asset != null) {					
 			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
 			areasLength += areaDataActive.z_length/2;
 			level.sceneObjects.AddSceneObjects (areaDataActive, areasLength);
-			//print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName +  " totalAreas" + total_areas );
+			//print ("AREA: " + areaName + " km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName +  " totalAreas" + total_areas );
 			areasLength += areaDataActive.z_length/2;
 
             //HACK : no ocupe lugar el area extra:
