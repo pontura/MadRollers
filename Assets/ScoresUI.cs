@@ -38,18 +38,21 @@ public class ScoresUI : MonoBehaviour
         if (Data.Instance.isAndroid)
         {
             int videoGameID = Data.Instance.videogamesData.actualID;
-            HiscoresByMissions.MissionHiscoreUserData hiscoreData = UserData.Instance.hiscoresByMissions.GetHiscore(videoGameID, missionID);
-            if (hiscoreData == null)
-            {
-                print("no hay hiscore de videoGameID: " + videoGameID + " mission " + missionID);
-                otherAvatarThumb.gameObject.SetActive(false);
-            }
-            else
-            {
-                otherAvatarThumb.Init(hiscoreData.userID);
-                otherScore.text = Utils.FormatNumbers(hiscoreData.score);
-                otherName.text = hiscoreData.username;
-            }
+            print("get hiscore missionID: " + missionID);
+            UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
+        }
+    }
+    void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
+    {
+        if (hiscoreData == null || hiscoreData.all.Count <1 )
+        {
+            otherAvatarThumb.gameObject.SetActive(false);
+        }
+        else
+        {
+            otherAvatarThumb.Init(hiscoreData.all[0].userID);
+            otherScore.text = Utils.FormatNumbers(hiscoreData.all[0].score);
+            otherName.text = hiscoreData.all[0].username.ToUpper();
         }
     }
 }

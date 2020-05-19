@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutomatasManager : MonoBehaviour
 {
     CharactersManager charactersManager;
-
+    int startingInLevel = 5;
     void Start()
     {
         charactersManager = Game.Instance.level.charactersManager;
@@ -21,7 +21,7 @@ public class AutomatasManager : MonoBehaviour
         if (missionID <= 2)
             return;
 
-        int totalAutomatas = missionID - 3;
+        int totalAutomatas = missionID - startingInLevel;
         if (totalAutomatas < 1)
             totalAutomatas = 1;
         if (totalAutomatas > 4)

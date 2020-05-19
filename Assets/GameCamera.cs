@@ -97,9 +97,10 @@ public class GameCamera : MonoBehaviour
 
         if (Data.Instance.isAndroid)
         {
-            maxCamSensor = 8f;
+            maxCamSensor = 8.5f;
             transform.localPosition = new Vector3(0, 0, 0);
-            cameraOrientationVector.z = -0.3f;
+            cameraOrientationVector.z = -0.4f;
+            cameraOrientationVector.y = 6.4f;
         }
 
         Vector3 p = cam.transform.localPosition;
@@ -164,12 +165,12 @@ public class GameCamera : MonoBehaviour
 
 		SetPixels(4);
 
-		this.explotionForce = explotionForce*3f;
+		this.explotionForce = explotionForce*5f;
 		DoExploteCoroutine = DoExplote ();
 		StartCoroutine (DoExploteCoroutine);
 	}
 	public IEnumerator DoExplote () {
-		float delay = 0.04f;
+		float delay = 0.06f;
         for (int a = 0; a < 6; a++)
         {
 			rotateRandom( Random.Range(-explotionForce, explotionForce) );
@@ -335,14 +336,16 @@ public class GameCamera : MonoBehaviour
 	void OnCameraZoomTo(Vector3 targetPos)
 	{
 		Data.Instance.events.FreezeCharacters (true);
-		Data.Instance.events.ForceFrameRate (0.5f);
-		Data.Instance.events.RalentaTo (0.1f, 0.2f);
+		Data.Instance.events.RalentaTo (0.5f, 0.1f);
 		this.snapTargetPosition = targetPos;
 		state = states.SNAPPING_TO;
 	}
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
-		//Data.Instance.events.RalentaTo (0.5f, 0.1f);
+        if (Data.Instance.isAndroid)
+            OnCameraZoomTo(targetPos);
+
+       // Data.Instance.events.RalentaTo (0.5f, 0.1f);
   //      if(!Data.Instance.isAndroid)
   //          StartCoroutine(ResetSnappingCoroutine(3));
     }

@@ -35,11 +35,13 @@ public class MainMenuButton : MonoBehaviour {
         switch (id)
         {
             case 0:
+                Data.Instance.events.OnResetScores();
                 Data.Instance.inputSavedAutomaticPlay.RemoveAllData();
                 Data.Instance.isReplay = true;
                 Game.Instance.ResetLevel();
                 break;
             case 1:
+                Data.Instance.events.OnResetScores();
                 Data.Instance.inputSavedAutomaticPlay.RemoveAllData();
                 Game.Instance.GotoLevelSelector();
                 break;

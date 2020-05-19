@@ -115,7 +115,7 @@ public class Data : MonoBehaviour {
 #endif
         if (isAndroid)
         {
-            useRetroPixelPro = false;
+          //  useRetroPixelPro = false;
         }
         //  Cursor.visible = false;
 

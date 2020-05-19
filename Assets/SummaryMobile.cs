@@ -23,51 +23,60 @@ public class SummaryMobile : MonoBehaviour
     public ProgressBar progressBar;
 
     bool canClick;
+    int missionID;
+    int videoGameID;
+    int score;
 
     void Start()
     {
         panel.SetActive(false);
-        
     }
+    
     public void Init()
     {
+        hiscoreOtherPanel.SetActive(false);
         Data.Instance.events.RalentaTo(0, 0.025f);
         panel.SetActive(true);
-        int missionID = Data.Instance.missions.GetActualMissionData().id;
-        titleField.text = "MISION " + (missionID + 1);
-        int score = Data.Instance.multiplayerData.GetTotalScore();
+        missionID = Data.Instance.missions.MissionActiveID-1;
+        titleField.text = "MISION " + (missionID+1);
+        score = Data.Instance.multiplayerData.GetTotalScore();
         scoreField.text = Utils.FormatNumbers(score);
-        int videoGameID = Data.Instance.videogamesData.actualID;
-        HiscoresByMissions.MissionHiscoreUserData hiscoreData = UserData.Instance.hiscoresByMissions.GetHiscore(videoGameID, missionID);
+        videoGameID = Data.Instance.videogamesData.actualID;
+        UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);        
+    }
+    void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
+    {
         hiscores.Init(videoGameID, missionID, MyScoreLoaded);
         avatarImage.Init(UserData.Instance.userID);
         usernameField.text = UserData.Instance.username;
-        if (hiscoreData == null)
+        if (hiscoreData == null || hiscoreData.all.Count < 1)
         {
-            hiscoreOtherPanel.SetActive(false);
+            Debug.Log("No ranking yet for videoGameID " + videoGameID + ", mission " + missionID);
         }
         else
         {
-            float p = (float)score / (float)hiscoreData.score;
+            hiscoreOtherPanel.SetActive(true);
+            float p = (float)score / (float)hiscoreData.all[0].score;
             progressBar.gameObject.SetActive(true);
             progressBar.SetProgression(p);
-            hiscoreAvatarThumb.Init(hiscoreData.userID);
-            hiscoreScoreField.text = Utils.FormatNumbers(hiscoreData.score);
-            hiscoreNameField.text = hiscoreData.username;
+            hiscoreAvatarThumb.Init(hiscoreData.all[0].userID);
+            hiscoreScoreField.text = Utils.FormatNumbers(hiscoreData.all[0].score);
+            hiscoreNameField.text = hiscoreData.all[0].username.ToUpper();
         }
     }
     void MyScoreLoaded(int a) { }
     public void Next()
     {
-        Data.Instance.isReplay = true;
+        Data.Instance.events.OnResetScores();
+        Data.Instance.events.FreezeCharacters(true);
+        Data.Instance.GetComponent<MusicManager>().stopAllSounds();
+        Data.Instance.isReplay = false;
         Game.Instance.ResetLevel();
-
         Data.Instance.events.ForceFrameRate(1);
-        //Data.Instance.events.FreezeCharacters(false);
-        //panel.SetActive(false);
     }
     public void Retry()
     {
+        Data.Instance.events.OnResetScores();
         Data.Instance.events.ForceFrameRate(1);
       //  Data.Instance.missions.MissionActiveID--;
         Game.Instance.Continue();

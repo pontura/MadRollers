@@ -21,7 +21,7 @@ public class MissionSelector : MonoBehaviour {
 	{
 		this.videogameID = _videogameID;
 
-		if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+		if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL || Data.Instance.playMode == Data.PlayModes.CONTINUEMODE)
 			titleField.text = Data.Instance.videogamesData.all [videogameID].name;
 		else if(titlePartyField != null){
 			titlePartyField.text = Data.Instance.videogamesData.all [videogameID].name;
@@ -29,6 +29,8 @@ public class MissionSelector : MonoBehaviour {
 		}
 		
 		missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame (videogameID).missionUnblockedID;
+
+        print(" missionUnblockedID: " + missionUnblockedID);
 		actualMission = missionUnblockedID;
 		totalMissions = Data.Instance.missions.GetTotalMissionsInVideoGame (videogameID);
 		SetTexts ();
@@ -46,9 +48,10 @@ public class MissionSelector : MonoBehaviour {
 	void Update()
 	{
 		
-		if (Data.Instance.playMode != Data.PlayModes.STORYMODE)
+		if (Data.Instance.playMode != Data.PlayModes.STORYMODE && Data.Instance.playMode != Data.PlayModes.CONTINUEMODE)
 			return;
-		
+        if (missionUnblockedID == 0)
+            return;
 		float fillAmount = (float)missionUnblockedID / (float)totalMissions;
 		float goTo = (float)actualMission / (float)totalMissions;
 		bar.fillAmount = Mathf.Lerp (bar.fillAmount, fillAmount, 0.05f);

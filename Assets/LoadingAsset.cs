@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class LoadingAsset : MonoBehaviour {
 
 	public Image logo;
-	public Text field;
+    public Image logo_vertical;
+    public Text field;
 	public string[] texts;
 	public GameObject loadingPanel;
 	//public GameObject videoPanel;
@@ -18,25 +19,58 @@ public class LoadingAsset : MonoBehaviour {
 	float speed;
 	bool isOn;
 
-	void Start () {
+    public GameObject horizontal;
+    public GameObject vertical;
+
+    public AvatarThumb avatarThumb;
+    public Text avatarName;
+    public Text missionField;
+    public GameObject hiscorePanel;
+
+    void Start () {
+       
 		ChangeBG ();
 	}
 	public void SetOn(bool _isOn)
 	{
-		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().loadingSplash;
-
+        hiscorePanel.SetActive(false);
+        print("______________LOading set on MissionActiveID: " + Data.Instance.missions.MissionActiveID);
 		this.isOn = _isOn;
 		panel.SetActive (_isOn);
 		loadingPanel.SetActive (_isOn);
         if (isOn)
         {
-            if(Data.Instance.isAndroid)
-                StartCoroutine(LoadingRoutineAndroid()); 
+            if (Data.Instance.isAndroid)
+            {
+                horizontal.SetActive(false);
+                vertical.SetActive(true);
+                logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
+
+                int missionID = Data.Instance.missions.MissionActiveID;
+                int videoGameID = Data.Instance.videogamesData.actualID;
+                UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+                missionField.text = "MISION " + (missionID + 1);
+            }
             else
-                StartCoroutine(LoadingRoutine()); 
+            {
+                horizontal.SetActive(true);
+                vertical.SetActive(false);
+                logo.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
+                StartCoroutine(LoadingRoutine());
+            }
         }
 	}
-	IEnumerator LoadingRoutine()
+    void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData data)
+    {
+        if (isOn)
+        {
+            hiscorePanel.SetActive(true);
+            avatarThumb.Init(data.all[0].userID);
+            avatarName.text = data.all[0].username.ToUpper();
+            StartCoroutine(LoadingRoutineAndroid());
+        }
+    }
+    IEnumerator LoadingRoutine()
 	{
         Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 1);
 		Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
@@ -70,36 +104,37 @@ public class LoadingAsset : MonoBehaviour {
 
     IEnumerator LoadingRoutineAndroid()
     {
-        VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData();
-        HiscoresByMissions.MissionHiscoreUserData missionHiscoreUserData = UserData.Instance.hiscoresByMissions.GetHiscore(videogameData.id, Data.Instance.missions.MissionActiveID);
-        string username = UserData.Instance.username;
+        //VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData();
+        //HiscoresByMissions.MissionHiscoreUserData missionHiscoreUserData = UserData.Instance.hiscoresByMissions.GetHiscore(videogameData.id, Data.Instance.missions.MissionActiveID);
+        //string username = UserData.Instance.username;
 
         Data.Instance.voicesManager.PlaySpecificClipFromList(Data.Instance.voicesManager.UIItems, 1);
         Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
-        field.text = "";
-        AddText("*** MAD ROLLERS ***");
-        yield return new WaitForSeconds(0.5f);
-        AddText("Loading " + videogameData.name + "...");
-        yield return new WaitForSeconds(0.2f);
-        if (missionHiscoreUserData != null)
-        {
-            AddText("*****************");
-            yield return new WaitForSeconds(0.12f);
-            AddText("Hiscore by:");
-            yield return new WaitForSeconds(0.1f);
-            AddText("HACKER: " + missionHiscoreUserData.username + " [" + Utils.FormatNumbers( missionHiscoreUserData.score) + "]");
-            yield return new WaitForSeconds(0.15f);
-            AddText("in mission_id: [" + Data.Instance.missions.MissionActiveID + "]");
-            AddText("*****************");
-            AddText(" ");
-            yield return new WaitForSeconds(5f);
-        }
-        AddText("Buenos Aires <" + username + "> USER ALLOWING ACCESS!");        
-        yield return new WaitForSeconds(0.35f);
-        AddText(username + " -> GOTO 1985 ");
+        //field.text = "";
+        //AddText("*** MAD ROLLERS ***");
+        //yield return new WaitForSeconds(0.5f);
+        //AddText("Loading " + videogameData.name + "...");
+        //yield return new WaitForSeconds(0.2f);
+        //if (missionHiscoreUserData != null)
+        //{
+        //    AddText("*****************");
+        //    yield return new WaitForSeconds(0.12f);
+        //    AddText("Hiscore by:");
+        //    yield return new WaitForSeconds(0.1f);
+        //    AddText("HACKER: " + missionHiscoreUserData.username + " [" + Utils.FormatNumbers( missionHiscoreUserData.score) + "]");
+        //    yield return new WaitForSeconds(0.15f);
+        //    AddText("in mission_id: [" + Data.Instance.missions.MissionActiveID + "]");
+        //    AddText("*****************");
+        //    AddText(" ");
+        //    yield return new WaitForSeconds(5f);
+        //}
+        //AddText("Buenos Aires <" + username + "> USER ALLOWING ACCESS!");        
+        //yield return new WaitForSeconds(0.35f);
+        //AddText(username + " -> GOTO 1985 ");
+        yield return new WaitForSeconds(4f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
-        AddText("COMPLETE!");
-        yield return new WaitForSeconds(0.35f);
+       // AddText("COMPLETE!");
+        yield return new WaitForSeconds(0.41f);
         SetOn(false);
     }
     void AddText(string text)
