@@ -5,48 +5,56 @@ using UnityEngine.UI;
 
 public class MissionSelectorMobile : MonoBehaviour
 {
-    public GameObject panel;
-    public Text title1;
-    public Text title2;
+    public Transform videogame1_container;
+    public Transform videogame2_container;
+    public Transform videogame3_container;
 
-    public GameObject hiscores;
+    public Canvas canvas;
+    public Animation anim;
 
-    public Transform missionsContainer;
+    public Text title1;    
     public MissionButtonMobile missionButton;
-    public List<MissionButtonMobile> allMissions;
-    public Button playButton;
-    public HiscoresMobile hiscoresMobile;
-    int videoGameID;
+
+    public Text disketteField;
+    public Image disketteLogo;
+    public Image disketteFloppy;
+
+    public ScrollSnapTo scrollSnap_level1;
+    public ScrollSnapTo scrollSnap_level2;
+    public ScrollSnapTo scrollSnap_level3;
 
     void Start()
     {
-        panel.SetActive(false);
-        hiscores.SetActive(false);
-        title2.text = "Hi-scores";
+        title1.text = "MISIONES POR VIDEOJUEGO";
     }
 
     public void Init()
+    {   
+        AddButtons(0);
+        AddButtons(1);
+        AddButtons(2);
+    }
+    void AddButtons(int videoGameID)
     {
-        Data.Instance.events.SetHamburguerButton(false);
-        panel.SetActive(true);
-        Utils.RemoveAllChildsIn(missionsContainer);
-        videoGameID = Data.Instance.videogamesData.actualID;
-        title1.text = Data.Instance.videogamesData.GetActualVideogameData().name;
-        int id = 0;
-        List<Missions.MissionsData> missionData = Data.Instance.missions.videogames[videoGameID].missions;
-
+        List<Missions.MissionsData> missionData = Data.Instance.missions.videogames[videoGameID].missions; 
+        Transform container = null;
+        switch(videoGameID)
+        {
+            case 0: container = videogame1_container; break;
+            case 1: container = videogame2_container; break;
+            default: container = videogame3_container; break;
+        }
         int missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID;
+        
 
+        int id = 0;
         foreach (Missions.MissionsData data in missionData)
         {
             MissionButtonMobile m = Instantiate(missionButton);
-            m.transform.SetParent(missionsContainer);
+            m.transform.SetParent(container);
             m.transform.localPosition = Vector3.zero;
             m.transform.localScale = Vector3.one;
-            allMissions.Add(m);
             m.Init(this, videoGameID, id, data);
-
-          
 
             if (id == missionUnblockedID)
                 m.SetSelected(true);
@@ -55,52 +63,47 @@ public class MissionSelectorMobile : MonoBehaviour
 
             id++;
         }
-        hiscoresMobile.Init(videoGameID, missionUnblockedID, OnMyScoreLoaded);
-    }
-    public void Clicked(int id)
-    {
-        ResetAllMissions();
-        hiscores.SetActive(true);
-        allMissions[id].SetSelected(true);
 
-        SetBlockedOrNot(id);
-
-        Data.Instance.missions.MissionActiveID = id;
-        hiscoresMobile.Init(videoGameID, id, OnMyScoreLoaded);
-    }
-
-    //esta para volver a darle por ganada una mission por si reseteo el score en el device:
-    void OnMyScoreLoaded(int myscore)
-    {
-        if (Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID < Data.Instance.missions.MissionActiveID)
+        switch (videoGameID)
         {
-            Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID = Data.Instance.missions.MissionActiveID+1;
+            case 0: scrollSnap_level1.Init(missionUnblockedID); break;
+            case 1: scrollSnap_level2.Init(missionUnblockedID); break;
+            default: scrollSnap_level3.Init(missionUnblockedID); break;
         }
-        SetPlayButton(true);
+
+
     }
-    void ResetAllMissions()
+    public void Clicked(int videoGameID, int MissionActiveID)
     {
-        foreach (MissionButtonMobile b in allMissions)
-            b.SetSelected(false);
-    }
-    public void SetPlayButton(bool isOn)
-    {
-        playButton.gameObject.SetActive(isOn);
-    }
-    public void Back()
-    {
-        Data.Instance.events.SetHamburguerButton(true);
-        Data.Instance.LoadLevel("LevelSelectorMobile");
-    }
-    public void SetBlockedOrNot(int missionID)
-    {
-        if (missionID <= Data.Instance.missions.GetMissionsByVideoGame(Data.Instance.videogamesData.actualID).missionUnblockedID)
-            SetPlayButton(true);
+
+        List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
+        Data.Instance.voicesManager.PlaySpecificClipFromList(list, videoGameID);
+
+        canvas.enabled = false;
+
+        string m = (MissionActiveID + 1).ToString();
+
+        if (MissionActiveID < 10)
+            disketteField.text = "0" + m;
         else
-            SetPlayButton(false);
+            disketteField.text = m;
+
+        VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
+        disketteLogo.sprite = videogameData.logo;
+        disketteFloppy.sprite = videogameData.floppyCover;
+
+        Data.Instance.videogamesData.actualID = videoGameID;
+        Data.Instance.missions.MissionActiveID = MissionActiveID;
+        anim.Play("levelSelectorOn");
+
+        StartCoroutine(LoadGame());
+        Data.Instance.events.SetHamburguerButton(false);
     }
-    public void CloseHiscorea()
+    IEnumerator LoadGame()
     {
-        hiscores.SetActive(false);
+        yield return new WaitForSeconds(3);
+        Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
+        yield return new WaitForSeconds(2.8f);
+        Data.Instance.LoadLevel("Game");
     }
 }

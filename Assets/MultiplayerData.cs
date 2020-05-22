@@ -37,21 +37,27 @@ public class MultiplayerData : MonoBehaviour
 		Data.Instance.events.OnScoreOn += OnScoreOn;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
 		Data.Instance.events.OnResetScores += OnResetScores;
+        Data.Instance.events.OnResetMultiplayerData += OnResetMultiplayerData;
     }
 	void OnGameStart()
 	{
 		SetNextScoreToWinCredit ();
 	}
-	void OnResetScores()
+    void OnResetScores()
+    {
+        NextScoreToWinCredit = 0;
+        score_player1 = score_player2 = score_player3 = score_player4 = 0;
+        score = 0;
+        distance = 0;
+        creditsWon = 0;
+        Data.Instance.RefreshCredits();
+    }
+
+    void OnResetMultiplayerData()
 	{
-		NextScoreToWinCredit = 0;
-		score_player1 = score_player2 = score_player3 = score_player4 = 0;
-		player1 = player2 = player3 = player4 = false;
-		player1_played = player2_played = player3_played = player4_played = false;
-		score = 0;
-		distance = 0;
-		creditsWon = 0;
-		Data.Instance.RefreshCredits ();
+        OnResetScores();
+        player1 = player2 = player3 = player4 = false;
+		player1_played = player2_played = player3_played = player4_played = false;		
 	}
     void OnReorderAvatarsByPosition(List<int> _players)
     {

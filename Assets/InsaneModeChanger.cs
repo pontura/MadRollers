@@ -42,7 +42,7 @@ public class InsaneModeChanger : MonoBehaviour
 
         if(player0 && player1 && player2 && player3)
         {
-            Data.Instance.events.OnResetScores();
+            Data.Instance.events.OnResetMultiplayerData();
             Data.Instance.inputSavedAutomaticPlay.RemoveAllData();
             Data.Instance.isReplay = false;
             if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)

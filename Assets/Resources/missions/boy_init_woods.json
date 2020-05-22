@@ -58,6 +58,17 @@
 		},
 		{
 			"total_areas": 1,
+			"bending":-10,
+			"randomize": false,
+			"areas": ["descansoAnchoMinimal"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 2.0,
+				"z": 0
+			}
+		},
+		{
+			"total_areas": 1,
 			"randomize": false,
 			"areas": [
 			"container_cruz"
@@ -67,35 +78,37 @@
 				"y": -4.0,
 				"z": -1
 			}
-		},		
+		},	
 		{
-			"total_areas": 1,
+			"total_areas": 4,
 			"randomize": false,
-			"bending":-18,
 			"boss": true,
 			"areas": [
-			"boss_Pulpo",
-			"boss_Pulpo_free"
+			"entrance",
+			"bossVienen",
+			"bossVienenFree"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 3,
-				"z": -6
+				"y": -2.5,
+				"z": -1.25
 			}
 		},
 		{
-			"total_areas": 1000,
+			"total_areas": 3,
 			"randomize": true,
-			"bending":-12,
 			"areas": [
-			"boss_Pulpo_free"
+			"bossVienenFree",
+			"bossVienenFree",
+			"anchoFences"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -3,
-				"z": -1.5
+				"y": -2.6,
+				"z": -1
 			}
-		}],
+		}
+		],
 		"backgroundSides": []
 	}]
 }

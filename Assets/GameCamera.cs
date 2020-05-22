@@ -32,10 +32,9 @@ public class GameCamera : MonoBehaviour
     bool started;
 
     public bool onExplotion;
-	float explotionForce = 0.25f;
 
 	public float pixelSize;
-	float pixel_speed_recovery = 8;
+	float pixel_speed_recovery = 16;
 	private GameObject flow_target;
 	float _Y_correction;
     float targetZOffset = 6.5f;
@@ -62,11 +61,10 @@ public class GameCamera : MonoBehaviour
 	{
         cam.enabled = true;
         fieldOfView = cam.fieldOfView;
-
+        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnChangeMood += OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
-		Data.Instance.events.OncharacterCheer += OncharacterCheer;
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
         {
             Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
@@ -118,9 +116,9 @@ public class GameCamera : MonoBehaviour
     {
 		StopAllCoroutines ();
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
-		Data.Instance.events.OncharacterCheer -= OncharacterCheer;
 		Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
 		Data.Instance.events.OnCameraZoomTo -= OnCameraZoomTo;
 		Data.Instance.events.OnGameOver -= OnGameOver;
@@ -141,20 +139,6 @@ public class GameCamera : MonoBehaviour
 		return;
     }
 	IEnumerator DoExploteCoroutine;
-	void OncharacterCheer()
-	{
-		if (state != states.PLAYING)
-			return;	
-		if (DoExploteCoroutine != null)
-			StopCoroutine (DoExploteCoroutine);
-		state = states.EXPLOTING;
-
-		SetPixels(1);
-
-		DoExploteCoroutine = DoExplote ();
-		StartCoroutine (DoExploteCoroutine);
-
-	}
 	public void explote(float explotionForce)
 	{
 		if (state != states.PLAYING)
@@ -163,13 +147,13 @@ public class GameCamera : MonoBehaviour
 			StopCoroutine (DoExploteCoroutine);
 		state = states.EXPLOTING;
 
-		SetPixels(4);
+		SetPixels(8);
 
-		this.explotionForce = explotionForce*5f;
-		DoExploteCoroutine = DoExplote ();
+		DoExploteCoroutine = DoExplote (explotionForce * 6f);
 		StartCoroutine (DoExploteCoroutine);
 	}
-	public IEnumerator DoExplote () {
+	public IEnumerator DoExplote (float explotionForce)
+    {
 		float delay = 0.06f;
         for (int a = 0; a < 6; a++)
         {
@@ -294,13 +278,12 @@ public class GameCamera : MonoBehaviour
         cam.gameObject.transform.DOMoveZ(cam.gameObject.transform.position.z + 85, 1);
 
 	}
-    public void OnAvatarCrash(CharacterBehavior player)
+    void OnAvatarCrash(CharacterBehavior player)
     {
 		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
 
-		this.explotionForce = 105;
-		DoExploteCoroutine = DoExplote ();
+		DoExploteCoroutine = DoExplote (105);
 		StartCoroutine (DoExploteCoroutine);
 
         state = states.END;
@@ -335,15 +318,15 @@ public class GameCamera : MonoBehaviour
 	}
 	void OnCameraZoomTo(Vector3 targetPos)
 	{
-		Data.Instance.events.FreezeCharacters (true);
-		Data.Instance.events.RalentaTo (0.5f, 0.1f);
-		this.snapTargetPosition = targetPos;
-		state = states.SNAPPING_TO;
+		//Data.Instance.events.FreezeCharacters (true);
+		//Data.Instance.events.RalentaTo (0.5f, 0.1f);
+		//this.snapTargetPosition = targetPos;
+	//	state = states.SNAPPING_TO;
 	}
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
-        if (Data.Instance.isAndroid)
-            OnCameraZoomTo(targetPos);
+      //  if (Data.Instance.isAndroid)
+        //    OnCameraZoomTo(targetPos);
 
        // Data.Instance.events.RalentaTo (0.5f, 0.1f);
   //      if(!Data.Instance.isAndroid)

@@ -29,6 +29,21 @@ public class AvatarImages : MonoBehaviour
         ResetAvatar(UserData.Instance.userID);
         GetImageFor(UserData.Instance.userID, null);
     }
+    public void SetImageFor(string userID, Texture2D texture)
+    {
+        foreach (Data d in all)
+        {
+            if (d.userID == userID)
+            {
+                d.texture = texture;
+                return;
+            }
+        }
+        Data newData = new Data();
+        newData.userID = userID;
+        newData.texture = texture;
+        all.Add(newData);
+    }
     public void GetImageFor(string userID, System.Action<Texture2D> OnLoaded)
     {
         foreach (Data d in all)
@@ -39,7 +54,6 @@ public class AvatarImages : MonoBehaviour
                 return;
             }
         }
-
         StartCoroutine(DownloadImage(userID, OnLoaded));
     }
     IEnumerator DownloadImage(string userID, System.Action<Texture2D> OnLoaded)

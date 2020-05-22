@@ -14,7 +14,6 @@ public class UserData : MonoBehaviour
     static UserData mInstance = null;
     public string userID;
     public string username;
-    public Sprite sprite;
 
 	public string path;
     public HiscoresByMissions hiscoresByMissions;

@@ -5,41 +5,64 @@ using UnityEngine.UI;
 
 public class MissionButtonMobile : MonoBehaviour
 {
-    public Color color1;
-    public Color color2;
     public Text field;
-    public Text desc;
-    public int videoGameID;
-    public int missionID;
+    int videoGameID;
+    int missionID;
     public bool isBlocked;
-    public Image blockedImage;
-    public Image background;
-    public MissionSelectorMobile missionSelectorMobile;
-   
+    public GameObject blocked;
+    MissionSelectorMobile missionSelectorMobile;
+    public Image logo;
+    public Image floppyCover;
 
     public void Init(MissionSelectorMobile missionSelectorMobile, int videoGameID, int missionID, Missions.MissionsData data)
     {
+        VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
+        logo.sprite = videogameData.logo;
+        floppyCover.sprite = videogameData.floppyCover;
+
         this.missionSelectorMobile = missionSelectorMobile;
         this.videoGameID = videoGameID;
         this.missionID = missionID;
 
-        if (missionID <= Data.Instance.missions.MissionActiveID)
+        int unblockedID = Data.Instance.missions.videogames[videoGameID].missionUnblockedID;
+
+        //bloquea todo si no jugaste:
+        if(videoGameID>0)
+        {
+            int level1blockedID = Data.Instance.missions.videogames[0].missionUnblockedID;
+            if (level1blockedID == 0)
+                unblockedID = -1;
+        }
+        //////////////////
+        
+        if (missionID <= unblockedID)
+        {
             isBlocked = false;
+            if (missionID == unblockedID)
+            {
+                Animation anim = GetComponent<Animation>();
+                anim[anim.clip.name].time = Random.Range(0, 300) / 10;
+                anim.Play();
+            }
+        } 
         else
             isBlocked = true;
 
         if (isBlocked)
         {
-            blockedImage.enabled = true;
+            blocked.SetActive(true);
         }
         else
         {
-            blockedImage.enabled = false;
+            blocked.SetActive(false);
         }
 
         int id = missionID + 1;
-        field.text = "MISION " + id;
-        desc.text = data.data[0].title;
+        //field.text = "MISION " + id;
+        if (id < 10)
+            field.text = "0" + id;
+        else
+            field.text = id.ToString();
 
 
     }
@@ -47,16 +70,13 @@ public class MissionButtonMobile : MonoBehaviour
     {
         if (isSelected)
         { 
-            background.color = color1;
-            field.color = color2;
         } else
         {
-            background.color = color2;
-            field.color = color1;
         }
     }
     public void Clicked()
     {
-        missionSelectorMobile.Clicked(missionID);
+        if (isBlocked) return;
+        missionSelectorMobile.Clicked(videoGameID, missionID);
     }
 }

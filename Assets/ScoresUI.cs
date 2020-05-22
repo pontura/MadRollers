@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ScoresUI : MonoBehaviour
 {
-    
+
+    [SerializeField] private Image hiscoreBar;
     [SerializeField] private GameObject panel;
 
     [SerializeField] private AvatarThumb myAvatarThumb;
@@ -14,6 +15,8 @@ public class ScoresUI : MonoBehaviour
     [SerializeField] private Text otherScore;
     [SerializeField] private Text otherName;
 
+    float hiscore;
+
     void Start()
     {
         if (!Data.Instance.isAndroid)
@@ -21,12 +24,20 @@ public class ScoresUI : MonoBehaviour
             panel.SetActive(false);
             Destroy(this);
         }
-        else
+        panel.SetActive(true);
+        Data.Instance.events.OnMissionStart += OnMissionStart;
+        myAvatarThumb.Init(UserData.Instance.userID);
+        Loop();
+    }
+    private void Loop()
+    {
+        int score = Data.Instance.multiplayerData.score;
+        if (hiscore > 0 && score > 0)
         {
-            panel.SetActive(true);
-            Data.Instance.events.OnMissionStart += OnMissionStart;
-            myAvatarThumb.Init(UserData.Instance.userID);
+            float t = (float)score / (float)hiscore;
+            hiscoreBar.fillAmount = t;
         }
+        Invoke("Loop", 0.1f);
     }
     void OnDestroy()
     {
@@ -38,7 +49,6 @@ public class ScoresUI : MonoBehaviour
         if (Data.Instance.isAndroid)
         {
             int videoGameID = Data.Instance.videogamesData.actualID;
-            print("get hiscore missionID: " + missionID);
             UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
         }
     }
@@ -51,7 +61,8 @@ public class ScoresUI : MonoBehaviour
         else
         {
             otherAvatarThumb.Init(hiscoreData.all[0].userID);
-            otherScore.text = Utils.FormatNumbers(hiscoreData.all[0].score);
+            hiscore = hiscoreData.all[0].score;
+            otherScore.text = Utils.FormatNumbers((int)hiscore);
             otherName.text = hiscoreData.all[0].username.ToUpper();
         }
     }

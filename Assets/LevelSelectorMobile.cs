@@ -7,33 +7,19 @@ using System.Linq;
 
 public class LevelSelectorMobile : MonoBehaviour
 {
-    public Text title;
-
-    public MissionButton diskette1;
-    public MissionButton diskette2;
-    public MissionButton diskette3;
-
     VideogameData videogameData;
-    public int videgameID;
-
-    bool canInteract;
-    float timePassed;
 
     public MissionSelectorMobile missionSelectorMobile;
 
     void Start()
     {
-        missionSelectorMobile = GetComponent<MissionSelectorMobile>();
+        Data.Instance.events.OnMadRollersSFXStatus(false);
+        missionSelectorMobile.Init();
         Data.Instance.multiplayerData.ResetAll();
-        Data.Instance.events.OnResetScores();
+        Data.Instance.events.OnResetMultiplayerData();
 
-      //  title.text = "SELECT A VIDEOGAME TO DESTROY";
-        videgameID = Data.Instance.videogamesData.actualID;
         Data.Instance.voicesManager.PlaySpecificClipFromList(Data.Instance.voicesManager.UIItems, 0);
 
-        InitButton(diskette1, 0);
-        InitButton(diskette2, 1);
-        InitButton(diskette3, 2);
 
         switch (UserData.Instance.playerID)
         {
@@ -50,28 +36,6 @@ public class LevelSelectorMobile : MonoBehaviour
                 Data.Instance.multiplayerData.player4 = true;
                 break;
         }
-    }
-    void InitButton(MissionButton diskette, int id)
-    {
-        VideogameData data = Data.Instance.videogamesData.all[id];
-        diskette.Init(data);
-        diskette.SetMobile(this);
-        diskette.GetComponent<MissionSelector>().LoadVideoGameData(id);    
-        diskette.GetHiscore();
-    }
-    public void OnMissionButtonClicked(MissionButton button)
-    {
-        if (diskette1 != button)
-            diskette1.SetMenuButtonOff();
-        if (diskette2 != button)
-            diskette2.SetMenuButtonOff();
-        if (diskette3 != button)
-            diskette3.SetMenuButtonOff();
-    }
-    public void Back()
-    {
-        Data.Instance.videogamesData.actualID = videgameID;
-        Data.Instance.LoadLevel("MainMenu");
     }
     public void Go()
     {

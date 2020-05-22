@@ -17,6 +17,7 @@ public class SummaryMobile : MonoBehaviour
 
     public Text hiscoreScoreField;
     public Text hiscoreNameField;
+    public Text puestoField;
 
     public GameObject hiscoreOtherPanel;
 
@@ -27,13 +28,16 @@ public class SummaryMobile : MonoBehaviour
     int videoGameID;
     int score;
 
+
     void Start()
     {
+        puestoField.text = "";
         panel.SetActive(false);
     }
     
     public void Init()
     {
+        Data.Instance.events.OnMadRollersSFXStatus(false);
         hiscoreOtherPanel.SetActive(false);
         Data.Instance.events.RalentaTo(0, 0.025f);
         panel.SetActive(true);
@@ -46,15 +50,25 @@ public class SummaryMobile : MonoBehaviour
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
+        UserData.Instance.hiscoresByMissions.CheckToAddNewHiscore(UserData.Instance.userID, score, videoGameID, missionID);
         hiscores.Init(videoGameID, missionID, MyScoreLoaded);
         avatarImage.Init(UserData.Instance.userID);
         usernameField.text = UserData.Instance.username;
+
+        
         if (hiscoreData == null || hiscoreData.all.Count < 1)
         {
             Debug.Log("No ranking yet for videoGameID " + videoGameID + ", mission " + missionID);
         }
         else
         {
+            int puesto = 1;
+            foreach (HiscoresByMissions.MissionHiscoreUserData data in hiscoreData.all)
+            {
+                if (data.userID == UserData.Instance.userID)
+                    puestoField.text = "PUESTO " + puesto;
+                puesto ++;
+            }
             hiscoreOtherPanel.SetActive(true);
             float p = (float)score / (float)hiscoreData.all[0].score;
             progressBar.gameObject.SetActive(true);
@@ -71,19 +85,24 @@ public class SummaryMobile : MonoBehaviour
         Data.Instance.events.FreezeCharacters(true);
         Data.Instance.GetComponent<MusicManager>().stopAllSounds();
         Data.Instance.isReplay = false;
-        Game.Instance.ResetLevel();
+        // Game.Instance.ResetLevel();
+        Data.Instance.events.OnResetLevel();
+        Data.Instance.LoadLevel("LevelSelectorMobile");
         Data.Instance.events.ForceFrameRate(1);
     }
     public void Retry()
     {
         Data.Instance.events.OnResetScores();
         Data.Instance.events.ForceFrameRate(1);
-      //  Data.Instance.missions.MissionActiveID--;
+        Data.Instance.missions.MissionActiveID--;
+        if (Data.Instance.missions.MissionActiveID < 0)
+            Data.Instance.missions.MissionActiveID = 0;
         Game.Instance.Continue();
     }
-    public void Exit()
-    {
-        Data.Instance.events.ForceFrameRate(1);
-        Game.Instance.GotoMainMobile();
-    }
+    //public void Exit()
+    //{
+    //    Data.Instance.events.OnResetScores();
+    //    Data.Instance.events.ForceFrameRate(1);
+    //    Game.Instance.GotoMainMobile();
+    //}
 }

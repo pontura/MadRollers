@@ -64,9 +64,12 @@ public class LoadingAsset : MonoBehaviour {
     {
         if (isOn)
         {
-            hiscorePanel.SetActive(true);
-            avatarThumb.Init(data.all[0].userID);
-            avatarName.text = data.all[0].username.ToUpper();
+            if (data != null)
+            {
+                hiscorePanel.SetActive(true);
+                avatarThumb.Init(data.all[0].userID);
+                avatarName.text = data.all[0].username.ToUpper();
+            }
             StartCoroutine(LoadingRoutineAndroid());
         }
     }

@@ -206,7 +206,7 @@ public class MainHiscores : MonoBehaviour {
     {
 		Data.Instance.events.RefreshHiscores ();
 		Data.Instance.missions.MissionActiveID = 0;
-		Data.Instance.events.OnResetScores();
+		Data.Instance.events.OnResetMultiplayerData();
 		Data.Instance.events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("MainMenu");
     }

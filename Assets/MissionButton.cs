@@ -54,7 +54,7 @@ public class MissionButton : MonoBehaviour {
         Data.Instance.videogamesData.actualID = videogameData.id;
         Data.Instance.missions.MissionActiveID = Data.Instance.missions.GetMissionsByVideoGame(videogameData.id).missionUnblockedID;
         Invoke("DelayedClick", 1);
-        levelSelectorMobile.OnMissionButtonClicked(this);
+       // levelSelectorMobile.OnMissionButtonClicked(this);
     }
 
 	public void SetOn()

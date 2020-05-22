@@ -54,7 +54,7 @@ public class LevelSelector : MonoBehaviour {
         
 
         Data.Instance.multiplayerData.ResetAll ();
-		Data.Instance.events.OnResetScores ();
+		Data.Instance.events.OnResetMultiplayerData();
 
         title.text = "CAMBIAR JUEGO";
        // title.text = "SELECT GAME";

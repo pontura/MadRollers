@@ -67,7 +67,8 @@ public class UserUIRegistrationPanel : MonoBehaviour
             go.SetActive(true);
 
         Texture2D screenshotTexture = new Texture2D(Screen.width, Screen.height);
-        UserData.Instance.sprite = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0, 0));
+        //Sprite s = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0, 0));
+        UserData.Instance.avatarImages.SetImageFor(UserData.Instance.userID, screenshotTexture);
         avatarThumb.OnLoaded(screenshotTexture);
 
         ShowEditPanel();

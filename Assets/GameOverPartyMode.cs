@@ -68,7 +68,7 @@ public class GameOverPartyMode : MonoBehaviour {
     void OnJoystickClick()
 	{
 		canClick = false;
-		Data.Instance.events.OnResetScores ();
+		Data.Instance.events.OnResetMultiplayerData();
 		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Game.Instance.LoadGame();

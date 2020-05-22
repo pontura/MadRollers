@@ -52,7 +52,36 @@ public class HiscoresByMissions : MonoBehaviour
     {
         Data.Instance.multiplayerData.score = 0;
     }
-    //retorna List<HiscoresByMissions.MissionHiscoreData>
+    public void CheckToAddNewHiscore(string userID, int score, int videogame, int mission)
+    {
+        MissionHiscoreData md = IfAlreadyLoaded(videogame, mission);
+        if (md == null) return;
+        int id = 0;
+        int addNewHiscoreID = 0;
+        foreach (MissionHiscoreUserData mhd in md.all)
+        {
+            if (mhd.userID == userID)
+                return; //ya tenias un hiscore mayor
+            if (mhd.score < score && addNewHiscoreID == 0)
+                addNewHiscoreID = id;
+            id++;
+        }
+        if (addNewHiscoreID != 0)
+        {
+            foreach (MissionHiscoreData md2 in all)
+            {
+                if (md2.videogame == videogame && md2.mission == mission)
+                {
+                    MissionHiscoreUserData mhd = new MissionHiscoreUserData();
+                    mhd.userID = userID;
+                    mhd.score = score;
+                    mhd.videogame = videogame;
+                    mhd.mission = mission;
+                    md.all.Insert(addNewHiscoreID, mhd);
+                }
+            }
+        }
+    }
     public void LoadHiscore(int videogame, int mission, System.Action<MissionHiscoreData> OnDone)
     {
         MissionHiscoreData md = IfAlreadyLoaded(videogame, mission);
