@@ -63,7 +63,7 @@ public class ExtraAreasManager : MonoBehaviour
     public void Init()
     {
         missions = GetComponent<Missions>();
-        Mission_Xtras = missions.LoadDataFromMission("survival", "boyland_extras").data[0];
+        Mission_Xtras = MissionsManager.Instance.LoadDataFromMission("survival", "boyland_extras").data[0];
        
     }    
     public void SetExtraArea()

@@ -54,13 +54,13 @@ public class CharacterControls : MonoBehaviour {
         if (characterBehavior.player.charactersManager == null || Game.Instance.state == Game.states.GAME_OVER)
             return;
 
-        if (Data.Instance.isAndroid)
+#if UNITY_ANDROID && !UNITY_EDITOR
             UpdateAccelerometer();
-        else
+#else
             UpdateStandalone();
+#endif
 
-        
-		characterBehavior.UpdateByController(rotationY); 
+        characterBehavior.UpdateByController(rotationY); 
 	}
   
 	void Jump()

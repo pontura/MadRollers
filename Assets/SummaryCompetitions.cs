@@ -61,7 +61,7 @@ public class SummaryCompetitions : MonoBehaviour {
 //		}
 		scoreField.text = "GAME OVER";
 		Invoke ("TimeOver", 35);
-		int totalMissions = Data.Instance.missions.videogames[Data.Instance.videogamesData.actualID].missions.Count;
+		int totalMissions = MissionsManager.Instance.videogames[Data.Instance.videogamesData.actualID].missions.Count;
 		fillAmount = (float)missionActive / (float)totalMissions;
 		missionsField.text = "MISSION " + (missionActive+1).ToString() + "/" + totalMissions.ToString();
 	}

@@ -36,7 +36,7 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     void AddButtons(int videoGameID)
     {
-        List<Missions.MissionsData> missionData = Data.Instance.missions.videogames[videoGameID].missions; 
+        List < MissionsManager.MissionsData> missionData = MissionsManager.Instance.videogames[videoGameID].missions; 
         Transform container = null;
         switch(videoGameID)
         {
@@ -48,7 +48,7 @@ public class MissionSelectorMobile : MonoBehaviour
         
 
         int id = 0;
-        foreach (Missions.MissionsData data in missionData)
+        foreach (MissionsManager.MissionsData data in missionData)
         {
             MissionButtonMobile m = Instantiate(missionButton);
             m.transform.SetParent(container);

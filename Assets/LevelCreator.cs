@@ -55,7 +55,7 @@ public class LevelCreator : MonoBehaviour {
 				LoadMissionData (data);
 			}
 		} else {
-			foreach (MissionData.AreaSetData data in missions.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
+			foreach (MissionData.AreaSetData data in MissionsManager.Instance.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
 				LoadMissionData (data);
 			}
 		}
@@ -110,7 +110,7 @@ public class LevelCreator : MonoBehaviour {
 	}
 	public void UpdateMissions()
 	{
-		missions.LoadAll ();
+        MissionsManager.Instance.LoadAll ();
 	}
 	public void Clear()
 	{

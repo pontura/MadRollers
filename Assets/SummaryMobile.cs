@@ -36,17 +36,23 @@ public class SummaryMobile : MonoBehaviour
     }
     
     public void Init()
+    {       
+        StartCoroutine(InitCoroutine());
+    }
+    IEnumerator InitCoroutine()
     {
         Data.Instance.events.OnMadRollersSFXStatus(false);
         hiscoreOtherPanel.SetActive(false);
         Data.Instance.events.RalentaTo(0, 0.025f);
+        yield return new WaitForSecondsRealtime(1);
+        Data.Instance.events.RalentaTo(0, 0.025f);
         panel.SetActive(true);
-        missionID = Data.Instance.missions.MissionActiveID-1;
-        titleField.text = "MISION " + (missionID+1);
+        missionID = Data.Instance.missions.MissionActiveID - 1;
+        titleField.text = "MISION " + (missionID + 1);
         score = Data.Instance.multiplayerData.GetTotalScore();
         scoreField.text = Utils.FormatNumbers(score);
         videoGameID = Data.Instance.videogamesData.actualID;
-        UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);        
+        UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {

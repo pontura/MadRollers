@@ -28,9 +28,9 @@ public class LevelCreatorUI : Editor {
 		string[] videogameData;
 		int vid = _videogameIndex;
 
-		videogameData = new string[levelCreator.missions.videogames[vid].missions.Count];
+		videogameData = new string[MissionsManager.Instance.videogames[vid].missions.Count];
 		int id = 0;
-		foreach (Missions.MissionsData c in levelCreator.missions.videogames[vid].missions) {
+		foreach (MissionsManager.MissionsData c in MissionsManager.Instance.videogames[vid].missions) {
             MissionData md = c.data[0];
             
             videogameData [id] = id + "-" + md.title + " - " + md.jsonName;
@@ -40,7 +40,7 @@ public class LevelCreatorUI : Editor {
 		levelCreator.missionID = _choiceIndex;
 		levelCreator.videoGameID = _videogameIndex+1;
 
-        levelCreator.missionAsset = Resources.Load("missions/" + levelCreator.missions.videogames[vid].missions[_choiceIndex].data[0].jsonName) as TextAsset;
+        levelCreator.missionAsset = Resources.Load("missions/" + MissionsManager.Instance.videogames[vid].missions[_choiceIndex].data[0].jsonName) as TextAsset;
 
 
         EditorUtility.SetDirty (target);

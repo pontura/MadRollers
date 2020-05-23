@@ -126,16 +126,9 @@ public class Level : MonoBehaviour {
 	public void Complete()
 	{
 		charactersManager.OnLevelComplete ();
-		showStartArea = true;
-
-//		if (!missions.StartNext ())
-//			return;
-		
+		showStartArea = true;		
 		data.events.MissionComplete ();
 		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
-//		areasManager = missions.getAreasManager();
-//		areasManager.Init(0);
-//		data.setMission(missions.MissionActiveID);   
 		SetNewVideogameSettings ();
 	}
 	void SetNewVideogameSettings()

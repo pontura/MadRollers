@@ -1526,20 +1526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasReachedBoss: 0
-  _all: {fileID: 4900000, guid: 365998f28398e2045983c718d25476f5, type: 3}
-  all:
-    missionsVideoGame1: []
-    missionsVideoGame2: []
-    missionsVideoGame3: []
   extraAreasManager: {fileID: 5707425037206539628}
   times_trying_same_mission: 0
-  videogames:
-  - missions: []
-    missionUnblockedID: 0
-  - missions: []
-    missionUnblockedID: 0
-  - missions: []
-    missionUnblockedID: 0
   MissionActiveID: 0
   MissionActive:
     jsonName: 
@@ -1578,7 +1566,7 @@ MonoBehaviour:
   switchPlayerInputs: 0
   timeToRespawn: 7
   isReplay: 0
-  RESET: 0
+  RESET: 1
   competitionID: 1
   volume: 0
   scoreForArcade: 0
@@ -1600,7 +1588,7 @@ MonoBehaviour:
   loadingAsset: {fileID: 114694154105171079}
   FORCE_LOCAL_SCORE: 0
   singlePlayer: 0
-  isAndroid: 0
+  isAndroid: 1
   useRetroPixelPro: 1
   useOptimizedSettings: 0
   playMode: 3
@@ -7581,6 +7569,75 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
+--- !u!1001 &1820813009
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5215719068033355567, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_Name
+      value: MissionsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.0718613
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.500671
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 203.48521
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8287d6a01aa1c1342b4987321a709be8, type: 3}
 --- !u!224 &1827105209
 RectTransform:
   m_ObjectHideFlags: 0

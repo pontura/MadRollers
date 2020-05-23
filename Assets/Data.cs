@@ -89,7 +89,10 @@ public class Data : MonoBehaviour {
         JOYSTICK
     }
     public bool hasContinueOnce;
-
+    public static string ServerAssetsUrl()
+    {
+        return "www.madrollers.com/bundles/";
+    }
     public static Data Instance
     {
         get

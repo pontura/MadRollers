@@ -14,7 +14,7 @@ public class MissionButtonMobile : MonoBehaviour
     public Image logo;
     public Image floppyCover;
 
-    public void Init(MissionSelectorMobile missionSelectorMobile, int videoGameID, int missionID, Missions.MissionsData data)
+    public void Init(MissionSelectorMobile missionSelectorMobile, int videoGameID, int missionID, MissionsManager.MissionsData data)
     {
         VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
         logo.sprite = videogameData.logo;
@@ -24,12 +24,12 @@ public class MissionButtonMobile : MonoBehaviour
         this.videoGameID = videoGameID;
         this.missionID = missionID;
 
-        int unblockedID = Data.Instance.missions.videogames[videoGameID].missionUnblockedID;
+        int unblockedID = MissionsManager.Instance.videogames[videoGameID].missionUnblockedID;
 
         //bloquea todo si no jugaste:
         if(videoGameID>0)
         {
-            int level1blockedID = Data.Instance.missions.videogames[0].missionUnblockedID;
+            int level1blockedID = MissionsManager.Instance.videogames[0].missionUnblockedID;
             if (level1blockedID == 0)
                 unblockedID = -1;
         }
