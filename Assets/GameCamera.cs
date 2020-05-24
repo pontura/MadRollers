@@ -95,9 +95,9 @@ public class GameCamera : MonoBehaviour
 
         if (Data.Instance.isAndroid)
         {
-            maxCamSensor = 8.5f;
+            maxCamSensor = 8f;
             transform.localPosition = new Vector3(0, 0, 0);
-            cameraOrientationVector.z = -0.4f;
+            cameraOrientationVector.z = -0.2f;
             cameraOrientationVector.y = 6.4f;
         }
 

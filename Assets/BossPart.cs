@@ -33,7 +33,7 @@ public class BossPart : MonoBehaviour {
 		Utils.RemoveAllChildsIn (transform);
 
 		if (asset == null && bossAssetPath != null) {
-            asset = Instantiate(Resources.Load("bosses/" + bossAssetPath, typeof(GameObject))) as GameObject;
+            asset = Instantiate(Resources.Load("bosses/assets/" + bossAssetPath, typeof(GameObject))) as GameObject;
             asset.transform.SetParent (transform);
             asset.transform.localScale = Vector3.one;
             asset.transform.localEulerAngles = Vector3.zero;
