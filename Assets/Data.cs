@@ -134,8 +134,19 @@ public class Data : MonoBehaviour {
             return;
         }
 		DontDestroyOnLoad(this);
-        
-		if (LevelDataDebug.Instance) {
+
+        events = GetComponent<Events>();
+        missions = GetComponent<Missions>();
+        multiplayerData = GetComponent<MultiplayerData>();
+        videogamesData = GetComponent<VideogamesData>();
+        inputSaver = GetComponent<InputSaver>();
+        inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay>();
+        versusManager = GetComponent<VersusManager>();
+        handWriting = GetComponent<HandWriting>();
+        texts = GetComponent<Texts>();
+
+
+        if (LevelDataDebug.Instance) {
 			playMode = PlayModes.STORYMODE;
 			DEBUG = LevelDataDebug.Instance.isDebbug;
 			this.isArcadeMultiplayer = LevelDataDebug.Instance.isArcadeMultiplayer;
@@ -144,18 +155,10 @@ public class Data : MonoBehaviour {
             this.forceVideogameID = LevelDataDebug.Instance.videogameID;
 			this.forceMissionID = LevelDataDebug.Instance.missionID;
 			this.testAreaName =  LevelDataDebug.Instance.testArea;
+            if (isAndroid)
+                multiplayerData.player1 = multiplayerData.player1_played = true;
 		}
 
-        events = GetComponent<Events>();
-        missions = GetComponent<Missions>();
-        multiplayerData = GetComponent<MultiplayerData>();
-		videogamesData = GetComponent<VideogamesData> ();
-		inputSaver = GetComponent<InputSaver> ();
-		inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay> ();
-		versusManager = GetComponent<VersusManager> ();
-		handWriting = GetComponent<HandWriting> ();
-		texts = GetComponent<Texts> ();
-        		
        // GetComponent<Tracker>().Init();
         GetComponent<CurvedWorldManager>().Init();
 

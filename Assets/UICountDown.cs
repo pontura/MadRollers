@@ -13,8 +13,8 @@ public class UICountDown : MonoBehaviour {
 
 	void Start () {	
 		panel.SetActive (false);
-        if (Data.Instance.isAndroid)
-            Invoke("Done", 0.6f);
+        //if (Data.Instance.isAndroid)
+        //    Invoke("Done", 0.6f);
 		if (Data.Instance.isReplay)
 			return;
 		
@@ -39,7 +39,7 @@ public class UICountDown : MonoBehaviour {
 		countDownField.text = countDown.ToString ();
 		panel.GetComponent<Animation>().Play("logo");
 		if (countDown <= 0) {
-            if(!Data.Instance.isAndroid)
+           // if(!Data.Instance.isAndroid)
                 Done();
             return;
 		}

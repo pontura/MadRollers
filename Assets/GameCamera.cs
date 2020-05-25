@@ -81,30 +81,36 @@ public class GameCamera : MonoBehaviour
             pixelSize = 1;
         }        	
 
-		charactersManager = Game.Instance.GetComponent<CharactersManager>();  
-
-		_Y_correction = 2;
-		if (!Data.Instance.isReplay) {
-            
-        } else {
-            cam.sensorSize = new Vector2(18, cam.sensorSize.y);
-            state = states.START;
-            transform.localPosition = new Vector3(0, 2, -1.5f);
-            newPos.y = 0;
-        }
+		charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
         if (Data.Instance.isAndroid)
         {
-            maxCamSensor = 8f;
+            maxCamSensor = 9;
             transform.localPosition = new Vector3(0, 0, 0);
-            cameraOrientationVector.z = -0.2f;
+            cameraOrientationVector.z = -0.4f;
             cameraOrientationVector.y = 6.4f;
         }
 
-        Vector3 p = cam.transform.localPosition;
-        p.z = -2.4f;
-        p.y = 0.2f;
-        cam.transform.localPosition = p;
+        _Y_correction = 2;
+		if (Data.Instance.isReplay) {
+            cam.sensorSize = new Vector2(maxCamSensor, cam.sensorSize.y);
+            state = states.START;
+            transform.localPosition = new Vector3(0, 2, -1.5f);
+            cam.transform.localPosition = Vector3.zero;
+            newPos.y = 0;
+        }
+        else
+        {
+            cam.sensorSize = new Vector2(15, cam.sensorSize.y);
+            Vector3 p = cam.transform.localPosition;
+            p.z = -2.4f;
+            p.y = 0.2f;
+            cam.transform.localPosition = p;            
+        }
+
+       
+
+        
 
         flow_target = new GameObject();
         flow_target.transform.SetParent(transform.parent);
@@ -214,6 +220,7 @@ public class GameCamera : MonoBehaviour
 	{
         if (!started)
             return;
+        print(cam.sensorSize.x + "    " + maxCamSensor);
         if (cam.sensorSize.x < maxCamSensor)
         {
             float cms = cam.sensorSize.x;

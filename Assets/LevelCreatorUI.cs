@@ -19,18 +19,20 @@ public class LevelCreatorUI : Editor {
 
 
     public override void OnInspectorGUI()
-	{
-		base.OnInspectorGUI ();
-		LevelCreator levelCreator = (LevelCreator)target;
+	{      
+		base.OnInspectorGUI ();       
+
+        LevelCreator levelCreator = (LevelCreator)target;
+
         _videogameIndex = levelCreator.videoGameID - 1;
 		_choiceIndex = levelCreator.missionID;
 
 		string[] videogameData;
 		int vid = _videogameIndex;
 
-		videogameData = new string[MissionsManager.Instance.videogames[vid].missions.Count];
+		videogameData = new string[levelCreator.missionsManager.videogames[vid].missions.Count];
 		int id = 0;
-		foreach (MissionsManager.MissionsData c in MissionsManager.Instance.videogames[vid].missions) {
+		foreach (MissionsManager.MissionsData c in levelCreator.missionsManager.videogames[vid].missions) {
             MissionData md = c.data[0];
             
             videogameData [id] = id + "-" + md.title + " - " + md.jsonName;
@@ -40,7 +42,7 @@ public class LevelCreatorUI : Editor {
 		levelCreator.missionID = _choiceIndex;
 		levelCreator.videoGameID = _videogameIndex+1;
 
-        levelCreator.missionAsset = Resources.Load("missions/" + MissionsManager.Instance.videogames[vid].missions[_choiceIndex].data[0].jsonName) as TextAsset;
+        levelCreator.missionAsset = Resources.Load("missions/" + levelCreator.missionsManager.videogames[vid].missions[_choiceIndex].data[0].jsonName) as TextAsset;
 
 
         EditorUtility.SetDirty (target);

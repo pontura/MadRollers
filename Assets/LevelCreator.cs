@@ -20,8 +20,9 @@ public class LevelCreator : MonoBehaviour {
 	public AreaCreator areaCreator;
     public TextAsset missionAsset;
     public TextAsset area;
+    public MissionsManager missionsManager;
 
-	float totalDistance;
+    float totalDistance;
 
 	void Start () {
 		if (Debbug) {
@@ -34,8 +35,8 @@ public class LevelCreator : MonoBehaviour {
             if (area != null && LevelDataDebug.Instance.playMode != Data.PlayModes.SURVIVAL)
 				LevelDataDebug.Instance.testArea = area.name;
 		}
-		Application.LoadLevel("00_Loading");
-	}
+		Application.LoadLevel("00_Loading");        
+    }
 	public void LoadArea()
 	{		
 		Clear ();
@@ -55,7 +56,7 @@ public class LevelCreator : MonoBehaviour {
 				LoadMissionData (data);
 			}
 		} else {
-			foreach (MissionData.AreaSetData data in MissionsManager.Instance.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
+			foreach (MissionData.AreaSetData data in missionsManager.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
 				LoadMissionData (data);
 			}
 		}

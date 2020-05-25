@@ -33,7 +33,7 @@ public class Missions : MonoBehaviour {
 
     public void Init()
     {
-        if (Data.Instance.isAndroid)
+        if (Data.Instance.isAndroid && Data.Instance.isReplay)
             offset -= 40;
 
         videogamesData = GetComponent<VideogamesData> ();
@@ -86,14 +86,14 @@ public class Missions : MonoBehaviour {
 		this.level = level;
 		areasLength = -4;
 		StartNewMission ();
-        if (Data.Instance.isReplay || Data.Instance.isAndroid)
+        if (Data.Instance.isReplay && Data.Instance.isAndroid)
         {
             AddAreaByName("continue_Multiplayer");
         }
         else {
-            //if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-			//	ShuffleMissions ();
-			AddAreaByName ("start_Multiplayer");
+          //if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+		//	ShuffleMissions ();
+		AddAreaByName ("start_Multiplayer");
 		} 
 	}
 	void ShuffleMissions()
@@ -179,7 +179,7 @@ public class Missions : MonoBehaviour {
 		}
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
-		if (MissionActiveID == 0)
+		if (MissionActiveID == 0 && videogamesData.actualID == 0)
 			CheckTutorial (distance);
 	}
     

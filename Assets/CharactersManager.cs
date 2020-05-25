@@ -95,7 +95,7 @@ public class CharactersManager : MonoBehaviour {
 		Vector3 pos;
 		float _y = 4;
 
-		if (Data.Instance.isReplay || isAndroid)
+		if (Data.Instance.isReplay)// || isAndroid)
 			_y = 30;
 		else
 			canStartPlayers = true;
@@ -258,9 +258,10 @@ public class CharactersManager : MonoBehaviour {
 	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
 	{		
 		float _x;
-        if (isAndroid)
-            _x = 0;
-        else if (Data.Instance.isReplay)
+        //if (isAndroid)
+        //    _x = 0;
+        //else 
+        if (Data.Instance.isReplay)
 			_x = ((float)positionID * separationOnReplay)  - (((((float)totalCharacters-1))/2)*separationOnReplay);
 		else
 			_x = (separationX * positionID+1) - ((separationX*2)- separationX/2);

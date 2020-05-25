@@ -5,23 +5,29 @@ using UnityEngine;
 public class AutomatasManager : MonoBehaviour
 {
     CharactersManager charactersManager;
-    int startingInLevel = 5;
+    int startingInLevel = 8;
+
     void Start()
     {
         charactersManager = Game.Instance.level.charactersManager;
-        Invoke("CheckToAdd", 5);
+        Invoke("CheckToAdd", 8);
+        if (Data.Instance.videogamesData.actualID == 2)
+            startingInLevel = 3;
+        if (Data.Instance.videogamesData.actualID == 3)
+            startingInLevel = 1;
     }
     void CheckToAdd()
     {
+        int timeToCheck = 3;
         if(Game.Instance.state == Game.states.GAME_OVER)
             return;
-        Invoke("CheckToAdd", 3);
+        
         int missionID = Data.Instance.missions.MissionActiveID;
 
-        if (missionID <= 2)
+        if (missionID <= startingInLevel)
             return;
 
-        int totalAutomatas = missionID - startingInLevel;
+        int totalAutomatas = missionID - (startingInLevel/3);
         if (totalAutomatas < 1)
             totalAutomatas = 1;
         if (totalAutomatas > 4)
@@ -32,13 +38,21 @@ public class AutomatasManager : MonoBehaviour
             charactersInSceneID.Add(cb.player.id);
 
         if (Random.Range(0, 15) < totalAutomatas + 1)
-            return;
-        int rand = Random.Range(1, totalAutomatas);
-        foreach (int i in charactersInSceneID)
-            if (i == rand)
-                return;
+        {
+            bool characterExists = false;
+            int rand = Random.Range(1, 4);
+            foreach (int i in charactersInSceneID)
+                if (i == rand)
+                    characterExists = true;
+            if (!characterExists)
+            {
+                AddAutomata(rand);
+                timeToCheck += 3;
+            }
+        }
 
-        AddAutomata(rand);
+        
+        Invoke("CheckToAdd", timeToCheck);
         
     }
     void AddAutomata(int avatarID)
