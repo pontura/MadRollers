@@ -53,6 +53,7 @@ public class LoadingAsset : MonoBehaviour {
             }
             else
             {
+                
                 horizontal.SetActive(true);
                 vertical.SetActive(false);
                 logo.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
@@ -103,7 +104,7 @@ public class LoadingAsset : MonoBehaviour {
 			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
 		}
 		yield return null;
-	}
+    }
 
     IEnumerator LoadingRoutineAndroid()
     {

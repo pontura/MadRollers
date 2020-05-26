@@ -64,6 +64,7 @@ public class AvatarImages : MonoBehaviour
         yield return request.SendWebRequest();
         if (request.isNetworkError || request.isHttpError)
         {
+            if(OnLoaded != null)
             OnLoaded(defaultTexture);
         } 
         else

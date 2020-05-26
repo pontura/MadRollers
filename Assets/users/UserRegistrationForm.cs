@@ -64,15 +64,13 @@ public class UserRegistrationForm : MonoBehaviour
     public void SavePhoto()
     {
        
-        string imagePath = UserData.Instance.path;
-
         if (UserData.Instance.userID == "")
         {
             Debug.LogError("NO EXISTE EL USUARIO");
             return;
         }
 
-        StartCoroutine(UploadFileCo(imagePath + UserData.Instance.userID + ".png", userData.URL + userData.imageURLUploader));
+        StartCoroutine(UploadFileCo(UserData.Instance.path + UserData.Instance.userID + ".png", userData.URL + userData.imageURLUploader));
     }
     IEnumerator SendData(string username)
     {

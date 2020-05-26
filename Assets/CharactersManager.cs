@@ -331,7 +331,7 @@ public class CharactersManager : MonoBehaviour {
     {
         ///////retomar
         int totalCharacters = getTotalCharacters();
-        if (totalCharacters > 1)
+        if (totalCharacters > 1 && !isAndroid)
         {
             Vector3 normalPosition = Vector3.zero;
             totalCharacters = 0;

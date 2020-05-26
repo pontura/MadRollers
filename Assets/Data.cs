@@ -26,8 +26,7 @@ public class Data : MonoBehaviour {
 	public bool RESET;
 
     public int competitionID = 1;
-
-    public float volume;
+    
     public int scoreForArcade;
 
 	public bool webcamOff;
@@ -106,7 +105,7 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
-        //Application.targetFrameRate = 60;
+        Application.targetFrameRate = 60;
 
 		if (RESET)
 			PlayerPrefs.DeleteAll ();
@@ -163,8 +162,6 @@ public class Data : MonoBehaviour {
         GetComponent<CurvedWorldManager>().Init();
 
         voicesManager.Init();
-
-        events.SetVolume += SetVolume;
 	}
 	void Start()
 	{
@@ -175,10 +172,6 @@ public class Data : MonoBehaviour {
         //GetComponent<PhotosManager>().LoadPhotos();
         inputManager = InputManager.instance;
 
-    }
-    void SetVolume(float vol)
-    {
-        volume = vol;
     }
 	public void setMission(int num)
 	{

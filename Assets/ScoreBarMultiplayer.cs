@@ -26,7 +26,8 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
 		scoreAdviseNum.text = "";
 		scoreAdviseDesc.text = "";
-	}
+        myScoreFields.text = "00";
+    }
 
 	void OnDestroy()
 	{
@@ -47,7 +48,9 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 		totalAdded += score;
 		scoreAdviseNum.text = "+" + totalAdded.ToString ();
 		SetDesc(desc);
-	}
+        
+
+    }
 	void RefreshScore(){
 		myScoreFields.text = Utils.FormatNumbers(  Data.Instance.multiplayerData.score);
 	}

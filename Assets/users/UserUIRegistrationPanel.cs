@@ -60,20 +60,22 @@ public class UserUIRegistrationPanel : MonoBehaviour
         foreach (GameObject go in hideOnScreenshot)
             go.SetActive(false);
         userDataUI.webcamPhoto.TakeSnapshot(OnPhotoTaken);
+        StartCoroutine(SaveLocal(Screen.width, Screen.height));
+    }
+    public IEnumerator SaveLocal(int width, int height) {
+        yield return new WaitForSeconds(0.1F);
+        Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, true);
+        texture.ReadPixels(new Rect(0, 0, width, height), 0, 0); texture.Apply();
+        UserData.Instance.avatarImages.SetImageFor(UserData.Instance.userID, texture);
+        avatarThumb.OnLoaded(texture);
     }
     void OnPhotoTaken()
     {
         foreach (GameObject go in hideOnScreenshot)
             go.SetActive(true);
 
-        Texture2D screenshotTexture = new Texture2D(Screen.width, Screen.height);
-        //Sprite s = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0, 0));
-        UserData.Instance.avatarImages.SetImageFor(UserData.Instance.userID, screenshotTexture);
-        avatarThumb.OnLoaded(screenshotTexture);
-
         ShowEditPanel();
-        userDataUI.userRegistrationForm.SavePhoto();
-        
+        userDataUI.userRegistrationForm.SavePhoto();        
     }
     public void ClickedNewPhoto()
     {

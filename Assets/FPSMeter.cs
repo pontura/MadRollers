@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class FPSMeter : MonoBehaviour
-    {
-	public Text field;
+{
 	float deltaTime = 0.0f;
 
 	void Update()
@@ -14,9 +13,23 @@ public class FPSMeter : MonoBehaviour
 
 	void OnGUI()
 	{
-		float msec = deltaTime * 1000.0f;
-		float fps = 1.0f / deltaTime;
-		field.text = ((int)fps).ToString();
-		//field.text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
-	}
+		//float msec = deltaTime * 1000.0f;
+		//float fps = 1.0f / deltaTime;
+		//field.text = string.Format("{0:0.0} fps",fps);
+
+
+        int w = Screen.width, h = Screen.height;
+
+        GUIStyle style = new GUIStyle();
+
+        Rect rect = new Rect(0, 0, w, h * 2 / 100);
+        style.alignment = TextAnchor.UpperLeft;
+        style.fontSize = h * 10 / 100;
+        style.normal.textColor = Color.white;
+        float msec = deltaTime * 1000.0f;
+        float fps = 1.0f / deltaTime;
+        string text = fps.ToString();
+        GUI.Label(rect, text, style);
+
+    }
 }

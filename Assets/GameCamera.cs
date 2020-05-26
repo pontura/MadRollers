@@ -36,15 +36,38 @@ public class GameCamera : MonoBehaviour
 	public float pixelSize;
 	float pixel_speed_recovery = 16;
 	private GameObject flow_target;
-	float _Y_correction;
+	float _Y_correction = 1;
     float targetZOffset = 6.5f;
 
-    float camSensorSpeed = 1.25f;
-    float maxCamSensor = 18f;
+    float camSensorSpeed = 0.04f;
+    float sensorSizeValueInitial = 9;
+    float sensorSizeValue;
 
     private void Awake()
     {
+        sensorSizeValue = sensorSizeValueInitial;
         cam.enabled = false;
+        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
+        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        Data.Instance.events.OnChangeMood += OnChangeMood;
+        Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
+        //if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
+        //{
+        //    Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
+        //    Data.Instance.events.OnCameraZoomTo += OnCameraZoomTo;
+        //}
+        Data.Instance.events.OnGameOver += OnGameOver;
+    }
+    void OnDestroy()
+    {
+        StopAllCoroutines();
+        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
+        Data.Instance.events.OnChangeMood -= OnChangeMood;
+        Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
+        Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
+        Data.Instance.events.OnCameraZoomTo -= OnCameraZoomTo;
+        Data.Instance.events.OnGameOver -= OnGameOver;
     }
     Component CopyComponent(Component original, GameObject destination)
 	{
@@ -61,56 +84,33 @@ public class GameCamera : MonoBehaviour
 	{
         cam.enabled = true;
         fieldOfView = cam.fieldOfView;
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-		Data.Instance.events.OnChangeMood += OnChangeMood;
-		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
-        if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
-        {
-            Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
-            Data.Instance.events.OnCameraZoomTo += OnCameraZoomTo;
-        }
-		Data.Instance.events.OnGameOver += OnGameOver;
+        charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
-        //Data.Instance.events.OnGameStart += OnGameStart;
         if (Data.Instance.useRetroPixelPro)
         {
             Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
             retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
             retroPixelPro.dither = 0;
             pixelSize = 1;
-        }        	
-
-		charactersManager = Game.Instance.GetComponent<CharactersManager>();
+        }     		
 
         if (Data.Instance.isAndroid)
         {
-            maxCamSensor = 9;
-            transform.localPosition = new Vector3(0, 0, 0);
-            cameraOrientationVector.z = -0.4f;
-            cameraOrientationVector.y = 6.4f;
+            SetOrientation(Vector4.zero);
+            cam.sensorSize = new Vector2(25, cam.sensorSize.y);
         }
 
-        _Y_correction = 2;
 		if (Data.Instance.isReplay) {
-            cam.sensorSize = new Vector2(maxCamSensor, cam.sensorSize.y);
             state = states.START;
-            transform.localPosition = new Vector3(0, 2, -1.5f);
+            transform.localPosition = new Vector3(0, 10, 0);
             cam.transform.localPosition = Vector3.zero;
             newPos.y = 0;
         }
         else
         {
-            cam.sensorSize = new Vector2(15, cam.sensorSize.y);
-            Vector3 p = cam.transform.localPosition;
-            p.z = -2.4f;
-            p.y = 0.2f;
-            cam.transform.localPosition = p;            
+            cam.transform.localPosition = new Vector3(0, 0, -4);
+            cam.gameObject.transform.DOLocalMove(Vector3.zero, 3);
         }
-
-       
-
-        
 
         flow_target = new GameObject();
         flow_target.transform.SetParent(transform.parent);
@@ -118,17 +118,7 @@ public class GameCamera : MonoBehaviour
         flow_target.transform.localPosition = new Vector3(0, 5, targetZOffset);
         started = true;
     }
-    void OnDestroy()
-    {
-		StopAllCoroutines ();
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnChangeMood -= OnChangeMood;
-		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
-		Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
-		Data.Instance.events.OnCameraZoomTo -= OnCameraZoomTo;
-		Data.Instance.events.OnGameOver -= OnGameOver;
-    }
+   
 	void OnVersusTeamWon(int _team_id)
 	{
 		if (team_id == _team_id) {
@@ -137,6 +127,7 @@ public class GameCamera : MonoBehaviour
 	}
     void StartMultiplayerRace()
     {
+        sensorSizeValue = sensorSizeValueInitial;
         state = states.PLAYING;
         cam.gameObject.transform.DOLocalMove(Vector3.zero, 3);
     }
@@ -220,27 +211,21 @@ public class GameCamera : MonoBehaviour
 	{
         if (!started)
             return;
-        print(cam.sensorSize.x + "    " + maxCamSensor);
-        if (cam.sensorSize.x < maxCamSensor)
-        {
-            float cms = cam.sensorSize.x;
-            cms += camSensorSpeed * Time.deltaTime;
-            cam.sensorSize = new Vector2(cms, cam.sensorSize.y);
-        }
-        else
-        {
-            cam.sensorSize = new Vector2(maxCamSensor, cam.sensorSize.y);
-        }
-        if (state == states.SNAPPING_TO) { 
-			Vector3 dest = snapTargetPosition;
-			dest.y += 1.5f;
-            //dest.z -= 3f;
-            dest.z = transform.localPosition.z;
-            dest.x /= 2;
-			transform.localPosition = Vector3.Lerp (transform.localPosition, dest, 0.02f);
-			cam.transform.LookAt (snapTargetPosition);
-			return;	
-		}  else if (state == states.END)
+
+            float sensorSizeX = Mathf.Lerp(cam.sensorSize.x, sensorSizeValue, camSensorSpeed);  
+            cam.sensorSize = new Vector2(sensorSizeX, cam.sensorSize.y);
+
+  //      if (state == states.SNAPPING_TO) { 
+		//	Vector3 dest = snapTargetPosition;
+		//	dest.y += 1.5f;
+  //          //dest.z -= 3f;
+  //          dest.z = transform.localPosition.z;
+  //          dest.x /= 2;
+		//	transform.localPosition = Vector3.Lerp (transform.localPosition, dest, 0);
+		//	cam.transform.LookAt (snapTargetPosition);
+		//	return;	
+		//}  else 
+        if (state == states.END)
         {
             return;
         }
@@ -312,7 +297,9 @@ public class GameCamera : MonoBehaviour
 	public void SetOrientation(Vector4 orientation)
 	{
         orientation /= 6;
-        newCameraOrientationVector = cameraOrientationVector + new Vector3 (orientation.x, orientation.y, orientation.z);
+        sensorSizeValue = sensorSizeValueInitial - (orientation.z * 10);
+        Debug.Log("Change sensor value to: " + sensorSizeValue);
+        newCameraOrientationVector = cameraOrientationVector + new Vector3(orientation.x, orientation.y, 0); //, orientation.z);
 	}
     public void fallDown(int fallDownHeight)
     {

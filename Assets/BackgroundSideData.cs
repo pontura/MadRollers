@@ -17,9 +17,9 @@ public class BackgroundSideData : MonoBehaviour {
         if (hideOnLowRes == null)
             return;
 
-        //if (Data.Instance.useOptimizedSettings)
-        //    hideOnLowRes.SetActive(false);
-        //else
+        if (Data.Instance.useOptimizedSettings)
+            hideOnLowRes.SetActive(false);
+        else
             hideOnLowRes.SetActive(true);
     }
 }

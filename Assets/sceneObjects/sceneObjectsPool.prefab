@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 11400000}
   - component: {fileID: 114105150858126812}
-  - component: {fileID: 8871936790599035570}
   m_Layer: 0
   m_Name: sceneObjectsPool
   m_TagString: Untagged
@@ -158,8 +157,7 @@ MonoBehaviour:
   - Prefab: {fileID: 11400002, guid: 674e7db040bdce34e824a1471a3b7310, type: 3}
     Count: 12
   Scene: {fileID: 0}
-  pooledObjects_smallBlock: []
-  pooledObjects_extraSmallBlock: []
+  containerObject: {fileID: 0}
   pixelsPool: {fileID: 114105150858126812}
 --- !u!114 &114105150858126812
 MonoBehaviour:
@@ -176,15 +174,3 @@ MonoBehaviour:
   all: []
   pixelPart: {fileID: 114850630347085018, guid: 1491221883ace18468c8e639e3ad3212,
     type: 3}
---- !u!114 &8871936790599035570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2e87d7ec58bcdc4a95e5599f1fe5cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

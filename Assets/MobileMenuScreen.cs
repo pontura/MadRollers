@@ -18,4 +18,9 @@ public class MobileMenuScreen : MonoBehaviour
     {
         Data.Instance.LoadLevel("Credits");
     }
+    public void Debug()
+    {
+        FPSMeter fps = Data.Instance.GetComponent<FPSMeter>();
+        fps.enabled = !fps.enabled;
+    }
 }

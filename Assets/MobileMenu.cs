@@ -7,6 +7,7 @@ public class MobileMenu : MonoBehaviour
     public GameObject panel;
     public MobileMenuScreen mobileMenuScreen;
     public AvatarThumb avatarThumb;
+
     void Start()
     {
         if (!Data.Instance.isAndroid)

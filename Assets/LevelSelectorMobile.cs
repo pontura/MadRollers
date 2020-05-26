@@ -17,7 +17,7 @@ public class LevelSelectorMobile : MonoBehaviour
         missionSelectorMobile.Init();
         Data.Instance.multiplayerData.ResetAll();
         Data.Instance.events.OnResetMultiplayerData();
-
+        Data.Instance.isReplay = false;
         Data.Instance.voicesManager.PlaySpecificClipFromList(Data.Instance.voicesManager.UIItems, 0);
 
 

@@ -262,10 +262,12 @@ public class Level : MonoBehaviour {
 			if (position == Vector3.zero)
 				return;
 
-
-			SceneObject newSO = Instantiate (scoreSignal, position, Quaternion.identity) as SceneObject;
-			Game.Instance.sceneObjectsManager.AddSceneObject(newSO, position);
-			newSO.GetComponent<ScoreSignal> ().SetScore (playerID, score);
+            if (Data.Instance.useOptimizedSettings == false)
+            {
+                SceneObject newSO = Instantiate(scoreSignal, position, Quaternion.identity) as SceneObject;
+                Game.Instance.sceneObjectsManager.AddSceneObject(newSO, position);
+                newSO.GetComponent<ScoreSignal>().SetScore(playerID, score);
+            }
 		}
     }
 
