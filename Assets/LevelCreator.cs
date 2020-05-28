@@ -5,6 +5,7 @@ using System;
 using UnityEditor;
 public class LevelCreator : MonoBehaviour {
 
+    public MissionsManager missionsManager;
     public Data.PlayModes playMode;
     public bool playOnlyBosses;
     public bool isArcadeMultiplayer;
@@ -20,7 +21,7 @@ public class LevelCreator : MonoBehaviour {
 	public AreaCreator areaCreator;
     public TextAsset missionAsset;
     public TextAsset area;
-    public MissionsManager missionsManager;
+    
 
     float totalDistance;
 
