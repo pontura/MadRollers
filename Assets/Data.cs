@@ -63,7 +63,8 @@ public class Data : MonoBehaviour {
 	public VersusManager versusManager;
 
 	public LoadingAsset loadingAsset;
-   
+    public AssetsBundleLoader assetsBundleLoader ;
+
     public int FORCE_LOCAL_SCORE;
 
     public bool singlePlayer;
@@ -90,6 +91,7 @@ public class Data : MonoBehaviour {
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
     {
+       // return "https://gamedb.doublespicegames.com/assets/sss-dev/" :
         return "www.madrollers.com/bundles/";
     }
     public static Data Instance
@@ -143,6 +145,7 @@ public class Data : MonoBehaviour {
         versusManager = GetComponent<VersusManager>();
         handWriting = GetComponent<HandWriting>();
         texts = GetComponent<Texts>();
+        assetsBundleLoader = GetComponent<AssetsBundleLoader > ();
 
 
         if (LevelDataDebug.Instance) {

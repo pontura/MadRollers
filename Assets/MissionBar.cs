@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MissionBar : MonoBehaviour {
 
-	public Animator panel;
+	public GameObject bossSignal;
 	public ProgressBar progressBar;
 	public int totalHits;
 	//public float value;
@@ -20,7 +20,7 @@ public class MissionBar : MonoBehaviour {
 		videogameField.text = Data.Instance.videogamesData.GetActualVideogameData ().name;
 		missionField.text = Data.Instance.texts.genericTexts.mission + " " + (Data.Instance.missions.MissionActiveID+1);
 		bossTimer.SetActive (false);
-		panel.gameObject.SetActive (false);
+        bossSignal.gameObject.SetActive (false);
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
@@ -45,14 +45,14 @@ public class MissionBar : MonoBehaviour {
 	}
 	void StartMultiplayerRace()
 	{
-		panel.gameObject.SetActive (true);
-	}
+        bossSignal.gameObject.SetActive(false);
+    }
 	void OnGameOver(bool isTimeOut)
 	{
 		if (isTimeOut)
 			return;
-		panel.gameObject.SetActive (false);
-		CancelInvoke ();
+        bossSignal.gameObject.SetActive(false);
+        CancelInvoke ();
 	}
 	void OnBossSetNewAsset(string assetName)
 	{
@@ -93,8 +93,8 @@ public class MissionBar : MonoBehaviour {
 	void OnBossInit (int totalHits) {
 		progressBar.SetProgression (1);
 		this.totalHits = totalHits;
-		panel.Play ("MissionTopOpen");
-	}
+        bossSignal.gameObject.SetActive(true);
+    }
 	void OnBossSetTimer(int timer)
 	{
 		if (timer == 0)
@@ -118,8 +118,8 @@ public class MissionBar : MonoBehaviour {
 	{
 		progressBar.SetProgression (0);
 		if (!isOn) {
-			panel.Play ("MissionTopClose");
-			CancelInvoke ();
+            bossSignal.gameObject.SetActive(false);
+            CancelInvoke ();
 		}
 	}
 }

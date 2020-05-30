@@ -28,6 +28,7 @@ public class ObjectPool : MonoBehaviour
     private Dictionary<string, List<SceneObject>> pool = new Dictionary<string, List<SceneObject>>();
 
     public PixelsPool pixelsPool;
+    public BossesPool bossesPool;
 
     void Awake()
     {

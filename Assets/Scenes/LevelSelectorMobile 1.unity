@@ -1590,18 +1590,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ca93688cdb368840bab82fe798f430f, type: 3}
---- !u!114 &1053283166 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114333136468285758, guid: 3ca93688cdb368840bab82fe798f430f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1053283165}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d64d901c81ec84e8290d01896f574e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1053283167 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224452069359536498, guid: 3ca93688cdb368840bab82fe798f430f,
@@ -1624,7 +1612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1063876692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3253,16 +3241,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8522ae6cd2461594b9dcb93fc654fa58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1224076296}
+  videogame1_container: {fileID: 0}
+  videogame2_container: {fileID: 0}
+  videogame3_container: {fileID: 0}
+  canvas: {fileID: 0}
+  anim: {fileID: 0}
   title1: {fileID: 1123114000}
-  title2: {fileID: 1435591977}
-  hiscores: {fileID: 1591955071}
-  missionsContainer: {fileID: 648929873}
   missionButton: {fileID: 6576727609565090844, guid: 676362b2a57f20b45806dded0696dece,
     type: 3}
-  allMissions: []
-  playButton: {fileID: 2122486291}
-  hiscoresMobile: {fileID: 106174800}
+  disketteField: {fileID: 0}
+  disketteLogo: {fileID: 0}
+  disketteFloppy: {fileID: 0}
+  scrollSnap_level1: {fileID: 0}
+  scrollSnap_level2: {fileID: 0}
+  scrollSnap_level3: {fileID: 0}
 --- !u!114 &2109113960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3275,11 +3267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce421a8727a5dc41b0ececb3d116f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 1298226390}
-  diskette1: {fileID: 1053283166}
-  diskette2: {fileID: 1140432602}
-  diskette3: {fileID: 1492468680}
-  videgameID: 0
   missionSelectorMobile: {fileID: 2109113959}
 --- !u!1 &2109741124
 GameObject:

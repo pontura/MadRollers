@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreBarMultiplayer : MonoBehaviour {
+    Animation scoreSignalAnimation;
+    public GameObject scoreSignal;
+    public Text scoreSignalField;
 
-	public GameObject panel;
+    public GameObject panel;
 	public Text myScoreFields;
 	public Text scoreAdviseNum;
 	public Text scoreAdviseDesc;
@@ -21,7 +24,10 @@ public class ScoreBarMultiplayer : MonoBehaviour {
         if (Data.Instance.isAndroid)
             isAndroid = true;
 
-		RefreshScore ();
+        scoreSignalAnimation = scoreSignal.GetComponent<Animation>();
+        scoreSignal.SetActive(false);
+
+        RefreshScore ();
 		Data.Instance.events.OnDrawScore += OnDrawScore;
 
 		scoreAdviseNum.text = "";
@@ -42,7 +48,16 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 		RefreshScore ();
 
         if (isAndroid)
+        {
+            if (score < 0)
+                return;
+            scoreSignalAnimation[scoreSignalAnimation.clip.name].normalizedTime = 0;
+            scoreSignalAnimation.Play();
+            scoreSignal.SetActive(true);
+            scoreSignalField.text = "+" + score.ToString();
             return;
+        }
+            
 
 		ResetFieldsTimer = Time.time + delayToReset;
 		totalAdded += score;

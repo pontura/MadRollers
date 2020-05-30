@@ -13,7 +13,7 @@ public class BossPart : MonoBehaviour {
     public int lifes = 2;
     int totalLife;
     Vector3 initialScale;
-    ProgressBar progressBar;
+  //  ProgressBar progressBar;
     GameObject asset;
    // [HideInInspector]
     public Animation anim;
@@ -32,23 +32,26 @@ public class BossPart : MonoBehaviour {
         this.boss = _boss;
 		Utils.RemoveAllChildsIn (transform);
 
-		if (asset == null && bossAssetPath != null) {
+        if (asset == null && bossAssetPath != null) { 
+
+            //asset = ObjectPool.instance.bossesPool.GetAsset("apple");
             asset = Instantiate(Resources.Load("bosses/assets/" + bossAssetPath, typeof(GameObject))) as GameObject;
+
             asset.transform.SetParent (transform);
             asset.transform.localScale = Vector3.one;
             asset.transform.localEulerAngles = Vector3.zero;
             asset.transform.localPosition = Vector3.zero;
             anim = asset.GetComponentInChildren<Animation>();
         }
-        if (progressBar == null)
-        {
-            progressBar = (Instantiate(Resources.Load("ProgressBar", typeof(GameObject))) as GameObject).GetComponent<ProgressBar>();
-            progressBar.SetProgression(1);
-            progressBar.transform.SetParent(transform);
-            progressBar.transform.localScale = Vector3.one;
-            progressBar.transform.localEulerAngles = Vector3.zero;
-            progressBar.transform.localPosition = progressBarPosition;
-        }
+        //if (progressBar == null)
+        //{
+        //    progressBar = (Instantiate(Resources.Load("ProgressBar", typeof(GameObject))) as GameObject).GetComponent<ProgressBar>();
+        //    progressBar.SetProgression(1);
+        //    progressBar.transform.SetParent(transform);
+        //    progressBar.transform.localScale = Vector3.one;
+        //    progressBar.transform.localEulerAngles = Vector3.zero;
+        //    progressBar.transform.localPosition = progressBarPosition;
+        //}
     }
 	void Update()
 	{
@@ -70,7 +73,7 @@ public class BossPart : MonoBehaviour {
         lifes--;
         if (lifes > 0)
         {
-            progressBar.SetProgression((float)lifes / (float)totalLife);
+           // progressBar.SetProgression((float)lifes / (float)totalLife);
             HittedAnim();
             effect.SetColor(Color.green);
             Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(effect, transform.position);

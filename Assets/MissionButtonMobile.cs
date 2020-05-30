@@ -11,19 +11,35 @@ public class MissionButtonMobile : MonoBehaviour
     public bool isBlocked;
     public GameObject blocked;
     MissionSelectorMobile missionSelectorMobile;
+    HiscoresLevelSelectorUI hiscoresLevelSelectorUI;
     public Image logo;
     public Image floppyCover;
+    bool nevelLock;
 
     public void Init(MissionSelectorMobile missionSelectorMobile, int videoGameID, int missionID, MissionsManager.MissionsData data)
+    {
+        this.missionSelectorMobile = missionSelectorMobile;
+        this.videoGameID = videoGameID;
+        this.missionID = missionID;
+        nevelLock = false;
+        OnInit(data);
+    }
+    public void Init(HiscoresLevelSelectorUI hiscoresLevelSelectorUI, int videoGameID, int missionID, MissionsManager.MissionsData data)
+    {
+        this.hiscoresLevelSelectorUI = hiscoresLevelSelectorUI;
+        this.videoGameID = videoGameID;
+        this.missionID = missionID;
+        nevelLock = true;
+        OnInit(data);
+    }
+    public void OnInit(MissionsManager.MissionsData data)
     {
         VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
         logo.sprite = videogameData.logo;
         floppyCover.sprite = videogameData.floppyCover;
 
-        this.missionSelectorMobile = missionSelectorMobile;
-        this.videoGameID = videoGameID;
-        this.missionID = missionID;
-
+        
+       
         int unblockedID = MissionsManager.Instance.videogames[videoGameID].missionUnblockedID;
 
         //bloquea todo si no jugaste:
@@ -35,10 +51,10 @@ public class MissionButtonMobile : MonoBehaviour
         }
         //////////////////
         
-        if (missionID <= unblockedID)
+        if (missionID <= unblockedID || nevelLock)
         {
             isBlocked = false;
-            if (missionID == unblockedID)
+            if (missionID == unblockedID && !nevelLock)
             {
                 Animation anim = GetComponent<Animation>();
                 anim[anim.clip.name].time = Random.Range(0, 300) / 10;
@@ -77,6 +93,9 @@ public class MissionButtonMobile : MonoBehaviour
     public void Clicked()
     {
         if (isBlocked) return;
-        missionSelectorMobile.Clicked(videoGameID, missionID);
+        if(missionSelectorMobile != null)
+            missionSelectorMobile.Clicked(videoGameID, missionID);
+        else if (hiscoresLevelSelectorUI != null)
+            hiscoresLevelSelectorUI.Clicked(videoGameID, missionID);
     }
 }

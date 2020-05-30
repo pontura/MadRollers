@@ -5,15 +5,8 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
-
 public class AssetsBundleLoader : MonoBehaviour
 {
-    states state;
-    enum states
-    {
-        FIRST_BUNDLES,
-        SECOND_BUNDLES
-    }
     private float downloadProgress = 0.0f;
     private List<string> dataPaths;
     string loadedHashes;
@@ -63,21 +56,9 @@ public class AssetsBundleLoader : MonoBehaviour
     {
         dataPaths = new List<string>();
 
-        dataPaths.Add("upgradesvalue");
-        dataPaths.Add("settings");
-        dataPaths.Add("ach");
-        dataPaths.Add("items");
-        dataPaths.Add("raypowerups");
-        dataPaths.Add("powerups");
-        dataPaths.Add("upgrades");
-        dataPaths.Add("multiplechoices");
-        dataPaths.Add("idles");
-        dataPaths.Add("cutscene");
-        dataPaths.Add("generic");
-        dataPaths.Add("girlinfodata");
-        dataPaths.Add("requests");
-        dataPaths.Add("dailyrewards");
-        dataPaths.Add("liveops");
+        
+        dataPaths.Add("missionsmanager");
+        dataPaths.Add("bosses");
         totalFirstBundles = dataPaths.Count;
         bundles = new Dictionary<string, AssetBundle>();
     }
@@ -95,17 +76,14 @@ public class AssetsBundleLoader : MonoBehaviour
 
 
 
-    public IEnumerator DownloadAll(Action<string> onSuccess, string folderPath)
+    public IEnumerator DownloadAll(Action<string> onSuccess)
     {
+        Debug.Log("____________ DownloadAll _____________");
         this.onSuccess = onSuccess;
-#if UNITY_WEBGL
-        string mainBundleFolderPath = "Web";
-#else
-        string mainBundleFolderPath = "Android";
-#endif
+
         if (dataPaths == null)
         {
-            url = Data.ServerAssetsUrl() + mainBundleFolderPath;
+            url = Data.ServerAssetsUrl();
             SetAssetsBundleServer();
             isFirstTime = true;
         }
@@ -114,53 +92,12 @@ public class AssetsBundleLoader : MonoBehaviour
             isFirstTime = false;
         }
 
-#if UNITY_WEBGL //&& !UNITY_EDITOR
-        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + "/" + mainBundlePath);
-        yield return request.SendWebRequest();
-        Debug.Log("Baja el Manifest para android de : " + url + "/" + mainBundlePath);
-
-        while (!request.isDone)
-        {
-            downloadProgress = request.downloadProgress;
-            downloadedBytes = request.downloadedBytes;
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (request.isNetworkError || request.isHttpError)
-        {
-            Debug.Log(request.error);
-                if (Data.Instance.sceneName == "Game")
-                {
-                    onSuccess("ok");
-                    yield break;
-                }
-                else
-                {
-                    Events.OpenStandardSignal(Data.Instance.ResetAll, "No internet access, try again later");
-                    yield break;
-                }
-        }
-        else
-        {
-            // Get downloaded asset bundle
-           // callback(DownloadHandlerAssetBundle.GetContent(request));
-
-            mainBundle = DownloadHandlerAssetBundle.GetContent(request);
-            manifest = mainBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-
-            StartCoroutine(LoadBundlesFromManifest(onSuccess));
-             Debug.Log("Lo bajo bien!");
-        }
-#else
-
-
-
         Debug.Log("Vuelve a Bajar: " + isFirstTime + "   mainBundle " + mainBundle + "   dataPaths: " + dataPaths);
         this.onSuccess = onSuccess;
 
-        using (UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + "/" + mainBundlePath))
+        using (UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + mainBundlePath + "/" + mainBundlePath))
         {
-            Debug.Log("Loading from url : " + url + "/" + mainBundlePath);
+            Debug.Log("Loading from url : " + url + mainBundlePath + "/" + mainBundlePath);
             AsyncOperation op = request.SendWebRequest();
             while (!op.isDone)
             {
@@ -182,7 +119,6 @@ public class AssetsBundleLoader : MonoBehaviour
                 StartCoroutine(LoadBundlesFromManifest(onSuccess));
             }
         }
-#endif
         mainBundle.Unload(false);
     }
     public IEnumerator LoadBundlesFromManifest(Action<string> onSuccess)
@@ -228,58 +164,17 @@ public class AssetsBundleLoader : MonoBehaviour
     void OnLoaded(bool isLoaded)
     {
         loadedParts++;
-        if (state == states.FIRST_BUNDLES)
+        if (loadedParts >= dataPaths.Count)
         {
-            if (loadedParts >= dataPaths.Count)
-            {
-                state = states.SECOND_BUNDLES;
-                // loadedParts = 0;
-                TextAsset asset = GetAssetAsText("settings", "settings");
-                //Data.Instance.spreadsheetLoader.CreateListFromFile(asset.text, AddGirlsToDataPaths);
-            }
-        }
-        else
-        {
-            if (loadedParts >= totalGirls + totalFirstBundles)
-            {
-                allLoaded = true;
-                onSuccess("Success");
-            }
+            Debug.Log("all downloaded coount: " + dataPaths.Count);
+            allLoaded = true;
+            onSuccess("Success" + loadedParts);
         }
     }
     IEnumerator DownloadAndCacheAssetBundle(string uri, Hash128 hash, System.Action<bool> OnLoaded)
     {
-
-
-
-#if UNITY_WEBGL //&& !UNITY_EDITOR
-        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + "/" + uri, hash); //, hash, 0);
-        yield return request.SendWebRequest();
-
-        while (!request.isDone)
-        {
-            downloadProgress = request.downloadProgress;
-            downloadedBytes = request.downloadedBytes;
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (request.isNetworkError || request.isHttpError)
-        {
-            Debug.Log("Error downloading assetBundle: " + url + "/" + uri);
-            Events.OpenStandardSignal(Data.Instance.ResetAll, "No internet access, try again later");
-            yield break;
-        }
-        else
-        {
-            AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
-            if (bundles == null)
-                bundles = new Dictionary<string, AssetBundle>();
-            bundles.Add(uri, bundle);
-
-            OnLoaded(true);
-        }
-#else
-        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + "/" + uri, hash); //, hash, 0);
+        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + mainBundlePath + "/" + uri, hash); //, hash, 0);
+        Debug.Log("downloading assetBundle: " + url + mainBundlePath + "/" + uri);
         request.SendWebRequest();
         while (!request.isDone)
         {
@@ -287,9 +182,11 @@ public class AssetsBundleLoader : MonoBehaviour
             downloadedBytes = request.downloadedBytes;
             yield return new WaitForEndOfFrame();
         }
+        Debug.Log("____________ assetBundle: " + url + mainBundlePath + "/" + uri);
+        yield return new WaitForEndOfFrame();
         if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log("Error downloading assetBundle: " + url + "/" + uri);
+            Debug.Log("Error downloading assetBundle: " + url + uri);
            // Events.OpenStandardSignal(Data.Instance.ResetAll, "No internet access, try again later");
             yield break;
         }
@@ -302,7 +199,6 @@ public class AssetsBundleLoader : MonoBehaviour
 
             OnLoaded(true);
         }
-#endif
     }
    
     public GameObject GetGo(string bundleName, string asset)

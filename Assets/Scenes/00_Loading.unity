@@ -1315,6 +1315,7 @@ GameObject:
   - component: {fileID: 114021335304722065}
   - component: {fileID: 5707425037206539628}
   - component: {fileID: 356175548}
+  - component: {fileID: 356175549}
   m_Layer: 0
   m_Name: data
   m_TagString: Untagged
@@ -1334,6 +1335,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518867861fd43214087f26763a265eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &356175549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356175547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ab2d4781e57a4f9fc984fe5ccca41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allLoaded: 0
 --- !u!4 &356320669
 Transform:
   m_ObjectHideFlags: 0
@@ -1744,6 +1758,7 @@ MonoBehaviour:
   voicesManager: {fileID: 114892905258835657}
   versusManager: {fileID: 0}
   loadingAsset: {fileID: 114694154105171079}
+  assetsBundleLoader: {fileID: 0}
   FORCE_LOCAL_SCORE: 0
   singlePlayer: 0
   isAndroid: 1
@@ -2193,6 +2208,7 @@ MonoBehaviour:
   Scene: {fileID: 0}
   containerObject: {fileID: 0}
   pixelsPool: {fileID: 114105150679800263}
+  bossesPool: {fileID: 448707260}
 --- !u!4 &448341659
 Transform:
   m_ObjectHideFlags: 0
@@ -2218,6 +2234,7 @@ GameObject:
   - component: {fileID: 448341659}
   - component: {fileID: 437440347}
   - component: {fileID: 114105150679800263}
+  - component: {fileID: 448707260}
   m_Layer: 0
   m_Name: sceneObjectsPool
   m_TagString: Untagged
@@ -2225,6 +2242,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &448707260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448707259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c537c48e109ff648932f450b28f4c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addedForBundles: []
 --- !u!1 &454654688
 GameObject:
   m_ObjectHideFlags: 0
@@ -7919,6 +7949,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionsManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5215719068033355567, guid: 8287d6a01aa1c1342b4987321a709be8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4978565739345281475, guid: 8287d6a01aa1c1342b4987321a709be8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8812,6 +8847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8735d779cfdf9f546aa0b4676c83cc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionsManager_to_instantiate: {fileID: 1342406411, guid: 8287d6a01aa1c1342b4987321a709be8,
+    type: 3}
 --- !u!4 &1981083527
 Transform:
   m_ObjectHideFlags: 0
