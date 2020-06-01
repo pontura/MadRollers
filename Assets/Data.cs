@@ -65,7 +65,6 @@ public class Data : MonoBehaviour {
 	public LoadingAsset loadingAsset;
     public AssetsBundleLoader assetsBundleLoader ;
 
-    public int FORCE_LOCAL_SCORE;
 
     public bool singlePlayer;
     public bool isAndroid;
@@ -123,8 +122,6 @@ public class Data : MonoBehaviour {
         }
         //  Cursor.visible = false;
 
-        if (FORCE_LOCAL_SCORE > 0 )
-            PlayerPrefs.SetInt("scoreLevel_1", FORCE_LOCAL_SCORE);
 
 
         if (!mInstance)

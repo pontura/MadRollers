@@ -30,13 +30,13 @@ public class GameCamera : MonoBehaviour
 
 	public Vector3 defaultRotation =  new Vector3 (48,0,0);
     bool started;
-
+    bool isAndroid;
     public bool onExplotion;
 
 	public float pixelSize;
 	float pixel_speed_recovery = 16;
 	private GameObject flow_target;
-	float _Y_correction = 1;
+	float _Y_correction = 10;
     float targetZOffset = 6.5f;
 
     float camSensorSpeed = 0.04f;
@@ -45,12 +45,14 @@ public class GameCamera : MonoBehaviour
 
     private void Awake()
     {
+        isAndroid = Data.Instance.isAndroid;
         sensorSizeValue = sensorSizeValueInitial;
         cam.enabled = false;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnChangeMood += OnChangeMood;
         Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
+        Data.Instance.events.OnMissionComplete += OnMissionComplete;
         //if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
         //{
         //    Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
@@ -68,6 +70,11 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
         Data.Instance.events.OnCameraZoomTo -= OnCameraZoomTo;
         Data.Instance.events.OnGameOver -= OnGameOver;
+        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+    }
+    void OnMissionComplete(int levelID)
+    {
+        state = states.END;
     }
     Component CopyComponent(Component original, GameObject destination)
 	{
@@ -82,6 +89,7 @@ public class GameCamera : MonoBehaviour
 	}
     public void Init()
 	{
+        
         cam.enabled = true;
         fieldOfView = cam.fieldOfView;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
@@ -94,7 +102,7 @@ public class GameCamera : MonoBehaviour
             pixelSize = 1;
         }     		
 
-        if (Data.Instance.isAndroid)
+        if (isAndroid)
         {
             SetOrientation(Vector4.zero);
             cam.sensorSize = new Vector2(25, cam.sensorSize.y);
@@ -226,22 +234,22 @@ public class GameCamera : MonoBehaviour
 		//	return;	
 		//}  else 
         if (state == states.END)
-        {
             return;
-        }
+
         if (Data.Instance.useRetroPixelPro)
         {
             if (retroPixelPro.pixelSize > 1)
                 UpdatePixels();
         }
-        else
-        {            
+        if (isAndroid)
+        {
             Vector3 rot = transform.localEulerAngles;
             CharacterBehavior cb = charactersManager.getMainCharacter();
-            if(cb)
-                rot.z = -(cb.rotationY / 6);
+            if (cb)
+                rot.z = -(cb.rotationY / 5);
             transform.localEulerAngles = rot;
         }
+
         newPos = charactersManager.getCameraPosition ();
 
 		Vector3 _newPos  = newPos;
@@ -297,8 +305,8 @@ public class GameCamera : MonoBehaviour
 	public void SetOrientation(Vector4 orientation)
 	{
         orientation /= 6;
-        sensorSizeValue = sensorSizeValueInitial - (orientation.z * 10);
-        Debug.Log("Change sensor value to: " + sensorSizeValue);
+        sensorSizeValue = sensorSizeValueInitial - (orientation.z * 12);
+       // Debug.Log("orientation: " + orientation + "   Change sensor value to: " + sensorSizeValue);
         newCameraOrientationVector = cameraOrientationVector + new Vector3(orientation.x, orientation.y, 0); //, orientation.z);
 	}
     public void fallDown(int fallDownHeight)

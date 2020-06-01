@@ -7,17 +7,25 @@ public class MissionBar : MonoBehaviour {
 
 	public GameObject bossSignal;
 	public ProgressBar progressBar;
-	public int totalHits;
-	//public float value;
+
+    public GameObject routeProgressSignal;
+    public ProgressBar routeProgressBar;
+
 	public Text field;
-	public int sec;
-	//public Transform itemContainer;
+	
 	public GameObject bossTimer;
 	public Text videogameField;
 	public Text missionField;
 
-	void Start () {
-		videogameField.text = Data.Instance.videogamesData.GetActualVideogameData ().name;
+    int sec;
+    int totalHits;
+    public float totalDistance;
+    public bool routeProgressOn;
+
+    void Start () {
+        
+        routeProgressSignal.gameObject.SetActive(false);
+        videogameField.text = Data.Instance.videogamesData.GetActualVideogameData ().name;
 		missionField.text = Data.Instance.texts.genericTexts.mission + " " + (Data.Instance.missions.MissionActiveID+1);
 		bossTimer.SetActive (false);
         bossSignal.gameObject.SetActive (false);
@@ -30,10 +38,27 @@ public class MissionBar : MonoBehaviour {
 		    Data.Instance.events.OnBossHitsUpdate += OnBossHitsUpdate;
 		    Data.Instance.events.OnBossSetNewAsset += OnBossSetNewAsset;
 		    Data.Instance.events.OnBossSetTimer += OnBossSetTimer;
+            LoopDistance();
         }
 
 		Data.Instance.events.OnGameOver += OnGameOver;
 	}
+    void LoopDistance()
+    {
+        if(routeProgressOn)
+        {           
+            float distance = Game.Instance.level.charactersManager.getDistance();
+            print("distance : " + distance + "  totalDistance: " + totalDistance);
+            routeProgressBar.SetProgression(distance/totalDistance);
+            if (distance >= totalDistance)
+            {
+                routeProgressOn = false;
+                routeProgressSignal.SetActive(false);
+            }
+
+        }
+        Invoke("LoopDistance", 0.1f);
+    }
 	void OnDestroy () {
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
 		Data.Instance.events.OnBossInit -= OnBossInit;
@@ -45,6 +70,9 @@ public class MissionBar : MonoBehaviour {
 	}
 	void StartMultiplayerRace()
 	{
+        totalDistance = Data.Instance.missions.GetTotalRoutDistance();
+        routeProgressOn = true;
+        routeProgressSignal.gameObject.SetActive(true);
         bossSignal.gameObject.SetActive(false);
     }
 	void OnGameOver(bool isTimeOut)
@@ -91,7 +119,8 @@ public class MissionBar : MonoBehaviour {
 		bossTimer.SetActive (false);
 	}
 	void OnBossInit (int totalHits) {
-		progressBar.SetProgression (1);
+       
+        progressBar.SetProgression (1);
 		this.totalHits = totalHits;
         bossSignal.gameObject.SetActive(true);
     }
@@ -121,5 +150,7 @@ public class MissionBar : MonoBehaviour {
             bossSignal.gameObject.SetActive(false);
             CancelInvoke ();
 		}
+        routeProgressSignal.SetActive(false);
+        routeProgressOn = false;
 	}
 }

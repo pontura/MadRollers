@@ -29,8 +29,6 @@ public class CharacterCollisions : MonoBehaviour {
                 Data.Instance.events.AddExplotion(transform.position, Color.red);
                 characterBehavior.Hit();
             }
-         //  else
-             //   other.GetComponent<WeakPlatform>().breakOut(transform.position);
         }
         if (other.tag == "destroyable") 
 		{
@@ -39,10 +37,10 @@ public class CharacterCollisions : MonoBehaviour {
 			{
 				Breakable breakable = other.GetComponent<Breakable> ();
 				if (breakable != null) {
-					if (breakable.ifJumpingDontKill && characterBehavior.IsJumping () && breakable.transform.position.y<transform.position.y)
-						characterBehavior.SuperJumpByHittingSomething ();
-					else if (!breakable.dontKillPlayers)
-						characterBehavior.HitWithObject (other.transform.position, breakable.killAtHit);
+                    if (breakable.ifJumpingDontKill && characterBehavior.IsJumping() && breakable.transform.position.y < transform.position.y)
+                        characterBehavior.SuperJumpByHittingSomething();
+                    else if (!breakable.dontKillPlayers)
+                        characterBehavior.HitWithObject(other.transform.position, false);//breakable.killAtHit);
 				}
 			}
         }
@@ -69,7 +67,7 @@ public class CharacterCollisions : MonoBehaviour {
                 Vector3 pos = characterBehavior.transform.position;
                 if (difY < -0.5f)
                 {
-                    characterBehavior.Hit();
+                    characterBehavior.CollideToObject();
                     return;
                 }
                 else if (difY < 0.15f)
@@ -84,26 +82,27 @@ public class CharacterCollisions : MonoBehaviour {
             }
         }
         else if ( other.tag == "enemy" )
-        {
+        {          
+			MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
+			if (mmoCharacter != null) {		
+				other.GetComponent<MmoCharacter> ().Die ();
+			}
+            if (characterBehavior.IsJumping())
+            {
+                characterBehavior.SuperJumpByBumped(920, 0.5f, false);
+                return;
+            }
+            else if (player.fxState == Player.fxStates.NORMAL)
+                characterBehavior.HitWithObject(other.transform.position, false);
 
-            if (characterBehavior.IsJumping()) {	
-				MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
-				if (mmoCharacter != null) {		
-					other.GetComponent<MmoCharacter> ().Die ();
-				}
-				characterBehavior.SuperJumpByBumped (920, 0.5f, false);
-				return;
-			} 
-			if (player.fxState == Player.fxStates.NORMAL)
-				characterBehavior.Hit();
-			
-		} else if (
+        } else if (
 			other.tag == "fallingObject"
 			&& characterBehavior.state != CharacterBehavior.states.FALL
 		)
 		{
-			if (player.fxState == Player.fxStates.NORMAL)
-				characterBehavior.Hit();
-		}
+            if (player.fxState == Player.fxStates.NORMAL)
+                characterBehavior.HitWithObject(other.transform.position, false);
+
+        }
     }
 }

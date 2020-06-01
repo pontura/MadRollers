@@ -1,19 +1,17 @@
 {
 	"data": [{
-		"title": "SOBREVIVE A LAS CUCHILLAS",
+		"title": "THE DIRTY PIGS",
 		"fondo": "wonderland_nubes",
 		"id": 0,
 		"maxScore": 460,
 		"areaSetData": [	
 		{
 			"total_areas": 5,
-			"randomize": false,
+			"randomize": true,
 			"areas": [
 			"heliceSmall",
 			"heliceSmall2",
-			"anchoCalleHelices",
-			"heliceDoubleSmall",
-			"heliceSmall2"
+			"heliceDoubleSmall"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
@@ -23,40 +21,36 @@
 		},
 		{
 			"total_areas": 1,
-			"bending":-4,
-			"randomize": false,
+			"bending":-14,
+			"randomize": true,
 			"areas": [
-			"anchoCalleHelices"
-			],
-			"cameraOrientation": {
-				"x": 0.0,
-				"y": 2.0,
-				"z": -2
-			}
-		},	
-		{
-			"total_areas": 3,
-			"bending":-2,
-			"randomize": false,
-			"areas": [
-			"enemigosx2",
-			"dobleCamino_helices",
-			"enemigosx2"
+			"dobleCamino_helices"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -4.0,
-				"z": 0
+				"z": -2.0
+			}
+		},		
+		{
+			"total_areas": 1,
+			"bending":-18,
+			"randomize": false,
+			"areas": ["descansoAnchoMinimal"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 2.0,
+				"z": -1.5
 			}
 		},	
 		{
-			"bending":-18,
-			"total_areas": 2,
+			"bending":-1,
+			"total_areas": 3,
 			"randomize": false,
 			"boss": true,
 			"areas": [
-			"Ending"
-			],
+			"boss_naves_boyland",
+			"boss_ancho_free"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0,
@@ -65,14 +59,30 @@
 		},
 		{
 			"bending":-18,
-			"total_areas": 1000,
+			"total_areas": 1,
 			"randomize": true,
 			"areas": [
-			"Ending"],
+			"boss_free_agua"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -4,
-				"z": -4
+				"z": -5
+			}
+		},
+		{
+			"total_areas": 1000,
+			"randomize": true,
+			"areas": [
+			"pisoCurvo0",
+			"pisoCurvo0",
+			"pisoCurvo1",
+			"pisoCurvo2",
+			"pisoCurvo4",
+			"pisoCurvo5"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": -1.6,
+				"z": 1.5
 			}
 		}
 		],

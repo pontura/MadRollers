@@ -1,6 +1,6 @@
 {
 	"data": [{
-		"title": "BOSQUE PULPOSO",
+		"title": "SOBREVIVE",
 		"fondo": "wonderland_castles",
 		"id": 0,
 		"maxScore": 3000,
@@ -31,16 +31,42 @@
 		},
 		{
 			"total_areas": 2,
+			"bending":-10,
+			"randomize": true,
+			"areas": [
+				"enemiesRunnersSmall"
+			],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 2.0,
+				"z": 0
+			}
+		},		
+		{
+			"total_areas": 2,
 			"bending":-17,
 			"randomize": false,
 			"areas": [
-			"ancho_agua_simple1",
-			"ancho_agua_simple2"
+			"ancho_agua_simple2",
+			"ancho_agua_simple1"			
 			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
-				"z": 0.0
+				"z": 0
+			}
+		},
+		{
+			"total_areas": 5,
+			"bending":-10,
+			"randomize": false,
+			"areas": [
+				"enemiesRunnersSmall_2Palms"
+			],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 2.0,
+				"z": -2
 			}
 		},
 		{
@@ -53,7 +79,7 @@
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -4.0,
-				"z": -2.0
+				"z": -2
 			}
 		},
 		{
@@ -64,7 +90,7 @@
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 2.0,
-				"z": 0
+				"z": -2
 			}
 		},
 		{
@@ -76,36 +102,32 @@
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -4.0,
-				"z": -1
+				"z": 0
 			}
 		},	
 		{
-			"total_areas": 4,
+			"total_areas": 1,
 			"randomize": false,
 			"boss": true,
 			"areas": [
-			"entrance",
-			"bossVienen",
-			"bossVienenFree"
+				"Ending"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -2.5,
-				"z": -1.25
+				"z": -4
 			}
 		},
 		{
-			"total_areas": 3,
+			"total_areas": 1000,
 			"randomize": true,
 			"areas": [
-			"bossVienenFree",
-			"bossVienenFree",
-			"anchoFences"
+			"Ending"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -2.6,
-				"z": -1
+				"y": -2,
+				"z": -4
 			}
 		}
 		],

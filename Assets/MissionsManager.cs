@@ -49,6 +49,10 @@ public class MissionsManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(this);
+       
+    }
+    private void Start()
+    {
         LoadAll();
     }
     public void LoadAll()
@@ -66,7 +70,7 @@ public class MissionsManager : MonoBehaviour
         foreach (string missionName in missionsInVideogame)
         {
             videogame.missions.Add(LoadDataFromMission("missions", missionName));
-            videogame.missionUnblockedID = PlayerPrefs.GetInt("missionUnblockedID_" + (videogameID + 1), 0);
+            videogame.missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame((videogameID + 1));
         }
     }
     public MissionsData LoadDataFromMission(string folder, string missionName)

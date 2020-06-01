@@ -38,9 +38,8 @@ public class MissionButtonMobile : MonoBehaviour
         logo.sprite = videogameData.logo;
         floppyCover.sprite = videogameData.floppyCover;
 
-        
-       
-        int unblockedID = MissionsManager.Instance.videogames[videoGameID].missionUnblockedID;
+
+        int unblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID + 1);
 
         //bloquea todo si no jugaste:
         if(videoGameID>0)

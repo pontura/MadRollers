@@ -58,6 +58,7 @@ public class Game : MonoBehaviour {
         
         Init();
 
+        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.SetSettingsButtonStatus(false);
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
     }
@@ -75,6 +76,7 @@ public class Game : MonoBehaviour {
 	}
     void OnDestroy()
     {
+        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnGamePaused -= OnGamePaused;
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
     }
@@ -85,7 +87,8 @@ public class Game : MonoBehaviour {
 
     void StartMultiplayerRace()
 	{
-		state = states.PLAYING;
+        Data.Instance.events.OnMadRollersSFXStatus(true);
+        state = states.PLAYING;
 	}
 	private void Init()
 	{
@@ -185,5 +188,14 @@ public class Game : MonoBehaviour {
         Data.Instance.events.OnResetLevel();
         Data.Instance.events.ForceFrameRate(1);
         Data.Instance.LoadLevel("MainMenuMobile");
+    }
+    private void OnListenerDispatcher(ListenerDispatcher.myEnum message)
+    {
+        if (message == ListenerDispatcher.myEnum.LevelFinish)
+        {
+            Debug.Log("<<<<<<<<<<<< Llego a un final de level:");
+            level.Complete();
+            Data.Instance.events.OnBossActive(false);
+        }
     }
 }

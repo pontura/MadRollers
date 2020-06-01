@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4978565739345281475}
   - component: {fileID: 1342406411}
   m_Layer: 0
-  m_Name: Missions
+  m_Name: MissionsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,14 +47,17 @@ MonoBehaviour:
   all:
     missionsVideoGame1:
     - boy_init_jump
+    - boy_firstBoss
     - boy_init_woods
+    - boy_conejitos
     - boy_ene_easy
+    - boy_pulpo
     - boy_helices
+    - boy_pigs
     - boy_walkers
     - boy_floors
     - boy_ene_SubeyBajan
     - boy_sliders
-    - boy_helices
     - boy_barrancas
     - boy_pisosMueven
     - boy_plataformas1
@@ -128,20 +131,67 @@ MonoBehaviour:
           - doubleJump1
           cameraOrientation: {x: 0, y: 0, z: 0}
         - boss: 0
-          total_areas: 2
+          total_areas: 3
           bending: -15
           randomize: 0
           areas:
           - coinsEasy2
           - coinsEasy3
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: 0, z: -3}
+        - boss: 0
+          total_areas: 2
+          bending: -8
+          randomize: 0
+          areas:
+          - enemigosx2
+          - descansoAnchoMinimal
+          - descansoMuyAnchoSalto
+          cameraOrientation: {x: 0, y: -4, z: -5}
+        - boss: 1
+          total_areas: 3
+          bending: -10
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          - boss_agua_fences
+          - Ending
+          cameraOrientation: {x: 0, y: 3, z: -1}
+        - boss: 0
+          total_areas: 1000
+          bending: -8
+          randomize: 1
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -3, z: -2}
+    - title: 
+      data:
+      - jsonName: boy_firstBoss
+        title: ROMPAN TODO!
+        id: 0
+        maxScore: 3000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 2
+          bending: -6
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: -14
+          randomize: 1
+          areas:
+          - enemigosDoble
+          cameraOrientation: {x: 0, y: -4, z: 0}
         - boss: 0
           total_areas: 1
           bending: -8
           randomize: 1
           areas:
           - descansoAncho2
-          cameraOrientation: {x: 0, y: -4, z: -1}
+          cameraOrientation: {x: 0, y: -4, z: -2}
         - boss: 1
           total_areas: 3
           bending: -10
@@ -151,7 +201,7 @@ MonoBehaviour:
           - boss_Pacmans_intro_free_simple
           - boss_Pacmans_intro
           - boss_Pacmans_intro_free
-          cameraOrientation: {x: 0, y: 3, z: -6}
+          cameraOrientation: {x: 0, y: 3, z: 1}
         - boss: 0
           total_areas: 1000
           bending: -16
@@ -159,11 +209,11 @@ MonoBehaviour:
           areas:
           - boss_Pacmans_intro_free
           - boss_Pacmans_intro_free2
-          cameraOrientation: {x: 0, y: -3, z: -1.5}
+          cameraOrientation: {x: 0, y: -3, z: 0}
     - title: 
       data:
       - jsonName: boy_init_woods
-        title: BOSQUE PULPOSO
+        title: SOBREVIVE
         id: 0
         maxScore: 3000
         fondo: wonderland_castles
@@ -184,12 +234,26 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: 2, z: 0}
         - boss: 0
           total_areas: 2
+          bending: -10
+          randomize: 1
+          areas:
+          - enemiesRunnersSmall
+          cameraOrientation: {x: 0, y: 2, z: 0}
+        - boss: 0
+          total_areas: 2
           bending: -17
           randomize: 0
           areas:
-          - ancho_agua_simple1
           - ancho_agua_simple2
+          - ancho_agua_simple1
           cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 5
+          bending: -10
+          randomize: 0
+          areas:
+          - enemiesRunnersSmall_2Palms
+          cameraOrientation: {x: 0, y: 2, z: -2}
         - boss: 0
           total_areas: 1
           bending: -10
@@ -203,14 +267,43 @@ MonoBehaviour:
           randomize: 0
           areas:
           - descansoAnchoMinimal
-          cameraOrientation: {x: 0, y: 2, z: 0}
+          cameraOrientation: {x: 0, y: 2, z: -2}
         - boss: 0
           total_areas: 1
           bending: 0
           randomize: 0
           areas:
           - container_cruz
-          cameraOrientation: {x: 0, y: -4, z: -1}
+          cameraOrientation: {x: 0, y: -4, z: 0}
+        - boss: 1
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -2.5, z: -4}
+        - boss: 0
+          total_areas: 1000
+          bending: 0
+          randomize: 1
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -2, z: -4}
+    - title: 
+      data:
+      - jsonName: boy_conejitos
+        title: CONEJITOS
+        id: 0
+        maxScore: 3000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -10
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: 0}
         - boss: 1
           total_areas: 4
           bending: 0
@@ -232,7 +325,91 @@ MonoBehaviour:
     - title: 
       data:
       - jsonName: boy_ene_easy
-        title: CONEJITOS EMPASTILLADOS
+        title: SUPER RAMPA VOLANTE
+        id: 0
+        maxScore: 5000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          total_areas: 1
+          bending: -2
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -13
+          randomize: 1
+          areas:
+          - rampaHuge
+          cameraOrientation: {x: 0, y: 1, z: -3}
+        - boss: 0
+          total_areas: 2
+          bending: -8
+          randomize: 1
+          areas:
+          - CoinsHard1
+          - coinsHard2
+          - coinsHard3
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - coinsJumpFence
+          cameraOrientation: {x: 0, y: -2, z: -3}
+        - boss: 0
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -2, z: -2}
+        - boss: 0
+          total_areas: 2
+          bending: -3
+          randomize: 0
+          areas:
+          - killRunnerSimple_4
+          cameraOrientation: {x: 0, y: 2, z: 0}
+        - boss: 0
+          total_areas: 2
+          bending: 1
+          randomize: 1
+          areas:
+          - killRunner2
+          - killRunner2_b
+          - killRunner2_c
+          cameraOrientation: {x: 0, y: 2, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -14
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: -3, z: -2}
+        - boss: 1
+          total_areas: 1
+          bending: -18
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: 3, z: -2}
+        - boss: 0
+          total_areas: 1000
+          bending: -12
+          randomize: 1
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -3, z: -6}
+    - title: 
+      data:
+      - jsonName: boy_pulpo
+        title: MATAR AL OCTOPUS
         id: 0
         maxScore: 5000
         fondo: wonderland_castles
@@ -245,78 +422,94 @@ MonoBehaviour:
           - descansoAnchoMinimal
           cameraOrientation: {x: 0, y: 2, z: -1.5}
         - boss: 0
-          total_areas: 1
+          total_areas: 2
           bending: -13
           randomize: 1
           areas:
           - CoinsHard1
           - coinsHard2
           - coinsHard3
-          cameraOrientation: {x: 0, y: 1, z: 0}
+          cameraOrientation: {x: 0, y: 1, z: -5}
         - boss: 0
           total_areas: 1
           bending: 0
           randomize: 1
           areas:
-          - coinsJumpFence
-          cameraOrientation: {x: 0, y: -2, z: -0.5}
+          - descanso2
+          cameraOrientation: {x: 0, y: 1, z: -1}
         - boss: 0
           total_areas: 1
           bending: 0
           randomize: 1
           areas:
-          - descanso1
-          - descanso2
-          cameraOrientation: {x: 0, y: -2, z: -0.5}
-        - boss: 0
-          total_areas: 1
-          bending: -13
-          randomize: 0
-          areas:
-          - killRunnerSimple_4
-          cameraOrientation: {x: 0, y: 2, z: -1}
-        - boss: 0
-          total_areas: 1
-          bending: 4
-          randomize: 1
-          areas:
-          - killRunner2
-          - killRunner2_b
-          - killRunner2_c
-          cameraOrientation: {x: 0, y: 2, z: -1}
-        - boss: 0
-          total_areas: 1
-          bending: -4
-          randomize: 1
-          areas:
-          - jumpTall
-          cameraOrientation: {x: 0, y: 5, z: -4}
-        - boss: 0
-          total_areas: 1
-          bending: -20
-          randomize: 1
-          areas:
-          - descanso1
-          - descanso2
-          cameraOrientation: {x: 0, y: -3, z: -1.5}
+          - pisoSaltaAlto
+          cameraOrientation: {x: 0, y: -2, z: -2}
         - boss: 1
           total_areas: 1
           bending: -18
           randomize: 0
           areas:
           - boss_Pulpo
-          - boss_Pulpo_free
-          cameraOrientation: {x: 0, y: 3, z: -6}
+          cameraOrientation: {x: 0, y: -2, z: -3}
         - boss: 0
           total_areas: 1000
           bending: -12
           randomize: 1
           areas:
           - boss_Pulpo_free
-          cameraOrientation: {x: 0, y: -3, z: -1.5}
+          cameraOrientation: {x: 0, y: -3, z: 0}
     - title: 
       data:
       - jsonName: boy_helices
+        title: SOBREVIVE A LAS CUCHILLAS
+        id: 0
+        maxScore: 460
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          total_areas: 5
+          bending: 0
+          randomize: 0
+          areas:
+          - heliceSmall
+          - heliceSmall2
+          - anchoCalleHelices
+          - heliceDoubleSmall
+          - heliceSmall2
+          cameraOrientation: {x: 0, y: -1, z: -1}
+        - boss: 0
+          total_areas: 1
+          bending: -4
+          randomize: 0
+          areas:
+          - anchoCalleHelices
+          cameraOrientation: {x: 0, y: 2, z: -2}
+        - boss: 0
+          total_areas: 3
+          bending: -2
+          randomize: 0
+          areas:
+          - enemigosx2
+          - dobleCamino_helices
+          - enemigosx2
+          cameraOrientation: {x: 0, y: -4, z: 0}
+        - boss: 1
+          total_areas: 2
+          bending: -18
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: 0, z: -3}
+        - boss: 0
+          total_areas: 1000
+          bending: -18
+          randomize: 1
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -4, z: -4}
+    - title: 
+      data:
+      - jsonName: boy_pigs
         title: THE DIRTY PIGS
         id: 0
         maxScore: 460
@@ -478,13 +671,13 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: -2, z: 0}
         - boss: 0
           total_areas: 4
-          bending: 0
+          bending: -10
           randomize: 1
           areas:
           - floors_move_simple1
           - floors_move_simple2
           - floors_move_simple3
-          cameraOrientation: {x: 0, y: -3.5, z: -1}
+          cameraOrientation: {x: 0, y: -7, z: -8}
     - title: 
       data:
       - jsonName: boy_ene_SubeyBajan
@@ -640,64 +833,6 @@ MonoBehaviour:
           - sliderWalls_seguidas1
           - sliderWalls_seguidas2
           cameraOrientation: {x: 0, y: -2, z: 0}
-    - title: 
-      data:
-      - jsonName: boy_helices
-        title: THE DIRTY PIGS
-        id: 0
-        maxScore: 460
-        fondo: wonderland_nubes
-        areaSetData:
-        - boss: 0
-          total_areas: 5
-          bending: 0
-          randomize: 1
-          areas:
-          - heliceSmall
-          - heliceSmall2
-          - heliceDoubleSmall
-          cameraOrientation: {x: 0, y: -1, z: -1}
-        - boss: 0
-          total_areas: 1
-          bending: -14
-          randomize: 1
-          areas:
-          - dobleCamino_helices
-          cameraOrientation: {x: 0, y: -4, z: -2}
-        - boss: 0
-          total_areas: 1
-          bending: -18
-          randomize: 0
-          areas:
-          - descansoAnchoMinimal
-          cameraOrientation: {x: 0, y: 2, z: -1.5}
-        - boss: 1
-          total_areas: 3
-          bending: -1
-          randomize: 0
-          areas:
-          - boss_naves_boyland
-          - boss_ancho_free
-          cameraOrientation: {x: 0, y: 0, z: -3}
-        - boss: 0
-          total_areas: 1
-          bending: -18
-          randomize: 1
-          areas:
-          - boss_free_agua
-          cameraOrientation: {x: 0, y: -4, z: -5}
-        - boss: 0
-          total_areas: 1000
-          bending: 0
-          randomize: 1
-          areas:
-          - pisoCurvo0
-          - pisoCurvo0
-          - pisoCurvo1
-          - pisoCurvo2
-          - pisoCurvo4
-          - pisoCurvo5
-          cameraOrientation: {x: 0, y: -1.6, z: 1.5}
     - title: 
       data:
       - jsonName: boy_barrancas
@@ -1522,22 +1657,30 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: 2, z: -1.5}
         - boss: 0
           total_areas: 2
-          bending: -15
+          bending: -5
           randomize: 0
           areas:
           - coinsJump1
           - descanso1
           cameraOrientation: {x: 0, y: 0, z: 0}
         - boss: 0
-          total_areas: 1
-          bending: -2
+          total_areas: 2
+          bending: -12
           randomize: 0
           areas:
-          - doubleJump1
+          - zigzag_Rays_1
+          - zigzag_Rays_2
           cameraOrientation: {x: 0, y: 0, z: 0}
         - boss: 0
           total_areas: 1
-          bending: -5
+          bending: 0
+          randomize: 0
+          areas:
+          - descanso1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          total_areas: 1
+          bending: -6
           randomize: 0
           areas:
           - container_cruz_enemy

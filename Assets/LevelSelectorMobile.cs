@@ -13,6 +13,7 @@ public class LevelSelectorMobile : MonoBehaviour
 
     void Start()
     {
+        Data.Instance.events.SetHamburguerButton(true);
         Data.Instance.events.OnMadRollersSFXStatus(false);
         missionSelectorMobile.Init();
         Data.Instance.multiplayerData.ResetAll();

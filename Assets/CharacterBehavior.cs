@@ -581,12 +581,21 @@ public class CharacterBehavior : MonoBehaviour {
     public float collisionReactValue = 5;
     public float collisionedValue;
     bool collisionToRight;
+    float lastTimeCollision;
     public void CollideToObject()
     {
-        Data.Instance.events.OnSoundFX("hit", player.id);
-        state = states.COLLISIONED;
-        rb.velocity = Vector3.zero;
-        rb.AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);
+        print("CollideToObject state: " + state + " time: " + Time.time);
+
+        if (state == states.COLLISIONED && Time.time-0.35f > lastTimeCollision)
+            Hit();
+        else
+        {
+            lastTimeCollision = Time.time;
+            Data.Instance.events.OnSoundFX("hit", player.id);
+            state = states.COLLISIONED;
+            rb.velocity = Vector3.zero;
+            rb.AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);
+        }
     }
 	public void Hit()
 	{

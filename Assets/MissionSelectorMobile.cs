@@ -44,7 +44,7 @@ public class MissionSelectorMobile : MonoBehaviour
             case 1: container = videogame2_container; break;
             default: container = videogame3_container; break;
         }
-        int missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID;
+        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID + 1);
         
 
         int id = 0;

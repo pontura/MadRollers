@@ -25,14 +25,16 @@ public class Missions : MonoBehaviour {
 	int areaSetId = 0;
 	int areaNum = 0;
 	int areaID = 0;
+    float totalDistance = 0;
 
-	VideogamesData videogamesData;
+    VideogamesData videogamesData;
 
    // [HideInInspector]
    // public List<MissionsManager.MissionsByVideoGame> videogames;
 
     public void Init()
     {
+        
         if (Data.Instance.isAndroid && Data.Instance.isReplay)
             offset -= 40;
 
@@ -61,11 +63,6 @@ public class Missions : MonoBehaviour {
     }
     void ResetMissionsBlocked()
     {
-        foreach (VideogameData vData in Data.Instance.videogamesData.all)
-        {
-            int id = vData.id;
-            PlayerPrefs.SetInt("missionUnblockedID_" + id, 0);
-        }
         foreach(MissionsManager.MissionsByVideoGame mbv in MissionsManager.Instance.videogames)
             mbv.missionUnblockedID = 0;
     }
@@ -83,7 +80,8 @@ public class Missions : MonoBehaviour {
 		return null;
 	}
 	public void Init (Level level) {
-		this.level = level;
+        totalDistance = 0;
+        this.level = level;
 		areasLength = -4;
 		StartNewMission ();
         if (Data.Instance.isReplay && Data.Instance.isAndroid)
@@ -122,7 +120,7 @@ public class Missions : MonoBehaviour {
 		} else {
 			NextMission ();
 			int videogameID = videogamesData.actualID+1;
-			PlayerPrefs.SetInt ("missionUnblockedID_" + videogameID, MissionActiveID);
+            UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
 		}
         MissionsManager.Instance.videogames [videogamesData.actualID].missionUnblockedID = MissionActiveID;
 	}
@@ -189,7 +187,7 @@ public class Missions : MonoBehaviour {
         MissionData.AreaSetData data = MissionActive.areaSetData[areaSetId];
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && (Data.Instance.playOnlyBosses || hasReachedBoss) && !data.boss && areaSetId < MissionActive.areaSetData.Count - 2)
         {
-            print("_________________area set id ++");
+           // print("_________________area set id ++");
             areaSetId++;
             ResetAreaSet();
             SetNextArea();
@@ -200,8 +198,10 @@ public class Missions : MonoBehaviour {
             hasReachedBoss = true;
 
         CreateCurrentArea ();
-		
-		Game.Instance.gameCamera.SetOrientation (data.cameraOrientation);
+
+       // Debug.Log("areaSetId: " + areaSetId + "   data.cameraOrientation: " + data.cameraOrientation + " bending: " + data.bending);
+
+        Game.Instance.gameCamera.SetOrientation (data.cameraOrientation);
 		total_areas = data.total_areas;
 		float bending = data.bending;
 		
@@ -300,4 +300,31 @@ public class Missions : MonoBehaviour {
 			tutorialID = 3;
 		}
 	}
+    public float GetTotalRoutDistance()
+    {
+        totalDistance = 100;
+        foreach (MissionData.AreaSetData d in MissionActive.areaSetData)
+        {           
+            int id = 0;
+            int totalAreas = d.total_areas;
+            foreach (string areaName in d.areas)
+            {
+                if (id < totalAreas)
+                {
+                    TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
+                    if (asset != null)
+                    {
+                           
+                        AreaData areaData = JsonUtility.FromJson<AreaData>(asset.text);
+                        totalDistance += areaData.z_length;
+                        print(":::::::::::::  area: " + areaName + "  distance: " + areaData.z_length + "  totalDistance: " + totalDistance);
+                    }
+                }
+                id++;
+            }
+            if (d.boss)
+                return totalDistance;     
+        }
+        return totalDistance;
+    }
 }

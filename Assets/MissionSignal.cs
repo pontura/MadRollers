@@ -31,7 +31,7 @@ public class MissionSignal : MonoBehaviour {
 
     private void OnListenerDispatcher(ListenerDispatcher.myEnum message)
     {
-		if (message == ListenerDispatcher.myEnum.LevelFinish)
+        if (message == ListenerDispatcher.myEnum.ShowMissionName)
 		{
             MissionData missionData = missions.GetActualMissionData();
             if (missions.MissionActiveID == 0)

@@ -20,7 +20,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject BossPacmans;
 	public SceneObject BossGalaga;
 	public SceneObject Starting;
-	public SceneObject FloorSlider;
+    public SceneObject Ending;
+    public SceneObject FloorSlider;
 	public SceneObject FloorSurface;
 	public SceneObject house1;
 	public SceneObject house2;
@@ -248,7 +249,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = BossGalaga;
 			else if (go.name == "Starting")
 				clone = Starting;
-			else if (go.name == "bomb1") {
+            else if (go.name == "Ending")
+                clone = Ending;
+            else if (go.name == "bomb1") {
 				Data.Instance.events.OnBossDropBomb ();
 				clone = bomb1;
 			} else if (go.name == "Laser") {

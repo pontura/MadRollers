@@ -46,14 +46,6 @@ public class MusicManager : MonoBehaviour {
 	{
 		playSound( interfaces );
 	}
-//    void OnListenerDispatcher(string type)
-//    {        
-//        if (type == "LevelFinish_hard" || type == "LevelFinish_medium" || type == "LevelFinish_easy")
-//        {
-//			ChengePitch (0.65f);
-//            Invoke("ResetFilter", 4.7f);
-//        }
-//    }
 	void FreezeCharacters(bool freezeThem)
 	{
 		if(freezeThem)

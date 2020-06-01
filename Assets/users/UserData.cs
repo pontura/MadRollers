@@ -22,6 +22,10 @@ public class UserData : MonoBehaviour
     public int playerID;
     public bool logged;
 
+    public int missionUnblockedID_1;
+    public int missionUnblockedID_2;
+    public int missionUnblockedID_3;
+
     public static UserData Instance
     {
         get
@@ -29,11 +33,7 @@ public class UserData : MonoBehaviour
             if (mInstance == null)
             {
                 mInstance = FindObjectOfType<UserData>();
-
-                if (mInstance == null)
-                {
-                    return null;
-                }
+                print("ASDSASDAADSAS");
             }
             return mInstance;
         }
@@ -59,13 +59,18 @@ public class UserData : MonoBehaviour
         serverConnect = GetComponent<ServerConnect>();
         avatarImages = GetComponent<AvatarImages>();
         hiscoresByMissions = GetComponent<HiscoresByMissions>();
-       
+        missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 1);
+        missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
+        missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
+
     }
     private void Start()
     {
         LoadUser();
 
         hiscoresByMissions.Init();
+
+        
     }
     void LoadUser()
     {
@@ -119,26 +124,6 @@ public class UserData : MonoBehaviour
         PlayerPrefs.SetString("username", username);
         PlayerPrefs.SetString("userID", userID);
     }
-
-	//System.Action func;
-	//public void LoopUntilPhotoIsLoaded(System.Action func)
-	//{
-	//	this.func = func;
-	//	LoopUntilPhotoIsLoadedLoop();
-	//}
-	//public void LoopUntilPhotoIsLoadedLoop()
-	//{
-	//	Debug.Log("Loading image from local...");
-	//	if(sprite == null)
-	//		Invoke("LoopUntilPhotoIsLoadedLoop", 2);
-	//	else
-	//		func();
-	//	LoadUserPhoto();
-	//}
- //   void LoadUserPhoto()
- //   {
- //       sprite = LoadSprite(path + userID + ".png");
- //   }
     private Sprite LoadSprite(string path)
     {
         Debug.Log("Busca imagen en: " + path);
@@ -158,5 +143,28 @@ public class UserData : MonoBehaviour
     {
         print("UpdateData");
       //  Data.Instance.serverManager.LoadUserData(userID);
+    }
+    public void SetMissionReady(int videogameID, int missionID)
+    {
+        int id = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID);
+        if (id < missionID)
+        {
+            PlayerPrefs.SetInt("missionUnblockedID_" + videogameID, missionID);
+            switch(videogameID)
+            {
+                case 1:  missionUnblockedID_1 = missionID; break;
+                case 2: missionUnblockedID_2 = missionID; break;
+                case 3: missionUnblockedID_3 = missionID; break;
+            }
+        }
+    }
+    public int GetMissionUnblockedByVideogame(int videogameID)
+    {
+        switch (videogameID)
+        {
+            case 1: return missionUnblockedID_1;
+            case 2: return missionUnblockedID_2;
+            default: return missionUnblockedID_3;
+        }
     }
 }
