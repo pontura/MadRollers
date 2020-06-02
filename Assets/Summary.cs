@@ -15,6 +15,9 @@ public class Summary : MonoBehaviour {
 	public int optionSelected = 0;
     private bool isOn;
 
+    public Text percentfield;
+    public Text missionField;
+
 	float delayToReact = 0.3f;
 
     void Start()
@@ -38,6 +41,22 @@ public class Summary : MonoBehaviour {
         Data.Instance.events.RalentaTo(1, 0.05f);
         mobilePanel.SetActive(true);
         StartCoroutine(Play(anim, "popupOpen", false, null));
+        bool isBoss = false;
+        float progression = GetComponent<MissionBar>().routeProgressBar.progression;
+        if(progression == 0)
+        {
+            isBoss = true;
+            progression = (1 - GetComponent<MissionBar>().progressBar.progression);
+        }
+            
+        if (progression > 1) progression = 1;
+        else if (progression < 0) progression = 0;
+
+        percentfield.text = ((int)(progression * 100)).ToString() + "%";
+        if(isBoss)
+            missionField.text = "BOSS! M." + (Data.Instance.missions.MissionActiveID + 1);
+        else
+            missionField.text = "MISIÓN " + (Data.Instance.missions.MissionActiveID + 1);
     }
     public void Restart()
 	{

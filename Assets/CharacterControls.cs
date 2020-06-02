@@ -102,14 +102,14 @@ public class CharacterControls : MonoBehaviour {
 	}
     void RotateAccelerometer(float _speed)
     {
-        _speed *= 5;
+        _speed *= 6;
 
         if (_speed > -2 && _speed < 2)
             _speed = 0;
-        else if (_speed > 25)
-            _speed = 25;
-        else if (_speed < -25)
-            _speed = -25;
+        else if (_speed > 35)
+            _speed = 35;
+        else if (_speed < -35)
+            _speed = -35;
 
         rotationY = _speed;
     }

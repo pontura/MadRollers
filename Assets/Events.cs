@@ -83,6 +83,7 @@ public class Events : MonoBehaviour {
     public System.Action<float> ChangeCurvedWorldX = delegate { };
     public System.Action SetVictoryArea = delegate { };
 
+    public System.Action<string> OnAlertSignal = delegate { };
     public System.Action<string> OnChangeBackgroundSide = delegate { };
     public System.Action<int, Weapon.types> OnChangeWeapon = delegate { };
     public System.Action<int, Powerup.types> OnAvatarGetItem = delegate { };

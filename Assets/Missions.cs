@@ -28,10 +28,7 @@ public class Missions : MonoBehaviour {
     float totalDistance = 0;
 
     VideogamesData videogamesData;
-
-   // [HideInInspector]
-   // public List<MissionsManager.MissionsByVideoGame> videogames;
-
+    
     public void Init()
     {
         
@@ -63,8 +60,8 @@ public class Missions : MonoBehaviour {
     }
     void ResetMissionsBlocked()
     {
-        foreach(MissionsManager.MissionsByVideoGame mbv in MissionsManager.Instance.videogames)
-            mbv.missionUnblockedID = 0;
+        //foreach(MissionsManager.MissionsByVideoGame mbv in MissionsManager.Instance.videogames)
+        //    mbv.missionUnblockedID = 0;
     }
 	public MissionData GetMissionsDataByJsonName(string jsonName)
 	{
@@ -122,8 +119,7 @@ public class Missions : MonoBehaviour {
 			int videogameID = videogamesData.actualID+1;
             UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
 		}
-        MissionsManager.Instance.videogames [videogamesData.actualID].missionUnblockedID = MissionActiveID;
-	}
+    }
 	public int GetTotalMissionsInVideoGame(int videogameID)
 	{
 		return MissionsManager.Instance.videogames [videogameID].missions.Count;
@@ -243,7 +239,8 @@ public class Missions : MonoBehaviour {
     }
     void AddAreaByName(string areaName, bool isXtra = false)
     {
-		TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
+        TextAsset asset = MissionsManager.Instance.areasManager.GetArea(areaName);
+       // TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
 		if (asset != null) {					
 			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
 			areasLength += areaDataActive.z_length/2;
@@ -311,7 +308,8 @@ public class Missions : MonoBehaviour {
             {
                 if (id < totalAreas)
                 {
-                    TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
+                    TextAsset asset = MissionsManager.Instance.areasManager.GetArea(areaName);
+                   // TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
                     if (asset != null)
                     {
                            

@@ -21,7 +21,6 @@ public class LevelSelectorMobile : MonoBehaviour
         Data.Instance.isReplay = false;
         Data.Instance.voicesManager.PlaySpecificClipFromList(Data.Instance.voicesManager.UIItems, 0);
 
-
         switch (UserData.Instance.playerID)
         {
             case 0:

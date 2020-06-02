@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MobileMenu : MonoBehaviour
 {
     public GameObject panel;
     public MobileMenuScreen mobileMenuScreen;
     public AvatarThumb avatarThumb;
-
+    public Text debugField;
     void Start()
     {
         if (!Data.Instance.isAndroid)
@@ -17,6 +18,7 @@ public class MobileMenu : MonoBehaviour
         }
         else
         {
+            debugField.text = "version: [" + Application.version + "]";
             mobileMenuScreen.gameObject.SetActive(false);
             panel.SetActive(false);
             Data.Instance.events.OnChangeScene += OnChangeScene;

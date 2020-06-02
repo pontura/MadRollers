@@ -7,7 +7,7 @@ using System;
 public class MissionData  {
 
 	public string jsonName;
-	public string title;
+    public string title;
 	public int id;
 	public int maxScore;
 	public string fondo;
@@ -17,7 +17,8 @@ public class MissionData  {
 	public class AreaSetData
 	{
         public bool boss;
-		public int total_areas;
+        public TextAsset json;
+        public int total_areas;
 		public float bending;
 		public bool randomize;
 		public List<string> areas;

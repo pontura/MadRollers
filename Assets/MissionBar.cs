@@ -48,7 +48,6 @@ public class MissionBar : MonoBehaviour {
         if(routeProgressOn)
         {           
             float distance = Game.Instance.level.charactersManager.getDistance();
-            print("distance : " + distance + "  totalDistance: " + totalDistance);
             routeProgressBar.SetProgression(distance/totalDistance);
             if (distance >= totalDistance)
             {
@@ -144,12 +143,13 @@ public class MissionBar : MonoBehaviour {
 
 	}
 	void OnBossActive (bool isOn)
-	{
-		progressBar.SetProgression (0);
+	{       
 		if (!isOn) {
             bossSignal.gameObject.SetActive(false);
             CancelInvoke ();
 		}
+        routeProgressBar.SetProgression(0);
+        progressBar.SetProgression(0);
         routeProgressSignal.SetActive(false);
         routeProgressOn = false;
 	}

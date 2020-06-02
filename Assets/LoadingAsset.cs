@@ -34,7 +34,6 @@ public class LoadingAsset : MonoBehaviour {
 	public void SetOn(bool _isOn)
 	{
         hiscorePanel.SetActive(false);
-        print("______________LOading set on MissionActiveID: " + Data.Instance.missions.MissionActiveID);
 		this.isOn = _isOn;
 		panel.SetActive (_isOn);
 		loadingPanel.SetActive (_isOn);

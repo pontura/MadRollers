@@ -52,7 +52,8 @@ public class MissionButton : MonoBehaviour {
 
         anim.Play ("videoGameButtonMobile");
         Data.Instance.videogamesData.actualID = videogameData.id;
-        Data.Instance.missions.MissionActiveID = Data.Instance.missions.GetMissionsByVideoGame(videogameData.id).missionUnblockedID;
+        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videogameData.id);
+        Data.Instance.missions.MissionActiveID = missionUnblockedID;
         Invoke("DelayedClick", 1);
        // levelSelectorMobile.OnMissionButtonClicked(this);
     }
@@ -75,7 +76,8 @@ public class MissionButton : MonoBehaviour {
     }
     public void GetHiscore()
     {
-        missionActive = Data.Instance.missions.GetMissionsByVideoGame(videogameData.id).missionUnblockedID;
+        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videogameData.id);
+        missionActive = missionUnblockedID;
         missionField.text = "MISION " + (missionActive + 1);
         usernameField.text = "<loading...>";
         UserData.Instance.hiscoresByMissions.LoadHiscore(videogameData.id, missionActive, OnLoaded);

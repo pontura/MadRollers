@@ -90,8 +90,10 @@ public class Data : MonoBehaviour {
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
     {
-       // return "https://gamedb.doublespicegames.com/assets/sss-dev/" :
-        return "www.madrollers.com/bundles/";
+        // return "https://gamedb.doublespicegames.com/assets/sss-dev/" :
+       // return "www.pontura.com/madRollers_bundles/";
+        return "www.madrollers.com/bundles/" + Application.version + "/";
+        
     }
     public static Data Instance
     {

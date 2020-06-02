@@ -6,7 +6,7 @@ public class ProgressBar : MonoBehaviour {
 
     [SerializeField] private Image sprite;
     [SerializeField] private GameObject bar;
-    [SerializeField] private float progression;
+    public float progression;
 
 	public void SetProgression(float progression)
 	{

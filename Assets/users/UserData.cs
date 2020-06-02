@@ -59,7 +59,7 @@ public class UserData : MonoBehaviour
         serverConnect = GetComponent<ServerConnect>();
         avatarImages = GetComponent<AvatarImages>();
         hiscoresByMissions = GetComponent<HiscoresByMissions>();
-        missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 1);
+        missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
         missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
         missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
 

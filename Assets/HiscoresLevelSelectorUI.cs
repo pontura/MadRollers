@@ -41,7 +41,8 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
         Utils.RemoveAllChildsIn(missionscontainer);
         List<MissionsManager.MissionsData> missionData = MissionsManager.Instance.videogames[videoGameID].missions;
         videogameTitleField.text = Data.Instance.videogamesData.all[videoGameID].name;
-        int missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID;
+        //int missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID;
+        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID);
 
 
         int id = 0;

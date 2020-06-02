@@ -40,16 +40,15 @@ public class MissionButtonMobile : MonoBehaviour
 
 
         int unblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID + 1);
-
-        //bloquea todo si no jugaste:
-        if(videoGameID>0)
+        if(UserData.Instance.missionUnblockedID_1 == 0 && videoGameID == 1)
         {
-            int level1blockedID = MissionsManager.Instance.videogames[0].missionUnblockedID;
-            if (level1blockedID == 0)
-                unblockedID = -1;
+            unblockedID = -1;
         }
-        //////////////////
-        
+        if (UserData.Instance.missionUnblockedID_2 == 0 && videoGameID == 2)
+        {
+            unblockedID = -1;
+        }
+
         if (missionID <= unblockedID || nevelLock)
         {
             isBlocked = false;
@@ -91,8 +90,11 @@ public class MissionButtonMobile : MonoBehaviour
     }
     public void Clicked()
     {
-        if (isBlocked) return;
-        if(missionSelectorMobile != null)
+        if (isBlocked)
+        {
+            Data.Instance.events.OnAlertSignal("Solo puedes jugar las misiones sin candado");
+        }           
+        else if (missionSelectorMobile != null)
             missionSelectorMobile.Clicked(videoGameID, missionID);
         else if (hiscoresLevelSelectorUI != null)
             hiscoresLevelSelectorUI.Clicked(videoGameID, missionID);

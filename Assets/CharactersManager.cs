@@ -232,6 +232,8 @@ public class CharactersManager : MonoBehaviour {
 		characters.Add(newCharacter);
         totalCharacters = characters.Count;
 
+        if (isAndroid) pos.x = 0;
+
         newCharacter.transform.position = pos;
 		Data.Instance.events.OnCharacterInit (id);
         player.SetInvensible(3);

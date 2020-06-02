@@ -58,7 +58,6 @@ public class AssetsBundleLoader : MonoBehaviour
 
         
         dataPaths.Add("missionsmanager");
-        dataPaths.Add("bosses");
         totalFirstBundles = dataPaths.Count;
         bundles = new Dictionary<string, AssetBundle>();
     }
@@ -86,18 +85,18 @@ public class AssetsBundleLoader : MonoBehaviour
             url = Data.ServerAssetsUrl();
             SetAssetsBundleServer();
             isFirstTime = true;
+            Debug.Log("Baja mainBundle");
         }
         else
         {
             isFirstTime = false;
+            Debug.Log("Vuelve a Bajar: " + isFirstTime + "   mainBundle " + mainBundle + "   dataPaths: " + dataPaths);
         }
 
-        Debug.Log("Vuelve a Bajar: " + isFirstTime + "   mainBundle " + mainBundle + "   dataPaths: " + dataPaths);
-        this.onSuccess = onSuccess;
-
-        using (UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + mainBundlePath + "/" + mainBundlePath))
+        string realURL = url + mainBundlePath + "/" + mainBundlePath;
+        using (UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(realURL))
         {
-            Debug.Log("Loading from url : " + url + mainBundlePath + "/" + mainBundlePath);
+            Debug.Log("Loading from url : " + realURL);
             AsyncOperation op = request.SendWebRequest();
             while (!op.isDone)
             {
@@ -109,7 +108,7 @@ public class AssetsBundleLoader : MonoBehaviour
             if (request.isNetworkError || request.isHttpError)
             {
                 Debug.Log(request.error);
-               // Events.OpenStandardSignal(Data.Instance.ResetAll, "No internet access, try again later");
+                onSuccess("error");
             }
             else
             {
@@ -142,7 +141,8 @@ public class AssetsBundleLoader : MonoBehaviour
             if (isFirstTime)
             {
                 CurrentPack = key;
-                yield return DownloadAndCacheAssetBundle(key, hash, OnLoaded);
+                yield return DownloadAndCacheAssetBundle(key, null);
+                //   yield return DownloadAndCacheAssetBundle(key, hash, OnLoaded);
             }
         }
         if (!isFirstTime)
@@ -166,15 +166,17 @@ public class AssetsBundleLoader : MonoBehaviour
         loadedParts++;
         if (loadedParts >= dataPaths.Count)
         {
-            Debug.Log("all downloaded coount: " + dataPaths.Count);
+            Debug.Log("All Assetsbundles  downloaded count: " + dataPaths.Count);
             allLoaded = true;
-            onSuccess("Success" + loadedParts);
+            onSuccess("ok");
         }
     }
-    IEnumerator DownloadAndCacheAssetBundle(string uri, Hash128 hash, System.Action<bool> OnLoaded)
+    public IEnumerator DownloadAndCacheAssetBundle(string uri, System.Action<string> OnSuccess) //Hash128 hash,   //System.Action<bool> OnLoaded)
     {
-        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url + mainBundlePath + "/" + uri, hash); //, hash, 0);
-        Debug.Log("downloading assetBundle: " + url + mainBundlePath + "/" + uri);
+        url = Data.ServerAssetsUrl();
+        string realURL = url + mainBundlePath + "/" + uri;
+        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(realURL); //, hash, 0);
+        Debug.Log("Downloading AssetBundle: " + realURL);
         request.SendWebRequest();
         while (!request.isDone)
         {
@@ -182,10 +184,10 @@ public class AssetsBundleLoader : MonoBehaviour
             downloadedBytes = request.downloadedBytes;
             yield return new WaitForEndOfFrame();
         }
-        Debug.Log("____________ assetBundle: " + url + mainBundlePath + "/" + uri);
         yield return new WaitForEndOfFrame();
         if (request.isNetworkError || request.isHttpError)
         {
+            OnSuccess("error");
             Debug.Log("Error downloading assetBundle: " + url + uri);
            // Events.OpenStandardSignal(Data.Instance.ResetAll, "No internet access, try again later");
             yield break;
@@ -195,9 +197,10 @@ public class AssetsBundleLoader : MonoBehaviour
             AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
             if (bundles == null)
                 bundles = new Dictionary<string, AssetBundle>();
-            bundles.Add(uri, bundle);
 
-            OnLoaded(true);
+            bundles.Add(uri, bundle);
+            OnSuccess("ok");
+            //OnLoaded(true);
         }
     }
    

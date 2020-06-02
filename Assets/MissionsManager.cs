@@ -8,6 +8,7 @@ public class MissionsManager : MonoBehaviour
     public TextAsset _all;
     public MissionsListInVideoGame all;
     public List<MissionsByVideoGame> videogames;
+    public AreasManager areasManager;
     [Serializable]
     public class MissionsListInVideoGame
     {
@@ -19,7 +20,6 @@ public class MissionsManager : MonoBehaviour
     public class MissionsByVideoGame
     {
         public List<MissionsData> missions;
-        public int missionUnblockedID;
     }
     [Serializable]
     public class MissionsData
@@ -48,15 +48,14 @@ public class MissionsManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        DontDestroyOnLoad(this);
-       
-    }
-    private void Start()
-    {
-        LoadAll();
+        areasManager = GetComponent<AreasManager>();
+        DontDestroyOnLoad(this);       
     }
     public void LoadAll()
     {
+        Debug.Log("Load all missions from Resources");
+        areasManager = GetComponent<AreasManager>();
+        areasManager.Init();
         all = JsonUtility.FromJson<MissionsListInVideoGame>(_all.text);
 
         LoadByVideogame(all.missionsVideoGame1, 0);
@@ -70,7 +69,6 @@ public class MissionsManager : MonoBehaviour
         foreach (string missionName in missionsInVideogame)
         {
             videogame.missions.Add(LoadDataFromMission("missions", missionName));
-            videogame.missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame((videogameID + 1));
         }
     }
     public MissionsData LoadDataFromMission(string folder, string missionName)
@@ -78,11 +76,17 @@ public class MissionsManager : MonoBehaviour
         string dataAsJson = LoadResourceTextfile(folder, missionName);
         MissionsData missionData = JsonUtility.FromJson<MissionsData>(dataAsJson);
         missionData.data[0].jsonName = missionName;
+        foreach (MissionData.AreaSetData areasSetData in missionData.data[0].areaSetData)
+        {
+            foreach (string areaName in areasSetData.areas)
+                areasManager.Add(areaName); 
+        }
         return missionData;
     }
     public string LoadResourceTextfile(string folder, string path)
     {
         string filePath = folder + "/" + path.Replace(".json", "");
+        
         TextAsset targetFile = Resources.Load<TextAsset>(filePath);
         return targetFile.text;
     }

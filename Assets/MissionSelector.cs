@@ -27,8 +27,10 @@ public class MissionSelector : MonoBehaviour {
 			titlePartyField.text = Data.Instance.videogamesData.all [videogameID].name;
 			return;
 		}
-		
-		missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame (videogameID).missionUnblockedID;
+
+
+        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videogameID);
+        missionUnblockedID = missionUnblockedID;
 
         print(" missionUnblockedID: " + missionUnblockedID);
 		actualMission = missionUnblockedID;

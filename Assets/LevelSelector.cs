@@ -121,7 +121,8 @@ public class LevelSelector : MonoBehaviour {
 
 
         int MissionActiveID = Data.Instance.missions.MissionActiveID;
-		if (MissionActiveID < Data.Instance.missions.GetMissionsByVideoGame (videgameID).missionUnblockedID) {
+        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videogameData.id);
+        if (MissionActiveID < missionUnblockedID) {
 			Data.Instance.missions.MissionActiveID++;
 			missionSelector.ChangeMission (Data.Instance.missions.MissionActiveID);
 		}
