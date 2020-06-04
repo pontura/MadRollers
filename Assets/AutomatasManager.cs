@@ -5,16 +5,16 @@ using UnityEngine;
 public class AutomatasManager : MonoBehaviour
 {
     CharactersManager charactersManager;
-    int startingInLevel = 8;
+    int startingInLevel = 10;
 
     void Start()
     {
         charactersManager = Game.Instance.level.charactersManager;
         Invoke("CheckToAdd", 8);
         if (Data.Instance.videogamesData.actualID == 2)
-            startingInLevel = 3;
+            startingInLevel = 6;
         if (Data.Instance.videogamesData.actualID == 3)
-            startingInLevel = 1;
+            startingInLevel = 3;
     }
     void CheckToAdd()
     {
@@ -37,7 +37,7 @@ public class AutomatasManager : MonoBehaviour
         foreach (CharacterBehavior cb in Game.Instance.level.charactersManager.characters)
             charactersInSceneID.Add(cb.player.id);
 
-        if (Random.Range(0, 15) < totalAutomatas + 1)
+        if (Random.Range(0, 35) < totalAutomatas + 1)
         {
             bool characterExists = false;
             int rand = Random.Range(1, 4);
@@ -50,8 +50,6 @@ public class AutomatasManager : MonoBehaviour
                 timeToCheck += 3;
             }
         }
-
-        
         Invoke("CheckToAdd", timeToCheck);
         
     }

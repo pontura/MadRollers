@@ -56,8 +56,10 @@ MonoBehaviour:
     - boy_helices
     - boy_pigs
     - boy_walkers
+    - boy_deformeEspada
     - boy_floors
     - boy_ene_SubeyBajan
+    - boy_2_filas_bossesDisparan
     - boy_sliders
     - boy_barrancas
     - boy_pisosMueven
@@ -361,29 +363,31 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -2
+          bending: -15
           randomize: 0
           areas:
-          - descansoAnchoMinimal
-          cameraOrientation: {x: 0, y: 2, z: 0}
-        - boss: 0
-          json: {fileID: 0}
-          total_areas: 1
-          bending: -13
-          randomize: 1
-          areas:
           - rampaHuge
-          cameraOrientation: {x: 0, y: 1, z: -3}
+          cameraOrientation: {x: 0, y: 3, z: -2}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 2
-          bending: -8
-          randomize: 1
+          total_areas: 4
+          bending: -3
+          randomize: 0
           areas:
+          - ruedaSimple
           - CoinsHard1
           - coinsHard2
           - coinsHard3
-          cameraOrientation: {x: 0, y: 1, z: -2}
+          cameraOrientation: {x: 0, y: 4, z: -3}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -13
+          randomize: 0
+          areas:
+          - descansoSimpleCoins
+          - ruedaDoble1
+          cameraOrientation: {x: 0, y: -6, z: 1}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -418,7 +422,7 @@ MonoBehaviour:
           - killRunner2
           - killRunner2_b
           - killRunner2_c
-          cameraOrientation: {x: 0, y: 2, z: 0}
+          cameraOrientation: {x: 0, y: 2, z: -1}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -427,7 +431,7 @@ MonoBehaviour:
           areas:
           - descanso1
           - descanso2
-          cameraOrientation: {x: 0, y: -3, z: -2}
+          cameraOrientation: {x: 0, y: -3, z: 0}
         - boss: 1
           json: {fileID: 0}
           total_areas: 1
@@ -435,7 +439,7 @@ MonoBehaviour:
           randomize: 0
           areas:
           - Ending
-          cameraOrientation: {x: 0, y: 3, z: -2}
+          cameraOrientation: {x: 0, y: 3, z: 1}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1000
@@ -443,7 +447,7 @@ MonoBehaviour:
           randomize: 1
           areas:
           - Ending
-          cameraOrientation: {x: 0, y: -3, z: -6}
+          cameraOrientation: {x: 0, y: -6, z: -2}
     - title: 
       data:
       - jsonName: boy_pulpo
@@ -630,21 +634,29 @@ MonoBehaviour:
         areaSetData:
         - boss: 0
           json: {fileID: 0}
-          total_areas: 1
-          bending: -16
-          randomize: 1
-          areas:
-          - CoinsHard1
-          - coinsHard2
-          - coinsHard3
-          cameraOrientation: {x: 0, y: -1, z: 0}
-        - boss: 0
-          json: {fileID: 0}
-          total_areas: 3
+          total_areas: 4
           bending: -8
           randomize: 1
           areas:
           - descansoRunners
+          - descansoRunners2
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: -12
+          randomize: 1
+          areas:
+          - CoinsHard1
+          - ruedaSimple2
+          - coinsHard3
+          cameraOrientation: {x: 0, y: -1, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 8
+          bending: -8
+          randomize: 1
+          areas:
           - descansoRunners2
           - descansoRunners3
           - descansoRunners4
@@ -652,23 +664,44 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -12
+          bending: -15
           randomize: 1
           areas:
-          - CoinsHard1
-          - coinsHard2
-          - coinsHard3
-          cameraOrientation: {x: 0, y: -1, z: 0}
+          - descansoRunners3Fast
+          cameraOrientation: {x: 0, y: -6, z: 2}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -14
+          randomize: 0
+          areas:
+          - entrance
+          - Ending
+          cameraOrientation: {x: 0, y: -2, z: 0}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 1
+          total_areas: 1000
+          bending: 0
+          randomize: 1
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -3, z: -2}
+    - title: 
+      data:
+      - jsonName: boy_deformeEspada
+        title: KILL AL DEFORME CON ESPADA
+        id: 0
+        maxScore: 5000
+        fondo: wonderland_castles
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 4
           bending: -8
           randomize: 1
           areas:
-          - descansoRunners
-          - descansoRunners2
-          - descansoRunners3
-          - descansoRunners4
+          - ruedaSimple2
+          - ruedaSimple1
           cameraOrientation: {x: 0, y: 2, z: -1.5}
         - boss: 1
           json: {fileID: 0}
@@ -698,56 +731,63 @@ MonoBehaviour:
         areaSetData:
         - boss: 0
           json: {fileID: 0}
-          total_areas: 10
-          bending: -2
+          total_areas: 12
+          bending: -7
           randomize: 1
           areas:
           - floors_move_1
           - floors_move_2
-          cameraOrientation: {x: 0, y: -1, z: -2}
+          cameraOrientation: {x: 0, y: 2, z: -1}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 10
+          total_areas: 1
           bending: -5
           randomize: 1
           areas:
+          - ruedaSimple2
+          - ruedaSimple1
+          cameraOrientation: {x: 0, y: -1, z: 2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 10
+          bending: -6
+          randomize: 1
+          areas:
           - floors_move_3
           - floors_move_4
-          cameraOrientation: {x: 0, y: -1, z: -2}
+          cameraOrientation: {x: 0, y: -4, z: -3}
         - boss: 0
           json: {fileID: 0}
           total_areas: 20
-          bending: -15
+          bending: -12
           randomize: 1
           areas:
           - floors_move_1
           - floors_move_2
           - floors_move_3
           - floors_move_4
-          cameraOrientation: {x: 0, y: -1, z: -4}
+          cameraOrientation: {x: 0, y: -2, z: -4}
         - boss: 1
           json: {fileID: 0}
           total_areas: 3
           bending: 0
           randomize: 0
           areas:
-          - floors_move_boss
-          - floors_move_simple1
-          cameraOrientation: {x: 0, y: -2, z: 0}
+          - entrance
+          - Ending
+          cameraOrientation: {x: 0, y: -2, z: -2}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 4
+          total_areas: 1000
           bending: -10
           randomize: 1
           areas:
-          - floors_move_simple1
-          - floors_move_simple2
-          - floors_move_simple3
-          cameraOrientation: {x: 0, y: -7, z: -8}
+          - Ending
+          cameraOrientation: {x: 0, y: -7, z: -6}
     - title: 
       data:
       - jsonName: boy_ene_SubeyBajan
-        title: MURO DE LA MUERTE
+        title: FANTASMAS VOLADORES
         id: 0
         maxScore: 5000
         fondo: wonderland_castles
@@ -755,7 +795,7 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -15
+          bending: -12
           randomize: 0
           areas:
           - descansoAnchoMinimal
@@ -781,7 +821,7 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: -1.5, z: -0.5}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 3
+          total_areas: 2
           bending: 0
           randomize: 1
           areas:
@@ -791,7 +831,7 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: 0, z: 0}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 5
+          total_areas: 12
           bending: -15
           randomize: 1
           areas:
@@ -812,7 +852,7 @@ MonoBehaviour:
           randomize: 1
           areas:
           - container_lineaFlota
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: 5, z: 2}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -822,7 +862,7 @@ MonoBehaviour:
           - coinsEasy1
           - coinsEasy2
           - coinsEasy3
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: -5, z: 1}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -831,6 +871,46 @@ MonoBehaviour:
           areas:
           - container_descanso_cruz
           cameraOrientation: {x: 0, y: 2, z: -0.8}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: -15
+          randomize: 1
+          areas:
+          - singleRunnerJump1
+          - singleRunnerJump2
+          - enemiesLineaJump
+          - enemiesLineaJumpSmall
+          - enemiesRunners3_Salto2
+          - enemiesRunnersSmall
+          - enemiesRunnersSmall_2Palms
+          - singleRunnerJump_linea1
+          - singleRunnerJump_linea2
+          cameraOrientation: {x: 0, y: -2, z: -4}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -2, z: -5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1000
+          bending: 0
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: 2, z: -6}
+    - title: 
+      data:
+      - jsonName: boy_2_filas_bossesDisparan
+        title: FANTASMAS VOLADORES
+        id: 0
+        maxScore: 5000
+        fondo: wonderland_castles
+        areaSetData:
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -3634,9 +3714,12 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 70cf18d9eff775c4bb4c740ce7d534fc, type: 3}
   - {fileID: 4900000, guid: 6f9c4695816bed94b8ee57467ea399a9, type: 3}
   - {fileID: 4900000, guid: aa928abc0b9e9134d9dca7137fda8af7, type: 3}
+  - {fileID: 4900000, guid: ffa3e4a117707144f9ff887ec928481c, type: 3}
   - {fileID: 4900000, guid: 091538ac841c7304c913cc1b53d10241, type: 3}
   - {fileID: 4900000, guid: fdb02040ba503b4429fd7cbeb14a8fcb, type: 3}
   - {fileID: 4900000, guid: cc4ed8290d55e9147ac3da84a9162a06, type: 3}
+  - {fileID: 4900000, guid: a9e8750e41df37142b8be74aad6104b7, type: 3}
+  - {fileID: 4900000, guid: 856bb7a46a96f3344a8e4eea799d8c58, type: 3}
   - {fileID: 4900000, guid: c161df6907731eb4c9d9b433a7037d07, type: 3}
   - {fileID: 4900000, guid: 729aefcedded6f245998e984ea233ad4, type: 3}
   - {fileID: 4900000, guid: fe360d8742358d84ebadd8958351b9cc, type: 3}
@@ -3661,17 +3744,16 @@ MonoBehaviour:
   - {fileID: 4900000, guid: e4803e46ddf6ca14e866b919025fedc4, type: 3}
   - {fileID: 4900000, guid: 8b09e16c974a4e34399e2fe07613eb8c, type: 3}
   - {fileID: 4900000, guid: d5d6733e287f09941ba225eb7b6b05c9, type: 3}
+  - {fileID: 4900000, guid: c9c59aa312db554419e4299363b6b4c1, type: 3}
   - {fileID: 4900000, guid: 3dab0451442b81546a58fac7c710bcb6, type: 3}
   - {fileID: 4900000, guid: 0ed56955eb2897d4d9e3f8336abbea24, type: 3}
+  - {fileID: 4900000, guid: afe7200b055e070499d87f4d7a7b6160, type: 3}
+  - {fileID: 0}
   - {fileID: 4900000, guid: 975110d356ecb9a48abb5083eba03fda, type: 3}
   - {fileID: 4900000, guid: 99f2e00e68b25a5498d429648751351b, type: 3}
   - {fileID: 4900000, guid: 453311e620beac24ebabe12f6b10ad73, type: 3}
   - {fileID: 4900000, guid: 7879dedf686602447babb24c51d2a967, type: 3}
   - {fileID: 4900000, guid: 387f6facc6de86d4abadf4d4a2c3c011, type: 3}
-  - {fileID: 4900000, guid: 07134b7b886d7d3418dd44a1fe906859, type: 3}
-  - {fileID: 4900000, guid: 93f15f137db45674fb6a2da8642b59b0, type: 3}
-  - {fileID: 4900000, guid: 39fe2dafb2fcf244187c491de6ebc570, type: 3}
-  - {fileID: 4900000, guid: 0eadd17e0640b1744ba1a6e7cb23be54, type: 3}
   - {fileID: 4900000, guid: b5506e84b83dea944b1bf85417f46822, type: 3}
   - {fileID: 4900000, guid: 199a9462ed8ac57479a5218ab9de9a37, type: 3}
   - {fileID: 4900000, guid: 05718b4769811a54cb07512924355db8, type: 3}
@@ -3744,12 +3826,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 40be162716373ef4ba64cf244f96fd86, type: 3}
   - {fileID: 4900000, guid: 47828f1b1c03daf4aa2fb0c003b901dd, type: 3}
   - {fileID: 4900000, guid: 2f5396192a41d3741a30899804ecc35c, type: 3}
-  - {fileID: 4900000, guid: ffa3e4a117707144f9ff887ec928481c, type: 3}
   - {fileID: 4900000, guid: 1edcae00dd03ec84dadfea515c039c8e, type: 3}
   - {fileID: 4900000, guid: ec28da7f9bd82da4b9baaef14b8aa1fd, type: 3}
   - {fileID: 4900000, guid: c496ab54199769a4ea37c0b8b0a47164, type: 3}
-  - {fileID: 4900000, guid: 856bb7a46a96f3344a8e4eea799d8c58, type: 3}
-  - {fileID: 4900000, guid: c9c59aa312db554419e4299363b6b4c1, type: 3}
   - {fileID: 4900000, guid: a1071fa2341bff44495f3d1e94adf3da, type: 3}
   - {fileID: 4900000, guid: 1300ed2c287061141ac920f3a54f372e, type: 3}
   - {fileID: 4900000, guid: 716a94d665c9cd543a6a059ecd21023b, type: 3}
@@ -3920,6 +3999,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 21e478c5bc91f814dab51d47903a7825, type: 3}
   - {fileID: 4900000, guid: 319dac904068e764fa3969774c60078a, type: 3}
   - {fileID: 4900000, guid: bbc6785234f9e744fbd7d963274a2305, type: 3}
+  - {fileID: 4900000, guid: 93f15f137db45674fb6a2da8642b59b0, type: 3}
+  - {fileID: 4900000, guid: 39fe2dafb2fcf244187c491de6ebc570, type: 3}
+  - {fileID: 4900000, guid: 0eadd17e0640b1744ba1a6e7cb23be54, type: 3}
   - {fileID: 4900000, guid: ea6197fa991ab6c429dc413309e45b10, type: 3}
   - {fileID: 4900000, guid: 2c5a218b1c730cb4c937b5b7bab0346b, type: 3}
   - {fileID: 4900000, guid: 9477e36591126c242a370174923d5a99, type: 3}
@@ -3979,9 +4061,12 @@ MonoBehaviour:
   - bossVienenFree
   - anchoFences
   - rampaHuge
+  - ruedaSimple
   - CoinsHard1
   - coinsHard2
   - coinsHard3
+  - descansoSimpleCoins
+  - ruedaDoble1
   - coinsJumpFence
   - descanso2
   - killRunnerSimple_4
@@ -4006,17 +4091,16 @@ MonoBehaviour:
   - pisoCurvo5
   - descansoRunners
   - descansoRunners2
+  - ruedaSimple2
   - descansoRunners3
   - descansoRunners4
+  - descansoRunners3Fast
+  - ruedaSimple1
   - boss_deformeEspada
   - floors_move_1
   - floors_move_2
   - floors_move_3
   - floors_move_4
-  - floors_move_boss
-  - floors_move_simple1
-  - floors_move_simple2
-  - floors_move_simple3
   - housesSmall1
   - housesSmall2
   - housesSmall3
@@ -4089,12 +4173,9 @@ MonoBehaviour:
   - subibajaEnemy
   - subibajaBoss
   - subibajaBossFree
-  - ruedaSimple
   - ruedasEnemigos
   - ruedaDoble
   - ruedaDoble2
-  - ruedaDoble1
-  - ruedaSimple2
   - boss_circular
   - areaFree_boss2
   - agua_lados
@@ -4265,6 +4346,9 @@ MonoBehaviour:
   - floors_move_helice_1
   - floors_move_helice_2
   - floors_move_boss_2
+  - floors_move_simple1
+  - floors_move_simple2
+  - floors_move_simple3
   - boss1Corre
   - boss1Corre2
   - boss1Corre3

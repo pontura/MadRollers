@@ -1,13 +1,13 @@
 {
 	"data": [{
-		"title": "MURO DE LA MUERTE",
+		"title": "FANTASMAS VOLADORES",
 		"fondo": "wonderland_castles",
 		"id": 0,
 		"maxScore": 5000,
 		"areaSetData": [
 		{
 			"total_areas": 1,
-			"bending":-15,
+			"bending":-12,
 			"randomize": false,
 			"areas": ["descansoAnchoMinimal"],
 			"cameraOrientation": {
@@ -43,9 +43,10 @@
 			}
 		},
 		{
-			"total_areas": 3,
+			"total_areas": 2,
 			"randomize": true,
-			"areas": ["killRunner",
+			"areas": [
+			"killRunner",
 			"killRunner2",
 			"killRunner3"],
 			"cameraOrientation": {
@@ -55,10 +56,11 @@
 			}
 		},
 		{
-			"total_areas": 5,
+			"total_areas": 12,
 			"bending":-15,
 			"randomize": true,
-			"areas": ["singleRunnerJump1",
+			"areas": [
+			"singleRunnerJump1",
 			"singleRunnerJump2",
 			"enemiesLineaJump",
 			"enemiesLineaJumpSmall",
@@ -77,11 +79,13 @@
 		{
 			"total_areas": 1,
 			"randomize": true,
-			"areas": ["container_lineaFlota"],
+			"areas": [
+			"container_lineaFlota"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0
+				"y": 5,
+				"z": 2
 			}
 		},
 		{
@@ -93,14 +97,16 @@
 			"coinsEasy3"],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0
+				"y": -5,
+				"z": 1
 			}
 		},
 		{
 			"total_areas": 1,
 			"randomize": false,
-			"areas": ["container_descanso_cruz"],
+			"areas": [
+			"container_descanso_cruz"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 2.0,
@@ -108,43 +114,52 @@
 			}
 		},	
 		{
-			"total_areas": 1,
-			"randomize": false,
+			"total_areas": 3,
+			"bending":-15,
+			"randomize": true,
 			"areas": [
-			"boss_zigzag_free2"	
+			"singleRunnerJump1",
+			"singleRunnerJump2",
+			"enemiesLineaJump",
+			"enemiesLineaJumpSmall",
+			"enemiesRunners3_Salto2",
+			"enemiesRunnersSmall",
+			"enemiesRunnersSmall_2Palms",
+			"singleRunnerJump_linea1",
+			"singleRunnerJump_linea2"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 2.0,
-				"z": -1
+				"y": -2,
+				"z": -4
 			}
-		},		
+		},
 		{
-			"total_areas": 3,
+			"total_areas": 1,
 			"randomize": false,
 			"boss": true,
 			"areas": [
-			"boss_Pacmans",
-			"boss_zigzag_free"
+			"Ending"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -2.0,
-				"z": 0.0
+				"z": -5
 			}
 		},
 		{
-			"total_areas": 4,
-			"randomize": true,
+			"total_areas": 1000,
+			"randomize": false,
 			"areas": [
-			"boss_zigzag_free"
+			"Ending"	
 			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -3.5,
-				"z": -1.0
+				"y": 2.0,
+				"z": -6
 			}
-		}],
+		}
+		],
 		"backgroundSides": []
 	}]
 }

@@ -315,7 +315,7 @@ public class Missions : MonoBehaviour {
                            
                         AreaData areaData = JsonUtility.FromJson<AreaData>(asset.text);
                         totalDistance += areaData.z_length;
-                        print(":::::::::::::  area: " + areaName + "  distance: " + areaData.z_length + "  totalDistance: " + totalDistance);
+                        //print(":::::::::::::  area: " + areaName + "  distance: " + areaData.z_length + "  totalDistance: " + totalDistance);
                     }
                 }
                 id++;
