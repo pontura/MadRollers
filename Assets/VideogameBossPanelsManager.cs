@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VideogameBossPanelsManager : MonoBehaviour {
 
+    public Transform container;
 	public VideogameBossPanel boosPanel1;
 	public VideogameBossPanel boosPanel2;
 	public VideogameBossPanel boosPanel3;
@@ -22,5 +23,10 @@ public class VideogameBossPanelsManager : MonoBehaviour {
 			actualBossPanel = Instantiate (boosPanel3) ;
 			break;
 		}
-	}
+        actualBossPanel.transform.SetParent(container);
+        actualBossPanel.transform.localPosition = Vector3.zero;
+        actualBossPanel.transform.localEulerAngles = Vector3.zero;
+        actualBossPanel.transform.localScale = Vector3.one;
+
+    }
 }

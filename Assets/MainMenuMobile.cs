@@ -12,6 +12,7 @@ public class MainMenuMobile : MonoBehaviour
 
     private void Start()
     {
+        Data.Instance.events.OnInterfacesStart();
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
 

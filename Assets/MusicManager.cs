@@ -19,7 +19,6 @@ public class MusicManager : MonoBehaviour {
     {		
         audioSource = GetComponent<AudioSource>();
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
-		OnInterfacesStart ();
 
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
@@ -100,7 +99,8 @@ public class MusicManager : MonoBehaviour {
         audioSource.volume = vol;
     }
     void playSound(AudioClip _clip, bool looped = true)
-    {      
+    {
+        print(audioSource + "playSound " + _clip.name);
 		if (audioSource.clip!=null && audioSource.clip.name == _clip.name) return;
         stopAllSounds();
         audioSource.clip = _clip;

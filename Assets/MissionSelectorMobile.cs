@@ -75,7 +75,7 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void Clicked(int videoGameID, int MissionActiveID)
     {
-
+        Data.Instance.events.OnSoundFX("whip", -1);
         List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
         Data.Instance.voicesManager.PlaySpecificClipFromList(list, videoGameID);
 

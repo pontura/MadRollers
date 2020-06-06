@@ -41,7 +41,7 @@ public class LoadingScreen : MonoBehaviour {
             Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");
         }
             Data.Instance.missions.Init();
-            Data.Instance.LoadLevel("MainMenuMobile");
+            Data.Instance.LoadLevel("Intro");
     }
 
 

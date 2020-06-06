@@ -134,10 +134,10 @@ public class LoadingAsset : MonoBehaviour {
         //AddText("Buenos Aires <" + username + "> USER ALLOWING ACCESS!");        
         //yield return new WaitForSeconds(0.35f);
         //AddText(username + " -> GOTO 1985 ");
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
        // AddText("COMPLETE!");
-        yield return new WaitForSeconds(0.41f);
+        yield return new WaitForSeconds(0.35f);
         SetOn(false);
     }
     void AddText(string text)

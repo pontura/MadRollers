@@ -80,7 +80,6 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.events.OnJoystickRight -= OnJoystickUp;
 	}
 	void Init () {
-		Data.Instance.events.OnInterfacesStart();
 		SetButtons ();
 	}
 	void OnJoystickClick()

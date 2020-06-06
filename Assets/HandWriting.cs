@@ -8,7 +8,7 @@ public class HandWriting : MonoBehaviour {
 	float speed = 0.05f;
     private void Start()
     {
-        Data.Instance.events.OnGameOver += OnGameOver;
+         Data.Instance.events.OnGameOver += OnGameOver;
     }
     void OnDestroy()
     {

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerSelector : MonoBehaviour
 {
-    public RawImage rawImage;
-    public RenderTexture[] all;
-    public MainMenuCharacterActor[] characters;
+    public Transform container;
+    public Player player_to_instantiate;
+    List<Player> all;
 
     void Start()
     {
-        Reset();
+        AddPlayers();
         SetActive(UserData.Instance.playerID);
         Data.Instance.events.ChangePlayer += ChangePlayer;
     }
@@ -41,13 +41,26 @@ public class PlayerSelector : MonoBehaviour
     void SetActive(int id)
     {
         UserData.Instance.playerID = id;
-        rawImage.texture = all[id];
-        UserData.Instance.playerID = id;
-        characters[id].gameObject.SetActive(true);
+
+        foreach (Player p in all)
+            p.gameObject.SetActive(false);
+
+        all[id].gameObject.SetActive(true);
     }
-    void Reset()
+    int playerID;
+    void AddPlayers()
     {
-        foreach (MainMenuCharacterActor ch in characters)
-            ch.gameObject.SetActive(false);
+        all = new List<Player>();
+        for (int a = 0; a < 4; a++)
+        {
+            Player p = Instantiate(player_to_instantiate);
+            p.isPlaying = false;
+            p.transform.SetParent(container);
+            p.id = a;
+            p.transform.localPosition = Vector3.zero;
+            p.transform.localScale = Vector3.one;
+            p.transform.localEulerAngles = Vector3.zero;
+            all.Add(p);
+        }
     }
 }
