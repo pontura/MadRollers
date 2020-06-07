@@ -12,15 +12,10 @@ public class LoadingScreen : MonoBehaviour {
             Data.Instance.missions.Init();
             // Data.Instance.isReplay = true;
             Data.Instance.LoadLevel("LevelSelector");
-        } else if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-        {
-            Data.Instance.missions.Init();
-            Data.Instance.LoadLevel("LevelSelector");
-        } else
+        } else 
         Invoke("LoadBundles", 1);
 	}
 	void LoadBundles () {
-
         if (Data.Instance.isAndroid)
         {
            // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
@@ -28,7 +23,12 @@ public class LoadingScreen : MonoBehaviour {
         }
         else
         {
+#if UNITY_WEBGL
+            Data.Instance.missions.Init();
+            Data.Instance.LoadLevel("Intro");
+#else
             Data.Instance.LoadLevel("Settings");
+#endif
         }
 	}
     void OnLoaded(string isSuccess)

@@ -41,7 +41,6 @@ public class SettingsScreen : MonoBehaviour {
 		Data.Instance.events.OnMadRollersSFXStatus (Data.Instance.madRollersSoundsOn);
 		Data.Instance.events.OnVoicesStatus (Data.Instance.voicesOn);
 
-		Cursor.visible = false;
 		Data.Instance.LoadLevel("MainMenu");
 	}
 

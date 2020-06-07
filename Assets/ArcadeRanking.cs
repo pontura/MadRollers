@@ -18,6 +18,8 @@ public class ArcadeRanking : MonoBehaviour {
 		public int hiscore;       
 	}
 	void Start () {
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            return;
 		Data.Instance.events.RefreshHiscores += RefreshHiscores;
 		path = Application.streamingAssetsPath + "/hiscores.txt";
 		LoadHiscores(path);

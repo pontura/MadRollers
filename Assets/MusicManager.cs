@@ -183,7 +183,7 @@ public class MusicManager : MonoBehaviour {
 		audioSource.Play();
 		audioSource.loop = false;
 
-        if(!Data.Instance.isAndroid)
+        if(Data.Instance.playMode != Data.PlayModes.STORYMODE)
 		    Invoke ("PlayMainTheme", 7);
 	}
 	void PlayMainTheme()

@@ -23,7 +23,7 @@ public class Summary : MonoBehaviour {
     void Start()
     {
         mobilePanel.SetActive(false);
-        if (Data.Instance.isAndroid)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
             Data.Instance.events.OnGameOver += OnGameOver;
     }
     void OnDestroy()

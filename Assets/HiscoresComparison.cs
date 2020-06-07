@@ -19,7 +19,10 @@ public class HiscoresComparison : MonoBehaviour {
     int rankingNum = 5;
 
     void Start () {
-		panel.SetActive (false);
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            this.enabled = false;
+
+        panel.SetActive (false);
 		arcadeRanking = Data.Instance.GetComponent<ArcadeRanking> ();
 	}
 

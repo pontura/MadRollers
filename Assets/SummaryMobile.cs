@@ -28,16 +28,16 @@ public class SummaryMobile : MonoBehaviour
     int videoGameID;
     int score;
 
-
     void Start()
-    {
+    {        
         puestoField.text = "";
         panel.SetActive(false);
     }
     
     public void Init()
-    {       
-        StartCoroutine(InitCoroutine());
+    {
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            StartCoroutine(InitCoroutine());
     }
     IEnumerator InitCoroutine()
     {

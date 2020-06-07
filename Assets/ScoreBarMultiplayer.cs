@@ -47,7 +47,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	{	
 		RefreshScore ();
 
-        if (isAndroid)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             if (score < 0)
                 return;
@@ -71,7 +71,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	}
 	void Update()
 	{
-        if (isAndroid || totalAdded == 0)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || totalAdded == 0)
 			return;
 		if (Time.time > ResetFieldsTimer) {
 			totalAdded = 0;

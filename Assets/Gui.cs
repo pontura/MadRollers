@@ -51,7 +51,7 @@ public class Gui : MonoBehaviour {
 		if (isOn) {
 			OnGenericUIText( "Kill 'em all");
 		} else {
-            if (Data.Instance.isAndroid)
+            if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
             {
                 GetComponent<SummaryMobile>().Init();
                 return;

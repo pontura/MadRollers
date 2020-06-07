@@ -19,7 +19,7 @@ public class ScoresUI : MonoBehaviour
 
     void Start()
     {
-        if (!Data.Instance.isAndroid)
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE)
         {
             panel.SetActive(false);
             Destroy(this);
@@ -46,7 +46,7 @@ public class ScoresUI : MonoBehaviour
 
     void OnMissionStart(int missionID)
     {
-        if (Data.Instance.isAndroid)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             int videoGameID = Data.Instance.videogamesData.actualID;
             UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           

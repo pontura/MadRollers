@@ -23,6 +23,11 @@ public class SettingsModeScreen : MonoBehaviour {
         ContinueMode();
         // CreditsMode();
     }
+    public void Storymode()
+    {
+        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        Go();   
+    }
     public void ContinueMode () {
 		Data.Instance.playMode = Data.PlayModes.CONTINUEMODE;
 		Go ();
@@ -42,7 +47,6 @@ public class SettingsModeScreen : MonoBehaviour {
     void Go()
 	{
         Data.Instance.missions.Init();
-        Cursor.visible = false;
 		Data.Instance.LoadLevel("MainMenu");
 	}
     public void Controls()

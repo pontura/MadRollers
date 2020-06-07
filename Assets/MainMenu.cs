@@ -22,8 +22,10 @@ public class MainMenu : MonoBehaviour {
 	{
         Resources.UnloadUnusedAssets();
 
-        Cursor.visible = false;
-		buttons = new List<MainMenuButton> ();
+        if(Data.Instance.playMode != Data.PlayModes.STORYMODE)
+            Cursor.visible = false; 
+
+        buttons = new List<MainMenuButton> ();
 		if (Data.Instance.isArcadeMultiplayer) {
 			partyGameButtons.SetActive (false);
 			standaloneButtons.SetActive (false);
@@ -125,7 +127,7 @@ public class MainMenu : MonoBehaviour {
 	void MissionsScene()
 	{
 		Reset ();
-        if (Data.Instance.isAndroid)
+        if (Data.Instance.playMode == Data.PlayModes.CONTINUEMODE || Data.Instance.playMode == Data.PlayModes.STORYMODE)
             Data.Instance.LoadLevel("LevelSelectorMobile");
         else
             Data.Instance.LoadLevel("LevelSelector");
@@ -133,7 +135,7 @@ public class MainMenu : MonoBehaviour {
 	void Compite()
 	{
 		Reset ();
-        if (Data.Instance.isAndroid)
+        if (Data.Instance.playMode == Data.PlayModes.CONTINUEMODE || Data.Instance.playMode == Data.PlayModes.STORYMODE)
             Data.Instance.LoadLevel("LevelSelectorMobile");
         else
             Data.Instance.LoadLevel("LevelSelector");

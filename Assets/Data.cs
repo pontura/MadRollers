@@ -24,13 +24,8 @@ public class Data : MonoBehaviour {
 	public int timeToRespawn;
 	public bool isReplay;
 	public bool RESET;
-
-    public int competitionID = 1;
-    
+    public int competitionID = 1;    
     public int scoreForArcade;
-
-	public bool webcamOff;
-   // public int WebcamID;
 
     [HideInInspector]
     public Events events;
@@ -108,19 +103,18 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
-        Application.targetFrameRate = 60;
-
-		if (RESET)
+        if (RESET)
 			PlayerPrefs.DeleteAll ();
 
 #if UNITY_EDITOR
-
+        Application.targetFrameRate = 60;
 #elif UNITY_ANDROID
         isAndroid = true;
+        Application.targetFrameRate = 60;
 #endif
         if (isAndroid)
         {
-          //  useRetroPixelPro = false;
+            useRetroPixelPro = false;
         }
         //  Cursor.visible = false;
 
@@ -156,7 +150,7 @@ public class Data : MonoBehaviour {
             this.forceVideogameID = LevelDataDebug.Instance.videogameID;
 			this.forceMissionID = LevelDataDebug.Instance.missionID;
 			this.testAreaName =  LevelDataDebug.Instance.testArea;
-            if (isAndroid)
+            if (Data.Instance.playMode == PlayModes.STORYMODE)
                 multiplayerData.player1 = multiplayerData.player1_played = true;
 		}
 

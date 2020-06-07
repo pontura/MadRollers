@@ -67,9 +67,7 @@ public class UserData : MonoBehaviour
     private void Start()
     {
         LoadUser();
-
         hiscoresByMissions.Init();
-
         
     }
     void LoadUser()
@@ -78,12 +76,12 @@ public class UserData : MonoBehaviour
         userID = PlayerPrefs.GetString("userID");
         if (userID.Length<2)
         {
-#if UNITY_EDITOR
-            userID = Random.Range(0, 10000).ToString();
-            SetUserID(userID);
-#elif UNITY_ANDROID
+#if UNITY_ANDROID
 			userID = SystemInfo.deviceUniqueIdentifier;
 			SetUserID(userID);            
+#else
+            userID = SetRandomID();
+            SetUserID(userID);
 #endif
             logged = false;
         } else
@@ -94,6 +92,21 @@ public class UserData : MonoBehaviour
             avatarImages.GetImageFor(userID, null);
         }
         serverConnect.LoadUserData(userID, OnLoaded);
+    }
+    string SetRandomID()
+    {
+        string value = "";
+#if UNITY_WEBGL
+        value += "web_";
+#else
+        value += "exe_";
+#endif
+
+        for (int a= 0; a<20; a++)
+        {
+            value += Random.Range(0, 9).ToString();
+        }
+        return value;
     }
     void OnLoaded(ServerConnect.UserDataInServer dataLoaded)
     {

@@ -32,7 +32,7 @@ public class Missions : MonoBehaviour {
     public void Init()
     {
         
-        if (Data.Instance.isAndroid && Data.Instance.isReplay)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
             offset -= 40;
 
         videogamesData = GetComponent<VideogamesData> ();
@@ -81,7 +81,7 @@ public class Missions : MonoBehaviour {
         this.level = level;
 		areasLength = -4;
 		StartNewMission ();
-        if (Data.Instance.isReplay && Data.Instance.isAndroid)
+        if (Data.Instance.isReplay && Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             AddAreaByName("continue_Multiplayer");
         }
@@ -190,7 +190,7 @@ public class Missions : MonoBehaviour {
             return;
         }
 
-        if (data.boss && !Data.Instance.isAndroid)
+        if (data.boss && Data.Instance.playMode != Data.PlayModes.STORYMODE)
             hasReachedBoss = true;
 
         CreateCurrentArea ();
@@ -291,7 +291,7 @@ public class Missions : MonoBehaviour {
 		{
 			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [1].audioClip);
 			tutorialID = 2;
-		} else if(distance>305 && tutorialID < 3 && !Data.Instance.isAndroid)
+		} else if(distance>305 && tutorialID < 3 && Data.Instance.playMode != Data.PlayModes.STORYMODE)
 		{
 			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [2].audioClip);
 			tutorialID = 3;

@@ -39,7 +39,7 @@ public class LoadingAsset : MonoBehaviour {
 		loadingPanel.SetActive (_isOn);
         if (isOn)
         {
-            if (Data.Instance.isAndroid)
+            if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
             {
                 horizontal.SetActive(false);
                 vertical.SetActive(true);

@@ -23,7 +23,7 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.events.OnGameOver += OnGameOver;
 		SetFields ("");
 
-		if(!Data.Instance.isReplay && !Data.Instance.isAndroid)
+		if(!Data.Instance.isReplay && Data.Instance.playMode != Data.PlayModes.STORYMODE)
 			Invoke ("AllowAddingCharacters", 2);
 	}
 	void AllowAddingCharacters()

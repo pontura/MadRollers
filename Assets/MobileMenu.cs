@@ -11,7 +11,7 @@ public class MobileMenu : MonoBehaviour
     public Text debugField;
     void Start()
     {
-        if (!Data.Instance.isAndroid)
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE)
         {
             Destroy(this.gameObject);
             return;

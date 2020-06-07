@@ -61,9 +61,6 @@ public class Player : MonoBehaviour {
     }
 	void SetSettings()
 	{
-       // if(Data.Instance.isAndroid)
-		//    shadow.SetActive (true);
-
 
 		if(id>3)
 			madRoller.Init (3);

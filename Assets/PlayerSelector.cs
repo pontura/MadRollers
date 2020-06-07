@@ -8,9 +8,12 @@ public class PlayerSelector : MonoBehaviour
     public Transform container;
     public Player player_to_instantiate;
     List<Player> all;
+    public GameObject buttons;
 
     void Start()
     {
+        if (!Data.Instance.isAndroid)
+            buttons.SetActive(false);
         AddPlayers();
         SetActive(UserData.Instance.playerID);
         Data.Instance.events.ChangePlayer += ChangePlayer;

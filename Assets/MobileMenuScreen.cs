@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class MobileMenuScreen : MonoBehaviour
 {
+    public GameObject controlsMangerButton;
+
+    void Start()
+    {
+        if (Data.Instance.isAndroid)
+            controlsMangerButton.SetActive(false);
+    }
     public void EditUser()
     {
         Data.Instance.LoadLevel("Registration");
+    }
+    public void Controls()
+    {
+        Data.Instance.controlMapper.Open();
     }
     public void ResetMissions()
     {

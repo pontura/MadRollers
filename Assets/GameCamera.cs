@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class GameCamera : MonoBehaviour 
 {
-    public SpriteRenderer backgrundImage;
+    public SpriteRenderer[] backgrundImage;
     public float fieldOfView;
 	public int team_id;
 	RetroPixelPro retroPixelPro;
@@ -46,6 +46,7 @@ public class GameCamera : MonoBehaviour
     private void Awake()
     {
         isAndroid = Data.Instance.isAndroid;
+
         sensorSizeValue = sensorSizeValueInitial;
         cam.enabled = false;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -89,8 +90,11 @@ public class GameCamera : MonoBehaviour
 	}
     public void Init()
 	{
-        
         cam.enabled = true;
+
+        if (!isAndroid)
+            cam.fieldOfView = 172;
+
         fieldOfView = cam.fieldOfView;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
@@ -99,7 +103,7 @@ public class GameCamera : MonoBehaviour
             Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
             retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
             retroPixelPro.dither = 0;
-            pixelSize = 1;
+            pixelSize = 2;
         }     		
 
         if (isAndroid)
@@ -206,8 +210,8 @@ public class GameCamera : MonoBehaviour
         if (!Data.Instance.useRetroPixelPro)
             return;
 
-        if (pixelSize < 1)
-			pixelSize = 1;
+        if (pixelSize < 2)
+			pixelSize = 2;
 		else 
 			pixelSize -= pixel_speed_recovery * Time.deltaTime;
 
@@ -238,7 +242,7 @@ public class GameCamera : MonoBehaviour
 
         if (Data.Instance.useRetroPixelPro)
         {
-            if (retroPixelPro.pixelSize > 1)
+            if (retroPixelPro.pixelSize > 2)
                 UpdatePixels();
         }
         if (isAndroid)
