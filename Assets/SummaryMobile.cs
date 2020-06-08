@@ -38,6 +38,15 @@ public class SummaryMobile : MonoBehaviour
     {
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
             StartCoroutine(InitCoroutine());
+       
+    }
+    private void OnDestroy()
+    {
+        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+    }
+    void OnJoystickClick()
+    {
+        Next();
     }
     IEnumerator InitCoroutine()
     {
@@ -53,6 +62,8 @@ public class SummaryMobile : MonoBehaviour
         scoreField.text = Utils.FormatNumbers(score);
         videoGameID = Data.Instance.videogamesData.actualID;
         UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+        if (!Data.Instance.isAndroid)
+            Data.Instance.events.OnJoystickClick += OnJoystickClick;
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {

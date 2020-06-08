@@ -64,11 +64,11 @@ public class MainMenu : MonoBehaviour {
 			p.transform.localEulerAngles = Vector3.zero;
 		}
 	}
-    private void Update()
-    {
-        if(Input.GetMouseButtonUp(0))
-            Data.Instance.LoadLevel("Settings");
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetMouseButtonUp(0))
+    //        Data.Instance.LoadLevel("Settings");
+    //}
     void OnDestroy()
 	{
 		Reset ();
