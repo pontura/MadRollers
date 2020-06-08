@@ -128,7 +128,7 @@ public class HiscoresByMissions : MonoBehaviour
         yield return www;
 
         if (www.error != null)
-            UsersEvents.OnPopup("Error sending al server: " + www.error);
+            UsersEvents.OnPopup("Internet Error: " + www.error);
         else
         {
             if(OnDone != null)
