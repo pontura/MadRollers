@@ -27,7 +27,10 @@ public class LoadingScreen : MonoBehaviour {
             Data.Instance.missions.Init();
             Data.Instance.LoadLevel("Intro");
 #else
-            Data.Instance.LoadLevel("Settings");
+            //solo se juega Story Mode!
+            Data.Instance.missions.Init();
+            Data.Instance.LoadLevel("Intro");
+           // Data.Instance.LoadLevel("Settings");
 #endif
         }
 	}
