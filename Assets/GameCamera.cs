@@ -90,6 +90,8 @@ public class GameCamera : MonoBehaviour
 	}
     public void Init()
 	{
+        pixelSize = 2;
+
         cam.enabled = true;
 
         if (!isAndroid)
@@ -102,8 +104,6 @@ public class GameCamera : MonoBehaviour
         {
             Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
             retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
-            retroPixelPro.dither = 0;
-            pixelSize = 2;
         }     		
 
         if (isAndroid)

@@ -130,11 +130,10 @@ public class Missions : MonoBehaviour {
 	}
 	void NextMission()
 	{
-		AddAreaByName ("newLevel_playing");
-		
 		MissionActiveID++;
-		StartNewMission ();
-		Data.Instance.events.OnChangeBackgroundSide (MissionActive.fondo);
+  //      AddAreaByName("newLevel_playing");
+  //      StartNewMission ();
+		//Data.Instance.events.OnChangeBackgroundSide (MissionActive.fondo);
 	}
 	void StartNewMission()
 	{

@@ -12,6 +12,7 @@ public class MainMenuMobile : MonoBehaviour
 
     private void Start()
     {
+        Data.Instance.events.OnJoystickClick += OnJoystickClick;
         Data.Instance.events.OnInterfacesStart();
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
@@ -23,6 +24,17 @@ public class MainMenuMobile : MonoBehaviour
 
         AddPlayers();
     }
+    private void OnDestroy()
+    {
+        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+    }
+    void OnJoystickClick()
+    {
+        if (UserData.Instance.IsLogged())
+            Next();
+        else
+            RegisterPressed();
+    }
     public void RegisterPressed()
     {
         Data.Instance.LoadLevel("Registration");
@@ -30,11 +42,6 @@ public class MainMenuMobile : MonoBehaviour
     public void Next()
     {
         Data.Instance.useOptimizedSettings = false;
-        Data.Instance.LoadLevel("LevelSelectorMobile");
-    }
-    public void Next_Low()
-    {
-        Data.Instance.useOptimizedSettings = true;
         Data.Instance.LoadLevel("LevelSelectorMobile");
     }
     void AddPlayers()

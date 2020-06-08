@@ -15,12 +15,17 @@ public class Intro : MonoBehaviour {
     int id;
 
     void Start () {
+        Data.Instance.events.OnJoystickClick += OnJoystickClick;
         container.gameObject.SetActive(true);
         containerBosses.gameObject.SetActive(false);
         containerVideogames.gameObject.SetActive(false);
         id = 1;
         Invoke("Step", 1);
         AddPlayers();
+    }
+    private void OnDestroy()
+    {
+        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
     }
     void Step()
     {
@@ -57,6 +62,10 @@ public class Intro : MonoBehaviour {
     public void OnDone()
     {
         Invoke("NextStep", 6);
+    }
+    void OnJoystickClick()
+    {
+        NextStep();
     }
     public void NextStep()
     {

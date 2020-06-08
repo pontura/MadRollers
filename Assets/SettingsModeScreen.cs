@@ -78,7 +78,7 @@ public class SettingsModeScreen : MonoBehaviour {
             }
         }
 
-    }
+    }   
     public void Exit()
     {
         Application.Quit();
