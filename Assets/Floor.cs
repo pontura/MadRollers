@@ -56,8 +56,8 @@ public class Floor : MonoBehaviour
         if (!charactersManager) return;
 		float charactersDistance = charactersManager.getDistance ();
 
-		if(videoGameBossPanel != null)
-			videoGameBossPanel.transform.localPosition = new Vector3 (0,0,charactersDistance);
+		//if(videoGameBossPanel != null)
+		//	videoGameBossPanel.transform.localPosition = new Vector3 (0,0,charactersDistance);
 		
 		if (charactersDistance == lastCharactersDistance)
 			return;
