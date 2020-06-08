@@ -23,6 +23,8 @@ public class MissionSelectorMobile : MonoBehaviour
     public ScrollSnapTo scrollSnap_level2;
     public ScrollSnapTo scrollSnap_level3;
 
+    public List<MissionButtonMobile> allButtons;
+
     void Start()
     {
         title1.text = "MISIONES POR VIDEOJUEGO";
@@ -33,6 +35,8 @@ public class MissionSelectorMobile : MonoBehaviour
         AddButtons(0);
         AddButtons(1);
         AddButtons(2);
+
+        SetSelector();
     }
     void AddButtons(int videoGameID)
     {
@@ -62,6 +66,7 @@ public class MissionSelectorMobile : MonoBehaviour
                 m.SetSelected(false);
 
             id++;
+            allButtons.Add(m);
         }
 
         switch (videoGameID)
@@ -70,8 +75,6 @@ public class MissionSelectorMobile : MonoBehaviour
             case 1: scrollSnap_level2.Init(missionUnblockedID); break;
             default: scrollSnap_level3.Init(missionUnblockedID); break;
         }
-
-
     }
     public void Clicked(int videoGameID, int MissionActiveID)
     {
@@ -105,5 +108,27 @@ public class MissionSelectorMobile : MonoBehaviour
         Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
         yield return new WaitForSeconds(2.8f);
         Data.Instance.LoadLevel("Game");
+    }
+    public void SetSelector()
+    {
+        foreach (MissionButtonMobile mbm in allButtons)
+        {
+            if(mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
+                mbm.SetSelector(true);
+            else
+                mbm.SetSelector(false);
+        }
+        switch(Data.Instance.videogamesData.actualID)
+        {
+            case 0:
+                scrollSnap_level1.Init(Data.Instance.missions.MissionActiveID);
+                break;
+            case 1:
+                scrollSnap_level2.Init(Data.Instance.missions.MissionActiveID);
+                break;
+            case 2:
+                scrollSnap_level3.Init(Data.Instance.missions.MissionActiveID);
+                break;
+        }
     }
 }

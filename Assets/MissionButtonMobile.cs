@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class MissionButtonMobile : MonoBehaviour
 {
     public Text field;
-    int videoGameID;
-    int missionID;
+    public int videoGameID;
+    public int missionID;
     public bool isBlocked;
     public GameObject blocked;
     MissionSelectorMobile missionSelectorMobile;
@@ -15,6 +15,7 @@ public class MissionButtonMobile : MonoBehaviour
     public Image logo;
     public Image floppyCover;
     bool nevelLock;
+    public GameObject selector;
 
     public void Init(MissionSelectorMobile missionSelectorMobile, int videoGameID, int missionID, MissionsManager.MissionsData data)
     {
@@ -34,6 +35,7 @@ public class MissionButtonMobile : MonoBehaviour
     }
     public void OnInit(MissionsManager.MissionsData data)
     {
+        SetSelector(false);
         VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
         logo.sprite = videogameData.logo;
         floppyCover.sprite = videogameData.floppyCover;
@@ -98,5 +100,9 @@ public class MissionButtonMobile : MonoBehaviour
             missionSelectorMobile.Clicked(videoGameID, missionID);
         else if (hiscoresLevelSelectorUI != null)
             hiscoresLevelSelectorUI.Clicked(videoGameID, missionID);
+    }
+    public void SetSelector(bool isOn)
+    {
+        selector.SetActive(isOn);
     }
 }
