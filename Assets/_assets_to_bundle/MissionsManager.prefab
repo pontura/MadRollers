@@ -82,8 +82,12 @@ MonoBehaviour:
     - gallax_rays_yellow_army
     - gallax_blue_Army_fortress
     - gallax_backPlatforms
+    - gallax_backPlatforms_boss
     - gallax_curvo2
+    - gallax_laTropaAutos
     - gallax_space_eyes_shooters
+    - gallax_boss_2_caminos
+    - gallax_pisosHelices
     - gallax_navesOcultas
     - gallax_subibaja
     - gallax_space_circles
@@ -600,7 +604,7 @@ MonoBehaviour:
           bending: -1
           randomize: 0
           areas:
-          - boss_naves_boyland
+          - boss_pig_pigs
           - boss_ancho_free
           cameraOrientation: {x: 0, y: 0, z: -3}
         - boss: 0
@@ -610,7 +614,7 @@ MonoBehaviour:
           randomize: 1
           areas:
           - boss_free_agua
-          cameraOrientation: {x: 0, y: -4, z: -5}
+          cameraOrientation: {x: 0, y: 2, z: 0}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1000
@@ -623,7 +627,7 @@ MonoBehaviour:
           - pisoCurvo2
           - pisoCurvo4
           - pisoCurvo5
-          cameraOrientation: {x: 0, y: -1.6, z: 1.5}
+          cameraOrientation: {x: 0, y: -4.6, z: -2}
     - title: 
       data:
       - jsonName: boy_walkers
@@ -1898,7 +1902,16 @@ MonoBehaviour:
           randomize: 0
           areas:
           - descansoAnchoMinimal
-          cameraOrientation: {x: 0, y: 2, z: -1.5}
+          cameraOrientation: {x: 0, y: -2, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 4, z: -3}
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
@@ -1911,6 +1924,14 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple2
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
           bending: -12
           randomize: 0
           areas:
@@ -1961,16 +1982,16 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: -4, z: -1}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 1
+          total_areas: 2
           bending: 0
-          randomize: 0
+          randomize: 1
           areas:
-          - jumpAncho2
-          cameraOrientation: {x: 0, y: -4, z: -1}
+          - navesSimple2
+          cameraOrientation: {x: 0, y: -4, z: -2}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -5
+          bending: -15
           randomize: 1
           areas:
           - bombas_pisoMueve1
@@ -1979,7 +2000,7 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: 0
+          bending: -5
           randomize: 0
           areas:
           - descansoAncho
@@ -1987,28 +2008,19 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -12
+          bending: -4
           randomize: 0
           areas:
           - zigzag_Rays_2
           cameraOrientation: {x: 0, y: -5, z: -2}
         - boss: 1
           json: {fileID: 0}
-          total_areas: 2
-          bending: -2
+          total_areas: 1
+          bending: -12
           randomize: 0
           areas:
-          - descansoAnchoMinimal
           - Ending
-          cameraOrientation: {x: 0, y: -2, z: 0}
-        - boss: 0
-          json: {fileID: 0}
-          total_areas: 10000
-          bending: -18
-          randomize: 1
-          areas:
-          - Ending
-          cameraOrientation: {x: 0, y: -2, z: -1}
+          cameraOrientation: {x: 0, y: -2, z: -3}
     - title: 
       data:
       - jsonName: gallax_bosses_air
@@ -2151,6 +2163,14 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: 2, z: -1.5}
         - boss: 0
           json: {fileID: 0}
+          total_areas: 1
+          bending: -12
+          randomize: 0
+          areas:
+          - cilindroDoubleBossFreeRays
+          cameraOrientation: {x: 0, y: -5, z: -2}
+        - boss: 0
+          json: {fileID: 0}
           total_areas: 2
           bending: -7
           randomize: 0
@@ -2166,14 +2186,6 @@ MonoBehaviour:
           areas:
           - descanso1
           cameraOrientation: {x: 0, y: 0, z: 1}
-        - boss: 0
-          json: {fileID: 0}
-          total_areas: 1
-          bending: -12
-          randomize: 0
-          areas:
-          - cilindroDoubleBossFreeRays
-          cameraOrientation: {x: 0, y: -5, z: -2}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -2422,12 +2434,53 @@ MonoBehaviour:
         areaSetData:
         - boss: 0
           json: {fileID: 0}
-          total_areas: 3
+          total_areas: 2
+          bending: -12
+          randomize: 0
+          areas:
+          - backPlatforms_init
+          cameraOrientation: {x: 0, y: 12, z: -3}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -5
+          randomize: 0
+          areas:
+          - navesSimple1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: -12
+          randomize: 0
+          areas:
+          - backPlatforms_init
+          cameraOrientation: {x: 0, y: 12, z: -5}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -15
+          randomize: 0
+          areas:
+          - navesSimple3
+          - Ending
+          cameraOrientation: {x: 0, y: 5, z: -1}
+    - title: 
+      data:
+      - jsonName: gallax_backPlatforms_boss
+        title: MULTI-REVERSO
+        id: 0
+        maxScore: 3000
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
           bending: -20
           randomize: 0
           areas:
           - backPlatforms_init
-          cameraOrientation: {x: 0, y: 0, z: -40}
+          cameraOrientation: {x: 0, y: 12, z: -5}
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
@@ -2436,7 +2489,7 @@ MonoBehaviour:
           areas:
           - backPlatforms_boss
           - backPlatforms_init
-          cameraOrientation: {x: 0, y: -1, z: -40}
+          cameraOrientation: {x: 0, y: 12, z: -6}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1000
@@ -2446,10 +2499,78 @@ MonoBehaviour:
           - backPlatforms_init
           - backPlatforms_init2
           - backPlatforms_init3
-          cameraOrientation: {x: 0, y: 0, z: -40}
+          cameraOrientation: {x: 0, y: 5, z: -6}
     - title: 
       data:
       - jsonName: gallax_curvo2
+        title: LA TROPA MARTE
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - container_cruz_enemy
+          - container_cruz_enemy2
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - escupe_frontal_fila 1
+          - escupe_frontal1 (1) 2
+          - escupe_frontal1
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoCurvo_heliceAlta
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - container_cruz_enemy
+          - container_cruz_enemy2
+          cameraOrientation: {x: 0, y: -4, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - pisoCurvo_heliceAlta
+          cameraOrientation: {x: 0, y: -4, z: -4}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - escupe_frontal1
+          cameraOrientation: {x: 0, y: 12, z: -2}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: 2, z: -4}
+    - title: 
+      data:
+      - jsonName: gallax_laTropaAutos
         title: LA TROPA MARTE
         id: 0
         maxScore: 0
@@ -2534,16 +2655,146 @@ MonoBehaviour:
           randomize: 1
           areas:
           - navesSimple2
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 5
+          bending: 0
+          randomize: 0
+          areas:
+          - floors_move_helice_2
+          - subibaja1
+          - subibaja2
+          - zigzag
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -4, z: -5}
+    - title: 
+      data:
+      - jsonName: gallax_boss_2_caminos
+        title: OJOS ASESINOS INTERGALACTICOS
+        id: 0
+        maxScore: 0
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 6
+          bending: -4
+          randomize: 1
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
         - boss: 1
           json: {fileID: 0}
           total_areas: 2
-          bending: 0
+          bending: -15
           randomize: 0
           areas:
           - boss_2_filas_eyes
           - boss_2_filas_free_eyes
           cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1000
+          bending: -8
+          randomize: 0
+          areas:
+          - boss_2_filas_free_eyes
+          cameraOrientation: {x: 0, y: 5, z: -4}
+    - title: 
+      data:
+      - jsonName: gallax_pisosHelices
+        title: INSIDE THE DARK FORCE
+        id: 0
+        maxScore: 3000
+        fondo: gallax
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -20
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: -2, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 4, z: -3}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 16
+          bending: -5
+          randomize: 0
+          areas:
+          - floors_move_helice_2
+          - floors_move_helice_1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 4, z: -3}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 16
+          bending: -5
+          randomize: 0
+          areas:
+          - floors_move_helice_2
+          - floors_move_helice_1
+          cameraOrientation: {x: 0, y: 4, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple2
+          cameraOrientation: {x: 0, y: -4, z: -3}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: 0
+          randomize: 1
+          areas:
+          - floors_move_simple1
+          - floors_move_simple2
+          - floors_move_simple3
+          cameraOrientation: {x: 0, y: -4, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - navesSimple2
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -2
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -2, z: -4}
     - title: 
       data:
       - jsonName: gallax_navesOcultas
@@ -3734,7 +3985,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c27ef293d88f80b4182f2b70cbbb9c9e, type: 3}
   - {fileID: 4900000, guid: 48d82dc064146504781d75cb6ff1581d, type: 3}
   - {fileID: 4900000, guid: 3479e40f9983231499cc09c7d457b64e, type: 3}
-  - {fileID: 4900000, guid: 7f0aa61282bbbca4ea8a5cbdf07e9247, type: 3}
+  - {fileID: 4900000, guid: 8f625183c8bd750439ff3e243f792581, type: 3}
   - {fileID: 4900000, guid: 3d1833922ffa9ce4186dea7df98dd7fd, type: 3}
   - {fileID: 4900000, guid: 6683f602d3ad2f441ac848254f5960b5, type: 3}
   - {fileID: 4900000, guid: c8e48d98644f6f74187101df2ad5bffe, type: 3}
@@ -3881,10 +4132,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 741ffdd449e836a45b579bc04243c72c, type: 3}
   - {fileID: 4900000, guid: d726fb68604351240864865869170353, type: 3}
   - {fileID: 4900000, guid: 3218320e10ca1d64ca98b4314e4f79a2, type: 3}
+  - {fileID: 0}
+  - {fileID: 4900000, guid: 5a0862f3b208c1748a292054b7fdd5ce, type: 3}
   - {fileID: 4900000, guid: 9c3d98ed1a3f6e14e8c78f5573f9301c, type: 3}
   - {fileID: 4900000, guid: 1ae6151c2587e2f4bbe85bdfc33e2484, type: 3}
   - {fileID: 4900000, guid: c75805b9d77937e4882a8580c4a62d3e, type: 3}
-  - {fileID: 4900000, guid: d9e9a97a7b2c3d448a7851f42ae804ea, type: 3}
   - {fileID: 4900000, guid: 52f1563f83e143d47bfb701abe74c58f, type: 3}
   - {fileID: 4900000, guid: 7c1c90e674a23754986aba786649954c, type: 3}
   - {fileID: 4900000, guid: c68e31193fdd6744caf2de1d78712f3f, type: 3}
@@ -3910,7 +4162,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: faccb9258c76acb488fb0191e2dad998, type: 3}
   - {fileID: 4900000, guid: 4bee498d87159134396511e255086a89, type: 3}
   - {fileID: 4900000, guid: 5fe1fcdef352dea41aad4ef5fb902031, type: 3}
-  - {fileID: 4900000, guid: 5a0862f3b208c1748a292054b7fdd5ce, type: 3}
   - {fileID: 4900000, guid: 6cab663c249ddb4479562dcd4e5f4aaf, type: 3}
   - {fileID: 4900000, guid: cab99b85403f83743a6779bf87176b1d, type: 3}
   - {fileID: 4900000, guid: 32ab4e62b15063d42a082e9979b48ae4, type: 3}
@@ -3929,19 +4180,24 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c66b23fb6a26e314b991e9214bb1b0ba, type: 3}
   - {fileID: 4900000, guid: 7cbb2e2db54d3b54f8fb038713186eec, type: 3}
   - {fileID: 4900000, guid: 43f9374e36fac584a949c67cfde2b92c, type: 3}
+  - {fileID: 4900000, guid: 23d39232f1b260247ac7855923b0f3f0, type: 3}
+  - {fileID: 4900000, guid: 2d9109b585ad2e8478fb424919bca867, type: 3}
+  - {fileID: 4900000, guid: 31b7f4ac04688904296b64433e240956, type: 3}
+  - {fileID: 4900000, guid: e2d67c86acf6d5645ab57c54e5f088ff, type: 3}
   - {fileID: 4900000, guid: 9182f5dd7ec6ef046b9ec76581be75b1, type: 3}
   - {fileID: 4900000, guid: b948271b56664f54c8ba8e3be44c4b98, type: 3}
-  - {fileID: 4900000, guid: e2d67c86acf6d5645ab57c54e5f088ff, type: 3}
   - {fileID: 4900000, guid: 68033ecf62cc4cd4c83f2421ab6b067b, type: 3}
   - {fileID: 4900000, guid: 908d2eff9178fa64fb61cad0b64a921c, type: 3}
-  - {fileID: 4900000, guid: 2d9109b585ad2e8478fb424919bca867, type: 3}
   - {fileID: 4900000, guid: 10e80d8ee4eff1542a074fb585ce5821, type: 3}
   - {fileID: 4900000, guid: 26d309860b7b18e4dab7c9bf6aba4787, type: 3}
-  - {fileID: 4900000, guid: 31b7f4ac04688904296b64433e240956, type: 3}
   - {fileID: 4900000, guid: 02108f64df405624db083e46f18e28d6, type: 3}
-  - {fileID: 4900000, guid: 23d39232f1b260247ac7855923b0f3f0, type: 3}
+  - {fileID: 4900000, guid: 319dac904068e764fa3969774c60078a, type: 3}
   - {fileID: 4900000, guid: 8644402ca9d8d904d91f3517a8733e1d, type: 3}
   - {fileID: 4900000, guid: a6c0ca048d31a2a458cbb0099deddf9e, type: 3}
+  - {fileID: 4900000, guid: 21e478c5bc91f814dab51d47903a7825, type: 3}
+  - {fileID: 4900000, guid: 93f15f137db45674fb6a2da8642b59b0, type: 3}
+  - {fileID: 4900000, guid: 39fe2dafb2fcf244187c491de6ebc570, type: 3}
+  - {fileID: 4900000, guid: 0eadd17e0640b1744ba1a6e7cb23be54, type: 3}
   - {fileID: 4900000, guid: 7986353e1df0f5943bc6da7f88718909, type: 3}
   - {fileID: 4900000, guid: 899804b2e5b41ce4f966875e22ecfc05, type: 3}
   - {fileID: 4900000, guid: 2195d5e93239ecc4aabf44bcb6f311af, type: 3}
@@ -3972,6 +4228,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 051306129f3807f46bcaa85609fcc8f2, type: 3}
   - {fileID: 4900000, guid: 5a9ca4d51f5ebb64b8dcbd5982b410cd, type: 3}
   - {fileID: 4900000, guid: ac37d00bd53800f469d08cfc31414879, type: 3}
+  - {fileID: 4900000, guid: d9e9a97a7b2c3d448a7851f42ae804ea, type: 3}
   - {fileID: 4900000, guid: 3f34861a1f9f12e48a916f1ca1e65fec, type: 3}
   - {fileID: 4900000, guid: 5db77fbc93aed3b46ad7b16c82227286, type: 3}
   - {fileID: 4900000, guid: 420cdba106400c14ebe71a6218f51ea3, type: 3}
@@ -3996,12 +4253,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 04ebda48dde66e94ab102e6f45b482d3, type: 3}
   - {fileID: 4900000, guid: 39899e2a3c9d56b4ca17317083267d7d, type: 3}
   - {fileID: 4900000, guid: b1d0c0aebcddec0479af707c0f2246ed, type: 3}
-  - {fileID: 4900000, guid: 21e478c5bc91f814dab51d47903a7825, type: 3}
-  - {fileID: 4900000, guid: 319dac904068e764fa3969774c60078a, type: 3}
   - {fileID: 4900000, guid: bbc6785234f9e744fbd7d963274a2305, type: 3}
-  - {fileID: 4900000, guid: 93f15f137db45674fb6a2da8642b59b0, type: 3}
-  - {fileID: 4900000, guid: 39fe2dafb2fcf244187c491de6ebc570, type: 3}
-  - {fileID: 4900000, guid: 0eadd17e0640b1744ba1a6e7cb23be54, type: 3}
   - {fileID: 4900000, guid: ea6197fa991ab6c429dc413309e45b10, type: 3}
   - {fileID: 4900000, guid: 2c5a218b1c730cb4c937b5b7bab0346b, type: 3}
   - {fileID: 4900000, guid: 9477e36591126c242a370174923d5a99, type: 3}
@@ -4081,7 +4333,7 @@ MonoBehaviour:
   - anchoCalleHelices
   - heliceDoubleSmall
   - dobleCamino_helices
-  - boss_naves_boyland
+  - boss_pig_pigs
   - boss_ancho_free
   - boss_free_agua
   - pisoCurvo0
@@ -4228,10 +4480,11 @@ MonoBehaviour:
   - helicesx4_enemies
   - helicesx2_larga
   - container_helice
+  - boss_naves_boyland
+  - navesSimple2
   - zigzag_Rays_1
   - zigzag_Rays_2
   - descansoAncho
-  - jumpAncho2
   - bombas_pisoMueve1
   - bombas_pisoMueve2
   - boss_naves
@@ -4257,7 +4510,6 @@ MonoBehaviour:
   - subibaja_escupe1
   - subibaja_escupe2
   - navesSimple1
-  - navesSimple2
   - navesSimple3
   - navesSimple3 1
   - boss_2_filas
@@ -4276,19 +4528,24 @@ MonoBehaviour:
   - backPlatforms_boss
   - backPlatforms_init2
   - backPlatforms_init3
+  - escupe_frontal_fila 1
+  - escupe_frontal1 (1) 2
+  - escupe_frontal1
+  - pisoCurvo_heliceAlta
   - pisoCurvo_V_boss_avanzan
   - pisoCurvo_boss_free_rays
-  - pisoCurvo_heliceAlta
   - escupe_frontal1 (1)
   - escupe_frontal1 (1) 1
-  - escupe_frontal1 (1) 2
   - escupe_frontal1 1
   - escupe_frontal1 (2)
-  - escupe_frontal1
   - escupe_frontal_fila
-  - escupe_frontal_fila 1
+  - floors_move_helice_2
   - boss_2_filas_eyes
   - boss_2_filas_free_eyes
+  - floors_move_helice_1
+  - floors_move_simple1
+  - floors_move_simple2
+  - floors_move_simple3
   - descansoMuyAnchoEntrance
   - descansoMuyAncho
   - boss_navesOcultas
@@ -4319,6 +4576,7 @@ MonoBehaviour:
   - firewallsBossFree2
   - coinsJumpHard1
   - tiposWalkers2
+  - jumpAncho2
   - boss_serpientes
   - cuboGiratorio1
   - gargola1
@@ -4343,12 +4601,7 @@ MonoBehaviour:
   - boss_circulo_gigante
   - boss_circulo_gigante_free
   - boss_circulo_gigante_free_snakes
-  - floors_move_helice_1
-  - floors_move_helice_2
   - floors_move_boss_2
-  - floors_move_simple1
-  - floors_move_simple2
-  - floors_move_simple3
   - boss1Corre
   - boss1Corre2
   - boss1Corre3
