@@ -106,12 +106,19 @@ public class Data : MonoBehaviour {
         if (RESET)
 			PlayerPrefs.DeleteAll ();
 
-#if UNITY_EDITOR
+#if UNITY_WEBGL
+        useOptimizedSettings = true;
+        playMode = PlayModes.STORYMODE;
+#elif UNITY_EDITOR
         Application.targetFrameRate = 60;
 #elif UNITY_ANDROID
+        useOptimizedSettings = true;
+        playMode = PlayModes.STORYMODE;
         isAndroid = true;
         Application.targetFrameRate = 60;
 #endif
+
+
         if (isAndroid)
         {
             useRetroPixelPro = false;
