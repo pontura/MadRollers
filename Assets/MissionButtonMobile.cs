@@ -93,9 +93,7 @@ public class MissionButtonMobile : MonoBehaviour
     public void Clicked()
     {
         if (isBlocked)
-        {
-            Data.Instance.events.OnAlertSignal("Solo puedes jugar las misiones sin candado");
-        }           
+            missionSelectorMobile.ClickedABlockedButton();
         else if (missionSelectorMobile != null)
             missionSelectorMobile.Clicked(videoGameID, missionID);
         else if (hiscoresLevelSelectorUI != null)

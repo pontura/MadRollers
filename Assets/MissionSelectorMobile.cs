@@ -25,17 +25,21 @@ public class MissionSelectorMobile : MonoBehaviour
 
     public List<MissionButtonMobile> allButtons;
 
+    int videogameID = -1;
+
     void Start()
     {
         title1.text = "MISIONES POR VIDEOJUEGO";
     }
 
     public void Init()
-    {   
+    {
+        videogameID = Data.Instance.videogamesData.actualID;
         AddButtons(0);
         AddButtons(1);
         AddButtons(2);
 
+        ChangeVideoGame();
         SetSelector();
     }
     void AddButtons(int videoGameID)
@@ -76,8 +80,24 @@ public class MissionSelectorMobile : MonoBehaviour
             default: scrollSnap_level3.Init(missionUnblockedID); break;
         }
     }
+    public void ClickedABlockedButton()
+    {
+        Data.Instance.events.OnAlertSignal("Solo puedes jugar las misiones sin candado");
+    }
     public void Clicked(int videoGameID, int MissionActiveID)
     {
+        foreach (MissionButtonMobile mbm in allButtons)
+        {
+            if (mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
+            {
+                if (mbm.isBlocked)
+                {
+                    ClickedABlockedButton();
+                    return;
+                }
+            }
+        }
+
         Data.Instance.events.OnSoundFX("whip", -1);
         List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
         Data.Instance.voicesManager.PlaySpecificClipFromList(list, videoGameID);
@@ -111,6 +131,7 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void SetSelector()
     {
+        Debug.Log("Set selector: videogamesData.actualID " + Data.Instance.videogamesData.actualID + "   mission id: " + Data.Instance.missions.MissionActiveID);
         foreach (MissionButtonMobile mbm in allButtons)
         {
             if(mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
@@ -118,9 +139,9 @@ public class MissionSelectorMobile : MonoBehaviour
             else
                 mbm.SetSelector(false);
         }
-        switch(Data.Instance.videogamesData.actualID)
+        switch (Data.Instance.videogamesData.actualID)
         {
-            case 0:
+            case 0:                
                 scrollSnap_level1.Init(Data.Instance.missions.MissionActiveID);
                 break;
             case 1:
@@ -129,6 +150,16 @@ public class MissionSelectorMobile : MonoBehaviour
             case 2:
                 scrollSnap_level3.Init(Data.Instance.missions.MissionActiveID);
                 break;
+        }
+        
+    }
+    public void ChangeVideoGame()
+    {
+        switch(Data.Instance.videogamesData.actualID)
+        {
+            case 0: Data.Instance.missions.MissionActiveID = UserData.Instance.missionUnblockedID_1; break;
+            case 1: Data.Instance.missions.MissionActiveID = UserData.Instance.missionUnblockedID_2; break;
+            case 2: Data.Instance.missions.MissionActiveID = UserData.Instance.missionUnblockedID_3; break;
         }
     }
 }

@@ -32,6 +32,7 @@ public class MissionSelectorByJoystick : MonoBehaviour
         if (Data.Instance.videogamesData.actualID >2 )
             Data.Instance.videogamesData.actualID = 0;
 
+        missionSelectorMobile.ChangeVideoGame();
         missionSelectorMobile.SetSelector();
     }
     void OnJoystickDown()
@@ -40,9 +41,10 @@ public class MissionSelectorByJoystick : MonoBehaviour
         if (Data.Instance.videogamesData.actualID < 0)
             Data.Instance.videogamesData.actualID = 3;
 
+        missionSelectorMobile.ChangeVideoGame();
         missionSelectorMobile.SetSelector();
     }
-    void OnJoystickLeft()
+    void OnJoystickRight()
     {
         Data.Instance.missions.MissionActiveID--;
         if (Data.Instance.missions.MissionActiveID < 0)
@@ -50,7 +52,7 @@ public class MissionSelectorByJoystick : MonoBehaviour
 
         missionSelectorMobile.SetSelector();
     }
-    void OnJoystickRight()
+    void OnJoystickLeft()
     {
         Data.Instance.missions.MissionActiveID++;
         if (Data.Instance.missions.MissionActiveID > 15)
