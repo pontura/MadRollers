@@ -41,7 +41,6 @@ public class MainMenuMobile : MonoBehaviour
     }
     public void Next()
     {
-        Data.Instance.useOptimizedSettings = false;
         Data.Instance.LoadLevel("LevelSelectorMobile");
     }
     void AddPlayers()

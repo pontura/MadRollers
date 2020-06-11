@@ -11,10 +11,7 @@ public class MobileMenuScreen : MonoBehaviour
         if (Data.Instance.isAndroid)
             controlsMangerButton.SetActive(false);
     }
-    public void EditUser()
-    {
-        Data.Instance.LoadLevel("Registration");
-    }
+  
     public void Controls()
     {
         Data.Instance.controlMapper.Open();

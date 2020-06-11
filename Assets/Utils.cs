@@ -34,8 +34,43 @@
 	}
 	public static string FormatNumbers(int num)
 	{
-		return string.Format ("{0:#,#}",  num);
+        return ToFormattedString(num);
+
+        return string.Format ("{0:#,#}",  num);
 	}
+    public static string ToFormattedString(this double rawNumber)
+    {
+        string[] letters = new string[] { "", "K", "M", "B", "T", "P", "E", "Z", "Y", "KY", "MY", "BY", "TY", "PY", "EY", "ZY", "YY" };
+        int prefixIndex = 0;
+        while (rawNumber > 1000)
+        {
+            rawNumber /= 1000.0f;
+            prefixIndex++;
+            if (prefixIndex == letters.Length - 1)
+            {
+                break;
+            }
+        }
+        string numberString = rawNumber.ToString();
+        if (prefixIndex < letters.Length - 1)
+        {
+            numberString = ToThreeDigits(numberString);
+        }
+
+        string prefix = letters[prefixIndex];
+        return $"{numberString}{prefix}";
+    }
+    private static string ToThreeDigits(string numString)
+    {
+        if (numString.Length > 4)
+        {
+            if (numString.Substring(0, 4).Contains("."))
+                numString = numString.Substring(0, 5);
+            else
+                numString = numString.Substring(0, 4);
+        }
+        return numString;
+    }
     public static string Md5Sum(string strToEncrypt)
     {
         System.Text.UTF8Encoding ue = new System.Text.UTF8Encoding();

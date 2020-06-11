@@ -14,8 +14,10 @@ public class UserData : MonoBehaviour
     static UserData mInstance = null;
     public string userID;
     public string username;
+    [SerializeField] private int score;
+    [SerializeField] private int lastScoreWon; //solo para hacer la animacion en el levelSelector
 
-	public string path;
+    public string path;
     public HiscoresByMissions hiscoresByMissions;
     public AvatarImages avatarImages;
     public ServerConnect serverConnect;
@@ -62,18 +64,33 @@ public class UserData : MonoBehaviour
         missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
         missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
         missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
-
+        score = PlayerPrefs.GetInt("score");
     }
     private void Start()
     {
         LoadUser();
         hiscoresByMissions.Init();
-        
+
+        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            Data.Instance.events.OnSaveScore += OnSaveScore;
+    }
+    private void OnDestroy()
+    {
+        Data.Instance.events.OnSaveScore -= OnSaveScore;
+    }
+    void OnSaveScore()
+    {
+        if (Data.Instance.multiplayerData.score == 0)
+            return;
+        lastScoreWon = Data.Instance.multiplayerData.score;
+        score += lastScoreWon;
+        PlayerPrefs.SetInt("score", score);
     }
     void LoadUser()
     {
         playerID = PlayerPrefs.GetInt("playerID");
         userID = PlayerPrefs.GetString("userID");
+        
         if (userID.Length<2)
         {
 #if UNITY_ANDROID
@@ -179,5 +196,19 @@ public class UserData : MonoBehaviour
             case 2: return missionUnblockedID_2;
             default: return missionUnblockedID_3;
         }
+    }
+    public int Score()
+    {
+        return score;
+    }
+    public int ScoreFormated()
+    {
+        return score;
+    }
+    public int GetLastScoreWon()
+    {
+        int a = lastScoreWon;
+        lastScoreWon = 0;
+        return a;
     }
 }

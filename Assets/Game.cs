@@ -82,6 +82,7 @@ public class Game : MonoBehaviour {
     }
     public void GameOver()
     {
+        Data.Instance.events.OnSaveScore();
         state = states.GAME_OVER;
     }
 

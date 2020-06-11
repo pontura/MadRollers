@@ -120,7 +120,8 @@ public class Events : MonoBehaviour {
 	public System.Action OnJoystickLeft = delegate { };
 	public System.Action OnJoystickClick = delegate { };
 	public System.Action OnJoystickBack= delegate { };
-	public System.Action<bool> OnTalk = delegate { };
+    public System.Action OnSaveScore = delegate { };
+    public System.Action<bool> OnTalk = delegate { };
 	public System.Action<CharacterBehavior> OnAutomataCharacterDie = delegate { };
 	public System.Action<float, float> RalentaTo = delegate { };
 	public System.Action<float> ForceFrameRate = delegate { };

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HiscoresLevelSelectorUI : MonoBehaviour
 {
     public Text videogameTitleField;
+    public Text missionField;
     public MissionButtonMobile missionButton;
     public GameObject panel;
     public HiscoresMobile hiscoresMobile;
@@ -65,6 +66,7 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
     public void Clicked(int videoGameID, int MissionActiveID)
     {
         hiscoresMobile.Init(videoGameID, MissionActiveID, MyScoreLoaded);
+        missionField.text = "HI-SCORES (" + (int)(MissionActiveID+1) + ")";
     }
     void MyScoreLoaded(int a)
     { }

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class LevelSelectorMobile : MonoBehaviour
 {
@@ -11,8 +10,37 @@ public class LevelSelectorMobile : MonoBehaviour
 
     public MissionSelectorMobile missionSelectorMobile;
 
+    public AvatarThumb avatarThumb;
+    public Text scoreField;
+    public Text avatarName;
+
+    int score;
+    int scoreTo;
+
+    void LoopForScore()
+    {
+        if (score == scoreTo)
+            return;
+        score += (int)(((float)scoreTo - (float)score )/ 4f);
+        if (score > scoreTo)
+            score = scoreTo;
+        scoreField.text = Utils.FormatNumbers(score);
+        Invoke("LoopForScore", Time.deltaTime*5);
+    }
     void Start()
     {
+        avatarThumb.Init(UserData.Instance.userID);
+        avatarName.text = UserData.Instance.username.ToUpper();
+
+        scoreTo =  UserData.Instance.Score();
+        score = UserData.Instance.GetLastScoreWon();
+
+        if (score == scoreTo || score ==0)
+            scoreField.text = Utils.FormatNumbers(scoreTo);        
+        else
+            LoopForScore();
+
+
         Data.Instance.events.SetHamburguerButton(true);
         Data.Instance.events.OnMadRollersSFXStatus(false);
         missionSelectorMobile.Init();
@@ -45,5 +73,13 @@ public class LevelSelectorMobile : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         Start();
+    }
+    public void EditUser()
+    {
+        Data.Instance.LoadLevel("Registration");
+    }
+    public void Plugins()
+    {
+        Data.Instance.events.OnAlertSignal("Todavía no puedes gastar tus pixeles para construir plugins! (Próximamente)");
     }
 }
