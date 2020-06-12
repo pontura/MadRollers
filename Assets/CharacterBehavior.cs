@@ -469,7 +469,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
 
-		rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
+        rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 
 
 		state = states.JUMP;

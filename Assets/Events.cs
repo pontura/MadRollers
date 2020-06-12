@@ -98,6 +98,7 @@ public class Events : MonoBehaviour {
 	public System.Action<int> OnAvatarJump= delegate { };
 
     public System.Action<int> OnAvatarShoot = delegate { };
+    public System.Action TutorialContinue = delegate { };
 
     public System.Action OnCompetitionMissionComplete = delegate { };
 

@@ -50,11 +50,14 @@ public class SummaryMobile : MonoBehaviour
     }
     IEnumerator InitCoroutine()
     {
-        Data.Instance.events.OnSaveScore();
+        
         Data.Instance.events.OnMadRollersSFXStatus(false);
         hiscoreOtherPanel.SetActive(false);
         Data.Instance.events.RalentaTo(0, 0.025f);
         yield return new WaitForSecondsRealtime(1);
+
+        Data.Instance.events.OnSaveScore();
+
         Data.Instance.events.RalentaTo(0, 0.025f);
         panel.SetActive(true);
         missionID = Data.Instance.missions.MissionActiveID - 1;

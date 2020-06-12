@@ -54,15 +54,19 @@ public class CharacterControls : MonoBehaviour {
         if (characterBehavior.player.charactersManager == null || Game.Instance.state == Game.states.GAME_OVER)
             return;
 
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID// && !UNITY_EDITOR
+        if(Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
             UpdateAccelerometer();
+        else
+            UpdateByVirtualJoystick();
+           // 
 #else
             UpdateStandalone();
 #endif
 
         characterBehavior.UpdateByController(rotationY); 
 	}
-  
+    
 	void Jump()
 	{
 		jumpingPressedSince = 0;
@@ -216,43 +220,8 @@ public class CharacterControls : MonoBehaviour {
     {
         if (characterBehavior.player.charactersManager == null)
             return;
-
         if (characterBehavior.player.charactersManager.distance < 12)
             return;
-
-        //if (Input.touchCount > 0)
-        //{
-        //    var touch = Input.touches[0];
-        //    if (touch.position.x < Screen.width / 2)
-        //    {
-
-        //        if (  characterBehavior.state == CharacterBehavior.states.RUN )
-        //        {
-        //            if (Input.GetTouch(0).phase == TouchPhase.Began)
-        //                jumpingPressedSince = 0;
-
-        //            characterBehavior.Jump();
-
-        //            jumpingPressedSince += Time.deltaTime;
-        //            if (jumpingPressedSince > jumpingPressedTime)
-        //                Jump();
-        //            else
-        //                characterBehavior.JumpingPressed();                      
-        //        }
-        //        else if (Input.GetTouch(0).phase == TouchPhase.Ended)
-        //        {
-        //            Jump();
-        //        }
-        //    }            
-        //    else
-        //    {
-        //        characterBehavior.shooter.CheckFire();
-        //    }
-        //}
-        //else
-        //{
-        //    characterBehavior.AllButtonsReleased();
-        //}
 
         float _speed = 0;
         if (!isAutomata)
@@ -260,10 +229,78 @@ public class CharacterControls : MonoBehaviour {
             _speed = Input.acceleration.x;
             MoveInX(_speed);
         }
-
-        //if (Time.deltaTime == 0) return;
-       // transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 50, rotationZ);
-        // transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
-
     }
+
+
+    JumpligStates jumpligState;
+    enum JumpligStates
+    {
+        IDLE,
+        JUMPING,
+        JUMP_DONE
+    }
+    void UpdateByVirtualJoystick()
+    {
+        if (characterBehavior.player.charactersManager == null)
+            return;
+        if (characterBehavior.player.charactersManager.distance < 12)
+            return;
+
+        if (Input.GetAxis("Vertical") > 0.25f)
+        {
+            if (jumpligState == JumpligStates.IDLE)
+                JumpInit();
+        }
+        else if (Input.GetAxis("Vertical") < -0.85f)
+        {
+            characterBehavior.characterMovement.DashForward();
+        }
+        else
+        {
+            if (jumpligState == JumpligStates.JUMPING)
+                DOJump();
+            else
+                jumpligState = JumpligStates.IDLE;
+        }
+
+       if (jumpligState == JumpligStates.JUMPING)
+          {
+            jumpingPressedSince += Time.deltaTime;
+            if (jumpingPressedSince > jumpingPressedTime)
+                DOJump();
+            else
+                characterBehavior.JumpingPressed();
+        }
+
+        if (!isAutomata)
+        {
+            float v = Input.GetAxis("Horizontal");
+            if (v != 0)
+                v /= 1.25f;
+            MoveInX( v );
+        }
+    }
+    void DOJump()
+    {
+        Data.Instance.events.TutorialContinue();
+        jumpligState = JumpligStates.JUMP_DONE;
+        jumpingPressedSince = 0;
+        characterBehavior.Jump();
+    }
+    public void JumpInit()
+    {
+        if (characterBehavior.state != CharacterBehavior.states.RUN)
+            DOJump();
+        else
+        {
+            jumpingPressedSince = 0;
+            jumpligState = JumpligStates.JUMPING;
+        }
+    }
+    //public void JumpRelease()
+    //{
+    //    jumping = false;
+    //    if (characterBehavior.state == CharacterBehavior.states.RUN)
+    //        DOJump();
+    //}
 }

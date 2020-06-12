@@ -42,7 +42,8 @@ public class CharacterMovement : MonoBehaviour {
 		if (type == types.NORMAL) {
 			type = types.DASHING_FORWARD;
 			cb.madRoller.Play("dashForward");
-		}
+            Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.DASH, cb.player.id);
+        }
 	}
 	void Update()
 	{

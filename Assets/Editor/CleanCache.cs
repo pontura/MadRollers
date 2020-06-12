@@ -15,7 +15,11 @@ using System.Collections;
 /// </summary>
 public class CacheTools : ScriptableObject
 {
-
+    [MenuItem("Tools/Cache/Delete PlayerPrefs")]
+    public static void PlayerPrefsDeleteAll()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     [MenuItem("Tools/Cache/Clean")]
     public static void CleanCache()
     {

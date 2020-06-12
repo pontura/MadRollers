@@ -16,11 +16,24 @@ public class MobileInputs : MonoBehaviour
 
     public Tutorial tutorial;
 
+    public GameObject panel_gyroscope;
+    public GameObject panel_virtualJoystick;
+
     private void Start()
     {
         panel.SetActive(false);
         if (Data.Instance.isAndroid)
         {
+            if(Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
+            {
+                panel_gyroscope.SetActive(true);
+                panel_virtualJoystick.SetActive(false);
+            }
+            else
+            {
+                panel_gyroscope.SetActive(false);
+                panel_virtualJoystick.SetActive(true);
+            }
             Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
             Data.Instance.events.OnGameOver += OnGameOver;
         }

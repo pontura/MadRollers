@@ -8,6 +8,7 @@ public class UserData : MonoBehaviour
     public string setUserURL = "setUser.php";
     public string setUserURLUpload = "updateUser.php";
     public string imageURLUploader = "uploadPhoto.php";
+    public string setUserDataURL = "setUserData.php";
     public string imagesURL = "users/";
 
     const string PREFAB_PATH = "UserData";
@@ -85,6 +86,7 @@ public class UserData : MonoBehaviour
         lastScoreWon = Data.Instance.multiplayerData.score;
         score += lastScoreWon;
         PlayerPrefs.SetInt("score", score);
+        UserData.Instance.SaveUserDataToServer();
     }
     void LoadUser()
     {
@@ -132,6 +134,10 @@ public class UserData : MonoBehaviour
             logged = true;
             userID = dataLoaded.userID;
             username = dataLoaded.username;
+            score = dataLoaded.score;
+            missionUnblockedID_1 = dataLoaded.missionUnblockedID_1;
+            missionUnblockedID_2 = dataLoaded.missionUnblockedID_2;
+            missionUnblockedID_3 = dataLoaded.missionUnblockedID_3;
             print("User data loaded: " + userID + "   username: " + username);
         }
     }
@@ -210,5 +216,39 @@ public class UserData : MonoBehaviour
         int a = lastScoreWon;
         lastScoreWon = 0;
         return a;
+    }
+
+    public void SaveUserDataToServer()
+    {
+        StartCoroutine(SaveUserDataC());
+    }
+    IEnumerator SaveUserDataC()
+    {
+        string hash = Utils.Md5Sum(UserData.Instance.userID + score + missionUnblockedID_1 + missionUnblockedID_2 + missionUnblockedID_3 + "pontura");
+        string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.userID) + "&score=" + score
+            + "&missionUnblockedID_1=" + missionUnblockedID_1
+            + "&missionUnblockedID_2=" + missionUnblockedID_2
+            + "&missionUnblockedID_3=" + missionUnblockedID_3
+            + "&hash=" + hash;
+        print(post_url);
+        WWW www = new WWW(post_url);
+        yield return www;
+
+        if (www.error != null)
+        {
+            UsersEvents.OnPopup("There was an error: " + www.error);
+        }
+        else
+        {
+            string result = www.text;
+            if (result == "exists")
+            {
+                UsersEvents.OnPopup("ya existe");
+            }
+            else
+            {
+                Debug.Log("UserData updated");
+            }
+        }
     }
 }
