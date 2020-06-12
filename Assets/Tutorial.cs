@@ -42,7 +42,7 @@ public class Tutorial : MonoBehaviour
     {
         ResetSignals();
         ResetAnim();
-        if (!Data.Instance.isAndroid || PlayerPrefs.GetString("tutorial") == "done")
+        if (!Data.Instance.isAndroid || PlayerPrefs.GetString("tutorial") == "done" || UserData.Instance.missionUnblockedID_1>0)
         {
             Destroy(anim.gameObject);
             Destroy(this);
@@ -55,6 +55,7 @@ public class Tutorial : MonoBehaviour
             mobileInputs.ButtonFire2.SetActive(false);
             mobileInputs.ButtonDash.SetActive(false);
 
+            Data.Instance.events.TutorialContinue += TutorialContinue;
             Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
             Data.Instance.events.OnAvatarJump += OnAvatarJump;
             Data.Instance.events.OnAvatarDie += OnAvatarDie;
@@ -63,6 +64,7 @@ public class Tutorial : MonoBehaviour
    
     private void OnDestroy()
     {
+        Data.Instance.events.TutorialContinue -= TutorialContinue;
         Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
         Data.Instance.events.OnAvatarJump -= OnAvatarJump;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
@@ -78,8 +80,15 @@ public class Tutorial : MonoBehaviour
         ResetSignals();
         state = states.ROTATE_DONE;
     }
+    void TutorialContinue()
+    {
+        print("TutorialContinue");
+        OnAvatarJump(0);
+        OnAvatarShoot(0);
+    }
     void OnAvatarJump(int a)
     {
+        ResetTimeScale();
         print("JUMP " + state);
         if (state == states.JUMP)
         {
@@ -98,6 +107,7 @@ public class Tutorial : MonoBehaviour
     }
     void OnAvatarShoot(int a)
     {
+        ResetTimeScale();
         print("Shoot " + state);
         if (state == states.SHOOT)
         {
@@ -142,7 +152,7 @@ public class Tutorial : MonoBehaviour
             Anim("jump");
             mobileInputs.ButtonJump.SetActive(true);
             signalJump.SetActive(true);
-            Data.Instance.events.RalentaTo(0, 0.9f);
+            Data.Instance.events.RalentaTo(0.05f, 0.9f);
             Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
             state = states.JUMP;
         }
@@ -150,7 +160,7 @@ public class Tutorial : MonoBehaviour
         {
             Anim("doubleJump");
             signalJump2.SetActive(true);
-            Data.Instance.events.RalentaTo(0, 0.9f);
+            Data.Instance.events.RalentaTo(0.05f, 0.9f);
             Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
             state = states.DOUBLE_JUMP;
         }
@@ -165,7 +175,7 @@ public class Tutorial : MonoBehaviour
             Anim("fire1");
             mobileInputs.ButtonFire1.SetActive(true);
             signalFire.SetActive(true);
-            Data.Instance.events.RalentaTo(0, 0.9f);
+            Data.Instance.events.RalentaTo(0.05f, 0.9f);
             Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
             state = states.SHOOT;
             PlayerPrefs.SetString("tutorial", "done");
@@ -188,11 +198,11 @@ public class Tutorial : MonoBehaviour
             //state = states.DONE;
         }
         else if (distance > 490 && voiceSaid == 2)
-        {
-            
+        {            
             Data.Instance.voicesManager.PlayClip(Data.Instance.voicesManager.tutorials[2].audioClip);
             voiceSaid++;
             state = states.DONE;
+            OnDestroy();
         }
     }
     void Anim(string animName)

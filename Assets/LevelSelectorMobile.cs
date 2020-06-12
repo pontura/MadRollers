@@ -35,10 +35,13 @@ public class LevelSelectorMobile : MonoBehaviour
         scoreTo =  UserData.Instance.Score();
         score = UserData.Instance.GetLastScoreWon();
 
-        if (score == scoreTo || score ==0)
-            scoreField.text = Utils.FormatNumbers(scoreTo);        
+        if (score == scoreTo || score == 0)
+            scoreField.text = Utils.FormatNumbers(scoreTo);
         else
+        {
+           
             LoopForScore();
+        }
 
 
         Data.Instance.events.SetHamburguerButton(true);

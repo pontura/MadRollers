@@ -49,8 +49,6 @@ public class Data : MonoBehaviour {
 
     static Data mInstance = null;
 
-    public modes mode;
-
 	[HideInInspector]
 	public bool isEditor;
 
@@ -76,11 +74,12 @@ public class Data : MonoBehaviour {
         SURVIVAL
 	//	GHOSTMODE
     }
-    public enum modes
+    public ControlsType controlsType;
+    public enum ControlsType
     {
-        ACCELEROMETER,
         KEYBOARD,
-        JOYSTICK
+        VIRTUAL_JOYSTICK,
+        GYROSCOPE
     }
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
@@ -106,12 +105,14 @@ public class Data : MonoBehaviour {
         if (RESET)
 			PlayerPrefs.DeleteAll ();
 
+        
 #if UNITY_WEBGL
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;
 #elif UNITY_EDITOR
         Application.targetFrameRate = 60;
 #elif UNITY_ANDROID
+        controlsType = ControlsType.VIRTUAL_JOYSTICK;
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;
         isAndroid = true;
