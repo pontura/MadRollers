@@ -33,6 +33,7 @@ public class GameCamera : MonoBehaviour
     bool isAndroid;
     public bool onExplotion;
 
+    int initialPixelSize;
 	public float pixelSize;
 	float pixel_speed_recovery = 16;
 	private GameObject flow_target;
@@ -46,7 +47,7 @@ public class GameCamera : MonoBehaviour
     private void Awake()
     {
         isAndroid = Data.Instance.isAndroid;
-
+        initialPixelSize = Data.Instance.pixelSize;
         sensorSizeValue = sensorSizeValueInitial;
         cam.enabled = false;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -90,7 +91,7 @@ public class GameCamera : MonoBehaviour
 	}
     public void Init()
 	{
-        pixelSize = 2;
+        pixelSize = initialPixelSize;
 
         cam.enabled = true;
 
@@ -104,6 +105,7 @@ public class GameCamera : MonoBehaviour
         {
             Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
             retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
+            retroPixelPro.pixelSize = initialPixelSize;
         }     		
 
         if (isAndroid)
@@ -156,7 +158,7 @@ public class GameCamera : MonoBehaviour
 			StopCoroutine (DoExploteCoroutine);
 		state = states.EXPLOTING;
 
-		SetPixels(8);
+		SetPixels(initialPixelSize*4);
 
 		DoExploteCoroutine = DoExplote (explotionForce * 6f);
 		StartCoroutine (DoExploteCoroutine);
@@ -210,8 +212,8 @@ public class GameCamera : MonoBehaviour
         if (!Data.Instance.useRetroPixelPro)
             return;
 
-        if (pixelSize < 2)
-			pixelSize = 2;
+        if (pixelSize < initialPixelSize)
+			pixelSize = initialPixelSize;
 		else 
 			pixelSize -= pixel_speed_recovery * Time.deltaTime;
 
@@ -242,7 +244,7 @@ public class GameCamera : MonoBehaviour
 
         if (Data.Instance.useRetroPixelPro)
         {
-            if (retroPixelPro.pixelSize > 2)
+            if (retroPixelPro.pixelSize > Data.Instance.pixelSize)
                 UpdatePixels();
         }
         if (isAndroid)

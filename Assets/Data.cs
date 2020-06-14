@@ -27,6 +27,8 @@ public class Data : MonoBehaviour {
     public int competitionID = 1;    
     public int scoreForArcade;
 
+    public int pixelSize = 2;
+
     [HideInInspector]
     public Events events;
     public ObjectPool sceneObjectsPool;
@@ -105,24 +107,38 @@ public class Data : MonoBehaviour {
         if (RESET)
 			PlayerPrefs.DeleteAll ();
 
-        
+        print("heightheightheight: " + Screen.height);
+
 #if UNITY_WEBGL
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;
 #elif UNITY_EDITOR
         Application.targetFrameRate = 60;
 #elif UNITY_ANDROID
-        controlsType = ControlsType.VIRTUAL_JOYSTICK;
+        controlsType = ControlsType.GYROSCOPE;
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;
         isAndroid = true;
         Application.targetFrameRate = 60;
+#else
+        Application.targetFrameRate = 60;
 #endif
+
+
+        string _controlsType = PlayerPrefs.GetString("controlsType");
+        if (_controlsType == "GYROSCOPE")
+            controlsType = ControlsType.GYROSCOPE;
+        else if (_controlsType == "VIRTUAL_JOYSTICK")
+            controlsType = ControlsType.VIRTUAL_JOYSTICK;
 
 
         if (isAndroid)
         {
-            useRetroPixelPro = false;
+            pixelSize = (int)((float)Screen.height * (0.003f));
+            if (SystemInfo.graphicsShaderLevel >= 30)
+                useRetroPixelPro = true;
+            else
+                useRetroPixelPro = false;
         }
         //  Cursor.visible = false;
 

@@ -22,6 +22,7 @@ public class MobileMenuScreen : MonoBehaviour
             Data.Instance.controlsType = Data.ControlsType.VIRTUAL_JOYSTICK;
         else
             Data.Instance.controlsType = Data.ControlsType.GYROSCOPE;
+        PlayerPrefs.SetString("controlsType", Data.Instance.controlsType.ToString());
         SetControlField();
     }
     void SetControlField()
