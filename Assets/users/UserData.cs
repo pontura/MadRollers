@@ -72,7 +72,7 @@ public class UserData : MonoBehaviour
         LoadUser();
         hiscoresByMissions.Init();
 
-        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if(Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Data.Instance.events.OnSaveScore += OnSaveScore;
     }
     private void OnDestroy()

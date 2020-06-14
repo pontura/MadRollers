@@ -11,7 +11,7 @@ public class MobileMenu : MonoBehaviour
     public Text debugField;
     void Start()
     {
-        if (Data.Instance.playMode != Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             Destroy(this.gameObject);
             return;

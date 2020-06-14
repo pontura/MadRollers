@@ -23,7 +23,7 @@ public class Summary : MonoBehaviour {
     void Start()
     {
         mobilePanel.SetActive(false);
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Data.Instance.events.OnGameOver += OnGameOver;
     }
     void OnDestroy()
@@ -34,7 +34,15 @@ public class Summary : MonoBehaviour {
     {
         if (isOn) return;
         isOn = true;
-        Invoke("SetOn", 2F);
+        
+        if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            Invoke("GotoDirectToSummary", 2F);
+        else
+            Invoke("SetOn", 2F);
+    }
+    void GotoDirectToSummary()
+    {
+        GetComponent<SummaryMobile>().Init();
     }
     void SetOn()
     {

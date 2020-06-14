@@ -71,7 +71,8 @@ public class MissionBar : MonoBehaviour {
 	{
         totalDistance = Data.Instance.missions.GetTotalRoutDistance();
         routeProgressOn = true;
-        routeProgressSignal.gameObject.SetActive(true);
+        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            routeProgressSignal.gameObject.SetActive(true);
         bossSignal.gameObject.SetActive(false);
     }
 	void OnGameOver(bool isTimeOut)

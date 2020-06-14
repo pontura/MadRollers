@@ -43,6 +43,10 @@ public class HiscoresByMissions : MonoBehaviour
     {
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
     }    
+    public void SaveSurvivalScore()
+    {
+        Save(0, Data.Instance.multiplayerData.score);
+    }
     void OnMissionComplete(int missionID)
     {
         Save(missionID, Data.Instance.multiplayerData.score);
@@ -84,6 +88,12 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void LoadHiscore(int videogame, int mission, System.Action<MissionHiscoreData> OnDone)
     {
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            mission = 0;
+            videogame = MissionsManager.Instance.VideogameIDForTorneo;
+        }
+
         MissionHiscoreData md = IfAlreadyLoaded(videogame, mission);
 
         if (md != null)
@@ -110,7 +120,13 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void Save(int mission, int score)
     {
-        int videogame = Data.Instance.videogamesData.actualID;
+        int videogame;
+
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            videogame = MissionsManager.Instance.VideogameIDForTorneo;
+        else
+            videogame = Data.Instance.videogamesData.actualID;
+
         string hash = Utils.Md5Sum(UserData.Instance.userID + videogame + mission + score + secretKey);
         string post_url = saveNewHiscore + "?userID=" + WWW.EscapeURL(UserData.Instance.userID);
         post_url += "&username=" + UserData.Instance.username;
@@ -123,7 +139,7 @@ public class HiscoresByMissions : MonoBehaviour
     }
     IEnumerator Send(string post_url, System.Action<MissionHiscoreData> OnDone)
     {
-        print(post_url);
+        print("Save: " + post_url);
         WWW www = new WWW(post_url);
         yield return www;
 

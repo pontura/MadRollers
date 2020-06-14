@@ -51,12 +51,7 @@ public class Continue : MonoBehaviour {
 	}	
 	public void OnGameOverDelayed()
 	{
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-        {
-            Invoke("Done", 2);
-            return;
-        } else
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             Invoke("Done", 2);
             return;
@@ -96,7 +91,7 @@ public class Continue : MonoBehaviour {
 	}	
 	void Done()
 	{
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             GetComponent<SummaryCompetitions>().SetOn();
         }

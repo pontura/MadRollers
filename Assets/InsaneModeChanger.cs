@@ -11,7 +11,7 @@ public class InsaneModeChanger : MonoBehaviour
 
     void Start()
     {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             this.enabled = false;
         else
             Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;

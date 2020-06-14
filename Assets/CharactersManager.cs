@@ -317,9 +317,6 @@ public class CharactersManager : MonoBehaviour {
     }
     public CharacterBehavior getMainCharacter()
     {
-        if(isAndroid)
-            return characters[0];
-
         if (getTotalCharacters() <= 0)
         {
             Debug.LogError("[ERROR] No hay más characters y sigue pidiendo...");

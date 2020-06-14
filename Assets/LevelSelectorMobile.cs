@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class LevelSelectorMobile : MonoBehaviour
 {
     VideogameData videogameData;
-
+    public GameObject torneoButton;
     public MissionSelectorMobile missionSelectorMobile;
 
     public AvatarThumb avatarThumb;
@@ -70,6 +70,19 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     public void Go()
     {
+        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        Data.Instance.LoadLevel("Game");
+    }
+    public void Torneo()
+    {
+        if(UserData.Instance.missionUnblockedID_3<=0)
+        {
+            Data.Instance.events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
+            return;
+        }
+        Data.Instance.videogamesData.actualID = UnityEngine.Random.Range(0, 3);
+        Data.Instance.missions.MissionActiveID = 0;
+        Data.Instance.playMode = Data.PlayModes.SURVIVAL;
         Data.Instance.LoadLevel("Game");
     }
     public void ResetAll()
@@ -85,4 +98,5 @@ public class LevelSelectorMobile : MonoBehaviour
     {
         Data.Instance.events.OnAlertSignal("Todavía no puedes gastar tus pixeles para construir plugins! (Próximamente)");
     }
+    
 }

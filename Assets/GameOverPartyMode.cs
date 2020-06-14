@@ -15,7 +15,7 @@ public class GameOverPartyMode : MonoBehaviour {
 
 	void Start()
 	{
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             this.enabled = false;
 
 		panel.SetActive (false);
@@ -44,7 +44,7 @@ public class GameOverPartyMode : MonoBehaviour {
 	void Update()
 	{
 		if (canClick) {
-            if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             {
                 UpdateAndroid();
             }

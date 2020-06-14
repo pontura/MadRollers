@@ -26,6 +26,7 @@ public class LoadingAsset : MonoBehaviour {
     public Text avatarName;
     public Text missionField;
     public GameObject hiscorePanel;
+    public GameObject survivalTorneoImage;
 
     void Start () {
        
@@ -33,6 +34,11 @@ public class LoadingAsset : MonoBehaviour {
 	}
 	public void SetOn(bool _isOn)
 	{
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            survivalTorneoImage.SetActive(true);
+        else
+            survivalTorneoImage.SetActive(false);
+
         hiscorePanel.SetActive(false);
 		this.isOn = _isOn;
 		panel.SetActive (_isOn);
@@ -49,6 +55,16 @@ public class LoadingAsset : MonoBehaviour {
                 int videoGameID = Data.Instance.videogamesData.actualID;
                 UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
                 missionField.text = "MISION " + (missionID + 1);
+            }
+            else if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            {
+                horizontal.SetActive(false);
+                vertical.SetActive(true);
+                logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
+                int missionID = Data.Instance.missions.MissionActiveID;
+                int videoGameID = Data.Instance.videogamesData.actualID;
+                UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+                missionField.text = "TORNEO <RESISTENCIA>";
             }
             else
             {

@@ -47,7 +47,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	{	
 		RefreshScore ();
 
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             if (score < 0)
                 return;
@@ -71,7 +71,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	}
 	void Update()
 	{
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || totalAdded == 0)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL || totalAdded == 0)
 			return;
 		if (Time.time > ResetFieldsTimer) {
 			totalAdded = 0;

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479ed1ee3f9dd1e40acff7dd77aac340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VideogameIDForTorneo: 100
   _all: {fileID: 4900000, guid: 365998f28398e2045983c718d25476f5, type: 3}
   all:
     missionsVideoGame1:
@@ -107,6 +108,9 @@ MonoBehaviour:
     - per_pisoAlto
     - per_7
     - per_sliders
+    torneo:
+    - TORNEO
+    - TORNEO_extras
   videogames:
   - missions:
     - title: 
@@ -3921,6 +3925,733 @@ MonoBehaviour:
           - sliderWalls_seguidas1
           - sliderWalls_seguidas2
           cameraOrientation: {x: 0, y: -2, z: 0}
+  - missions:
+    - title: 
+      data:
+      - jsonName: TORNEO
+        title: TORNEO RESISTENCIA
+        id: 0
+        maxScore: 0
+        fondo: wonderland_nubes
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -1
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: -3, z: -1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -15
+          randomize: 1
+          areas:
+          - bombaSingle1
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: -15
+          randomize: 1
+          areas:
+          - descansoRunners
+          - descansoRunners2
+          - descansoRunners3
+          - descansoRunners4
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -15
+          randomize: 0
+          areas:
+          - backPlatforms_init
+          - backPlatforms_init2
+          - backPlatforms_init3
+          cameraOrientation: {x: 0, y: 0, z: -40}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - cataputas_x2
+          - laserHorizontal
+          - laserMultiplesBigWalls1
+          - lasersrWalls_x4
+          - lasersrWalls_x4Hard
+          - lasersrWalls_x4Hard1
+          - lasersrx4
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - navesSimple3
+          cameraOrientation: {x: 0, y: -1, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - lasersr_container_gira
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - descanso1
+          - descanso2
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: -2, z: -0.5}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - descansoMuyAnchoEntrance
+          - descansoMuyAncho
+          - descansoMuyAncho
+          - descansoMuyAncho
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -20
+          randomize: 0
+          areas:
+          - killRunnerSimple_1
+          - killRunnerSimple_2
+          - killRunnerSimple_3
+          - killRunnerSimple_4
+          - killRunner2
+          - killRunner2_b
+          - killRunner2_c
+          - killRunner_2Caminos
+          cameraOrientation: {x: 0, y: -1.5, z: -1.25}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -12
+          randomize: 0
+          areas:
+          - CoinsHard1
+          - coinsHard2
+          - coinsHard3
+          cameraOrientation: {x: 0, y: -1, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -18
+          randomize: 0
+          areas:
+          - barrancas_1
+          - barrancas_1_2
+          - barrancas_2
+          - barrancas_2_2
+          - barrancas_2_2_rueda
+          - barrancas_helices
+          - barrancas_3
+          - barrancas_3_2
+          - barrancas_descanso_coins_1
+          - barrancas_3_2planes
+          - barrancas_descanso_x2
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -18
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          - zigzag
+          cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - cepillo1
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - housesSmall1
+          - housesSmall2
+          - housesSmall3
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -3
+          randomize: 0
+          areas:
+          - ancho_agua_simple1
+          - ancho_agua_simple2
+          cameraOrientation: {x: 0, y: -1.5, z: -0.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -15
+          randomize: 0
+          areas:
+          - singleRunnerJump1
+          - singleRunnerJump2
+          - enemiesLineaJump
+          - enemiesLineaJumpSmall
+          - enemiesRunners3_Salto2
+          - enemiesRunnersSmall
+          - enemiesRunnersSmall_2Palms
+          - singleRunnerJump_linea1
+          - singleRunnerJump_linea2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - estrellas simple
+          - estrellas simple 1
+          - estrellas simple 2
+          - estrellas simple 3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - housesSmall_Stars
+          - housesSmall_Stars2
+          cameraOrientation: {x: 0, y: -2.2, z: 0.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - houses1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - container_cruz
+          - container_cruz_2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - heliceSmall
+          - heliceSmall2
+          - heliceDoubleSmall
+          - helicesx4
+          - helicesx4_enemies
+          - pisoCurvo_helices
+          - container_helice
+          - helicesx2_larga
+          cameraOrientation: {x: 0, y: -1, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - heliceDoubleSmall
+          - helicesx4
+          - helicesx4_enemies
+          - pisoCurvo_helices
+          - container_helice
+          - helicesx2_larga
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 5
+          bending: 0
+          randomize: 0
+          areas:
+          - pisoCurvo0
+          - pisoCurvo1
+          - pisoCurvo2
+          - pisoCurvo4
+          - pisoCurvo5
+          - pisoCurvo_helices
+          - pisoCurvo_Rays2
+          - pisoCurvo_Rays1
+          - pisoCurvo1 1
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: -1.6, z: 1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - anchoCalleHelices
+          - anchoCalleHelicesSapos
+          - anchoCalleHelicesEnemigos
+          - anchoCalleHelicesEnemigosBack
+          cameraOrientation: {x: 0, y: 1, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - rampaHuge
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - saposLinea
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - container_cruz_enemy2
+          - container_cruz_enemy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - agua_lados
+          - ancho_agua_simple
+          - ancho_agua_simple_lados
+          - agua_lados
+          - doble_agua
+          - doble_agua_simple
+          - doble_1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - container_lineaFlota
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - container_lineaLargaEnemy
+          - container_lineaLargaEnemy2
+          - container_lineaLargaEnemyDoble
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: -17
+          randomize: 0
+          areas:
+          - subibaja1Horizontal
+          - subibaja2Horizontal
+          cameraOrientation: {x: 0, y: -4.5, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - pisoCurvo_helices
+          cameraOrientation: {x: 0, y: -1.5, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - ruedasEnemigos
+          - ruedaSimple
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - ruedaDoble
+          - ruedaDoble2
+          - ruedaDoble1
+          cameraOrientation: {x: 0, y: -3, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - saposLinea
+          - ancho2Sapos
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - enemiesLineaJumpYSapos
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - container_lineaLargaSapos
+          cameraOrientation: {x: 0, y: -3, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - subibajaSapos1
+          - subibajaSapos2
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -15
+          randomize: 0
+          areas:
+          - slider_intro3
+          - slider_intro4
+          - slider_intro5_doble
+          - slider_intro1
+          - slider_intro2
+          - slider_intro6_doble_trees
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - slider1
+          - sliderHard1
+          - sliderHard2
+          - sliderHard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -30
+          randomize: 0
+          areas:
+          - sliderWalls_seguidas1
+          - sliderWalls_seguidas2
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - sombrillaIntro
+          - sombrillaPozo
+          - sombrilla2Caminos
+          - sombrillaEnemigos
+          - sombrillaIntro2
+          - sombrillaIntro3
+          - sombrillaPozo
+          - sombrillaEnemigos
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - lava_1
+          - lava_2
+          cameraOrientation: {x: 0, y: 1, z: -3}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - throw_center
+          - throw_left
+          - throw_right
+          - calecita_x1
+          - slider_intro1
+          - throw_double
+          - throw_center
+          - throw_left
+          - throw_right
+          - throw_double
+          cameraOrientation: {x: 0, y: 1.2, z: -3}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - firewallsSimple
+          - firewallsSimple2
+          - firewalls_lasers
+          cameraOrientation: {x: 0, y: -3, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - container_firewalls
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - firewallsSimple3
+          - firewallsSimple3b
+          - firewallsSimple3
+          - firewallsSimple3b
+          cameraOrientation: {x: 0, y: -5, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -17
+          randomize: 1
+          areas:
+          - subibaja_escupe1
+          - subibaja_escupe2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - escupe_frontal1 (1)
+          - escupe_frontal1 (1) 1
+          - escupe_frontal1 (1) 2
+          - escupe_frontal1 1
+          - escupe_frontal1 (2)
+          - escupe_frontal1
+          - escupe_frontal_fila
+          - escupe_frontal_fila 1
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - raysAncho
+          - zigzag_Rays_1
+          - zigzag_Rays_2
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - cilindro1
+          - cilindro2
+          - cilindro1b
+          - cilindro2b
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - cilindroDouble1
+          - cilindroDouble2
+          - cilindroDouble2b
+          - cilindroDoubleBossFree
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - ruedaBifurca
+          - enemigosDoble
+          - enemigosDobleJump
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - 2lados_intro
+          - 2lados_intro 1
+          - 2lados_intro 1 1
+          - 2lados
+          - 2lados 1
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - cilindro_simple
+          - cilindro_simple 1
+          cameraOrientation: {x: 0, y: 1, z: -4}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - gargolaDeforme1
+          - gargolaDeforme2
+          cameraOrientation: {x: 0, y: 5, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - gargola1
+          - gargola2
+          - gargola3
+          cameraOrientation: {x: 0, y: 1, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - snakes1
+          - snakes2
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 10
+          bending: -8
+          randomize: 0
+          areas:
+          - boss1Corre
+          - boss1Corre2
+          - boss1Corre3
+          - boss1Corre2
+          - boss1Corre2
+          - boss1Corre3
+          - boss1Corre2
+          - boss1Corre2_fences
+          - boss1Corre
+          - boss1Corre2
+          - boss1Corre3
+          cameraOrientation: {x: 0, y: 6, z: -18}
+    - title: 
+      data:
+      - jsonName: TORNEO_extras
+        title: 
+        id: 0
+        maxScore: 0
+        fondo: 
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 0
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_Pacmans_intro
+          - backPlatforms_boss
+          - resorteMovedizo_Boss
+          - paredes1Boss
+          - pisoCurvo_boss
+          - pisoCurvo_V_boss_avanzan
+          - resorteMovedizo_Boss
+          - firewallsBoss
+          - boss_naves
+          - boss_navesOcultas
+          - boss_2_filas
+          - cilindroDoubleBoss
+          - boss_2_filas_eyes
+          - subibajaBoss
+          - ruedaBoss
+          - cilindroBossPer
+          - cataputas_x2_boss
+          - boss_calle_Centro_boss
+          - boss_serpientes
+          - escupe_boss
+          - boss_Calecitas_altas
+          - sliderBossCubosPer
+          - boss_circulo_gigante
+          - bossHuyenCorriendo
+          - floors_move_boss_2
+          - bossVienen
+          - floors_move_boss
+          - boss_deformeEspada
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 0
+          bending: 0
+          randomize: 0
+          areas:
+          - xtra_throwers1
+          - xtras_enemies_back1
+          - xtras_enemigos_front
+          - xtra_Rueda_simple
+          - xtras_enemy_DobleFila
+          - xtra_rota_2_enemy
+          - subibaja1
+          - subibaja2
+          - runners_free
+          - RayAlone
+          - SnakesAlone
+          - coinsAlone
+          - coinsAlone2
+          - cuboGiratorio
+          cameraOrientation: {x: 0, y: 0, z: 0}
   areasManager: {fileID: 4232662971968698083}
 --- !u!114 &4232662971968698083
 MonoBehaviour:
@@ -4282,6 +5013,24 @@ MonoBehaviour:
   - {fileID: 4900000, guid: fe1bf420b55c31d43ad0b89f81d4e956, type: 3}
   - {fileID: 4900000, guid: 08a79f211c4d7ca42bf3862b51f7056e, type: 3}
   - {fileID: 4900000, guid: 990b1288ef784f24abebebec7308a82e, type: 3}
+  - {fileID: 4900000, guid: 27d3dca4572a9964a84c1ab7306f8a03, type: 3}
+  - {fileID: 4900000, guid: 6038dff883fd8584c879ac75c8c8b89c, type: 3}
+  - {fileID: 4900000, guid: 0bfb0c0371a5d5f4c9da99aea7b3c86f, type: 3}
+  - {fileID: 4900000, guid: 922d2a6978a6acb42b01a750919bb738, type: 3}
+  - {fileID: 4900000, guid: a4412e13f70c80a4e887f1765716c1e2, type: 3}
+  - {fileID: 4900000, guid: 07134b7b886d7d3418dd44a1fe906859, type: 3}
+  - {fileID: 4900000, guid: bebde917eedb49444b406807bde6f35d, type: 3}
+  - {fileID: 4900000, guid: 3ece8efa7630ca344a8345900d89f71a, type: 3}
+  - {fileID: 4900000, guid: 4d8624cdb71ef2d4d91a74e0dd76ed2b, type: 3}
+  - {fileID: 4900000, guid: 99810668e1674064a8da54a5f4ccd0b6, type: 3}
+  - {fileID: 4900000, guid: 97e1db474df802845b510b79c54b7c47, type: 3}
+  - {fileID: 4900000, guid: 95eced69f0f633d41a4aaeff9e90671d, type: 3}
+  - {fileID: 4900000, guid: 1d96cb3c6f65bb44f853b1daa713af3b, type: 3}
+  - {fileID: 4900000, guid: 4119e214e721b7941a18cf11b97d6600, type: 3}
+  - {fileID: 4900000, guid: 7aaed18f1146ed946ac753283ed62e7b, type: 3}
+  - {fileID: 4900000, guid: d618337fff55f214895d98c4bbb51f23, type: 3}
+  - {fileID: 4900000, guid: acd7c7211e4b85d4f89c035e6b18b29d, type: 3}
+  - {fileID: 4900000, guid: aa640c2d3683bc440b3d2af9666e34bf, type: 3}
   names:
   - continue_Multiplayer
   - start_Multiplayer
@@ -4630,3 +5379,21 @@ MonoBehaviour:
   - ruedaBossFree3
   - ruedaBossFree4
   - sliderBossCubosPer
+  - bombaSingle1
+  - killRunnerSimple_1
+  - killRunnerSimple_2
+  - killRunnerSimple_3
+  - killRunner_2Caminos
+  - floors_move_boss
+  - xtra_throwers1
+  - xtras_enemies_back1
+  - xtras_enemigos_front
+  - xtra_Rueda_simple
+  - xtras_enemy_DobleFila
+  - xtra_rota_2_enemy
+  - runners_free
+  - RayAlone
+  - SnakesAlone
+  - coinsAlone
+  - coinsAlone2
+  - cuboGiratorio

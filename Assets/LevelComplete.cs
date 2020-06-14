@@ -29,7 +29,7 @@ public class LevelComplete : MonoBehaviour {
 			Data.Instance.handWriting.WriteTo(label, titleText, null);
 
         // Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
         CloseAfter (3);
     }

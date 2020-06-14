@@ -17,6 +17,13 @@ public class HiscoresMobile : MonoBehaviour
         hiscoresByMission.ResetAllHiscores();
         hiscoresByMission.LoadHiscore(videoGameID, missionID, OnDone);       
     }
+    public void InitLoaded(HiscoresByMissions.MissionHiscoreData data)
+    {
+        Utils.RemoveAllChildsIn(container);
+        HiscoresByMissions hiscoresByMission = UserData.Instance.hiscoresByMissions;
+        hiscoresByMission.ResetAllHiscores();
+        OnDone(data);
+    }
     public void OnDone(HiscoresByMissions.MissionHiscoreData data)
     {
         int id = 0;
@@ -30,7 +37,7 @@ public class HiscoresMobile : MonoBehaviour
             newLine.transform.localScale = Vector3.one;
             newLine.Init(id + 1, m.username, m.score);
             newLine.SetImage(m.userID);
-            if (m.userID == UserData.Instance.userID)
+            if (MyScoreLoaded != null && m.userID == UserData.Instance.userID)
                 MyScoreLoaded(m.score);
             id++;
         }

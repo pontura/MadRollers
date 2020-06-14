@@ -19,7 +19,7 @@ public class HiscoresComparison : MonoBehaviour {
     int rankingNum = 5;
 
     void Start () {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             this.enabled = false;
 
         panel.SetActive (false);

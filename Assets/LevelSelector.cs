@@ -73,7 +73,7 @@ public class LevelSelector : MonoBehaviour {
 
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
 
-        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if(Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             camAnimnation.Play("levelSelectorCameraIdleStoryMode");
 
     }

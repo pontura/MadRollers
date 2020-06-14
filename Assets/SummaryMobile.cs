@@ -18,6 +18,7 @@ public class SummaryMobile : MonoBehaviour
     public Text hiscoreScoreField;
     public Text hiscoreNameField;
     public Text puestoField;
+    public Text initialSignalTitleField;
 
     public GameObject hiscoreOtherPanel;
 
@@ -36,7 +37,7 @@ public class SummaryMobile : MonoBehaviour
     
     public void Init()
     {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             StartCoroutine(InitCoroutine());
        
     }
@@ -50,7 +51,9 @@ public class SummaryMobile : MonoBehaviour
     }
     IEnumerator InitCoroutine()
     {
-        
+        if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            initialSignalTitleField.text = "FIN DE TU CORRIDA";
+
         Data.Instance.events.OnMadRollersSFXStatus(false);
         hiscoreOtherPanel.SetActive(false);
         Data.Instance.events.RalentaTo(0, 0.025f);
@@ -64,18 +67,32 @@ public class SummaryMobile : MonoBehaviour
         titleField.text = "MISION " + (missionID + 1);
         score = Data.Instance.multiplayerData.GetTotalScore();
         scoreField.text = Utils.FormatNumbers(score);
-        videoGameID = Data.Instance.videogamesData.actualID;
+
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            UserData.Instance.hiscoresByMissions.SaveSurvivalScore();
+            videoGameID = MissionsManager.Instance.VideogameIDForTorneo;
+        }
+        else
+            videoGameID = Data.Instance.videogamesData.actualID;
+
         UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
         if (!Data.Instance.isAndroid)
             Data.Instance.events.OnJoystickClick += OnJoystickClick;
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            videoGameID = MissionsManager.Instance.VideogameIDForTorneo;
+            missionID = 0;
+        }
+
         UserData.Instance.hiscoresByMissions.CheckToAddNewHiscore(UserData.Instance.userID, score, videoGameID, missionID);
-        hiscores.Init(videoGameID, missionID, MyScoreLoaded);
+        hiscores.InitLoaded(hiscoreData);
+
         avatarImage.Init(UserData.Instance.userID);
         usernameField.text = UserData.Instance.username;
-
         
         if (hiscoreData == null || hiscoreData.all.Count < 1)
         {

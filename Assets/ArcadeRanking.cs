@@ -18,9 +18,9 @@ public class ArcadeRanking : MonoBehaviour {
 		public int hiscore;       
 	}
 	void Start () {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
-		Data.Instance.events.RefreshHiscores += RefreshHiscores;
+        Data.Instance.events.RefreshHiscores += RefreshHiscores;
 		path = Application.streamingAssetsPath + "/hiscores.txt";
 		LoadHiscores(path);
 	}

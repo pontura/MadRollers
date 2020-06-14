@@ -5,6 +5,7 @@ using System;
 
 public class MissionsManager : MonoBehaviour
 {
+    public int VideogameIDForTorneo = 100;
     public TextAsset _all;
     public MissionsListInVideoGame all;
     public List<MissionsByVideoGame> videogames;
@@ -15,6 +16,7 @@ public class MissionsManager : MonoBehaviour
         public string[] missionsVideoGame1;
         public string[] missionsVideoGame2;
         public string[] missionsVideoGame3;
+        public string[] torneo;
     }
     [Serializable]
     public class MissionsByVideoGame
@@ -27,6 +29,8 @@ public class MissionsManager : MonoBehaviour
         public string title;
         public List<MissionData> data;
     }
+
+
     static MissionsManager mInstance = null;
     public static MissionsManager Instance
     {
@@ -61,6 +65,7 @@ public class MissionsManager : MonoBehaviour
         LoadByVideogame(all.missionsVideoGame1, 0);
         LoadByVideogame(all.missionsVideoGame2, 1);
         LoadByVideogame(all.missionsVideoGame3, 2);
+        LoadByVideogame(all.torneo, 3);
     }
     public void LoadByVideogame(string[] missionsInVideogame, int videogameID)
     {

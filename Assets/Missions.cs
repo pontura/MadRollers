@@ -40,9 +40,11 @@ public class Missions : MonoBehaviour {
 
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
+            offset -= 40;
             MissionsManager.Instance.all = null;
-            MissionActive = MissionsManager.Instance.LoadDataFromMission("survival", "boyland").data[0];
-            extraAreasManager.Init();              
+            //MissionActive = MissionsManager.Instance.LoadDataFromMission("survival", "boyland").data[0];
+            MissionActive = MissionsManager.Instance.videogames[3].missions[0].data[0];
+           // extraAreasManager.Init();              
         }
         else
         {
@@ -77,10 +79,19 @@ public class Missions : MonoBehaviour {
 		return null;
 	}
 	public void Init (Level level) {
+
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            MissionActive = MissionsManager.Instance.videogames[3].missions[0].data[0];
+            extraAreasManager.Init();              
+        }
+
+
         totalDistance = 0;
         this.level = level;
 		areasLength = -4;
 		StartNewMission ();
+
         if (Data.Instance.isReplay && Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             AddAreaByName("continue_Multiplayer");
@@ -88,7 +99,7 @@ public class Missions : MonoBehaviour {
         else {
           //if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
 		//	ShuffleMissions ();
-		AddAreaByName ("start_Multiplayer");
+		    AddAreaByName ("start_Multiplayer");
 		} 
 	}
 	void ShuffleMissions()

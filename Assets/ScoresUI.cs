@@ -19,7 +19,7 @@ public class ScoresUI : MonoBehaviour
 
     void Start()
     {
-        if (Data.Instance.playMode != Data.PlayModes.STORYMODE)
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             panel.SetActive(false);
             Destroy(this);
@@ -51,6 +51,8 @@ public class ScoresUI : MonoBehaviour
             int videoGameID = Data.Instance.videogamesData.actualID;
             UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
         }
+        else  if( Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            UserData.Instance.hiscoresByMissions.LoadHiscore(MissionsManager.Instance.VideogameIDForTorneo, missionID, HiscoreLoaded);
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
