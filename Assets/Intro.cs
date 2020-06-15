@@ -12,6 +12,7 @@ public class Intro : MonoBehaviour {
     public Transform container;
     public Player player_to_instantiate;
     public Text field;
+    public Text subtitles;
     int id;
 
     void Start () {
@@ -33,6 +34,7 @@ public class Intro : MonoBehaviour {
         {
             case 1:
                 Data.Instance.handWriting.WriteTo(field, "YOU ARE A COMPUTER VIRUS", OnDone);
+                SetSubtitles("Eres un virus");
                 break;
             case 2:
                 container.gameObject.SetActive(false);
@@ -40,24 +42,38 @@ public class Intro : MonoBehaviour {
                 containerVideogames.gameObject.SetActive(false);
                 Loop();
                 Data.Instance.handWriting.WriteTo(field, "...A PIXEL DEVOURING SOFTWARE", OnDone);
+                SetSubtitles("Programado para devorar pixeles");
                 break;
             case 3:
                 Loop();
                 Data.Instance.handWriting.WriteTo(field, "AND YOUR MISSION IS...", OnDone);
+                SetSubtitles("Y tienes una misión...");
                 break;
             case 4:
                 container.gameObject.SetActive(false);
                 containerBosses.gameObject.SetActive(false);
                 containerVideogames.gameObject.SetActive(true);
                 Data.Instance.handWriting.WriteTo(field, "DESTROY ALL THE VIDEO-GAMES OVER THE FACE OF THE EARTH.", OnDone);
+                SetSubtitles("Destruir todos los videojuegos que alguna vez existieron");
                 break;
             case 5:
                 Data.Instance.handWriting.WriteTo(field, "GOOD LUCK!", OnDone);
+                SetSubtitles("Te deseamos suerte!");
                 break;
             case 6:
                 Data.Instance.LoadLevel("MainMenuMobile");
                 break;
         }       
+    }
+    void SetSubtitles(string text)
+    {
+        subtitles.text = "";
+        StartCoroutine(SetSubtitlesC( text));
+    }
+    IEnumerator SetSubtitlesC(string text)
+    {
+        yield return new WaitForSeconds(0.8f + (Random.Range(40, 300) / 100));
+        subtitles.text = text;
     }
     public void OnDone()
     {
