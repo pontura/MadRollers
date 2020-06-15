@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1342406411}
   - component: {fileID: 4232662971968698083}
   m_Layer: 0
-  m_Name: missionsmanager
+  m_Name: MissionsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
     - gallax_firewalls
     missionsVideoGame3:
     - per_init_jumps
+    - per_boss_serpientes
     - per_geometrias
     - per_ene_easy
     - per_snakes
@@ -303,6 +304,14 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
+          bending: -1
+          randomize: 1
+          areas:
+          - lava_1
+          cameraOrientation: {x: 0, y: -8, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
           bending: 0
           randomize: 0
           areas:
@@ -316,14 +325,6 @@ MonoBehaviour:
           areas:
           - Ending
           cameraOrientation: {x: 0, y: -2.5, z: -4}
-        - boss: 0
-          json: {fileID: 0}
-          total_areas: 1000
-          bending: 0
-          randomize: 1
-          areas:
-          - Ending
-          cameraOrientation: {x: 0, y: -2, z: -4}
     - title: 
       data:
       - jsonName: boy_conejitos
@@ -440,6 +441,14 @@ MonoBehaviour:
           - descanso1
           - descanso2
           cameraOrientation: {x: 0, y: -3, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -5
+          randomize: 1
+          areas:
+          - lava_2
+          cameraOrientation: {x: 0, y: -10, z: 2}
         - boss: 1
           json: {fileID: 0}
           total_areas: 1
@@ -448,14 +457,6 @@ MonoBehaviour:
           areas:
           - Ending
           cameraOrientation: {x: 0, y: 3, z: 1}
-        - boss: 0
-          json: {fileID: 0}
-          total_areas: 1000
-          bending: -12
-          randomize: 1
-          areas:
-          - Ending
-          cameraOrientation: {x: 0, y: -6, z: -2}
     - title: 
       data:
       - jsonName: boy_pulpo
@@ -3229,29 +3230,10 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: 2, z: -1.5}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 2
-          bending: -15
-          randomize: 0
-          areas:
-          - coinsJump1
-          - descanso1
-          cameraOrientation: {x: 0, y: 0, z: 0}
-        - boss: 0
-          json: {fileID: 0}
-          total_areas: 1
-          bending: -2
-          randomize: 0
-          areas:
-          - doubleJump1
-          cameraOrientation: {x: 0, y: 0, z: 0}
-        - boss: 0
-          json: {fileID: 0}
           total_areas: 3
           bending: -18
           randomize: 0
           areas:
-          - coinsJumpHard1
-          - coinsJumpFence
           - tiposWalkers2
           cameraOrientation: {x: 0, y: 0, z: 0}
         - boss: 0
@@ -3271,6 +3253,14 @@ MonoBehaviour:
           areas:
           - jumpAncho
           cameraOrientation: {x: 0, y: -4, z: -2}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_serpientes
+          cameraOrientation: {x: 0, y: -10, z: 2}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -3287,6 +3277,30 @@ MonoBehaviour:
           areas:
           - jumpAncho2
           cameraOrientation: {x: 0, y: -4, z: -1}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 3
+          bending: 0
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -2, z: -1}
+    - title: 
+      data:
+      - jsonName: per_boss_serpientes
+        title: THE SNAKE DANCING
+        id: 0
+        maxScore: 3000
+        fondo: inferno
+        areaSetData:
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - boss_serpientes
+          cameraOrientation: {x: 0, y: -10, z: 2}
         - boss: 1
           json: {fileID: 0}
           total_areas: 3
@@ -3970,7 +3984,7 @@ MonoBehaviour:
           - backPlatforms_init
           - backPlatforms_init2
           - backPlatforms_init3
-          cameraOrientation: {x: 0, y: 0, z: -40}
+          cameraOrientation: {x: 0, y: 0, z: -12}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -4039,14 +4053,16 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: -1.5, z: -1.25}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 1
+          total_areas: 2
           bending: -12
           randomize: 0
           areas:
           - CoinsHard1
           - coinsHard2
           - coinsHard3
-          cameraOrientation: {x: 0, y: -1, z: 0}
+          - coinsJump1
+          - doubleJump1
+          cameraOrientation: {x: 0, y: 10, z: -3}
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
@@ -4067,14 +4083,21 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: -2, z: -1.5}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 2
+          total_areas: 5
           bending: -18
           randomize: 0
           areas:
           - subibaja1
           - subibaja2
-          - zigzag
           cameraOrientation: {x: 0, y: -2, z: -1.5}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -18
+          randomize: 0
+          areas:
+          - zigzag
+          cameraOrientation: {x: 0, y: 4, z: -3.5}
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
@@ -4113,7 +4136,7 @@ MonoBehaviour:
           - killRunner
           - killRunner2
           - killRunner3
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: -4, z: -3}
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
@@ -4123,13 +4146,14 @@ MonoBehaviour:
           - singleRunnerJump1
           - singleRunnerJump2
           - enemiesLineaJump
+          - enemigosx2
           - enemiesLineaJumpSmall
           - enemiesRunners3_Salto2
           - enemiesRunnersSmall
           - enemiesRunnersSmall_2Palms
           - singleRunnerJump_linea1
           - singleRunnerJump_linea2
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: 3, z: -1}
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
@@ -4157,7 +4181,7 @@ MonoBehaviour:
           randomize: 0
           areas:
           - houses1
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: -5, z: 0}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -4166,7 +4190,7 @@ MonoBehaviour:
           areas:
           - container_cruz
           - container_cruz_2
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: 5, z: -2}
         - boss: 0
           json: {fileID: 0}
           total_areas: 3
@@ -4254,6 +4278,7 @@ MonoBehaviour:
           bending: 0
           randomize: 0
           areas:
+          - boss_agua_fences
           - agua_lados
           - ancho_agua_simple
           - ancho_agua_simple_lados
@@ -4630,6 +4655,7 @@ MonoBehaviour:
           - bossVienen
           - floors_move_boss
           - boss_deformeEspada
+          - boss_Pulpo
           cameraOrientation: {x: 0, y: 0, z: 0}
         - boss: 0
           json: {fileID: 0}
@@ -4690,6 +4716,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c2c28e591f5a810448cdb6860f9ac7d0, type: 3}
   - {fileID: 4900000, guid: 4b1ca25e6cdd14041ac5fec673c3213d, type: 3}
   - {fileID: 4900000, guid: 249351aceba46cc459219c2a69de0beb, type: 3}
+  - {fileID: 4900000, guid: b229e58510b61a64fac1442045218957, type: 3}
   - {fileID: 4900000, guid: 9a3a0af54e07d3547b1704b2eea7aef5, type: 3}
   - {fileID: 4900000, guid: da227f45296e71343a5ccea66db913b5, type: 3}
   - {fileID: 4900000, guid: b4e7bf722af05894782ca98809d02580, type: 3}
@@ -4708,6 +4735,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d0dbe4fdf9ca31649927c5e7d9508eb6, type: 3}
   - {fileID: 4900000, guid: e21501efaf168e2489ceb576e0a9dd74, type: 3}
   - {fileID: 4900000, guid: bf30508d0b30d75419e87c244eb9ae2b, type: 3}
+  - {fileID: 4900000, guid: 2f28a05b1dfa9b147ab6ccbfc864d1b9, type: 3}
   - {fileID: 4900000, guid: 70a81fc9edeb2af4696e0081db85d5f2, type: 3}
   - {fileID: 4900000, guid: 041f7468078abdb4fb4c336b2289a29f, type: 3}
   - {fileID: 4900000, guid: 0cf6661ca75135c42b67fbbb3225187c, type: 3}
@@ -4832,8 +4860,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: f957a2bd95520984b9189494f8e4ea66, type: 3}
   - {fileID: 4900000, guid: 7dc2d26c252c8b04c9fae8b6b44afb91, type: 3}
   - {fileID: 4900000, guid: c8bf45ad43c3daa41988298dbcde005c, type: 3}
-  - {fileID: 4900000, guid: b229e58510b61a64fac1442045218957, type: 3}
-  - {fileID: 4900000, guid: 2f28a05b1dfa9b147ab6ccbfc864d1b9, type: 3}
   - {fileID: 4900000, guid: 93fb89e622ff90946adac3cf402224be, type: 3}
   - {fileID: 4900000, guid: 99575dc3155bf5641bf9ede3b178049c, type: 3}
   - {fileID: 4900000, guid: 82154574c1ec3d74085742fb9ea007e5, type: 3}
@@ -4957,10 +4983,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: db50b415c5917424494991e8c8f4b6e4, type: 3}
   - {fileID: 4900000, guid: 25a2f4bc238c60742912e5e05aa14b02, type: 3}
   - {fileID: 4900000, guid: 051306129f3807f46bcaa85609fcc8f2, type: 3}
-  - {fileID: 4900000, guid: 5a9ca4d51f5ebb64b8dcbd5982b410cd, type: 3}
   - {fileID: 4900000, guid: ac37d00bd53800f469d08cfc31414879, type: 3}
-  - {fileID: 4900000, guid: d9e9a97a7b2c3d448a7851f42ae804ea, type: 3}
   - {fileID: 4900000, guid: 3f34861a1f9f12e48a916f1ca1e65fec, type: 3}
+  - {fileID: 4900000, guid: d9e9a97a7b2c3d448a7851f42ae804ea, type: 3}
   - {fileID: 4900000, guid: 5db77fbc93aed3b46ad7b16c82227286, type: 3}
   - {fileID: 4900000, guid: 420cdba106400c14ebe71a6218f51ea3, type: 3}
   - {fileID: 4900000, guid: 261bd749ca1f4aa47a28e8aefcc7da95, type: 3}
@@ -5056,6 +5081,7 @@ MonoBehaviour:
   - ancho_agua_simple1
   - enemiesRunnersSmall_2Palms
   - jumpAncho
+  - lava_1
   - container_cruz
   - entrance
   - bossVienen
@@ -5074,6 +5100,7 @@ MonoBehaviour:
   - killRunner2
   - killRunner2_b
   - killRunner2_c
+  - lava_2
   - pisoSaltaAlto
   - boss_Pulpo
   - boss_Pulpo_free
@@ -5198,8 +5225,6 @@ MonoBehaviour:
   - estrellas simple_doble
   - boss_2filas_boyland
   - boss_2_filas_boyland_free
-  - lava_1
-  - lava_2
   - throw_center
   - throw_left
   - throw_right
@@ -5323,10 +5348,9 @@ MonoBehaviour:
   - firewallsBoss
   - firewallsBossFree
   - firewallsBossFree2
-  - coinsJumpHard1
   - tiposWalkers2
-  - jumpAncho2
   - boss_serpientes
+  - jumpAncho2
   - cuboGiratorio1
   - gargola1
   - gargola2

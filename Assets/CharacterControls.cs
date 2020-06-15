@@ -54,12 +54,13 @@ public class CharacterControls : MonoBehaviour {
         if (characterBehavior.player.charactersManager == null || Game.Instance.state == Game.states.GAME_OVER)
             return;
 
-#if UNITY_ANDROID// && !UNITY_EDITOR
-        if(Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
+#if UNITY_EDITOR
+        UpdateStandalone();
+#elif UNITY_ANDROID
+        if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
             UpdateAccelerometer();
         else
             UpdateByVirtualJoystick();
-           // 
 #else
             UpdateStandalone();
 #endif
@@ -218,6 +219,7 @@ public class CharacterControls : MonoBehaviour {
     }
     private void UpdateAccelerometer()
     {
+
         if (characterBehavior.player.charactersManager == null)
             return;
         if (characterBehavior.player.charactersManager.distance < 12)
@@ -241,6 +243,20 @@ public class CharacterControls : MonoBehaviour {
     }
     void UpdateByVirtualJoystick()
     {
+
+#if UNITY_EDITOR
+        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
+            characterBehavior.shooter.ChangeNextWeapon();
+
+        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
+            characterBehavior.shooter.CheckFire();
+
+        if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) < -0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) == 0)
+        {
+            characterBehavior.characterMovement.DashForward();
+        }
+#endif
+
         if (characterBehavior.player.charactersManager == null)
             return;
         if (characterBehavior.player.charactersManager.distance < 12)

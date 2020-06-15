@@ -105,7 +105,7 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	void OnShoot(Vector3 pos, Weapon.types type)
 	{
-		float offsetY = characterBehavior.transform.localEulerAngles.y;
+        float offsetY = characterBehavior.transform.localEulerAngles.y ;
 		switch (type)
 		{
 		case Weapon.types.SIMPLE:
@@ -136,6 +136,9 @@ public class CharacterShooter : MonoBehaviour {
 			projectil.team_for_versus = characterBehavior.team_for_versus;
 			Vector3 rot = transform.localEulerAngles;
 			rot.x = characterBehavior.madRoller.transform.eulerAngles.x;
+
+            if (rot.x > 0 && rot.x<180)
+                rot.x /= 2;
 
 //			if (characterBehavior.team_for_versus > 1) {
 //				rot.y += 180;

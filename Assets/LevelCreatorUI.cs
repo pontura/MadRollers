@@ -41,8 +41,8 @@ public class LevelCreatorUI : Editor {
 
 		levelCreator.missionID = _choiceIndex;
 		levelCreator.videoGameID = _videogameIndex+1;
-
-        levelCreator.missionAsset = Resources.Load("missions/" + levelCreator.missionsManager.videogames[vid].missions[_choiceIndex].data[0].jsonName) as TextAsset;
+        string n = levelCreator.missionsManager.videogames[vid].missions[_choiceIndex].data[0].jsonName;
+        levelCreator.missionAsset = Resources.Load("missions/" + n ) as TextAsset;
 
 
         EditorUtility.SetDirty (target);
