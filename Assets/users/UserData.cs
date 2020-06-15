@@ -230,7 +230,7 @@ public class UserData : MonoBehaviour
             + "&missionUnblockedID_2=" + missionUnblockedID_2
             + "&missionUnblockedID_3=" + missionUnblockedID_3
             + "&hash=" + hash;
-        print(post_url);
+
         WWW www = new WWW(post_url);
         yield return www;
 
@@ -247,7 +247,7 @@ public class UserData : MonoBehaviour
             }
             else
             {
-                Debug.Log("UserData updated");
+                Debug.Log("UserData updated " + post_url);
             }
         }
     }

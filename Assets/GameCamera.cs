@@ -274,7 +274,7 @@ public class GameCamera : MonoBehaviour
 	}
 	void OnGameOver(bool isTimeOver)
 	{
-        print("_____CAM OnGameOver " + isTimeOver + " state: " + state);
+       // print("_____CAM OnGameOver " + isTimeOver + " state: " + state);
 
         if (state == states.END) return;
 		state = states.END;

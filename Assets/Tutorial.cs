@@ -147,7 +147,7 @@ public class Tutorial : MonoBehaviour
             Data.Instance.events.RalentaTo(0.5f, 0.5f);
             Invoke("ResetMove", 1.45f);
         } else
-        if (distance > 176 && state == states.ROTATE_DONE)
+        if (distance > 175 && state == states.ROTATE_DONE)
         {
             Anim("jump");
             mobileInputs.ButtonJump.SetActive(true);

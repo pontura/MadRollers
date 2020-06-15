@@ -72,7 +72,7 @@ public class Intro : MonoBehaviour {
     }
     IEnumerator SetSubtitlesC(string text)
     {
-        yield return new WaitForSeconds(0.8f + (Random.Range(40, 300) / 100));
+        yield return new WaitForSeconds(0.6f + (float)(Random.Range(40, 150) / 100));
         subtitles.text = text;
     }
     public void OnDone()

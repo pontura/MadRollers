@@ -306,7 +306,6 @@ public class CharactersManager : MonoBehaviour {
     }
     IEnumerator restart(CharacterBehavior cb)
     {
-        print("_______________ RESTART");
 		Data.Instance.events.OnCameraChroma (CameraChromaManager.types.RED);
 		Data.Instance.events.OnSoundFX("dead", -1);
 
