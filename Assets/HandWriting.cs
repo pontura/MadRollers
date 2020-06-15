@@ -24,8 +24,9 @@ public class HandWriting : MonoBehaviour {
     }
     Text field;
     public void WriteTo(Text field, string textToWrite,  System.Action OnReadyFunc)
-	{
+	{        
         Data.Instance.events.ResetHandwritingText();
+        
         this.field = field;
         StopAllCoroutines();
 		field.text = "";
@@ -38,6 +39,7 @@ public class HandWriting : MonoBehaviour {
             yield return null;
             StopAllCoroutines();
         }
+        Data.Instance.events.OnSoundFX("typing", -1);
         field.text = ">";
 		int letterId = 0;
 		int totalWords = textToWrite.Length;
@@ -53,7 +55,8 @@ public class HandWriting : MonoBehaviour {
 				yield return new WaitForSeconds (speed);
 			}
 		}
-		if(OnReadyFunc != null)
+        Data.Instance.events.OnSoundFX("", -1);
+        if (OnReadyFunc != null)
 			OnReadyFunc ();
 		yield return null;
 	}
