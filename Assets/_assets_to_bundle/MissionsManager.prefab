@@ -3231,36 +3231,45 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 3
-          bending: -18
+          bending: -5
           randomize: 0
           areas:
           - tiposWalkers2
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: 8, z: -1}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -14
+          bending: -10
           randomize: 1
           areas:
           - bombas_pisoMueve1
           - bombas_pisoMueve2
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: 4, z: -1}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: 0
+          bending: -6
           randomize: 0
           areas:
-          - jumpAncho
-          cameraOrientation: {x: 0, y: -4, z: -2}
-        - boss: 1
+          - descansoAncho
+          cameraOrientation: {x: 0, y: 6, z: -3}
+        - boss: 0
           json: {fileID: 0}
           total_areas: 2
           bending: 0
           randomize: 0
           areas:
-          - boss_serpientes
-          cameraOrientation: {x: 0, y: -10, z: 2}
+          - throw_left
+          - throw_right
+          cameraOrientation: {x: 0, y: 4, z: -1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 0
+          areas:
+          - killRunner_2Caminos
+          cameraOrientation: {x: 0, y: -10, z: -2}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -3268,14 +3277,17 @@ MonoBehaviour:
           randomize: 0
           areas:
           - descansoAncho
-          cameraOrientation: {x: 0, y: -4, z: -1}
+          cameraOrientation: {x: 0, y: -4, z: -2}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 1
-          bending: 0
+          total_areas: 4
+          bending: -18
           randomize: 0
           areas:
           - jumpAncho2
+          - enemiesRunnersSmall_2Back
+          - enemiesRunnersSmall_2Back
+          - enemiesRunnersSmall_2Back
           cameraOrientation: {x: 0, y: -4, z: -1}
         - boss: 1
           json: {fileID: 0}
@@ -4984,8 +4996,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 25a2f4bc238c60742912e5e05aa14b02, type: 3}
   - {fileID: 4900000, guid: 051306129f3807f46bcaa85609fcc8f2, type: 3}
   - {fileID: 4900000, guid: ac37d00bd53800f469d08cfc31414879, type: 3}
-  - {fileID: 4900000, guid: 3f34861a1f9f12e48a916f1ca1e65fec, type: 3}
+  - {fileID: 4900000, guid: a4412e13f70c80a4e887f1765716c1e2, type: 3}
   - {fileID: 4900000, guid: d9e9a97a7b2c3d448a7851f42ae804ea, type: 3}
+  - {fileID: 4900000, guid: 3f34861a1f9f12e48a916f1ca1e65fec, type: 3}
   - {fileID: 4900000, guid: 5db77fbc93aed3b46ad7b16c82227286, type: 3}
   - {fileID: 4900000, guid: 420cdba106400c14ebe71a6218f51ea3, type: 3}
   - {fileID: 4900000, guid: 261bd749ca1f4aa47a28e8aefcc7da95, type: 3}
@@ -5042,7 +5055,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6038dff883fd8584c879ac75c8c8b89c, type: 3}
   - {fileID: 4900000, guid: 0bfb0c0371a5d5f4c9da99aea7b3c86f, type: 3}
   - {fileID: 4900000, guid: 922d2a6978a6acb42b01a750919bb738, type: 3}
-  - {fileID: 4900000, guid: a4412e13f70c80a4e887f1765716c1e2, type: 3}
   - {fileID: 4900000, guid: 07134b7b886d7d3418dd44a1fe906859, type: 3}
   - {fileID: 4900000, guid: bebde917eedb49444b406807bde6f35d, type: 3}
   - {fileID: 4900000, guid: 3ece8efa7630ca344a8345900d89f71a, type: 3}
@@ -5349,8 +5361,9 @@ MonoBehaviour:
   - firewallsBossFree
   - firewallsBossFree2
   - tiposWalkers2
-  - boss_serpientes
+  - killRunner_2Caminos
   - jumpAncho2
+  - boss_serpientes
   - cuboGiratorio1
   - gargola1
   - gargola2
@@ -5407,7 +5420,6 @@ MonoBehaviour:
   - killRunnerSimple_1
   - killRunnerSimple_2
   - killRunnerSimple_3
-  - killRunner_2Caminos
   - floors_move_boss
   - xtra_throwers1
   - xtras_enemies_back1

@@ -284,9 +284,16 @@ public class CharacterBehavior : MonoBehaviour {
                         SetRunState();
                     }
 				}
+                float lastRotX = 0;
 				if (coverHit.transform.tag == "floor") {
 					rotationZ = coverHit.transform.up.x * -30;
 					rotationX = coverHit.transform.eulerAngles.x;
+                    if(rotationX != lastRotX)
+                    {
+                        print("________________________Rota X");
+                        madRoller.Play("little_jump");
+                        lastRotX = rotationX;
+                    }
 				} else
 					ResetRotations ();
 			}
