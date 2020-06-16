@@ -3280,10 +3280,11 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: -4, z: -2}
         - boss: 0
           json: {fileID: 0}
-          total_areas: 4
+          total_areas: 5
           bending: -18
           randomize: 0
           areas:
+          - enemiesRunnersSmall_2Back
           - jumpAncho2
           - enemiesRunnersSmall_2Back
           - enemiesRunnersSmall_2Back
@@ -3305,14 +3306,22 @@ MonoBehaviour:
         maxScore: 3000
         fondo: inferno
         areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -8
+          randomize: 0
+          areas:
+          - descansoAncho
+          cameraOrientation: {x: 0, y: 6, z: -3}
         - boss: 1
           json: {fileID: 0}
           total_areas: 1
           bending: 0
           randomize: 0
           areas:
-          - boss_serpientes
-          cameraOrientation: {x: 0, y: -10, z: 2}
+          - throw_double
+          cameraOrientation: {x: 0, y: 10, z: 1}
         - boss: 1
           json: {fileID: 0}
           total_areas: 3
@@ -3326,7 +3335,7 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 10000
-          bending: 0
+          bending: -14
           randomize: 1
           areas:
           - boss_zigzag_free
@@ -3336,7 +3345,7 @@ MonoBehaviour:
           - boss_zigzag_jumpers_free
           - boss_Pacmans_intro_free_simple
           - boss_zigzag_free_simple_fences
-          cameraOrientation: {x: 0, y: -2, z: -1}
+          cameraOrientation: {x: 0, y: 3, z: -2}
     - title: 
       data:
       - jsonName: per_geometrias
