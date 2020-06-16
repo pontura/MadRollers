@@ -259,34 +259,34 @@ public class CharacterControls : MonoBehaviour {
 
         if (characterBehavior.player.charactersManager == null)
             return;
-        if (characterBehavior.player.charactersManager.distance < 12)
+        if (characterBehavior.player.charactersManager.distance < 8)
             return;
 
-        if (Input.GetAxis("Vertical") > 0.25f)
-        {
-            if (jumpligState == JumpligStates.IDLE)
-                JumpInit();
-        }
-        else if (Input.GetAxis("Vertical") < -0.85f)
+        //if (Input.GetAxis("Vertical") > 0.25f)
+        //{
+        //    if (jumpligState == JumpligStates.IDLE)
+        //        JumpInit();
+        //}else
+        if (Input.GetAxis("Vertical") < -0.85f)
         {
             characterBehavior.characterMovement.DashForward();
         }
-        else
-        {
-            if (jumpligState == JumpligStates.JUMPING)
-                DOJump();
-            else
-                jumpligState = JumpligStates.IDLE;
-        }
+        //else
+        //{
+        //    if (jumpligState == JumpligStates.JUMPING)
+        //        DOJump();
+        //    else
+        //        jumpligState = JumpligStates.IDLE;
+        //}
 
-       if (jumpligState == JumpligStates.JUMPING)
-          {
-            jumpingPressedSince += Time.deltaTime;
-            if (jumpingPressedSince > jumpingPressedTime)
-                DOJump();
-            else
-                characterBehavior.JumpingPressed();
-        }
+       //if (jumpligState == JumpligStates.JUMPING)
+       //   {
+       //     jumpingPressedSince += Time.deltaTime;
+       //     if (jumpingPressedSince > jumpingPressedTime)
+       //         DOJump();
+       //     else
+       //         characterBehavior.JumpingPressed();
+       // }
 
         if (!isAutomata)
         {
@@ -296,23 +296,23 @@ public class CharacterControls : MonoBehaviour {
             MoveInX( v );
         }
     }
-    void DOJump()
-    {
-        Data.Instance.events.TutorialContinue();
-        jumpligState = JumpligStates.JUMP_DONE;
-        jumpingPressedSince = 0;
-        characterBehavior.Jump();
-    }
-    public void JumpInit()
-    {
-        if (characterBehavior.state != CharacterBehavior.states.RUN)
-            DOJump();
-        else
-        {
-            jumpingPressedSince = 0;
-            jumpligState = JumpligStates.JUMPING;
-        }
-    }
+    //void DOJump()
+    //{
+    //    Data.Instance.events.TutorialContinue();
+    //    jumpligState = JumpligStates.JUMP_DONE;
+    //    jumpingPressedSince = 0;
+    //    characterBehavior.Jump();
+    //}
+    //public void JumpInit()
+    //{
+    //    if (characterBehavior.state != CharacterBehavior.states.RUN)
+    //        DOJump();
+    //    else
+    //    {
+    //        jumpingPressedSince = 0;
+    //        jumpligState = JumpligStates.JUMPING;
+    //    }
+    //}
     //public void JumpRelease()
     //{
     //    jumping = false;
