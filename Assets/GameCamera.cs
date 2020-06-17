@@ -40,7 +40,7 @@ public class GameCamera : MonoBehaviour
 	float _Y_correction = 10;
     float targetZOffset = 6.5f;
 
-    float camSensorSpeed = 0.04f;
+    float camSensorSpeed = 1;
     float sensorSizeValueInitial = 9;
     float sensorSizeValue;
 
@@ -226,7 +226,7 @@ public class GameCamera : MonoBehaviour
         if (!started)
             return;
 
-            float sensorSizeX = Mathf.Lerp(cam.sensorSize.x, sensorSizeValue, camSensorSpeed);  
+            float sensorSizeX = Mathf.Lerp(cam.sensorSize.x, sensorSizeValue, camSensorSpeed * Time.deltaTime);  
             cam.sensorSize = new Vector2(sensorSizeX, cam.sensorSize.y);
 
   //      if (state == states.SNAPPING_TO) { 

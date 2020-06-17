@@ -98,7 +98,9 @@ MonoBehaviour:
     - per_init_jumps
     - per_boss_serpientes
     - per_geometrias
+    - per_bossEscupenHilera
     - per_ene_easy
+    - per_Boss_2_gorgonas
     - per_snakes
     - per_floors
     - per_vienen_de_atras
@@ -3365,6 +3367,30 @@ MonoBehaviour:
         - boss: 0
           json: {fileID: 0}
           total_areas: 2
+          bending: -2
+          randomize: 1
+          areas:
+          - cuboGiratorioFlotatnte
+          cameraOrientation: {x: 0, y: 5, z: 0}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -10
+          randomize: 1
+          areas:
+          - cuboGiratorio1
+          cameraOrientation: {x: 0, y: -1, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: -2
+          randomize: 1
+          areas:
+          - cuboGiratorioFrente
+          cameraOrientation: {x: 0, y: 5, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
           bending: -18
           randomize: 1
           areas:
@@ -3396,6 +3422,38 @@ MonoBehaviour:
           bending: 0
           randomize: 0
           areas:
+          - Ending
+          cameraOrientation: {x: 0, y: 4, z: -4}
+    - title: 
+      data:
+      - jsonName: per_bossEscupenHilera
+        title: GEOMETRIAS INFERNALES
+        id: 0
+        maxScore: 1000
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -2
+          randomize: 1
+          areas:
+          - cuboGiratorioFrente
+          cameraOrientation: {x: 0, y: 5, z: -2}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -1
+          randomize: 1
+          areas:
+          - descansoSimpleCoins
+          cameraOrientation: {x: 0, y: -8, z: 0}
+        - boss: 1
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -13
+          randomize: 0
+          areas:
           - escupe_boss
           - escupeBoss_free1
           cameraOrientation: {x: 0, y: 2, z: -1}
@@ -3424,7 +3482,7 @@ MonoBehaviour:
           - 2lados_intro
           - 2lados_intro 1
           - 2lados_intro 1 1
-          cameraOrientation: {x: 0, y: 0, z: 0}
+          cameraOrientation: {x: 0, y: 0, z: -3}
         - boss: 0
           json: {fileID: 0}
           total_areas: 6
@@ -3433,16 +3491,59 @@ MonoBehaviour:
           areas:
           - 2lados
           - 2lados 1
-          cameraOrientation: {x: 0, y: 0, z: -2}
+          cameraOrientation: {x: 0, y: 0, z: -5}
         - boss: 0
           json: {fileID: 0}
           total_areas: 1
           bending: 0
           randomize: 1
           areas:
+          - 2ladosB
+          cameraOrientation: {x: 0, y: -6, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
           - cilindro_simple
           - cilindro_simple 1
-          cameraOrientation: {x: 0, y: 1, z: -4}
+          cameraOrientation: {x: 0, y: -4, z: -8}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: -20
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -12, z: -10}
+    - title: 
+      data:
+      - jsonName: per_Boss_2_gorgonas
+        title: HUNTING HOUNDS
+        id: 0
+        maxScore: 1000
+        fondo: inferno
+        areaSetData:
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 0
+          randomize: 1
+          areas:
+          - 2lados
+          - 2lados 1
+          - 2ladosB
+          cameraOrientation: {x: 0, y: -6, z: 1}
+        - boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 0
+          randomize: 1
+          areas:
+          - cilindro_simple
+          - cilindro_simple 1
+          cameraOrientation: {x: 0, y: 6, z: -2}
         - boss: 1
           json: {fileID: 0}
           total_areas: 3
@@ -3452,7 +3553,7 @@ MonoBehaviour:
           - boss_calle_CentroFree
           - boss_calle_Centro_boss
           - boss_calle_CentroFree
-          cameraOrientation: {x: 0, y: -8, z: -8}
+          cameraOrientation: {x: 0, y: -10, z: -5}
         - boss: 0
           json: {fileID: 0}
           total_areas: 3
@@ -3462,7 +3563,7 @@ MonoBehaviour:
           - boss_calle_CentroFree
           - boss_calle_CentroFree 1
           - boss_calle_Centro_Cruz
-          cameraOrientation: {x: 0, y: -12, z: -14}
+          cameraOrientation: {x: 0, y: -10, z: -6}
     - title: 
       data:
       - jsonName: per_snakes
@@ -5009,6 +5110,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d9e9a97a7b2c3d448a7851f42ae804ea, type: 3}
   - {fileID: 4900000, guid: 3f34861a1f9f12e48a916f1ca1e65fec, type: 3}
   - {fileID: 4900000, guid: 5db77fbc93aed3b46ad7b16c82227286, type: 3}
+  - {fileID: 4900000, guid: 3699a9e0ac972df4dbe28cdfe5fbdf80, type: 3}
+  - {fileID: 4900000, guid: f1b369ff332afa2438189bd86855d2ec, type: 3}
   - {fileID: 4900000, guid: 420cdba106400c14ebe71a6218f51ea3, type: 3}
   - {fileID: 4900000, guid: 261bd749ca1f4aa47a28e8aefcc7da95, type: 3}
   - {fileID: 4900000, guid: f1fe8a8239539e642a48123a979bca45, type: 3}
@@ -5020,6 +5123,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c126c9dfc1d0399489e102afa806d7eb, type: 3}
   - {fileID: 4900000, guid: 923ab476f2484c24986fecc99177b950, type: 3}
   - {fileID: 4900000, guid: 71d6ddfa72f27e0429bbb199ac5cb1a4, type: 3}
+  - {fileID: 4900000, guid: f478c36975689674ba3af6a4a20d24a1, type: 3}
   - {fileID: 4900000, guid: 891d34679e0a6a54b8fff8b98627ad5d, type: 3}
   - {fileID: 4900000, guid: 7c801d120a03f144d9518cbf29610383, type: 3}
   - {fileID: 4900000, guid: e18019c30c91f5c44b723bde50fa74ab, type: 3}
@@ -5374,6 +5478,8 @@ MonoBehaviour:
   - jumpAncho2
   - boss_serpientes
   - cuboGiratorio1
+  - cuboGiratorioFlotatnte
+  - cuboGiratorioFrente
   - gargola1
   - gargola2
   - gargola3
@@ -5385,6 +5491,7 @@ MonoBehaviour:
   - 2lados_intro 1 1
   - 2lados
   - 2lados 1
+  - 2ladosB
   - cilindro_simple
   - cilindro_simple 1
   - boss_calle_CentroFree

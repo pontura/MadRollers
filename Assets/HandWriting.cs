@@ -24,7 +24,8 @@ public class HandWriting : MonoBehaviour {
     }
     Text field;
     public void WriteTo(Text field, string textToWrite,  System.Action OnReadyFunc)
-	{        
+	{
+        
         Data.Instance.events.ResetHandwritingText();
         
         this.field = field;

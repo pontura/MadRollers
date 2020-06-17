@@ -85,6 +85,8 @@ public class Intro : MonoBehaviour {
     }
     public void NextStep()
     {
+        Data.Instance.events.OnSoundFX("", -1);
+        StopAllCoroutines();
         CancelInvoke();
         id++;
         Step();
