@@ -7,6 +7,7 @@ public class MobileMenuScreen : MonoBehaviour
 {
     public GameObject controlsMangerButton;
     public Text controlsTypeField;
+    public Text pixelateField;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class MobileMenuScreen : MonoBehaviour
             controlsMangerButton.SetActive(false);
             SetControlField();
         }
+        SetTexts();
     }
     public void ChangeControlsType()
     {
@@ -28,6 +30,21 @@ public class MobileMenuScreen : MonoBehaviour
     void SetControlField()
     {
         controlsTypeField.text = Data.Instance.controlsType.ToString();
+    }
+    public void SwitchPixels()
+    {
+        PlayerPrefs.SetString("useRetroPixelPro", Data.Instance.useRetroPixelPro.ToString());
+        Data.Instance.useRetroPixelPro = !Data.Instance.useRetroPixelPro;
+        SetTexts();
+    }
+    void SetTexts()
+    {
+        string useRetroPixelPro = PlayerPrefs.GetString("useRetroPixelPro", "true");
+
+        if (useRetroPixelPro == "false")
+            Data.Instance.useRetroPixelPro = false;
+
+        pixelateField.text = "PIXELS " + Data.Instance.useRetroPixelPro;
     }
     public void Controls()
     {

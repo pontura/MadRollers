@@ -46,7 +46,7 @@ public class MobileMenu : MonoBehaviour
     public void Open()
     {
         mobileMenuScreen.gameObject.SetActive(true);
-        if (UserData.Instance.IsLogged())
+        if (UserData.Instance.IsLogged() && avatarThumb != null)
             avatarThumb.Init(UserData.Instance.userID);
     }
     public void Close()
