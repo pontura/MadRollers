@@ -14,7 +14,6 @@ public class MissionButtonMobile : MonoBehaviour
     HiscoresLevelSelectorUI hiscoresLevelSelectorUI;
     public Image logo;
     public Image floppyCover;
-    bool nevelLock;
     public GameObject selector;
 
     public void Init(MissionSelectorMobile missionSelectorMobile, int videoGameID, int missionID, MissionsManager.MissionsData data)
@@ -22,7 +21,6 @@ public class MissionButtonMobile : MonoBehaviour
         this.missionSelectorMobile = missionSelectorMobile;
         this.videoGameID = videoGameID;
         this.missionID = missionID;
-        nevelLock = false;
         OnInit(data);
     }
     public void Init(HiscoresLevelSelectorUI hiscoresLevelSelectorUI, int videoGameID, int missionID, MissionsManager.MissionsData data)
@@ -30,7 +28,6 @@ public class MissionButtonMobile : MonoBehaviour
         this.hiscoresLevelSelectorUI = hiscoresLevelSelectorUI;
         this.videoGameID = videoGameID;
         this.missionID = missionID;
-        nevelLock = true;
         OnInit(data);
     }
     public void OnInit(MissionsManager.MissionsData data)
@@ -51,10 +48,10 @@ public class MissionButtonMobile : MonoBehaviour
             unblockedID = -1;
         }
 
-        if (missionID <= unblockedID || nevelLock)
+        if (missionID <= unblockedID || Data.Instance.isAdmin)
         {
             isBlocked = false;
-            if (missionID == unblockedID && !nevelLock)
+            if (missionID == unblockedID)
             {
                 Animation anim = GetComponent<Animation>();
                 anim[anim.clip.name].time = Random.Range(0, 300) / 10;

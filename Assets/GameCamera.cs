@@ -35,7 +35,7 @@ public class GameCamera : MonoBehaviour
 
     int initialPixelSize;
 	public float pixelSize;
-	float pixel_speed_recovery = 16;
+	float pixel_speed_recovery = 20;
 	private GameObject flow_target;
 	float _Y_correction = 10;
     float targetZOffset = 6.5f;
@@ -158,7 +158,7 @@ public class GameCamera : MonoBehaviour
 			StopCoroutine (DoExploteCoroutine);
 		state = states.EXPLOTING;
 
-		SetPixels(initialPixelSize*4);
+		SetPixels(initialPixelSize*10);
 
 		DoExploteCoroutine = DoExplote (explotionForce * 6f);
 		StartCoroutine (DoExploteCoroutine);

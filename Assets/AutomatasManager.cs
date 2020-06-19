@@ -7,6 +7,18 @@ public class AutomatasManager : MonoBehaviour
     CharactersManager charactersManager;
     int startingInLevel = 10;
 
+#if UNITY_STANDALONE
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            AddAutomata(2);
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            AddAutomata(3);
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            AddAutomata(4);
+    }
+#endif
+
     void Start()
     {
         charactersManager = Game.Instance.level.charactersManager;

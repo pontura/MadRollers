@@ -26,8 +26,9 @@ public class Data : MonoBehaviour {
 	public bool RESET;
     public int competitionID = 1;    
     public int scoreForArcade;
+    public bool isAdmin;
 
-    public int pixelSize = 2;
+    public int pixelSize = 1;
 
     [HideInInspector]
     public Events events;
@@ -134,7 +135,7 @@ public class Data : MonoBehaviour {
 
         if (isAndroid)
         {
-            pixelSize = (int)((float)Screen.height * (0.003f));
+           // pixelSize = (int)((float)Screen.height * (0.003f));
             if (SystemInfo.graphicsShaderLevel >= 30)
                 useRetroPixelPro = true;
             else
