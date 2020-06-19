@@ -2,9 +2,11 @@ using UnityEngine;
 using System.Collections;
 using AlpacaSound.RetroPixelPro;
 using DG.Tweening;
+using Wilberforce.FinalVignette;
 
 public class GameCamera : MonoBehaviour 
 {
+    public FinalVignetteCommandBuffer vignette;
     public SpriteRenderer[] backgrundImage;
     public float fieldOfView;
 	public int team_id;
@@ -91,7 +93,8 @@ public class GameCamera : MonoBehaviour
 	}
     public void Init()
 	{
-        pixelSize = initialPixelSize;
+        vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
+      
 
         cam.enabled = true;
 
@@ -106,7 +109,16 @@ public class GameCamera : MonoBehaviour
             Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
             retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
             retroPixelPro.pixelSize = initialPixelSize;
-        }     		
+            pixelSize = initialPixelSize;
+        }  
+        if(vignette != null)
+        {
+            if (isAndroid)
+            {
+                vignette.VignetteInnerValueDistance = 0;
+                vignette.VignetteOuterValueDistance = 0.99f;
+            }
+        }
 
         if (isAndroid)
         {

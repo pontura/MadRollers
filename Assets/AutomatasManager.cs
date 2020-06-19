@@ -7,15 +7,17 @@ public class AutomatasManager : MonoBehaviour
     CharactersManager charactersManager;
     int startingInLevel = 10;
 
-#if UNITY_STANDALONE
+#if UNITY_STANDALONE || UNITY_EDITOR
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            AddAutomata(0);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            AddAutomata(1);
         if (Input.GetKeyDown(KeyCode.Alpha2))
             AddAutomata(2);
         if (Input.GetKeyDown(KeyCode.Alpha3))
             AddAutomata(3);
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            AddAutomata(4);
     }
 #endif
 

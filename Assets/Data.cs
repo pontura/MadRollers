@@ -110,18 +110,19 @@ public class Data : MonoBehaviour {
 
         print("heightheightheight: " + Screen.height);
 
-#if UNITY_WEBGL
-        useOptimizedSettings = true;
-        playMode = PlayModes.STORYMODE;
-#elif UNITY_EDITOR
-        Application.targetFrameRate = 60;
-#elif UNITY_ANDROID
+#if UNITY_ANDROID
+        isAndroid = true;
         controlsType = ControlsType.GYROSCOPE;
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;
         isAndroid = true;
         Application.targetFrameRate = 60;
-#else
+#elif UNITY_WEBGL
+        useOptimizedSettings = true;
+        playMode = PlayModes.STORYMODE;
+#elif UNITY_EDITOR
+        Application.targetFrameRate = 60;
+#elif UNITY_STANDALONE
         Application.targetFrameRate = 60;
 #endif
 
