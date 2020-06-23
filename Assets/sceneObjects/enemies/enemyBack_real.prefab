@@ -5652,6 +5652,7 @@ MonoBehaviour:
   isOn: 0
   NumOfParticles: 15
   childs: []
+  killAtHit: 0
   dontBeKilledByFloorExplotions: 0
   dontKillPlayers: 0
   dontDieOnHit: 1
@@ -5676,11 +5677,13 @@ MonoBehaviour:
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
-  score: 0
+  score: 200
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  manager: {fileID: 0}
   shooterAnimation: {fileID: 0}
   state: 0
+  breakable: {fileID: 0}
 --- !u!114 &114139280202654158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12864,9 +12867,9 @@ Animation:
   m_GameObject: {fileID: 5667707779184692403}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0366533f6af5d9743af6e429d2608ad6, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 0366533f6af5d9743af6e429d2608ad6, type: 2}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

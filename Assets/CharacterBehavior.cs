@@ -290,7 +290,6 @@ public class CharacterBehavior : MonoBehaviour {
 					rotationX = coverHit.transform.eulerAngles.x;
                     if(rotationX != lastRotX)
                     {
-                        print("________________________Rota X");
                         madRoller.Play("little_jump");
                         lastRotX = rotationX;
                     }
