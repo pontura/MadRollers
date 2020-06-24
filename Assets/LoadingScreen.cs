@@ -16,23 +16,18 @@ public class LoadingScreen : MonoBehaviour {
         Invoke("LoadBundles", 1);
 	}
 	void LoadBundles () {
-        if (Data.Instance.isAndroid)
-        {
-           // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
+#if UNITY_ANDROID
+            // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
             StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAndCacheAssetBundle("missionsmanager.all", OnLoaded));
-        }
-        else
-        {
-#if UNITY_WEBGL
+
+#elif UNITY_WEBGL
             Data.Instance.missions.Init();
             Data.Instance.LoadLevel("Intro");
 #else
             //solo se juega Story Mode!
             Data.Instance.missions.Init();
             Data.Instance.LoadLevel("Intro");
-           // Data.Instance.LoadLevel("Settings");
 #endif
-        }
 	}
     void OnLoaded(string isSuccess)
     {
