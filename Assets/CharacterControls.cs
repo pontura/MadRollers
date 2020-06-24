@@ -9,7 +9,7 @@ public class CharacterControls : MonoBehaviour {
 	public List<CharacterBehavior> childs;
     Player player;
     private float rotationY;
-    private float turnSpeed = 32.8f;
+    private float turnSpeed = 2.8f;
     private float speedX = 9f;
     private bool mobileController;
     public bool ControlsEnabled = true;
@@ -120,7 +120,6 @@ public class CharacterControls : MonoBehaviour {
     }
     void RotateStandalone(float _speed)
     {
-        float newRot = turnSpeed * Time.deltaTime;
         if (_speed < -0.2f || _speed > 0.2f)
         {
             if (!playerPlayed)
@@ -129,16 +128,20 @@ public class CharacterControls : MonoBehaviour {
                 Data.Instance.multiplayerData.PlayerPlayed(characterBehavior.player.id);
             }
             float newPosX = _speed * speedX;
-            
+            float newRot = turnSpeed * (Time.deltaTime * 35);
             if (newPosX > 0)
                 rotationY += newRot;
             else if (newPosX < 0)
                 rotationY -= newRot;
+            else if (rotationY > 0)
+                rotationY -= newRot;
+            else if (rotationY < 0)
+                rotationY += newRot;
         }
-        if (rotationY > 0.01f)
-            rotationY -= newRot;
-        else if (rotationY < -0.01f)
-            rotationY += newRot;
+        else
+        {
+            rotationY = 0;
+        }
 
         if (rotationY > 30) rotationY = 30;
         else if (rotationY < -30) rotationY = -30;
