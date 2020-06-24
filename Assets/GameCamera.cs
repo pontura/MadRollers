@@ -113,7 +113,7 @@ public class GameCamera : MonoBehaviour
         }  
         if(vignette != null)
         {
-            if (Screen.width<Screen.height)
+            if (isAndroid)
             {
                 vignette.VignetteInnerValueDistance = 0;
                 vignette.VignetteOuterValueDistance = 0.99f;

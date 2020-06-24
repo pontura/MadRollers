@@ -96,23 +96,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _V_CW_Cube:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _V_CW_IBL_Cube:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _V_CW_IBL_Matcap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _V_CW_NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _V_CW_SecondaryNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -140,7 +124,6 @@ Material:
     - PixelSnap: 0
     - V_CW_D_OPTIONS: 0
     - V_CW_Label_Albedo: 0
-    - V_CW_Label_Distortion: 0
     - V_CW_Label_Matcap: 0
     - V_CW_Label_Modes: 0
     - V_CW_Label_Tag: 0
@@ -152,7 +135,6 @@ Material:
     - V_CW_Texture_Mix_Mode: 0
     - V_CW_W_OPTIONS: 0
     - _Amount: -0.035714287
-    - _BumpAmt: 10
     - _BumpMap_UV_Scale: 1
     - _BumpScale: 1
     - _BumpStrength: 1
@@ -165,10 +147,8 @@ Material:
     - _DstBlend: 0
     - _EmissionLM: 0
     - _EnableExternalAlpha: 0
-    - _FresnelScale: 0.75
     - _Gain: 1
-    - _GerstnerIntensity: 1
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Knee: 0.5
@@ -190,15 +170,10 @@ Material:
     - _V_CW_Fog_Density: 1
     - _V_CW_Fog_End: 100
     - _V_CW_Fog_Start: 0
-    - _V_CW_Fresnel_Bias: 0
     - _V_CW_IBL_Contrast: 1
     - _V_CW_IBL_Intensity: 1
-    - _V_CW_NormalMapStrength: 1
-    - _V_CW_NormalMap_UV_Scale: 1
-    - _V_CW_ReflectStrengthAlphaOffset: 0
     - _V_CW_Rim_Bias: 0.2
     - _V_CW_Rim_Power: 3
-    - _V_CW_SecondaryNormalMap_UV_Scale: 1
     - _V_CW_Specular_Intensity: 2.4107144
     - _V_CW_Splat1_uvScale: 1
     - _V_CW_Splat2_uvScale: 1
@@ -209,35 +184,18 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Ambient: {r: 1, g: 1, b: 1, a: 0}
-    - _AnimationDirection: {r: 1, g: 1, b: 1, a: 1}
-    - _AnimationTiling: {r: 2.2, g: 2.2, b: -1.1, a: -1.1}
-    - _BaseColor: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
-    - _BumpDirection: {r: 1, g: 1, b: -1, a: 1}
-    - _BumpTiling: {r: 1, g: 1, b: -2, a: 3}
     - _Color: {r: 0.4544431, g: 0.8161765, b: 0.24605319, a: 1}
-    - _DistortParams: {r: 1, g: 1, b: 2, a: 1.15}
     - _EmissionColor: {r: 0.04094742, g: 0.2264151, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _FogColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GAmplitude: {r: 0.3, g: 0.35, b: 0.25, a: 0.25}
-    - _GDirectionAB: {r: 0.3, g: 0.85, b: 0.85, a: 0.25}
-    - _GDirectionCD: {r: 0.1, g: 0.9, b: 0.5, a: 0.5}
-    - _GFrequency: {r: 1.3, g: 1.35, b: 1.25, a: 1.25}
-    - _GSpeed: {r: 1.2, g: 1.375, b: 1.1, a: 1.5}
-    - _GSteepness: {r: 1, g: 1, b: 1, a: 1}
-    - _InvFadeParemeter: {r: 0.15, g: 0.15, b: 0.5, a: 1}
     - _QOffset: {r: 0, g: 0, b: -9, a: 0}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ReflectionColor: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.5}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecularColor: {r: 0.72, g: 0.72, b: 0.72, a: 1}
     - _V_CW_DetailTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_CW_Emission_Color: {r: 1, g: 1, b: 1, a: 1}
     - _V_CW_Fog_Color: {r: 1, g: 1, b: 1, a: 1}
     - _V_CW_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
-    - _V_CW_ReflectColor: {r: 1, g: 1, b: 1, a: 1}
     - _V_CW_Rim_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _WorldLightDir: {r: 0, g: 0.1, b: -0.5, a: 0}

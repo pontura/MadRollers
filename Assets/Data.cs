@@ -243,10 +243,4 @@ public class Data : MonoBehaviour {
 	{
 		credits++;
 	}
-
-    private void Update()
-    {
-        float s = Data.Instance.inputManager.GetAxis(0, InputAction.horizontal);
-        print("______________ " + s);
-    }
 }
