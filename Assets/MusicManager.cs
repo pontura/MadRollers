@@ -179,7 +179,7 @@ public class MusicManager : MonoBehaviour {
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
 		//audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
-		audioSource.clip = Resources.Load("songs/win2") as AudioClip;
+		audioSource.clip = Resources.Load("songs/win1") as AudioClip;
 		audioSource.Play();
 		audioSource.loop = false;
 

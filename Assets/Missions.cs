@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class Missions : MonoBehaviour {
 
+    //areasetData que vas guardando para cambiar el angulo de la camara:
+    public List<MissionData.AreaSetData> areasetDataLoaded;
+
     public bool hasReachedBoss;
     public ExtraAreasManager extraAreasManager;
     public int times_trying_same_mission;
@@ -31,7 +34,7 @@ public class Missions : MonoBehaviour {
     
     public void Init()
     {
-        
+        areasetDataLoaded.Clear();
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
             offset -= 40;
 
@@ -178,7 +181,9 @@ public class Missions : MonoBehaviour {
 	}
 	public void OnUpdateDistance(float distance)
 	{
-		if (distance > areasLength-offset) {
+        if (areasetDataLoaded.Count>0 && distance > areasetDataLoaded[0].totalDistanceToCamFX)
+            OnAvatarReachedNextArea(areasetDataLoaded[0]);
+        if (distance > areasLength-offset) {
 			SetNextArea ();
 		}
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
@@ -188,12 +193,23 @@ public class Missions : MonoBehaviour {
 	}
     
     int total_areas = 1;
+    float areasetIDLastAdded = -1;
 	void SetNextArea()
 	{
         MissionData.AreaSetData data = MissionActive.areaSetData[areaSetId];
+
+       
+        if (areasetIDLastAdded != areaSetId)
+        {
+            areasetIDLastAdded = areaSetId;
+            data.totalDistanceToCamFX = (int)areasLength;
+            areasetDataLoaded.Add(data);
+        }
+
+        total_areas = data.total_areas;
+
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && (Data.Instance.playOnlyBosses || hasReachedBoss) && !data.boss && areaSetId < MissionActive.areaSetData.Count - 2)
         {
-           // print("_________________area set id ++");
             areaSetId++;
             ResetAreaSet();
             SetNextArea();
@@ -206,20 +222,12 @@ public class Missions : MonoBehaviour {
         CreateCurrentArea ();
 
        // Debug.Log("areaSetId: " + areaSetId + "   data.cameraOrientation: " + data.cameraOrientation + " bending: " + data.bending);
-
-        Game.Instance.gameCamera.SetOrientation (data.cameraOrientation);
-		total_areas = data.total_areas;
-		float bending = data.bending;
-		
-		if(bending != 0)
-			Data.Instance.events.ChangeCurvedWorldX(bending);
         areaNum++;
-
       //  print("___________areaNum: " + areaNum + "  areaSetId " + areaSetId + "     total_areas: " + total_areas);
 
         if (areaNum >= total_areas) {
 			if (areaSetId < MissionActive.areaSetData.Count - 1) {
-				areaSetId++;
+                areaSetId++;
 				ResetAreaSet ();
 			} else {
 				areaNum--;
@@ -227,6 +235,17 @@ public class Missions : MonoBehaviour {
 		}
 		
 	}
+    void OnAvatarReachedNextArea(MissionData.AreaSetData data)
+    {
+        print("__________ distance: "  + data.totalDistanceToCamFX +
+            " areaName: " + data.areas[0] + 
+            " cam: "  + data.cameraOrientation + 
+            " bending: " + data.bending);
+        Game.Instance.gameCamera.SetOrientation(data.cameraOrientation);
+        if (data.bending != 0)
+            Data.Instance.events.ChangeCurvedWorldX(data.bending);
+        areasetDataLoaded.RemoveAt(0);
+    }
 	void ResetAreaSet()
 	{
 		areaNum = 0;

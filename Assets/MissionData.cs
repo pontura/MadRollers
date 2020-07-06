@@ -12,10 +12,13 @@ public class MissionData  {
 	public int maxScore;
 	public string fondo;
 	public List<AreaSetData> areaSetData;
-
+  
 	[Serializable]
 	public class AreaSetData
 	{
+        //[HideInInspector] 
+        public int totalDistanceToCamFX; // solo se usa para los seteos de la camara real-time
+
         public bool boss;
         public TextAsset json;
         public int total_areas;

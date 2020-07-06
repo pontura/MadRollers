@@ -278,7 +278,6 @@ public class CharactersManager : MonoBehaviour {
 	}
     public void killCharacter(CharacterBehavior characterBehavior)
     {
-        print("killCharacter characters.Count " + characters.Count + " id:" + characterBehavior.player.id + " automata: " + characterBehavior.controls.isAutomata);
         if (Game.Instance.state == Game.states.GAME_OVER)
             return;
         

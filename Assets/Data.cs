@@ -112,6 +112,7 @@ public class Data : MonoBehaviour {
 
 #if UNITY_ANDROID
         isAndroid = true;
+        isAdmin = false;
         controlsType = ControlsType.GYROSCOPE;
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;

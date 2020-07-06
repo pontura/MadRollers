@@ -5,7 +5,6 @@ using System.Collections;
 public class MissionSignal : MonoBehaviour {
 
 	public GameObject panel;
-    public Text title;
 	public Text subtitle;
 	Missions missions;
 	void Start () {
@@ -36,7 +35,7 @@ public class MissionSignal : MonoBehaviour {
             MissionData missionData = missions.GetActualMissionData();
             if (missions.MissionActiveID == 0)
                 return;
-            title.text = "";
+
 			subtitle.text = "";
 			SetState(true);
 			string text = "";			

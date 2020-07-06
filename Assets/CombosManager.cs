@@ -23,8 +23,22 @@ public class CombosManager : MonoBehaviour {
 		value++;
 		if(value>=total)
 		{
-			Data.Instance.events.OnGenericUIText("x" + total + " Combo!");
-			Data.Instance.events.OnScoreOn (total * 100, Vector3.zero, -1, ScoresManager.types.COMBO);
+            int comboID = 0;
+            if (total < 10)
+                comboID = 0;
+            if (total < 20)
+                comboID = 1;
+            else
+                comboID = 2;
+            if (comboID > 0)
+            {
+                if (comboID == 1)
+                    Data.Instance.events.OnGenericUIText("Pixel Combo!");
+                else
+                    Data.Instance.events.OnGenericUIText("Super Pixel Combo!");
+                Data.Instance.events.OnScoreOn(total * (200 * comboID), Vector3.zero, -1, ScoresManager.types.COMBO);
+                Data.Instance.events.OnSoundFX("combo", -1);
+            }
 		}	
 			
 	}

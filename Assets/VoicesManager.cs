@@ -138,8 +138,6 @@ public class VoicesManager : MonoBehaviour
 	bool talking;
 	public void PlayClip(AudioClip audioClip)
     {
-        print(" PlayClip " + audioClip.name);
-
 		talking = true;
 		audioSpectrum.SetOn ();
         audioSource.clip = audioClip;
