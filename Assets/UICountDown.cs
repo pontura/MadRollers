@@ -28,27 +28,39 @@ public class UICountDown : MonoBehaviour {
 	{		
 		if (isOn)
 			return;
-		
-		isOn = true;
+
+        Data.Instance.GetComponent<MusicManager>().OnGamePaused(true);
+
+        isOn = true;
 		panel.SetActive (true);
 		Data.Instance.events.OnGameStart ();
 		SetNextCountDown ();
 	}
 	void SetNextCountDown()
 	{
-		countDownField.text = countDown.ToString ();
+		
 		panel.GetComponent<Animation>().Play("logo");
-		if (countDown <= 0) {
-           // if(!Data.Instance.isAndroid)
-                Done();
+
+
+        if (countDown == 0)
+        {
+            Data.Instance.events.StartMultiplayerRace();
+            countDownField.text = "GO!";
+            Invoke("Done", 1f);
+            Data.Instance.events.OnSoundFX("FX upgrade003", -1);
             return;
-		}
-		countDown--;
+        }
+        else
+        {
+            countDownField.text = countDown.ToString();
+            Data.Instance.events.OnSoundFX("FX upgrade002", -1);
+        }
+
+        countDown--;
 		Invoke ("SetNextCountDown", 1.25f);
 	}
     void Done()
-    {
-        Data.Instance.events.StartMultiplayerRace();
+    {        
         panel.SetActive(false);
         Data.Instance.events.OnGenericUIText("ROMPAN TODO!");
     }

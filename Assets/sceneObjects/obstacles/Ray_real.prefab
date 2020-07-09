@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4479603437511046}
   - component: {fileID: 65695369339080442}
-  - component: {fileID: 114780628494360278}
-  - component: {fileID: 114347062655043950}
   - component: {fileID: 114092947442045648}
   - component: {fileID: 54750922335821976}
   m_Layer: 10
@@ -47,51 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.82, y: 31.3, z: 1.47}
+  m_Size: {x: 1.3, y: 40, z: 1.3}
   m_Center: {x: 0, y: 0.2, z: 0}
---- !u!114 &114780628494360278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210204159616042}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explotionType: 1
-  isOn: 0
-  NumOfParticles: 10
-  childs: []
-  killAtHit: 1
-  dontBeKilledByFloorExplotions: 0
-  dontKillPlayers: 0
-  dontDieOnHit: 1
-  ifJumpingDontKill: 0
-  score: 250
---- !u!114 &114347062655043950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210204159616042}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb8094c9ac6e73489c47b3efc87d864, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateX: 0
-  rotateY: 1
-  rotateZ: 0
-  inverse: 0
-  randomRotation: 1
-  startRotation: 0
-  speed: 150
-  inverseRotation: 0
-  frameByFrame: 0
 --- !u!114 &114092947442045648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,8 +90,7 @@ GameObject:
   - component: {fileID: 4528621054315550}
   - component: {fileID: 33113708043083928}
   - component: {fileID: 23085818062583232}
-  - component: {fileID: 65363702242718704}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,11 +128,12 @@ MeshRenderer:
   m_GameObject: {fileID: 1763411920926214}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -190,6 +145,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -202,19 +158,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &65363702242718704
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763411920926214}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1939780866839528
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +303,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -371,6 +315,7 @@ TrailRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

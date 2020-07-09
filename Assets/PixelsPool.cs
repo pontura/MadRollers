@@ -12,7 +12,7 @@ public class PixelsPool : MonoBehaviour {
 	public void Init (Transform poolContainer, Transform sceneContainer) {
 		this.poolContainer = poolContainer;
 		this.sceneContainer = sceneContainer;
-		for (int a = 0; a < 120; a++) {
+		for (int a = 0; a < 140; a++) {
 			PixelPart pp = Instantiate (pixelPart);
 			pp.gameObject.SetActive (false);
 			all.Add (pp);

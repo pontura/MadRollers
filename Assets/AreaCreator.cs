@@ -81,11 +81,8 @@ public class AreaCreator : MonoBehaviour {
 		newSOdata.name = go.name;
 		areaSceneobjectManager.AddComponentsToJson (newSOdata, go);
 
-		newSOdata.pos.x = float.Parse(go.transform.position.x.ToString("F2"));
-		newSOdata.pos.y = float.Parse(go.transform.position.y.ToString("F2"));
-		newSOdata.pos.z = float.Parse(go.transform.position.z.ToString("F2"));
-
-		newSOdata.rot = go.transform.eulerAngles;
+		newSOdata.pos = go.transform.position;
+        newSOdata.rot = go.transform.eulerAngles;
 
 		data.Add (newSOdata);
 	}

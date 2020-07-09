@@ -132,7 +132,7 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void SetSelector()
     {
-        Debug.Log("Set selector: videogamesData.actualID " + Data.Instance.videogamesData.actualID + "   mission id: " + Data.Instance.missions.MissionActiveID);
+       // Debug.Log("Set selector: videogamesData.actualID " + Data.Instance.videogamesData.actualID + "   mission id: " + Data.Instance.missions.MissionActiveID);
         foreach (MissionButtonMobile mbm in allButtons)
         {
             if(mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)

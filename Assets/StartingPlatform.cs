@@ -15,7 +15,6 @@ public class StartingPlatform : SceneObject {
 	public override void OnRestart(Vector3 pos)
 	{
 		base.OnRestart( pos );
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 
         int id = 0;
 		//foreach (Transform t in containers) {
@@ -33,18 +32,12 @@ public class StartingPlatform : SceneObject {
 //		}
 		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().intro_logo;
 	}
-    void StartMultiplayerRace()
-    {
-        lights.SetActive(false);
-    }
     void OnDestroy()
     {
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnCharacterInit -= OnCharacterInit;
     }
 	public override void OnPool()
 	{
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         playerToInstantiate = null;
 		Data.Instance.events.OnCharacterInit -= OnCharacterInit;
 	}

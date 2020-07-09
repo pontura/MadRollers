@@ -237,10 +237,7 @@ public class Missions : MonoBehaviour {
 	}
     void OnAvatarReachedNextArea(MissionData.AreaSetData data)
     {
-        print("__________ distance: "  + data.totalDistanceToCamFX +
-            " areaName: " + data.areas[0] + 
-            " cam: "  + data.cameraOrientation + 
-            " bending: " + data.bending);
+      //  print("__________ distance: "  + data.totalDistanceToCamFX +  " areaName: " + data.areas[0] +   " cam: "  + data.cameraOrientation + " bending: " + data.bending);
         Game.Instance.gameCamera.SetOrientation(data.cameraOrientation);
         if (data.bending != 0)
             Data.Instance.events.ChangeCurvedWorldX(data.bending);

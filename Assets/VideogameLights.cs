@@ -24,5 +24,7 @@ public class VideogameLights : MonoBehaviour {
 			inferno.SetActive (true);
 				break;
 		}
+        //if(Data.Instance.useOptimizedSettings)
+        //    GetComponentInChildren<Light>().enabled = false;
 	}
 }

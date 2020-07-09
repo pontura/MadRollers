@@ -107,7 +107,7 @@ public class MusicManager : MonoBehaviour {
         audioSource.Play();
         audioSource.loop = looped;
     }
-    void OnGamePaused(bool paused)
+    public void OnGamePaused(bool paused)
     {
         if(paused)
             audioSource.Stop();
