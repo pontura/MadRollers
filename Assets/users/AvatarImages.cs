@@ -46,6 +46,10 @@ public class AvatarImages : MonoBehaviour
     }
     public void GetImageFor(string userID, System.Action<Texture2D> OnLoaded)
     {
+#if UNITY_WEBGL
+        OnLoaded(defaultTexture);
+        return;
+#endif
         foreach (Data d in all)
         {
             if (d.userID == userID && d.texture != null)

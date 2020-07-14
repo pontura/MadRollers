@@ -146,8 +146,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "palm":
             case "palmTall":
             case "palmSmall":
-                    if (go.name == "extralargeBlock1" || go.name == "largeBlock1")
-					pos.y += (float)Random.Range (-10, 10) / 1000;
 				if (go.name == "smallBlock1" || go.name == "extraSmallBlock1")
 					sceneObject = Pool.GetObjectForType (go.name + "_real", true);
 				else {
@@ -165,11 +163,16 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 				if (sceneObject)
 				{
-					sceneObject.isActive = false;
+                    if (go.name == "extralargeBlock1" || go.name == "largeBlock1" || go.name == "mediumBlock1" || go.name == "smallBlock1" || go.name == "extraSmallBlock1")
+                        pos.y += 1;
+
+                    sceneObject.isActive = false;
 					sceneObject.transform.position = pos;
 					sceneObject.transform.localEulerAngles = go.rot;
 
-					if(go.name == "Coin" || go.name =="bloodx1")
+
+
+                            if (go.name == "Coin" || go.name =="bloodx1")
 					{
 						//print (z_length + "       total coins   " +  areaData.totalCoins);
 						sceneObject.GetComponent<GrabbableItem> ().SetComboGrabbable (z_length, areaData.totalCoins);//area.totalCoins);

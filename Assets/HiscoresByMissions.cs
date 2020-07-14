@@ -106,7 +106,6 @@ public class HiscoresByMissions : MonoBehaviour
         post_url += "?videogame=" + (videogame);
         post_url += "&mission=" + mission;
         post_url += "&limit=50";
-
         StartCoroutine(Send(post_url, OnDone));
     }
     MissionHiscoreData IfAlreadyLoaded(int videogame, int mission)

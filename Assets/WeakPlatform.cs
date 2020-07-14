@@ -7,7 +7,9 @@ public class WeakPlatform : SceneObject {
 	[SerializeField] private  GameObject to;
 	public int videoGame_ID;
 
-	Color floor_top;
+    [SerializeField] private Renderer render;
+
+    Color floor_top;
 	Color floor_border ;
 
 	//Rigidbody rb;
@@ -25,42 +27,53 @@ public class WeakPlatform : SceneObject {
         collider = GetComponent<Collider>();
     }
     public override void OnRestart(Vector3 pos)
-	{		
-		falling = false;
+	{
+        if (type == types.FLOOR)
+        { 
+            Vector3 rot = transform.localEulerAngles;
+            rot.x -= 90;
+            transform.localEulerAngles = rot;
+        }
+        falling = false;
 
 		base.OnRestart(pos);
 		collider.enabled = true;
 
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
 		if (newVideoGameID != videoGame_ID) {
-			if (type == types.FLOOR) {
-                Color newColorTop = Data.Instance.videogamesData.GetActualVideogameData().floor_top;
+            if (type == types.FLOOR) {
+                videoGame_ID = newVideoGameID;
+                VideogameData vd = Data.Instance.videogamesData.GetActualVideogameData();
+                Color newColorTop = vd.floor_top;
                 if (floor_top == null || newColorTop != floor_top)
                 {
                     floor_top = newColorTop;
-                    floor_border = Data.Instance.videogamesData.GetActualVideogameData().floor_border;
-                    videoGame_ID = newVideoGameID;
-                    Renderer[] renderers = GetComponentsInChildren<Renderer>();
-                    foreach (Renderer r in renderers)
-                        ChangeMaterials(r);
+                    floor_border = vd.floor_border;
+
+                    render.materials[1].color = floor_top;
+                    render.materials[0].color = floor_border;
+
+                    //Renderer[] renderers = GetComponentsInChildren<Renderer>();
+                    //foreach (Renderer r in renderers)
+                    //    ChangeMaterials(r);
                 }
 			} else {
 				GetComponent<Renderer>().material = Data.Instance.videogamesData.GetActualVideogameData ().wallMaterial;
 			}
 		}
 	}
-	void ChangeMaterials(Renderer renderer)
-	{
-        if (renderer.gameObject.name == "floorAllInOne")
-        {
-            renderer.materials[1].color = floor_top;
-            renderer.materials[0].color = floor_border;
-        }
-        else if (renderer.gameObject.name == "top")
-			renderer.material.color = floor_top;
-		else
-			renderer.material.color = floor_border;
-	}
+	//void ChangeMaterials(Renderer renderer)
+	//{
+ //       if (renderer.gameObject.name == "floorAllInOne")
+ //       {
+ //           renderer.materials[1].color = floor_top;
+ //           renderer.materials[0].color = floor_border;
+ //       }
+ //       else if (renderer.gameObject.name == "top")
+	//		renderer.material.color = floor_top;
+	//	else
+	//		renderer.material.color = floor_border;
+	//}
 
 	public void breakOut(Vector3 impactPosition) {
 
@@ -71,8 +84,8 @@ public class WeakPlatform : SceneObject {
 			return;
 		}
 
-		float MidX = transform.lossyScale.x / 4;
-		float MidZ = transform.lossyScale.z / 4;
+		float MidX = transform.lossyScale.x / 200;
+		float MidZ = transform.lossyScale.y / 200;
 
 		Transform container = null;
 
@@ -85,7 +98,9 @@ public class WeakPlatform : SceneObject {
 		
 		
 		Vector3 pos = transform.position;
-
+        Vector3 rotOriginal = transform.localEulerAngles;
+      //  transform.localEulerAngles = new Vector3(0, rotOriginal.y, rotOriginal.z);
+        
 		for (int a = 0; a < 4; a++)
 		{
 			SceneObject newSO = ObjectPool.instance.GetObjectForType(to.name, false);
@@ -95,15 +110,16 @@ public class WeakPlatform : SceneObject {
 			Vector3 newPos = new Vector3(0, 0, 0);
 			switch (a)
 			{
-			case 0: newPos = pos + transform.forward * MidZ + transform.right * MidX; break;
-			case 1: newPos = pos + transform.forward * MidZ - transform.right * MidX; break;
-			case 2: newPos = pos - transform.forward * MidZ - transform.right * MidX; break;
-			case 3: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
+			case 0: newPos = pos + transform.up * MidZ + transform.right * MidX; break;
+			case 1: newPos = pos + transform.up * MidZ - transform.right * MidX; break;
+			case 2: newPos = pos - transform.up * MidZ - transform.right * MidX; break;
+			case 3: newPos = pos - transform.up * MidZ + transform.right * MidX; break;
 			}
 
 			manager.AddSceneObjectAndInitIt(newSO, newPos, container);
-			newSO.transform.rotation = transform.rotation;
+			newSO.transform.localEulerAngles = rotOriginal;
 		}
+
 		Pool();
 
 	}
