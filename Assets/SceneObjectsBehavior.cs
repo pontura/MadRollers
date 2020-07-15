@@ -172,7 +172,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 
 
-                            if (go.name == "Coin" || go.name =="bloodx1")
+                    if (go.name == "Coin" || go.name =="bloodx1")
 					{
 						//print (z_length + "       total coins   " +  areaData.totalCoins);
 						sceneObject.GetComponent<GrabbableItem> ().SetComboGrabbable (z_length, areaData.totalCoins);//area.totalCoins);

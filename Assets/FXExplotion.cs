@@ -3,7 +3,8 @@ using System.Collections;
 
 public class FXExplotion : SceneObject {
 
-	public MeshRenderer meshRenderer;
+    Color lastColor;
+    public MeshRenderer meshRenderer;
 	float finalScale = 8;
 	float speed = 3;	
 
@@ -41,6 +42,7 @@ public class FXExplotion : SceneObject {
 	{
 		this.finalScale = size;
 	}
+    
 	public void SetColor(Color color)
 	{
 		if (lastColor == color)

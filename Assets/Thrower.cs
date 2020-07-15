@@ -36,7 +36,7 @@ public class Thrower : MonoBehaviour {
 			Vector3 f;
 			newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("ThrowableSceneObject_real", false);  
 			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSceneObject, transform.position);
-			newSceneObject.ChangeColor (color);
+			//newSceneObject.ChangeColor (color);
 			newSceneObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 			f = transform.forward * speed * -1;
 			f.y = Random.Range (-range, range);

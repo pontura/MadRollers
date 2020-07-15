@@ -55,17 +55,17 @@ public class CharacterCollisions : MonoBehaviour {
 				}
 			}
             float difY = transform.position.y - other.transform.position.y;
-            
-            if (other.transform.eulerAngles.x == 0 && difY < 1.6f)
+          
+           // calcula el -90 de la rotacion del piso:
+            if (other.transform.eulerAngles.x == 270 && difY < 0.8f)
                {
-
+                print(other.transform.eulerAngles.x + "    Ernytroooo: " + difY);
                 //si es una plataforma rotada se va:
-                SceneObject so = other.transform.GetComponentInParent<SceneObject>();
-                if (so != null && so.transform.localEulerAngles != Vector3.zero)
+                if (other.transform.localEulerAngles.x != 270)
                     return;
 
                 Vector3 pos = characterBehavior.transform.position;
-                if (difY < -0.5f)
+                if (difY < 0)
                 {
                     characterBehavior.CollideToObject();
                     return;

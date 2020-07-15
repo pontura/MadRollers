@@ -5,8 +5,6 @@ public class SceneObject : MonoBehaviour {
 
     public Level.Dificult Dificult;
 
-	public Color lastColor;
-
     public int size_z = 0;
 
 	public bool broken;
@@ -75,13 +73,14 @@ public class SceneObject : MonoBehaviour {
         transform.position = pos;
     }
 
-	public virtual void ChangeColor(Color newColor)  { 
-		if (newColor == lastColor)
-			return;
-		lastColor = newColor;
-		MeshRenderer mr = GetComponent<MeshRenderer> ();
-		mr.material.color = newColor;
-	}
+    //public virtual void ChangeColor(Color newColor)
+    //{
+    //    if (newColor == lastColor)
+    //        return;
+    //    lastColor = newColor;
+    //    MeshRenderer mr = GetComponent<MeshRenderer>();
+    //    mr.material.color = newColor;
+    //}
     public virtual void changeMaterial(string materialName)  {   }
     public virtual void OnPool()  {  }
     public virtual void onDie()  { }

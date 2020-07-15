@@ -6,6 +6,7 @@ public class ParticlesSceneObject : SceneObject {
     public ParticleSystem _particleSystem;
     public ParticleSystem explotion;
     public ParticleSystem[] explotions_to_colorize;
+    Color lastColor;
 
     public override void OnRestart(Vector3 pos)
     {
@@ -21,7 +22,8 @@ public class ParticlesSceneObject : SceneObject {
 			explotion.Play ();
 		}
     }
-	public void SetColor(Color color, float alpha = 0.45f)
+    
+    public void SetColor(Color color, float alpha = 0.45f)
     {      
 		if (color == lastColor)
 			return;

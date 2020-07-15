@@ -287,7 +287,7 @@ public class CharacterBehavior : MonoBehaviour {
                 float lastRotX = 0;
 				if (coverHit.transform.tag == "floor") {
 					rotationZ = coverHit.transform.up.x * -30;
-					rotationX = coverHit.transform.eulerAngles.x+90;
+					rotationX = coverHit.transform.eulerAngles.x;
                     if(rotationX != lastRotX)
                     {
                         madRoller.Play("little_jump");

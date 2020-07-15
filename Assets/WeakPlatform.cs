@@ -28,12 +28,6 @@ public class WeakPlatform : SceneObject {
     }
     public override void OnRestart(Vector3 pos)
 	{
-        if (type == types.FLOOR)
-        { 
-            Vector3 rot = transform.localEulerAngles;
-            rot.x -= 90;
-            transform.localEulerAngles = rot;
-        }
         falling = false;
 
 		base.OnRestart(pos);
@@ -85,7 +79,7 @@ public class WeakPlatform : SceneObject {
 		}
 
 		float MidX = transform.lossyScale.x / 200;
-		float MidZ = transform.lossyScale.y / 200;
+		float MidZ = transform.lossyScale.z / 200;
 
 		Transform container = null;
 
@@ -98,8 +92,6 @@ public class WeakPlatform : SceneObject {
 		
 		
 		Vector3 pos = transform.position;
-        Vector3 rotOriginal = transform.localEulerAngles;
-      //  transform.localEulerAngles = new Vector3(0, rotOriginal.y, rotOriginal.z);
         
 		for (int a = 0; a < 4; a++)
 		{
@@ -107,17 +99,17 @@ public class WeakPlatform : SceneObject {
 			if (newSO.name != "extraSmallBlock1_real" && newSO.name != "extraSmallBlock1_real")
                 manager.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
 
-			Vector3 newPos = new Vector3(0, 0, 0);
+			Vector3 newPos;
 			switch (a)
 			{
-			case 0: newPos = pos + transform.up * MidZ + transform.right * MidX; break;
-			case 1: newPos = pos + transform.up * MidZ - transform.right * MidX; break;
-			case 2: newPos = pos - transform.up * MidZ - transform.right * MidX; break;
-			case 3: newPos = pos - transform.up * MidZ + transform.right * MidX; break;
+			case 0: newPos = pos + transform.forward * MidZ + transform.right * MidX; break;
+			case 1: newPos = pos + transform.forward * MidZ - transform.right * MidX; break;
+			case 2: newPos = pos - transform.forward * MidZ - transform.right * MidX; break;
+			default: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
 			}
 
 			manager.AddSceneObjectAndInitIt(newSO, newPos, container);
-			newSO.transform.localEulerAngles = rotOriginal;
+			newSO.transform.rotation = transform.rotation;
 		}
 
 		Pool();

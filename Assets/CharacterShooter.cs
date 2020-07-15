@@ -137,8 +137,8 @@ public class CharacterShooter : MonoBehaviour {
 			Vector3 rot = transform.localEulerAngles;
 			rot.x = characterBehavior.madRoller.transform.eulerAngles.x;
 
-            if (rot.x > 0 && rot.x<180)
-                rot.x /= 2;
+            //if (rot.x != 270)
+            //    rot.x /= 2;
 
 //			if (characterBehavior.team_for_versus > 1) {
 //				rot.y += 180;

@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+  m_AmbientSkyColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 512
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.543
+  m_ReflectionIntensity: 0.596
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
@@ -1702,7 +1702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &125314791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8665,6 +8665,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1143194689739292, guid: 004bc2800bc48a74ea716ee13f7e943a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1337941539427764, guid: 004bc2800bc48a74ea716ee13f7e943a, type: 3}
       propertyPath: m_Name
       value: lucesGame
@@ -8727,6 +8731,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884763798454453947, guid: 004bc2800bc48a74ea716ee13f7e943a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884837928523005077, guid: 004bc2800bc48a74ea716ee13f7e943a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004bc2800bc48a74ea716ee13f7e943a, type: 3}
@@ -10138,6 +10152,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 910004346}
     m_Modifications:
+    - target: {fileID: 2071574790, guid: 0e7cb34a24db268499e589ff555aa630, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 325095378134314448, guid: 0e7cb34a24db268499e589ff555aa630,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1870617203474455390, guid: 0e7cb34a24db268499e589ff555aa630,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11745,7 +11768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &647973862
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32528,7 +32551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4084269306447877
 Transform:
   m_ObjectHideFlags: 0
@@ -32800,28 +32823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef282548b69dc8c45ac0676c459b6f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HorizontalAxis: Horizontal
-  VerticalAxis: Vertical
-  clampMode: 0
-  TurnLimit: 80
-  ReturnSpeed: 10
-  autoHide: 0
-  fadeInDuration: 0.25
-  fadeOutDuration: 2
-  StartFadeOutDuration: 5
-  KnobBackground: {fileID: 114179252386325588}
-  knobBackgroundFollowKnob: 1
-  AnchoredAreaBounds:
-    m_Center: {x: 67.95918, y: 287.79828, z: 0}
-    m_Extent: {x: 160.64415, y: 497.3952, z: 0}
-  NormalizedAnchoredAreaBounds:
-    m_Center: {x: 0.10478567, y: 0.2942121, z: 0}
-    m_Extent: {x: 0.24769582, y: 0.5084801, z: 0}
-  MinScreenAreaBounds: {x: 0, y: 0}
-  MaxScreenAreaBounds: {x: 0, y: 0}
-  ScreenCenterAreaBounds: {x: 0, y: 0}
-  ScreenRadiusAreaBounds: 0
-  NormalizedAxis: {x: 0, y: 0}
 --- !u!114 &114713993790999162
 MonoBehaviour:
   m_ObjectHideFlags: 0

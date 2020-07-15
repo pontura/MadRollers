@@ -23,6 +23,7 @@ public class Projectil : SceneObject {
 	public GameObject BulletPlayer1;
 	public GameObject BulletPlayer2;
 	public GameObject BulletPlayer3;
+    Color lastColor;
 
     public virtual void SetColor(Color color)
     {
