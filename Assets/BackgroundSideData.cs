@@ -12,7 +12,7 @@ public class BackgroundSideData : MonoBehaviour {
 
     public GameObject hideOnLowRes;
 
-    void Start()
+    void Awake()
     {
         if (hideOnLowRes == null)
             return;

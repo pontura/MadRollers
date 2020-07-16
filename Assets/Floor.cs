@@ -17,11 +17,11 @@ public class Floor : MonoBehaviour
 
 	void Start()
     {
-        if (Data.Instance.useOptimizedSettings)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
+        //if (Data.Instance.useOptimizedSettings)
+        //{
+        //    Destroy(this.gameObject);
+        //    return;
+        //}
 		videoGameBossPanel = Game.Instance.GetComponent<VideogameBossPanelsManager> ().actualBossPanel;
         isMoving = true;
         Data.Instance.events.OnGamePaused += OnGamePaused;
