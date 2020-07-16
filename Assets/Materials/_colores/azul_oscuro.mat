@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: azul_oscuro
-  m_Shader: {fileID: 4800000, guid: 659dfd41c9b8f404390306092e32514c, type: 3}
-  m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+  m_Shader: {fileID: 4800000, guid: 9aa93289d4310914ab6adfa612cec257, type: 3}
+  m_ShaderKeywords: V_CW_FOG V_CW_MATCAP_BLEND_MULTIPLY _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -51,6 +51,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Matcap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -60,6 +64,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondBumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -75,6 +83,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _V_CW_LightRampTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _V_CW_NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -83,18 +95,26 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _V_CW_Specular_Lookup:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
     - V_CW_D_OPTIONS: 0
     - V_CW_Label_Albedo: 0
+    - V_CW_Label_Matcap: 0
     - V_CW_Label_Modes: 0
     - V_CW_Label_Tag: 0
     - V_CW_Label_UnityDefaults: 0
+    - V_CW_MATCAP_BLEND: 0
     - V_CW_Rendering_Mode: 0
     - V_CW_TAG: 0
     - V_CW_Texture_Mix_Mode: 0
     - V_CW_W_OPTIONS: 0
+    - _BumpMap_UV_Scale: 1
     - _BumpScale: 1
+    - _BumpStrength: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -106,6 +126,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _SecondBumpMap_UV_Scale: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 0
     - _SrcBlend: 1
@@ -120,10 +141,14 @@ Material:
     - _V_CW_IBL_Intensity: 1
     - _V_CW_NormalMapStrength: 1
     - _V_CW_NormalMap_UV_Scale: 1
+    - _V_CW_PerVertexLights: 1
     - _V_CW_ReflectStrengthAlphaOffset: 0
     - _V_CW_Rim_Bias: 0.2
     - _V_CW_Rim_Power: 3
     - _V_CW_SecondaryNormalMap_UV_Scale: 1
+    - _V_CW_SpecularOffset: 0
+    - _V_CW_Specular_Intensity: 1
+    - _V_CW_UnityAmbient: 1
     - _V_CW_X_Bend_Size: 0
     - _V_CW_Y_Bend_Size: 0
     - _V_CW_Z_Bend_Bias: 0

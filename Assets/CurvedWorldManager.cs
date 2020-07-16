@@ -26,7 +26,8 @@ public class CurvedWorldManager : MonoBehaviour {
     void StartMultiplayerRace()
     {
         curvedWorld_Controller = GameObject.Find("CurvedWorld_Controller").GetComponent<CurvedWorld_Controller>();
-        curvedWorld_Controller._V_CW_Bend_X = -12;
+        //  curvedWorld_Controller._V_CW_Bend_X = -12;
+       // curvedWorld_Controller.bendSize = new Vector3(-12, 0,0);
     }
     void ChangeCurvedWorldX(float _x)
     {
@@ -34,6 +35,8 @@ public class CurvedWorldManager : MonoBehaviour {
             return;
 
         _x /= 1.2f;
+
+       // curvedWorld_Controller.bendSize = Vector3.Lerp(curvedWorld_Controller.bendSize , new Vector3(_x, 0, 0), 0.01f);
 
         DOTween.To(() => curvedWorld_Controller._V_CW_Bend_X, x => curvedWorld_Controller._V_CW_Bend_X = x, _x, 3);
     }
