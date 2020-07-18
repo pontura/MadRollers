@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MusicManager : MonoBehaviour {
 
+    [SerializeField] private AudioClip explotionAudioClip;
     [SerializeField] private AudioClip interfaces;
     [SerializeField] private AudioClip heartClip;
     [SerializeField] private AudioClip consumeHearts;
@@ -167,13 +168,21 @@ public class MusicManager : MonoBehaviour {
         {
           audioSource.PlayOneShot(heartClip);
           nextHeartSoundTime = Time.time + heartsDelay;
-          if (Random.Range(0, 500) > 490)
-          {
-              //Data.Instance.voicesManager.ComiendoCorazones();
-          }
+          //if (Random.Range(0, 500) > 490)
+          //{
+          //    Data.Instance.voicesManager.ComiendoCorazones();
+          //}
         }
     }
-	void OnMissionComplete(int newm)
+    public void OnExplotionSFX()
+    {
+        if (Time.time >= nextHeartSoundTime)
+        {
+            audioSource.PlayOneShot(explotionAudioClip);
+            nextHeartSoundTime = Time.time + heartsDelay;
+        }
+    }
+    void OnMissionComplete(int newm)
 	{
 		StopAllCoroutines ();
 		audioSource.pitch = 1;

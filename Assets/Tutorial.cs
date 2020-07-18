@@ -94,14 +94,14 @@ public class Tutorial : MonoBehaviour
         {
             ResetAnim();
             ResetSignals();
-            Data.Instance.GetComponent<MusicManager>().ChangePitch(1);
+            Data.Instance.musicManager.ChangePitch(1);
             state = states.DONE_JUMP;
         }
         if (state == states.DOUBLE_JUMP)
         {
             ResetAnim();
             ResetSignals();
-            Data.Instance.GetComponent<MusicManager>().ChangePitch(1);
+            Data.Instance.musicManager.ChangePitch(1);
             state = states.DONE_DOUBLE_JUMP;
         }
     }
@@ -113,14 +113,14 @@ public class Tutorial : MonoBehaviour
         {
             ResetAnim();
             ResetSignals();
-            Data.Instance.GetComponent<MusicManager>().ChangePitch(1);
+            Data.Instance.musicManager.ChangePitch(1);
             state = states.DONE_SHOOT;
         }
         //else if (state == states.TRIPLE_SHOOT)
         //{
         //    ResetAnim();
         //    ResetSignals();
-        //    Data.Instance.GetComponent<MusicManager>().ChangePitch(1);
+        //    Data.Instance.musicManager.ChangePitch(1);
         //    state = states.DONE_TRIPLE_SHOOT;
         //}
     }
@@ -153,7 +153,7 @@ public class Tutorial : MonoBehaviour
             mobileInputs.ButtonJump.SetActive(true);
             signalJump.SetActive(true);
             Data.Instance.events.RalentaTo(0.05f, 0.9f);
-            Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
+            Data.Instance.musicManager.ChangePitch(0);
             state = states.JUMP;
         }
         else if (distance > 260 && state == states.DONE_JUMP)
@@ -161,7 +161,7 @@ public class Tutorial : MonoBehaviour
             Anim("doubleJump");
             signalJump2.SetActive(true);
             Data.Instance.events.RalentaTo(0.05f, 0.9f);
-            Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
+            Data.Instance.musicManager.ChangePitch(0);
             state = states.DOUBLE_JUMP;
         }
         else if (distance > 290 && voiceSaid == 0)
@@ -176,7 +176,7 @@ public class Tutorial : MonoBehaviour
             mobileInputs.ButtonFire1.SetActive(true);
             signalFire.SetActive(true);
             Data.Instance.events.RalentaTo(0.05f, 0.9f);
-            Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
+            Data.Instance.musicManager.ChangePitch(0);
             state = states.SHOOT;
             PlayerPrefs.SetString("tutorial", "done");
         }
@@ -193,7 +193,7 @@ public class Tutorial : MonoBehaviour
             mobileInputs.ButtonDash.SetActive(true);
             //signalFire2.SetActive(true);
            // Data.Instance.events.RalentaTo(0, 0.9f);
-            //Data.Instance.GetComponent<MusicManager>().ChangePitch(0);
+            //Data.Instance.musicManager.ChangePitch(0);
             //state = states.TRIPLE_SHOOT;
             //state = states.DONE;
         }

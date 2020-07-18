@@ -36,7 +36,7 @@ public class CombosManager : MonoBehaviour {
                     Data.Instance.events.OnGenericUIText("Pixel Combo!");
                 else
                     Data.Instance.events.OnGenericUIText("Super Pixel Combo!");
-                Data.Instance.events.OnScoreOn(total * (200 * comboID), Vector3.zero, -1, ScoresManager.types.COMBO);
+                Data.Instance.events.OnScoreOn(total * (250 * comboID), Vector3.zero, -1, ScoresManager.types.COMBO);
                 Data.Instance.events.OnSoundFX("combo", -1);
             }
 		}	

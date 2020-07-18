@@ -605,10 +605,10 @@ public class CharacterBehavior : MonoBehaviour {
     }
 	public void Hit()
 	{
-		if (state == states.DEAD) return;
-		//SaveDistance();
+		if (state == states.DEAD || state == states.CRASH) return;
+        //SaveDistance();
 
-		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CRASH, player.id);
+        Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CRASH, player.id);
 
 		Data.Instance.events.OnAvatarCrash(this);
 

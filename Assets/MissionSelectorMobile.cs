@@ -125,7 +125,7 @@ public class MissionSelectorMobile : MonoBehaviour
     IEnumerator LoadGame()
     {
         yield return new WaitForSeconds(3);
-        Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
+        Data.Instance.musicManager.OnLoadingMusic();
         yield return new WaitForSeconds(2.8f);
         Data.Instance.playMode = Data.PlayModes.STORYMODE;
         Data.Instance.LoadLevel("Game");

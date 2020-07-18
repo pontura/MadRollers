@@ -92,7 +92,7 @@ public class LoadingAsset : MonoBehaviour {
     IEnumerator LoadingRoutine()
 	{
         Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 1);
-		Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
+		Data.Instance.musicManager.OnLoadingMusic();
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
 		yield return new WaitForSeconds (0.2f);
@@ -116,7 +116,7 @@ public class LoadingAsset : MonoBehaviour {
 		yield return new WaitForSeconds (0.5f);
 		SetOn (false);
 		if (!Data.Instance.isReplay) {
-			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
+			Data.Instance.musicManager.stopAllSounds();
 		}
 		yield return null;
     }
@@ -128,7 +128,7 @@ public class LoadingAsset : MonoBehaviour {
         //string username = UserData.Instance.username;
 
         Data.Instance.voicesManager.PlaySpecificClipFromList(Data.Instance.voicesManager.UIItems, 1);
-        Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
+        Data.Instance.musicManager.OnLoadingMusic();
         //field.text = "";
         //AddText("*** MAD ROLLERS ***");
         //yield return new WaitForSeconds(0.5f);

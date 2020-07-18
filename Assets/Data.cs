@@ -60,7 +60,7 @@ public class Data : MonoBehaviour {
 
 	public LoadingAsset loadingAsset;
     public AssetsBundleLoader assetsBundleLoader ;
-
+    public MusicManager musicManager;
 
     public bool singlePlayer;
     public bool isAndroid;

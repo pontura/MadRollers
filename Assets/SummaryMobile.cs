@@ -121,7 +121,7 @@ public class SummaryMobile : MonoBehaviour
     {
         Data.Instance.events.OnResetScores();
         Data.Instance.events.FreezeCharacters(true);
-        Data.Instance.GetComponent<MusicManager>().stopAllSounds();
+        Data.Instance.musicManager.stopAllSounds();
         Data.Instance.isReplay = false;
         // Game.Instance.ResetLevel();
         Data.Instance.events.OnResetLevel();

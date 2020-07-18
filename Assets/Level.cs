@@ -179,7 +179,7 @@ public class Level : MonoBehaviour {
     }
     public void OnAddExplotion(Vector3 position, string _name, string _explotionEffect, string _explotionGift, int force, Color color)
 	{
-        Data.Instance.events.OnSoundFX("FX explot00", -1);
+        Data.Instance.musicManager.OnExplotionSFX();
         Vector3 newPos = position;
         newPos.y -= 4;
 

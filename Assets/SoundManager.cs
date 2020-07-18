@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
 {
+    
+
     public AudioSource audioSource;
     private AudioSource loopAudioSource;
     public float volume;
@@ -62,6 +64,8 @@ public class SoundManager : MonoBehaviour
             loopAudioSource.Stop();
         }
     }
+    float nextSoundTime;
+    float delayToNextSound = 0.1f;
     void OnSoundFX(string soundName, int playerID)
     {
         if (soundName == "")
@@ -69,6 +73,12 @@ public class SoundManager : MonoBehaviour
             audioSource.Stop();
             return;
         }
+        if (Time.time <= nextSoundTime)
+        {
+            return;
+        }
+        nextSoundTime = Time.time + delayToNextSound;
+       
         if (volume == 0) return;
 
         if (playerID == 0)

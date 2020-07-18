@@ -29,7 +29,7 @@ public class UICountDown : MonoBehaviour {
 		if (isOn)
 			return;
 
-        Data.Instance.GetComponent<MusicManager>().OnGamePaused(true);
+        Data.Instance.musicManager.OnGamePaused(true);
 
         isOn = true;
 		panel.SetActive (true);

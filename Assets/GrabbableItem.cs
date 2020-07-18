@@ -77,9 +77,9 @@ public class GrabbableItem : SceneObject
 			transform.position = Vector3.MoveTowards(position, characterPosition, 18 * Time.deltaTime);
 			if(sec>20)
 			{
-				Data.Instance.events.OnScoreOn(player.id, Vector3.zero, 5, ScoresManager.types.GRAB_PIXEL);
+				Data.Instance.events.OnScoreOn(player.id, Vector3.zero, 10, ScoresManager.types.GRAB_PIXEL);
                 Data.Instance.events.OnGrabHeart();
-                Data.Instance.GetComponent<MusicManager>().addHeartSound();
+                Data.Instance.musicManager.addHeartSound();
                 player = null;
                 CheckIfIsPartOfCombo();
                 Pool();
