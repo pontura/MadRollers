@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BossesPool : MonoBehaviour
 {
-    public GameObject[] addedForBundles;
+    public GameObject[] assets;
+    public GameObject[] modules;
 
     public Dictionary<string, GameObject> assetsPool;
 
@@ -28,8 +29,18 @@ public class BossesPool : MonoBehaviour
 
         assetsPool.Add(go.name, newGO);
     }
-    public GameObject GetAsset(string name)
+    public GameObject GetBossModule(string name)
     {
-        return assetsPool[name];
+        foreach (GameObject go in modules)
+            if (go.name == name)
+                return go;
+        return null;
+    }
+    public GameObject GetBossAsset(string name)
+    {
+        foreach (GameObject go in assets)
+            if (go.name == name)
+                return go;
+        return null;
     }
 }

@@ -8,7 +8,6 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     public GameObject scoreSignal;
     public Text scoreSignalField;
 
-    public GameObject panel;
 	public Text myScoreFields;
 	public Text scoreAdviseNum;
 	public Text scoreAdviseDesc;

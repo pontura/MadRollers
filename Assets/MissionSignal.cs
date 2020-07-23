@@ -39,7 +39,7 @@ public class MissionSignal : MonoBehaviour {
 			subtitle.text = "";
 			SetState(true);
 			string text = "";			
-			text += "MISION " + (missions.MissionActiveID+1) + "\n";
+			text += "DISKETTE " + (missions.MissionActiveID+1) + "\n";
 			text += missionData.title;
 
             Data.Instance.handWriting.WriteTo(subtitle,text , DoneText2);

@@ -23,7 +23,7 @@ public class BossPart : MonoBehaviour {
     {
         this.bossAttackManager = GetComponent<BossAttacksManager>();
     }
-    public void Init(Boss _boss, string bossAssetPath = null)
+    public void Init(Boss _boss, BossSettings settings)
 	{
         isOn = true;
         this.totalLife = lifes;
@@ -32,11 +32,17 @@ public class BossPart : MonoBehaviour {
         this.boss = _boss;
 		Utils.RemoveAllChildsIn (transform);
 
-        if (asset == null && bossAssetPath != null) { 
+        if (asset == null && settings.asset != null)
+        { 
+            if(settings.bundle)
+                asset = Instantiate(ObjectPool.instance.bossesPool.GetBossAsset(settings.asset).gameObject);
+            else
+                asset = Instantiate(Resources.Load("bosses/assets/" + settings.asset, typeof(GameObject))) as GameObject;
 
-            //asset = ObjectPool.instance.bossesPool.GetAsset("apple");
-            asset = Instantiate(Resources.Load("bosses/assets/" + bossAssetPath, typeof(GameObject))) as GameObject;
-
+            foreach (MeshRenderer mr in asset.GetComponentsInChildren<MeshRenderer>())
+            {
+                print("_______color: " + mr.material.name);
+            }
             asset.transform.SetParent (transform);
             asset.transform.localScale = Vector3.one;
             asset.transform.localEulerAngles = Vector3.zero;
@@ -115,12 +121,6 @@ public class BossPart : MonoBehaviour {
     {        
         transform.localScale = initialScale * 2.5f;
         gameObject.transform.DOScale(initialScale, 0.5f);
-        //PlayAnim("hit");
-        //Invoke("ResetAnim", 0.5f);
-    }
-    void ResetAnim()
-    {
-        PlayAnim("idle");
     }
     void PlayAnim(string animName)
     {        

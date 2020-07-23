@@ -5,6 +5,7 @@ using UnityEngine;
 public class LoadingScreen : MonoBehaviour {
 	
     public MissionsManager missionsManager_in_scene;
+    public BossesPool boss_pool_in_scene;
 
     void Start () {
         if (LevelDataDebug.Instance)
@@ -40,11 +41,27 @@ public class LoadingScreen : MonoBehaviour {
 
         if (isSuccess == "ok")
         {
-            DestroyImmediate(missionsManager_in_scene.gameObject);
-            Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");
+            //DestroyImmediate(missionsManager_in_scene.gameObject);
+          //  Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");
         }
-            Data.Instance.missions.Init();
-            Data.Instance.LoadLevel("Intro");
+        StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAndCacheAssetBundle("bossesmanager.all", OnBossesLoaded));
+        //Data.Instance.missions.Init();
+        //Data.Instance.LoadLevel("Intro");
+    }
+    void OnBossesLoaded(string isSuccess)
+    {
+        Debug.Log("AssetsBundle OnBossesLoaded isSuccess: " + isSuccess);
+
+        if (isSuccess == "ok")
+        {
+            GameObject go = Data.Instance.assetsBundleLoader.GetGo("bossesmanager.all", "bossesmanager");
+            BossesPool bp = boss_pool_in_scene.GetComponent<BossesPool>();
+            bp.assets = go.GetComponent<BossesPool>().assets;
+            bp.modules = go.GetComponent<BossesPool>().modules;
+            print("cargo boss_pool_in_scene");
+        }
+        Data.Instance.missions.Init();
+        Data.Instance.LoadLevel("Intro");
     }
 
 

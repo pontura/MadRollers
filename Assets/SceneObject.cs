@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SceneObject : MonoBehaviour {
 
-    public Level.Dificult Dificult;
+    //public Level.Dificult Dificult;
 
     public int size_z = 0;
 

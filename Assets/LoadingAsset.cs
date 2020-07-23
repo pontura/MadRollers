@@ -54,7 +54,7 @@ public class LoadingAsset : MonoBehaviour {
                 int missionID = Data.Instance.missions.MissionActiveID;
                 int videoGameID = Data.Instance.videogamesData.actualID;
                 UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
-                missionField.text = "MISION " + (missionID + 1);
+                missionField.text = "DISKETTE " + (missionID + 1);
             }
             else if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             {

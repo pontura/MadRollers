@@ -255,7 +255,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
             else if (go.name == "Ending")
                 clone = Ending;
             else if (go.name == "bomb1") {
-				Data.Instance.events.OnBossDropBomb ();
 				clone = bomb1;
 			} else if (go.name == "Laser") {
 				clone = Laser;

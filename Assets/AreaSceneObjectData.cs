@@ -47,6 +47,7 @@ public class BossSettingsData  {
 	public string asset;
 	public float distance_from_avatars;
 	public int time_to_kill;
+    public bool bundle;
 }
 [Serializable]
 public class MoveForwardData  {

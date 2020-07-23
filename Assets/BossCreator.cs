@@ -29,8 +29,13 @@ public class BossCreator : Boss {
 	}
 	void Delayed()
 	{
-		GameObject assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
-		//GameObject assets = Instantiate (settings.assets);
+        GameObject assets;
+        if (settings.bundle)
+            assets = Instantiate(ObjectPool.instance.bossesPool.GetBossModule(settings.bossModule));
+        else
+            assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
+
+       
 		assets.transform.SetParent (transform);
 		assets.transform.localPosition = Vector3.zero;
 		parts = assets.GetComponentsInChildren<BossPart> ();
@@ -63,7 +68,7 @@ public class BossCreator : Boss {
 		if (partID >= parts.Length)
 			return;
 		parts [partID].gameObject.SetActive (true);
-		parts [partID].Init (this, settings.asset);
+		parts [partID].Init (this, settings);
 
 		Invoke ("Init", time_to_init_enemies);
 		partID++;

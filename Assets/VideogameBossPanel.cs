@@ -142,7 +142,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		yield return new WaitForEndOfFrame();
 		panel.SetActive (true);
 
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (0.15f);
 		if(Data.Instance.videogamesData.actualID == 0)
 			PlayAnim ("axe_throw");
 		yield return new WaitForSeconds (1f);

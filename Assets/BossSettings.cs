@@ -9,6 +9,7 @@ public class BossSettings : MonoBehaviour {
 	public string asset;
 	public float distance_from_avatars;
 	public int time_to_kill;
+    public bool bundle;
 //
 //	void OnDisable()
 //	{

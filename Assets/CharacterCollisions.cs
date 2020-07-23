@@ -56,24 +56,27 @@ public class CharacterCollisions : MonoBehaviour {
 			}
             float difY = transform.position.y - other.transform.position.y;
             
-            if (other.transform.eulerAngles.x == 0 && difY < 0.8f)
-               {
-
-                Vector3 pos = characterBehavior.transform.position;
-                if (difY < -1f)
+            if (other.transform.localEulerAngles.z > -2 && other.transform.localEulerAngles.z < 2)
+            {
+                if (other.transform.eulerAngles.x == 0 && difY < 0.8f)
                 {
-                    characterBehavior.Hit();
-                    return;
+
+                    Vector3 pos = characterBehavior.transform.position;
+                    if (difY < -1f)
+                    {
+                        characterBehavior.Hit();
+                        return;
+                    }
+                    else if (difY < -0.3f)
+                        characterBehavior.SuperJumpByBumped(2400, 0.5f, false);
+                    else if (difY < 0)
+                        characterBehavior.SuperJumpByBumped(1800, 0.5f, false);
+                    else
+                        characterBehavior.SuperJumpByBumped(1000, 0.5f, false);
+
+                    pos.y += difY;
+                    characterBehavior.transform.position = pos;
                 }
-                else if (difY < -0.3f)
-                    characterBehavior.SuperJumpByBumped(2400, 0.5f, false);
-                else if (difY < 0)
-                    characterBehavior.SuperJumpByBumped(1800, 0.5f, false);
-                else
-                    characterBehavior.SuperJumpByBumped(1000, 0.5f, false);
-               
-                pos.y += difY;
-                characterBehavior.transform.position = pos;
             }
         }
         else if ( other.tag == "enemy" )

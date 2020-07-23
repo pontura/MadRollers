@@ -9,12 +9,13 @@ public class FXExplotion : SceneObject {
 	float speed = 3;	
 
 	float timer;
-	bool getBigger;
 
     public override void OnRestart(Vector3 position)
     {
-		getBigger = true;
-        position.y += 3;
+        float _y = finalScale / 4f;
+        print("size: " + finalScale + " _y: " + _y);
+
+        position.y -= _y;
 
 		transform.localScale = Vector3.one;
 
@@ -53,20 +54,12 @@ public class FXExplotion : SceneObject {
 	}
 	void Update()
 	{
-		if (!isActive || transform.localScale.x <= 0.2f && !getBigger)
-        {
-            Pool();
-            return;
-        }
 		
-		if(getBigger)
-			transform.localScale = Vector3.Lerp(transform.localScale , new Vector3(finalScale,finalScale,finalScale), Time.deltaTime*speed);
-		else
-			transform.localScale = Vector3.Lerp(transform.localScale , Vector3.zero, Time.deltaTime*(speed*1.25f));
+		transform.localScale = Vector3.Lerp(transform.localScale , new Vector3(finalScale,finalScale,finalScale), Time.deltaTime*speed);
 
-		if (getBigger && transform.localScale.x >= (finalScale - 0.4f))
-			getBigger = false;
-	}
+		if (transform.localScale.x >= (finalScale - 0.4f))
+            Pool();
+    }
 	void OnTriggerEnter(Collider other)
 	{
 		WeakPlatform w = other.GetComponent<WeakPlatform> ();

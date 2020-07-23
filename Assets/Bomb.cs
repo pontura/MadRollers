@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Bomb : SceneObject {
 
-	private float start_Y = 15;
-    private float speed = 9;
+	private float start_Y = 25;
+    private float speed = 12f;
 
     public Breakable breakable;
 
@@ -21,6 +21,7 @@ public class Bomb : SceneObject {
         trailRenderer = GetComponent<TrailRenderer>();
         pos.y = start_Y;
         base.OnRestart(pos);
+        Data.Instance.events.OnBossDropBomb();
     }
     public override void onDie()
     {

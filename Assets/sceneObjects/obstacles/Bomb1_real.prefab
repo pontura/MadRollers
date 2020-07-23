@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
-  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
@@ -59,7 +58,6 @@ MonoBehaviour:
   manager: {fileID: 0}
   breakable: {fileID: 11400004}
   soundFX: {fileID: 8300000, guid: dd3455fa8ed60174b8c7303bfef38ebd, type: 3}
-  alive: 0
   trailRenderer: {fileID: 0}
 --- !u!82 &8200000
 AudioSource:
@@ -172,6 +170,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -183,6 +182,7 @@ TrailRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -440,6 +440,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -451,6 +452,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -517,6 +519,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -528,6 +531,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -583,7 +587,7 @@ GameObject:
   - component: {fileID: 4260392409438940}
   - component: {fileID: 33905579198151930}
   - component: {fileID: 23913620032383406}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,6 +630,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -637,6 +642,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -660,7 +666,7 @@ GameObject:
   - component: {fileID: 4725832397077434}
   - component: {fileID: 33595307515979956}
   - component: {fileID: 23579821099986870}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,12 +703,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006743773172354}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -714,6 +721,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -737,7 +745,7 @@ GameObject:
   - component: {fileID: 4803241788106776}
   - component: {fileID: 33494073947572992}
   - component: {fileID: 23197054994382360}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,12 +782,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056282090193850}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -791,6 +800,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -814,7 +824,7 @@ GameObject:
   - component: {fileID: 4828134401965794}
   - component: {fileID: 33357776019773148}
   - component: {fileID: 23876008032048876}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,12 +861,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057387328342780}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -868,6 +879,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -891,7 +903,7 @@ GameObject:
   - component: {fileID: 4006467154097312}
   - component: {fileID: 33473014835606552}
   - component: {fileID: 23794183276412224}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,12 +940,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058388064485628}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -945,6 +958,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -968,7 +982,7 @@ GameObject:
   - component: {fileID: 4166411104019846}
   - component: {fileID: 33588856899372794}
   - component: {fileID: 23130578982368368}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,12 +1019,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074547261682252}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1022,6 +1037,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1107,7 +1123,7 @@ GameObject:
   - component: {fileID: 4844130766150696}
   - component: {fileID: 33157296306291988}
   - component: {fileID: 23922314801602386}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,12 +1160,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083672441901116}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1161,6 +1178,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1264,7 +1282,7 @@ GameObject:
   - component: {fileID: 4438624410434834}
   - component: {fileID: 33932423147510416}
   - component: {fileID: 23993568111865216}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,12 +1319,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096937976667956}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1318,6 +1337,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1341,7 +1361,7 @@ GameObject:
   - component: {fileID: 4125452698605780}
   - component: {fileID: 33974586012599958}
   - component: {fileID: 23525103952830624}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1378,12 +1398,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098446900551354}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1395,6 +1416,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1418,7 +1440,7 @@ GameObject:
   - component: {fileID: 4957662750959142}
   - component: {fileID: 33323334316429482}
   - component: {fileID: 23390100029400574}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1455,12 +1477,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101742970639680}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1472,6 +1495,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1495,7 +1519,7 @@ GameObject:
   - component: {fileID: 4176966703834156}
   - component: {fileID: 33696716593097868}
   - component: {fileID: 23822047596935378}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1532,12 +1556,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105085562028742}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1549,6 +1574,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1572,7 +1598,7 @@ GameObject:
   - component: {fileID: 4527071069164516}
   - component: {fileID: 33600688214634950}
   - component: {fileID: 23772641397603782}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1609,12 +1635,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106834064606964}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1626,6 +1653,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1649,7 +1677,7 @@ GameObject:
   - component: {fileID: 4719059995728430}
   - component: {fileID: 33698208808600038}
   - component: {fileID: 23806980017200328}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1686,12 +1714,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110483017118482}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1703,6 +1732,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1726,7 +1756,7 @@ GameObject:
   - component: {fileID: 4034787294769974}
   - component: {fileID: 33787448969687574}
   - component: {fileID: 23001047306071316}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1763,12 +1793,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119870993451758}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1780,6 +1811,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1803,7 +1835,7 @@ GameObject:
   - component: {fileID: 4758376379153528}
   - component: {fileID: 33830288824040260}
   - component: {fileID: 23294100360320288}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1846,6 +1878,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1857,6 +1890,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1880,7 +1914,7 @@ GameObject:
   - component: {fileID: 4058783643895742}
   - component: {fileID: 33336090639992326}
   - component: {fileID: 23953756175947168}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1923,6 +1957,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1934,6 +1969,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1957,7 +1993,7 @@ GameObject:
   - component: {fileID: 4514126046251350}
   - component: {fileID: 33585332868023952}
   - component: {fileID: 23323186348496400}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2000,6 +2036,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2011,6 +2048,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2034,7 +2072,7 @@ GameObject:
   - component: {fileID: 4108152896461274}
   - component: {fileID: 33211959202283528}
   - component: {fileID: 23076914736438780}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2071,12 +2109,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137115055143122}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2088,6 +2127,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2111,7 +2151,7 @@ GameObject:
   - component: {fileID: 4941753907998978}
   - component: {fileID: 33044574511394776}
   - component: {fileID: 23816711123451198}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2148,12 +2188,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138668455920914}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2165,6 +2206,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2188,7 +2230,7 @@ GameObject:
   - component: {fileID: 4492087125484464}
   - component: {fileID: 33780581132180108}
   - component: {fileID: 23673162707943066}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2225,12 +2267,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145811850674144}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2242,6 +2285,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2265,7 +2309,7 @@ GameObject:
   - component: {fileID: 4764656328885658}
   - component: {fileID: 33223765386712998}
   - component: {fileID: 23318646537407700}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2302,12 +2346,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151655675148394}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2319,6 +2364,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2342,7 +2388,7 @@ GameObject:
   - component: {fileID: 4417187894456318}
   - component: {fileID: 33364213431210504}
   - component: {fileID: 23707685108271272}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2385,6 +2431,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2396,6 +2443,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2419,7 +2467,7 @@ GameObject:
   - component: {fileID: 4289886777674924}
   - component: {fileID: 33035280211048360}
   - component: {fileID: 23139867133225176}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2456,12 +2504,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180207609954358}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2473,6 +2522,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2496,7 +2546,7 @@ GameObject:
   - component: {fileID: 4570486064165900}
   - component: {fileID: 33736168486862210}
   - component: {fileID: 23965506023218712}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2539,6 +2589,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2550,6 +2601,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2573,7 +2625,7 @@ GameObject:
   - component: {fileID: 4843968210850082}
   - component: {fileID: 33969680522086226}
   - component: {fileID: 23694612711230578}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2616,6 +2668,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2627,6 +2680,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2650,7 +2704,7 @@ GameObject:
   - component: {fileID: 4787209868434010}
   - component: {fileID: 33651518393949690}
   - component: {fileID: 23414611307354282}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2687,12 +2741,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187567693249806}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2704,6 +2759,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2727,7 +2783,7 @@ GameObject:
   - component: {fileID: 4999856185873172}
   - component: {fileID: 33763892979471374}
   - component: {fileID: 23752393312100174}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2764,12 +2820,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188421909042322}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2781,6 +2838,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2804,7 +2862,7 @@ GameObject:
   - component: {fileID: 4951518506343310}
   - component: {fileID: 33324897873005094}
   - component: {fileID: 23301213874010322}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2841,12 +2899,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191384123311690}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2858,6 +2917,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2881,7 +2941,7 @@ GameObject:
   - component: {fileID: 4399283471518374}
   - component: {fileID: 33214565602814930}
   - component: {fileID: 23728343229944232}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2918,12 +2978,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196052721776000}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -2935,6 +2996,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2958,7 +3020,7 @@ GameObject:
   - component: {fileID: 4592668468073678}
   - component: {fileID: 33831952655400096}
   - component: {fileID: 23585102422497156}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2995,12 +3057,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212129013756554}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3012,6 +3075,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3035,7 +3099,7 @@ GameObject:
   - component: {fileID: 4296234182882788}
   - component: {fileID: 33405485974599318}
   - component: {fileID: 23999212517354072}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3078,6 +3142,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3089,6 +3154,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3112,7 +3178,7 @@ GameObject:
   - component: {fileID: 4913188383906114}
   - component: {fileID: 33347485281943816}
   - component: {fileID: 23665415598018056}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3155,6 +3221,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3166,6 +3233,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3189,7 +3257,7 @@ GameObject:
   - component: {fileID: 4485255638025304}
   - component: {fileID: 33293944434083050}
   - component: {fileID: 23462069549135136}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3226,12 +3294,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249642274359374}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3243,6 +3312,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3266,7 +3336,7 @@ GameObject:
   - component: {fileID: 4117141112080800}
   - component: {fileID: 33822341633095314}
   - component: {fileID: 23148094360622046}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3303,12 +3373,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258450344282406}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3320,6 +3391,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3343,7 +3415,7 @@ GameObject:
   - component: {fileID: 4248637618087942}
   - component: {fileID: 33625094310526490}
   - component: {fileID: 23613318026785232}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3380,12 +3452,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260115344507722}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3397,6 +3470,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3420,7 +3494,7 @@ GameObject:
   - component: {fileID: 4237105535439640}
   - component: {fileID: 33521293957314506}
   - component: {fileID: 23682799159961520}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3457,12 +3531,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260492417155778}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3474,6 +3549,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3497,7 +3573,7 @@ GameObject:
   - component: {fileID: 4561290932075224}
   - component: {fileID: 33203086658837704}
   - component: {fileID: 23180606512661300}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3534,12 +3610,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262067091930700}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3551,6 +3628,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3574,7 +3652,7 @@ GameObject:
   - component: {fileID: 4859315330930536}
   - component: {fileID: 33610993872178302}
   - component: {fileID: 23894341677650926}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3617,6 +3695,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3628,6 +3707,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3651,7 +3731,7 @@ GameObject:
   - component: {fileID: 4104709219352462}
   - component: {fileID: 33548464430981460}
   - component: {fileID: 23794716399406798}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3694,6 +3774,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3705,6 +3786,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3742,7 +3824,7 @@ Transform:
   m_GameObject: {fileID: 1307269166102328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.14, y: 0.54, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4840037725712436}
   m_Father: {fileID: 400004}
@@ -3759,7 +3841,7 @@ GameObject:
   - component: {fileID: 4604509645297706}
   - component: {fileID: 33360629298168400}
   - component: {fileID: 23521868315410736}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3796,12 +3878,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323341974359048}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3813,6 +3896,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3836,7 +3920,7 @@ GameObject:
   - component: {fileID: 4347218851120728}
   - component: {fileID: 33874491288601590}
   - component: {fileID: 23267889346895336}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3873,12 +3957,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341505901670108}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3890,6 +3975,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3913,7 +3999,7 @@ GameObject:
   - component: {fileID: 4122460695873962}
   - component: {fileID: 33075885020328090}
   - component: {fileID: 23095171270683612}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3956,6 +4042,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -3967,6 +4054,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3990,7 +4078,7 @@ GameObject:
   - component: {fileID: 4555246197404490}
   - component: {fileID: 33853422406177438}
   - component: {fileID: 23911627227579662}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4027,12 +4115,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363750302226036}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4044,6 +4133,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4067,7 +4157,7 @@ GameObject:
   - component: {fileID: 4175025858721912}
   - component: {fileID: 33560680701385692}
   - component: {fileID: 23549059561785134}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4104,12 +4194,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382585927090832}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4121,6 +4212,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4144,7 +4236,7 @@ GameObject:
   - component: {fileID: 4346825859775108}
   - component: {fileID: 33284995680237526}
   - component: {fileID: 23248966356194220}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4187,6 +4279,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4198,6 +4291,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4221,7 +4315,7 @@ GameObject:
   - component: {fileID: 4955339459786922}
   - component: {fileID: 33820230306342652}
   - component: {fileID: 23316523334565744}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4264,6 +4358,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4275,6 +4370,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4298,7 +4394,7 @@ GameObject:
   - component: {fileID: 4406161648909038}
   - component: {fileID: 33526005356973804}
   - component: {fileID: 23837990934440686}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4335,12 +4431,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404035626541458}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4352,6 +4449,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4375,7 +4473,7 @@ GameObject:
   - component: {fileID: 4894950030970198}
   - component: {fileID: 33915556764637308}
   - component: {fileID: 23702944771535718}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4412,12 +4510,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424232230124704}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4429,6 +4528,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4452,7 +4552,7 @@ GameObject:
   - component: {fileID: 4567223290385806}
   - component: {fileID: 33330492726493116}
   - component: {fileID: 23692643140882990}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4489,12 +4589,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430428868129900}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4506,6 +4607,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4529,7 +4631,7 @@ GameObject:
   - component: {fileID: 4215317597718540}
   - component: {fileID: 33091053661267234}
   - component: {fileID: 23728777496422696}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4566,12 +4668,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431071880476430}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4583,6 +4686,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4606,7 +4710,7 @@ GameObject:
   - component: {fileID: 4598983224690096}
   - component: {fileID: 33211156162899364}
   - component: {fileID: 23390290961215732}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4643,12 +4747,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437306008377532}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4660,6 +4765,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4683,7 +4789,7 @@ GameObject:
   - component: {fileID: 4846577179895440}
   - component: {fileID: 33367706093406620}
   - component: {fileID: 23172338428573172}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4720,12 +4826,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439591487170748}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4737,6 +4844,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4760,7 +4868,7 @@ GameObject:
   - component: {fileID: 4573559060661742}
   - component: {fileID: 33593577016543910}
   - component: {fileID: 23916413931124198}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4803,6 +4911,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4814,6 +4923,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4869,9 +4979,9 @@ Animation:
   m_GameObject: {fileID: 1449334539677734}
   m_Enabled: 0
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 54975736d36d2d140a2e0cb1fb43038f, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 54975736d36d2d140a2e0cb1fb43038f, type: 2}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -4887,7 +4997,7 @@ GameObject:
   - component: {fileID: 4373060040721268}
   - component: {fileID: 33423671417995786}
   - component: {fileID: 23813342877452648}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4924,12 +5034,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449673233147378}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4941,6 +5052,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4964,7 +5076,7 @@ GameObject:
   - component: {fileID: 4492949457714238}
   - component: {fileID: 33138472213563242}
   - component: {fileID: 23986709829135666}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5001,12 +5113,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457571978872794}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5018,6 +5131,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5041,7 +5155,7 @@ GameObject:
   - component: {fileID: 4198688601185390}
   - component: {fileID: 33875026024971854}
   - component: {fileID: 23044516621935230}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5078,12 +5192,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461561178712996}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5095,6 +5210,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5118,7 +5234,7 @@ GameObject:
   - component: {fileID: 4967837624442892}
   - component: {fileID: 33395734365525974}
   - component: {fileID: 23730488921203618}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5155,12 +5271,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468243124458488}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5172,6 +5289,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5195,7 +5313,7 @@ GameObject:
   - component: {fileID: 4677673847896558}
   - component: {fileID: 33626085322971576}
   - component: {fileID: 23493120120835104}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5232,12 +5350,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478084009870108}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5249,6 +5368,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5272,7 +5392,7 @@ GameObject:
   - component: {fileID: 4262063988793140}
   - component: {fileID: 33992584089460878}
   - component: {fileID: 23279791511873976}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5315,6 +5435,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5326,6 +5447,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5411,7 +5533,7 @@ GameObject:
   - component: {fileID: 4780550260526158}
   - component: {fileID: 33737099184749030}
   - component: {fileID: 23664357460018784}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5454,6 +5576,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5465,6 +5588,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5488,7 +5612,7 @@ GameObject:
   - component: {fileID: 4248083590626198}
   - component: {fileID: 33746399009570654}
   - component: {fileID: 23491561410697346}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5531,6 +5655,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5542,6 +5667,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5565,7 +5691,7 @@ GameObject:
   - component: {fileID: 4184283088404066}
   - component: {fileID: 33523084123642702}
   - component: {fileID: 23261008944300942}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5602,12 +5728,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517230930372216}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5619,6 +5746,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5642,7 +5770,7 @@ GameObject:
   - component: {fileID: 4010923459063822}
   - component: {fileID: 33203045623810532}
   - component: {fileID: 23969252019492600}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5679,12 +5807,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517612887010890}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5696,6 +5825,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5719,7 +5849,7 @@ GameObject:
   - component: {fileID: 4957873200365590}
   - component: {fileID: 33442866989227800}
   - component: {fileID: 23695790109679088}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5762,6 +5892,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5773,6 +5904,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5796,7 +5928,7 @@ GameObject:
   - component: {fileID: 4387220359786134}
   - component: {fileID: 33009215949913316}
   - component: {fileID: 23495879209081778}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5839,6 +5971,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5850,6 +5983,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5873,7 +6007,7 @@ GameObject:
   - component: {fileID: 4777426599176934}
   - component: {fileID: 33860119150709616}
   - component: {fileID: 23139574033781560}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5910,12 +6044,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532914368065900}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -5927,6 +6062,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5950,7 +6086,7 @@ GameObject:
   - component: {fileID: 4117086497438006}
   - component: {fileID: 33231149279099226}
   - component: {fileID: 23946931920274870}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5987,12 +6123,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553397517552304}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6004,6 +6141,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6027,7 +6165,7 @@ GameObject:
   - component: {fileID: 4627213623749244}
   - component: {fileID: 33533082001713218}
   - component: {fileID: 23635580244000108}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6070,6 +6208,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6081,6 +6220,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6104,7 +6244,7 @@ GameObject:
   - component: {fileID: 4683057883938788}
   - component: {fileID: 33170713654601554}
   - component: {fileID: 23410625666910808}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6141,12 +6281,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574208642835188}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6158,6 +6299,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6181,7 +6323,7 @@ GameObject:
   - component: {fileID: 4622674596774538}
   - component: {fileID: 33158535390971428}
   - component: {fileID: 23905189639907394}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6218,12 +6360,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574754375795302}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6235,6 +6378,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6258,7 +6402,7 @@ GameObject:
   - component: {fileID: 4042090332629836}
   - component: {fileID: 33628364791790136}
   - component: {fileID: 23539324319391816}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6301,6 +6445,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6312,6 +6457,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6335,7 +6481,7 @@ GameObject:
   - component: {fileID: 4963072694119612}
   - component: {fileID: 33351754244746090}
   - component: {fileID: 23119417403701954}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6372,12 +6518,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599485895714622}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6389,6 +6536,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6412,7 +6560,7 @@ GameObject:
   - component: {fileID: 4898327498347706}
   - component: {fileID: 33117058013514400}
   - component: {fileID: 23795770888226806}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6449,12 +6597,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614771151968920}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6466,6 +6615,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6489,7 +6639,7 @@ GameObject:
   - component: {fileID: 4553365212706620}
   - component: {fileID: 33217616532296116}
   - component: {fileID: 23122052990765174}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6526,12 +6676,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620505952726402}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6543,6 +6694,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6566,7 +6718,7 @@ GameObject:
   - component: {fileID: 4527170392950378}
   - component: {fileID: 33118873483857038}
   - component: {fileID: 23572283926909264}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6603,12 +6755,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620813008646450}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6620,6 +6773,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6643,7 +6797,7 @@ GameObject:
   - component: {fileID: 4464297481397546}
   - component: {fileID: 33388282114367842}
   - component: {fileID: 23662980901550482}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6680,12 +6834,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657158299850740}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6697,6 +6852,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6720,7 +6876,7 @@ GameObject:
   - component: {fileID: 4987697073816438}
   - component: {fileID: 33818597943445418}
   - component: {fileID: 23913441617538148}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6763,6 +6919,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6774,6 +6931,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6797,7 +6955,7 @@ GameObject:
   - component: {fileID: 4785290545000430}
   - component: {fileID: 33179127096976546}
   - component: {fileID: 23174610286261278}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6834,12 +6992,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665453897210698}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6851,6 +7010,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6874,7 +7034,7 @@ GameObject:
   - component: {fileID: 4750002622205696}
   - component: {fileID: 33788563168935656}
   - component: {fileID: 23892019635510108}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6911,12 +7071,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679913830629050}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6928,6 +7089,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6951,7 +7113,7 @@ GameObject:
   - component: {fileID: 4775401220073660}
   - component: {fileID: 33749186270442400}
   - component: {fileID: 23818587297878272}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6988,12 +7150,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694653545730024}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7005,6 +7168,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7028,7 +7192,7 @@ GameObject:
   - component: {fileID: 4769807863206570}
   - component: {fileID: 33277597491702156}
   - component: {fileID: 23872785393470430}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7065,12 +7229,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697004670621774}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7082,6 +7247,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7105,7 +7271,7 @@ GameObject:
   - component: {fileID: 4428936402245026}
   - component: {fileID: 33107677066959248}
   - component: {fileID: 23541649305683654}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7148,6 +7314,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7159,6 +7326,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7182,7 +7350,7 @@ GameObject:
   - component: {fileID: 4268469073682424}
   - component: {fileID: 33124510175779412}
   - component: {fileID: 23109479153998674}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7219,12 +7387,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715511673836180}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7236,6 +7405,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7259,7 +7429,7 @@ GameObject:
   - component: {fileID: 4455940194394278}
   - component: {fileID: 33883243378857548}
   - component: {fileID: 23108277525374770}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7296,12 +7466,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730214907073818}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7313,6 +7484,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7336,7 +7508,7 @@ GameObject:
   - component: {fileID: 4455169096672534}
   - component: {fileID: 33626954004026918}
   - component: {fileID: 23803760078215718}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7373,12 +7545,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754902867872826}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7390,6 +7563,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7413,7 +7587,7 @@ GameObject:
   - component: {fileID: 4306397139689474}
   - component: {fileID: 33501314793469128}
   - component: {fileID: 23160492064568582}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7450,12 +7624,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760196444179684}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7467,6 +7642,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7490,7 +7666,7 @@ GameObject:
   - component: {fileID: 4676487964377204}
   - component: {fileID: 33746473074261794}
   - component: {fileID: 23842474046460010}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7527,12 +7703,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762600628491770}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7544,6 +7721,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7567,7 +7745,7 @@ GameObject:
   - component: {fileID: 4585121110448630}
   - component: {fileID: 33153396341031974}
   - component: {fileID: 23666553234157550}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7604,12 +7782,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767714209338284}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7621,6 +7800,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7644,7 +7824,7 @@ GameObject:
   - component: {fileID: 4108386991255708}
   - component: {fileID: 33643137813881742}
   - component: {fileID: 23767774647265114}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7687,6 +7867,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7698,6 +7879,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7721,7 +7903,7 @@ GameObject:
   - component: {fileID: 4957506628204472}
   - component: {fileID: 33226192299131758}
   - component: {fileID: 23945066164712570}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7758,12 +7940,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778537334204090}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7775,6 +7958,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7798,7 +7982,7 @@ GameObject:
   - component: {fileID: 4881013109888324}
   - component: {fileID: 33895477806127616}
   - component: {fileID: 23988224581781142}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7835,12 +8019,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792931668149496}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7852,6 +8037,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7875,7 +8061,7 @@ GameObject:
   - component: {fileID: 4709139807941230}
   - component: {fileID: 33389045509589674}
   - component: {fileID: 23716062975089910}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7912,12 +8098,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793699836838168}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -7929,6 +8116,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7952,7 +8140,7 @@ GameObject:
   - component: {fileID: 4719909720409240}
   - component: {fileID: 33053496163151180}
   - component: {fileID: 23457613344357228}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7989,12 +8177,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816122442240100}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8006,6 +8195,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8029,7 +8219,7 @@ GameObject:
   - component: {fileID: 4567015233770464}
   - component: {fileID: 33284419872718140}
   - component: {fileID: 23719134007782810}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8066,12 +8256,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819040540014332}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8083,6 +8274,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8106,7 +8298,7 @@ GameObject:
   - component: {fileID: 4989907397919484}
   - component: {fileID: 33742943099660452}
   - component: {fileID: 23774538048645808}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8143,12 +8335,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827655679796588}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8160,6 +8353,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8183,7 +8377,7 @@ GameObject:
   - component: {fileID: 4099268354954006}
   - component: {fileID: 33928368529868240}
   - component: {fileID: 23777408033197162}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8220,12 +8414,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843838202280280}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8237,6 +8432,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8260,7 +8456,7 @@ GameObject:
   - component: {fileID: 4058012486493394}
   - component: {fileID: 33073425757185408}
   - component: {fileID: 23907165213447396}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8297,12 +8493,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847596471650376}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8314,6 +8511,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8337,7 +8535,7 @@ GameObject:
   - component: {fileID: 4583355048232966}
   - component: {fileID: 33636508859188348}
   - component: {fileID: 23965849788028660}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8374,12 +8572,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854939414695528}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8391,6 +8590,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8414,7 +8614,7 @@ GameObject:
   - component: {fileID: 4887673650809804}
   - component: {fileID: 33003158042618620}
   - component: {fileID: 23569894870683428}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8457,6 +8657,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8468,6 +8669,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8491,7 +8693,7 @@ GameObject:
   - component: {fileID: 4436840170032000}
   - component: {fileID: 33254202200324950}
   - component: {fileID: 23506732354911922}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8528,12 +8730,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868363296353958}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8545,6 +8748,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8568,7 +8772,7 @@ GameObject:
   - component: {fileID: 4589666599444888}
   - component: {fileID: 33564303176413084}
   - component: {fileID: 23894923537749476}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8611,6 +8815,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8622,6 +8827,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8645,7 +8851,7 @@ GameObject:
   - component: {fileID: 4764901172028884}
   - component: {fileID: 33345180029638878}
   - component: {fileID: 23467867614877136}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8682,12 +8888,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887618646807216}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8699,6 +8906,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8722,7 +8930,7 @@ GameObject:
   - component: {fileID: 4592568259207818}
   - component: {fileID: 33488433369669070}
   - component: {fileID: 23359211681515954}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8759,12 +8967,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905507597651936}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8776,6 +8985,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8799,7 +9009,7 @@ GameObject:
   - component: {fileID: 4953780651713418}
   - component: {fileID: 33602301972368260}
   - component: {fileID: 23767635362809962}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8836,12 +9046,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912235899262194}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8853,6 +9064,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8876,7 +9088,7 @@ GameObject:
   - component: {fileID: 4751339381074860}
   - component: {fileID: 33920094635549654}
   - component: {fileID: 23496170278929570}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8913,12 +9125,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913241219142022}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -8930,6 +9143,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8953,7 +9167,7 @@ GameObject:
   - component: {fileID: 4219495685932526}
   - component: {fileID: 33604729617944420}
   - component: {fileID: 23839589882732910}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8996,6 +9210,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9007,6 +9222,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9030,7 +9246,7 @@ GameObject:
   - component: {fileID: 4069565650220016}
   - component: {fileID: 33144194801962820}
   - component: {fileID: 23708789895783498}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9067,12 +9283,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918666960631274}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9084,6 +9301,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9107,7 +9325,7 @@ GameObject:
   - component: {fileID: 4871380452214760}
   - component: {fileID: 33566080483727682}
   - component: {fileID: 23761777605906460}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9144,12 +9362,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927866988074732}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9161,6 +9380,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9184,7 +9404,7 @@ GameObject:
   - component: {fileID: 4142876537765220}
   - component: {fileID: 33189321575172434}
   - component: {fileID: 23715047769198754}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9221,12 +9441,13 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928553379530600}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9238,6 +9459,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9261,7 +9483,7 @@ GameObject:
   - component: {fileID: 4482674715185956}
   - component: {fileID: 33955317300318600}
   - component: {fileID: 23317182443765472}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9304,6 +9526,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9315,6 +9538,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9338,7 +9562,7 @@ GameObject:
   - component: {fileID: 4285983776022898}
   - component: {fileID: 33719017153555142}
   - component: {fileID: 23557886745973992}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9381,6 +9605,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9392,6 +9617,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9415,7 +9641,7 @@ GameObject:
   - component: {fileID: 4588525094922526}
   - component: {fileID: 33369652536475012}
   - component: {fileID: 23866415830550878}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9458,6 +9684,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9469,6 +9696,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9492,7 +9720,7 @@ GameObject:
   - component: {fileID: 4256986981475800}
   - component: {fileID: 33950767703604396}
   - component: {fileID: 23226923877913018}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9535,6 +9763,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9546,6 +9775,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -9569,7 +9799,7 @@ GameObject:
   - component: {fileID: 4534960577912772}
   - component: {fileID: 33772699559101574}
   - component: {fileID: 23097218636655680}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: metal (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9612,6 +9842,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -9623,6 +9854,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

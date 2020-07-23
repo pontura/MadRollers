@@ -181,7 +181,6 @@ public class Level : MonoBehaviour {
 	{
         Data.Instance.musicManager.OnExplotionSFX();
         Vector3 newPos = position;
-        newPos.y -= 4;
 
         SceneObject explotionNew = ObjectPool.instance.GetObjectForType(_name, true);
         if (explotionNew == null)

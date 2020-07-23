@@ -199,6 +199,8 @@ public class AssetsBundleLoader : MonoBehaviour
                 bundles = new Dictionary<string, AssetBundle>();
 
             bundles.Add(uri, bundle);
+            print("bundles.Count: " + bundles.Count);
+
             OnSuccess("ok");
             //OnLoaded(true);
         }
@@ -207,11 +209,12 @@ public class AssetsBundleLoader : MonoBehaviour
     public GameObject GetGo(string bundleName, string asset)
     {
         AssetBundle assetBundle = bundles[bundleName];
+        print("assetBundle: " + assetBundle + "   name " + assetBundle.name + "    asset: " + asset + "    bundleName " + bundleName);
         return assetBundle.LoadAsset(asset) as GameObject;
     }
     public GameObject GetAsset(string bundleName, string asset)
     {
-        //  print("GET Asset  bundleName: " + bundleName + " asset: " + asset);
+        print("GET Asset  bundleName: " + bundleName + " asset: " + asset);
         AssetBundle assetBundle = bundles[bundleName];
         GameObject go = assetBundle.LoadAsset(asset) as GameObject;
         return Instantiate(go);

@@ -44,7 +44,7 @@ public class MissionSelector : MonoBehaviour {
 	}
 	void SetTexts()
 	{		
-		missionField.text = "MISION " + (actualMission+1) + "/" + totalMissions;
+		missionField.text = "DISKETTE " + (actualMission+1) + "/" + totalMissions;
 		Data.Instance.missions.MissionActiveID = actualMission;
 	}
 	void Update()
