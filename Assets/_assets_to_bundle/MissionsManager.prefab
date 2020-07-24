@@ -185,15 +185,6 @@ MonoBehaviour:
           boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -10
-          randomize: 0
-          areas:
-          - bombaSingle1
-          cameraOrientation: {x: 0, y: 3, z: 1}
-        - totalDistanceToCamFX: 0
-          boss: 0
-          json: {fileID: 0}
-          total_areas: 1
           bending: -1
           randomize: 0
           areas:
@@ -377,6 +368,15 @@ MonoBehaviour:
           areas:
           - container_cruz
           cameraOrientation: {x: 0, y: -4, z: 0}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -10
+          randomize: 0
+          areas:
+          - bombaSingle1
+          cameraOrientation: {x: 0, y: 3, z: 1}
         - totalDistanceToCamFX: 0
           boss: 0
           json: {fileID: 0}
@@ -2128,7 +2128,7 @@ MonoBehaviour:
         - totalDistanceToCamFX: 0
           boss: 1
           json: {fileID: 0}
-          total_areas: 10000
+          total_areas: 1000
           bending: -12
           randomize: 0
           areas:
@@ -2399,7 +2399,7 @@ MonoBehaviour:
           bending: -12
           randomize: 0
           areas:
-          - boss_vertical_area
+          - pisoCurvo_boss
           - pisoCurvo_boss_free
           - pisoCurvo_helices
           - pisoCurvo_boss_free
@@ -5335,7 +5335,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d8ad3b06330df7f449108f50c2840e76, type: 3}
   - {fileID: 4900000, guid: a13cda92415f90341a9f07ed5bee664a, type: 3}
   - {fileID: 4900000, guid: 2efdc8679328d074c996137e28fe2acb, type: 3}
-  - {fileID: 4900000, guid: 27d3dca4572a9964a84c1ab7306f8a03, type: 3}
   - {fileID: 4900000, guid: 60544e8b501a01c44a3409c53e3db854, type: 3}
   - {fileID: 4900000, guid: 49860966aff298542ba81654280c2a27, type: 3}
   - {fileID: 4900000, guid: ca70e232c58005647ba33ba5f8a7dcff, type: 3}
@@ -5357,6 +5356,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6848b05d33aee9849ac2ac36ca675cda, type: 3}
   - {fileID: 4900000, guid: 85a7ada6ac7e76540a22de132a5a20b9, type: 3}
   - {fileID: 4900000, guid: 9a3a0af54e07d3547b1704b2eea7aef5, type: 3}
+  - {fileID: 4900000, guid: 27d3dca4572a9964a84c1ab7306f8a03, type: 3}
   - {fileID: 4900000, guid: 6ecb62a0844584b46ae958ba01fd9526, type: 3}
   - {fileID: 4900000, guid: da227f45296e71343a5ccea66db913b5, type: 3}
   - {fileID: 4900000, guid: b4e7bf722af05894782ca98809d02580, type: 3}
@@ -5549,6 +5549,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: a522c0ad2bf9b8847ac0f5d111bbbd8b, type: 3}
   - {fileID: 4900000, guid: 7ca2f24f4ef6dff4c8d8d3a88ec1a519, type: 3}
   - {fileID: 4900000, guid: af3e5a4517e7893439a15143a78b979c, type: 3}
+  - {fileID: 4900000, guid: 9edc73a4f199f404fb5d1326bca1779f, type: 3}
   - {fileID: 4900000, guid: 5a39e6525f92603438370ad58eecffcb, type: 3}
   - {fileID: 4900000, guid: cbb7fd932941dfd4e80ff3b8f7389269, type: 3}
   - {fileID: 4900000, guid: 9aa0fd1009921004db82ea34c9240a0b, type: 3}
@@ -5669,7 +5670,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 3ca0ea288ffb6024a9ee2d203c86b62a, type: 3}
   - {fileID: 4900000, guid: 45c1cba749bcabc439d4d3ad867f2777, type: 3}
   - {fileID: 4900000, guid: 871dae23a1597fe43b0a010d6c564736, type: 3}
-  - {fileID: 4900000, guid: 9edc73a4f199f404fb5d1326bca1779f, type: 3}
   - {fileID: 4900000, guid: 1fe5d39563a7efb408f710b16fb8265e, type: 3}
   - {fileID: 4900000, guid: fdba504cbb6d0044b93fd2348c098b86, type: 3}
   - {fileID: 4900000, guid: d86693a298d0de942bcb417c8e63c323, type: 3}
@@ -5710,7 +5710,6 @@ MonoBehaviour:
   - coinsEasy2
   - coinsEasy3
   - enemigosx2
-  - bombaSingle1
   - descanso3
   - boss_agua_fences
   - Ending
@@ -5732,6 +5731,7 @@ MonoBehaviour:
   - lava_zigzag_1
   - lava_zigzag_2
   - container_cruz
+  - bombaSingle1
   - subibaja1
   - entrance
   - bossVienen
@@ -5924,6 +5924,7 @@ MonoBehaviour:
   - pisoCurvo9 1
   - pisoCurvo1 1
   - pisoCurvo_Rays2
+  - pisoCurvo_boss
   - pisoCurvo_Rays1
   - raysAncho
   - cilindroDoubleBossFreeRays
@@ -6044,7 +6045,6 @@ MonoBehaviour:
   - cilindroBossPer
   - pisoCurvoSnakes
   - pisoCurvoSnakes2
-  - pisoCurvo_boss
   - pisoAlto1
   - pisoAlto_rueda
   - pisoAlto_helices
