@@ -13,7 +13,6 @@ public class FXExplotion : SceneObject {
     public override void OnRestart(Vector3 position)
     {
         float _y = finalScale / 4f;
-        print("size: " + finalScale + " _y: " + _y);
 
         position.y -= _y;
 

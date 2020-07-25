@@ -79,6 +79,7 @@ MonoBehaviour:
     - gallax_bosses_air
     - gallax_curvo
     - gallax_rays
+    - gallax_vertical_boss
     - gallax_plataformas_giran
     - gallax_rays_yellow_army
     - gallax_blue_Army_fortress
@@ -2126,23 +2127,6 @@ MonoBehaviour:
           - descansoAnchoMinimal
           cameraOrientation: {x: 0, y: -2, z: 1}
         - totalDistanceToCamFX: 0
-          boss: 1
-          json: {fileID: 0}
-          total_areas: 1000
-          bending: -12
-          randomize: 0
-          areas:
-          - boss_vertical_area
-          - pisoCurvo_boss_free
-          - pisoCurvo_helices
-          - pisoCurvo_boss_free
-          - pisoCurvo_boss_free
-          - pisoCurvo_boss_free
-          - pisoCurvo_boss_free
-          - pisoCurvo_boss_free
-          - pisoCurvo_boss_free
-          cameraOrientation: {x: 0, y: -2.5, z: -1.6}
-        - totalDistanceToCamFX: 0
           boss: 0
           json: {fileID: 0}
           total_areas: 1
@@ -2515,6 +2499,34 @@ MonoBehaviour:
           areas:
           - Ending
           cameraOrientation: {x: 0, y: -2, z: -1}
+    - title: 
+      data:
+      - jsonName: gallax_vertical_boss
+        title: NAVE VERTICAL SHOOTER
+        id: 0
+        maxScore: 3000
+        fondo: gallax
+        areaSetData:
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -18
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          - raysAncho
+          cameraOrientation: {x: 0, y: 8, z: 1}
+        - totalDistanceToCamFX: 0
+          boss: 1
+          json: {fileID: 0}
+          total_areas: 1000
+          bending: -6
+          randomize: 0
+          areas:
+          - boss_vertical_area
+          - zigzagAncho
+          cameraOrientation: {x: 0, y: -8, z: -2}
     - title: 
       data:
       - jsonName: gallax_plataformas_giran
@@ -5529,7 +5541,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d726fb68604351240864865869170353, type: 3}
   - {fileID: 4900000, guid: 3218320e10ca1d64ca98b4314e4f79a2, type: 3}
   - {fileID: 0}
-  - {fileID: 4900000, guid: cea5f921380d6e34e999e9c8f4817d17, type: 3}
   - {fileID: 4900000, guid: 52cf7497c91201b4c8491fcf344cca6c, type: 3}
   - {fileID: 4900000, guid: 5a0862f3b208c1748a292054b7fdd5ce, type: 3}
   - {fileID: 4900000, guid: 9c3d98ed1a3f6e14e8c78f5573f9301c, type: 3}
@@ -5554,6 +5565,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: cbb7fd932941dfd4e80ff3b8f7389269, type: 3}
   - {fileID: 4900000, guid: 9aa0fd1009921004db82ea34c9240a0b, type: 3}
   - {fileID: 4900000, guid: e922862639d1244438bef4324c7a9b92, type: 3}
+  - {fileID: 4900000, guid: cea5f921380d6e34e999e9c8f4817d17, type: 3}
+  - {fileID: 4900000, guid: f16f5a5c7528b7e479be8129276aae5f, type: 3}
   - {fileID: 4900000, guid: 89eab5ee6bcea7a47bcb6a3eba89028b, type: 3}
   - {fileID: 4900000, guid: 3ecc7138e3ddba841a5d2633b5e87d9f, type: 3}
   - {fileID: 4900000, guid: 15c633036a731a347b8ca238f20b2f99, type: 3}
@@ -5904,7 +5917,6 @@ MonoBehaviour:
   - helicesx2_larga
   - container_helice
   - boss_naves_boyland
-  - boss_vertical_area
   - cilindro1
   - navesSimple2
   - zigzag_Rays_1
@@ -5929,6 +5941,8 @@ MonoBehaviour:
   - raysAncho
   - cilindroDoubleBossFreeRays
   - circuloCoins
+  - boss_vertical_area
+  - zigzagAncho
   - circuloCoinsBoss
   - circuloCoinsFree
   - zigzag

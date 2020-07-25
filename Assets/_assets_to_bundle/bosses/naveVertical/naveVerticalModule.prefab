@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114473897798922406}
   - component: {fileID: 114056041063002774}
   - component: {fileID: 7284351064747242033}
-  - component: {fileID: 6997463837015298275}
+  - component: {fileID: 5889872641569672004}
   m_Layer: 17
   m_Name: bossPart
   m_TagString: destroyable
@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213952874451142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.45, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4916543712635862}
   m_Father: {fileID: 4221487151732676}
@@ -64,7 +64,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3.61, z: 3}
+  m_Size: {x: 2.07, y: 2.36, z: 3}
   m_Center: {x: 0, y: 2.8, z: -0.03}
 --- !u!114 &114473897798922406
 MonoBehaviour:
@@ -102,7 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
   progressBarPosition: {x: 0, y: 6, z: 0}
-  lifes: 30
+  lifes: 20
+  asset: {fileID: 0}
   anim: {fileID: 0}
 --- !u!111 &7284351064747242033
 Animation:
@@ -113,14 +114,14 @@ Animation:
   m_GameObject: {fileID: 1213952874451142}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 15347765a7fdec948a988fa5fe740057, type: 2}
+  m_Animation: {fileID: 7400000, guid: 4fbbd2c7694c2364aa2a03b5cfd375ac, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 15347765a7fdec948a988fa5fe740057, type: 2}
+  - {fileID: 7400000, guid: 4fbbd2c7694c2364aa2a03b5cfd375ac, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &6997463837015298275
+--- !u!114 &5889872641569672004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,15 +130,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1213952874451142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04632fd85c62462418528d750f172a5e, type: 3}
+  m_Script: {fileID: 11500000, guid: d1cf233133876a84494a47494284b868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
   sound: 1
-  delayToSoundAttack: 0.7
-  RandomBetween: 5
-  attackDuration: 0.9
+  delayToSoundAttack: 2
+  RandomBetween: 2
+  attackDuration: 4.45
+  bossPart: {fileID: 0}
+  bossPartAnim: {fileID: 0}
   attacking: 0
+  speedAnim: 0
+  attacks:
+  - {fileID: 7400000, guid: a3a1b6149b8cd324b8d3fdf15cfd0f92, type: 2}
+  - {fileID: 7400000, guid: 390b06edca21ab5419423fa063854e88, type: 2}
 --- !u!1 &1532468015470932
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532468015470932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.73, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4982258199040136}

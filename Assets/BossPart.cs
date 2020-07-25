@@ -13,8 +13,8 @@ public class BossPart : MonoBehaviour {
     public int lifes = 2;
     int totalLife;
     Vector3 initialScale;
-  //  ProgressBar progressBar;
-    GameObject asset;
+    //  ProgressBar progressBar;
+    public GameObject asset;
    // [HideInInspector]
     public Animation anim;
     BossAttacksManager bossAttackManager;
@@ -38,11 +38,6 @@ public class BossPart : MonoBehaviour {
                 asset = Instantiate(ObjectPool.instance.bossesPool.GetBossAsset(settings.asset).gameObject);
             else
                 asset = Instantiate(Resources.Load("bosses/assets/" + settings.asset, typeof(GameObject))) as GameObject;
-
-            foreach (MeshRenderer mr in asset.GetComponentsInChildren<MeshRenderer>())
-            {
-                print("_______color: " + mr.material.name);
-            }
             asset.transform.SetParent (transform);
             asset.transform.localScale = Vector3.one;
             asset.transform.localEulerAngles = Vector3.zero;

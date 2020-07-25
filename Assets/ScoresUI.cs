@@ -25,7 +25,7 @@ public class ScoresUI : MonoBehaviour
             Destroy(this);
         }
        // panel.SetActive(true);
-        Data.Instance.events.OnMissionStart += OnMissionStart;
+      //  Data.Instance.events.OnMissionStart += OnMissionStart;
       //  myAvatarThumb.Init(UserData.Instance.userID);
         Loop();
     }
@@ -63,9 +63,9 @@ public class ScoresUI : MonoBehaviour
         else
         {
           //  otherAvatarThumb.Init(hiscoreData.all[0].userID);
-            hiscore = hiscoreData.all[0].score;
-            otherScore.text = Utils.FormatNumbers((int)hiscore);
-            otherName.text = hiscoreData.all[0].username.ToUpper();
+          //  hiscore = hiscoreData.all[0].score;
+          //  otherScore.text = Utils.FormatNumbers((int)hiscore);
+         //   otherName.text = hiscoreData.all[0].username.ToUpper();
         }
     }
 }

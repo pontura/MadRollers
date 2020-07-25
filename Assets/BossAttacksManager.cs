@@ -21,13 +21,13 @@ public class BossAttacksManager : MonoBehaviour
     public float delayToSoundAttack;
     public int RandomBetween;    
     public float attackDuration;
-    BossPart bossPart;
-    Animation bossPartAnim;
-    public bool attacking;
-    float speedAnim;
+    [HideInInspector] public BossPart bossPart;
+    [HideInInspector] public Animation bossPartAnim;
+    [HideInInspector] public bool attacking;
+    [HideInInspector] public float speedAnim;
    // public SceneObject myProjectile;
 
-    private void Start()
+    public virtual void Start()
     {
         bossPartAnim = GetComponent<Animation>();
         bossPart = GetComponent<BossPart>();
@@ -36,7 +36,7 @@ public class BossAttacksManager : MonoBehaviour
         if (type == types.RANDOM_ATTACK)
             RandomAttack();
     }
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         CancelInvoke();
     }
@@ -49,7 +49,7 @@ public class BossAttacksManager : MonoBehaviour
         Invoke("Loop", 1);
         CanRandomAttack();
     }
-    public void CanRandomAttack()
+    public virtual void CanRandomAttack()
     {
         if (attacking)
             return;
@@ -62,7 +62,7 @@ public class BossAttacksManager : MonoBehaviour
             return true;
         return false;
     }
-    public void Attack()
+    public virtual void Attack()
     {
         if(delayToSoundAttack>0)
             Data.Instance.events.OnSoundFX("subida", -1);
@@ -79,7 +79,7 @@ public class BossAttacksManager : MonoBehaviour
         else
             Data.Instance.events.OnSoundFX("laser", -1);
     }
-    void ResetAttack()
+    public virtual void ResetAttack()
     {
         bossPart.anim.Play("idle");
         attacking = false;
