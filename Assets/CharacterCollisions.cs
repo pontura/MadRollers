@@ -62,7 +62,7 @@ public class CharacterCollisions : MonoBehaviour {
                 {
 
                     Vector3 pos = characterBehavior.transform.position;
-                    if (difY < -1f)
+                    if (difY < -1.25f)
                     {
                         characterBehavior.Hit();
                         return;

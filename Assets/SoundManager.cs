@@ -65,7 +65,7 @@ public class SoundManager : MonoBehaviour
         }
     }
     float nextSoundTime;
-    float delayToNextSound = 0.1f;
+    float delayToNextSound = 0.05f;
     void OnSoundFX(string soundName, int playerID)
     {
         if (soundName == "")
@@ -73,7 +73,7 @@ public class SoundManager : MonoBehaviour
             audioSource.Stop();
             return;
         }
-        if (Time.time <= nextSoundTime)
+        if (Time.time <= nextSoundTime && soundName != "combo")
         {
             return;
         }

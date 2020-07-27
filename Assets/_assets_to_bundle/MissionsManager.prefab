@@ -49,6 +49,7 @@ MonoBehaviour:
   all:
     missionsVideoGame1:
     - boy_init_jump
+    - boy_2
     - boy_firstBoss
     - boy_init_woods
     - boy_conejitos
@@ -192,19 +193,28 @@ MonoBehaviour:
           - descanso3
           cameraOrientation: {x: 0, y: 12, z: -2}
         - totalDistanceToCamFX: 0
-          boss: 1
+          boss: 0
           json: {fileID: 0}
-          total_areas: 3
-          bending: -13
+          total_areas: 2
+          bending: -5
           randomize: 0
           areas:
           - descansoAnchoMinimal
+          - descanso4
+          cameraOrientation: {x: 0, y: 0, z: 1}
+        - totalDistanceToCamFX: 0
+          boss: 1
+          json: {fileID: 0}
+          total_areas: 3
+          bending: -18
+          randomize: 0
+          areas:
           - boss_agua_fences
           - Ending
           cameraOrientation: {x: 0, y: 1, z: -2}
     - title: 
       data:
-      - jsonName: boy_firstBoss
+      - jsonName: boy_2
         title: DESTROY RULO
         id: 0
         maxScore: 3000
@@ -233,33 +243,140 @@ MonoBehaviour:
           boss: 0
           json: {fileID: 0}
           total_areas: 1
-          bending: -8
+          bending: -12
           randomize: 1
           areas:
-          - descansoAncho2
+          - descanso4
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -2
+          randomize: 0
+          areas:
+          - calle_caeCentro1
+          - calle_caeCentro2
+          - calle_caeDerecha
+          - calle_caeIzquierda
+          cameraOrientation: {x: 0, y: 6, z: 0}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -12
+          randomize: 1
+          areas:
+          - waterStars1
+          - waterStars2
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -12
+          randomize: 1
+          areas:
+          - descanso2
+          cameraOrientation: {x: 0, y: -4, z: -2}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: -2
+          randomize: 1
+          areas:
+          - calle_caeCentro1
+          - calle_caeCentro2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -12
+          randomize: 1
+          areas:
+          - waterStars1
+          - waterStars2
           cameraOrientation: {x: 0, y: -4, z: -2}
         - totalDistanceToCamFX: 0
           boss: 1
           json: {fileID: 0}
-          total_areas: 3
-          bending: -10
+          total_areas: 1
+          bending: -1
+          randomize: 0
+          areas:
+          - Ending
+          cameraOrientation: {x: 0, y: -5, z: 1}
+    - title: 
+      data:
+      - jsonName: boy_firstBoss
+        title: DESTROY RULO
+        id: 0
+        maxScore: 3000
+        fondo: castles_helicopteros
+        areaSetData:
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -2
+          randomize: 0
+          areas:
+          - enemigosDoble
+          - enemigosDobleEnemies
+          cameraOrientation: {x: 0, y: -10, z: 0}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -12
           randomize: 0
           areas:
           - descansoAnchoMinimal
+          - descansoAnchoMinimal2
+          cameraOrientation: {x: 0, y: 5, z: -2}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: 5
+          randomize: 1
+          areas:
+          - descanso2
+          - descanso4
+          cameraOrientation: {x: 0, y: -10, z: -4}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -1
+          randomize: 1
+          areas:
+          - waterStars1
+          - waterStars2
+          cameraOrientation: {x: 0, y: 10, z: -2}
+        - totalDistanceToCamFX: 0
+          boss: 1
+          json: {fileID: 0}
+          total_areas: 3
+          bending: -16
+          randomize: 0
+          areas:
           - boss_Pacmans_intro_free_simple
           - boss_Pacmans_intro
           - boss_Pacmans_intro_free
-          cameraOrientation: {x: 0, y: 3, z: 1}
+          cameraOrientation: {x: 0, y: 10, z: 1}
         - totalDistanceToCamFX: 0
           boss: 0
           json: {fileID: 0}
           total_areas: 1000
-          bending: -16
+          bending: -8
           randomize: 1
           areas:
           - boss_Pacmans_intro_free
           - boss_Pacmans_intro_free2
-          cameraOrientation: {x: 0, y: -3, z: 0}
+          cameraOrientation: {x: 0, y: -8, z: -1}
     - title: 
       data:
       - jsonName: boy_init_woods
@@ -5349,11 +5466,18 @@ MonoBehaviour:
   - {fileID: 4900000, guid: a13cda92415f90341a9f07ed5bee664a, type: 3}
   - {fileID: 4900000, guid: 2efdc8679328d074c996137e28fe2acb, type: 3}
   - {fileID: 4900000, guid: 60544e8b501a01c44a3409c53e3db854, type: 3}
+  - {fileID: 4900000, guid: 1e7165a530b5228489953c15a13f9e2d, type: 3}
   - {fileID: 4900000, guid: 49860966aff298542ba81654280c2a27, type: 3}
   - {fileID: 4900000, guid: ca70e232c58005647ba33ba5f8a7dcff, type: 3}
   - {fileID: 4900000, guid: 6969f401f4285d149af1ce68c3828299, type: 3}
   - {fileID: 4900000, guid: 7ada5de4f2e4570479696969b29651ea, type: 3}
-  - {fileID: 4900000, guid: 18191405f186bf34db8fe723ec8602a7, type: 3}
+  - {fileID: 4900000, guid: db3882e293b8f54438cd5b9a943b1d55, type: 3}
+  - {fileID: 4900000, guid: 2a88040933d3c614093dbbcfcee24b1c, type: 3}
+  - {fileID: 4900000, guid: daf7b51d969c64448bc1cd4fa73ff85d, type: 3}
+  - {fileID: 4900000, guid: dd8c46a81e99ad841abcf4eea8ca4595, type: 3}
+  - {fileID: 4900000, guid: 19eb29a6346b3cc4792b6e2bba00831f, type: 3}
+  - {fileID: 4900000, guid: ce232349a1a07394383155c3b3e94648, type: 3}
+  - {fileID: 4900000, guid: 729aefcedded6f245998e984ea233ad4, type: 3}
   - {fileID: 4900000, guid: 8fec53bcabe63324ca7e0602960e29a7, type: 3}
   - {fileID: 4900000, guid: 68ac16b37c94661429016f3dba7dad44, type: 3}
   - {fileID: 4900000, guid: 58c8471432293074ebcbddeadfbdc094, type: 3}
@@ -5384,7 +5508,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: a9e8750e41df37142b8be74aad6104b7, type: 3}
   - {fileID: 4900000, guid: 856bb7a46a96f3344a8e4eea799d8c58, type: 3}
   - {fileID: 4900000, guid: c161df6907731eb4c9d9b433a7037d07, type: 3}
-  - {fileID: 4900000, guid: 729aefcedded6f245998e984ea233ad4, type: 3}
   - {fileID: 4900000, guid: fe360d8742358d84ebadd8958351b9cc, type: 3}
   - {fileID: 4900000, guid: d0dbe4fdf9ca31649927c5e7d9508eb6, type: 3}
   - {fileID: 4900000, guid: e21501efaf168e2489ceb576e0a9dd74, type: 3}
@@ -5726,11 +5849,18 @@ MonoBehaviour:
   - coinsEasy3
   - enemigosx2
   - descanso3
+  - descanso4
   - boss_agua_fences
   - Ending
   - enemigosDoble
   - enemigosDobleEnemies
-  - descansoAncho2
+  - calle_caeCentro1
+  - calle_caeCentro2
+  - calle_caeDerecha
+  - calle_caeIzquierda
+  - waterStars1
+  - waterStars2
+  - descanso2
   - boss_Pacmans_intro_free_simple
   - boss_Pacmans_intro
   - boss_Pacmans_intro_free
@@ -5761,7 +5891,6 @@ MonoBehaviour:
   - descansoSimpleCoins
   - ruedaDoble1
   - coinsJumpFence
-  - descanso2
   - killRunnerSimple_4
   - killRunner2
   - killRunner2_b

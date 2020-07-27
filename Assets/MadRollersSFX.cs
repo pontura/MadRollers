@@ -40,7 +40,13 @@ public class MadRollersSFX : MonoBehaviour {
 
 		OnMadRollersSFXStatus( Data.Instance.madRollersSoundsOn);
 	}
-	void OnMadRollersSFXStatus(bool isOn)
+    void OnDestroy()
+    {
+        Data.Instance.events.OnMadRollerFX -= OnMadRollerFX;
+        Data.Instance.events.OnGameOver -= OnGameOver;
+        Data.Instance.events.OnMadRollersSFXStatus -= OnMadRollersSFXStatus;
+    }
+    void OnMadRollersSFXStatus(bool isOn)
 	{
 		player1.enabled = isOn;
 		player2.enabled = isOn;

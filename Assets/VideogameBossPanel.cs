@@ -70,9 +70,19 @@ public class VideogameBossPanel : MonoBehaviour {
 		Data.Instance.events.OnGameOver -= OnGameOver;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
     }
-	void OnGameOver(bool isTimeOver)
+    private void OnDisable()
+    {
+        Reset();
+    }
+    void Reset()
+    {
+        StopAllCoroutines();
+    }
+
+    void OnGameOver(bool isTimeOver)
 	{
 		Laugh (10);
+        Reset();
 	}
     void OnBossSpecial(int _x)
     {
