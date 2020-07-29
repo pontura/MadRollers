@@ -29,7 +29,7 @@ public class MissionSelectorMobile : MonoBehaviour
 
     void Start()
     {
-        title1.text = "VIDEOJUEGOS";
+        title1.text = "VIDEOGAMES";
     }
 
     public void Init()
@@ -82,7 +82,7 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void ClickedABlockedButton()
     {
-        Data.Instance.events.OnAlertSignal("Solo puedes jugar los que no tengan candado");
+        Data.Instance.events.OnAlertSignal("YOU MUST DESTROY ALL PREVIOUS DISKETTES!");
     }
     public void Clicked(int videoGameID, int MissionActiveID)
     {
