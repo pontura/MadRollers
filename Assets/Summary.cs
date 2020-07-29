@@ -48,7 +48,7 @@ public class Summary : MonoBehaviour {
     {
         Data.Instance.events.RalentaTo(1, 0.05f);
         mobilePanel.SetActive(true);
-        StartCoroutine(Play(anim, "popupOpen", false, null));
+        StartCoroutine(Play(anim, "summaryMobileOpen", false, null));
         bool isBoss = false;
         float progression = GetComponent<MissionBar>().routeProgressBar.progression;
         if(progression == 0)

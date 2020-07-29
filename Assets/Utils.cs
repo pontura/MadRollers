@@ -62,12 +62,12 @@
     }
     private static string ToThreeDigits(string numString)
     {
-        if (numString.Length > 5)
+        if (numString.Length > 4)
         {
-            if (numString.Substring(0, 5).Contains("."))
-                numString = numString.Substring(0, 6);
-            else
+            if (numString.Substring(0, 4).Contains("."))
                 numString = numString.Substring(0, 5);
+            else
+                numString = numString.Substring(0, 4);
         }
         return numString;
     }

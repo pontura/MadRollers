@@ -35,7 +35,10 @@ public class ServerConnect : MonoBehaviour
         yield return www;
 
         if (www.error != null)
+        {
             UsersEvents.OnPopup("Error en UserData server: " + www.error);
+            OnDone(null);
+        }
         else
         {
             if (OnDone != null)

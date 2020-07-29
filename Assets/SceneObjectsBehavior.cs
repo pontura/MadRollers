@@ -13,7 +13,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject Water;
 	public SceneObject Lava;
 	public SceneObject Boss1;
-	public SceneObject Boss2;
+	
 	public SceneObject BossCreator;
 	public SceneObject BossSpace1;
 	public SceneObject BossCalecitas1;
@@ -30,7 +30,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject PisoPinche;
 	public SceneObject rampa;
 	public SceneObject rampaHuge;
-	public SceneObject bomb1;
+    public SceneObject rampaSmall;
+    public SceneObject bomb1;
 	public SceneObject Laser;
 	public SceneObject Container;
 	public SceneObject enemyGhost;
@@ -41,7 +42,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject borde1;
 
 	public SceneObject fences;
-	public SceneObject Listener;
 
 	public SceneObject tunel1;
 	public SceneObject tunel2;
@@ -219,7 +219,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = rampa;
 			else if (go.name == "rampaHuge")
 				clone = rampaHuge;
-			else if (go.name == "wallBig") {
+            else if (go.name == "rampaSmall")
+                clone = rampaSmall;
+            else if (go.name == "wallBig") {
 				//  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
 				clone = wallBig;
 			} else if (go.name == "wallMedium")
@@ -238,8 +240,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = Water;
 			else if (go.name == "Boss1")
 				clone = Boss1;
-			else if (go.name == "Boss2")
-				clone = Boss2;
 			else if (go.name == "BossCalecitas1")
 				clone = BossCalecitas1;
 			else if (go.name == "BossCreator")
@@ -286,10 +286,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = borde1;
 			else if (go.name == "fences")
 				clone = fences;
-			else if (go.name == "Listener")
-			{
-				clone = Listener;
-			}
 			else if (go.name == "cruz")
 				clone = cruz;
 			else if (go.name == "CruzGrande")

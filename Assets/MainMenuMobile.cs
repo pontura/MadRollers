@@ -30,7 +30,7 @@ public class MainMenuMobile : MonoBehaviour
     }
     void OnJoystickClick()
     {
-        if (UserData.Instance.IsLogged())
+        if (UserData.Instance.IsLogged() || UserData.Instance.IsOnlyLocal())
             Next();
         else
             RegisterPressed();

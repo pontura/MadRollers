@@ -23,7 +23,9 @@ public class UserData : MonoBehaviour
     public AvatarImages avatarImages;
     public ServerConnect serverConnect;
     public int playerID;
+
     public bool logged;
+    public bool onlyLocal;
 
     public int missionUnblockedID_1;
     public int missionUnblockedID_2;
@@ -138,8 +140,22 @@ public class UserData : MonoBehaviour
             missionUnblockedID_1 = dataLoaded.missionUnblockedID_1;
             missionUnblockedID_2 = dataLoaded.missionUnblockedID_2;
             missionUnblockedID_3 = dataLoaded.missionUnblockedID_3;
-            print("User data loaded: " + userID + "   username: " + username);
+           
+            onlyLocal = false;
         }
+        else
+            onlyLocal = true;
+
+        print("User data loaded: " + userID + "  username: " + username + "  logged: " + logged + "  onlyLocal: " + onlyLocal);
+    }
+    public bool IsOnlyLocal()
+    {
+        if (logged)
+            return false;
+        else if (onlyLocal)
+            return true;
+        else
+            return false;
     }
     public bool IsLogged()
     {
