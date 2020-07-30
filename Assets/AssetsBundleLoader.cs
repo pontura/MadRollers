@@ -114,16 +114,17 @@ public class AssetsBundleLoader : MonoBehaviour
             if (request.isNetworkError || request.isHttpError)
             {
                 Debug.Log(request.error);
+                onSuccess("error");
             }
             else
             {
                 mainBundle = DownloadHandlerAssetBundle.GetContent(request);
                 manifest = mainBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-
                 StartCoroutine(LoadBundlesFromManifest());
+                mainBundle.Unload(false);
             }
         }
-        mainBundle.Unload(false);
+       
     }
 
 
@@ -188,7 +189,7 @@ public class AssetsBundleLoader : MonoBehaviour
         if (request.isNetworkError || request.isHttpError)
         {
             Debug.Log("Error downloading assetBundle: " + realURL);
-            // Events.OpenStandardSignal(Data.Instance.ResetAll, "No internet access, try again later");
+            onSuccess("error");
             yield break;
         }
         else

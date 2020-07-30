@@ -82,7 +82,7 @@ public class UserRegistrationForm : MonoBehaviour
 
         if (www.error != null)
         {
-            UsersEvents.OnPopup( "There was an error: " + www.error);
+            //UsersEvents.OnPopup( "There was an error: " + www.error);
         }
         else
         {
@@ -107,7 +107,7 @@ public class UserRegistrationForm : MonoBehaviour
 
         if (www.error != null)
         {
-            UsersEvents.OnPopup( "There was an error: " + www.error);
+            //UsersEvents.OnPopup( "There was an error: " + www.error);
         }
         else
         {

@@ -27,7 +27,10 @@ public class LoadingScreen : MonoBehaviour {
     void NextScreen()
     {
         Data.Instance.missions.Init();
-        Data.Instance.LoadLevel("LevelSelector");
+        if(Data.Instance.isAndroid)
+            Data.Instance.LoadLevel("LevelSelectorMobile");
+        else
+            Data.Instance.LoadLevel("LevelSelector");
     }
 	void LoadBundles () {
         if (Data.Instance.isAndroid)
