@@ -41,7 +41,7 @@ public class UICountDown : MonoBehaviour {
 		
 		panel.GetComponent<Animation>().Play("logo");
 
-
+        Data.Instance.voicesManager.PlayCountDown(countDown);
         if (countDown == 0)
         {
             Data.Instance.events.StartMultiplayerRace();
@@ -51,7 +51,7 @@ public class UICountDown : MonoBehaviour {
             return;
         }
         else
-        {
+        {            
             countDownField.text = countDown.ToString();
             Data.Instance.events.OnSoundFX("FX upgrade002", -1);
         }

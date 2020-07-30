@@ -17,8 +17,9 @@ public class VoicesManager : MonoBehaviour
 	public List<VoiceData> lose_bad;
 	public List<VoiceData> lose_good;
 	public List<VoiceData> lose_great;
+    public List<VoiceData> countDown;
 
-	public List<VoiceData> videogames_names;
+    public List<VoiceData> videogames_names;
 
 	public List<VoiceData> UIItems;
 
@@ -89,6 +90,10 @@ public class VoicesManager : MonoBehaviour
 	}
     private void OnAvatarChangeFX(Player.fxStates state)
     {
+    }
+    public void PlayCountDown(int id)
+    {
+        PlayClip(countDown[id].audioClip);
     }
 
 	int sequenceID = 0;
