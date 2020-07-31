@@ -57,6 +57,7 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnChangeMood += OnChangeMood;
         Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        Data.Instance.events.OnStartGameScene += OnStartGameScene;
         //if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
         //{
         //    Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
@@ -64,6 +65,14 @@ public class GameCamera : MonoBehaviour
         //}
         Data.Instance.events.OnGameOver += OnGameOver;
         pixelSize = 10;
+
+        if (Data.Instance.useRetroPixelPro)
+        {
+            Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
+            retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
+            retroPixelPro.pixelSize = initialPixelSize;
+            SetPixels(30);
+        }
     }
     void OnDestroy()
     {
@@ -74,6 +83,12 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
         Data.Instance.events.OnGameOver -= OnGameOver;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Data.Instance.events.OnStartGameScene -= OnStartGameScene;
+    }
+    void OnStartGameScene()
+    {
+        print("OnStartGameScene");
+        SetPixels(50);
     }
     void OnMissionComplete(int levelID)
     {
@@ -104,13 +119,7 @@ public class GameCamera : MonoBehaviour
         fieldOfView = cam.fieldOfView;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
-        if (Data.Instance.useRetroPixelPro)
-        {
-            Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
-            retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
-            retroPixelPro.pixelSize = initialPixelSize;
-            pixelSize = initialPixelSize;
-        }  
+        
         if(vignette != null)
         {
             if (isAndroid)
@@ -344,11 +353,11 @@ public class GameCamera : MonoBehaviour
     {
         pixelsToEndValue = 1;
     }
-    float pixelsToEndSpeed = 10;
+    float pixelsToEndSpeed = 8;
     float pixelsToEndValue;
     void UpdatePixelsTillEnd()
     {
-        if (pixelsToEndValue < 50)
+        if (pixelsToEndValue < 30)
         {
             pixelsToEndValue += pixelsToEndSpeed * Time.deltaTime;
             SetPixels(pixelsToEndValue);

@@ -114,10 +114,11 @@ public class LoadingAsset : MonoBehaviour {
 		}
 		AddText("COMPLETE!");
 		yield return new WaitForSeconds (0.5f);
-		SetOn (false);
+        SetOn (false);
 		if (!Data.Instance.isReplay) {
 			Data.Instance.musicManager.stopAllSounds();
-		}
+            Data.Instance.events.OnStartGameScene();
+        }
 		yield return null;
     }
 
@@ -154,6 +155,7 @@ public class LoadingAsset : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
        // AddText("COMPLETE!");
         yield return new WaitForSeconds(0.35f);
+        Data.Instance.events.OnStartGameScene();
         SetOn(false);
     }
     void AddText(string text)

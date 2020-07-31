@@ -19,13 +19,30 @@ public class UICountDown : MonoBehaviour {
 			return;
 		
 		Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;
-	}
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE && !Data.Instance.isReplay)
+        {
+            isOn = true; // para que no arranque la cuenta regresiva...
+            Data.Instance.events.OnStartGameScene += OnStartGameScene;
+        }
+    }
 	void OnDestroy()
 	{
 		Data.Instance.events.OnAddNewPlayer -= OnAddNewPlayer;
-	}
-	void OnAddNewPlayer(int id)
-	{		
+        Data.Instance.events.OnStartGameScene -= OnStartGameScene;
+    }
+    void OnStartGameScene()
+    {
+        print("OnStartGameScene");
+        Invoke("OnStartGameSceneDelayed", 3);
+    }
+    void OnStartGameSceneDelayed()
+    {
+        isOn = false;
+        OnAddNewPlayer(0);
+    }
+    void OnAddNewPlayer(int id)
+	{
+        print("OnAddNewPlayer" + isOn);
 		if (isOn)
 			return;
 
