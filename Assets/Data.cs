@@ -7,8 +7,6 @@ public class Data : MonoBehaviour {
     public bool isArcadeMultiplayer;
 
 	public bool DEBUG;
-	int forceVideogameID;
-	int forceMissionID;
 	[HideInInspector]
 	public string testAreaName;
 
@@ -175,8 +173,6 @@ public class Data : MonoBehaviour {
 			this.isArcadeMultiplayer = LevelDataDebug.Instance.isArcadeMultiplayer;
             this.playOnlyBosses = LevelDataDebug.Instance.playOnlyBosses;   
             this.playMode = LevelDataDebug.Instance.playMode;
-            this.forceVideogameID = LevelDataDebug.Instance.videogameID;
-			this.forceMissionID = LevelDataDebug.Instance.missionID;
 			this.testAreaName =  LevelDataDebug.Instance.testArea;
             if (Data.Instance.playMode == PlayModes.STORYMODE)
                 multiplayerData.player1 = multiplayerData.player1_played = true;
@@ -207,13 +203,7 @@ public class Data : MonoBehaviour {
 		Data.Instance.events.ForceFrameRate (1);
 		float delay = 0.1f;
         events.OnChangeScene(levelName);
-		if(DEBUG && forceVideogameID != -1 && forceMissionID != -1 && levelName == "LevelSelector")
-		{
-			levelName = "Game";
-			missions.MissionActiveID = forceMissionID;
-			videogamesData.actualID = forceVideogameID;
 
-		}
 		if (!isReplay && levelName == "Game") {
 			loadingAsset.SetOn (true);
 			return;

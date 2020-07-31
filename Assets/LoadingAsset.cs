@@ -86,7 +86,7 @@ public class LoadingAsset : MonoBehaviour {
                 avatarThumb.Init(data.all[0].userID);
                 avatarName.text = data.all[0].username.ToUpper();
             }
-            StartCoroutine(LoadingRoutineAndroid());
+            StartCoroutine(LoadingRoutineAndroid());    
         }
     }
     IEnumerator LoadingRoutine()
