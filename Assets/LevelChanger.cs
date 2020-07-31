@@ -72,7 +72,7 @@ public class LevelChanger : SceneObject {
         //Game.Instance.level.charactersManager.gameOver = true;
         Game.Instance.GameOver();
 
-        Data.Instance.events.OnCameraZoomTo (t.position);
+        //Data.Instance.events.OnCameraZoomTo (t.position);
 		StartCoroutine (GotoVideogame(videogameId));
 
 	}

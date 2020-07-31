@@ -38,8 +38,17 @@ public class SummaryMobile : MonoBehaviour
     public void Init()
     {
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+                initialSignalTitleField.text = "FIN DE TU CORRIDA";
+
+            Data.Instance.events.OnMadRollersSFXStatus(false);
+            hiscoreOtherPanel.SetActive(false);
+            Data.Instance.events.RalentaTo(0, 0.005f);
+            panel.SetActive(true);
+            Data.Instance.handWriting.WriteTo(initialSignalTitleField, "DISKETTE DESTROYED!", NextScreen);
             StartCoroutine(InitCoroutine());
-       
+        } 
     }
     private void OnDestroy()
     {
@@ -49,20 +58,10 @@ public class SummaryMobile : MonoBehaviour
     {
         Next();
     }
+    void NextScreen()   { }
+    bool canShowHiscores;
     IEnumerator InitCoroutine()
     {
-        if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            initialSignalTitleField.text = "FIN DE TU CORRIDA";
-
-        Data.Instance.events.OnMadRollersSFXStatus(false);
-        hiscoreOtherPanel.SetActive(false);
-        Data.Instance.events.RalentaTo(0, 0.025f);
-        yield return new WaitForSecondsRealtime(1);
-
-        Data.Instance.events.OnSaveScore();
-
-        Data.Instance.events.RalentaTo(0, 0.025f);
-        panel.SetActive(true);
         missionID = Data.Instance.missions.MissionActiveID - 1;
         titleField.text = "DISKETTE " + (missionID + 1);
         score = Data.Instance.multiplayerData.GetTotalScore();
@@ -75,6 +74,12 @@ public class SummaryMobile : MonoBehaviour
         }
         else
             videoGameID = Data.Instance.videogamesData.actualID;
+        Data.Instance.events.OnSaveScore();
+
+        yield return new WaitForSecondsRealtime(4);
+        //Data.Instance.events.RalentaTo(0, 0.025f);
+
+
 
         UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
         if (!Data.Instance.isAndroid)
