@@ -139,7 +139,7 @@ public class MusicManager : MonoBehaviour {
 		if (isBoss) {
 			audioSource.pitch = 1;
 		//	audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
-			audioSource.clip = Resources.Load ("songs/boss0") as AudioClip;
+			audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
 			audioSource.Play ();
 			audioSource.loop = true;
 		}
