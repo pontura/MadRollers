@@ -32,7 +32,6 @@ public class UICountDown : MonoBehaviour {
     }
     void OnStartGameScene()
     {
-        print("OnStartGameScene");
         Invoke("OnStartGameSceneDelayed", 3);
     }
     void OnStartGameSceneDelayed()

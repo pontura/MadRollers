@@ -425,16 +425,6 @@ MonoBehaviour:
           - descanso4
           cameraOrientation: {x: 0, y: -10, z: -4}
         - totalDistanceToCamFX: 0
-          boss: 0
-          json: {fileID: 0}
-          total_areas: 1
-          bending: -1
-          randomize: 1
-          areas:
-          - waterStars1
-          - waterStars2
-          cameraOrientation: {x: 0, y: 10, z: -2}
-        - totalDistanceToCamFX: 0
           boss: 1
           json: {fileID: 0}
           total_areas: 3
@@ -454,6 +444,7 @@ MonoBehaviour:
           areas:
           - boss_Pacmans_intro_free
           - boss_Pacmans_intro_free2
+          - descansoEstrellas
           cameraOrientation: {x: 0, y: -8, z: -1}
     - title: 
       data:
@@ -500,6 +491,16 @@ MonoBehaviour:
           - S1
           - S2
           cameraOrientation: {x: 0, y: -2, z: -2}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 2
+          bending: 1
+          randomize: 0
+          areas:
+          - S1Star
+          - S2Star
+          cameraOrientation: {x: 0, y: 12, z: -1}
         - totalDistanceToCamFX: 0
           boss: 0
           json: {fileID: 0}
@@ -774,6 +775,24 @@ MonoBehaviour:
           areas:
           - descanso2
           cameraOrientation: {x: 0, y: 1, z: -1}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -5
+          randomize: 1
+          areas:
+          - helicex2
+          cameraOrientation: {x: 0, y: -12, z: 1}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -6
+          randomize: 1
+          areas:
+          - descanso4
+          cameraOrientation: {x: 0, y: -10, z: -4}
         - totalDistanceToCamFX: 0
           boss: 0
           json: {fileID: 0}
@@ -5564,10 +5583,13 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 68ac16b37c94661429016f3dba7dad44, type: 3}
   - {fileID: 4900000, guid: 58c8471432293074ebcbddeadfbdc094, type: 3}
   - {fileID: 4900000, guid: a49ff5ca311a726478ed8e117930b793, type: 3}
+  - {fileID: 4900000, guid: 3b719d17c0d6897458a9d0a466a31d76, type: 3}
   - {fileID: 4900000, guid: 69727ab550ed0364c8343b7b6d0e5d5a, type: 3}
   - {fileID: 4900000, guid: daad5a58637f3e843994fb6364cb750d, type: 3}
   - {fileID: 4900000, guid: d51b7bfe5be8186429e7875668232aea, type: 3}
   - {fileID: 4900000, guid: a4ce3a0dd41e5544eab22c6f5060f800, type: 3}
+  - {fileID: 4900000, guid: de9426ae1656165458693dc728231454, type: 3}
+  - {fileID: 4900000, guid: 2bf8b601cefd64644bd94e35d965ab9c, type: 3}
   - {fileID: 4900000, guid: 238321ceefaef9c42a3d2abb94039e43, type: 3}
   - {fileID: 4900000, guid: c2c28e591f5a810448cdb6860f9ac7d0, type: 3}
   - {fileID: 4900000, guid: 4b1ca25e6cdd14041ac5fec673c3213d, type: 3}
@@ -5594,6 +5616,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: e21501efaf168e2489ceb576e0a9dd74, type: 3}
   - {fileID: 4900000, guid: bf30508d0b30d75419e87c244eb9ae2b, type: 3}
   - {fileID: 4900000, guid: 2f28a05b1dfa9b147ab6ccbfc864d1b9, type: 3}
+  - {fileID: 4900000, guid: fe9cdc2032a37b643ae2df0269be4277, type: 3}
   - {fileID: 4900000, guid: 70a81fc9edeb2af4696e0081db85d5f2, type: 3}
   - {fileID: 4900000, guid: 041f7468078abdb4fb4c336b2289a29f, type: 3}
   - {fileID: 4900000, guid: 0cf6661ca75135c42b67fbbb3225187c, type: 3}
@@ -5950,10 +5973,13 @@ MonoBehaviour:
   - boss_Pacmans_intro
   - boss_Pacmans_intro_free
   - boss_Pacmans_intro_free2
+  - descansoEstrellas
   - jumpTall
   - enemiesRunnersSmall
   - S1
   - S2
+  - S1Star
+  - S2Star
   - ancho_agua_simple2
   - ancho_agua_simple1
   - enemiesRunnersSmall_2Palms
@@ -5980,6 +6006,7 @@ MonoBehaviour:
   - killRunner2_b
   - killRunner2_c
   - lava_2
+  - helicex2
   - pisoSaltaAlto
   - boss_Pulpo
   - boss_Pulpo_free

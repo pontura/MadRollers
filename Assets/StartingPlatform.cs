@@ -24,7 +24,10 @@ public class StartingPlatform : SceneObject {
 		//	newPlayer.id = id;
 		//	id++;
 		//}
-		Data.Instance.events.OnCharacterInit += OnCharacterInit;
+
+        if(!Data.Instance.isAndroid)
+		    Data.Instance.events.OnCharacterInit += OnCharacterInit;
+
 //		foreach (GameObject go in platforms) {
 //			Vector3 pos = go.transform.localPosition;
 //			pos.y = 0.7f;
@@ -32,10 +35,6 @@ public class StartingPlatform : SceneObject {
 //		}
 		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().intro_logo;
 	}
-    void OnDestroy()
-    {
-        Data.Instance.events.OnCharacterInit -= OnCharacterInit;
-    }
 	public override void OnPool()
 	{
         playerToInstantiate = null;

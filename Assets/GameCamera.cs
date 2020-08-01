@@ -87,7 +87,6 @@ public class GameCamera : MonoBehaviour
     }
     void OnStartGameScene()
     {
-        print("OnStartGameScene");
         SetPixels(50);
     }
     void OnMissionComplete(int levelID)
