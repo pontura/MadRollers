@@ -56,7 +56,7 @@ public class CharacterCollisions : MonoBehaviour {
 			}
             float difY = transform.position.y - other.transform.position.y;
             
-            if (other.transform.localEulerAngles.z > -2 && other.transform.localEulerAngles.z < 2)
+            if (other.transform.localEulerAngles.z > -0.9f && other.transform.localEulerAngles.z < 0.9f)
             {
                 if (other.transform.eulerAngles.x == 0 && difY < 0.8f)
                 {
