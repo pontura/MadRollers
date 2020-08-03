@@ -136,8 +136,9 @@ public class Projectil : SceneObject {
 	{
         if (!isActive) return;
 		if(exploted) return;
+        Breakable breakable;
 
-		switch (other.tag)
+        switch (other.tag)
 		{
             case "wall":
                 addExplotionWall();
@@ -155,21 +156,28 @@ public class Projectil : SceneObject {
                 if (enemy) {
 					if (enemy.state == MmoCharacter.states.DEAD)
 						return;
-					SetScore( ScoresManager.score_for_killing + enemy.score, ScoresManager.types.KILL);
+                    Debug.Log(other.gameObject.name + " total:  score_for_breaking " + ScoresManager.score_for_breaking + "score: " + enemy.score);
+
+                    SetScore( ScoresManager.score_for_killing + enemy.score, ScoresManager.types.KILL);
 					enemy.Die ();
 				} else {
-                    other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
+                    breakable = other.gameObject.GetComponent<Breakable>();
+                    breakable.breakOut(other.gameObject.transform.position, true);
+                    Debug.Log(other.gameObject.name + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
+
+                    SetScore(ScoresManager.score_for_killing + breakable.GetSceneObject().score, ScoresManager.types.KILL);
                     //other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
-				}
+                }
                 //---------------------------------------------------
 
                 ResetProjectil();
 				break;
 			case "destroyable":
-                int total = ScoresManager.score_for_breaking + other.gameObject.GetComponent<Breakable>().score;
-                Debug.Log(other.gameObject.name + " total: " + total + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + other.gameObject.GetComponent<Breakable>().score);
+                breakable = other.gameObject.GetComponent<Breakable>();
+                int total = ScoresManager.score_for_breaking + breakable.GetSceneObject().score;
+                Debug.Log(other.gameObject.name + " total: " + total + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
 				SetScore(total, ScoresManager.types.BREAKING);
-                other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
+                breakable.breakOut(other.gameObject.transform.position, true);
                 // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 ResetProjectil();
 				break;

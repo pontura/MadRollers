@@ -28,10 +28,12 @@ public class Breakable : MonoBehaviour {
 	public bool ifJumpingDontKill;
 
     private Vector3 originalPosition;
-    public int score;
-	SceneObject sceneObject;
+    private SceneObject sceneObject;
     BossPart bossPart;
-
+    public SceneObject GetSceneObject()
+    {
+        return sceneObject;
+    }
 	void Start()
 	{
         bossPart = GetComponent<BossPart>();
@@ -60,10 +62,6 @@ public class Breakable : MonoBehaviour {
             bossPart.Hitted();
             if (bossPart.lifes > 0)
                 return;
-        }
-        else
-        {
-            SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
         }		
 
 		sceneObject.broken = true;
