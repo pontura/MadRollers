@@ -155,7 +155,7 @@ public class Projectil : SceneObject {
                 if (enemy) {
 					if (enemy.state == MmoCharacter.states.DEAD)
 						return;
-					SetScore( ScoresManager.score_for_killing, ScoresManager.types.KILL);
+					SetScore( ScoresManager.score_for_killing + enemy.score, ScoresManager.types.KILL);
 					enemy.Die ();
 				} else {
                     other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
@@ -166,7 +166,9 @@ public class Projectil : SceneObject {
                 ResetProjectil();
 				break;
 			case "destroyable":
-				SetScore( ScoresManager.score_for_breaking, ScoresManager.types.BREAKING);
+                int total = ScoresManager.score_for_breaking + other.gameObject.GetComponent<Breakable>().score;
+                Debug.Log(other.gameObject.name + " total: " + total + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + other.gameObject.GetComponent<Breakable>().score);
+				SetScore(total, ScoresManager.types.BREAKING);
                 other.gameObject.GetComponent<Breakable>().breakOut(other.gameObject.transform.position, true);
                 // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 ResetProjectil();

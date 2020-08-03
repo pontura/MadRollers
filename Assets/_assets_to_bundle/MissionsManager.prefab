@@ -2345,8 +2345,17 @@ MonoBehaviour:
         - totalDistanceToCamFX: 0
           boss: 0
           json: {fileID: 0}
-          total_areas: 2
-          bending: -5
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - descanso_vacio1
+          cameraOrientation: {x: 0, y: -15, z: -4}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -12
           randomize: 0
           areas:
           - cilindro1
@@ -2355,19 +2364,64 @@ MonoBehaviour:
           boss: 0
           json: {fileID: 0}
           total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - descanso4
+          cameraOrientation: {x: 0, y: -1, z: 1}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
           bending: -20
+          randomize: 0
+          areas:
+          - boss_zigzag_free
+          cameraOrientation: {x: 0, y: 5, z: -4}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -1
+          randomize: 0
+          areas:
+          - lasers_x2
+          cameraOrientation: {x: 0, y: -20, z: -1}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -12
           randomize: 0
           areas:
           - boss_zigzag_free
           cameraOrientation: {x: 0, y: 0, z: 0}
         - totalDistanceToCamFX: 0
-          boss: 1
+          boss: 0
           json: {fileID: 0}
-          total_areas: 3
-          bending: -2
+          total_areas: 2
+          bending: -12
           randomize: 0
           areas:
           - descansoAnchoMinimal
+          - descansoAnchoMinimal2
+          cameraOrientation: {x: 0, y: 15, z: -3}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 1
+          bending: -15
+          randomize: 0
+          areas:
+          - descanso_vacio1
+          cameraOrientation: {x: 0, y: -15, z: -4}
+        - totalDistanceToCamFX: 0
+          boss: 1
+          json: {fileID: 0}
+          total_areas: 2
+          bending: -2
+          randomize: 0
+          areas:
           - boss_naves
           - areaFree_boss2
           cameraOrientation: {x: 0, y: 1, z: -3}
@@ -5746,7 +5800,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 975110d356ecb9a48abb5083eba03fda, type: 3}
   - {fileID: 4900000, guid: 99f2e00e68b25a5498d429648751351b, type: 3}
   - {fileID: 4900000, guid: 453311e620beac24ebabe12f6b10ad73, type: 3}
-  - {fileID: 0}
+  - {fileID: 4900000, guid: bfe1169a0b25f834487291d13cdf5c43, type: 3}
   - {fileID: 4900000, guid: 7879dedf686602447babb24c51d2a967, type: 3}
   - {fileID: 4900000, guid: 387f6facc6de86d4abadf4d4a2c3c011, type: 3}
   - {fileID: 4900000, guid: b5506e84b83dea944b1bf85417f46822, type: 3}
@@ -5874,7 +5928,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d726fb68604351240864865869170353, type: 3}
   - {fileID: 4900000, guid: 3218320e10ca1d64ca98b4314e4f79a2, type: 3}
   - {fileID: 0}
+  - {fileID: 4900000, guid: 4629cf7a71653b34da05f0fde1dfa248, type: 3}
   - {fileID: 4900000, guid: 52cf7497c91201b4c8491fcf344cca6c, type: 3}
+  - {fileID: 4900000, guid: b71bf6af58fb2f941ab04736d5befad1, type: 3}
   - {fileID: 4900000, guid: c68e31193fdd6744caf2de1d78712f3f, type: 3}
   - {fileID: 4900000, guid: b02e8a33d1953b04da7a840c8d0798fe, type: 3}
   - {fileID: 4900000, guid: 711c7426a5d49cd49baeb5a9a344ff3f, type: 3}
@@ -6266,7 +6322,9 @@ MonoBehaviour:
   - helicesx2_larga
   - container_helice
   - boss_naves_boyland
+  - descanso_vacio1
   - cilindro1
+  - lasers_x2
   - boss_naves
   - boss_free_fences
   - boss_zigzag_jumpers_free

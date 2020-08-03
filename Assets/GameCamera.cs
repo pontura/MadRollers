@@ -66,12 +66,24 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnGameOver += OnGameOver;
         pixelSize = 10;
 
+        vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
+
         if (Data.Instance.useRetroPixelPro)
         {
             Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
             retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
             retroPixelPro.pixelSize = initialPixelSize;
             SetPixels(30);
+            
+            if (isAndroid)
+            {
+                vignette.VignetteInnerValueDistance = 0;
+                vignette.VignetteOuterValueDistance = 0.99f;
+            }
+        }
+        else
+        {
+            Destroy(vignette);           
         }
     }
     void OnDestroy()
@@ -107,7 +119,7 @@ public class GameCamera : MonoBehaviour
 	}
     public void Init()
 	{
-        vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
+        
       
 
         cam.enabled = true;
@@ -119,14 +131,7 @@ public class GameCamera : MonoBehaviour
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
         
-        if(vignette != null)
-        {
-            if (isAndroid)
-            {
-                vignette.VignetteInnerValueDistance = 0;
-                vignette.VignetteOuterValueDistance = 0.99f;
-            }
-        }
+        
 
         if (isAndroid)
         {

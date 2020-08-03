@@ -291,6 +291,7 @@ public class CharacterControls : MonoBehaviour {
         if (!isAutomata)
         {
             float v = Input.GetAxis("Horizontal");
+            print("______" + v);
             if (v != 0)
                 v /= 1.25f;
             MoveInX( v );

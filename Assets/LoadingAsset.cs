@@ -156,6 +156,7 @@ public class LoadingAsset : MonoBehaviour {
        // AddText("COMPLETE!");
         yield return new WaitForSeconds(0.35f);
         Data.Instance.events.OnStartGameScene();
+        Data.Instance.musicManager.ChangePitch(0.2f);
         SetOn(false);
     }
     void AddText(string text)

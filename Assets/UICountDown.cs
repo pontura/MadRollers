@@ -79,5 +79,6 @@ public class UICountDown : MonoBehaviour {
     {        
         panel.SetActive(false);
         Data.Instance.events.OnGenericUIText("ROMPAN TODO!");
+        Data.Instance.musicManager.ChangePitch(1);
     }
 }
