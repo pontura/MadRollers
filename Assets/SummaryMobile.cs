@@ -39,14 +39,14 @@ public class SummaryMobile : MonoBehaviour
     {
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
-            if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-                initialSignalTitleField.text = "FIN DE TU CORRIDA";
-
             Data.Instance.events.OnMadRollersSFXStatus(false);
             hiscoreOtherPanel.SetActive(false);
             Data.Instance.events.RalentaTo(0, 0.005f);
             panel.SetActive(true);
-            Data.Instance.handWriting.WriteTo(initialSignalTitleField, "DISKETTE DESTROYED!", NextScreen);
+            if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+                Data.Instance.handWriting.WriteTo(initialSignalTitleField, "YOU ARE DONE!", NextScreen);
+            else
+                Data.Instance.handWriting.WriteTo(initialSignalTitleField, "DISKETTE DESTROYED!", NextScreen);
             StartCoroutine(InitCoroutine());
         } 
     }
