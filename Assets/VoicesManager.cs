@@ -31,6 +31,30 @@ public class VoicesManager : MonoBehaviour
 		public AudioClip audioClip;
 	}
 	public AudioSource audioSource;
+    public static VoicesManager mInstance;
+    public static VoicesManager Instance
+    {
+        get
+        {
+            if (mInstance == null)
+            {
+                Debug.LogError("Algo llama a DATA antes de inicializarse");
+            }
+            return mInstance;
+        }
+    }
+    void Awake()
+    {
+
+        if (!mInstance)
+            mInstance = this;
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        DontDestroyOnLoad(this);
+    }
 
     public void Init()
     {
@@ -67,7 +91,7 @@ public class VoicesManager : MonoBehaviour
     }
 	void NextDestination()
 	{
-		Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 6);
+		VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 6);
 	}
     private void OnAvatarCrash(CharacterBehavior cb)
     {
@@ -144,7 +168,7 @@ public class VoicesManager : MonoBehaviour
 	public void PlayClip(AudioClip audioClip)
     {
 		talking = true;
-		audioSpectrum.SetOn ();
+		//audioSpectrum.SetOn ();
         audioSource.clip = audioClip;
         audioSource.Play();
 		Data.Instance.events.OnTalk (true);
@@ -164,7 +188,7 @@ public class VoicesManager : MonoBehaviour
 		if (onSequence)
 			PlayNextSequencedClip ();
 		else {
-			audioSpectrum.SetOff ();
+			//audioSpectrum.SetOff ();
 			talking = false;			
 			Data.Instance.events.OnTalk (false);
 		}

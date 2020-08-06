@@ -57,7 +57,7 @@ public class UICountDown : MonoBehaviour {
 		
 		panel.GetComponent<Animation>().Play("logo");
 
-        Data.Instance.voicesManager.PlayCountDown(countDown);
+        VoicesManager.Instance.PlayCountDown(countDown);
         if (countDown == 0)
         {
             Data.Instance.events.StartMultiplayerRace();

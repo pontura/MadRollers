@@ -65,7 +65,7 @@ public class LevelSelector : MonoBehaviour {
         //videogameUI.Init ();
         SetSelected ();
 
-		Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 0);
+		VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 0);
 
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
@@ -172,8 +172,8 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void SetSelected()
 	{
-		List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
-		Data.Instance.voicesManager.PlaySpecificClipFromList (list, videgameID);
+		List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
+		VoicesManager.Instance.PlaySpecificClipFromList (list, videgameID);
 		videogameData = Data.Instance.videogamesData.all [videgameID];
 		missionSelector.LoadVideoGameData (videgameID);
 		diskette.Init (videogameData);

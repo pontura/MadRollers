@@ -29,7 +29,7 @@ public class BossesPool : MonoBehaviour
     {
         foreach (MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
         {
-            print(mr.sharedMaterial);
+
             Material m = ChangeMaterialByName(mr.sharedMaterial.name);
             if (m != null)
                 mr.sharedMaterial = m;

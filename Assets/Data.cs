@@ -53,7 +53,6 @@ public class Data : MonoBehaviour {
 	[HideInInspector]
 	public bool isEditor;
 
-    public VoicesManager voicesManager;
 	public VersusManager versusManager;
 
 	public LoadingAsset loadingAsset;
@@ -181,7 +180,6 @@ public class Data : MonoBehaviour {
        // GetComponent<Tracker>().Init();
         GetComponent<CurvedWorldManager>().Init();
 
-        voicesManager.Init();
 	}
 	void Start()
 	{

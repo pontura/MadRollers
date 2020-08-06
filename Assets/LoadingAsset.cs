@@ -91,7 +91,7 @@ public class LoadingAsset : MonoBehaviour {
     }
     IEnumerator LoadingRoutine()
 	{
-        Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 1);
+        VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 1);
 		Data.Instance.musicManager.OnLoadingMusic();
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
@@ -128,7 +128,7 @@ public class LoadingAsset : MonoBehaviour {
         //HiscoresByMissions.MissionHiscoreUserData missionHiscoreUserData = UserData.Instance.hiscoresByMissions.GetHiscore(videogameData.id, Data.Instance.missions.MissionActiveID);
         //string username = UserData.Instance.username;
 
-        Data.Instance.voicesManager.PlaySpecificClipFromList(Data.Instance.voicesManager.UIItems, 1);
+        VoicesManager.Instance.PlaySpecificClipFromList(VoicesManager.Instance.UIItems, 1);
         Data.Instance.musicManager.OnLoadingMusic();
         //field.text = "";
         //AddText("*** MAD ROLLERS ***");

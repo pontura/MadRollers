@@ -9,34 +9,47 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		NORMAL,
 		DASHING_FORWARD,
-		DASHING_BACK
+		DASHING_BACK,
+        HORIZONTAL
 	}
 	float offset_Dash_Z = 6;
 	private int heightToFall = -5;
 	CharacterBehavior cb;
 	public int characterScorePosition;
 	public Vector3 offset;
-	float DHSpeed =20f;
+	float DHSpeed =-20f;
 	float DHMoveTo;
 
 	void Start()
 	{
 		cb = GetComponent<CharacterBehavior> ();
-		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        if(!Data.Instance.isAndroid)
+		    Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 	}
 
 	void OnDestroy()
 	{
-		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        if (!Data.Instance.isAndroid)
+            Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
 	}
 	public void DH(float value)
-	{		
-		DHMoveTo = value * DHSpeed;
+	{
+        if (type != types.NORMAL)
+            return;
+        type = types.HORIZONTAL;
+        if(value>0)
+            cb.madRoller.Play("dh_left");
+        else
+            cb.madRoller.Play("dh_right");
+        Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.COLEADA, cb.player.id);
+        DHMoveTo = value * DHSpeed;
+        Invoke("DHDone", 0.15f);
 	}
 	void DHDone()
 	{
 		DHMoveTo = 0;
-	}
+        type = types.NORMAL;
+    }
 	public void DashForward()
 	{
 		if (type == types.NORMAL) {

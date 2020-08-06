@@ -228,7 +228,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void OncharacterCheer()
 	{
-		if (Random.Range(0, 8) < 2)
+		if (Random.Range(0, 6) < 2)
 			Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CHEER, player.id);
 		
 	}
@@ -445,6 +445,11 @@ public class CharacterBehavior : MonoBehaviour {
 			return true;
 		return false;
 	}
+    public void SetJumpHeight(float value)
+    {
+        //default: 900
+        jumpHeight = value;
+    }
 	public void Jump()
 	{
 		jumpingPressed = false;
@@ -554,7 +559,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD) return;
 		if (state == states.FALL) return;
 		state = states.FALL;
-		Data.Instance.events.OnSoundFX("FX vox caida01", player.id);
+		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.FALL, player.id);
 		Data.Instance.events.OnAvatarFall(this);
 
 		if(team_for_versus == 0)
@@ -563,7 +568,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void HitWithObject(Vector3 objPosition, bool killAtHit)
 	{
-        if (killAtHit)
+        if (killAtHit || characterMovement.type != CharacterMovement.types.NORMAL)
             Hit();
         else
         {

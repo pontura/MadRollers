@@ -98,12 +98,12 @@ public class Level : MonoBehaviour {
 		if(Data.Instance.isReplay)
 		{
 			if(Data.Instance.missions.times_trying_same_mission==0)
-				Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, 1);
+				VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.welcome, 1);
 			else if(Data.Instance.missions.times_trying_same_mission<6) 
-				Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, Data.Instance.missions.times_trying_same_mission+1);
+				VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.welcome, Data.Instance.missions.times_trying_same_mission+1);
 			else
-				Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
-		}//else Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, 0);
+				VoicesManager.Instance.PlayRandom (VoicesManager.Instance.welcome);
+		}//else VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.welcome, 0);
 	}
     
     public void OnDestroy()
@@ -127,7 +127,7 @@ public class Level : MonoBehaviour {
 		charactersManager.OnLevelComplete ();
 		showStartArea = true;		
 		data.events.MissionComplete ();
-		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
+		VoicesManager.Instance.PlayRandom (VoicesManager.Instance.missionComplete);
 		SetNewVideogameSettings ();
 	}
 	void SetNewVideogameSettings()

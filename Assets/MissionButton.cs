@@ -47,8 +47,8 @@ public class MissionButton : MonoBehaviour {
     // solo version Mobile Android!
     public void OnClick()
     {
-        List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
-        Data.Instance.voicesManager.PlaySpecificClipFromList(list, videogameData.id);
+        List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
+        VoicesManager.Instance.PlaySpecificClipFromList(list, videogameData.id);
 
         anim.Play ("videoGameButtonMobile");
         Data.Instance.videogamesData.actualID = videogameData.id;

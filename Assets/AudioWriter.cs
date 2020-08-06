@@ -27,21 +27,21 @@ public class AudioWriter : MonoBehaviour {
 			Data.Instance.LoadLevel("MainMenu");
 		else {
 			done = true;
-			sentenceID = Data.Instance.voicesManager.intros.Count - 1;
-			SetText(Data.Instance.voicesManager.intros[sentenceID].text);
-			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.intros[sentenceID].audioClip);
+			sentenceID = VoicesManager.Instance.intros.Count - 1;
+			SetText(VoicesManager.Instance.intros[sentenceID].text);
+            VoicesManager.Instance.PlayClip (VoicesManager.Instance.intros[sentenceID].audioClip);
 			enrollButton.SetActive (true);
 		}
 	}
 	void Next()
 	{
-		if (sentenceID == Data.Instance.voicesManager.intros.Count) {		
+		if (sentenceID == VoicesManager.Instance.intros.Count) {		
 			done = true;
 			enrollButton.SetActive (true);
 			return;
 		}
-		SetText(Data.Instance.voicesManager.intros[sentenceID].text);
-		Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.intros[sentenceID].audioClip);
+		SetText(VoicesManager.Instance.intros[sentenceID].text);
+        VoicesManager.Instance.PlayClip (VoicesManager.Instance.intros[sentenceID].audioClip);
 		sentenceID++;
 	}
 	void SetText (string sentence) {

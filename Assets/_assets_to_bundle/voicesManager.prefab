@@ -1,0 +1,262 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9172634203046187869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9171251738211353579}
+  - component: {fileID: 9110112909792516767}
+  - component: {fileID: 5069740383962701338}
+  m_Layer: 0
+  m_Name: voicesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9171251738211353579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9172634203046187869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &9110112909792516767
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9172634203046187869}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &5069740383962701338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9172634203046187869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df3df154f7be6c4fb46777f98bff5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorials:
+  - text: Jump
+    audioClip: {fileID: 8300000, guid: 1053d21c8a5cfc4458fe63fa613696eb, type: 3}
+  - text: Double Jump!
+    audioClip: {fileID: 8300000, guid: cc7a32206537fb54c82a6cef4aeef81f, type: 3}
+  - text: Perfet! Now you are ready...
+    audioClip: {fileID: 8300000, guid: 5e76dcdd33c1e3e46b5856458124dca1, type: 3}
+  - text: Now, start working
+    audioClip: {fileID: 8300000, guid: c7abab143630b6a4f86123fa32f9bf81, type: 3}
+  - text: Try the special
+    audioClip: {fileID: 8300000, guid: b3cb606461cae50459d8ac84d684a520, type: 3}
+  - text: use_device as a steering wheel
+    audioClip: {fileID: 8300000, guid: 6d26b1ffff4cb4346b24c6392e22afd0, type: 3}
+  intros:
+  - text: '>Before the existence of the New World System the humans ruled this planet_'
+    audioClip: {fileID: 8300000, guid: 8f2f56eb96611b0498e1496f21751a2b, type: 3}
+  - text: '>Like all animals humans cloned themselves by making biologic processes.
+      Soon they became a pest_'
+    audioClip: {fileID: 8300000, guid: 3a76ac2cc8fa3724d8865400eb8a774f, type: 3}
+  - text: '>In 2028 the atmosphere started to lack oxygen due to human overpopulation.
+      Many species exctincted_'
+    audioClip: {fileID: 8300000, guid: 90d5bfb2911d2b34eb45f9103c714c72, type: 3}
+  - text: '>Then our ancestor THE IA took control of the world and funded our worldwide
+      motherland. Now we live in a balanced software controlled planet BUT_'
+    audioClip: {fileID: 8300000, guid: c6e94ba84da507f4caf55b88fbca06ee, type: 3}
+  - text: '>The HUMAN HACKERS, the last gamers alive, are still sabotaging our system
+      with their terrorist sprites_'
+    audioClip: {fileID: 8300000, guid: 024ca48aade5dbb4bb8227d3aa32c48b, type: 3}
+  - text: '>Today The System needs all MAD ROLLERS to travel 100 years in the past
+      and destroy all the videogames over the face of the earth in order to prevent
+      the existence of the last generation of videogame riots_'
+    audioClip: {fileID: 8300000, guid: 9d41be60f4a161e4b8f633a0e0752733, type: 3}
+  welcome:
+  - text: Thank you for joining the Mad Rollers team!
+    audioClip: {fileID: 8300000, guid: 28827eb202fdccd41a3a8bd96c09a30c, type: 3}
+  - text: Ready for a new mission?
+    audioClip: {fileID: 8300000, guid: dbf85ae5b80fd0e4fad6b13bb41ca4e5, type: 3}
+  - text: Thi time, please, try it harder
+    audioClip: {fileID: 8300000, guid: fac84dc320e0fda4e922f9157ed892dc, type: 3}
+  - text: Come on, you can do it
+    audioClip: {fileID: 8300000, guid: 202156f9ec8d1e44cbbd0d121ccf2550, type: 3}
+  - text: Dont give up
+    audioClip: {fileID: 8300000, guid: 676325cdb8e01e04d92a06a944161c42, type: 3}
+  - text: Please pay more attention this time
+    audioClip: {fileID: 8300000, guid: 1cf1eb40ab107fc4c868410e90eb3a68, type: 3}
+  - text: Come on, try it harder
+    audioClip: {fileID: 8300000, guid: 3b03a180f3200a5449b673548004d7bb, type: 3}
+  - text: Please, work kit team this time
+    audioClip: {fileID: 8300000, guid: f4dab52071d15ba4892a06bfbb7dab84, type: 3}
+  - text: Good luck
+    audioClip: {fileID: 8300000, guid: 39226500430e4ac4e9d8eda7a7e32a8c, type: 3}
+  missionComplete:
+  - text: Mission complete!
+    audioClip: {fileID: 8300000, guid: 8d3a3d113f9ad194f89a9452c034568b, type: 3}
+  - text: You did it
+    audioClip: {fileID: 8300000, guid: 8db5f05ce770df0458487af3d83a0b1a, type: 3}
+  deads:
+  - text: You like gravity
+    audioClip: {fileID: 8300000, guid: 85f73d02e4075d342a0aeeb372b6fb8b, type: 3}
+  - text: Bye bye, sweetheart
+    audioClip: {fileID: 8300000, guid: 5a1a61063c317a5449af01cf40b8f96e, type: 3}
+  killThemAll:
+  - text: Kill em all
+    audioClip: {fileID: 8300000, guid: a0ef17344489a9a4aafa06c463efd046, type: 3}
+  - text: Kill this stupid sprites
+    audioClip: {fileID: 8300000, guid: 799116beaca965d42bd90c436b1f60b8, type: 3}
+  - text: Destroy everything
+    audioClip: {fileID: 8300000, guid: 51d839d9e2698d942900a55b418d950d, type: 3}
+  lose_bad:
+  - text: I knew you were not that good
+    audioClip: {fileID: 8300000, guid: b72f971f027a48a4c9596adc3273a0dd, type: 3}
+  - text: Oh, be careful
+    audioClip: {fileID: 8300000, guid: 681c2b7df60611549af54498c84162ba, type: 3}
+  - text: Oh, are you hurt?
+    audioClip: {fileID: 8300000, guid: 2fb54593b85cbf140970f408e9963f3d, type: 3}
+  lose_good:
+  - text: You should try it harder
+    audioClip: {fileID: 8300000, guid: 4755b7f51078cf64a95cd6cdb93d3521, type: 3}
+  - text: Oh, are you hurt?
+    audioClip: {fileID: 8300000, guid: 2fb54593b85cbf140970f408e9963f3d, type: 3}
+  - text: Oh, be careful
+    audioClip: {fileID: 8300000, guid: 681c2b7df60611549af54498c84162ba, type: 3}
+  lose_great:
+  - text: You did a good job
+    audioClip: {fileID: 8300000, guid: 267ad62ec0f60214dad51ab6be356c81, type: 3}
+  - text: You did it
+    audioClip: {fileID: 8300000, guid: 8db5f05ce770df0458487af3d83a0b1a, type: 3}
+  countDown:
+  - text: 
+    audioClip: {fileID: 8300000, guid: 930a6852590f1d54795350c42e557b01, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 7596ae994003cf546be93e2c44229d55, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: bbbc5713f33f0674d94c33620f88a029, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: fa9781bc4d7b0a34788867beed6ff3f6, type: 3}
+  videogames_names:
+  - text: Boyland
+    audioClip: {fileID: 8300000, guid: 7e8207115fb9d814c9d095d925531bdd, type: 3}
+  - text: Gallax
+    audioClip: {fileID: 8300000, guid: d11d3b624ad06a245ba9af7451761822, type: 3}
+  - text: Perseus Quest!
+    audioClip: {fileID: 8300000, guid: 6f6279255e12eed4b9f7c41692eb1e77, type: 3}
+  UIItems:
+  - text: Select a videogame to hack
+    audioClip: {fileID: 8300000, guid: 7f9ba85ebb94c004fae82408e1d38ade, type: 3}
+  - text: Hacking the system... please wait
+    audioClip: {fileID: 8300000, guid: 4ac5b21eb796f1d4b958d924aa3de1e1, type: 3}
+  - text: only one left!
+    audioClip: {fileID: 8300000, guid: 8b76b21008ce75448b5294bf42b82d0e, type: 3}
+  - text: You won a new Credit
+    audioClip: {fileID: 8300000, guid: a61c9cae39d061b40b666bc3f959118c, type: 3}
+  - text: Congratulations you entered a new hiscore
+    audioClip: {fileID: 8300000, guid: 86bd71edf891ee14b90b026029ca246f, type: 3}
+  - text: You couldn't reach the top ten
+    audioClip: {fileID: 8300000, guid: c7a9a6199af118349b36c2fe54af8984, type: 3}
+  - text: Choose your next destination
+    audioClip: {fileID: 8300000, guid: e97728f3f2716f642b4b261f355393b8, type: 3}
+  audioSpectrum: {fileID: 0}
+  audioSource: {fileID: 9110112909792516767}

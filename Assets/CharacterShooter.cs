@@ -7,7 +7,6 @@ public class CharacterShooter : MonoBehaviour {
 	public GameObject myProjectile;
 	public CharacterBehavior characterBehavior;
 	float lastShot = 0;
-	float timePressing;
 	public Weapon.types weawponType;
 	public Missil weapon;
 //	bool isLoadingGun;
@@ -50,8 +49,6 @@ public class CharacterShooter : MonoBehaviour {
 		}
 	}
 	public void StartPressingFire(){
-		//isLoadingGun = true;
-		timePressing = Time.time;
 		weapon.OnChangeWeapon (Weapon.types.SIMPLE);
 	}
 	public void CheckFireDouble()
@@ -79,7 +76,7 @@ public class CharacterShooter : MonoBehaviour {
 		
 		//isLoadingGun = false;
 
-		if(lastShot+delay > Time.time) return;
+		if(!Data.Instance.isAndroid && lastShot+delay > Time.time) return;
 
 	//	ResetWeapons ();
 
@@ -116,9 +113,10 @@ public class CharacterShooter : MonoBehaviour {
 			Shoot(new Vector3(pos.x-1, pos.y, pos.z), 20 + offsetY);
 			break;
 		case Weapon.types.TRIPLE:
-			Shoot(pos, 0);
-			Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -20 + offsetY);
-			Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 20 + offsetY);
+            if(!Data.Instance.isAndroid)
+			    Shoot(pos, 0);
+			Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -25 + offsetY);
+			Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 25 + offsetY);
 			break;
 		}
 

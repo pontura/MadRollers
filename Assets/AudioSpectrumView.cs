@@ -21,7 +21,7 @@ public class AudioSpectrumView : MonoBehaviour {
             Destroy(this.gameObject);
             return;
         }
-		audioSpectrum = Data.Instance.voicesManager.audioSpectrum;
+		audioSpectrum = VoicesManager.Instance.audioSpectrum;
 		Data.Instance.events.OnTalk += OnTalk;
 		panel.SetActive (false);
 	}

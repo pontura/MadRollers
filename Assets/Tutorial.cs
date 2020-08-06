@@ -24,25 +24,25 @@ public class Tutorial : MonoBehaviour
     }
     CharactersManager charactersManager;
 
-    public GameObject moveDevice;
-    public GameObject signalJump;
-    public GameObject signalJump2;
-    public GameObject signalFire;
+    //public GameObject moveDevice;
+    //public GameObject signalJump;
+    //public GameObject moveJoystick;
+    //public GameObject signalFire;
    // public GameObject signalFire2;
 
     void ResetSignals()
     {
-        moveDevice.SetActive(false);
-        signalJump.SetActive(false);
-        signalJump2.SetActive(false);
-        signalFire.SetActive(false);
+        //moveDevice.SetActive(false);
+        //signalJump.SetActive(false);
+        //moveJoystick.SetActive(false);
+        //signalFire.SetActive(false);
       //  signalFire2.SetActive(false);
     }
     void Start()
     {
         ResetSignals();
         ResetAnim();
-        if (!Data.Instance.isAndroid || PlayerPrefs.GetString("tutorial") == "done" || UserData.Instance.missionUnblockedID_1>0)
+        if (!Data.Instance.isAndroid || PlayerPrefs.GetString("tutorial") == "done")
         {
             Destroy(anim.gameObject);
             Destroy(this);
@@ -50,10 +50,10 @@ public class Tutorial : MonoBehaviour
         else
         {
             
-            mobileInputs.ButtonJump.SetActive(false);
-            mobileInputs.ButtonFire1.SetActive(false);
-            mobileInputs.ButtonFire2.SetActive(false);
-            mobileInputs.ButtonDash.SetActive(false);
+            //mobileInputs.ButtonJump.SetActive(false);
+            //mobileInputs.ButtonFire1.SetActive(false);
+            //mobileInputs.ButtonFire2.SetActive(false);
+            //mobileInputs.ButtonDash.SetActive(false);
 
             Data.Instance.events.TutorialContinue += TutorialContinue;
             Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
@@ -136,13 +136,17 @@ public class Tutorial : MonoBehaviour
             return;
         else if (distance > 40 && voiceSaid == -1)
         {            
-            Data.Instance.voicesManager.PlayClip(Data.Instance.voicesManager.tutorials[5].audioClip);
+            VoicesManager.Instance.PlayClip(VoicesManager.Instance.tutorials[5].audioClip);
             voiceSaid++;
         }
         if (distance > 45 && state == states.ON)
         {
-            Anim("device");
-            moveDevice.SetActive(true);
+            if(Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
+                Anim("device");
+            else
+                Anim("moveJoystick");
+
+           // moveDevice.SetActive(true);
             state = states.ROTATE;
             Data.Instance.events.RalentaTo(0.5f, 0.5f);
             Invoke("ResetMove", 1.45f);
@@ -150,8 +154,8 @@ public class Tutorial : MonoBehaviour
         if (distance > 175 && state == states.ROTATE_DONE)
         {
             Anim("jump");
-            mobileInputs.ButtonJump.SetActive(true);
-            signalJump.SetActive(true);
+           // mobileInputs.ButtonJump.SetActive(true);
+           // signalJump.SetActive(true);
             Data.Instance.events.RalentaTo(0.05f, 0.9f);
             Data.Instance.musicManager.ChangePitch(0);
             state = states.JUMP;
@@ -159,22 +163,21 @@ public class Tutorial : MonoBehaviour
         else if (distance > 260 && state == states.DONE_JUMP)
         {
             Anim("doubleJump");
-            signalJump2.SetActive(true);
             Data.Instance.events.RalentaTo(0.05f, 0.9f);
             Data.Instance.musicManager.ChangePitch(0);
             state = states.DOUBLE_JUMP;
         }
         else if (distance > 290 && voiceSaid == 0)
         {
-            Data.Instance.voicesManager.PlayClip(Data.Instance.voicesManager.tutorials[3].audioClip);
+            VoicesManager.Instance.PlayClip(VoicesManager.Instance.tutorials[3].audioClip);
             voiceSaid++;
         }
         else if (distance > 315 && state == states.DONE_DOUBLE_JUMP)
         {
             print("Souble jump");
             Anim("fire1");
-            mobileInputs.ButtonFire1.SetActive(true);
-            signalFire.SetActive(true);
+           // mobileInputs.ButtonFire1.SetActive(true);
+           // signalFire.SetActive(true);
             Data.Instance.events.RalentaTo(0.05f, 0.9f);
             Data.Instance.musicManager.ChangePitch(0);
             state = states.SHOOT;
@@ -182,15 +185,15 @@ public class Tutorial : MonoBehaviour
         }
         else if (distance > 390 && voiceSaid == 1)
         {
-            print("die: " + Data.Instance.voicesManager.tutorials[4].audioClip.name);
-            Data.Instance.voicesManager.PlayClip(Data.Instance.voicesManager.tutorials[4].audioClip);
+            print("die: " + VoicesManager.Instance.tutorials[4].audioClip.name);
+            VoicesManager.Instance.PlayClip(VoicesManager.Instance.tutorials[4].audioClip);
             voiceSaid++;
         }
         else if (distance > 400 && state == states.DONE_SHOOT)
         {
            // Anim("fire2");
-            mobileInputs.ButtonFire2.SetActive(true);
-            mobileInputs.ButtonDash.SetActive(true);
+           // mobileInputs.ButtonFire2.SetActive(true);
+           // mobileInputs.ButtonDash.SetActive(true);
             //signalFire2.SetActive(true);
            // Data.Instance.events.RalentaTo(0, 0.9f);
             //Data.Instance.musicManager.ChangePitch(0);
@@ -199,7 +202,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (distance > 490 && voiceSaid == 2)
         {            
-            Data.Instance.voicesManager.PlayClip(Data.Instance.voicesManager.tutorials[2].audioClip);
+            VoicesManager.Instance.PlayClip(VoicesManager.Instance.tutorials[2].audioClip);
             voiceSaid++;
             state = states.DONE;
             OnDestroy();

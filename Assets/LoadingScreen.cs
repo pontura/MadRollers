@@ -41,7 +41,7 @@ public class LoadingScreen : MonoBehaviour {
         if (Data.Instance.isAndroid)
         {
             // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
-            field.text = "CARGANDO MISIONES...";
+            field.text = "DOWNLOADING ROMS...";
             StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAll(Data.ServerAssetsUrl(), OnLoaded));
         }
         else
@@ -65,6 +65,8 @@ public class LoadingScreen : MonoBehaviour {
         {
             DestroyImmediate(missionsManager_in_scene.gameObject);
             Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");
+            Data.Instance.assetsBundleLoader.GetAsset("voicesmanager.all", "voicesmanager");
+            Data.Instance.assetsBundleLoader.GetAsset("madrollerssfx.all", "madrollerssfx");
             BossesLoaded();            
         }
         else

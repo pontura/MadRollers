@@ -99,8 +99,8 @@ public class MissionSelectorMobile : MonoBehaviour
         }
 
         Data.Instance.events.OnSoundFX("whip", -1);
-        List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
-        Data.Instance.voicesManager.PlaySpecificClipFromList(list, videoGameID);
+        List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
+        VoicesManager.Instance.PlaySpecificClipFromList(list, videoGameID);
 
         canvas.enabled = false;
 

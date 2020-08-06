@@ -139,7 +139,7 @@ public class MusicManager : MonoBehaviour {
 		if (isBoss) {
 			audioSource.pitch = 1;
 		//	audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
-			audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
+			audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "boss" + videogameID);
 			audioSource.Play ();
 			audioSource.loop = true;
 		}
@@ -170,7 +170,7 @@ public class MusicManager : MonoBehaviour {
           nextHeartSoundTime = Time.time + heartsDelay;
           //if (Random.Range(0, 500) > 490)
           //{
-          //    Data.Instance.voicesManager.ComiendoCorazones();
+          //    VoicesManager.Instance.ComiendoCorazones();
           //}
         }
     }
@@ -187,9 +187,9 @@ public class MusicManager : MonoBehaviour {
 		StopAllCoroutines ();
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
-		//audioSource.clip = Resources.Load("songs/win1") as AudioClip;
-		audioSource.Play();
+		//audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
+        audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "win" + Data.Instance.videogamesData.actualID);
+        audioSource.Play();
 		audioSource.loop = false;
 
         if(Data.Instance.playMode != Data.PlayModes.STORYMODE)
@@ -212,8 +212,9 @@ public class MusicManager : MonoBehaviour {
 		}
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		audioSource.clip = Resources.Load("songs/" + soundName) as AudioClip;
-		audioSource.Play();
+		//audioSource.clip = Resources.Load("songs/" + soundName) as AudioClip;
+        audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", soundName);
+        audioSource.Play();
 		audioSource.loop = true;
 
 	}

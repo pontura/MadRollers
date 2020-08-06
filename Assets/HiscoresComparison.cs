@@ -97,9 +97,9 @@ public class HiscoresComparison : MonoBehaviour {
 	{
 		GetComponent<GameOverPartyMode> ().Init ();
 		if (puesto == 0)
-			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 5);
+			VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 5);
 		else
-			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 4);
+			VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 4);
 		
 		mySignal.SetPuesto (puesto);
 	}

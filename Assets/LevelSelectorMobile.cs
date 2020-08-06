@@ -50,7 +50,7 @@ public class LevelSelectorMobile : MonoBehaviour
         Data.Instance.multiplayerData.ResetAll();
         Data.Instance.events.OnResetMultiplayerData();
         Data.Instance.isReplay = false;
-        Data.Instance.voicesManager.PlaySpecificClipFromList(Data.Instance.voicesManager.UIItems, 0);
+        VoicesManager.Instance.PlaySpecificClipFromList(VoicesManager.Instance.UIItems, 0);
 
         switch (UserData.Instance.playerID)
         {

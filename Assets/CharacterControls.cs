@@ -168,11 +168,10 @@ public class CharacterControls : MonoBehaviour {
 
     void UpdateStandalone()
     {
-        //if (lastDH != InputManager.getDH(player.id))
-        //{
-        //    lastDH = InputManager.getDH(player.id);
-        //    characterBehavior.characterMovement.DH(-lastDH);
-        //}
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            characterBehavior.characterMovement.DH(1);
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+            characterBehavior.characterMovement.DH(-1);
 
         if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
             characterBehavior.shooter.ChangeNextWeapon();

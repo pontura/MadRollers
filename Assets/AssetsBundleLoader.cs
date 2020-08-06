@@ -65,6 +65,9 @@ public class AssetsBundleLoader : MonoBehaviour
 
         dataPaths.Add("missionsmanager.all");
         dataPaths.Add("bossesmanager.all");
+        dataPaths.Add("voicesmanager.all");
+        dataPaths.Add("music.all");
+        dataPaths.Add("madrollerssfx.all");
 
         totalFirstBundles = dataPaths.Count;
         bundles = new Dictionary<string, AssetBundle>();
@@ -172,7 +175,6 @@ public class AssetsBundleLoader : MonoBehaviour
         loadedParts++;
         if (loadedParts >= dataPaths.Count)
             onSuccess("ok");
-        Debug.Log("OnLoaded " + loadedParts);
     }
     IEnumerator DownloadAndCacheAssetBundle(string uri, Hash128 hash, System.Action<bool> OnLoaded)
     {
@@ -221,5 +223,11 @@ public class AssetsBundleLoader : MonoBehaviour
         AssetBundle assetBundle = bundles[bundleName];
         TextAsset go = assetBundle.LoadAsset(asset) as TextAsset;
         return Instantiate(go);
+    }
+    public AudioClip GetAssetAsAudioClip(string bundleName, string asset)
+    {
+        AssetBundle assetBundle = bundles[bundleName];
+        AudioClip go = assetBundle.LoadAsset(asset) as AudioClip;
+        return go;
     }
 }
