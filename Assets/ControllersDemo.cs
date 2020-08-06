@@ -17,8 +17,8 @@ public class ControllersDemo : MonoBehaviour
         LEFT,
         RIGHT
     }
-    float timeToResetAction = 0.3f;
-    float offset = 0.05f;
+    float timeToResetAction = 0.2f;
+    float offset = 0.025f;
     float doubleShotOffset = 0.3f;
     //public Text field;
     bool isDown;
@@ -137,7 +137,7 @@ public class ControllersDemo : MonoBehaviour
                 DoAction(actions.SHOOT);
             }
         }
-        else if (difX > difY)
+        else if (difX > difY*3)
         {
             if (_x > 0)
                 DoAction(actions.RIGHT);

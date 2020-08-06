@@ -77,8 +77,7 @@ public class MobileInputs : MonoBehaviour
     //}
     public void Jump(float value)
     {
-        float v = 900 + (value * 2000);
-        print("Jump: " + value + " v: " + v);
+        float v = 900 + (value * 2500);
         GetCharacter().SetJumpHeight( v );
         GetCharacter().Jump();
     }
