@@ -33,7 +33,7 @@ public class CreditsUI : MonoBehaviour {
 		VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 3);
 		Data.Instance.credits++;
 		newCreditPanel.SetActive (true);
-		field.text = Data.Instance.texts.genericTexts.newCredit;
+		field.text = TextsManager.Instance.GetText("New Credit");
 		AddCredit ();
 		StartCoroutine (ClosePanel ());
 	}

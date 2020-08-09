@@ -1106,7 +1106,38 @@ MonoBehaviour:
         - totalDistanceToCamFX: 0
           boss: 0
           json: {fileID: 0}
-          total_areas: 10
+          total_areas: 4
+          bending: -6
+          randomize: 1
+          areas:
+          - floors_move_3
+          - floors_move_4
+          cameraOrientation: {x: 0, y: 0, z: -3}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 3
+          bending: -12
+          randomize: 0
+          areas:
+          - helicex2
+          cameraOrientation: {x: 0, y: -4, z: -1}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 4
+          bending: -5
+          randomize: 0
+          areas:
+          - housesSmall3
+          - housesSmall1_med
+          - houses1
+          - housesSmall_Stars2
+          cameraOrientation: {x: 0, y: 10, z: 0}
+        - totalDistanceToCamFX: 0
+          boss: 0
+          json: {fileID: 0}
+          total_areas: 5
           bending: -6
           randomize: 1
           areas:
@@ -1126,24 +1157,25 @@ MonoBehaviour:
           - floors_move_4
           cameraOrientation: {x: 0, y: -2, z: -4}
         - totalDistanceToCamFX: 0
-          boss: 1
+          boss: 0
           json: {fileID: 0}
           total_areas: 3
-          bending: 0
+          bending: -2
           randomize: 0
           areas:
           - entrance
-          - Ending
-          cameraOrientation: {x: 0, y: -2, z: -2}
+          - floors_move_4
+          - floors_move_3
+          cameraOrientation: {x: 0, y: -10, z: -1}
         - totalDistanceToCamFX: 0
-          boss: 0
+          boss: 1
           json: {fileID: 0}
-          total_areas: 1000
-          bending: -10
-          randomize: 1
+          total_areas: 1
+          bending: 0
+          randomize: 0
           areas:
           - Ending
-          cameraOrientation: {x: 0, y: -7, z: -6}
+          cameraOrientation: {x: 0, y: 0, z: -2}
     - title: 
       data:
       - jsonName: boy_ene_SubeyBajan
@@ -5815,9 +5847,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: bfe1169a0b25f834487291d13cdf5c43, type: 3}
   - {fileID: 4900000, guid: 7879dedf686602447babb24c51d2a967, type: 3}
   - {fileID: 4900000, guid: 387f6facc6de86d4abadf4d4a2c3c011, type: 3}
+  - {fileID: 4900000, guid: 05718b4769811a54cb07512924355db8, type: 3}
+  - {fileID: 4900000, guid: bd3892dbf517c7c4ab32cc7472bd5126, type: 3}
+  - {fileID: 4900000, guid: 177dc0e2b60ff014e97cb5672c9e2d50, type: 3}
   - {fileID: 4900000, guid: b5506e84b83dea944b1bf85417f46822, type: 3}
   - {fileID: 4900000, guid: 199a9462ed8ac57479a5218ab9de9a37, type: 3}
-  - {fileID: 4900000, guid: 05718b4769811a54cb07512924355db8, type: 3}
   - {fileID: 4900000, guid: 640f345fa2e0c6942848a734d8ff3408, type: 3}
   - {fileID: 4900000, guid: 51cb487d80ee1ee41a5d9ed48f9eeca6, type: 3}
   - {fileID: 4900000, guid: bdf1b7825925a98468caeb0c9179eaeb, type: 3}
@@ -5904,7 +5938,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: b43bf67d76de1f0408bc9af511545b72, type: 3}
   - {fileID: 4900000, guid: 18cfb34f72131ca43bf690d4a924dfc0, type: 3}
   - {fileID: 4900000, guid: 58b0bfe1fb6eb6449a7febf1215355f9, type: 3}
-  - {fileID: 4900000, guid: 177dc0e2b60ff014e97cb5672c9e2d50, type: 3}
   - {fileID: 4900000, guid: f957a2bd95520984b9189494f8e4ea66, type: 3}
   - {fileID: 4900000, guid: 7dc2d26c252c8b04c9fae8b6b44afb91, type: 3}
   - {fileID: 4900000, guid: c8bf45ad43c3daa41988298dbcde005c, type: 3}
@@ -6209,9 +6242,11 @@ MonoBehaviour:
   - ruedaSimple1
   - floors_move_3
   - floors_move_4
+  - housesSmall3
+  - housesSmall1_med
+  - houses1
   - housesSmall1
   - housesSmall2
-  - housesSmall3
   - killRunner
   - killRunner3
   - singleRunnerJump1
@@ -6298,7 +6333,6 @@ MonoBehaviour:
   - estrellas simple 1
   - estrellas simple 2
   - estrellas simple 3
-  - houses1
   - estrellas simple_doble
   - boss_2filas_boyland
   - boss_2_filas_boyland_free

@@ -67,7 +67,7 @@ public class Continue : MonoBehaviour {
 				//			}
 				return;
 			}	
-			credits_txt.text = Data.Instance.credits + " CREDITS"; 
+			credits_txt.text = Data.Instance.credits + " " + TextsManager.Instance.GetText("CREDITS"); 
 		} else
 			credits_txt.text = "";
 		panel.SetActive (true);

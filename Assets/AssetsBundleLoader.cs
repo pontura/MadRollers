@@ -66,9 +66,9 @@ public class AssetsBundleLoader : MonoBehaviour
         dataPaths.Add("missionsmanager.all");
         dataPaths.Add("bossesmanager.all");
         dataPaths.Add("voicesmanager.all");
-        dataPaths.Add("music.all");
+       // dataPaths.Add("music.all");
         dataPaths.Add("madrollerssfx.all");
-
+        dataPaths.Add("textsmanager.all");
         totalFirstBundles = dataPaths.Count;
         bundles = new Dictionary<string, AssetBundle>();
     }

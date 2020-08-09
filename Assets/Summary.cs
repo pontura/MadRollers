@@ -62,9 +62,9 @@ public class Summary : MonoBehaviour {
 
         percentfield.text = ((int)(progression * 100)).ToString() + "%";
         if(isBoss)
-            missionField.text = "BOSS! M." + (Data.Instance.missions.MissionActiveID + 1);
+            missionField.text = TextsManager.Instance.GetText("BOSS") + "! M." + (Data.Instance.missions.MissionActiveID + 1);
         else
-            missionField.text = "MISIÓN " + (Data.Instance.missions.MissionActiveID + 1);
+            missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID + 1);
     }
     public void Restart()
 	{

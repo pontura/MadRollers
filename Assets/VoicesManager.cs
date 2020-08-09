@@ -55,7 +55,12 @@ public class VoicesManager : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
-
+    bool IsBundleReady()
+    {
+        if(tutorials.Count == 0)
+            return false;
+        return true;
+    }
     public void Init()
     {
 		audioSource.enabled = Data.Instance.voicesOn;
@@ -117,7 +122,8 @@ public class VoicesManager : MonoBehaviour
     }
     public void PlayCountDown(int id)
     {
-        PlayClip(countDown[id].audioClip);
+        if(IsBundleReady())
+            PlayClip(countDown[id].audioClip);
     }
 
 	int sequenceID = 0;
@@ -125,7 +131,9 @@ public class VoicesManager : MonoBehaviour
 	List<VoiceData> sequenceSaying;
 	public void PlaySequence( List<VoiceData> clips)
 	{
-		if (clips.Count == 0)
+        if (!IsBundleReady())
+            return;
+        if (clips.Count == 0)
 			return;
 		sequenceID = 0;
 		talking = false;
@@ -136,7 +144,9 @@ public class VoicesManager : MonoBehaviour
 	}
 	void PlayNextSequencedClip()
 	{
-		VoiceData newAudio = sequenceSaying[sequenceID];
+        if (!IsBundleReady())
+            return;
+        VoiceData newAudio = sequenceSaying[sequenceID];
 		print (onSequence + " " + newAudio.audioClip + " " + sequenceID + "    count: " + sequenceSaying.Count);
 		PlayClip(newAudio.audioClip); 
 		sequenceID++;
@@ -148,11 +158,15 @@ public class VoicesManager : MonoBehaviour
 	}
 	public void PlaySpecificClipFromList( List<VoiceData> clips, int id)
 	{
-		PlayClip(clips[id].audioClip); 
+        if (!IsBundleReady())
+            return;
+        PlayClip(clips[id].audioClip); 
 	}
 	public void PlayRandom( List<VoiceData> clips)
     {
-		int rand = UnityEngine.Random.Range(0, clips.Count);
+        if (!IsBundleReady())
+            return;
+        int rand = UnityEngine.Random.Range(0, clips.Count);
 		PlayClip(clips[rand].audioClip); 
     }
     public void ComiendoCorazones()
@@ -167,7 +181,9 @@ public class VoicesManager : MonoBehaviour
 	bool talking;
 	public void PlayClip(AudioClip audioClip)
     {
-		talking = true;
+        if (!IsBundleReady() || audioClip == null)
+            return;
+        talking = true;
 		//audioSpectrum.SetOn ();
         audioSource.clip = audioClip;
         audioSource.Play();
@@ -176,7 +192,9 @@ public class VoicesManager : MonoBehaviour
 	float timer;
 	void Update()
 	{
-		if (!talking)
+        if (!IsBundleReady())
+            return;
+        if (!talking)
 			return;
 		
 		if (audioSource.clip != null && audioSource.clip.length>0.1f && audioSource.time >= (audioSource.clip.length-0.02f)) {

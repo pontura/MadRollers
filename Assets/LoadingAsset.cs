@@ -25,12 +25,14 @@ public class LoadingAsset : MonoBehaviour {
     public AvatarThumb avatarThumb;
     public Text avatarName;
     public Text missionField;
+    public Text loading_field;
+
     public GameObject hiscorePanel;
     public GameObject survivalTorneoImage;
 
     void Start () {
-       
-		ChangeBG ();
+        loading_field.text = TextsManager.Instance.GetText("LOADING") + "...";
+        ChangeBG ();
 	}
 	public void SetOn(bool _isOn)
 	{
@@ -54,7 +56,7 @@ public class LoadingAsset : MonoBehaviour {
                 int missionID = Data.Instance.missions.MissionActiveID;
                 int videoGameID = Data.Instance.videogamesData.actualID;
                 UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
-                missionField.text = "DISKETTE " + (missionID + 1);
+                missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
             }
             else if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             {
@@ -64,7 +66,7 @@ public class LoadingAsset : MonoBehaviour {
                 int missionID = Data.Instance.missions.MissionActiveID;
                 int videoGameID = Data.Instance.videogamesData.actualID;
                 UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
-                missionField.text = "TORNEO <RESISTENCIA>";
+                missionField.text = TextsManager.Instance.GetText("TOURNAMENT");
             }
             else
             {

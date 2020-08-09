@@ -65,7 +65,7 @@ public class ControllersDemo : MonoBehaviour
             for (int a = 0; a< Input.touchCount; a++)
             {
                 Touch t = Input.GetTouch(a);
-                if (t.position.x > Screen.width/2)
+                if (t.position.x > Screen.width/2 || Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
                 {
                     if(t.phase == TouchPhase.Began)
                         InitPressing();
@@ -81,17 +81,6 @@ public class ControllersDemo : MonoBehaviour
         }
         isDown = false;
         upForced = false;
-
-        //else if (Input.mousePosition.x > Screen.width / 2 && Input.GetMouseButton(0) && isDown && !upForced)
-        //{
-        //    OnDown();
-        //}
-        //else if (Input.GetMouseButtonUp(0) && !upForced)
-        //{
-        //    if(isDown)
-        //        OnUp();
-        //    upForced = false;
-        //}
     }
     void OnDown()
     {

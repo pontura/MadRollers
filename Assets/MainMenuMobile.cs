@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuMobile : MonoBehaviour
 {
+    public Text playField;
+    public Text registerField;
+
     public GameObject DonePanel;
     public GameObject RegisterPanel;
 
@@ -12,6 +16,9 @@ public class MainMenuMobile : MonoBehaviour
 
     private void Start()
     {
+        playField.text = TextsManager.Instance.GetText("PLAY");
+        registerField.text = TextsManager.Instance.GetText("REGISTER");
+
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
         Data.Instance.events.OnInterfacesStart();
         DonePanel.SetActive(false);

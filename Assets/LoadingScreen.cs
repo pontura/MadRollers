@@ -63,10 +63,14 @@ public class LoadingScreen : MonoBehaviour {
         field.text = "";
         if (result == "ok")
         {
-            DestroyImmediate(missionsManager_in_scene.gameObject);
-            Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");
+            DestroyImmediate(VoicesManager.Instance.gameObject);
+            DestroyImmediate(TextsManager.Instance.gameObject);
+            DestroyImmediate(missionsManager_in_scene.gameObject);           
+
+            Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");           
             Data.Instance.assetsBundleLoader.GetAsset("voicesmanager.all", "voicesmanager");
             Data.Instance.assetsBundleLoader.GetAsset("madrollerssfx.all", "madrollerssfx");
+            Data.Instance.assetsBundleLoader.GetAsset("textsmanager.all", "textsmanager");
             BossesLoaded();            
         }
         else

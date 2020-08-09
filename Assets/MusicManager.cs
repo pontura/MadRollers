@@ -138,8 +138,8 @@ public class MusicManager : MonoBehaviour {
 //			return;
 		if (isBoss) {
 			audioSource.pitch = 1;
-		//	audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
-			audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "boss" + videogameID);
+			audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
+		//	audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "boss" + videogameID);
 			audioSource.Play ();
 			audioSource.loop = true;
 		}
@@ -187,8 +187,8 @@ public class MusicManager : MonoBehaviour {
 		StopAllCoroutines ();
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		//audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
-        audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "win" + Data.Instance.videogamesData.actualID);
+		audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
+      //  audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "win" + Data.Instance.videogamesData.actualID);
         audioSource.Play();
 		audioSource.loop = false;
 
@@ -212,8 +212,8 @@ public class MusicManager : MonoBehaviour {
 		}
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		//audioSource.clip = Resources.Load("songs/" + soundName) as AudioClip;
-        audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", soundName);
+		audioSource.clip = Resources.Load("songs/" + soundName) as AudioClip;
+        //audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", soundName);
         audioSource.Play();
 		audioSource.loop = true;
 

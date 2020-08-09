@@ -45,7 +45,7 @@ public class Level : MonoBehaviour {
     private bool playing;
     private int areasX;
     public CharactersManager charactersManager;
-    private PowerupsManager powerupsManager;
+   // private PowerupsManager powerupsManager;
 	public bool isLastArea;
 	Missions missions;
    
@@ -76,11 +76,11 @@ public class Level : MonoBehaviour {
 		Data.Instance.events.OnGameStart += OnGameStart;
 
 		charactersManager = game.GetComponent<CharactersManager>();
-		powerupsManager = GetComponent<PowerupsManager>();
+		//powerupsManager = GetComponent<PowerupsManager>();
 //		floorManager = GetComponent<FloorManager>();
 //		floorManager.Init(charactersManager);
 		playing = true;
-		powerupsManager.Init ();
+		//powerupsManager.Init ();
 		SetNewVideogameSettings ();
 
 		missions.Init (this);
@@ -234,7 +234,7 @@ public class Level : MonoBehaviour {
                 Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
                 newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
 				GrabbableItem gi = newSO.GetComponent<GrabbableItem> ();
-				gi.SetGroundMaterial ();
+			//	gi.SetGroundMaterial ();
             }
         }
     }

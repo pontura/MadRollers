@@ -43,8 +43,6 @@ public class Data : MonoBehaviour {
 	public InputSavedAutomaticPlay inputSavedAutomaticPlay;
 	[HideInInspector]
 	public HandWriting handWriting;
-	[HideInInspector]
-	public Texts texts;
 
     public Rewired.UI.ControlMapper.ControlMapper controlMapper;
 
@@ -162,7 +160,6 @@ public class Data : MonoBehaviour {
         inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay>();
         versusManager = GetComponent<VersusManager>();
         handWriting = GetComponent<HandWriting>();
-        texts = GetComponent<Texts>();
         assetsBundleLoader = GetComponent<AssetsBundleLoader > ();
 
 

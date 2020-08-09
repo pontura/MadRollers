@@ -66,7 +66,7 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
     public void Clicked(int videoGameID, int MissionActiveID)
     {
         hiscoresMobile.Init(videoGameID, MissionActiveID, MyScoreLoaded);
-        missionField.text = "HI-SCORES (" + (int)(MissionActiveID+1) + ")";
+        missionField.text = TextsManager.Instance.GetText("HI-SCORES") + " (" + (int)(MissionActiveID+1) + ")";
     }
     void MyScoreLoaded(int a)
     { }

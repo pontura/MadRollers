@@ -50,7 +50,7 @@ public class MainHiscores : MonoBehaviour {
             return;
         }
 
-        puestoField.text = "PUESTO " + puesto;
+        puestoField.text = TextsManager.Instance.GetText("RANK") + " " + puesto;
 		field.text = _hiscore.ToString ();
 
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;

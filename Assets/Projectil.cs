@@ -175,7 +175,7 @@ public class Projectil : SceneObject {
 			case "destroyable":
                 breakable = other.gameObject.GetComponent<Breakable>();
                 int total = ScoresManager.score_for_breaking + breakable.GetSceneObject().score;
-                Debug.Log(other.gameObject.name + " total: " + total + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
+                //Debug.Log(other.gameObject.name + " total: " + total + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
 				SetScore(total, ScoresManager.types.BREAKING);
                 breakable.breakOut(other.gameObject.transform.position, true);
                 // other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);

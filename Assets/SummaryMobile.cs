@@ -63,7 +63,7 @@ public class SummaryMobile : MonoBehaviour
     IEnumerator InitCoroutine()
     {
         missionID = Data.Instance.missions.MissionActiveID - 1;
-        titleField.text = "DISKETTE " + (missionID + 1);
+        titleField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
         score = Data.Instance.multiplayerData.GetTotalScore();
         scoreField.text = Utils.FormatNumbers(score);
 
@@ -109,7 +109,7 @@ public class SummaryMobile : MonoBehaviour
             foreach (HiscoresByMissions.MissionHiscoreUserData data in hiscoreData.all)
             {
                 if (data.userID == UserData.Instance.userID)
-                    puestoField.text = "PUESTO " + puesto;
+                    puestoField.text = TextsManager.Instance.GetText("RANK") + " " + puesto;
                 puesto ++;
             }
             hiscoreOtherPanel.SetActive(true);

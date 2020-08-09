@@ -29,7 +29,7 @@ public class MissionSelectorMobile : MonoBehaviour
 
     void Start()
     {
-        title1.text = "VIDEOGAMES";
+        title1.text = TextsManager.Instance.GetText("VIDEOGAMES");
     }
 
     public void Init()

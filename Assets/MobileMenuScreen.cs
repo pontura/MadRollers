@@ -8,14 +8,18 @@ public class MobileMenuScreen : MonoBehaviour
     public GameObject controlsMangerButton;
     public Text controlsTypeField;
     public Text pixelateField;
+    public Text langField;
 
     void Start()
     {
         if (Data.Instance.isAndroid)
         {
             controlsMangerButton.SetActive(false);
-            SetControlField();
+            SetFields();
         }
+    }
+    private void OnEnable()
+    {
         SetTexts();
     }
     public void ChangeControlsType()
@@ -25,10 +29,18 @@ public class MobileMenuScreen : MonoBehaviour
         else
             Data.Instance.controlsType = Data.ControlsType.GYROSCOPE;
         PlayerPrefs.SetString("controlsType", Data.Instance.controlsType.ToString());
-        SetControlField();
+        SetFields();
     }
-    void SetControlField()
+    public void ChangeLang()
     {
+        TextsManager.Instance.NextLang();
+        langField.text = TextsManager.Instance.lang.ToUpper();
+        PlayerPrefs.SetString("controlsType", Data.Instance.controlsType.ToString());
+        SetFields();
+    }
+    void SetFields()
+    {
+        langField.text = TextsManager.Instance.lang.ToUpper();
         controlsTypeField.text = Data.Instance.controlsType.ToString();
     }
     public void SwitchPixels()
@@ -44,7 +56,7 @@ public class MobileMenuScreen : MonoBehaviour
         if (useRetroPixelPro == "false")
             Data.Instance.useRetroPixelPro = false;
 
-        pixelateField.text = "PIXELS " + Data.Instance.useRetroPixelPro;
+        pixelateField.text = "FULL " + Data.Instance.useRetroPixelPro;
     }
     public void Controls()
     {
