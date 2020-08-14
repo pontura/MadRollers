@@ -138,7 +138,7 @@ namespace Rewired {
             platform = Platform.Linux;
 #endif
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID 
             platform = Platform.Android;
 #if !UNITY_EDITOR
             // Handle special Android platforms

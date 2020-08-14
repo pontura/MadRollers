@@ -12,7 +12,7 @@ public class LoadingScreen : MonoBehaviour {
     public Image progressBar;
 
     void Start () {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID || UNITY_IOS && !UNITY_EDITOR
         useLocalAssets = false;
 #endif
         if (LevelDataDebug.Instance || useLocalAssets)

@@ -56,7 +56,7 @@ public class CharacterControls : MonoBehaviour {
 
 #if UNITY_EDITOR
         UpdateStandalone();
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
         if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
             UpdateAccelerometer();
         else

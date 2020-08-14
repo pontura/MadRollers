@@ -26,7 +26,9 @@ public class AssetsBundleLoader : MonoBehaviour
     string url;
     bool isFirstTime;
 
-#if UNITY_WEBGL
+#if UNITY_IOS
+    string mainBundlePath = "iOS";
+#elif UNITY_WEBGL
     string mainBundlePath = "Web";
 #else
     string mainBundlePath = "Android";

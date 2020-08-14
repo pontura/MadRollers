@@ -96,8 +96,8 @@ public class UserData : MonoBehaviour
         
         if (userID.Length<2)
         {
-#if UNITY_ANDROID
-			userID = SystemInfo.deviceUniqueIdentifier;
+#if UNITY_ANDROID || UNITY_IOS
+            userID = SystemInfo.deviceUniqueIdentifier;
 			SetUserID(userID);            
 #else
             userID = SetRandomID();
