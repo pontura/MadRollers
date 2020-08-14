@@ -103,9 +103,8 @@ public class Data : MonoBehaviour {
         if (RESET)
 			PlayerPrefs.DeleteAll ();
 
-        print("heightheightheight: " + Screen.height);
-
-#if UNITY_ANDROID
+        print("heightheightheight: " + Screen.height); 
+#if UNITY_ANDROID || UNITY_IOS
         isAndroid = true;
         isAdmin = false;
         controlsType = ControlsType.GYROSCOPE;
