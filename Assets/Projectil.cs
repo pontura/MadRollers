@@ -156,14 +156,14 @@ public class Projectil : SceneObject {
                 if (enemy) {
 					if (enemy.state == MmoCharacter.states.DEAD)
 						return;
-                    Debug.Log(other.gameObject.name + " total:  score_for_breaking " + ScoresManager.score_for_breaking + "score: " + enemy.score);
+                   // Debug.Log(other.gameObject.name + " total:  score_for_breaking " + ScoresManager.score_for_breaking + "score: " + enemy.score);
 
                     SetScore( ScoresManager.score_for_killing + enemy.score, ScoresManager.types.KILL);
 					enemy.Die ();
 				} else {
                     breakable = other.gameObject.GetComponent<Breakable>();
                     breakable.breakOut(other.gameObject.transform.position, true);
-                    Debug.Log(other.gameObject.name + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
+                  //  Debug.Log(other.gameObject.name + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
 
                     SetScore(ScoresManager.score_for_killing + breakable.GetSceneObject().score, ScoresManager.types.KILL);
                     //other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);

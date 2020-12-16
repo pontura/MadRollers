@@ -17,7 +17,7 @@ public class WebCamPhotoCamera : MonoBehaviour
     void Start()
     {
 //		if (WebCamTexture.devices.Length == 0 || Data.Instance.webcamOff) {
-//			Data.Instance.LoadLevel("MainMenu");
+//			Data.Instance.LoadLevel("MainMenuMobile");
 //			return;
 //		}
 //        lastPhotoTexture = null;
@@ -51,7 +51,7 @@ public class WebCamPhotoCamera : MonoBehaviour
     public void TakePhoto(int score)
     {
 //		if (WebCamTexture.devices.Length == 0) {
-//			Data.Instance.LoadLevel("MainMenu");
+//			Data.Instance.LoadLevel("MainMenuMobile");
 //			return;
 //		}
 //        photoTaken = true;

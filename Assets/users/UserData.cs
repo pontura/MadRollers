@@ -64,17 +64,19 @@ public class UserData : MonoBehaviour
         serverConnect = GetComponent<ServerConnect>();
         avatarImages = GetComponent<AvatarImages>();
         hiscoresByMissions = GetComponent<HiscoresByMissions>();
-        missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
-        missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
-        missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
-        score = PlayerPrefs.GetInt("score");
     }
     private void Start()
     {
-        LoadUser();
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
+        {
+            print("_________");
+            missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
+            missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
+            missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
+            score = PlayerPrefs.GetInt("score");
+            LoadUser();
+        }
         
-
-
     }
     private void OnDestroy()
     {
@@ -201,15 +203,18 @@ public class UserData : MonoBehaviour
     }
     public void SetMissionReady(int videogameID, int missionID)
     {
-        int id = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID);
-        if (id < missionID)
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
         {
-            PlayerPrefs.SetInt("missionUnblockedID_" + videogameID, missionID);
-            switch(videogameID)
+            int id = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID);
+            if (id < missionID)
             {
-                case 1:  missionUnblockedID_1 = missionID; break;
-                case 2: missionUnblockedID_2 = missionID; break;
-                case 3: missionUnblockedID_3 = missionID; break;
+                PlayerPrefs.SetInt("missionUnblockedID_" + videogameID, missionID);
+                switch (videogameID)
+                {
+                    case 1: missionUnblockedID_1 = missionID; break;
+                    case 2: missionUnblockedID_2 = missionID; break;
+                    case 3: missionUnblockedID_3 = missionID; break;
+                }
             }
         }
     }

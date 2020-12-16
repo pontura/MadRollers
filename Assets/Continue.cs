@@ -58,13 +58,7 @@ public class Continue : MonoBehaviour {
         }
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
 			if (!Data.Instance.canContinue || Data.Instance.credits == 0) {
-				//	if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
 				Invoke ("Done", 2);
-				//			} else {
-				//				canClick = false;
-				//				panel.GetComponent<Animation> ().Play ("signalOff");
-				//				Invoke ("Done", 1f);
-				//			}
 				return;
 			}	
 			credits_txt.text = Data.Instance.credits + " " + TextsManager.Instance.GetText("CREDITS"); 

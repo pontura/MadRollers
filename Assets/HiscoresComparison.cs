@@ -28,7 +28,6 @@ public class HiscoresComparison : MonoBehaviour {
 
 	public void Init() {
 
-        Data.Instance.videogamesData.SetOtherGameActive();
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && Data.Instance.playMode != Data.PlayModes.PARTYMODE) {
 			GetComponent<GameOverPartyMode> ().Init ();
 			return;
@@ -61,7 +60,7 @@ public class HiscoresComparison : MonoBehaviour {
 	}
     IEnumerator DrawHiscores()
     {
-        puesto = 0;
+        puesto = rankingNum;
         int num = 1;
         bool isCompleted = false;
         
@@ -73,9 +72,9 @@ public class HiscoresComparison : MonoBehaviour {
 				isCompleted = true;
 				SetPuesto ();				
 			} else {
-				if (puesto == 0 && data.hiscore < score)
+				if (data.hiscore < score)
 					puesto = num;
-				yield return new WaitForSeconds (0.17f);
+				yield return new WaitForSeconds (0.12f);
 				AddSignal (data, num);
 				num++;
 			}
@@ -90,6 +89,8 @@ public class HiscoresComparison : MonoBehaviour {
         else
         {
             yield return new WaitForSeconds(3f);
+            GetComponent<GameOverPartyMode>().Init();
+            yield return new WaitForSeconds(5f);
             Reset();
         }
     }

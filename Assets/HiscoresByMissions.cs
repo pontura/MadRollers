@@ -33,7 +33,8 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void Init()
     {
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            Data.Instance.events.OnMissionComplete += OnMissionComplete;
     }
     public void ResetAllHiscores()
     {

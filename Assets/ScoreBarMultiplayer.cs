@@ -37,7 +37,10 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
         scoreAdviseNum.text = "";
 		scoreAdviseDesc.text = "";
-        myScoreFields.text = "00";
+        if(Data.Instance.playMode == Data.PlayModes.PARTYMODE && Data.Instance.multiplayerData.score>0)
+            myScoreFields.text = Utils.FormatNumbers(Data.Instance.multiplayerData.score);
+        else
+            myScoreFields.text = "00";
     }
     void OnMissionComplete(int id)
     {

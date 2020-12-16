@@ -128,6 +128,7 @@ public class MusicManager : MonoBehaviour {
 	}
     void StartMultiplayerRace()
     {
+        print("______________StartMultiplayerRace");
 		audioSource.pitch = 1;
 		PlayMainTheme ();
     }
@@ -192,8 +193,8 @@ public class MusicManager : MonoBehaviour {
         audioSource.Play();
 		audioSource.loop = false;
 
-        if(Data.Instance.playMode != Data.PlayModes.STORYMODE)
-		    Invoke ("PlayMainTheme", 7);
+      //  if(Data.Instance.playMode != Data.PlayModes.STORYMODE)
+		    //Invoke ("PlayMainTheme", 7);
 	}
 	void PlayMainTheme()
 	{

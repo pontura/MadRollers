@@ -128,7 +128,7 @@ public class Level : MonoBehaviour {
 		showStartArea = true;		
 		data.events.MissionComplete ();
 		VoicesManager.Instance.PlayRandom (VoicesManager.Instance.missionComplete);
-		SetNewVideogameSettings ();
+		//SetNewVideogameSettings ();
 	}
 	void SetNewVideogameSettings()
 	{

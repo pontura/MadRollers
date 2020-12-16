@@ -55,6 +55,10 @@ public class Missions : MonoBehaviour {
             data.events.OnMissionComplete += OnMissionComplete;
         }
     }
+    public void Reset()
+    {
+        MissionActiveID = 0;
+    }
     void OnDestroy()
     {
         if (data != null)
@@ -122,16 +126,23 @@ public class Missions : MonoBehaviour {
 	{
         hasReachedBoss = false;
         times_trying_same_mission = 0;
-		//if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
-		//	AddAreaByName ("areaChangeLevel");
-		//	return;
-		//} else 
-        if (MissionActiveID >= MissionsManager.Instance.videogames [videogamesData.actualID].missions.Count - 1) {
-			Game.Instance.GotoVideogameComplete ();
-		} else {
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
+            //if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
+            //	AddAreaByName ("areaChangeLevel");
+            //	return;
+            //} else 
+            if (MissionActiveID >= MissionsManager.Instance.videogames[videogamesData.actualID].missions.Count - 1)
+            {
+                Game.Instance.GotoVideogameComplete();
+            }
+            else if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
+            {
+                return;
+            } else { 
 			NextMission ();
 			int videogameID = videogamesData.actualID+1;
-            UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
+            if(Data.Instance.playMode != Data.PlayModes.PARTYMODE)
+                UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
 		}
     }
 	public int GetTotalMissionsInVideoGame(int videogameID)
@@ -188,8 +199,8 @@ public class Missions : MonoBehaviour {
 		}
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
-		if (MissionActiveID == 0 && videogamesData.actualID == 0)
-			CheckTutorial (distance);
+		if (MissionActiveID == 0 && videogamesData.actualID == 0 &&  Data.Instance.playMode == Data.PlayModes.STORYMODE)
+                CheckTutorial (distance);
 	}
     
     int total_areas = 1;

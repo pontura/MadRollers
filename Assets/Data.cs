@@ -198,6 +198,11 @@ public class Data : MonoBehaviour {
 		float delay = 0.1f;
         events.OnChangeScene(levelName);
 
+        if (playMode == PlayModes.PARTYMODE && levelName == "Game")
+        {
+            loadingAsset.SetOn(true);
+            return;
+        }
 		if (!isReplay && levelName == "Game") {
 			loadingAsset.SetOn (true);
 			return;

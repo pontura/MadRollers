@@ -24,7 +24,7 @@ public class AudioWriter : MonoBehaviour {
 	{
 		CancelInvoke ();
 		if(done)
-			Data.Instance.LoadLevel("MainMenu");
+			Data.Instance.LoadLevel("MainMenuMobile");
 		else {
 			done = true;
 			sentenceID = VoicesManager.Instance.intros.Count - 1;

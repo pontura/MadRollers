@@ -208,7 +208,7 @@ public class MainHiscores : MonoBehaviour {
 		Data.Instance.missions.MissionActiveID = 0;
 		Data.Instance.events.OnResetMultiplayerData();
 		Data.Instance.events.ForceFrameRate (1);
-		Data.Instance.LoadLevel("MainMenu");
+		Data.Instance.LoadLevel("MainMenuMobile");
     }
     List<Hiscore> OrderByHiscore(List<Hiscore> hs)
     {

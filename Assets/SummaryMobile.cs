@@ -30,7 +30,9 @@ public class SummaryMobile : MonoBehaviour
     int score;
 
     void Start()
-    {        
+    {
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            return;
         puestoField.text = "";
         panel.SetActive(false);
     }

@@ -27,13 +27,9 @@ public class MissionSelectorMobile : MonoBehaviour
 
     int videogameID = -1;
 
-    void Start()
-    {
-        title1.text = TextsManager.Instance.GetText("VIDEOGAMES");
-    }
-
     public void Init()
     {
+        title1.text = TextsManager.Instance.GetText("VIDEOGAMES");
         videogameID = Data.Instance.videogamesData.actualID;
         AddButtons(0);
         AddButtons(1);
@@ -86,14 +82,18 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void Clicked(int videoGameID, int MissionActiveID)
     {
-        foreach (MissionButtonMobile mbm in allButtons)
+        print("videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
-            if (mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
+            foreach (MissionButtonMobile mbm in allButtons)
             {
-                if (mbm.isBlocked)
+                if (mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
                 {
-                    ClickedABlockedButton();
-                    return;
+                    if (mbm.isBlocked)
+                    {
+                        ClickedABlockedButton();
+                        return;
+                    }
                 }
             }
         }
@@ -102,9 +102,13 @@ public class MissionSelectorMobile : MonoBehaviour
         List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
         VoicesManager.Instance.PlaySpecificClipFromList(list, videoGameID);
 
-        canvas.enabled = false;
+        if(canvas != null)
+            canvas.enabled = false;
 
         string m = (MissionActiveID + 1).ToString();
+
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            m = (Data.Instance.multiplayerData.levelID_for_partyMode + 1).ToString();
 
         if (MissionActiveID < 10)
             disketteField.text = "0" + m;
@@ -127,7 +131,7 @@ public class MissionSelectorMobile : MonoBehaviour
         yield return new WaitForSeconds(3);
         Data.Instance.musicManager.OnLoadingMusic();
         yield return new WaitForSeconds(2.8f);
-        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        //Data.Instance.playMode = Data.PlayModes.STORYMODE;
         Data.Instance.LoadLevel("Game");
     }
     public void SetSelector()

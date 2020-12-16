@@ -107,13 +107,16 @@ public class LoadingAsset : MonoBehaviour {
 		AddText("Club-Social-911 >system ...");
         UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
 		yield return new WaitForSeconds (0.5f);
-
-		int i = texts.Length;
-		while (i > 0) {
-			yield return new WaitForSeconds ((float)Random.Range (6, 10) / 10f);
-			AddText(texts[i-1]);
-			i--;
-		}
+        if (!Data.Instance.isReplay)
+        {
+            int i = texts.Length;
+            while (i > 0)
+            {
+                yield return new WaitForSeconds((float)Random.Range(6, 10) / 10f);
+                AddText(texts[i - 1]);
+                i--;
+            }
+        }
 		AddText("COMPLETE!");
 		yield return new WaitForSeconds (0.5f);
         SetOn (false);

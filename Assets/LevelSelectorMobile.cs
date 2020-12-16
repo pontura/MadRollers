@@ -20,19 +20,25 @@ public class LevelSelectorMobile : MonoBehaviour
 
     int score;
     int scoreTo;
-
-    void LoopForScore()
-    {
-        if (score == scoreTo)
-            return;
-        score += (int)(((float)scoreTo - (float)score )/ 4f);
-        if (score > scoreTo)
-            score = scoreTo;
-        scoreField.text = Utils.FormatNumbers(score);
-        Invoke("LoopForScore", Time.deltaTime*5);
-    }
+    
     void Start()
     {
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            InitParty();
+        else
+            InitStoryMode();
+    }
+    void InitParty()
+    {
+        Data.Instance.events.OnMadRollersSFXStatus(false);
+        //missionSelectorMobile.Init();
+       // Data.Instance.multiplayerData.ResetAll();
+       // Data.Instance.events.OnResetMultiplayerData();
+       // Data.Instance.isReplay = false;
+        missionSelectorMobile.Clicked(Data.Instance.videogamesData.actualID, Data.Instance.missions.MissionActiveID);
+    }
+    void InitStoryMode()
+    { 
         tournamentField.text = TextsManager.Instance.GetText("TOURNAMENT");
         hiscoresField.text = TextsManager.Instance.GetText("HI-SCORES");
         pluginsField.text = TextsManager.Instance.GetText("PLUG-INS");
@@ -46,8 +52,7 @@ public class LevelSelectorMobile : MonoBehaviour
         if (score == scoreTo || score == 0)
             scoreField.text = Utils.FormatNumbers(scoreTo);
         else
-        {
-           
+        {           
             LoopForScore();
         }
 
@@ -76,9 +81,19 @@ public class LevelSelectorMobile : MonoBehaviour
                 break;
         }
     }
+    void LoopForScore()
+    {
+        if (score == scoreTo)
+            return;
+        score += (int)(((float)scoreTo - (float)score) / 4f);
+        if (score > scoreTo)
+            score = scoreTo;
+        scoreField.text = Utils.FormatNumbers(score);
+        Invoke("LoopForScore", Time.deltaTime * 5);
+    }
     public void Go()
     {
-        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+       // Data.Instance.playMode = Data.PlayModes.STORYMODE;
         Data.Instance.LoadLevel("Game");
     }
     public void Torneo()

@@ -23,26 +23,43 @@ public class Summary : MonoBehaviour {
     void Start()
     {
         mobilePanel.SetActive(false);
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+       // if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Data.Instance.events.OnGameOver += OnGameOver;
+       if (Data.Instance.playMode == Data.PlayModes.PARTYMODE  )
+            Data.Instance.events.OnMissionComplete += OnMissionComplete;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnGameOver -= OnGameOver;
+        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+    }
+    void OnMissionComplete(int missionID)
+    {
+        Invoke("SetOnPartyMode", 2F);
     }
     void OnGameOver(bool isTimeOver)
     {
+        /// se hace cargo el continue:
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
+            return;
+
         if (isOn) return;
         isOn = true;
         
         if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Invoke("GotoDirectToSummary", 2F);
-        else
+        else if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
             Invoke("SetOn", 2F);
     }
     void GotoDirectToSummary()
     {
         GetComponent<SummaryMobile>().Init();
+    }
+    void SetOnPartyMode()
+    {
+        print("SetOnPartyMode");
+        Data.Instance.isReplay = true;
+        Game.Instance.GotoNextGame();
     }
     void SetOn()
     {
