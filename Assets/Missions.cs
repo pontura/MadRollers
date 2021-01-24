@@ -156,24 +156,17 @@ public class Missions : MonoBehaviour
 	{
         hasReachedBoss = false;
         times_trying_same_mission = 0;
-        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
-            //if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
-            //	AddAreaByName ("areaChangeLevel");
-            //	return;
-            //} else 
-            if (MissionActiveID >= MissionsManager.Instance.videogames[videogamesData.actualID].missions.Count - 1)
-            {
-                Game.Instance.GotoVideogameComplete();
-            }
-            else if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
-            {
-                return;
-            } else { 
-			NextMission ();
-			int videogameID = videogamesData.actualID+1;
-            if(Data.Instance.playMode != Data.PlayModes.PARTYMODE)
-                UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
-		}
+
+        if (MissionActiveID >= MissionsManager.Instance.videogames[videogamesData.actualID].missions.Count - 1)
+        {
+            Game.Instance.GotoVideogameComplete();
+        }
+        else
+        {
+            NextMission();               
+            int videogameID = videogamesData.actualID + 1;
+            UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
+        }
     }
 	public int GetTotalMissionsInVideoGame(int videogameID)
 	{

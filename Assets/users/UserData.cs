@@ -87,12 +87,13 @@ public class UserData : MonoBehaviour
     }
     void OnSaveScore()
     {
+        print("OnSaveScore: " + Data.Instance.multiplayerData.score);
         if (Data.Instance.multiplayerData.score == 0)
             return;
         lastScoreWon = Data.Instance.multiplayerData.score;
         score += lastScoreWon;
         PlayerPrefs.SetInt("score", score);
-        UserData.Instance.SaveUserDataToServer();
+        SaveUserDataToServer();
     }
     void LoadUser()
     {
@@ -206,6 +207,7 @@ public class UserData : MonoBehaviour
     }
     public void SetMissionReady(int videogameID, int missionID)
     {
+        print("SetMissionReady videogameID" + videogameID + " missionID: " + videogameID);
         if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
         {
             int id = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID);

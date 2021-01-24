@@ -76,6 +76,8 @@ public class SummaryMobile : MonoBehaviour
         }
         else
             videoGameID = Data.Instance.videogamesData.actualID;
+
+        Debug.Log("____OnSaveScore");
         Data.Instance.events.OnSaveScore();
 
         yield return new WaitForSecondsRealtime(4);
