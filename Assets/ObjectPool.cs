@@ -132,4 +132,10 @@ public class ObjectPool : MonoBehaviour
         else
             Destroy(obj.gameObject);
     }
+    public void PoolSceneObjectsInScene()
+    {
+        foreach(SceneObject so in Scene.GetComponentsInChildren<SceneObject>())
+            so.Pool();
+        Utils.RemoveAllChildsIn(Scene.transform);
+    }
 }

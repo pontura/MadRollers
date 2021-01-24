@@ -42,7 +42,9 @@ public class MissionSignal : MonoBehaviour {
                 return;
 
             title.text = Data.Instance.videogamesData.GetActualVideogameData().name;
-			subtitle.text = "";
+            title.color = Data.Instance.videogamesData.GetActualVideogameData().floor_top;
+
+            subtitle.text = "";
 			SetState(true);
 			string text = "";			
 			text += "DISKETTE " + (missions.MissionActiveID+1) + "\n";

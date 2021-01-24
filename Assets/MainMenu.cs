@@ -20,6 +20,13 @@ public class MainMenu : MonoBehaviour {
 
 	void Start()
 	{
+        ObjectPool.instance.PoolSceneObjectsInScene(); // Borra si quedó alguno:
+        Data.Instance.musicManager.ChangePitch(1);
+        Data.Instance.events.OnInterfacesStart();
+        Data.Instance.isReplay = false;
+        Data.Instance.videogamesData.Reset();
+        Data.Instance.missions.Reset();
+
         Resources.UnloadUnusedAssets();
 
         if(Data.Instance.playMode != Data.PlayModes.STORYMODE)
@@ -37,10 +44,10 @@ public class MainMenu : MonoBehaviour {
 		}
 		Init ();
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-		Data.Instance.events.OnJoystickDown += OnJoystickDown;
-		Data.Instance.events.OnJoystickUp += OnJoystickUp;
-		Data.Instance.events.OnJoystickLeft += OnJoystickDown;
-		Data.Instance.events.OnJoystickRight += OnJoystickUp;
+	//	Data.Instance.events.OnJoystickDown += OnJoystickDown;
+	//	Data.Instance.events.OnJoystickUp += OnJoystickUp;
+	//	Data.Instance.events.OnJoystickLeft += OnJoystickDown;
+	//	Data.Instance.events.OnJoystickRight += OnJoystickUp;
 		
 		foreach (MainMenuButton m in buttons)
 			m.SetOn (false);
@@ -76,17 +83,19 @@ public class MainMenu : MonoBehaviour {
 	void Reset()
 	{
 		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
-		Data.Instance.events.OnJoystickUp -= OnJoystickUp;
-		Data.Instance.events.OnJoystickLeft -= OnJoystickDown;
-		Data.Instance.events.OnJoystickRight -= OnJoystickUp;
+		//Data.Instance.events.OnJoystickDown -= OnJoystickDown;
+		//Data.Instance.events.OnJoystickUp -= OnJoystickUp;
+	//	Data.Instance.events.OnJoystickLeft -= OnJoystickDown;
+		//Data.Instance.events.OnJoystickRight -= OnJoystickUp;
 	}
 	void Init () {
 		SetButtons ();
 	}
 	void OnJoystickClick()
 	{
-		if (Data.Instance.isArcadeMultiplayer) {
+        Data.Instance.LoadLevel("Intro");
+        return;
+        if (Data.Instance.isArcadeMultiplayer) {
 			if (activeID == 0)
 				Compite ();
 			else if (activeID == 1) 

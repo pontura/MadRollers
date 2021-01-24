@@ -137,7 +137,10 @@ public class SummaryMultiplayer : MonoBehaviour {
     }
     void Ready()
     {
-        Data.Instance.LoadLevel("MainMenuMobile");
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            Data.Instance.LoadLevel("MainMenu");
+        else
+            Data.Instance.LoadLevel("MainMenuMobile");
     }
     //si no está registrado lo agrega a la lista:
     private int GetPosition(int _playerID)

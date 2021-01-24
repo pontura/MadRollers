@@ -80,8 +80,11 @@ public class MissionSelectorMobile : MonoBehaviour
     {
         Data.Instance.events.OnAlertSignal("YOU MUST DESTROY ALL PREVIOUS DISKETTES!");
     }
+    bool clicked;
     public void Clicked(int videoGameID, int MissionActiveID)
     {
+        if (clicked)   return;  clicked = true;
+
         print("videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {

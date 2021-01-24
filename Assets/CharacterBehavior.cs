@@ -595,7 +595,6 @@ public class CharacterBehavior : MonoBehaviour {
     float lastTimeCollision;
     public void CollideToObject()
     {
-        print("CollideToObject state: " + state + " time: " + Time.time);
 
         if (state == states.COLLISIONED && Time.time-0.35f > lastTimeCollision)
             Hit();

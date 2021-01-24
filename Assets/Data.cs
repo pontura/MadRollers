@@ -82,8 +82,6 @@ public class Data : MonoBehaviour {
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
     {
-        // return "https://gamedb.doublespicegames.com/assets/sss-dev/" :
-       // return "www.pontura.com/madRollers_bundles/";
         return "www.madrollers.com/bundles/" + Application.version + "/";
         
     }
@@ -102,8 +100,6 @@ public class Data : MonoBehaviour {
 
         if (RESET)
 			PlayerPrefs.DeleteAll ();
-
-        print("heightheightheight: " + Screen.height); 
 #if UNITY_ANDROID || UNITY_IOS
         isAndroid = true;
         isAdmin = false;

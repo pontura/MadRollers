@@ -210,9 +210,7 @@ public class MultiplayerData : MonoBehaviour
 	}
 	void SetNextScoreToWinCredit()
 	{
-        NextScoreToWinCredit *= 2;
-		
-		print ("_____________NEW NextScoreToWinCredit: " + NextScoreToWinCredit + "     creditsWon " + creditsWon + "     ScoreToWinCredit: " + ScoreToWinCredit);
-
+        NextScoreToWinCredit *= 2;		
+		//print ("_____________NEW NextScoreToWinCredit: " + NextScoreToWinCredit + "     creditsWon " + creditsWon + "     ScoreToWinCredit: " + ScoreToWinCredit);
     }
 }

@@ -112,7 +112,7 @@ public class LevelCreator : MonoBehaviour {
 	}
 	public void UpdateMissions()
 	{
-        missionsManager.LoadAll ();
+        missionsManager.LoadAll (playMode);
 	}
 	public void Clear()
 	{

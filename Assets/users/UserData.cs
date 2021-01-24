@@ -67,16 +67,19 @@ public class UserData : MonoBehaviour
     }
     private void Start()
     {
+        Invoke("Delayed", 0.1f);        
+    }
+    private void Delayed()
+    {
         if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
         {
-            print("_________");
             missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
             missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
             missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
             score = PlayerPrefs.GetInt("score");
             LoadUser();
         }
-        
+
     }
     private void OnDestroy()
     {

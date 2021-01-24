@@ -171,7 +171,10 @@ public class Game : MonoBehaviour {
       //  Pause();
         Data.Instance.events.OnResetLevel();
 		Data.Instance.events.ForceFrameRate (1);
-        Data.Instance.LoadLevel("MainMenuMobile");
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            Data.Instance.LoadLevel("MainMenu");
+        else
+            Data.Instance.LoadLevel("MainMenuMobile");
     }
     public void GotoContinue()
     {
@@ -200,7 +203,10 @@ public class Game : MonoBehaviour {
     {
         Data.Instance.events.OnResetLevel();
         Data.Instance.events.ForceFrameRate(1);
-        Data.Instance.LoadLevel("MainMenuMobile");
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            Data.Instance.LoadLevel("MainMenu");
+        else
+            Data.Instance.LoadLevel("MainMenuMobile");
     }
     bool levelCompleted;
     private void OnListenerDispatcher(ListenerDispatcher.myEnum message)

@@ -105,8 +105,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
             if(id%2==0)
                 yield return new WaitForEndOfFrame();
             id++;
-            if (!canBeDisplayed(go)) 
-				    continue;
+
+           // if (!canBeDisplayed(go)) 
+			//	    continue;
+
 			SceneObject sceneObject = null;
 			Vector3 pos = go.pos;
 			pos.z += z_length;

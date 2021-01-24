@@ -34,9 +34,15 @@ public class LoadingScreen : MonoBehaviour {
             Data.Instance.LoadLevel("Game");
         }
         else
-            Data.Instance.LoadLevel("MainMenuMobile");
-            
-    }
+        {
+
+            if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+                Data.Instance.LoadLevel("MainMenu");
+            else
+                Data.Instance.LoadLevel("MainMenuMobile");
+        }
+
+        }
 	void LoadBundles () {
         if (Data.Instance.isAndroid)
         {
@@ -52,7 +58,10 @@ public class LoadingScreen : MonoBehaviour {
 #else
             //solo se juega Story Mode!
             Data.Instance.missions.Init();
-            Data.Instance.LoadLevel("Intro");
+            if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+                Data.Instance.LoadLevel("MainMenu");
+            else
+                Data.Instance.LoadLevel("Intro");
            // Data.Instance.LoadLevel("Settings");
 #endif
         }

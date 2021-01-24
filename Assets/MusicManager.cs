@@ -128,7 +128,6 @@ public class MusicManager : MonoBehaviour {
 	}
     void StartMultiplayerRace()
     {
-        print("______________StartMultiplayerRace");
 		audioSource.pitch = 1;
 		PlayMainTheme ();
     }

@@ -60,19 +60,19 @@ public class HiscoresComparison : MonoBehaviour {
 	}
     IEnumerator DrawHiscores()
     {
-        puesto = rankingNum;
+        puesto = 0;
         int num = 1;
         bool isCompleted = false;
-        
+
 
         foreach (ArcadeRanking.Hiscore data in arcadeRanking.all)
-		{		
-			if (isCompleted) { }	
+		{
+            if (isCompleted) { }	
 			else if (num > rankingNum) {
 				isCompleted = true;
 				SetPuesto ();				
 			} else {
-				if (data.hiscore < score)
+				if (data.hiscore < score && puesto == 0)
 					puesto = num;
 				yield return new WaitForSeconds (0.12f);
 				AddSignal (data, num);
@@ -82,7 +82,6 @@ public class HiscoresComparison : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         if (puesto < rankingNum)
         {
-            print("____________puesto: " + puesto + "     raningNum " + rankingNum);
             GotoNewHiscore();
             Reset();
         }
