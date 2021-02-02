@@ -39,8 +39,9 @@ public class Summary : MonoBehaviour {
     }
     void OnGameOver(bool isTimeOver)
     {
+        print("on game over");
         /// se hace cargo el continue:
-        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE && !Data.Instance.isAndroid)
             return;
 
         if (isOn) return;

@@ -17,8 +17,8 @@ public class Continue : MonoBehaviour {
 
         
 
-        if (Data.Instance.isAndroid)
-            return;
+        //if (Data.Instance.isAndroid)
+         //   return;
 
 
         if (Data.Instance.playMode == Data.PlayModes.CONTINUEMODE) {
