@@ -85,7 +85,8 @@ public class MissionSelectorMobile : MonoBehaviour
     {
         if (clicked)   return;  clicked = true;
 
-        print("videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
+        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        //print("videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             foreach (MissionButtonMobile mbm in allButtons)
