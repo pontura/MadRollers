@@ -10,8 +10,8 @@ public class SceneObject : MonoBehaviour {
 	public bool broken;
     public int id;
 
-    [HideInInspector]
-    public Transform characterTransform;
+    //[HideInInspector]
+    //public Transform characterTransform;
 
     [HideInInspector]
     public bool isActive;
@@ -26,13 +26,20 @@ public class SceneObject : MonoBehaviour {
 
     //se dibuja solo si hay mas de un avatar vivo:
     public bool onlyMultiplayers;
-    public SceneObjectsManager manager;
+    SceneObjectsManager manager;
 
 	public virtual void Init(SceneObjectsManager manager)
 	{
 		this.manager = manager;
 	}
-	public void Restart(Vector3 pos)
+    public SceneObjectsManager Manager
+    {
+        get
+        {
+            return manager;
+        }
+    }
+    public void Restart(Vector3 pos)
     {
 		gameObject.SetActive(true);
         OnRestart(pos);
@@ -63,6 +70,7 @@ public class SceneObject : MonoBehaviour {
         }
 		manager.RemoveSceneObject (this);
         OnPool();
+        manager = null;
     }
 	public virtual void Updated(float distance)
 	{
@@ -86,8 +94,8 @@ public class SceneObject : MonoBehaviour {
     public virtual void onDie()  { }
     public virtual void setScore()   { }    
 
-	Color matColor;
-	int videoGameID = -1;
+	//Color matColor;
+	//int videoGameID = -1;
 	public void SetMaterialByVideoGame()
 	{
 //		matColor = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
@@ -99,8 +107,8 @@ public class SceneObject : MonoBehaviour {
 //				ChangeMaterials(r);
 //		}
 	}
-	void ChangeMaterials(Renderer renderer)
-	{
-		renderer.material.color = matColor;
-	}
+	//void ChangeMaterials(Renderer renderer)
+	//{
+	//	renderer.material.color = matColor;
+	//}
 }

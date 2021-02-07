@@ -41,20 +41,5 @@ public class BombTeledirigida : Bomb {
             pos.y = 0;
             startedAnim = true;
         }
-
-        //if (transform.localPosition.y < 5.5f && !GetComponent<AudioSource>().isPlaying)
-        //    startAudio();
-
-        //if(alive)
-        //{
-		return;
-        pos.z = characterTransform.transform.localPosition.z+20;
-        if (right)
-            pos.x -= 10 * Time.deltaTime;
-        else
-            pos.x += 10 * Time.deltaTime;
-
-        base.gameObject.transform.position = pos;
-        //} 
     }
 }

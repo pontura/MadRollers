@@ -631,7 +631,7 @@ public class CharacterBehavior : MonoBehaviour {
 	void CrashReal()
 	{
 		if (player.charactersManager.getTotalCharacters () == 1) return;
-		Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.025f);
+		Data.Instance.framesController.ForceFrameRate (0.025f);
 		Data.Instance.events.RalentaTo (1, 0.15f);
 
 	}

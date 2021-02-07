@@ -56,6 +56,7 @@ public class Data : MonoBehaviour {
 	public LoadingAsset loadingAsset;
     public AssetsBundleLoader assetsBundleLoader ;
     public MusicManager musicManager;
+    public FramesController framesController;
 
     public bool singlePlayer;
     public bool isAndroid;
@@ -156,7 +157,7 @@ public class Data : MonoBehaviour {
         versusManager = GetComponent<VersusManager>();
         handWriting = GetComponent<HandWriting>();
         assetsBundleLoader = GetComponent<AssetsBundleLoader > ();
-
+        framesController = GetComponent<FramesController>();
 
         if (LevelDataDebug.Instance) {
 			playMode = PlayModes.STORYMODE;

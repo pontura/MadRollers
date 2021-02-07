@@ -83,7 +83,7 @@ public class WeaponEnemy : SceneObject {
 				|| cb.state == CharacterBehavior.states.DEAD)
 				return;
 
-			Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.05f);
+			Data.Instance.framesController.ForceFrameRate (0.05f);
 			Data.Instance.events.RalentaTo (1, 0.05f);
 			cb.Hit ();
 			Reset();

@@ -5,24 +5,24 @@ public class Projectil : SceneObject {
 
     public int playerID = -1;
 	float realSpeed;
-	public int speed;
-	public int myRange = 3;
-	public int damage = 10;
+	int speed = 50;
+	int myRange = 5;
+	int damage = 10;
 
 	private float myDist;
 	private bool exploted;
 
     private Vector3 rotation;
-    private Level level;
 
     private Color color;
-    public MeshRenderer meshToColorize;
-	public int team_for_versus;
+    [SerializeField] MeshRenderer meshToColorize;
+	//public int team_for_versus;
 
-	public GameObject BulletPlayer0;
-	public GameObject BulletPlayer1;
-	public GameObject BulletPlayer2;
-	public GameObject BulletPlayer3;
+	[SerializeField] GameObject BulletPlayer0;
+    [SerializeField] GameObject BulletPlayer1;
+    [SerializeField] GameObject BulletPlayer2;
+    [SerializeField] GameObject BulletPlayer3;
+
     Color lastColor;
 
     public virtual void SetColor(Color color)
@@ -32,7 +32,13 @@ public class Projectil : SceneObject {
 		
         this.color = color;
 		lastColor = color;
-        meshToColorize.material.color = color;
+
+        MaterialPropertyBlock mat = new MaterialPropertyBlock();
+        meshToColorize.GetPropertyBlock(mat);
+        mat.SetColor("_Color", color);
+        meshToColorize.SetPropertyBlock(mat);
+
+        //old: meshToColorize.material.color = color;
     }
 	int lastPlayerID = -1;
 	public virtual void ResetWeapons()
@@ -47,8 +53,7 @@ public class Projectil : SceneObject {
 		base.OnRestart(pos);
 
 		realSpeed = speed;
-		target = null;
-        level = Game.Instance.level;       
+		target = null;    
 
         myDist = 0;
         exploted = false;
@@ -75,11 +80,12 @@ public class Projectil : SceneObject {
 			Color playerColor;
 			lastPlayerID = playerID;
 
-			if (playerID < 4 && playerID >= 0) {				
-				playerColor = multiplayerData.colors [playerID];
+			if (playerID < 4 && playerID >= 0) {
+                TrailRenderer tr = GetComponent<TrailRenderer>();
+                playerColor = multiplayerData.colors [playerID];
 				playerColor.a = 0.35f;
-				GetComponent<TrailRenderer> ().startColor = playerColor;
-				GetComponent<TrailRenderer> ().endColor = playerColor;
+                tr.startColor = playerColor;
+                tr.endColor = playerColor;
 			} else {
 				playerColor = multiplayerData.colors [4];
 			}
@@ -206,13 +212,13 @@ public class Projectil : SceneObject {
 			    || cb.state == CharacterBehavior.states.DEAD)
 				return;
 
-			//chequea si el projectil es del otro team
-			if (team_for_versus == cb.team_for_versus)
-				return;
-			
-			Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.05f);
-			Data.Instance.events.RalentaTo (1, 0.05f);
-			cb.Hit ();
+                //chequea si el projectil es del otro team
+                //if (team_for_versus == cb.team_for_versus)
+                //	return;
+
+                Data.Instance.framesController.ForceFrameRate(0.05f);
+			    Data.Instance.events.RalentaTo (1, 0.05f);
+			    cb.Hit ();
                 ResetProjectil();
 			break;
 		}
