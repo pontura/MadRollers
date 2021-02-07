@@ -70,7 +70,6 @@ MonoBehaviour:
   dontKillPlayers: 0
   dontDieOnHit: 1
   ifJumpingDontKill: 0
-  score: 0
 --- !u!114 &114533338649265534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
   progressBarPosition: {x: 0, y: 6, z: 0}
-  lifes: 14
+  lifes: 22
+  asset: {fileID: 0}
   anim: {fileID: 0}
 --- !u!111 &111108363923616194
 Animation:
@@ -136,7 +136,10 @@ MonoBehaviour:
   delayToSoundAttack: 0.8
   RandomBetween: 2
   attackDuration: 1
+  bossPart: {fileID: 0}
+  bossPartAnim: {fileID: 0}
   attacking: 0
+  speedAnim: 0
 --- !u!1 &1533594456348252
 GameObject:
   m_ObjectHideFlags: 0

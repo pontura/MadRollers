@@ -30,7 +30,9 @@ public class SummaryMobile : MonoBehaviour
     int score;
 
     void Start()
-    {        
+    {
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            return;
         puestoField.text = "";
         panel.SetActive(false);
     }
@@ -38,8 +40,17 @@ public class SummaryMobile : MonoBehaviour
     public void Init()
     {
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            Data.Instance.events.OnMadRollersSFXStatus(false);
+            hiscoreOtherPanel.SetActive(false);
+            Data.Instance.events.RalentaTo(0, 0.005f);
+            panel.SetActive(true);
+            if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+                Data.Instance.handWriting.WriteTo(initialSignalTitleField, "YOU ARE DONE!", NextScreen);
+            else
+                Data.Instance.handWriting.WriteTo(initialSignalTitleField, "DISKETTE DESTROYED!", NextScreen);
             StartCoroutine(InitCoroutine());
-       
+        } 
     }
     private void OnDestroy()
     {
@@ -49,22 +60,12 @@ public class SummaryMobile : MonoBehaviour
     {
         Next();
     }
+    void NextScreen()   { }
+    bool canShowHiscores;
     IEnumerator InitCoroutine()
     {
-        if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            initialSignalTitleField.text = "FIN DE TU CORRIDA";
-
-        Data.Instance.events.OnMadRollersSFXStatus(false);
-        hiscoreOtherPanel.SetActive(false);
-        Data.Instance.events.RalentaTo(0, 0.025f);
-        yield return new WaitForSecondsRealtime(1);
-
-        Data.Instance.events.OnSaveScore();
-
-        Data.Instance.events.RalentaTo(0, 0.025f);
-        panel.SetActive(true);
         missionID = Data.Instance.missions.MissionActiveID - 1;
-        titleField.text = "DISKETTE " + (missionID + 1);
+        titleField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
         score = Data.Instance.multiplayerData.GetTotalScore();
         scoreField.text = Utils.FormatNumbers(score);
 
@@ -75,6 +76,14 @@ public class SummaryMobile : MonoBehaviour
         }
         else
             videoGameID = Data.Instance.videogamesData.actualID;
+
+        Debug.Log("____OnSaveScore");
+        Data.Instance.events.OnSaveScore();
+
+        yield return new WaitForSecondsRealtime(4);
+        //Data.Instance.events.RalentaTo(0, 0.025f);
+
+
 
         UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
         if (!Data.Instance.isAndroid)
@@ -104,7 +113,7 @@ public class SummaryMobile : MonoBehaviour
             foreach (HiscoresByMissions.MissionHiscoreUserData data in hiscoreData.all)
             {
                 if (data.userID == UserData.Instance.userID)
-                    puestoField.text = "PUESTO " + puesto;
+                    puestoField.text = TextsManager.Instance.GetText("RANK") + " " + puesto;
                 puesto ++;
             }
             hiscoreOtherPanel.SetActive(true);

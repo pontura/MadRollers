@@ -23,26 +23,44 @@ public class Summary : MonoBehaviour {
     void Start()
     {
         mobilePanel.SetActive(false);
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+       // if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Data.Instance.events.OnGameOver += OnGameOver;
+       if (Data.Instance.playMode == Data.PlayModes.PARTYMODE  )
+            Data.Instance.events.OnMissionComplete += OnMissionComplete;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnGameOver -= OnGameOver;
+        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+    }
+    void OnMissionComplete(int missionID)
+    {
+        Invoke("SetOnPartyMode", 2F);
     }
     void OnGameOver(bool isTimeOver)
     {
+        print("on game over");
+        /// se hace cargo el continue:
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE && !Data.Instance.isAndroid)
+            return;
+
         if (isOn) return;
         isOn = true;
         
         if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Invoke("GotoDirectToSummary", 2F);
-        else
+        else if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
             Invoke("SetOn", 2F);
     }
     void GotoDirectToSummary()
     {
         GetComponent<SummaryMobile>().Init();
+    }
+    void SetOnPartyMode()
+    {
+        print("SetOnPartyMode");
+        Data.Instance.isReplay = true;
+        Game.Instance.GotoNextGame();
     }
     void SetOn()
     {
@@ -62,9 +80,9 @@ public class Summary : MonoBehaviour {
 
         percentfield.text = ((int)(progression * 100)).ToString() + "%";
         if(isBoss)
-            missionField.text = "BOSS! M." + (Data.Instance.missions.MissionActiveID + 1);
+            missionField.text = TextsManager.Instance.GetText("BOSS") + "! M." + (Data.Instance.missions.MissionActiveID + 1);
         else
-            missionField.text = "MISIÓN " + (Data.Instance.missions.MissionActiveID + 1);
+            missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID + 1);
     }
     public void Restart()
 	{

@@ -49,9 +49,9 @@ public class MainHiscores : MonoBehaviour {
             Invoke("Reset", 4);
             return;
         }
-
-        puestoField.text = "PUESTO " + puesto;
-		field.text = _hiscore.ToString ();
+        field.text = TextsManager.Instance.GetText("NEW HISCORE --->> CONGRATULATIONS!!"); // "FELICITACIONES !!!! LOGRASTE UN NUEVO HI-SCORE";
+        puestoField.text = TextsManager.Instance.GetText("RANK") + " " + puesto;
+		field.text += _hiscore.ToString ();
 
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
@@ -208,7 +208,10 @@ public class MainHiscores : MonoBehaviour {
 		Data.Instance.missions.MissionActiveID = 0;
 		Data.Instance.events.OnResetMultiplayerData();
 		Data.Instance.events.ForceFrameRate (1);
-		Data.Instance.LoadLevel("MainMenu");
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            Data.Instance.LoadLevel("MainMenu");
+        else
+            Data.Instance.LoadLevel("MainMenuMobile");
     }
     List<Hiscore> OrderByHiscore(List<Hiscore> hs)
     {

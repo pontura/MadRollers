@@ -4,10 +4,7 @@ using System.Collections.Generic;
 
 public class Events : MonoBehaviour {
 
-    //public System.Action<string> OnFacebookNewUserLogged = delegate { };
-    //public System.Action OnFacebookIdAdded = delegate { };
-    //public System.Action<string, string> OnFacebookUserLoaded = delegate { };
-    //public System.Action<string, int, int, bool> OnSetUserData = delegate { };
+    public System.Action OnStartGameScene = delegate { };
     public System.Action<string> OnChangeScene = delegate { };
     public System.Action<bool> SetHamburguerButton = delegate { };
     public System.Action RefreshHiscores = delegate { };
@@ -61,6 +58,7 @@ public class Events : MonoBehaviour {
     public System.Action<Vector3> OnAddPowerUp = delegate { };
     public System.Action OnCreateBonusArea = delegate { };
     public System.Action<Vector3, Color> OnAddExplotion = delegate { };
+    
     public System.Action OnAlignAllCharacters = delegate { };
 	public System.Action OnResetScores = delegate { };
     public System.Action OnResetMultiplayerData = delegate { };
@@ -143,8 +141,8 @@ public class Events : MonoBehaviour {
 	public System.Action<float> OnBossHitsUpdate = delegate { };
     public System.Action ResetMissionsBlocked = delegate { };
 
-    public System.Action<Vector3> OnProjectilStartSnappingTarget = delegate { };
-	public System.Action<Vector3> OnCameraZoomTo = delegate { };
+  //  public System.Action<Vector3> OnProjectilStartSnappingTarget = delegate { };
+	//public System.Action<Vector3> OnCameraZoomTo = delegate { };
 	public System.Action<bool> FreezeCharacters = delegate { };
     public System.Action<int> ChangePlayer = delegate { };
     public System.Action<CameraChromaManager.types> OnCameraChroma = delegate { };

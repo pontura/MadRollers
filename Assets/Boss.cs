@@ -16,18 +16,17 @@ public class Boss : SceneObject {
 		Data data = Data.Instance;
 		data.events.OnBossActive (true);
 		data.GetComponent<MusicManager> ().BossMusic (true);
-		data.voicesManager.PlayRandom (Data.Instance.voicesManager.killThemAll);
+        VoicesManager.Instance.PlayRandom (VoicesManager.Instance.killThemAll);
 	}
 	public void SetTotal(int totalHits)
 	{
-        print("SEt total : " + totalHits);
 		this.totalHits = totalHits;
 		Data.Instance.events.OnBossInit (totalHits);
 	}
 	public bool HasOnlyOneLifeLeft()
 	{
 		if (hits + 2 == totalHits)
-			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 2);
+			VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 2);
 		else if (hits+1 >= totalHits)
 			return true;
 

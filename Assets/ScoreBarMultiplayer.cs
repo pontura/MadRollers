@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreBarMultiplayer : MonoBehaviour {
+
+    public GameObject panel;
+
     Animation scoreSignalAnimation;
     public GameObject scoreSignal;
     public Text scoreSignalField;
@@ -23,21 +26,32 @@ public class ScoreBarMultiplayer : MonoBehaviour {
         if (Data.Instance.isAndroid)
             isAndroid = true;
 
+        panel.SetActive(true);
+
         scoreSignalAnimation = scoreSignal.GetComponent<Animation>();
         scoreSignal.SetActive(false);
 
         RefreshScore ();
 		Data.Instance.events.OnDrawScore += OnDrawScore;
+        Data.Instance.events.OnMissionComplete += OnMissionComplete;
 
-		scoreAdviseNum.text = "";
+        scoreAdviseNum.text = "";
 		scoreAdviseDesc.text = "";
-        myScoreFields.text = "00";
+        if(Data.Instance.playMode == Data.PlayModes.PARTYMODE && Data.Instance.multiplayerData.score>0)
+            myScoreFields.text = Utils.FormatNumbers(Data.Instance.multiplayerData.score);
+        else
+            myScoreFields.text = "00";
+    }
+    void OnMissionComplete(int id)
+    {
+        panel.SetActive(false);
     }
 
-	void OnDestroy()
+    void OnDestroy()
 	{
 		Data.Instance.events.OnDrawScore -= OnDrawScore;
-	}
+        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+    }
 	float delayToReset = 1;
 	float ResetFieldsTimer;
 	int totalAdded;

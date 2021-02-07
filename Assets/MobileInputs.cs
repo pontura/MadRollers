@@ -9,10 +9,10 @@ public class MobileInputs : MonoBehaviour
     float jumpingPressedTime = 0.28f;
     public GameObject panel;
 
-    public GameObject ButtonJump;
-    public GameObject ButtonFire1;
-    public GameObject ButtonFire2;
-    public GameObject ButtonDash;
+    //public GameObject ButtonJump;
+    //public GameObject ButtonFire1;
+    //public GameObject ButtonFire2;
+    //public GameObject ButtonDash;
 
     public Tutorial tutorial;
 
@@ -63,24 +63,30 @@ public class MobileInputs : MonoBehaviour
         CharacterBehavior cb = cm.getMainCharacter();
         return cb;
     }
-    void Update()
+    //void Update()
+    //{
+    //    if (!jumping)
+    //        return;
+    //    if (Game.Instance.state == Game.states.GAME_OVER)
+    //        return;
+    //    jumpingPressedSince += Time.deltaTime;
+    //    if (jumpingPressedSince > jumpingPressedTime)
+    //        DOJump();
+    //    else
+    //        GetCharacter().JumpingPressed();
+    //}
+    public void Jump(float value)
     {
-        if (!jumping)
-            return;
-        if (Game.Instance.state == Game.states.GAME_OVER)
-            return;
-        jumpingPressedSince += Time.deltaTime;
-        if (jumpingPressedSince > jumpingPressedTime)
-            DOJump();
-        else
-            GetCharacter().JumpingPressed();
+        float v = 900 + (value * 2500);
+        GetCharacter().SetJumpHeight( v );
+        GetCharacter().Jump();
     }
     void DOJump()
     {
         jumping = false;
         jumpingPressedSince = 0;
         GetCharacter().Jump();
-        ButtonJump.GetComponent<Animation>().Play();
+       // ButtonJump.GetComponent<Animation>().Play();
     }
     public void Jump()
     {
@@ -109,7 +115,7 @@ public class MobileInputs : MonoBehaviour
         if (GetCharacter() == null)
             return;
         GetCharacter().shooter.SetFire(Weapon.types.SIMPLE, 0.25f);
-        ButtonFire1.GetComponent<Animation>().Play();
+        // ButtonFire1.GetComponent<Animation>().Play();
     }
     public void Dash()
     {
@@ -117,7 +123,7 @@ public class MobileInputs : MonoBehaviour
         if (GetCharacter() == null)
             return;
         GetCharacter().characterMovement.DashForward();
-        ButtonDash.GetComponent<Animation>().Play();
+        // ButtonDash.GetComponent<Animation>().Play();
     }
     public void ShootTriple()
     {
@@ -125,7 +131,13 @@ public class MobileInputs : MonoBehaviour
         if (GetCharacter() == null)
             return;
         GetCharacter().shooter.SetFire(Weapon.types.TRIPLE, 0.45f);
-        ButtonFire2.GetComponent<Animation>().Play();
+        // ButtonFire2.GetComponent<Animation>().Play();
+    }
+    public void HorizontalDash(float v)
+    {
+        if (GetCharacter() == null)
+            return;
+        GetCharacter().characterMovement.DH(v);
     }
     void ResetTutorial()
     {

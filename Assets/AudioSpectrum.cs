@@ -11,7 +11,12 @@ public class AudioSpectrum : MonoBehaviour
 	public float result4;
 	public float result5;
 
-	public void SetOn()
+    private void Start()
+    {
+        if (Data.Instance.isAndroid)
+            Destroy(this);
+    }
+    public void SetOn()
 	{
 		isOn = true;
 	}

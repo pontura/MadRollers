@@ -27,6 +27,6 @@ public class HiscoresComparisonSignal : MonoBehaviour {
 		if (puesto == 0)
 			puestoField.text = "";
 		else
-			puestoField.text = "PUESTO " + puesto;
+			puestoField.text = TextsManager.Instance.GetText("RANK") + " " + puesto;
 	}
 }

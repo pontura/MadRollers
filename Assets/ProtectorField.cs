@@ -22,12 +22,7 @@ public class ProtectorField : MonoBehaviour
 
     private void Start()
     {
-        boss = GetComponent<BossPart>().boss;
-        asset = Instantiate(protectorField_to_instantiate);
-        asset.transform.SetParent(transform);
-        asset.transform.localPosition = posOffset;
-        asset.transform.localScale = Vector3.one;
-        asset.transform.localEulerAngles = new Vector3(-90, 0, 0);
+        boss = GetComponent<BossPart>().boss;       
         Loop();
     }
     int sec;
@@ -62,6 +57,16 @@ public class ProtectorField : MonoBehaviour
     {
         if (isOn)
             return;
+
+        if (asset == null)
+        {
+            asset = Instantiate(protectorField_to_instantiate);
+            asset.transform.SetParent(transform);
+            asset.transform.localPosition = posOffset;
+            asset.transform.localScale = Vector3.one;
+            asset.transform.localEulerAngles = new Vector3(-90, 0, 0);
+        }
+
         tag = "firewall";
         gameObject.layer = 10; //Va a Sceneobject;
         asset.SetActive(true);
@@ -70,9 +75,12 @@ public class ProtectorField : MonoBehaviour
     }
     void SetOff()
     {
+        if (isOn == false)
+            return;
         tag = "destroyable";
         gameObject.layer = 17; //Va a Enemy;
         isOn = false;
-        asset.SetActive(false);
+        if(asset != null)
+            asset.SetActive(false);
     }
 }

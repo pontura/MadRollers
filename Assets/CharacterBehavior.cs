@@ -228,7 +228,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void OncharacterCheer()
 	{
-		if (Random.Range(0, 8) < 2)
+		if (Random.Range(0, 6) < 2)
 			Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CHEER, player.id);
 		
 	}
@@ -445,6 +445,11 @@ public class CharacterBehavior : MonoBehaviour {
 			return true;
 		return false;
 	}
+    public void SetJumpHeight(float value)
+    {
+        //default: 900
+        jumpHeight = value;
+    }
 	public void Jump()
 	{
 		jumpingPressed = false;
@@ -554,7 +559,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD) return;
 		if (state == states.FALL) return;
 		state = states.FALL;
-		Data.Instance.events.OnSoundFX("FX vox caida01", player.id);
+		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.FALL, player.id);
 		Data.Instance.events.OnAvatarFall(this);
 
 		if(team_for_versus == 0)
@@ -563,7 +568,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void HitWithObject(Vector3 objPosition, bool killAtHit)
 	{
-        if (killAtHit)
+        if (killAtHit || characterMovement.type != CharacterMovement.types.NORMAL)
             Hit();
         else
         {
@@ -590,7 +595,6 @@ public class CharacterBehavior : MonoBehaviour {
     float lastTimeCollision;
     public void CollideToObject()
     {
-        print("CollideToObject state: " + state + " time: " + Time.time);
 
         if (state == states.COLLISIONED && Time.time-0.35f > lastTimeCollision)
             Hit();
@@ -627,7 +631,7 @@ public class CharacterBehavior : MonoBehaviour {
 	void CrashReal()
 	{
 		if (player.charactersManager.getTotalCharacters () == 1) return;
-		Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.025f);
+		Data.Instance.framesController.ForceFrameRate (0.025f);
 		Data.Instance.events.RalentaTo (1, 0.15f);
 
 	}

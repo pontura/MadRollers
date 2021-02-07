@@ -112,7 +112,7 @@ public class LevelCreator : MonoBehaviour {
 	}
 	public void UpdateMissions()
 	{
-        missionsManager.LoadAll ();
+        missionsManager.LoadAll (playMode);
 	}
 	public void Clear()
 	{
@@ -133,62 +133,4 @@ public class LevelCreator : MonoBehaviour {
 		}
 		Utils.RemoveAllChildsIn (transform);
 	}
-
-
-
-
-
-//	public void BeautifyAll()
-//	{
-//		foreach (Area a in GetComponentsInChildren<Area>()) {
-//			foreach (MeshRenderer mr in a.GetComponentsInChildren<MeshRenderer>()) {
-//				if (mr != null) {
-//					if (mr.gameObject.name == "extralargeBlock1")
-//						mr.material = floorMaterial;
-//					else
-//						mr.material = standardMaterial;
-//				}
-//			}
-//		}
-//	}
-//	public void Create()
-//	{		
-//		print ("Create");
-//		int videogameID = 1;
-//		foreach (Transform videoGameTransform in videogames) {			
-//			int missionID = 0;
-//			foreach (Mission mission in videoGameTransform.GetComponentsInChildren<Mission>()) {
-//				data.Clear ();
-//
-//				MissionData mdata = new MissionData ();
-//				mdata.maxScore = mission.maxScore;
-//				print ("mdata.maxScore " + mdata.maxScore);
-//				mdata.areaSetData = new List<MissionData.AreaSetData> ();
-//				foreach (AreaSet areaSet in mission.GetComponent<AreasManager>().areaSets) {
-//					MissionData.AreaSetData areaSetData = new MissionData.AreaSetData ();
-//					areaSetData.randomize = areaSet.randomize;
-//					areaSetData.cameraOrientation = areaSet.cameraOrientation;
-//					areaSetData.total_areas = areaSet.totalAreasInSet;
-//
-//					areaSetData.areas = new List<string> ();
-//					foreach (Area area in areaSet.areas) {														
-//						areaSetData.areas.Add (area.name);
-//					}
-//					mdata.areaSetData.Add (areaSetData);
-//				}
-//				data.Add (mdata);
-//
-//				var a = new AllData { data = data };
-//				string json = JsonUtility.ToJson (a);
-//
-//				using (FileStream fs = new FileStream ("Assets/Resources/missions/" + videogameID + "_" + missionID + ".json", FileMode.Create)) {
-//					using (StreamWriter writer = new StreamWriter (fs)) {
-//						writer.Write (json);
-//					}
-//				}
-//				missionID++;
-//			}
-//			videogameID++;
-//		}
-//	}
 }

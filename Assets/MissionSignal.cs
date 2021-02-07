@@ -5,8 +5,12 @@ using System.Collections;
 public class MissionSignal : MonoBehaviour {
 
 	public GameObject panel;
-	public Text subtitle;
+
+    public Text title;
+    public Text subtitle;
+
 	Missions missions;
+
 	void Start () {
 		missions =  Data.Instance.GetComponent<Missions> ();
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
@@ -33,10 +37,14 @@ public class MissionSignal : MonoBehaviour {
         if (message == ListenerDispatcher.myEnum.ShowMissionName)
 		{
             MissionData missionData = missions.GetActualMissionData();
-            if (missions.MissionActiveID == 0)
+
+            if (missions.MissionActiveID == 0 && Data.Instance.playMode != Data.PlayModes.PARTYMODE)
                 return;
 
-			subtitle.text = "";
+            title.text = Data.Instance.videogamesData.GetActualVideogameData().name;
+            title.color = Data.Instance.videogamesData.GetActualVideogameData().floor_top;
+
+            subtitle.text = "";
 			SetState(true);
 			string text = "";			
 			text += "DISKETTE " + (missions.MissionActiveID+1) + "\n";

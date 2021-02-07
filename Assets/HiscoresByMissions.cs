@@ -33,7 +33,8 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void Init()
     {
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            Data.Instance.events.OnMissionComplete += OnMissionComplete;
     }
     public void ResetAllHiscores()
     {
@@ -143,11 +144,15 @@ public class HiscoresByMissions : MonoBehaviour
         yield return www;
 
         if (www.error != null)
-            UsersEvents.OnPopup("Internet Error: " + www.error);
+        {
+            //UsersEvents.OnPopup("Internet Error: " + www.error);
+           if (OnDone != null)
+                OnDone(null);
+        }
         else
         {
-            if(OnDone != null)
-                OnDataSended( www.text , OnDone);
+            if (OnDone != null)
+                OnDataSended(www.text, OnDone);
         }
     }
     void OnDataSended(string result, System.Action<MissionHiscoreData> OnDone)

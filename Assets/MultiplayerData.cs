@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MultiplayerData : MonoBehaviour
 {
+    public int levelID_for_partyMode;
 	public int NextScoreToWinCredit;
 	public int ScoreToWinCredit;
 	public int score;
@@ -41,8 +42,9 @@ public class MultiplayerData : MonoBehaviour
     }
 	void OnGameStart()
 	{
-		SetNextScoreToWinCredit ();
-	}
+        if (creditsWon == 0)
+            NextScoreToWinCredit = ScoreToWinCredit;
+    }
     void OnResetScores()
     {
         NextScoreToWinCredit = 0;
@@ -55,6 +57,7 @@ public class MultiplayerData : MonoBehaviour
 
     void OnResetMultiplayerData()
 	{
+        levelID_for_partyMode = 0;
         OnResetScores();
         player1 = player2 = player3 = player4 = false;
 		player1_played = player2_played = player3_played = player4_played = false;		
@@ -195,7 +198,9 @@ public class MultiplayerData : MonoBehaviour
 	}
 	void OnMissionComplete(int id)
 	{
-		int scoreForWinningMission = 500;
+        levelID_for_partyMode++;
+
+        int scoreForWinningMission = 500;
 
 		if (player1) { OnScoreOn (0, Vector3.zero, scoreForWinningMission, ScoresManager.types.MISSION_COMPLETED);  }
 		if (player2) { OnScoreOn (1, Vector3.zero, scoreForWinningMission, ScoresManager.types.MISSION_COMPLETED);  }
@@ -205,11 +210,7 @@ public class MultiplayerData : MonoBehaviour
 	}
 	void SetNextScoreToWinCredit()
 	{
-		NextScoreToWinCredit = ((creditsWon+1)*ScoreToWinCredit);
-
-		if(creditsWon>0)
-			NextScoreToWinCredit += NextScoreToWinCredit / 2;
-		
-		//print ("NextScoreToWinCredit " + NextScoreToWinCredit);
-	}
+        NextScoreToWinCredit *= 2;		
+		//print ("_____________NEW NextScoreToWinCredit: " + NextScoreToWinCredit + "     creditsWon " + creditsWon + "     ScoreToWinCredit: " + ScoreToWinCredit);
+    }
 }

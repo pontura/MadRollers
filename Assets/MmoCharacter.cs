@@ -58,21 +58,12 @@ public class MmoCharacter : SceneObject
 		//nuevo:
 		Data.Instance.events.OncharacterCheer();
 		Pool();
-		return;
-
-		StartCoroutine(reset());
-		_animation.Play("enemyDie");
 	}
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "destroyable" || other.gameObject.tag == "enemy")
             Die();
     }
-	IEnumerator reset() {
-        yield return new WaitForSeconds(0.5f);
-        Data.Instance.events.OncharacterCheer();
-        Pool();
-	}
 	public void run() {
        // _animation.Play("enemyRun");
         state = states.RUN;
@@ -97,7 +88,6 @@ public class MmoCharacter : SceneObject
         state = states.WAIT_TO_JUMP;
     }
 	public void jump() {
-        Data.Instance.events.OnSoundFX("FX malo00", -1);
        // _animation.Play("enemyJump");
         state = states.JUMP;
 	}

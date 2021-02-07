@@ -57,12 +57,34 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnChangeMood += OnChangeMood;
         Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        Data.Instance.events.OnStartGameScene += OnStartGameScene;
         //if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
         //{
         //    Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
         //    Data.Instance.events.OnCameraZoomTo += OnCameraZoomTo;
         //}
         Data.Instance.events.OnGameOver += OnGameOver;
+        pixelSize = 10;
+
+        vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
+
+        if (Data.Instance.useRetroPixelPro)
+        {
+            Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
+            retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
+            retroPixelPro.pixelSize = initialPixelSize;
+            SetPixels(30);
+            
+            if (isAndroid)
+            {
+                vignette.VignetteInnerValueDistance = 0;
+                vignette.VignetteOuterValueDistance = 0.99f;
+            }
+        }
+        else
+        {
+            Destroy(vignette);           
+        }
     }
     void OnDestroy()
     {
@@ -71,14 +93,18 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
         Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
-        Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
-        Data.Instance.events.OnCameraZoomTo -= OnCameraZoomTo;
         Data.Instance.events.OnGameOver -= OnGameOver;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Data.Instance.events.OnStartGameScene -= OnStartGameScene;
+    }
+    void OnStartGameScene()
+    {
+        SetPixels(50);
     }
     void OnMissionComplete(int levelID)
     {
         state = states.END;
+        InitPixelsEnd();
     }
     Component CopyComponent(Component original, GameObject destination)
 	{
@@ -93,7 +119,7 @@ public class GameCamera : MonoBehaviour
 	}
     public void Init()
 	{
-        vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
+        
       
 
         cam.enabled = true;
@@ -104,21 +130,8 @@ public class GameCamera : MonoBehaviour
         fieldOfView = cam.fieldOfView;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
-        if (Data.Instance.useRetroPixelPro)
-        {
-            Component rpp = Data.Instance.videogamesData.GetActualVideogameData().retroPixelPro;
-            retroPixelPro = CopyComponent(rpp, cam.gameObject) as RetroPixelPro;
-            retroPixelPro.pixelSize = initialPixelSize;
-            pixelSize = initialPixelSize;
-        }  
-        if(vignette != null)
-        {
-            if (isAndroid)
-            {
-                vignette.VignetteInnerValueDistance = 0;
-                vignette.VignetteOuterValueDistance = 0.99f;
-            }
-        }
+        
+        
 
         if (isAndroid)
         {
@@ -209,30 +222,7 @@ public class GameCamera : MonoBehaviour
 		var newRot = Quaternion.LookRotation(pos);
 
 		cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, newRot, Time.deltaTime*20);
-	}
-
-	public void SetPixels(float _pixelSize)
-	{
-        if (!Data.Instance.useRetroPixelPro)
-            return;
-
-        this.pixelSize = _pixelSize;
-        retroPixelPro.pixelSize = (int)(pixelSize);
-	}
-	void UpdatePixels()
-	{
-        if (!Data.Instance.useRetroPixelPro)
-            return;
-
-        if (pixelSize < initialPixelSize)
-			pixelSize = initialPixelSize;
-		else 
-			pixelSize -= pixel_speed_recovery * Time.deltaTime;
-
-        retroPixelPro.pixelSize = (int)(pixelSize);
-
-	}
-   
+	}    
 	void LateUpdate () 
 	{
         if (!started)
@@ -241,18 +231,21 @@ public class GameCamera : MonoBehaviour
             float sensorSizeX = Mathf.Lerp(cam.sensorSize.x, sensorSizeValue, camSensorSpeed * Time.deltaTime);  
             cam.sensorSize = new Vector2(sensorSizeX, cam.sensorSize.y);
 
-  //      if (state == states.SNAPPING_TO) { 
-		//	Vector3 dest = snapTargetPosition;
-		//	dest.y += 1.5f;
-  //          //dest.z -= 3f;
-  //          dest.z = transform.localPosition.z;
-  //          dest.x /= 2;
-		//	transform.localPosition = Vector3.Lerp (transform.localPosition, dest, 0);
-		//	cam.transform.LookAt (snapTargetPosition);
-		//	return;	
-		//}  else 
+        //      if (state == states.SNAPPING_TO) { 
+        //	Vector3 dest = snapTargetPosition;
+        //	dest.y += 1.5f;
+        //          //dest.z -= 3f;
+        //          dest.z = transform.localPosition.z;
+        //          dest.x /= 2;
+        //	transform.localPosition = Vector3.Lerp (transform.localPosition, dest, 0);
+        //	cam.transform.LookAt (snapTargetPosition);
+        //	return;	
+        //}  else 
         if (state == states.END)
+        {
+            UpdatePixelsTillEnd();
             return;
+        }
 
         if (Data.Instance.useRetroPixelPro)
         {
@@ -336,25 +329,43 @@ public class GameCamera : MonoBehaviour
 		pos.y = 0;
 		transform.localPosition = pos; 
 	}
-	void OnCameraZoomTo(Vector3 targetPos)
-	{
-		//Data.Instance.events.FreezeCharacters (true);
-		//Data.Instance.events.RalentaTo (0.5f, 0.1f);
-		//this.snapTargetPosition = targetPos;
-	//	state = states.SNAPPING_TO;
-	}
-	void OnProjectilStartSnappingTarget(Vector3 targetPos)
-	{
-      //  if (Data.Instance.isAndroid)
-        //    OnCameraZoomTo(targetPos);
 
-       // Data.Instance.events.RalentaTo (0.5f, 0.1f);
-  //      if(!Data.Instance.isAndroid)
-  //          StartCoroutine(ResetSnappingCoroutine(3));
+
+    //pixeles
+    public void SetPixels(float _pixelSize)
+    {
+        if (!Data.Instance.useRetroPixelPro)
+            return;
+
+        this.pixelSize = _pixelSize;
+        retroPixelPro.pixelSize = (int)(pixelSize);
     }
-	//IEnumerator ResetSnappingCoroutine(float delay)
-	//{
-	//	yield return new WaitForSecondsRealtime(delay);
-	//	Data.Instance.events.RalentaTo (1f, 0.01f);
-	//}
+    void UpdatePixels()
+    {
+        if (!Data.Instance.useRetroPixelPro)
+            return;
+
+        if (pixelSize < initialPixelSize)
+            pixelSize = initialPixelSize;
+        else
+            pixelSize -= pixel_speed_recovery * Time.deltaTime;
+
+        retroPixelPro.pixelSize = (int)(pixelSize);
+
+    }
+    void InitPixelsEnd()
+    {
+        pixelsToEndValue = 1;
+    }
+    float pixelsToEndSpeed = 8;
+    float pixelsToEndValue;
+    void UpdatePixelsTillEnd()
+    {
+        if (pixelsToEndValue < 30)
+        {
+            pixelsToEndValue += pixelsToEndSpeed * Time.deltaTime;
+            SetPixels(pixelsToEndValue);
+        }
+    }
+    
 }

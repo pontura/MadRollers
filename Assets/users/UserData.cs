@@ -64,18 +64,22 @@ public class UserData : MonoBehaviour
         serverConnect = GetComponent<ServerConnect>();
         avatarImages = GetComponent<AvatarImages>();
         hiscoresByMissions = GetComponent<HiscoresByMissions>();
-        missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
-        missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
-        missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
-        score = PlayerPrefs.GetInt("score");
     }
     private void Start()
     {
-        LoadUser();
-        hiscoresByMissions.Init();
+        Invoke("Delayed", 0.1f);        
+    }
+    private void Delayed()
+    {
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
+        {
+            missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
+            missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
+            missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
+            score = PlayerPrefs.GetInt("score");
+            LoadUser();
+        }
 
-        if(Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            Data.Instance.events.OnSaveScore += OnSaveScore;
     }
     private void OnDestroy()
     {
@@ -83,12 +87,13 @@ public class UserData : MonoBehaviour
     }
     void OnSaveScore()
     {
+        print("OnSaveScore: " + Data.Instance.multiplayerData.score);
         if (Data.Instance.multiplayerData.score == 0)
             return;
         lastScoreWon = Data.Instance.multiplayerData.score;
         score += lastScoreWon;
         PlayerPrefs.SetInt("score", score);
-        UserData.Instance.SaveUserDataToServer();
+        SaveUserDataToServer();
     }
     void LoadUser()
     {
@@ -97,8 +102,8 @@ public class UserData : MonoBehaviour
         
         if (userID.Length<2)
         {
-#if UNITY_ANDROID
-			userID = SystemInfo.deviceUniqueIdentifier;
+#if UNITY_ANDROID || UNITY_IOS
+            userID = SystemInfo.deviceUniqueIdentifier;
 			SetUserID(userID);            
 #else
             userID = SetRandomID();
@@ -131,6 +136,10 @@ public class UserData : MonoBehaviour
     }
     void OnLoaded(ServerConnect.UserDataInServer dataLoaded)
     {
+        hiscoresByMissions.Init();
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            Data.Instance.events.OnSaveScore += OnSaveScore;
+
         if (dataLoaded != null && dataLoaded.username != "")
         {
             logged = true;
@@ -198,15 +207,19 @@ public class UserData : MonoBehaviour
     }
     public void SetMissionReady(int videogameID, int missionID)
     {
-        int id = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID);
-        if (id < missionID)
+        print("SetMissionReady videogameID" + videogameID + " missionID: " + videogameID);
+        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
         {
-            PlayerPrefs.SetInt("missionUnblockedID_" + videogameID, missionID);
-            switch(videogameID)
+            int id = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID);
+            if (id < missionID)
             {
-                case 1:  missionUnblockedID_1 = missionID; break;
-                case 2: missionUnblockedID_2 = missionID; break;
-                case 3: missionUnblockedID_3 = missionID; break;
+                PlayerPrefs.SetInt("missionUnblockedID_" + videogameID, missionID);
+                switch (videogameID)
+                {
+                    case 1: missionUnblockedID_1 = missionID; break;
+                    case 2: missionUnblockedID_2 = missionID; break;
+                    case 3: missionUnblockedID_3 = missionID; break;
+                }
             }
         }
     }
@@ -252,7 +265,7 @@ public class UserData : MonoBehaviour
 
         if (www.error != null)
         {
-            UsersEvents.OnPopup("There was an error: " + www.error);
+            //UsersEvents.OnPopup("There was an error: " + www.error);
         }
         else
         {

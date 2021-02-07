@@ -54,7 +54,6 @@ public class CharactersManager : MonoBehaviour {
 	}
     void StartMultiplayerRace()
     {
-        print("______________StartMultiplayerRace ");
 		canStartPlayers = true;
 		if (Data.Instance.isReplay) {
 			speedRun = MAX_SPEED;

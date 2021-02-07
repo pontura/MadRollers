@@ -51,7 +51,7 @@ public class MainMenuArcade : MonoBehaviour {
 	}
 	void TimeOver()
 	{
-		Data.Instance.LoadLevel("MainMenu");
+		Data.Instance.LoadLevel("MainMenuMobile");
 	}
     void LoopBG()
     {

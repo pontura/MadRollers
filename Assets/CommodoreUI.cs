@@ -44,8 +44,10 @@ public class CommodoreUI : MonoBehaviour {
 	}
 	IEnumerator LoadingRoutine()
 	{
-		field.text = "";		
-		AddText("*** MAD ROLLERS ***");
+		field.text = "";
+        AddText("NEW HI-SCORE -> CONGRATULATIONS!");
+        yield return new WaitForSeconds(0.8f);
+        AddText("*** MAD ROLLERS ***");
 		yield return new WaitForSeconds (0.8f);
 		AddText("Hacking " + Data.Instance.videogamesData.GetActualVideogameData ().name + " -> scores.list");
 		yield return new WaitForSeconds (0.5f);

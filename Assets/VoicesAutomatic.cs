@@ -24,11 +24,11 @@ public class VoicesAutomatic : MonoBehaviour {
         seconds_didnt_shoot++;
         if (seconds_didnt_shoot == seconds_to_say_aburres)
         {
-            Data.Instance.voicesManager.VoiceSecondaryFromResources("me_aburres");
+            VoicesManager.Instance.VoiceSecondaryFromResources("me_aburres");
         } else
         if (seconds_didnt_shoot > seconds_to_say_shoot)
         {
-            Data.Instance.voicesManager.VoiceSecondaryFromResources("vamos_dispara_de_una_vez");
+            VoicesManager.Instance.VoiceSecondaryFromResources("vamos_dispara_de_una_vez");
             seconds_didnt_shoot = 0;
         }
     }
@@ -49,7 +49,7 @@ public class VoicesAutomatic : MonoBehaviour {
                 return;
             }
             lastKill = newKill;
-            Data.Instance.voicesManager.VoiceSecondaryFromResources(lastKill);
+            VoicesManager.Instance.VoiceSecondaryFromResources(lastKill);
         }
     }
     private string GetRandomKill()

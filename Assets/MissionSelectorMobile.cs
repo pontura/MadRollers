@@ -27,13 +27,9 @@ public class MissionSelectorMobile : MonoBehaviour
 
     int videogameID = -1;
 
-    void Start()
-    {
-        title1.text = "VIDEOJUEGOS";
-    }
-
     public void Init()
     {
+        title1.text = TextsManager.Instance.GetText("VIDEOGAMES");
         videogameID = Data.Instance.videogamesData.actualID;
         AddButtons(0);
         AddButtons(1);
@@ -82,29 +78,41 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void ClickedABlockedButton()
     {
-        Data.Instance.events.OnAlertSignal("Solo puedes jugar los que no tengan candado");
+        Data.Instance.events.OnAlertSignal("YOU MUST DESTROY ALL PREVIOUS DISKETTES!");
     }
+    bool clicked;
     public void Clicked(int videoGameID, int MissionActiveID)
     {
-        foreach (MissionButtonMobile mbm in allButtons)
+        if (clicked)   return;  clicked = true;
+
+        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        //print("videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
-            if (mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
+            foreach (MissionButtonMobile mbm in allButtons)
             {
-                if (mbm.isBlocked)
+                if (mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
                 {
-                    ClickedABlockedButton();
-                    return;
+                    if (mbm.isBlocked)
+                    {
+                        ClickedABlockedButton();
+                        return;
+                    }
                 }
             }
         }
 
         Data.Instance.events.OnSoundFX("whip", -1);
-        List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
-        Data.Instance.voicesManager.PlaySpecificClipFromList(list, videoGameID);
+        List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
+        VoicesManager.Instance.PlaySpecificClipFromList(list, videoGameID);
 
-        canvas.enabled = false;
+        if(canvas != null)
+            canvas.enabled = false;
 
         string m = (MissionActiveID + 1).ToString();
+
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            m = (Data.Instance.multiplayerData.levelID_for_partyMode + 1).ToString();
 
         if (MissionActiveID < 10)
             disketteField.text = "0" + m;
@@ -127,7 +135,7 @@ public class MissionSelectorMobile : MonoBehaviour
         yield return new WaitForSeconds(3);
         Data.Instance.musicManager.OnLoadingMusic();
         yield return new WaitForSeconds(2.8f);
-        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        //Data.Instance.playMode = Data.PlayModes.STORYMODE;
         Data.Instance.LoadLevel("Game");
     }
     public void SetSelector()

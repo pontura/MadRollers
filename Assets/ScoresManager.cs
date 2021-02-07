@@ -6,9 +6,9 @@ public class ScoresManager : MonoBehaviour {
 
 	public static int score_for_destroying_wall = 60;
 	public static int score_for_destroying_floor = 50;
-	public static int score_for_killing = 120;
-	public static int score_for_breaking = 70;
-	public static int score_for_boss = 200;
+	public static int score_for_killing = 50; // + cada enemy
+	public static int score_for_breaking = 20; // + cada objeto
+    public static int score_for_boss = 200;
 
 	public types type;
 	public enum types

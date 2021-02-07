@@ -53,7 +53,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		panel.SetActive (true);
 		if(Data.Instance.videogamesData.actualID == 0)
 			PlayAnim ("mad");
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (4);
 		animation.Play ("videoGameBossOut");
 		yield return new WaitForSeconds (1);
 		panel.SetActive (false);

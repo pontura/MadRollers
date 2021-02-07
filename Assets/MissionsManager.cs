@@ -7,6 +7,7 @@ public class MissionsManager : MonoBehaviour
 {
     public int VideogameIDForTorneo = 100;
     public TextAsset _all;
+    public TextAsset _all_partymode;
     public MissionsListInVideoGame all;
     public List<MissionsByVideoGame> videogames;
     public AreasManager areasManager;
@@ -55,12 +56,16 @@ public class MissionsManager : MonoBehaviour
         areasManager = GetComponent<AreasManager>();
         DontDestroyOnLoad(this);       
     }
-    public void LoadAll()
+    public void LoadAll(Data.PlayModes playmode)
     {
-        Debug.Log("Load all missions from Resources");
+        Debug.Log("Load all missions from Resources playmode: " + playmode);
         areasManager = GetComponent<AreasManager>();
         areasManager.Init();
-        all = JsonUtility.FromJson<MissionsListInVideoGame>(_all.text);
+
+        if(playmode == Data.PlayModes.PARTYMODE)
+            all = JsonUtility.FromJson<MissionsListInVideoGame>(_all_partymode.text);
+        else
+            all = JsonUtility.FromJson<MissionsListInVideoGame>(_all.text);
 
         LoadByVideogame(all.missionsVideoGame1, 0);
         LoadByVideogame(all.missionsVideoGame2, 1);

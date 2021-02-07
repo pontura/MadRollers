@@ -96,8 +96,8 @@ public class BossPart : MonoBehaviour {
         called = true;
         CancelInvoke();
 
-        if (boss.HasOnlyOneLifeLeft())
-            Data.Instance.events.OnProjectilStartSnappingTarget(transform.position);
+     //   if (boss.HasOnlyOneLifeLeft())
+        //    Data.Instance.events.OnProjectilStartSnappingTarget(transform.position);
 
         boss.OnPartBroken(this);
         gameObject.SetActive(false);

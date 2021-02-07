@@ -47,7 +47,7 @@ public class SettingsModeScreen : MonoBehaviour {
     void Go()
 	{
         Data.Instance.missions.Init();
-		Data.Instance.LoadLevel("MainMenu");
+		Data.Instance.LoadLevel("MainMenuMobile");
 	}
     public void Controls()
     {

@@ -60,8 +60,18 @@ public class SceneObjectsManager : MonoBehaviour {
 	void Start()
 	{
 		StartCoroutine (UpdateCoroutine());
-	}
-	float tick = 0.25f;
+        Data.Instance.events.OnMissionComplete += OnMissionComplete;
+    }
+    private void OnDestroy()
+    {
+        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+    }
+    void OnMissionComplete(int levelID)
+    {
+        print("____________MISSION COMPLETE");
+        StopAllCoroutines();
+    }
+    float tick = 0.25f;
 	IEnumerator UpdateCoroutine()
 	{
 		while (isActiveAndEnabled) {
@@ -94,7 +104,8 @@ public class SceneObjectsManager : MonoBehaviour {
 		int i = sceneObjectsInScene.Count;
 		while (i>0) {
 			SceneObject sceneObject = sceneObjectsInScene [i-1];
-			sceneObject.Pool();
+            if(sceneObject != null)
+			    sceneObject.Pool();
 			i--;
 		}
 		ObjectPool.instance.pixelsPool.PoolAll ();

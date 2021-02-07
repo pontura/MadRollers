@@ -17,8 +17,8 @@ public class Continue : MonoBehaviour {
 
         
 
-        if (Data.Instance.isAndroid)
-            return;
+        //if (Data.Instance.isAndroid)
+         //   return;
 
 
         if (Data.Instance.playMode == Data.PlayModes.CONTINUEMODE) {
@@ -58,16 +58,10 @@ public class Continue : MonoBehaviour {
         }
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
 			if (!Data.Instance.canContinue || Data.Instance.credits == 0) {
-				//	if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
 				Invoke ("Done", 2);
-				//			} else {
-				//				canClick = false;
-				//				panel.GetComponent<Animation> ().Play ("signalOff");
-				//				Invoke ("Done", 1f);
-				//			}
 				return;
 			}	
-			credits_txt.text = Data.Instance.credits + " CREDITS"; 
+			credits_txt.text = Data.Instance.credits + " " + TextsManager.Instance.GetText("CREDITS"); 
 		} else
 			credits_txt.text = "";
 		panel.SetActive (true);

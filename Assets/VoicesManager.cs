@@ -17,8 +17,9 @@ public class VoicesManager : MonoBehaviour
 	public List<VoiceData> lose_bad;
 	public List<VoiceData> lose_good;
 	public List<VoiceData> lose_great;
+    public List<VoiceData> countDown;
 
-	public List<VoiceData> videogames_names;
+    public List<VoiceData> videogames_names;
 
 	public List<VoiceData> UIItems;
 
@@ -30,7 +31,36 @@ public class VoicesManager : MonoBehaviour
 		public AudioClip audioClip;
 	}
 	public AudioSource audioSource;
+    public static VoicesManager mInstance;
+    public static VoicesManager Instance
+    {
+        get
+        {
+            if (mInstance == null)
+            {
+                Debug.LogError("Algo llama a DATA antes de inicializarse");
+            }
+            return mInstance;
+        }
+    }
+    void Awake()
+    {
 
+        if (!mInstance)
+            mInstance = this;
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        DontDestroyOnLoad(this);
+    }
+    bool IsBundleReady()
+    {
+        if(tutorials.Count == 0)
+            return false;
+        return true;
+    }
     public void Init()
     {
 		audioSource.enabled = Data.Instance.voicesOn;
@@ -66,7 +96,7 @@ public class VoicesManager : MonoBehaviour
     }
 	void NextDestination()
 	{
-		Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 6);
+		VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 6);
 	}
     private void OnAvatarCrash(CharacterBehavior cb)
     {
@@ -90,13 +120,20 @@ public class VoicesManager : MonoBehaviour
     private void OnAvatarChangeFX(Player.fxStates state)
     {
     }
+    public void PlayCountDown(int id)
+    {
+        if(IsBundleReady())
+            PlayClip(countDown[id].audioClip);
+    }
 
 	int sequenceID = 0;
 	bool onSequence = false;
 	List<VoiceData> sequenceSaying;
 	public void PlaySequence( List<VoiceData> clips)
 	{
-		if (clips.Count == 0)
+        if (!IsBundleReady())
+            return;
+        if (clips.Count == 0)
 			return;
 		sequenceID = 0;
 		talking = false;
@@ -107,7 +144,9 @@ public class VoicesManager : MonoBehaviour
 	}
 	void PlayNextSequencedClip()
 	{
-		VoiceData newAudio = sequenceSaying[sequenceID];
+        if (!IsBundleReady())
+            return;
+        VoiceData newAudio = sequenceSaying[sequenceID];
 		print (onSequence + " " + newAudio.audioClip + " " + sequenceID + "    count: " + sequenceSaying.Count);
 		PlayClip(newAudio.audioClip); 
 		sequenceID++;
@@ -119,11 +158,15 @@ public class VoicesManager : MonoBehaviour
 	}
 	public void PlaySpecificClipFromList( List<VoiceData> clips, int id)
 	{
-		PlayClip(clips[id].audioClip); 
+        if (!IsBundleReady())
+            return;
+        PlayClip(clips[id].audioClip); 
 	}
 	public void PlayRandom( List<VoiceData> clips)
     {
-		int rand = UnityEngine.Random.Range(0, clips.Count);
+        if (!IsBundleReady())
+            return;
+        int rand = UnityEngine.Random.Range(0, clips.Count);
 		PlayClip(clips[rand].audioClip); 
     }
     public void ComiendoCorazones()
@@ -138,8 +181,10 @@ public class VoicesManager : MonoBehaviour
 	bool talking;
 	public void PlayClip(AudioClip audioClip)
     {
-		talking = true;
-		audioSpectrum.SetOn ();
+        if (!IsBundleReady() || audioClip == null)
+            return;
+        talking = true;
+		//audioSpectrum.SetOn ();
         audioSource.clip = audioClip;
         audioSource.Play();
 		Data.Instance.events.OnTalk (true);
@@ -147,7 +192,9 @@ public class VoicesManager : MonoBehaviour
 	float timer;
 	void Update()
 	{
-		if (!talking)
+        if (!IsBundleReady())
+            return;
+        if (!talking)
 			return;
 		
 		if (audioSource.clip != null && audioSource.clip.length>0.1f && audioSource.time >= (audioSource.clip.length-0.02f)) {
@@ -159,7 +206,7 @@ public class VoicesManager : MonoBehaviour
 		if (onSequence)
 			PlayNextSequencedClip ();
 		else {
-			audioSpectrum.SetOff ();
+			//audioSpectrum.SetOff ();
 			talking = false;			
 			Data.Instance.events.OnTalk (false);
 		}

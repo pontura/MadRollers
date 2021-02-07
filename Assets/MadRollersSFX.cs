@@ -13,7 +13,9 @@ public class MadRollersSFX : MonoBehaviour {
 		CRASH,
 		TOUCH_GROUND,
 		DOUBLE_JUMP,
-        DASH
+        DASH,
+        FALL,
+        COLEADA
 	}
 	public PlayerClips[] playerClips;
 	[Serializable]
@@ -22,10 +24,12 @@ public class MadRollersSFX : MonoBehaviour {
 		public AudioClip engines;
 		public AudioClip jump;
 		public AudioClip crash;
-		public AudioClip cheer;
+		public AudioClip[] cheer;
 		public AudioClip touchGround;
 		public AudioClip doubleJump;
         public AudioClip dash;
+        public AudioClip fall;
+        public AudioClip coleada;
     }
 
 	public AudioSource player1;
@@ -34,11 +38,13 @@ public class MadRollersSFX : MonoBehaviour {
 	public AudioSource player4;
 
 	void Start () {
-		Data.Instance.events.OnMadRollerFX += OnMadRollerFX;	
+        DontDestroyOnLoad(this);
+
+        Data.Instance.events.OnMadRollerFX += OnMadRollerFX;	
 		Data.Instance.events.OnGameOver += OnGameOver;
 		Data.Instance.events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
-
-		OnMadRollersSFXStatus( Data.Instance.madRollersSoundsOn);
+        
+        OnMadRollersSFXStatus( Data.Instance.madRollersSoundsOn);
 	}
     void OnDestroy()
     {
@@ -79,7 +85,7 @@ public class MadRollersSFX : MonoBehaviour {
 			audioSource.loop = false; 
 			break;
 		case types.CHEER: 
-			ac = playerClips[id].cheer; 
+			ac = GetRandom(playerClips[id].cheer); 
 			audioSource.loop = false; 
 			break;
 		case types.TOUCH_GROUND: 
@@ -94,10 +100,18 @@ public class MadRollersSFX : MonoBehaviour {
             ac = playerClips[id].dash;
             audioSource.loop = false;
             break;
+        case types.COLEADA:
+            ac = playerClips[id].coleada;
+            audioSource.loop = false;
+            break;
         }
 		audioSource.clip = ac;
 		audioSource.Play ();
 	}
+    AudioClip GetRandom(AudioClip[] arr)
+    {
+        return arr[UnityEngine.Random.Range(0, arr.Length - 1)];
+    }
 	void OnGameOver(bool isTimeOver)
 	{
 		player1.Stop ();

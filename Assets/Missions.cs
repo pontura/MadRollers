@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Missions : MonoBehaviour {
+public class Missions : MonoBehaviour
+{
 
     //areasetData que vas guardando para cambiar el angulo de la camara:
     public List<MissionData.AreaSetData> areasetDataLoaded;
@@ -12,34 +13,34 @@ public class Missions : MonoBehaviour {
     public bool hasReachedBoss;
     public ExtraAreasManager extraAreasManager;
     public int times_trying_same_mission;
-	public int MissionActiveID = 0;
-	public MissionData MissionActive;    
+    public int MissionActiveID = 0;
+    public MissionData MissionActive;
 
     private float missionCompletedPercent = 0;
 
-	private Level level;
-	private bool showStartArea;
-	private Data data;
-	float distance;
+    private Level level;
+    private bool showStartArea;
+    private Data data;
+    float distance;
 
-	public AreaData areaDataActive;
-	float areasLength;
-	int offset = 100;
-	int areaSetId = 0;
-	int areaNum = 0;
-	int areaID = 0;
+    public AreaData areaDataActive;
+    float areasLength;
+    int offset = 100;
+    int areaSetId = 0;
+    int areaNum = 0;
+    int areaID = 0;
     float totalDistance = 0;
 
     VideogamesData videogamesData;
-    
+
     public void Init()
     {
         areasetDataLoaded.Clear();
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
             offset -= 40;
 
-        videogamesData = GetComponent<VideogamesData> ();
-		data = Data.Instance;
+        videogamesData = GetComponent<VideogamesData>();
+        data = Data.Instance;
 
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
@@ -47,92 +48,125 @@ public class Missions : MonoBehaviour {
             MissionsManager.Instance.all = null;
             //MissionActive = MissionsManager.Instance.LoadDataFromMission("survival", "boyland").data[0];
             MissionActive = MissionsManager.Instance.videogames[3].missions[0].data[0];
-           // extraAreasManager.Init();              
+            // extraAreasManager.Init();              
         }
         else
         {
+            data.events.StartMultiplayerRace += StartMultiplayerRace;
             data.events.ResetMissionsBlocked += ResetMissionsBlocked;
             data.events.OnMissionComplete += OnMissionComplete;
+            data.events.OnBossActive += OnBossActive;
         }
+    }
+    public void Reset()
+    {
+        MissionActiveID = 0;
     }
     void OnDestroy()
     {
         if (data != null)
         {
+            data.events.StartMultiplayerRace -= StartMultiplayerRace;
             data.events.ResetMissionsBlocked -= ResetMissionsBlocked;
             data.events.OnMissionComplete -= OnMissionComplete;
+            data.events.OnBossActive -= OnBossActive;
         }
+    }
+    bool bossResetedOnce;
+    void StartMultiplayerRace()
+    {
+        bossResetedOnce = false;
     }
     void ResetMissionsBlocked()
     {
         //foreach(MissionsManager.MissionsByVideoGame mbv in MissionsManager.Instance.videogames)
         //    mbv.missionUnblockedID = 0;
     }
-	public MissionData GetMissionsDataByJsonName(string jsonName)
-	{
-		Debug.Log (jsonName);
-		foreach (MissionsManager.MissionsByVideoGame mvv in MissionsManager.Instance.videogames) {
-			foreach (MissionsManager.MissionsData mmData in mvv.missions)  {
-				foreach (MissionData mData in mmData.data)  {
-					if (mData.jsonName == jsonName)
-						return mData;
-				}
-			}
-		}
-		return null;
-	}
-	public void Init (Level level) {
+    public MissionData GetMissionsDataByJsonName(string jsonName)
+    {
+        Debug.Log(jsonName);
+        foreach (MissionsManager.MissionsByVideoGame mvv in MissionsManager.Instance.videogames)
+        {
+            foreach (MissionsManager.MissionsData mmData in mvv.missions)
+            {
+                foreach (MissionData mData in mmData.data)
+                {
+                    if (mData.jsonName == jsonName)
+                        return mData;
+                }
+            }
+        }
+        return null;
+    }
+    public void Init(Level level)
+    {
 
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             MissionActive = MissionsManager.Instance.videogames[3].missions[0].data[0];
-            extraAreasManager.Init();              
+            extraAreasManager.Init();
         }
 
 
         totalDistance = 0;
         this.level = level;
-		areasLength = -4;
-		StartNewMission ();
+        areasLength = -4;
+        StartNewMission();
 
         if (Data.Instance.isReplay && Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             AddAreaByName("continue_Multiplayer");
         }
-        else {
-          //if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-		//	ShuffleMissions ();
-		    AddAreaByName ("start_Multiplayer");
-		} 
-	}
-	void ShuffleMissions()
-	{		
-		foreach (MissionsManager.MissionsByVideoGame mbv in MissionsManager.Instance.videogames) {		
-			for (int a = 0; a < 50; a++) {	
-				int rand = UnityEngine.Random.Range (3, mbv.missions.Count);
-                MissionsManager.MissionsData randomMission1 = mbv.missions [2];
-                MissionsManager.MissionsData randomMission2 = mbv.missions [rand];
+        else
+        {
+            //if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            //	ShuffleMissions ();
+            AddAreaByName("start_Multiplayer");
+        }
+    }
+    void ShuffleMissions()
+    {
+        foreach (MissionsManager.MissionsByVideoGame mbv in MissionsManager.Instance.videogames)
+        {
+            for (int a = 0; a < 50; a++)
+            {
+                int rand = UnityEngine.Random.Range(3, mbv.missions.Count);
+                MissionsManager.MissionsData randomMission1 = mbv.missions[2];
+                MissionsManager.MissionsData randomMission2 = mbv.missions[rand];
 
-				mbv.missions [rand] = randomMission1;
-				mbv.missions [2] = randomMission2;
-			}
-		}
-	}
-	void OnMissionComplete(int id)
+                mbv.missions[rand] = randomMission1;
+                mbv.missions[2] = randomMission2;
+            }
+        }
+    }
+    void OnComplete()
+    {
+        bossResetedOnce = true;
+        times_trying_same_mission = 0;
+        hasReachedBoss = false;
+    }
+    //si terminaste la mision matando a un boss:
+    void OnBossActive(bool isOn)
+    {
+        if (!isOn)
+            OnComplete();
+    }
+    //si no...
+    void OnMissionComplete(int id)
 	{
         hasReachedBoss = false;
         times_trying_same_mission = 0;
-		//if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
-		//	AddAreaByName ("areaChangeLevel");
-		//	return;
-		//} else 
-        if (MissionActiveID >= MissionsManager.Instance.videogames [videogamesData.actualID].missions.Count - 1) {
-			Game.Instance.GotoVideogameComplete ();
-		} else {
-			NextMission ();
-			int videogameID = videogamesData.actualID+1;
+
+        if (MissionActiveID >= MissionsManager.Instance.videogames[videogamesData.actualID].missions.Count - 1)
+        {
+            Game.Instance.GotoVideogameComplete();
+        }
+        else
+        {
+            NextMission();               
+            int videogameID = videogamesData.actualID + 1;
             UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
-		}
+        }
     }
 	public int GetTotalMissionsInVideoGame(int videogameID)
 	{
@@ -188,8 +222,8 @@ public class Missions : MonoBehaviour {
 		}
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
-		if (MissionActiveID == 0 && videogamesData.actualID == 0)
-			CheckTutorial (distance);
+		if (MissionActiveID == 0 && videogamesData.actualID == 0 &&  Data.Instance.playMode == Data.PlayModes.STORYMODE)
+                CheckTutorial (distance);
 	}
     
     int total_areas = 1;
@@ -216,7 +250,7 @@ public class Missions : MonoBehaviour {
             return;
         }
 
-        if (data.boss && Data.Instance.playMode != Data.PlayModes.STORYMODE)
+        if (data.boss && Data.Instance.playMode != Data.PlayModes.STORYMODE && !bossResetedOnce)
             hasReachedBoss = true;
 
         CreateCurrentArea ();
@@ -311,15 +345,15 @@ public class Missions : MonoBehaviour {
 
 		if (distance>148 && tutorialID < 1)
 		{
-			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [0].audioClip);
+			VoicesManager.Instance.PlayClip (VoicesManager.Instance.tutorials [0].audioClip);
 			tutorialID = 1;
 		} else if(distance>200 && tutorialID < 2)
 		{
-			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [1].audioClip);
+			VoicesManager.Instance.PlayClip (VoicesManager.Instance.tutorials [1].audioClip);
 			tutorialID = 2;
 		} else if(distance>305 && tutorialID < 3 && Data.Instance.playMode != Data.PlayModes.STORYMODE)
 		{
-			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [2].audioClip);
+			VoicesManager.Instance.PlayClip (VoicesManager.Instance.tutorials [2].audioClip);
 			tutorialID = 3;
 		}
 	}

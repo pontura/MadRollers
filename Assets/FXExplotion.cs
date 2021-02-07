@@ -49,7 +49,13 @@ public class FXExplotion : SceneObject {
 			return;		
 		lastColor = color;
 		color.a = 0.1f;
-		meshRenderer.material.color = color;
+
+        MaterialPropertyBlock mat = new MaterialPropertyBlock();
+        meshRenderer.GetPropertyBlock(mat);
+        mat.SetColor("_Color", color);
+        meshRenderer.SetPropertyBlock(mat);
+
+        //meshRenderer.material.color = color;
 	}
 	void Update()
 	{

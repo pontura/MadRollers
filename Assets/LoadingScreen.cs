@@ -9,9 +9,10 @@ public class LoadingScreen : MonoBehaviour {
     public BossesPool boss_pool_in_scene;
     public bool useLocalAssets;
     public Text field;
+    public Image progressBar;
 
     void Start () {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID || UNITY_IOS && !UNITY_EDITOR
         useLocalAssets = false;
 #endif
         if (LevelDataDebug.Instance || useLocalAssets)
@@ -19,17 +20,35 @@ public class LoadingScreen : MonoBehaviour {
         else 
             Invoke("LoadBundles", 0.1f);
 	}
+    private void Update()
+    {
+        progressBar.fillAmount = Data.Instance.assetsBundleLoader.Progress;
+    }
     void NextScreen()
     {
         Data.Instance.missions.Init();
-        Data.Instance.LoadLevel("LevelSelector");
-    }
+        if (LevelDataDebug.Instance)
+        {
+            Data.Instance.missions.MissionActiveID = LevelDataDebug.Instance.missionID;
+            Data.Instance.videogamesData.actualID = LevelDataDebug.Instance.videogameID;
+            Data.Instance.LoadLevel("Game");
+        }
+        else
+        {
+
+            if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+                Data.Instance.LoadLevel("MainMenu");
+            else
+                Data.Instance.LoadLevel("MainMenuMobile");
+        }
+
+        }
 	void LoadBundles () {
         if (Data.Instance.isAndroid)
         {
             // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
-            field.text = "CARGANDO MISIONES...";
-            StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAndCacheAssetBundle("missionsmanager.all", OnLoaded));
+            field.text = "DOWNLOADING ROMS...";
+            StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAll(Data.ServerAssetsUrl(), OnLoaded));
         }
         else
         {
@@ -39,47 +58,44 @@ public class LoadingScreen : MonoBehaviour {
 #else
             //solo se juega Story Mode!
             Data.Instance.missions.Init();
-            Data.Instance.LoadLevel("Intro");
+            if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+                Data.Instance.LoadLevel("MainMenu");
+            else
+                Data.Instance.LoadLevel("Intro");
            // Data.Instance.LoadLevel("Settings");
 #endif
         }
 	}
-    void OnLoaded(string isSuccess)
+    void OnLoaded(string result)
     {
-        Debug.Log("AssetsBundle OnLoaded isSuccess: " + isSuccess);
-
-        if (isSuccess == "ok")
+        Debug.Log("AssetsBundle OnLoaded isSuccess: " + result);
+        field.text = "";
+        if (result == "ok")
         {
-            DestroyImmediate(missionsManager_in_scene.gameObject);
-            Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");
-            field.text = "CARGANDO BOSSES...";
-            StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAndCacheAssetBundle("bossesmanager.all", OnBossesLoaded));
+            DestroyImmediate(VoicesManager.Instance.gameObject);
+            DestroyImmediate(TextsManager.Instance.gameObject);
+            DestroyImmediate(missionsManager_in_scene.gameObject);           
+
+            Data.Instance.assetsBundleLoader.GetAsset("missionsmanager.all", "missionsmanager");           
+            Data.Instance.assetsBundleLoader.GetAsset("voicesmanager.all", "voicesmanager");
+            Data.Instance.assetsBundleLoader.GetAsset("madrollerssfx.all", "madrollerssfx");
+            Data.Instance.assetsBundleLoader.GetAsset("textsmanager.all", "textsmanager");
+            BossesLoaded();            
         }
         else
             NextScreen();
-
-        //Data.Instance.missions.Init();
-        //Data.Instance.LoadLevel("Intro");
     }
-    void OnBossesLoaded(string isSuccess)
+    void BossesLoaded()
     {
-        Debug.Log("AssetsBundle OnBossesLoaded isSuccess: " + isSuccess);
-      
-        if (isSuccess == "ok")
-        {
-            field.text = "DONE!";
-            GameObject go = Data.Instance.assetsBundleLoader.GetGo("bossesmanager.all", "bossesmanager");
-            BossesPool bossesPool = go.GetComponent<BossesPool>();
-            BossesPool bossesPoolInScene = boss_pool_in_scene.GetComponent<BossesPool>();
-            bossesPoolInScene.assets = bossesPool.assets;
-            bossesPoolInScene.modules = bossesPool.modules;
-            bossesPoolInScene.AllLoaded();
-            print("cargo boss_pool_in_scene");
-            Data.Instance.missions.Init();
-            Data.Instance.LoadLevel("Intro");
-        }
-        else
-            NextScreen();
-       
+        Debug.Log("BossesLoaded");        
+        GameObject go = Data.Instance.assetsBundleLoader.GetGo("bossesmanager.all", "bossesmanager");
+        BossesPool bossesPool = go.GetComponent<BossesPool>();
+        BossesPool bossesPoolInScene = boss_pool_in_scene.GetComponent<BossesPool>();
+        bossesPoolInScene.assets = bossesPool.assets;
+        bossesPoolInScene.modules = bossesPool.modules;
+        bossesPoolInScene.AllLoaded();
+        print("cargo boss_pool_in_scene");
+        Data.Instance.missions.Init();
+        Data.Instance.LoadLevel("Intro");       
     }
 }

@@ -16,6 +16,7 @@ public class Intro : MonoBehaviour {
     int id;
 
     void Start () {
+        Data.Instance.musicManager.stopAllSounds();
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
         container.gameObject.SetActive(true);
         containerBosses.gameObject.SetActive(false);
@@ -61,7 +62,10 @@ public class Intro : MonoBehaviour {
                 SetSubtitles("Te deseamos suerte!");
                 break;
             case 6:
-                Data.Instance.LoadLevel("MainMenuMobile");
+                if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+                    Data.Instance.LoadLevel("LevelSelectorMobile"); // saltea el menu:
+                else
+                    Data.Instance.LoadLevel("MainMenuMobile");
                 break;
         }       
     }

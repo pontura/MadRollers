@@ -79,7 +79,7 @@ public class GameMenu : MonoBehaviour {
 //    {
 //        Data.Instance.events.OnResetLevel();
 //        SocialEvents.OnGetHiscores(1);
-//        Data.Instance.LoadLevel("MainMenu");
+//        Data.Instance.LoadLevel("MainMenuMobile");
 //        Close();
 //    }
 //    public void OpenResetPopup()

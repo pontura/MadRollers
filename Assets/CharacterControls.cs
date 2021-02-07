@@ -56,7 +56,7 @@ public class CharacterControls : MonoBehaviour {
 
 #if UNITY_EDITOR
         UpdateStandalone();
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
         if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
             UpdateAccelerometer();
         else
@@ -168,11 +168,10 @@ public class CharacterControls : MonoBehaviour {
 
     void UpdateStandalone()
     {
-        //if (lastDH != InputManager.getDH(player.id))
-        //{
-        //    lastDH = InputManager.getDH(player.id);
-        //    characterBehavior.characterMovement.DH(-lastDH);
-        //}
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            characterBehavior.characterMovement.DH(1);
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+            characterBehavior.characterMovement.DH(-1);
 
         if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
             characterBehavior.shooter.ChangeNextWeapon();
@@ -291,6 +290,7 @@ public class CharacterControls : MonoBehaviour {
         if (!isAutomata)
         {
             float v = Input.GetAxis("Horizontal");
+            print("______" + v);
             if (v != 0)
                 v /= 1.25f;
             MoveInX( v );

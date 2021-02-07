@@ -44,8 +44,20 @@ public class WeakPlatform : SceneObject {
                     floor_top = newColorTop;
                     floor_border = vd.floor_border;
 
-                    render.materials[1].color = floor_top;
-                    render.materials[0].color = floor_border;
+                    MaterialPropertyBlock floor_top_mat = new MaterialPropertyBlock();
+                    MaterialPropertyBlock floor_border_mat = new MaterialPropertyBlock();
+
+                    render.GetPropertyBlock(floor_top_mat, 1);
+                    render.GetPropertyBlock(floor_border_mat, 0);
+
+                    floor_top_mat.SetColor("_Color", floor_top);
+                    floor_border_mat.SetColor("_Color", floor_border);
+
+                    render.SetPropertyBlock(floor_top_mat, 1);
+                    render.SetPropertyBlock(floor_border_mat, 0);
+
+                   // render.materials[1].color = floor_top;
+                   // render.materials[0].color = floor_border;
 
                     //Renderer[] renderers = GetComponentsInChildren<Renderer>();
                     //foreach (Renderer r in renderers)
@@ -97,7 +109,7 @@ public class WeakPlatform : SceneObject {
 		{
 			SceneObject newSO = ObjectPool.instance.GetObjectForType(to.name, false);
 			if (newSO.name != "extraSmallBlock1_real" && newSO.name != "extraSmallBlock1_real")
-                manager.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
+                Manager.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
 
 			Vector3 newPos;
 			switch (a)
@@ -108,7 +120,7 @@ public class WeakPlatform : SceneObject {
 			default: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
 			}
 
-			manager.AddSceneObjectAndInitIt(newSO, newPos, container);
+            Manager.AddSceneObjectAndInitIt(newSO, newPos, container);
 			newSO.transform.rotation = transform.rotation;
 		}
 

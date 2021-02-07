@@ -9,7 +9,6 @@ public class VideogamesData : MonoBehaviour {
 	public VideogameData[] all;
 
 
-
 	public void ChangeID(int id)
 	{
 		actualID = id;
@@ -28,8 +27,13 @@ public class VideogamesData : MonoBehaviour {
 		if (actualID > all.Length-1)
 			actualID = 0;
 	}
-	public void SetCredits()
+    public void Reset()
+    {
+        actualID = 0;
+    }
+    public void SetCredits()
 	{
+
 	}
 
 }

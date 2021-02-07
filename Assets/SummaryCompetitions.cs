@@ -50,11 +50,11 @@ public class SummaryCompetitions : MonoBehaviour {
 		SetSelected ();
 		int missionActive = Data.Instance.missions.MissionActiveID;
 		int id = 0;
-		scoreField.text = "GAME OVER";
-		Invoke ("TimeOver", 35);
+		scoreField.text = TextsManager.Instance.GetText("GAME OVER");
+        Invoke ("TimeOver", 35);
 		int totalMissions = MissionsManager.Instance.videogames[Data.Instance.videogamesData.actualID].missions.Count;
 		fillAmount = (float)missionActive / (float)totalMissions;
-		missionsField.text = "MISSION " + (missionActive+1).ToString() + "/" + totalMissions.ToString();
+		missionsField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionActive+1).ToString() + "/" + totalMissions.ToString();
 	}
 	void TimeOver()
 	{

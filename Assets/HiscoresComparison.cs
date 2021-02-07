@@ -28,7 +28,6 @@ public class HiscoresComparison : MonoBehaviour {
 
 	public void Init() {
 
-        Data.Instance.videogamesData.SetOtherGameActive();
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && Data.Instance.playMode != Data.PlayModes.PARTYMODE) {
 			GetComponent<GameOverPartyMode> ().Init ();
 			return;
@@ -64,18 +63,18 @@ public class HiscoresComparison : MonoBehaviour {
         puesto = 0;
         int num = 1;
         bool isCompleted = false;
-        
+
 
         foreach (ArcadeRanking.Hiscore data in arcadeRanking.all)
-		{		
-			if (isCompleted) { }	
+		{
+            if (isCompleted) { }	
 			else if (num > rankingNum) {
 				isCompleted = true;
 				SetPuesto ();				
 			} else {
-				if (puesto == 0 && data.hiscore < score)
+				if (data.hiscore < score && puesto == 0)
 					puesto = num;
-				yield return new WaitForSeconds (0.17f);
+				yield return new WaitForSeconds (0.12f);
 				AddSignal (data, num);
 				num++;
 			}
@@ -83,13 +82,14 @@ public class HiscoresComparison : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         if (puesto < rankingNum)
         {
-            print("____________puesto: " + puesto + "     raningNum " + rankingNum);
             GotoNewHiscore();
             Reset();
         }
         else
         {
             yield return new WaitForSeconds(3f);
+            GetComponent<GameOverPartyMode>().Init();
+            yield return new WaitForSeconds(5f);
             Reset();
         }
     }
@@ -97,9 +97,9 @@ public class HiscoresComparison : MonoBehaviour {
 	{
 		GetComponent<GameOverPartyMode> ().Init ();
 		if (puesto == 0)
-			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 5);
+			VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 5);
 		else
-			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 4);
+			VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 4);
 		
 		mySignal.SetPuesto (puesto);
 	}

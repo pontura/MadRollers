@@ -22,11 +22,11 @@ public class MissionBar : MonoBehaviour {
     public float totalDistance;
     public bool routeProgressOn;
 
-    void Start () {
-        
+    void Start() {
+
         routeProgressSignal.gameObject.SetActive(false);
-        videogameField.text = Data.Instance.videogamesData.GetActualVideogameData ().name;
-		missionField.text = Data.Instance.texts.genericTexts.mission + " " + (Data.Instance.missions.MissionActiveID+1);
+        videogameField.text = Data.Instance.videogamesData.GetActualVideogameData().name;
+        missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID+1);
 		bossTimer.SetActive (false);
         bossSignal.gameObject.SetActive (false);
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;

@@ -154,12 +154,27 @@ public class Game : MonoBehaviour {
 		Data.Instance.events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("Game");
 	}
+    public void GotoNextGame()
+    {
+        //  Pause();
+        Data.Instance.videogamesData.SetOtherGameActive();
+
+        if(Data.Instance.videogamesData.actualID == 0)
+            Data.Instance.missions.MissionActiveID++;
+
+        Data.Instance.events.OnResetLevel();
+        Data.Instance.events.ForceFrameRate(1);
+        Data.Instance.LoadLevel("LevelSelectorMobile");
+    }
     public void GotoMainMenu()
     {
       //  Pause();
         Data.Instance.events.OnResetLevel();
 		Data.Instance.events.ForceFrameRate (1);
-        Data.Instance.LoadLevel("MainMenu");
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            Data.Instance.LoadLevel("MainMenu");
+        else
+            Data.Instance.LoadLevel("MainMenuMobile");
     }
     public void GotoContinue()
     {
@@ -188,12 +203,20 @@ public class Game : MonoBehaviour {
     {
         Data.Instance.events.OnResetLevel();
         Data.Instance.events.ForceFrameRate(1);
-        Data.Instance.LoadLevel("MainMenuMobile");
+        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            Data.Instance.LoadLevel("MainMenu");
+        else
+            Data.Instance.LoadLevel("MainMenuMobile");
     }
+    bool levelCompleted;
     private void OnListenerDispatcher(ListenerDispatcher.myEnum message)
     {
+        
         if (message == ListenerDispatcher.myEnum.LevelFinish)
         {
+            if (levelCompleted)
+                return;
+            levelCompleted = true;
             Debug.Log("<<<<<<<<<<<< Llego a un final de level:");
             level.Complete();
             Data.Instance.events.OnBossActive(false);

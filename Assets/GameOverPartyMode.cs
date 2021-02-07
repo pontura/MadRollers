@@ -32,7 +32,7 @@ public class GameOverPartyMode : MonoBehaviour {
 		
 		LoadHiscores ();
 
-		gameOverField.text = Data.Instance.texts.genericTexts.gameOver;
+        gameOverField.text = TextsManager.Instance.GetText("GAME OVER");
 	}
 	IEnumerator Loop()
 	{

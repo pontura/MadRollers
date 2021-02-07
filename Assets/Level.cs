@@ -45,7 +45,7 @@ public class Level : MonoBehaviour {
     private bool playing;
     private int areasX;
     public CharactersManager charactersManager;
-    private PowerupsManager powerupsManager;
+   // private PowerupsManager powerupsManager;
 	public bool isLastArea;
 	Missions missions;
    
@@ -76,11 +76,11 @@ public class Level : MonoBehaviour {
 		Data.Instance.events.OnGameStart += OnGameStart;
 
 		charactersManager = game.GetComponent<CharactersManager>();
-		powerupsManager = GetComponent<PowerupsManager>();
+		//powerupsManager = GetComponent<PowerupsManager>();
 //		floorManager = GetComponent<FloorManager>();
 //		floorManager.Init(charactersManager);
 		playing = true;
-		powerupsManager.Init ();
+		//powerupsManager.Init ();
 		SetNewVideogameSettings ();
 
 		missions.Init (this);
@@ -98,13 +98,12 @@ public class Level : MonoBehaviour {
 		if(Data.Instance.isReplay)
 		{
 			if(Data.Instance.missions.times_trying_same_mission==0)
-				Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, 1);
+				VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.welcome, 1);
 			else if(Data.Instance.missions.times_trying_same_mission<6) 
-				Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, Data.Instance.missions.times_trying_same_mission+1);
+				VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.welcome, Data.Instance.missions.times_trying_same_mission+1);
 			else
-				Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
-		}else
-			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, 0);
+				VoicesManager.Instance.PlayRandom (VoicesManager.Instance.welcome);
+		}//else VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.welcome, 0);
 	}
     
     public void OnDestroy()
@@ -128,8 +127,8 @@ public class Level : MonoBehaviour {
 		charactersManager.OnLevelComplete ();
 		showStartArea = true;		
 		data.events.MissionComplete ();
-		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
-		SetNewVideogameSettings ();
+		VoicesManager.Instance.PlayRandom (VoicesManager.Instance.missionComplete);
+		//SetNewVideogameSettings ();
 	}
 	void SetNewVideogameSettings()
 	{
@@ -235,7 +234,7 @@ public class Level : MonoBehaviour {
                 Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
                 newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
 				GrabbableItem gi = newSO.GetComponent<GrabbableItem> ();
-				gi.SetGroundMaterial ();
+			//	gi.SetGroundMaterial ();
             }
         }
     }

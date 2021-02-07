@@ -11,11 +11,11 @@ public class About : MonoBehaviour {
     {
         if (Input.anyKeyDown)
         {
-            Data.Instance.LoadLevel("MainMenu");
+            Data.Instance.LoadLevel("MainMenuMobile");
         }
     }
     public void Back()
     {
-        Data.Instance.LoadLevel("MainMenu");
+        Data.Instance.LoadLevel("MainMenuMobile");
     }
 }

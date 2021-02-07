@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuMobile : MonoBehaviour
 {
+    public Text playField;
+    public Text registerField;
+
     public GameObject DonePanel;
     public GameObject RegisterPanel;
 
@@ -12,12 +16,20 @@ public class MainMenuMobile : MonoBehaviour
 
     private void Start()
     {
+        Data.Instance.events.OnResetMultiplayerData();
+        Data.Instance.isReplay = false;
+        Data.Instance.videogamesData.Reset();
+        Data.Instance.missions.Reset();
+
+        playField.text = TextsManager.Instance.GetText("PLAY");
+        registerField.text = TextsManager.Instance.GetText("REGISTER");
+
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
         Data.Instance.events.OnInterfacesStart();
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
 
-        if (UserData.Instance.IsLogged())
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged())
             DonePanel.SetActive(true);
         else
             RegisterPanel.SetActive(true);
@@ -28,9 +40,11 @@ public class MainMenuMobile : MonoBehaviour
     {
         Data.Instance.events.OnJoystickClick -= OnJoystickClick;
     }
+    bool done;
     void OnJoystickClick()
     {
-        if (UserData.Instance.IsLogged() || UserData.Instance.IsOnlyLocal())
+        if (done) return; done = true;
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged() || UserData.Instance.IsOnlyLocal())
             Next();
         else
             RegisterPressed();
@@ -41,7 +55,10 @@ public class MainMenuMobile : MonoBehaviour
     }
     public void Next()
     {
-        Data.Instance.LoadLevel("LevelSelectorMobile");
+        if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+            Data.Instance.LoadLevel("LevelSelector");
+        else
+            Data.Instance.LoadLevel("LevelSelectorMobile");
     }
     void AddPlayers()
     {

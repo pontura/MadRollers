@@ -37,7 +37,7 @@ public class MissionButton : MonoBehaviour {
             anim.Play("MissionButtonOn");
         }
         missionField.text = videogameData.name;
-        usernameField.text = "DISKETTE 0";
+        usernameField.text = TextsManager.Instance.GetText("DISKETTE") + " 0";
     }
     public void SetMobile(LevelSelectorMobile levelSelectorMobile)
     {
@@ -47,8 +47,8 @@ public class MissionButton : MonoBehaviour {
     // solo version Mobile Android!
     public void OnClick()
     {
-        List<VoicesManager.VoiceData> list = Data.Instance.voicesManager.videogames_names;
-        Data.Instance.voicesManager.PlaySpecificClipFromList(list, videogameData.id);
+        List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
+        VoicesManager.Instance.PlaySpecificClipFromList(list, videogameData.id);
 
         anim.Play ("videoGameButtonMobile");
         Data.Instance.videogamesData.actualID = videogameData.id;
@@ -78,7 +78,7 @@ public class MissionButton : MonoBehaviour {
     {
         int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videogameData.id);
         missionActive = missionUnblockedID;
-        missionField.text = "DISKETTE " + (missionActive + 1);
+        missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionActive + 1);
         usernameField.text = "<loading...>";
         UserData.Instance.hiscoresByMissions.LoadHiscore(videogameData.id, missionActive, OnLoaded);
     }

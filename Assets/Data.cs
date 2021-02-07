@@ -7,8 +7,6 @@ public class Data : MonoBehaviour {
     public bool isArcadeMultiplayer;
 
 	public bool DEBUG;
-	int forceVideogameID;
-	int forceMissionID;
 	[HideInInspector]
 	public string testAreaName;
 
@@ -45,8 +43,6 @@ public class Data : MonoBehaviour {
 	public InputSavedAutomaticPlay inputSavedAutomaticPlay;
 	[HideInInspector]
 	public HandWriting handWriting;
-	[HideInInspector]
-	public Texts texts;
 
     public Rewired.UI.ControlMapper.ControlMapper controlMapper;
 
@@ -55,12 +51,12 @@ public class Data : MonoBehaviour {
 	[HideInInspector]
 	public bool isEditor;
 
-    public VoicesManager voicesManager;
 	public VersusManager versusManager;
 
 	public LoadingAsset loadingAsset;
     public AssetsBundleLoader assetsBundleLoader ;
     public MusicManager musicManager;
+    public FramesController framesController;
 
     public bool singlePlayer;
     public bool isAndroid;
@@ -87,8 +83,6 @@ public class Data : MonoBehaviour {
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
     {
-        // return "https://gamedb.doublespicegames.com/assets/sss-dev/" :
-       // return "www.pontura.com/madRollers_bundles/";
         return "www.madrollers.com/bundles/" + Application.version + "/";
         
     }
@@ -107,10 +101,7 @@ public class Data : MonoBehaviour {
 
         if (RESET)
 			PlayerPrefs.DeleteAll ();
-
-        print("heightheightheight: " + Screen.height);
-
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_IOS
         isAndroid = true;
         isAdmin = false;
         controlsType = ControlsType.GYROSCOPE;
@@ -165,9 +156,8 @@ public class Data : MonoBehaviour {
         inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay>();
         versusManager = GetComponent<VersusManager>();
         handWriting = GetComponent<HandWriting>();
-        texts = GetComponent<Texts>();
         assetsBundleLoader = GetComponent<AssetsBundleLoader > ();
-
+        framesController = GetComponent<FramesController>();
 
         if (LevelDataDebug.Instance) {
 			playMode = PlayModes.STORYMODE;
@@ -175,8 +165,6 @@ public class Data : MonoBehaviour {
 			this.isArcadeMultiplayer = LevelDataDebug.Instance.isArcadeMultiplayer;
             this.playOnlyBosses = LevelDataDebug.Instance.playOnlyBosses;   
             this.playMode = LevelDataDebug.Instance.playMode;
-            this.forceVideogameID = LevelDataDebug.Instance.videogameID;
-			this.forceMissionID = LevelDataDebug.Instance.missionID;
 			this.testAreaName =  LevelDataDebug.Instance.testArea;
             if (Data.Instance.playMode == PlayModes.STORYMODE)
                 multiplayerData.player1 = multiplayerData.player1_played = true;
@@ -185,7 +173,6 @@ public class Data : MonoBehaviour {
        // GetComponent<Tracker>().Init();
         GetComponent<CurvedWorldManager>().Init();
 
-        voicesManager.Init();
 	}
 	void Start()
 	{
@@ -207,13 +194,12 @@ public class Data : MonoBehaviour {
 		Data.Instance.events.ForceFrameRate (1);
 		float delay = 0.1f;
         events.OnChangeScene(levelName);
-		if(DEBUG && forceVideogameID != -1 && forceMissionID != -1 && levelName == "LevelSelector")
-		{
-			levelName = "Game";
-			missions.MissionActiveID = forceMissionID;
-			videogamesData.actualID = forceVideogameID;
 
-		}
+        if (playMode == PlayModes.PARTYMODE && levelName == "Game")
+        {
+            loadingAsset.SetOn(true);
+            return;
+        }
 		if (!isReplay && levelName == "Game") {
 			loadingAsset.SetOn (true);
 			return;
