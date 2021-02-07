@@ -37,7 +37,7 @@ public class LoadingScreen : MonoBehaviour {
         {
 
             if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-                Data.Instance.LoadLevel("MainMenu");
+                Data.Instance.LoadLevel("Settings");
             else
                 Data.Instance.LoadLevel("MainMenuMobile");
         }
@@ -59,7 +59,7 @@ public class LoadingScreen : MonoBehaviour {
             //solo se juega Story Mode!
             Data.Instance.missions.Init();
             if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-                Data.Instance.LoadLevel("MainMenu");
+                Data.Instance.LoadLevel("Settings");
             else
                 Data.Instance.LoadLevel("Intro");
            // Data.Instance.LoadLevel("Settings");
