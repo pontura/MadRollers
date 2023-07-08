@@ -6,7 +6,7 @@ using Wilberforce.FinalVignette;
 
 public class GameCamera : MonoBehaviour 
 {
-    public FinalVignetteCommandBuffer vignette;
+  //  public FinalVignetteCommandBuffer vignette;
     public SpriteRenderer[] backgrundImage;
     public float fieldOfView;
 	public int team_id;
@@ -66,7 +66,7 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnGameOver += OnGameOver;
         pixelSize = 10;
 
-        vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
+      //  vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
 
         if (Data.Instance.useRetroPixelPro)
         {
@@ -75,15 +75,15 @@ public class GameCamera : MonoBehaviour
             retroPixelPro.pixelSize = initialPixelSize;
             SetPixels(30);
             
-            if (isAndroid)
-            {
-                vignette.VignetteInnerValueDistance = 0;
-                vignette.VignetteOuterValueDistance = 0.99f;
-            }
+            //if (isAndroid)
+            //{
+            //    vignette.VignetteInnerValueDistance = 0;
+            //    vignette.VignetteOuterValueDistance = 0.99f;
+            //}
         }
         else
         {
-            Destroy(vignette);           
+            //Destroy(vignette);           
         }
     }
     void OnDestroy()

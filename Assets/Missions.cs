@@ -178,7 +178,8 @@ public class Missions : MonoBehaviour
 	}
 	void NextMission()
 	{
-		MissionActiveID++;
+      //  print("________________mjission active " + MissionActiveID + "    videoga,e: " + Data.Instance.videogamesData.actualID);
+      //  if(Data.Instance.videogamesData.actualID == 2) MissionActiveID++;
   //      AddAreaByName("newLevel_playing");
   //      StartNewMission ();
 		//Data.Instance.events.OnChangeBackgroundSide (MissionActive.fondo);

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class JoystickWeaponUI : MonoBehaviour {
 
+    public Sprite[] weaponSprites;
 	public Image image;
 	public GameObject panel;
 	int playerID;
@@ -37,8 +38,12 @@ public class JoystickWeaponUI : MonoBehaviour {
 		
 		panel.SetActive (true);
 
-		Sprite texture = Resources.Load<Sprite>("bullets/" + type.ToString());
-		image.sprite = texture;
+        switch(type)
+        {
+            case Weapon.types.SIMPLE: image.sprite = weaponSprites[0]; break;
+            case Weapon.types.DOUBLE: image.sprite = weaponSprites[1]; break;
+            case Weapon.types.TRIPLE: image.sprite = weaponSprites[2]; break;
+        }		
 
 		Invoke ("Reset", 1);
 
