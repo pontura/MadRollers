@@ -117,6 +117,7 @@ public class Data : MonoBehaviour {
         Application.targetFrameRate = 60;
 #elif UNITY_STANDALONE
         Application.targetFrameRate = 60;
+        Screen.fullScreen = true;
 #endif
 
 
