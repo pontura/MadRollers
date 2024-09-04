@@ -46,13 +46,14 @@ public class ScoresUI : MonoBehaviour
 
     void OnMissionStart(int missionID)
     {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-        {
-            int videoGameID = Data.Instance.videogamesData.actualID;
-            UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
-        }
-        else  if( Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            UserData.Instance.hiscoresByMissions.LoadHiscore(MissionsManager.Instance.VideogameIDForTorneo, missionID, HiscoreLoaded);
+        HiscoreLoaded(null);//TO-DO:
+        //if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        //{
+        //    int videoGameID = Data.Instance.videogamesData.actualID;
+        //    UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
+        //}
+        //else  if( Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        //    UserData.Instance.hiscoresByMissions.LoadHiscore(MissionsManager.Instance.VideogameIDForTorneo, missionID, HiscoreLoaded);
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {

@@ -90,7 +90,7 @@ public class AssetsBundleLoader : MonoBehaviour
 
     public IEnumerator DownloadAll(string _url, Action<string> onSuccess)
     {
-        this.url = _url + mainBundlePath + "/";
+        this.url = _url;
 
         if (dataPaths == null)
         {

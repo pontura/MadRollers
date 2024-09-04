@@ -80,7 +80,8 @@ public class MissionButton : MonoBehaviour {
         missionActive = missionUnblockedID;
         missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionActive + 1);
         usernameField.text = "<loading...>";
-        UserData.Instance.hiscoresByMissions.LoadHiscore(videogameData.id, missionActive, OnLoaded);
+
+       // UserData.Instance.hiscoresByMissions.LoadHiscore(videogameData.id, missionActive, OnLoaded);
     }
     void OnLoaded(HiscoresByMissions.MissionHiscoreData data)
     {

@@ -84,8 +84,8 @@ public class SummaryMobile : MonoBehaviour
         //Data.Instance.events.RalentaTo(0, 0.025f);
 
 
-
-        UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+        HiscoreLoaded(null);//To-DO
+      //  UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
         if (!Data.Instance.isAndroid)
             Data.Instance.events.OnJoystickClick += OnJoystickClick;
     }
@@ -98,7 +98,7 @@ public class SummaryMobile : MonoBehaviour
         }
 
         UserData.Instance.hiscoresByMissions.CheckToAddNewHiscore(UserData.Instance.userID, score, videoGameID, missionID);
-        hiscores.InitLoaded(hiscoreData);
+      //  hiscores.InitLoaded(hiscoreData);
 
         avatarImage.Init(UserData.Instance.userID);
         usernameField.text = UserData.Instance.username;

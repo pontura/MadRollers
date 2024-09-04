@@ -43,7 +43,7 @@ public class LevelSelectorMobile : MonoBehaviour
         hiscoresField.text = TextsManager.Instance.GetText("HI-SCORES");
         pluginsField.text = TextsManager.Instance.GetText("PLUG-INS");
 
-        avatarThumb.Init(UserData.Instance.userID);
+      //  avatarThumb.Init(UserData.Instance.userID);
         avatarName.text = UserData.Instance.username.ToUpper();
 
         scoreTo =  UserData.Instance.Score();

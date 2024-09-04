@@ -87,7 +87,7 @@ public class Continue : MonoBehaviour {
 	{
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
-            GetComponent<SummaryCompetitions>().SetOn();
+          //  GetComponent<SummaryCompetitions>().SetOn();
         }
         else
         {

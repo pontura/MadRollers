@@ -55,11 +55,12 @@ public class CharacterControls : MonoBehaviour {
             return;
 
 #if UNITY_EDITOR
-        UpdateStandalone();
+        //  UpdateStandalone();
+        UpdateByVirtualJoystick();
 #elif UNITY_ANDROID || UNITY_IOS
-        if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
-            UpdateAccelerometer();
-        else
+        //if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
+        //    UpdateAccelerometer();
+        //else
             UpdateByVirtualJoystick();
 #else
             UpdateStandalone();
@@ -166,56 +167,56 @@ public class CharacterControls : MonoBehaviour {
     //	}
     //
 
-    void UpdateStandalone()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-            characterBehavior.characterMovement.DH(1);
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-            characterBehavior.characterMovement.DH(-1);
+    //void UpdateStandalone()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha7))
+    //        characterBehavior.characterMovement.DH(1);
+    //    else if (Input.GetKeyDown(KeyCode.Alpha8))
+    //        characterBehavior.characterMovement.DH(-1);
 
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
-            characterBehavior.shooter.ChangeNextWeapon();
+    //    if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
+    //        characterBehavior.shooter.ChangeNextWeapon();
 
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
-            characterBehavior.shooter.CheckFire();
+    //    if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
+    //        characterBehavior.shooter.CheckFire();
 
-        if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) <-0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) ==0)
-        {
-            characterBehavior.characterMovement.DashForward();
-        }
+    //    if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) <-0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) ==0)
+    //    {
+    //        characterBehavior.characterMovement.DashForward();
+    //    }
 
-        if (characterBehavior.state == CharacterBehavior.states.RUN)
-        {
-            if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
-            {
-                jumpingPressedSince = 0;
-            }
-            if (Data.Instance.inputManager.GetButton(player.id, InputAction.action1))
-            {
-                jumpingPressedSince += Time.deltaTime;
-                if (jumpingPressedSince > jumpingPressedTime)
-                    Jump();
-                else
-                    characterBehavior.JumpingPressed();
-            }
-            else if  (Data.Instance.inputManager.GetButtonUp(player.id, InputAction.action1))
-                {
-                Jump();
-            }
-        }
-        else if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
-        {
-            Jump();
-        }
-        if (characterBehavior.player.charactersManager == null)
-            return;
+    //    if (characterBehavior.state == CharacterBehavior.states.RUN)
+    //    {
+    //        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
+    //        {
+    //            jumpingPressedSince = 0;
+    //        }
+    //        if (Data.Instance.inputManager.GetButton(player.id, InputAction.action1))
+    //        {
+    //            jumpingPressedSince += Time.deltaTime;
+    //            if (jumpingPressedSince > jumpingPressedTime)
+    //                Jump();
+    //            else
+    //                characterBehavior.JumpingPressed();
+    //        }
+    //        else if  (Data.Instance.inputManager.GetButtonUp(player.id, InputAction.action1))
+    //            {
+    //            Jump();
+    //        }
+    //    }
+    //    else if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
+    //    {
+    //        Jump();
+    //    }
+    //    if (characterBehavior.player.charactersManager == null)
+    //        return;
 
-        if (characterBehavior.player.charactersManager.distance < 12)
-            return;
+    //    if (characterBehavior.player.charactersManager.distance < 12)
+    //        return;
 
-        if(!isAutomata)
-             moveByKeyboard();
-    }
+    //    if(!isAutomata)
+    //         moveByKeyboard();
+    //}
     private void UpdateAccelerometer()
     {
 
@@ -243,76 +244,79 @@ public class CharacterControls : MonoBehaviour {
     void UpdateByVirtualJoystick()
     {
 
-#if UNITY_EDITOR
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
-            characterBehavior.shooter.ChangeNextWeapon();
+//#if UNITY_EDITOR
+//        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
+//            characterBehavior.shooter.ChangeNextWeapon();
 
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
-            characterBehavior.shooter.CheckFire();
+//        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
+//            characterBehavior.shooter.CheckFire();
 
-        if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) < -0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) == 0)
-        {
-            characterBehavior.characterMovement.DashForward();
-        }
-#endif
+//        if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) < -0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) == 0)
+//        {
+//            characterBehavior.characterMovement.DashForward();
+//        }
+//#endif
 
         if (characterBehavior.player.charactersManager == null)
             return;
         if (characterBehavior.player.charactersManager.distance < 8)
             return;
-
-        //if (Input.GetAxis("Vertical") > 0.25f)
-        //{
-        //    if (jumpligState == JumpligStates.IDLE)
-        //        JumpInit();
-        //}else
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(Input.mousePosition.x > Screen.width/2)
+                characterBehavior.shooter.CheckFire();
+        }
+        if (Input.GetAxis("Vertical") > 0.25f)
+        {
+            if (jumpligState == JumpligStates.IDLE)
+                JumpInit();
+        } else
         if (Input.GetAxis("Vertical") < -0.85f)
         {
             characterBehavior.characterMovement.DashForward();
         }
-        //else
-        //{
-        //    if (jumpligState == JumpligStates.JUMPING)
-        //        DOJump();
-        //    else
-        //        jumpligState = JumpligStates.IDLE;
-        //}
+        else
+        {
+            if (jumpligState == JumpligStates.JUMPING)
+                DOJump();
+            else
+                jumpligState = JumpligStates.IDLE;
+        }
 
-       //if (jumpligState == JumpligStates.JUMPING)
-       //   {
-       //     jumpingPressedSince += Time.deltaTime;
-       //     if (jumpingPressedSince > jumpingPressedTime)
-       //         DOJump();
-       //     else
-       //         characterBehavior.JumpingPressed();
-       // }
+       if (jumpligState == JumpligStates.JUMPING)
+          {
+            jumpingPressedSince += Time.deltaTime;
+            if (jumpingPressedSince > jumpingPressedTime)
+                DOJump();
+            else
+                characterBehavior.JumpingPressed();
+        }
 
         if (!isAutomata)
         {
             float v = Input.GetAxis("Horizontal");
-            print("______" + v);
             if (v != 0)
                 v /= 1.25f;
             MoveInX( v );
         }
     }
-    //void DOJump()
-    //{
-    //    Data.Instance.events.TutorialContinue();
-    //    jumpligState = JumpligStates.JUMP_DONE;
-    //    jumpingPressedSince = 0;
-    //    characterBehavior.Jump();
-    //}
-    //public void JumpInit()
-    //{
-    //    if (characterBehavior.state != CharacterBehavior.states.RUN)
-    //        DOJump();
-    //    else
-    //    {
-    //        jumpingPressedSince = 0;
-    //        jumpligState = JumpligStates.JUMPING;
-    //    }
-    //}
+    void DOJump()
+    {
+        Data.Instance.events.TutorialContinue();
+        jumpligState = JumpligStates.JUMP_DONE;
+        jumpingPressedSince = 0;
+        characterBehavior.Jump();
+    }
+    public void JumpInit()
+    {
+        if (characterBehavior.state != CharacterBehavior.states.RUN)
+            DOJump();
+        else
+        {
+            jumpingPressedSince = 0;
+            jumpligState = JumpligStates.JUMPING;
+        }
+    }
     //public void JumpRelease()
     //{
     //    jumping = false;

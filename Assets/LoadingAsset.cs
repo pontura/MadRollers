@@ -55,7 +55,8 @@ public class LoadingAsset : MonoBehaviour {
 
                 int missionID = Data.Instance.missions.MissionActiveID;
                 int videoGameID = Data.Instance.videogamesData.actualID;
-                UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+                //   UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+                HiscoreLoaded(null);
                 missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
             }
             else if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
@@ -65,7 +66,8 @@ public class LoadingAsset : MonoBehaviour {
                 logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
                 int missionID = Data.Instance.missions.MissionActiveID;
                 int videoGameID = Data.Instance.videogamesData.actualID;
-                UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+                HiscoreLoaded(null);
+             //   UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
                 missionField.text = TextsManager.Instance.GetText("TOURNAMENT");
             }
             else

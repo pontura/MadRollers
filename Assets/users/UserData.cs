@@ -38,7 +38,6 @@ public class UserData : MonoBehaviour
             if (mInstance == null)
             {
                 mInstance = FindObjectOfType<UserData>();
-                print("ASDSASDAADSAS");
             }
             return mInstance;
         }
@@ -115,9 +114,10 @@ public class UserData : MonoBehaviour
             logged = true;
             userID = PlayerPrefs.GetString("userID");
             username = PlayerPrefs.GetString("username");
-            avatarImages.GetImageFor(userID, null);
+           // avatarImages.GetImageFor(userID, null);
         }
-        serverConnect.LoadUserData(userID, OnLoaded);
+        // serverConnect.LoadUserData(userID, OnLoaded);
+        OnLoaded(null);
     }
     string SetRandomID()
     {
@@ -139,6 +139,13 @@ public class UserData : MonoBehaviour
         hiscoresByMissions.Init();
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Data.Instance.events.OnSaveScore += OnSaveScore;
+
+        score = PlayerPrefs.GetInt("score");
+        missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1");
+        missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2");
+        missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3");
+
+        return;
 
         if (dataLoaded != null && dataLoaded.username != "")
         {
@@ -187,17 +194,17 @@ public class UserData : MonoBehaviour
     }
     private Sprite LoadSprite(string path)
     {
-        Debug.Log("Busca imagen en: " + path);
-        if (string.IsNullOrEmpty(path)) return null;
-        if (System.IO.File.Exists(path))
-        {
-            Debug.Log("Image exists in local");
-            byte[] bytes = System.IO.File.ReadAllBytes(path);
-            Texture2D texture = new Texture2D(300, 300);
-            texture.LoadImage(bytes);
-            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-            return sprite;
-        }
+        //Debug.Log("Busca imagen en: " + path);
+        //if (string.IsNullOrEmpty(path)) return null;
+        //if (System.IO.File.Exists(path))
+        //{
+        //    Debug.Log("Image exists in local");
+        //    byte[] bytes = System.IO.File.ReadAllBytes(path);
+        //    Texture2D texture = new Texture2D(300, 300);
+        //    texture.LoadImage(bytes);
+        //    Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        //    return sprite;
+        //}
         return null;
     }
     public void UpdateData()
@@ -249,35 +256,41 @@ public class UserData : MonoBehaviour
 
     public void SaveUserDataToServer()
     {
-        StartCoroutine(SaveUserDataC());
+        PlayerPrefs.SetInt("score", score);
+       PlayerPrefs.GetInt("missionUnblockedID_1", missionUnblockedID_1);
+       PlayerPrefs.GetInt("missionUnblockedID_2", missionUnblockedID_2);
+       PlayerPrefs.GetInt("missionUnblockedID_3", missionUnblockedID_3);
+        return;
+//
+       // StartCoroutine(SaveUserDataC());
     }
-    IEnumerator SaveUserDataC()
-    {
-        string hash = Utils.Md5Sum(UserData.Instance.userID + score + missionUnblockedID_1 + missionUnblockedID_2 + missionUnblockedID_3 + "pontura");
-        string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.userID) + "&score=" + score
-            + "&missionUnblockedID_1=" + missionUnblockedID_1
-            + "&missionUnblockedID_2=" + missionUnblockedID_2
-            + "&missionUnblockedID_3=" + missionUnblockedID_3
-            + "&hash=" + hash;
+    //IEnumerator SaveUserDataC()
+    //{
+    //    string hash = Utils.Md5Sum(UserData.Instance.userID + score + missionUnblockedID_1 + missionUnblockedID_2 + missionUnblockedID_3 + "pontura");
+    //    string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.userID) + "&score=" + score
+    //        + "&missionUnblockedID_1=" + missionUnblockedID_1
+    //        + "&missionUnblockedID_2=" + missionUnblockedID_2
+    //        + "&missionUnblockedID_3=" + missionUnblockedID_3
+    //        + "&hash=" + hash;
 
-        WWW www = new WWW(post_url);
-        yield return www;
+    //    WWW www = new WWW(post_url);
+    //    yield return www;
 
-        if (www.error != null)
-        {
-            //UsersEvents.OnPopup("There was an error: " + www.error);
-        }
-        else
-        {
-            string result = www.text;
-            if (result == "exists")
-            {
-                UsersEvents.OnPopup("ya existe");
-            }
-            else
-            {
-                Debug.Log("UserData updated " + post_url);
-            }
-        }
-    }
+    //    if (www.error != null)
+    //    {
+    //        //UsersEvents.OnPopup("There was an error: " + www.error);
+    //    }
+    //    else
+    //    {
+    //        string result = www.text;
+    //        if (result == "exists")
+    //        {
+    //            UsersEvents.OnPopup("ya existe");
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("UserData updated " + post_url);
+    //        }
+    //    }
+    //}
 }

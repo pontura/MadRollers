@@ -83,7 +83,7 @@ public class Data : MonoBehaviour {
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
     {
-        return "www.madrollers.com/bundles/" + Application.version + "/";
+        return "https://pontura.github.io/madrollers/AssetsBundles/";
         
     }
     public static Data Instance
