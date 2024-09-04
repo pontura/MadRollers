@@ -49,6 +49,7 @@ public class LoadingScreen : MonoBehaviour {
             // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
             field.text = "DOWNLOADING ROMS...";
             StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAll(Data.ServerAssetsUrl(), OnLoaded));
+            //OnLoaded("ok");
         }
         else
         {

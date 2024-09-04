@@ -98,13 +98,12 @@ public class ObjectPool : MonoBehaviour
             }
             else
             {
-                foreach (ObjectPoolEntry poe in Entries)
+                print("NUEVO:______________ " + instanceName);
+                ObjectPoolEntry poe = GetEntry(instanceName);
+                if (poe.Prefab.name == instanceName)
                 {
-                    if (poe.Prefab.name == instanceName)
-                    {
-                        SceneObject so = CreateSceneObject(poe.Prefab);
-                        return so;
-                    }
+                    SceneObject so = CreateSceneObject(poe.Prefab);
+                    return so;
                 }
             }
             return null;
@@ -115,7 +114,17 @@ public class ObjectPool : MonoBehaviour
             return null;
         }
     }
-
+    ObjectPoolEntry GetEntry(string instanceName)
+    {
+        foreach (ObjectPoolEntry poe in Entries)
+        {
+            if (poe.Prefab.name == instanceName)
+            {
+                return poe;
+            }
+        }
+        return null;
+    }
     public void PoolObject(SceneObject obj)
     {
         if (obj.broken)

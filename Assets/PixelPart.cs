@@ -5,8 +5,9 @@ using UnityEngine;
 public class PixelPart : MonoBehaviour {
 
 	[SerializeField] MeshRenderer mr;
-	Color color;
+	private Color color;
     [SerializeField] private Rigidbody rb;
+    private MaterialPropertyBlock mat;
 
     public Rigidbody Rb
     {
@@ -21,13 +22,12 @@ public class PixelPart : MonoBehaviour {
 		
 		this.color = newColor;
 
-        MaterialPropertyBlock mat = new MaterialPropertyBlock();
+        if(mat == null)
+            mat = new MaterialPropertyBlock();
+
         mr.GetPropertyBlock(mat);
         mat.SetColor("_Color", color);
         mr.SetPropertyBlock(mat);
-
-        //mr.material.color = color;
-
 	}
 	void Reset()
 	{

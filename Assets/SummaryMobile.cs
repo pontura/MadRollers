@@ -91,6 +91,7 @@ public class SummaryMobile : MonoBehaviour
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
+        if (hiscoreData == null) return;
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             videoGameID = MissionsManager.Instance.VideogameIDForTorneo;
@@ -101,7 +102,7 @@ public class SummaryMobile : MonoBehaviour
         hiscores.InitLoaded(hiscoreData);
 
         avatarImage.Init(UserData.Instance.userID);
-        usernameField.text = UserData.Instance.username;
+        usernameField.text = UserData.Instance.Username;
         
         if (hiscoreData == null || hiscoreData.all.Count < 1)
         {

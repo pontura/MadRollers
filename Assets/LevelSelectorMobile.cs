@@ -44,7 +44,7 @@ public class LevelSelectorMobile : MonoBehaviour
         pluginsField.text = TextsManager.Instance.GetText("PLUG-INS");
 
         avatarThumb.Init(UserData.Instance.userID);
-        avatarName.text = UserData.Instance.username.ToUpper();
+        avatarName.text = UserData.Instance.Username;
 
         scoreTo =  UserData.Instance.Score();
         score = UserData.Instance.GetLastScoreWon();

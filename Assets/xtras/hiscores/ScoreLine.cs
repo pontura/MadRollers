@@ -27,6 +27,7 @@ public class ScoreLine : MonoBehaviour {
     }
     void OnLoaded(Texture2D texture2d)
     {
+        return;
         if(avatarImage != null)
         avatarImage.sprite = Sprite.Create(texture2d, new Rect(0, 0, texture2d.width, texture2d.height), new Vector2(0.5f, 0.5f));
     }

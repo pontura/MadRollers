@@ -68,7 +68,6 @@ public class SceneObjectsManager : MonoBehaviour {
     }
     void OnMissionComplete(int levelID)
     {
-        print("____________MISSION COMPLETE");
         StopAllCoroutines();
     }
     float tick = 0.25f;
@@ -80,7 +79,6 @@ public class SceneObjectsManager : MonoBehaviour {
 		}
 	}
 	void LateUpdatesss () {
-
 		float distance = charactersManager.getDistance();
 		int i = sceneObjectsInScene.Count;
 		while (i>0) {

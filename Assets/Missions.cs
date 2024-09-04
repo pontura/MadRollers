@@ -20,7 +20,7 @@ public class Missions : MonoBehaviour
 
     private Level level;
     private bool showStartArea;
-    private Data data;
+    private Data _data;
     float distance;
 
     public AreaData areaDataActive;
@@ -33,16 +33,21 @@ public class Missions : MonoBehaviour
 
     VideogamesData videogamesData;
 
+    void LoadInit()
+    {
+        videogamesData = GetComponent<VideogamesData>();
+        _data = Data.Instance;
+    }
     public void Init()
     {
+        LoadInit();
         areasetDataLoaded.Clear();
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
+        if (_data.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
             offset -= 40;
 
-        videogamesData = GetComponent<VideogamesData>();
-        data = Data.Instance;
 
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+
+        if (_data.playMode == Data.PlayModes.SURVIVAL)
         {
             offset -= 40;
             MissionsManager.Instance.all = null;
@@ -52,11 +57,13 @@ public class Missions : MonoBehaviour
         }
         else
         {
-            data.events.StartMultiplayerRace += StartMultiplayerRace;
-            data.events.ResetMissionsBlocked += ResetMissionsBlocked;
-            data.events.OnMissionComplete += OnMissionComplete;
-            data.events.OnBossActive += OnBossActive;
+            _data.events.StartMultiplayerRace += StartMultiplayerRace;
+            _data.events.ResetMissionsBlocked += ResetMissionsBlocked;
+            _data.events.OnMissionComplete += OnMissionComplete;
+            _data.events.OnBossActive += OnBossActive;
         }
+        if (MissionActiveID == 0 && videogamesData.actualID == 0 && _data.playMode == Data.PlayModes.STORYMODE)
+            isTutorial = true;
     }
     public void Reset()
     {
@@ -64,12 +71,12 @@ public class Missions : MonoBehaviour
     }
     void OnDestroy()
     {
-        if (data != null)
+        if (_data != null)
         {
-            data.events.StartMultiplayerRace -= StartMultiplayerRace;
-            data.events.ResetMissionsBlocked -= ResetMissionsBlocked;
-            data.events.OnMissionComplete -= OnMissionComplete;
-            data.events.OnBossActive -= OnBossActive;
+            _data.events.StartMultiplayerRace -= StartMultiplayerRace;
+            _data.events.ResetMissionsBlocked -= ResetMissionsBlocked;
+            _data.events.OnMissionComplete -= OnMissionComplete;
+            _data.events.OnBossActive -= OnBossActive;
         }
     }
     bool bossResetedOnce;
@@ -100,8 +107,8 @@ public class Missions : MonoBehaviour
     }
     public void Init(Level level)
     {
-
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        LoadInit();
+        if (_data.playMode == Data.PlayModes.SURVIVAL)
         {
             MissionActive = MissionsManager.Instance.videogames[3].missions[0].data[0];
             extraAreasManager.Init();
@@ -113,7 +120,7 @@ public class Missions : MonoBehaviour
         areasLength = -4;
         StartNewMission();
 
-        if (Data.Instance.isReplay && Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if (_data.isReplay && Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             AddAreaByName("continue_Multiplayer");
         }
@@ -123,6 +130,8 @@ public class Missions : MonoBehaviour
             //	ShuffleMissions ();
             AddAreaByName("start_Multiplayer");
         }
+        if (MissionActiveID == 0 && videogamesData.actualID == 0 && _data.playMode == Data.PlayModes.STORYMODE)
+            isTutorial = true;
     }
     void ShuffleMissions()
     {
@@ -220,12 +229,12 @@ public class Missions : MonoBehaviour
         if (distance > areasLength-offset) {
 			SetNextArea ();
 		}
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        if (_data.playMode == Data.PlayModes.SURVIVAL)
             return;
-		if (MissionActiveID == 0 && videogamesData.actualID == 0 &&  Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        if(isTutorial)
                 CheckTutorial (distance);
-	}
-    
+    }
+    bool isTutorial;
     int total_areas = 1;
     float areasetIDLastAdded = -1;
 	void SetNextArea()
@@ -337,11 +346,10 @@ public class Missions : MonoBehaviour
 	int tutorialID = 0;
 	void CheckTutorial(float distance)
 	{
+        if (tutorialID >= 3 || VoicesManager.Instance.tutorials == null || VoicesManager.Instance.tutorials.Count == 0)
+            return;
         if (hasReachedBoss)
             return;
-
-		if(tutorialID >= 3 || Data.Instance.playMode == Data.PlayModes.VERSUS )
-			return;
 
 		if (distance>148 && tutorialID < 1)
 		{

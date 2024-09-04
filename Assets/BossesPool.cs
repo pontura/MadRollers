@@ -33,8 +33,8 @@ public class BossesPool : MonoBehaviour
             Material m = ChangeMaterialByName(mr.sharedMaterial.name);
             if (m != null)
                 mr.sharedMaterial = m;
-            else
-                Debug.Log("Falta el material " + mr.sharedMaterial.name + " para el boss");
+            //else
+            //    Debug.Log("Falta el material " + mr.sharedMaterial.name + " para el boss");
         }
     }
     Material ChangeMaterialByName(string matName)

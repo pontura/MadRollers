@@ -31,8 +31,8 @@ public class UserUIRegistrationPanel : MonoBehaviour
     }
     void OnEnable()
     {
-        if(UserData.Instance.username != "")
-            field.text = UserData.Instance.username;
+        if(UserData.Instance.Username != "")
+            field.text = UserData.Instance.Username;
     }
     void OnUserUploadDone()
     {

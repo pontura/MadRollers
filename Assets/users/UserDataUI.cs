@@ -28,31 +28,31 @@ public class UserDataUI : MonoBehaviour
     
     void SetPanelsIfLogged()
     {
-        if (userData.username == "")
-        {
-            userRegistrationPanel.gameObject.SetActive(true);
-            userRegistrationPanel.Init(this, userData.username);
+        //if (userData.Username == "")
+        //{
+        //    userRegistrationPanel.gameObject.SetActive(true);
+        //    userRegistrationPanel.Init(this, userData.Username);
 
-            userRegisteredPanel.gameObject.SetActive(false);
-        } else
-        {
+        //    userRegisteredPanel.gameObject.SetActive(false);
+        //} else
+        //{
             userRegisteredPanel.gameObject.SetActive(true);
-            userRegisteredPanel.Init(this, userData.userID, userData.username);
+            userRegisteredPanel.Init(this, userData.userID, userData.Username);
 
             userRegistrationPanel.gameObject.SetActive(false);
-        }
+      //  }
     }
     public void EditData()
     {
         userRegisteredPanel.gameObject.SetActive(false);
         userRegistrationPanel.gameObject.SetActive(true);
-        userRegistrationPanel.Init(this, userData.username);
+        userRegistrationPanel.Init(this, userData.Username);
     }
     public void EditDone()
     {
         userRegisteredPanel.gameObject.SetActive(true);
         userRegistrationPanel.gameObject.SetActive(false);
-        userRegistrationPanel.Init(this, userData.username);
+        userRegistrationPanel.Init(this, userData.Username);
     }
      public void OnSubmit(string username)
      {

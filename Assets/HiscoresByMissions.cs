@@ -89,6 +89,8 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void LoadHiscore(int videogame, int mission, System.Action<MissionHiscoreData> OnDone)
     {
+        OnDone(null);
+        return;
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             mission = 0;
@@ -129,7 +131,7 @@ public class HiscoresByMissions : MonoBehaviour
 
         string hash = Utils.Md5Sum(UserData.Instance.userID + videogame + mission + score + secretKey);
         string post_url = saveNewHiscore + "?userID=" + WWW.EscapeURL(UserData.Instance.userID);
-        post_url += "&username=" + UserData.Instance.username;
+        post_url += "&username=" + UserData.Instance.Username;
         post_url += "&videogame=" + videogame;
         post_url += "&mission=" + mission;
         post_url += "&score=" + score;
@@ -139,40 +141,41 @@ public class HiscoresByMissions : MonoBehaviour
     }
     IEnumerator Send(string post_url, System.Action<MissionHiscoreData> OnDone)
     {
-        print("Save: " + post_url);
-        WWW www = new WWW(post_url);
-        yield return www;
+        yield return null;
+        //print("Save: " + post_url);
+        //WWW www = new WWW(post_url);
+        //yield return www;
 
-        if (www.error != null)
-        {
-            //UsersEvents.OnPopup("Internet Error: " + www.error);
-           if (OnDone != null)
-                OnDone(null);
-        }
-        else
-        {
-            if (OnDone != null)
-                OnDataSended(www.text, OnDone);
-        }
+        //if (www.error != null)
+        //{
+        //    //UsersEvents.OnPopup("Internet Error: " + www.error);
+        //   if (OnDone != null)
+        //        OnDone(null);
+        //}
+        //else
+        //{
+        //    if (OnDone != null)
+        //        OnDataSended(www.text, OnDone);
+        //}
     }
-    void OnDataSended(string result, System.Action<MissionHiscoreData> OnDone)
-    {       
-        MissionHiscoreData missionHiscoreData = JsonUtility.FromJson<MissionHiscoreData>(result);
+    //void OnDataSended(string result, System.Action<MissionHiscoreData> OnDone)
+    //{       
+    //    MissionHiscoreData missionHiscoreData = JsonUtility.FromJson<MissionHiscoreData>(result);
 
-        if (missionHiscoreData.all.Count == 0)
-        {
-            OnDone(null);
-            return;
-        }
+    //    if (missionHiscoreData.all.Count == 0)
+    //    {
+    //        OnDone(null);
+    //        return;
+    //    }
      
 
-        MissionHiscoreData md = IfAlreadyLoaded(missionHiscoreData.videogame, missionHiscoreData.mission);
+    //    MissionHiscoreData md = IfAlreadyLoaded(missionHiscoreData.videogame, missionHiscoreData.mission);
 
-        if (md == null)
-            all.Add(missionHiscoreData);
+    //    if (md == null)
+    //        all.Add(missionHiscoreData);
 
-        OnDone(missionHiscoreData);
-    }
+    //    OnDone(missionHiscoreData);
+    //}
     public MissionHiscoreUserData GetHiscore(int videogame, int mission)
     {
         foreach (MissionHiscoreData md in all)

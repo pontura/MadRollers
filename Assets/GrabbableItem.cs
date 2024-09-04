@@ -11,36 +11,43 @@ public class GrabbableItem : SceneObject
     [HideInInspector]
     public float sec = 0;
 
-     [HideInInspector]
-    public Collider TriggerCollider;
-     [HideInInspector]
-    public Collider FloorCollider;
+    [SerializeField] Collider TriggerCollider;
+    [SerializeField] Collider FloorCollider;
 
     [HideInInspector]
     public Player player;
+    Transform player_transform;
    // public AudioClip heartClip;
    
 
     public float areaID;
     public int totalGrabbablesInArea;
 
+    Rigidbody rb;
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     public override void OnRestart(Vector3 pos)
     {
 		base.OnRestart(pos);
         player = null;
+        player_transform = null;
 
-        TriggerCollider = gameObject.GetComponent<SphereCollider>();
-        FloorCollider = gameObject.GetComponent<BoxCollider>();
+        if (TriggerCollider == null)
+            TriggerCollider = gameObject.GetComponent<SphereCollider>();
+        if (FloorCollider == null)
+            FloorCollider = gameObject.GetComponent<BoxCollider>();
 
         TriggerCollider.enabled = true;
         FloorCollider.enabled = true;
 
-       
-        hitted = false;
+         hitted = false;
         transform.localEulerAngles = new Vector3(0, 0, 0);
 
-        if (GetComponent<Rigidbody>() && !GetComponent<Rigidbody>().isKinematic)
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        if (rb && !rb.isKinematic)
+           rb.velocity = Vector3.zero;
 
         sec = 0;
     }
@@ -71,7 +78,7 @@ public class GrabbableItem : SceneObject
             if (player == null) return;
             sec += Time.deltaTime * 100;
 			Vector3 position = transform.position;
-            Vector3 characterPosition = player.transform.position;
+            Vector3 characterPosition = player_transform.position;
 			characterPosition.y+=1f;
 			characterPosition.z+=1.2f;
 			transform.position = Vector3.MoveTowards(position, characterPosition, 18 * Time.deltaTime);
@@ -92,14 +99,13 @@ public class GrabbableItem : SceneObject
         if (!isActive) return;
 		if(other.gameObject.CompareTag("Player"))
 		{
+            player = other.transform.GetComponent<Player>();
 
-            if (other.transform.GetComponent<Player>())
-                player = other.transform.GetComponent<Player>();
-            else
+            if (player == null)
                 player = other.transform.parent.GetComponent<Player>();
 
             if (player.GetComponent<CharacterBehavior>().state == CharacterBehavior.states.DEAD) return;
-            
+            player_transform = player.transform;
 			hitted = true;
             TriggerCollider.enabled = false;
             FloorCollider.enabled = false;

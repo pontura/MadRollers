@@ -43,7 +43,10 @@ public class Game : MonoBehaviour {
         mInstance = this;  		
     }
     void Start()
-    {        
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         DOTween.Clear();
      
         if (Data.Instance.isReplay) {

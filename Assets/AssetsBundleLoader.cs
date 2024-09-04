@@ -206,7 +206,6 @@ public class AssetsBundleLoader : MonoBehaviour
             OnLoaded(true);
         }
     }
-
     public GameObject GetGo(string bundleName, string asset)
     {
         AssetBundle assetBundle = bundles[bundleName];

@@ -83,7 +83,7 @@ public class Data : MonoBehaviour {
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
     {
-        return "www.madrollers.com/bundles/" + Application.version + "/";
+        return "https://pontura.github.io/madrollers/AssetsBundles/";// + Application.version + "/";
         
     }
     public static Data Instance
@@ -106,6 +106,7 @@ public class Data : MonoBehaviour {
         isAdmin = false;
         controlsType = ControlsType.GYROSCOPE;
         useOptimizedSettings = true;
+        useRetroPixelPro = false;
         playMode = PlayModes.STORYMODE;
         isAndroid = true;
         Application.targetFrameRate = 60;
@@ -130,10 +131,10 @@ public class Data : MonoBehaviour {
         if (isAndroid)
         {
            // pixelSize = (int)((float)Screen.height * (0.003f));
-            if (SystemInfo.graphicsShaderLevel >= 30)
-                useRetroPixelPro = true;
-            else
-                useRetroPixelPro = false;
+            //if (SystemInfo.graphicsShaderLevel >= 30)
+            //    useRetroPixelPro = true;
+            //else
+            //    useRetroPixelPro = false;
         }
         //  Cursor.visible = false;
 

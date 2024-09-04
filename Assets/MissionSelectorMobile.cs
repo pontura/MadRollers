@@ -85,7 +85,12 @@ public class MissionSelectorMobile : MonoBehaviour
     {
         if (clicked)   return;  clicked = true;
 
-        Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        if (Data.Instance.isAndroid)
+        {
+            if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+                Data.Instance.playMode = Data.PlayModes.STORYMODE;
+        }
+
         //print("videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {

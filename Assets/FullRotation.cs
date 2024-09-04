@@ -51,20 +51,7 @@ public class FullRotation : MonoBehaviour {
 
 		if(inverse)
 			speed *=-1;
-
-//		if (frameByFrame) {
-//			Loop ();
-//		}
 	}
-//	int rotID = 0;
-//
-//	void Loop()
-//	{
-//		Vector3 rot = transform.localEulerAngles;
-//		rot.y += 90;
-//		transform.localEulerAngles = rot;
-//		Invoke ("Loop", 0.1f);
-//	}
 	void Update () {
 		if (frameByFrame) {
 			return;

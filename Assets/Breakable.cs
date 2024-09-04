@@ -30,18 +30,27 @@ public class Breakable : MonoBehaviour {
     private Vector3 originalPosition;
     private SceneObject sceneObject;
     BossPart bossPart;
+    Rigidbody rb;
+
     public SceneObject GetSceneObject()
     {
         return sceneObject;
     }
-	void Start()
-	{
+    void Awake()
+    {
         bossPart = GetComponent<BossPart>();
 
-        sceneObject = GetComponent<SceneObject> ();
+        sceneObject = GetComponent<SceneObject>();
+        if (sceneObject == null)
+            sceneObject = GetComponentInParent<SceneObject>();
+
+        rb = gameObject.GetComponent<Rigidbody>();
+
+    }
+    void Start()
+	{
 		if (sceneObject == null)
 			sceneObject = GetComponentInParent<SceneObject> ();
-
 	}
     public void OnEnable()
     {               
@@ -67,14 +76,15 @@ public class Breakable : MonoBehaviour {
 		sceneObject.broken = true;
         if (destroyedByWeapon)
         {
-            Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
+            Events events = Data.Instance.events;
+            events.OnAddObjectExplotion(transform.position, (int)explotionType);
 
             // si no es un enemigo agrega una explosion que rompe los objetos cercanos:
             if (gameObject.layer != 17)
             {
                 MeshRenderer firstMeshRenderer = GetComponentInChildren<MeshRenderer>();
                 Color color = Color.black;
-                Data.Instance.events.AddWallExplotion(transform.position, color);
+                events.AddWallExplotion(transform.position, color);
             }
         }
 
@@ -98,11 +108,13 @@ public class Breakable : MonoBehaviour {
 	public void hasGravity() {
         isOn = false;
 		dontKillPlayers = true;
-			
-		Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
 
 		if(rb == null)
-			rb = gameObject.AddComponent<Rigidbody>();
+        {
+            rb = gameObject.GetComponent<Rigidbody>();
+            if(rb == null)
+                rb = gameObject.AddComponent<Rigidbody>();
+        }
 		
 		rb.isKinematic = false;
 		rb.useGravity = true;
@@ -129,40 +141,6 @@ public class Breakable : MonoBehaviour {
 	}
 	private void breaker(){
 		BreakStandard ();
-//		if (sceneObject.distanceFromCharacter > 25)
-//			return;
-//		BreakEveryBlock ();
-	}
-	void BreakEveryBlock()
-	{
-		Transform container = Data.Instance.sceneObjectsPool.Scene.transform;
-		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
-		int id = 0;
-		float force = 500;
-
-		Rigidbody rb;
-		foreach (MeshRenderer mr in all) {
-			rb = mr.gameObject.GetComponent<Rigidbody> ();
-
-			if (rb == null) 
-				rb = mr.gameObject.AddComponent< Rigidbody >();
-			
-			BreakedBlock bb = mr.gameObject.AddComponent< BreakedBlock >();
-
-			rb.mass = 100;
-			rb.useGravity = true;
-			rb.isKinematic = false;
-
-			bb.Init ();
-			mr.transform.SetParent (container);
-			mr.sortingLayerName = "Default";
-			mr.gameObject.AddComponent<BoxCollider> ();
-			mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
-			Vector3 direction = ((mr.transform.forward * force) + (Vector3.up * (force*2)));
-			rb.AddForce(direction, ForceMode.Impulse);
-
-			id++;
-		}
 	}
 	void BreakStandard(){
 

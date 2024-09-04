@@ -37,33 +37,35 @@ public class UserRegistrationForm : MonoBehaviour
 
     void UserCreation()
     {
-        UsersEvents.OnPopup("new User Created " + UserData.Instance.username);
+        UsersEvents.OnPopup("new User Created " + UserData.Instance.Username);
         UserData.Instance.UserCreation();
         UsersEvents.OnRegistartionDone();
     }
     void UserUploaded()
     {
-        UsersEvents.OnPopup( "User uploaded " + UserData.Instance.username );
+        UsersEvents.OnPopup( "User uploaded " + UserData.Instance.Username );
         UserData.Instance.UserCreation();
         UsersEvents.OnUserUploadDone();
     }
 
     public void SaveUser(string username)
     {
+        return;
         UsersEvents.OnPopup( "Checking data...");
-        UserData.Instance.username = username;
-        StartCoroutine(SendData(UserData.Instance.username));
+        //UserData.Instance.Username = username;
+      //  StartCoroutine(SendData(UserData.Instance.Username));
     }
     public void UploadUser(string username)
     {
+        return;
         UsersEvents.OnPopup(  "Uploading data...");
-        UserData.Instance.username = username;
-        StartCoroutine(UploadData(UserData.Instance.username));
+      //  UserData.Instance.Username = username;
+       // StartCoroutine(UploadData(UserData.Instance.Username));
 
     }
     public void SavePhoto()
     {
-       
+        return;
         if (UserData.Instance.userID == "")
         {
             Debug.LogError("NO EXISTE EL USUARIO");

@@ -2,33 +2,29 @@
 using System.Collections;
 
 public class SceneObject : MonoBehaviour {
-
-    //public Level.Dificult Dificult;
-
+    
     public int size_z = 0;
 
 	public bool broken;
     public int id;
 
-    //[HideInInspector]
-    //public Transform characterTransform;
-
     [HideInInspector]
     public bool isActive;
     public int score;
 
-   // [HideInInspector]
-   // public CharactersManager charactersMmanager;
-
-    public int distanceFromCharacter;
-
+    public float distanceFromCharacter;
+    Transform _transform;
     private Transform[] childs;
 
     //se dibuja solo si hay mas de un avatar vivo:
     public bool onlyMultiplayers;
     SceneObjectsManager manager;
 
-	public virtual void Init(SceneObjectsManager manager)
+    private void Awake()
+    {
+        _transform = transform;
+    }
+    public virtual void Init(SceneObjectsManager manager)
 	{
 		this.manager = manager;
 	}
@@ -41,14 +37,15 @@ public class SceneObject : MonoBehaviour {
     }
     public void Restart(Vector3 pos)
     {
-		gameObject.SetActive(true);
+        _transform = transform;
+        gameObject.SetActive(true);
         OnRestart(pos);
 		isActive = true;
     }
     public void setRotation(Vector3 rot)
     {
-        if (transform.localEulerAngles == rot) return;
-        transform.localEulerAngles = rot;
+        if (_transform.localEulerAngles == rot) return;
+        _transform.localEulerAngles = rot;
     }
     public void lookAtCharacter()
     {
@@ -59,8 +56,8 @@ public class SceneObject : MonoBehaviour {
         isActive = false;
         Vector3 newPos = new Vector3(2000, 0, 2000);
 
-		if(transform !=null)
-      		transform.position = newPos;  
+		if(_transform != null)
+            _transform.position = newPos;  
 		
         ObjectPool.instance.PoolObject(this);
         if (manager == null)
@@ -74,7 +71,7 @@ public class SceneObject : MonoBehaviour {
     }
 	public virtual void Updated(float distance)
 	{
-		distanceFromCharacter = (int)(transform.position.z - distance);
+		distanceFromCharacter = _transform.position.z - distance;
 	}
     public virtual void OnRestart(Vector3 pos)
     {
