@@ -2,19 +2,25 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: bullet_fire
-  m_Shader: {fileID: 4800000, guid: bb6673d65f9f86847b69e9b8eed45e22, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 7cf125cd92be649438e3d1a5024b6d56, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - V_CW_MATCAP_BLEND_MULTIPLY
+  m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -46,6 +52,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: cca57de750e92aa4fa5e3dca3e4ad5c9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Matcap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -58,13 +68,27 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SecondBumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - V_CW_D_OPTIONS: 0
+    - V_CW_Label_Albedo: 0
+    - V_CW_Label_Matcap: 0
+    - V_CW_Label_Modes: 0
     - V_CW_Label_Tag: 0
+    - V_CW_Label_UnityDefaults: 0
+    - V_CW_MATCAP_BLEND: 0
+    - V_CW_Rendering_Mode: 0
     - V_CW_TAG: 0
+    - V_CW_Texture_Mix_Mode: 0
     - V_CW_W_OPTIONS: 0
     - _BlendOp: 0
+    - _BumpMap_UV_Scale: 1
     - _BumpScale: 1
+    - _BumpStrength: 1
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
@@ -87,6 +111,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _SecondBumpMap_UV_Scale: 1
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
@@ -98,6 +123,8 @@ Material:
     - _V_CW_Fog_Density: 1
     - _V_CW_Fog_End: 100
     - _V_CW_Fog_Start: 0
+    - _V_CW_Rim_Bias: 0.2
+    - _V_CW_Rim_Power: 3
     - _V_CW_X_Bend_Size: 0
     - _V_CW_Y_Bend_Size: 0
     - _V_CW_Z_Bend_Bias: 0
@@ -111,3 +138,6 @@ Material:
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _V_CW_Fog_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _V_CW_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
+    - _V_CW_Rim_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
+//using Rewired;
 
 public class JoystickController : MonoBehaviour {
 
@@ -23,39 +23,39 @@ public class JoystickController : MonoBehaviour {
 	{
 		isOff = false;
 	}
-	void Update()
-	{
-		if (isOff)
-			return;
-		lastClickedTime += Time.deltaTime;
-		if (lastClickedTime > delayToReact)
-			processAxis = true;
-        UpdateStandalone();
-    }
-    void UpdateStandalone()
-    {
-        for (int a = 0; a < 4; a++)
-        {
-            if (Data.Instance.inputManager.GetButtonDown(a, InputAction.action1) ||
-                Data.Instance.inputManager.GetButtonDown(a, InputAction.action2) ||
-                Data.Instance.inputManager.GetButtonDown(a, InputAction.action3))
-                OnJoystickClick();
-            if (processAxis)
-            {
-                float v = Data.Instance.inputManager.GetAxis(a, InputAction.vertical);
-                    if (v < -0.2f)
-                    OnJoystickUp();
-                else if (v > 0.2f)
-                    OnJoystickDown();
+	//void Update()
+	//{
+	//	if (isOff)
+	//		return;
+	//	lastClickedTime += Time.deltaTime;
+	//	if (lastClickedTime > delayToReact)
+	//		processAxis = true;
+ //      // UpdateStandalone();
+ //   }
+    //void UpdateStandalone()
+    //{
+    //    for (int a = 0; a < 4; a++)
+    //    {
+    //        if (Data.Instance.inputManager.GetButtonDown(a, InputAction.action1) ||
+    //            Data.Instance.inputManager.GetButtonDown(a, InputAction.action2) ||
+    //            Data.Instance.inputManager.GetButtonDown(a, InputAction.action3))
+    //            OnJoystickClick();
+    //        if (processAxis)
+    //        {
+    //            float v = Data.Instance.inputManager.GetAxis(a, InputAction.vertical);
+    //                if (v < -0.2f)
+    //                OnJoystickUp();
+    //            else if (v > 0.2f)
+    //                OnJoystickDown();
 
-                float h = Data.Instance.inputManager.GetAxis(a, InputAction.horizontal);
-                if (h < -0.2f)
-                    OnJoystickRight();
-                else if (h > 0.2f)
-                    OnJoystickLeft();
-            }
-        }
-    }
+    //            float h = Data.Instance.inputManager.GetAxis(a, InputAction.horizontal);
+    //            if (h < -0.2f)
+    //                OnJoystickRight();
+    //            else if (h > 0.2f)
+    //                OnJoystickLeft();
+    //        }
+    //    }
+    //}
 	void OnJoystickUp () {
 		Data.Instance.events.OnJoystickUp ();
 		ResetMove ();

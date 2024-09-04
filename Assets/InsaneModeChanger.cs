@@ -24,38 +24,38 @@ public class InsaneModeChanger : MonoBehaviour
     {
         Destroy(this);
     }
-    void Update()
-    {
-        if (Data.Instance.inputManager.GetAxis(0, InputAction.vertical) < 0)
-            player0 = true;
-        else
-            player0 = false;
-        if (Data.Instance.inputManager.GetAxis(1, InputAction.vertical) < 0)
-            player1 = true;
-        else
-            player1 = false;
-        if (Data.Instance.inputManager.GetAxis(2, InputAction.vertical) < 0)
-            player2 = true;
-        else
-            player2 = false;
-        if (Data.Instance.inputManager.GetAxis(3, InputAction.vertical) < 0)
-            player3 = true;
-        else
-            player3 = false;
+    //void Update()
+    //{
+    //    if (Data.Instance.inputManager.GetAxis(0, InputAction.vertical) < 0)
+    //        player0 = true;
+    //    else
+    //        player0 = false;
+    //    if (Data.Instance.inputManager.GetAxis(1, InputAction.vertical) < 0)
+    //        player1 = true;
+    //    else
+    //        player1 = false;
+    //    if (Data.Instance.inputManager.GetAxis(2, InputAction.vertical) < 0)
+    //        player2 = true;
+    //    else
+    //        player2 = false;
+    //    if (Data.Instance.inputManager.GetAxis(3, InputAction.vertical) < 0)
+    //        player3 = true;
+    //    else
+    //        player3 = false;
 
-        if(player0 && player1 && player2 && player3)
-        {
-            Data.Instance.events.OnResetMultiplayerData();
-            Data.Instance.inputSavedAutomaticPlay.RemoveAllData();
-            Data.Instance.isReplay = false;
-            if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-                Data.Instance.playMode = Data.PlayModes.CONTINUEMODE;
-            else
-                Data.Instance.playMode = Data.PlayModes.SURVIVAL;
+    //    if(player0 && player1 && player2 && player3)
+    //    {
+    //        Data.Instance.events.OnResetMultiplayerData();
+    //        Data.Instance.inputSavedAutomaticPlay.RemoveAllData();
+    //        Data.Instance.isReplay = false;
+    //        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+    //            Data.Instance.playMode = Data.PlayModes.CONTINUEMODE;
+    //        else
+    //            Data.Instance.playMode = Data.PlayModes.SURVIVAL;
 
-            Data.Instance.missions.Init();
-            Game.Instance.GotoMainMenu();
-            Destroy(this);
-        }
-    }
+    //        Data.Instance.missions.Init();
+    //        Game.Instance.GotoMainMenu();
+    //        Destroy(this);
+    //    }
+    //}
 }

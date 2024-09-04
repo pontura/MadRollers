@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Data : MonoBehaviour {
 
-    public IInputManager inputManager;
+  //  public IInputManager inputManager;
     public bool isArcadeMultiplayer;
 
 	public bool DEBUG;
@@ -38,20 +38,14 @@ public class Data : MonoBehaviour {
 	[HideInInspector]
 	public VideogamesData videogamesData;
 	[HideInInspector]
-	public InputSaver inputSaver;
-	[HideInInspector]
-	public InputSavedAutomaticPlay inputSavedAutomaticPlay;
-	[HideInInspector]
 	public HandWriting handWriting;
 
-    public Rewired.UI.ControlMapper.ControlMapper controlMapper;
+   // public Rewired.UI.ControlMapper.ControlMapper controlMapper;
 
     static Data mInstance = null;
 
 	[HideInInspector]
 	public bool isEditor;
-
-	public VersusManager versusManager;
 
 	public LoadingAsset loadingAsset;
     public AssetsBundleLoader assetsBundleLoader ;
@@ -104,7 +98,7 @@ public class Data : MonoBehaviour {
 #if UNITY_ANDROID || UNITY_IOS
         isAndroid = true;
         isAdmin = false;
-        controlsType = ControlsType.GYROSCOPE;
+        controlsType = ControlsType.VIRTUAL_JOYSTICK;
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;
         isAndroid = true;
@@ -153,9 +147,6 @@ public class Data : MonoBehaviour {
         missions = GetComponent<Missions>();
         multiplayerData = GetComponent<MultiplayerData>();
         videogamesData = GetComponent<VideogamesData>();
-        inputSaver = GetComponent<InputSaver>();
-        inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay>();
-        versusManager = GetComponent<VersusManager>();
         handWriting = GetComponent<HandWriting>();
         assetsBundleLoader = GetComponent<AssetsBundleLoader > ();
         framesController = GetComponent<FramesController>();
@@ -177,12 +168,15 @@ public class Data : MonoBehaviour {
 	}
 	void Start()
 	{
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
 #if UNITY_EDITOR
         isEditor = true;
 #endif
 		loadingAsset.SetOn (false);
         //GetComponent<PhotosManager>().LoadPhotos();
-        inputManager = InputManager.instance;
+      //  inputManager = InputManager.instance;
 
     }
 	public void setMission(int num)

@@ -57,7 +57,7 @@ public class SettingsModeScreen : MonoBehaviour {
     public void Controls()
     {
         Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-        Data.Instance.controlMapper.Open();
+       // Data.Instance.controlMapper.Open();
     }
     public void TooglePlayers()
     {
@@ -73,12 +73,12 @@ public class SettingsModeScreen : MonoBehaviour {
     }   
     void SetControls()
     {
-        Rewired.UI.ControlMapper.ControlMapper controlMapper = Data.Instance.controlMapper;
+        //Rewired.UI.ControlMapper.ControlMapper controlMapper = Data.Instance.controlMapper;
 
-        foreach (Rewired.Player player in Rewired.ReInput.players.AllPlayers)
-        {
-            player.controllers.maps.SetMapsEnabled(toggleControls.isOn, "Default");
-        }
+        //foreach (Rewired.Player player in Rewired.ReInput.players.AllPlayers)
+        //{
+        //    player.controllers.maps.SetMapsEnabled(toggleControls.isOn, "Default");
+        //}
 
     }
     public void Exit()

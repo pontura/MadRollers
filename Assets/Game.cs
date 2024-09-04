@@ -149,7 +149,6 @@ public class Game : MonoBehaviour {
     }
 	public void LoadGame()
 	{
-        Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 		Data.Instance.events.OnResetLevel();
 		Data.Instance.events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("Game");
@@ -195,7 +194,6 @@ public class Game : MonoBehaviour {
 	{
 		Data.Instance.missions.times_trying_same_mission++;
 		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
-		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 		Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();  
 	}

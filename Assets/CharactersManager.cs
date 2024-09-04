@@ -31,14 +31,11 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-        Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
         Data.Instance.events.FreezeCharacters += FreezeCharacters;
     }
     public virtual void Init()
     {
         missions = Data.Instance.GetComponent<Missions>();
-        gameObject.AddComponent<AutomatasManager>();
-        Data.Instance.inputSavedAutomaticPlay.Init(this);
         StartCoroutine(AddCharactersInitials());
     }
 
@@ -58,15 +55,15 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.isReplay) {
 			speedRun = MAX_SPEED;
 		}
-        if (!isAndroid)
-            Loop ();
+        //if (!isAndroid)
+        //    Loop ();
     }
-	void Loop()	{
-		foreach (CharacterBehavior cb in characters)
-			cb.characterMovement.SetCharacterScorePosition ();
-		Invoke ("Loop", 1);
-	}
-	void LateUpdate()
+	//void Loop()	{
+	//	foreach (CharacterBehavior cb in characters)
+	//		cb.characterMovement.SetCharacterScorePosition ();
+	//	Invoke ("Loop", 1);
+	//}
+	void Update()
     {
 		if (freezed)
 			return;
@@ -122,28 +119,9 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnAlignAllCharacters -= OnAlignAllCharacters;
-		Data.Instance.events.OnAutomataCharacterDie -= OnAutomataCharacterDie;
 		Data.Instance.events.FreezeCharacters -= FreezeCharacters;
     }
-	void OnAutomataCharacterDie(CharacterBehavior automataCharacter)
-	{
-		CharacterBehavior parentCharacter = null;
-		CharacterBehavior childCharacter = null;
-		foreach (CharacterBehavior cb1 in characters) {
-			foreach (CharacterBehavior cb2 in cb1.controls.childs) {
-				if (cb2 == automataCharacter) {					
-					parentCharacter = cb1;
-					childCharacter = cb2; 
-					parentCharacter.controls.StopAllCoroutines ();
-					childCharacter.GetComponent<CharacterAutomata> ().Reset ();
-				}					
-			}
-		}
-		if(childCharacter != null)
-			parentCharacter.controls.RemoveChild (childCharacter);
-		
-		deadCharacters.Remove (automataCharacter);
-	}
+	
     void OnReorderAvatarsByPosition(List<int> playerPositions)
     {
         this.playerPositions = playerPositions;
@@ -174,7 +152,6 @@ public class CharactersManager : MonoBehaviour {
         CharacterBehavior cb = AddNewCharacter(id, true);
         if (cb != null)
         {
-            cb.controls.isAutomata = true;
             return cb;
         }
         else return null;
@@ -200,11 +177,6 @@ public class CharactersManager : MonoBehaviour {
              pos.x = (separationX * id) - ((separationX * 2) - separationX / 2);
 
         CharacterBehavior cb = addCharacter(pos, id);
-
-        if (isAndroid || isAutomata)
-            cb.controls.isAutomata = true;
-        else
-           Data.Instance.multiplayerData.AddNewCharacter(id);
 
         Data.Instance.events.ForceFrameRate(1);
         return cb;
@@ -239,20 +211,12 @@ public class CharactersManager : MonoBehaviour {
         return newCharacter;
 	}
 	int automaticIdPosition = 0;
-	public CharacterBehavior AddAutomaticPlayer(int id)
-	{
-		CharacterBehavior newCharacter = addCharacter(CalculateInitialPosition(new Vector3(1,1,1), automaticIdPosition), id);
-		newCharacter.controls.isAutomata = true;
-		automaticIdPosition++;
-		return newCharacter;
-	}
+	
 	public CharacterBehavior AddChildPlayer(CharacterBehavior parentPlayer)
 	{
 		int id = parentPlayer.controls.childs.Count + 4;
 		CharacterBehavior newCharacter = addCharacter(parentPlayer.transform.position, id);
-		newCharacter.controls.isAutomata = true;
 		parentPlayer.controls.AddNewChild( newCharacter );
-		newCharacter.GetComponent<CharacterAutomata> ().Init ();
 		return newCharacter;
 	}
 	float separationOnReplay = 1f;
@@ -292,8 +256,7 @@ public class CharactersManager : MonoBehaviour {
             bool stillPlayingRealCharacters = false;
             foreach(CharacterBehavior cb in characters)
             {
-                if (!cb.controls.isAutomata)
-                    stillPlayingRealCharacters = true;
+                stillPlayingRealCharacters = true;
             }
             if (!stillPlayingRealCharacters)
             {                   
@@ -336,11 +299,8 @@ public class CharactersManager : MonoBehaviour {
             totalCharacters = 0;
             foreach (CharacterBehavior cb in characters)
             {
-                if (!cb.controls.isAutomata)
-                {
-                    totalCharacters++;
-                    normalPosition += cb.transform.localPosition;
-                }
+                totalCharacters++;
+                normalPosition += cb.transform.localPosition;
             }
             if (totalCharacters > 0)
             {

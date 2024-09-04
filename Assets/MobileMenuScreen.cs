@@ -60,7 +60,7 @@ public class MobileMenuScreen : MonoBehaviour
     }
     public void Controls()
     {
-        Data.Instance.controlMapper.Open();
+      //  Data.Instance.controlMapper.Open();
     }
     public void ResetMissions()
     {

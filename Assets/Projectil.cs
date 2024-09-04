@@ -19,24 +19,24 @@ public class Projectil : SceneObject {
 	//public int team_for_versus;
 
 	[SerializeField] GameObject BulletPlayer0;
-    [SerializeField] GameObject BulletPlayer1;
-    [SerializeField] GameObject BulletPlayer2;
-    [SerializeField] GameObject BulletPlayer3;
+    //[SerializeField] GameObject BulletPlayer1;
+    //[SerializeField] GameObject BulletPlayer2;
+    //[SerializeField] GameObject BulletPlayer3;
 
     Color lastColor;
 
     public virtual void SetColor(Color color)
     {
-		if (lastColor == color)
-			return;
+		//if (lastColor == color)
+		//	return;
 		
-        this.color = color;
-		lastColor = color;
+  //      this.color = color;
+		//lastColor = color;
 
-        MaterialPropertyBlock mat = new MaterialPropertyBlock();
-        meshToColorize.GetPropertyBlock(mat);
-        mat.SetColor("_Color", color);
-        meshToColorize.SetPropertyBlock(mat);
+  //      MaterialPropertyBlock mat = new MaterialPropertyBlock();
+  //      meshToColorize.GetPropertyBlock(mat);
+  //      mat.SetColor("_Color", color);
+  //      meshToColorize.SetPropertyBlock(mat);
 
         //old: meshToColorize.material.color = color;
     }
@@ -44,9 +44,9 @@ public class Projectil : SceneObject {
 	public virtual void ResetWeapons()
 	{
 		BulletPlayer0.SetActive (false);
-		BulletPlayer1.SetActive (false);
-		BulletPlayer2.SetActive (false);
-		BulletPlayer3.SetActive (false);
+		//BulletPlayer1.SetActive (false);
+		//BulletPlayer2.SetActive (false);
+		//BulletPlayer3.SetActive (false);
 	}
     public override void OnRestart(Vector3 pos)
     {		
@@ -63,15 +63,15 @@ public class Projectil : SceneObject {
 		case 0:
 			BulletPlayer0.SetActive (true);
 			break;
-		case 1:
-			BulletPlayer1.SetActive (true);
-			break;
-		case 2:
-			BulletPlayer2.SetActive (true);
-			break;
-		case 3:
-			BulletPlayer3.SetActive (true);
-			break;
+		//case 1:
+		//	BulletPlayer1.SetActive (true);
+		//	break;
+		//case 2:
+		//	BulletPlayer2.SetActive (true);
+		//	break;
+		//case 3:
+		//	BulletPlayer3.SetActive (true);
+		//	break;
 		}	
 
 		if (lastPlayerID != playerID) {
@@ -201,26 +201,26 @@ public class Projectil : SceneObject {
 				rot.y += 180+other.gameObject.GetComponentInParent<SceneObject>().transform.localEulerAngles.y;
 				transform.localEulerAngles = rot;
 				break;
-		case "Player":
-			if (Data.Instance.playMode != Data.PlayModes.VERSUS)
-				return;
-			CharacterBehavior cb = other.gameObject.GetComponentInParent<CharacterBehavior> ();
-			if (cb == null
-			    || cb.player.id == playerID
-			    || cb.state == CharacterBehavior.states.CRASH
-			    || cb.state == CharacterBehavior.states.FALL
-			    || cb.state == CharacterBehavior.states.DEAD)
-				return;
+		//case "Player":
+		//	if (Data.Instance.playMode != Data.PlayModes.VERSUS)
+		//		return;
+		//	CharacterBehavior cb = other.gameObject.GetComponentInParent<CharacterBehavior> ();
+		//	if (cb == null
+		//	    || cb.player.id == playerID
+		//	    || cb.state == CharacterBehavior.states.CRASH
+		//	    || cb.state == CharacterBehavior.states.FALL
+		//	    || cb.state == CharacterBehavior.states.DEAD)
+		//		return;
 
-                //chequea si el projectil es del otro team
-                //if (team_for_versus == cb.team_for_versus)
-                //	return;
+  //              //chequea si el projectil es del otro team
+  //              //if (team_for_versus == cb.team_for_versus)
+  //              //	return;
 
-                Data.Instance.framesController.ForceFrameRate(0.05f);
-			    Data.Instance.events.RalentaTo (1, 0.05f);
-			    cb.Hit ();
-                ResetProjectil();
-			break;
+  //              Data.Instance.framesController.ForceFrameRate(0.05f);
+		//	    Data.Instance.events.RalentaTo (1, 0.05f);
+		//	    cb.Hit ();
+  //              ResetProjectil();
+		//	break;
 		}
 	}
 	void SetScore(int score, ScoresManager.types type)

@@ -68,8 +68,7 @@ public class CharacterShooter : MonoBehaviour {
         if (characterBehavior.state == CharacterBehavior.states.DEAD)
             return;
 
-        if (!characterBehavior.controls.isAutomata)
-			Data.Instance.events.OnAvatarShoot (characterBehavior.player.id);
+        Data.Instance.events.OnAvatarShoot (characterBehavior.player.id);
 
 		if (Game.Instance.state !=  Game.states.PLAYING)
 			return;

@@ -143,7 +143,6 @@ public class HiscoresComparison : MonoBehaviour {
 	void GotoNewHiscore()
 	{
 		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
-		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 		Data.Instance.isReplay = false;
 		CancelInvoke ();
 		Data.Instance.events.OnResetLevel();

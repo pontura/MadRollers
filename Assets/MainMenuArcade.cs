@@ -84,26 +84,26 @@ public class MainMenuArcade : MonoBehaviour {
 //              //  field.text = "PUESTO " + (int)(puesto + 1);
 //        }
     }
-    void Update()
-    {
-        if (done) return;
-		if (Data.Instance.inputManager.GetButtonDown(0, InputAction.action2))
-        {
-            Clicked(0);
-        }
-        if (Data.Instance.inputManager.GetButtonDown(1, InputAction.action2))
-        {
-            Clicked(1);
-        }
-        if (Data.Instance.inputManager.GetButtonDown(2, InputAction.action2))
-        {
-            Clicked(2);
-        }
-        if (Data.Instance.inputManager.GetButtonDown(3, InputAction.action2))
-        {
-            Clicked(3);
-        }
-    }
+  //  void Update()
+  //  {
+  //      if (done) return;
+		//if (Data.Instance.inputManager.GetButtonDown(0, InputAction.action2))
+  //      {
+  //          Clicked(0);
+  //      }
+  //      if (Data.Instance.inputManager.GetButtonDown(1, InputAction.action2))
+  //      {
+  //          Clicked(1);
+  //      }
+  //      if (Data.Instance.inputManager.GetButtonDown(2, InputAction.action2))
+  //      {
+  //          Clicked(2);
+  //      }
+  //      if (Data.Instance.inputManager.GetButtonDown(3, InputAction.action2))
+  //      {
+  //          Clicked(3);
+  //      }
+  //  }
     void Clicked(int playerID)
     {		
         totalPlayers = 0;

@@ -52,8 +52,7 @@ public class GameOverPartyMode : MonoBehaviour {
             {
                 for (int a = 0; a < 4; a++)
                 {
-                    if (Data.Instance.inputManager.GetButtonDown(a, InputAction.action1)
-                        || Data.Instance.inputManager.GetButtonDown(a, InputAction.action2))
+                    if (Input.GetMouseButtonDown(0))
                         OnJoystickClick();
                 }
             }
@@ -72,7 +71,6 @@ public class GameOverPartyMode : MonoBehaviour {
 	{
 		canClick = false;
 		Data.Instance.events.OnResetMultiplayerData();
-		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Game.Instance.LoadGame();
         else

@@ -103,22 +103,22 @@ public class SummaryMultiplayer : MonoBehaviour {
             n = 0;
         }
                 
-		if (
-            Data.Instance.inputManager.GetButtonDown(0, InputAction.action1) 
-            || Data.Instance.inputManager.GetButtonDown(1, InputAction.action1)
-            || Data.Instance.inputManager.GetButtonDown(2, InputAction.action1)
-            || Data.Instance.inputManager.GetButtonDown(3, InputAction.action1)
-            )
-        {
-            if (state == states.READY)
-            {
-                ShowRanking();
-            }
-            else if (state == states.READY_RANKING)
-            {
-                Ready();
-            }
-        }
+		//if (
+  //          Data.Instance.inputManager.GetButtonDown(0, InputAction.action1) 
+  //          || Data.Instance.inputManager.GetButtonDown(1, InputAction.action1)
+  //          || Data.Instance.inputManager.GetButtonDown(2, InputAction.action1)
+  //          || Data.Instance.inputManager.GetButtonDown(3, InputAction.action1)
+  //          )
+  //      {
+  //          if (state == states.READY)
+  //          {
+  //              ShowRanking();
+  //          }
+  //          else if (state == states.READY_RANKING)
+  //          {
+  //              Ready();
+  //          }
+  //      }
     }
     void Reset()
     {

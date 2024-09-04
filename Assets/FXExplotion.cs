@@ -45,15 +45,15 @@ public class FXExplotion : SceneObject {
     
 	public void SetColor(Color color)
 	{
-		if (lastColor == color)
-			return;		
-		lastColor = color;
-		color.a = 0.1f;
+		//if (lastColor == color)
+		//	return;		
+		//lastColor = color;
+		//color.a = 0.1f;
 
-        MaterialPropertyBlock mat = new MaterialPropertyBlock();
-        meshRenderer.GetPropertyBlock(mat);
-        mat.SetColor("_Color", color);
-        meshRenderer.SetPropertyBlock(mat);
+  //      MaterialPropertyBlock mat = new MaterialPropertyBlock();
+  //      meshRenderer.GetPropertyBlock(mat);
+  //      mat.SetColor("_Color", color);
+  //      meshRenderer.SetPropertyBlock(mat);
 
         //meshRenderer.material.color = color;
 	}

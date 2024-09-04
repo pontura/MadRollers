@@ -35,8 +35,7 @@ public class Continue : MonoBehaviour {
 		if (canClick) {
             for (int a = 0; a < 4; a++)
             {
-                if (Data.Instance.inputManager.GetButtonDown(a, InputAction.action1)
-                    || Data.Instance.inputManager.GetButtonDown(a, InputAction.action2))
+                if (Input.GetMouseButtonDown(0))
                     OnJoystickClick();
             }
 		}

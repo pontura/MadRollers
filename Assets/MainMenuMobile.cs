@@ -29,10 +29,10 @@ public class MainMenuMobile : MonoBehaviour
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
 
-        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged())
+     //   if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged())
             DonePanel.SetActive(true);
-        else
-            RegisterPanel.SetActive(true);
+        //else
+        //    RegisterPanel.SetActive(true);
 
         AddPlayers();
     }
