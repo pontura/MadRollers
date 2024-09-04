@@ -212,13 +212,13 @@ public class CharactersManager : MonoBehaviour {
 	}
 	int automaticIdPosition = 0;
 	
-	public CharacterBehavior AddChildPlayer(CharacterBehavior parentPlayer)
-	{
-		int id = parentPlayer.controls.childs.Count + 4;
-		CharacterBehavior newCharacter = addCharacter(parentPlayer.transform.position, id);
-		parentPlayer.controls.AddNewChild( newCharacter );
-		return newCharacter;
-	}
+	//public CharacterBehavior AddChildPlayer(CharacterBehavior parentPlayer)
+	//{
+	//	int id = parentPlayer.controls.childs.Count + 4;
+	//	CharacterBehavior newCharacter = addCharacter(parentPlayer.transform.position, id);
+	//	parentPlayer.controls.AddNewChild( newCharacter );
+	//	return newCharacter;
+	//}
 	float separationOnReplay = 1f;
 	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
 	{		

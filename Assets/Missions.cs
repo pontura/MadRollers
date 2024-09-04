@@ -165,6 +165,7 @@ public class Missions : MonoBehaviour
         {
             NextMission();               
             int videogameID = videogamesData.actualID + 1;
+            MissionActiveID++;
             UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
         }
     }

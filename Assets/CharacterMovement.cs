@@ -103,7 +103,6 @@ public class CharacterMovement : MonoBehaviour {
 		}
 
 
-        if (cb.controls.ControlsEnabled)
             transform.position = goTo;
 	}
 	void StartMultiplayerRace()

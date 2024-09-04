@@ -240,11 +240,58 @@ public class CharacterControls : MonoBehaviour {
             return;
         if (characterBehavior.player.charactersManager.distance < 8)
             return;
-        if(Input.GetMouseButtonDown(0))
+#if !UNITY_EDITOR
+        if (Input.touchCount > 0)
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.position.x < Screen.width / 2)
+                {
+                    float v = Input.GetAxis("Horizontal");
+                    if (v != 0)
+                        v /= 1.25f;
+                    MoveInX(v);
+                } else
+                {
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        OnDown();
+                    }
+                    else if (touch.phase == TouchPhase.Ended)
+                    {
+                        OnUp();
+                    }
+                    else
+                    {
+                        if (pos.x > Screen.width / 2)
+                        {
+                            if (pos.y > Input.mousePosition.y + 0.05f)
+                                characterBehavior.characterMovement.DashForward();
+                            else if (pos.y < Input.mousePosition.y - 0.05f)
+                            {
+                                if (jumpligState == JumpligStates.IDLE)
+                                    JumpInit();
+                            }
+                            else
+                            {
+                                if (jumpligState == JumpligStates.JUMPING)
+                                    DOJump();
+                                else
+                                    jumpligState = JumpligStates.IDLE;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+#else
+        
+        if (Input.GetMouseButtonDown(0))
             OnDown();
         else if (Input.GetMouseButtonUp(0))
             OnUp();
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             if (pos.x > Screen.width / 2)
             {
@@ -264,21 +311,11 @@ public class CharacterControls : MonoBehaviour {
                 }
             }
         }
-        //if (Input.GetAxis("Vertical") > 0.25f)
-        //{
-        //    print("Vertical " + Input.GetAxis("Vertical"));
-        //    if (jumpligState == JumpligStates.IDLE)
-        //        JumpInit();
-        //} else
-        //if (Input.GetAxis("Vertical") < -0.85f)
-        //{
-        //    characterBehavior.characterMovement.DashForward();
-        //}
-        //else
-        //{
-           
-       // }
-
+        float v = Input.GetAxis("Horizontal");
+        if (v != 0)
+            v /= 1.25f;
+        MoveInX(v);        
+#endif
        if (jumpligState == JumpligStates.JUMPING)
           {
             jumpingPressedSince += Time.deltaTime;
@@ -288,10 +325,7 @@ public class CharacterControls : MonoBehaviour {
                 characterBehavior.JumpingPressed();
         }
 
-        float v = Input.GetAxis("Horizontal");
-        if (v != 0)
-            v /= 1.25f;
-        MoveInX( v );
+        
     }
     Vector2 pos;
     private void OnDown()
