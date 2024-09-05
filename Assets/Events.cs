@@ -96,11 +96,9 @@ public class Events : MonoBehaviour {
 	public System.Action<int> OnAvatarJump= delegate { };
 
     public System.Action<int> OnAvatarShoot = delegate { };
-    public System.Action TutorialContinue = delegate { };
 
     public System.Action OnCompetitionMissionComplete = delegate { };
 
-	public System.Action<int> OnShowTutorial = delegate { };
 
     public System.Action<int> OnSetNewAreaSet = delegate { };
     public System.Action<int> OnUseHearts = delegate { };
@@ -130,7 +128,7 @@ public class Events : MonoBehaviour {
 	public System.Action<bool> OnVoicesStatus= delegate { };
 	public System.Action<bool> OnMadRollersSFXStatus= delegate { };
 
-	public System.Action<bool> OnBossActive = delegate { };
+    public System.Action<bool> OnBossActive = delegate { };
 	public System.Action OnBossDropBomb = delegate { };
 	public System.Action<int> OnBossDropRay = delegate { };
     public System.Action<int> OnBossSpecial = delegate { };

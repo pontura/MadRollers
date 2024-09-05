@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	public GameObject shadow;
-	public GameObject versusSignal;
     public Color color;
 
 	public MadRoller madRoller;
@@ -45,12 +43,6 @@ public class Player : MonoBehaviour {
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
 		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
-
-
-		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
-			versusSignal.SetActive (true);
-		else
-			versusSignal.SetActive (false);
 
 	}
     void OnDestroy()
@@ -94,7 +86,6 @@ public class Player : MonoBehaviour {
 		if (cb != characterBehavior)
 			return;
 		
-		shadow.SetActive (false);
         if (progressBarCoroutine != null)
         {
             try

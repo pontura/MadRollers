@@ -254,11 +254,15 @@ public class GameCamera : MonoBehaviour
         }
         if (isAndroid)
         {
-            Vector3 rot = transform.localEulerAngles;
-            CharacterBehavior cb = charactersManager.getMainCharacter();
-            if (cb)
-                rot.z = -(cb.rotationY / 5);
-            transform.localEulerAngles = rot;
+            float _z1 = GetRot(transform.eulerAngles.z);
+            float _z2 = (GetRot(charactersManager.GetCharacterRot()) / 15);
+            float _z3 = Mathf.Lerp(_z1, _z2, Time.deltaTime*50);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, _z3);
+        }
+        float GetRot(float _y)
+        {
+            if (_y > 180) return _y - 360;
+            return _y;
         }
 
         newPos = charactersManager.getCameraPosition ();
@@ -270,8 +274,8 @@ public class GameCamera : MonoBehaviour
 		else if (_newPos.x > 15) _newPos.x = 15;
 
 		//_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*10);
-		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*10);
-		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, (Time.deltaTime*_Y_correction)/3 );
+		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*6);
+		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, (Time.deltaTime*_Y_correction)/5 );
 
 		transform.localPosition = _newPos;
 		if(state != states.EXPLOTING)

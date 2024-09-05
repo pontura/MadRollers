@@ -6,7 +6,6 @@ public class CharacterControls : MonoBehaviour {
 
 	//public bool isAutomata;
     CharacterBehavior characterBehavior;
-	public List<CharacterBehavior> childs;
     Player player;
     private float rotationY;
     private float turnSpeed = 2.8f;
@@ -33,15 +32,7 @@ public class CharacterControls : MonoBehaviour {
     {
 		ControlsEnabled = enabledControls;
     }
-	public void AddNewChild(CharacterBehavior child)
-	{
-		childs.Add (child);
-	}
-	public void RemoveChild(CharacterBehavior child)
-	{
-		childs.Remove (child);
-	}
-	float lastDH;
+
 	void LateUpdate () {
 		if (characterBehavior == null || characterBehavior.player == null)
 			return;
@@ -58,9 +49,9 @@ public class CharacterControls : MonoBehaviour {
         //  UpdateStandalone();
         UpdateByVirtualJoystick();
 #elif UNITY_ANDROID || UNITY_IOS
-        if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
-            UpdateAccelerometer();
-        else
+        //if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
+        //    UpdateAccelerometer();
+        //else
             UpdateByVirtualJoystick();
 #else
             UpdateStandalone();
@@ -97,10 +88,10 @@ public class CharacterControls : MonoBehaviour {
 	{
         if (Time.deltaTime == 0) return;
 
-        if (Data.Instance.isAndroid)
+       // if (Data.Instance.isAndroid)
             RotateAccelerometer(_speed*15);
-        else
-            RotateStandalone(_speed);
+        //else
+        //    RotateStandalone(_speed);
 
         characterBehavior.SetRotation (rotationY);
 		//if (childs.Count > 0)
@@ -147,17 +138,6 @@ public class CharacterControls : MonoBehaviour {
         if (rotationY > 30) rotationY = 30;
         else if (rotationY < -30) rotationY = -30;
     }
-	//childs:
-	IEnumerator ChildsJump()
-	{
-		if(childs == null || childs.Count>0)
-			yield return null;
-		foreach (CharacterBehavior cb in childs) {
-			yield return new WaitForSeconds (0.18f);
-			cb.Jump ();
-		}
-		yield return null;
-	}
     //	void UpdateChilds()
     //	{
     //		foreach (CharacterBehavior cb in childs) {
@@ -238,92 +218,41 @@ public class CharacterControls : MonoBehaviour {
     {
         if (characterBehavior.player.charactersManager == null)
             return;
-        if (characterBehavior.player.charactersManager.distance < 8)
+        if (characterBehavior.player.charactersManager.distance < 6)
             return;
-#if !UNITY_EDITOR
-        if (Input.touchCount > 0)
+
+        //if (Input.GetAxis("Vertical") > 0.6f)
+        //{
+        //    if (jumpligState == JumpligStates.IDLE)
+        //        JumpInit();
+        //} else
+        if (Input.GetAxis("Vertical") < -0.8f)
         {
-            foreach (Touch touch in Input.touches)
-            {
-                if (touch.position.x < Screen.width / 2)
-                {
-                    float v = Input.GetAxis("Horizontal");
-                    if (v != 0)
-                        v /= 1.25f;
-                    MoveInX(v);
-                } else
-                {
-                    if (touch.phase == TouchPhase.Began)
-                    {
-                        OnDown();
-                    }
-                    else if (touch.phase == TouchPhase.Ended)
-                    {
-                        OnUp();
-                    }
-                    else
-                    {
-                        if (pos.x > Screen.width / 2)
-                        {
-                            if (pos.y > Input.mousePosition.y + 0.05f)
-                                characterBehavior.characterMovement.DashForward();
-                            else if (pos.y < Input.mousePosition.y - 0.05f)
-                            {
-                                if (jumpligState == JumpligStates.IDLE)
-                                    JumpInit();
-                            }
-                            else
-                            {
-                                if (jumpligState == JumpligStates.JUMPING)
-                                    DOJump();
-                                else
-                                    jumpligState = JumpligStates.IDLE;
-                            }
-                        }
-                    }
-                }
-            }
+            characterBehavior.characterMovement.DashForward();
         }
-        
-#else
-        
-        if (Input.GetMouseButtonDown(0))
-            OnDown();
-        else if (Input.GetMouseButtonUp(0))
-            OnUp();
-        if (Input.GetMouseButton(0))
-        {
-            if (pos.x > Screen.width / 2)
-            {
-                if (pos.y > Input.mousePosition.y + 0.05f)
-                    characterBehavior.characterMovement.DashForward();
-                else if (pos.y < Input.mousePosition.y - 0.05f)
-                {
-                    if (jumpligState == JumpligStates.IDLE)
-                        JumpInit();
-                }
-                else
-                {
-                    if (jumpligState == JumpligStates.JUMPING)
-                        DOJump();
-                    else
-                        jumpligState = JumpligStates.IDLE;
-                }
-            }
-        }
+        //else
+        //{
+        //    if (jumpligState == JumpligStates.JUMPING)
+        //        DOJump();
+        //    else
+        //        jumpligState = JumpligStates.IDLE;
+        //}
+
+        //if (jumpligState == JumpligStates.JUMPING)
+        //   {
+        //     jumpingPressedSince += Time.deltaTime;
+        //     if (jumpingPressedSince > jumpingPressedTime)
+        //         DOJump();
+        //     else
+        //         characterBehavior.JumpingPressed();
+        // }
+
         float v = Input.GetAxis("Horizontal");
         if (v != 0)
             v /= 1.25f;
-        MoveInX(v);        
-#endif
-       if (jumpligState == JumpligStates.JUMPING)
-          {
-            jumpingPressedSince += Time.deltaTime;
-            if (jumpingPressedSince > jumpingPressedTime)
-                DOJump();
-            else
-                characterBehavior.JumpingPressed();
-        }
+        MoveInX(v);    
+
+       
 
         
     }
@@ -339,7 +268,6 @@ public class CharacterControls : MonoBehaviour {
     }
     void DOJump()
     {
-        Data.Instance.events.TutorialContinue();
         jumpligState = JumpligStates.JUMP_DONE;
         jumpingPressedSince = 0;
         characterBehavior.Jump();

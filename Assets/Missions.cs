@@ -224,8 +224,6 @@ public class Missions : MonoBehaviour
 		}
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
-		if (MissionActiveID == 0 && videogamesData.actualID == 0 &&  Data.Instance.playMode == Data.PlayModes.STORYMODE)
-                CheckTutorial (distance);
 	}
     
     int total_areas = 1;
@@ -336,29 +334,7 @@ public class Missions : MonoBehaviour
 		}
 	}
 
-	int tutorialID = 0;
-	void CheckTutorial(float distance)
-	{
-        if (hasReachedBoss)
-            return;
-
-		if(tutorialID >= 3 || Data.Instance.playMode == Data.PlayModes.VERSUS )
-			return;
-
-		if (distance>148 && tutorialID < 1)
-		{
-			VoicesManager.Instance.PlayClip (VoicesManager.Instance.tutorials [0].audioClip);
-			tutorialID = 1;
-		} else if(distance>200 && tutorialID < 2)
-		{
-			VoicesManager.Instance.PlayClip (VoicesManager.Instance.tutorials [1].audioClip);
-			tutorialID = 2;
-		} else if(distance>305 && tutorialID < 3 && Data.Instance.playMode != Data.PlayModes.STORYMODE)
-		{
-			VoicesManager.Instance.PlayClip (VoicesManager.Instance.tutorials [2].audioClip);
-			tutorialID = 3;
-		}
-	}
+	
     public float GetTotalRoutDistance()
     {
         totalDistance = 100;

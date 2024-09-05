@@ -85,16 +85,17 @@ public class SceneObjectsManager : MonoBehaviour {
 		int i = sceneObjectsInScene.Count;
 		while (i>0) {
 			SceneObject so = sceneObjectsInScene [i-1];
+            Vector3 pos = so.transform.position;
 			i--;
 			if (so == null) {
 				sceneObjectsInScene.RemoveAt (i);
 			} else if (so.transform.localPosition.y < -8) {
 				so.Pool ();
-			}else if (distance > so.transform.position.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
+			}else if (distance > pos.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
 				so.Pool();
-			else if (distance > so.transform.position.z - 58 || Data.Instance.playMode == Data.PlayModes.VERSUS) {				
+			else if (distance > pos.z - 58 || Data.Instance.playMode == Data.PlayModes.VERSUS) {				
 				if (!so.isActive) 
-					so.Restart (so.transform.position);								
+					so.Restart (pos);								
 				so.Updated (distance);
 			}			
 		}

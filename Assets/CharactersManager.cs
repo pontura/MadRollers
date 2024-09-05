@@ -275,14 +275,23 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnGameOver(false);
         yield return new WaitForSeconds(1.32f);
     }
+    public float GetCharacterRot()
+    {
+        if (getMainCharacter() == null) return 0;
+        else
+            return  getMainCharacter().rotationY;
+    }
+    CharacterBehavior cb;
     public CharacterBehavior getMainCharacter()
     {
+        if (cb != null) return cb;
         if (getTotalCharacters() <= 0)
         {
             Debug.LogError("[ERROR] No hay más characters y sigue pidiendo...");
           //  print("[ERROR] No hay más characters y sigue pidiendo...");
             return null;
         }
+        cb = characters[0];
         return characters[0];
     }
     public Vector3 getPositionMainCharacter()

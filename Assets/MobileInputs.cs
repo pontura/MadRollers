@@ -9,13 +9,6 @@ public class MobileInputs : MonoBehaviour
     float jumpingPressedTime = 0.28f;
     public GameObject panel;
 
-    //public GameObject ButtonJump;
-    //public GameObject ButtonFire1;
-    //public GameObject ButtonFire2;
-    //public GameObject ButtonDash;
-
-    public Tutorial tutorial;
-
     public GameObject panel_gyroscope;
     public GameObject panel_virtualJoystick;
 
@@ -55,42 +48,34 @@ public class MobileInputs : MonoBehaviour
     {
         panel.SetActive(true);
     }
+    CharacterBehavior cb;
     CharacterBehavior GetCharacter()
     {
-        CharactersManager cm = Game.Instance.level.charactersManager;
-        if (cm == null)
-            return null;
-        CharacterBehavior cb = cm.getMainCharacter();
+        if (cb == null)
+            cb = Game.Instance.level.charactersManager.getMainCharacter();       
         return cb;
     }
-    //void Update()
-    //{
-    //    if (!jumping)
-    //        return;
-    //    if (Game.Instance.state == Game.states.GAME_OVER)
-    //        return;
-    //    jumpingPressedSince += Time.deltaTime;
-    //    if (jumpingPressedSince > jumpingPressedTime)
-    //        DOJump();
-    //    else
-    //        GetCharacter().JumpingPressed();
-    //}
-    public void Jump(float value)
+    void Update()
     {
-        float v = 900 + (value * 2500);
-        GetCharacter().SetJumpHeight( v );
-        GetCharacter().Jump();
+        if (!jumping)
+            return;
+        if (Game.Instance.state == Game.states.GAME_OVER)
+            return;
+        jumpingPressedSince += Time.deltaTime;
+        if (jumpingPressedSince > jumpingPressedTime)
+            DOJump();
+        else
+            GetCharacter().JumpingPressed();
     }
+   
     void DOJump()
     {
         jumping = false;
         jumpingPressedSince = 0;
         GetCharacter().Jump();
-       // ButtonJump.GetComponent<Animation>().Play();
     }
     public void Jump()
     {
-        ResetTutorial();
         if (GetCharacter() == null)
             return;
         if (GetCharacter().state != CharacterBehavior.states.RUN)
@@ -111,7 +96,6 @@ public class MobileInputs : MonoBehaviour
     }
     public void Shoot()
     {
-        ResetTutorial();
         if (GetCharacter() == null)
             return;
         GetCharacter().shooter.SetFire(Weapon.types.SIMPLE, 0.25f);
@@ -119,7 +103,6 @@ public class MobileInputs : MonoBehaviour
     }
     public void Dash()
     {
-        ResetTutorial();
         if (GetCharacter() == null)
             return;
         GetCharacter().characterMovement.DashForward();
@@ -127,7 +110,6 @@ public class MobileInputs : MonoBehaviour
     }
     public void ShootTriple()
     {
-        ResetTutorial();
         if (GetCharacter() == null)
             return;
         GetCharacter().shooter.SetFire(Weapon.types.TRIPLE, 0.45f);
@@ -139,10 +121,40 @@ public class MobileInputs : MonoBehaviour
             return;
         GetCharacter().characterMovement.DH(v);
     }
-    void ResetTutorial()
-    {
-        if (tutorial != null)
-            tutorial.ResetTimeScale();
-    }
+
+
+
+    //bool isActive;
+    //private void Update()
+    //{
+    //    if (!isActive) return;
+    //    if (Time.time > timer + 0.1f)
+    //        Release();
+    //}
+
+    //float _y;
+    //float timer;
+    //public void OnMouseDown()
+    //{
+    //    isActive  = true;
+    //    _y = Input.mousePosition.y;
+    //    timer = Time.time;
+    //}
+    //void Release()
+    //{
+    //    isActive  = false;
+    //    if (_y < Input.mousePosition.y - 5f)
+    //        Data.Instance.events.OnJump();
+    //    else
+    //    if (_y > Input.mousePosition.y + 20f)
+    //        Data.Instance.events.OnDash();
+    //    else
+    //        Data.Instance.events.OnShoot();
+    //}
+    //public void OnMouseUp()
+    //{
+    //    if (!isActive) return;
+    //    Release();        
+    //}
 
 }

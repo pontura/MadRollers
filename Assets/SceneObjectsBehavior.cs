@@ -112,8 +112,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			SceneObject sceneObject = null;
 			Vector3 pos = go.pos;
 			pos.z += z_length;
-
-			switch (go.name)
+            string goName = go.name;
+			switch (goName)
 			{
 			case "LevelChanger":
 			case "Dropper":
@@ -148,11 +148,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "palm":
             case "palmTall":
             case "palmSmall":
-				if (go.name == "smallBlock1" || go.name == "extraSmallBlock1")
-					sceneObject = Pool.GetObjectForType (go.name + "_real", true);
+				if (goName == "smallBlock1" || goName == "extraSmallBlock1")
+					sceneObject = Pool.GetObjectForType (goName + "_real", true);
 				else {
-					if (go.name == "palm") {
-						string soName = go.name;
+					if (goName == "palm") {
+						string soName = goName;
 						int randNum = Random.Range (0, 3);
 						if (randNum == 1)
 							soName = "palm2";
@@ -160,12 +160,12 @@ public class SceneObjectsBehavior : MonoBehaviour {
 							soName = "palm3";
 						sceneObject = Pool.GetObjectForType (soName + "_real", false);  
 					} else
-						sceneObject = Pool.GetObjectForType (go.name + "_real", false);  
+						sceneObject = Pool.GetObjectForType (goName + "_real", false);  
 				}
 
 				if (sceneObject)
 				{
-                    if (go.name == "extralargeBlock1" || go.name == "largeBlock1" || go.name == "mediumBlock1" || go.name == "smallBlock1" || go.name == "extraSmallBlock1")
+                    if (goName == "extralargeBlock1" || goName == "largeBlock1" || goName == "mediumBlock1" || goName == "smallBlock1" || goName == "extraSmallBlock1")
                         pos.y += 1;
 
                     sceneObject.isActive = false;
@@ -174,7 +174,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 
 
-                    if (go.name == "Coin" || go.name =="bloodx1")
+                    if (goName == "Coin" || goName =="bloodx1")
 					{
 						//print (z_length + "       total coins   " +  areaData.totalCoins);
 						sceneObject.GetComponent<GrabbableItem> ().SetComboGrabbable (z_length, areaData.totalCoins);//area.totalCoins);
@@ -191,7 +191,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				}
 				else
 				{
-					Debug.LogError("___________NO EXISTIO EL OBJETO: " + go.name);
+					Debug.LogError("___________NO EXISTIO EL OBJETO: " + goName);
 					//Data.Instance.events.ForceFrameRate (0);
 				}
 				break;
@@ -203,104 +203,104 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			SceneObject clone = null;
 
 
-			if (go.name == "FloorSurface")
+			if (goName == "FloorSurface")
 				clone = FloorSurface;
-			if (go.name == "PisoPinche")
+			if (goName == "PisoPinche")
 				clone = PisoPinche;			
-			else if (go.name == "Catapulta")
+			else if (goName == "Catapulta")
 				clone = Catapulta;
-			else if (go.name == "house1")
+			else if (goName == "house1")
 				clone = house1;
-			else if (go.name == "house2")
+			else if (goName == "house2")
 				clone = house2;
-			else if (go.name == "house3")
+			else if (goName == "house3")
 				clone = house3;
-			else if (go.name == "house4")
+			else if (goName == "house4")
 				clone = house4;
-			else if (go.name == "rampa")
+			else if (goName == "rampa")
 				clone = rampa;
-			else if (go.name == "rampaHuge")
+			else if (goName == "rampaHuge")
 				clone = rampaHuge;
-            else if (go.name == "rampaSmall")
+            else if (goName == "rampaSmall")
                 clone = rampaSmall;
-            else if (go.name == "wallBig") {
+            else if (goName == "wallBig") {
 				//  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
 				clone = wallBig;
-			} else if (go.name == "wallMedium")
+			} else if (goName == "wallMedium")
 				clone = wallMedium;
-			else if (go.name == "wallSmall")
+			else if (goName == "wallSmall")
 				clone = wallSmall;
-			else if (go.name == "wallSuperSmall")
+			else if (goName == "wallSuperSmall")
 				clone = wallSuperSmall;
-			else if (go.name == "jumper")
+			else if (goName == "jumper")
 				clone = jumper;
-			else if (go.name == "Lava")
+			else if (goName == "Lava")
 				clone = Lava;
-			else if (go.name == "Star")
+			else if (goName == "Star")
 				clone = Star;
-			else if (go.name == "Water")
+			else if (goName == "Water")
 				clone = Water;
-			else if (go.name == "Boss1")
+			else if (goName == "Boss1")
 				clone = Boss1;
-			else if (go.name == "BossCalecitas1")
+			else if (goName == "BossCalecitas1")
 				clone = BossCalecitas1;
-			else if (go.name == "BossCreator")
+			else if (goName == "BossCreator")
 				clone = BossCreator;
-			else if (go.name == "BossSpace1")
+			else if (goName == "BossSpace1")
 				clone = BossSpace1;
-			else if (go.name == "BossPacmans")
+			else if (goName == "BossPacmans")
 				clone = BossPacmans;
-			else if (go.name == "BossGalaga")
+			else if (goName == "BossGalaga")
 				clone = BossGalaga;
-			else if (go.name == "Starting")
+			else if (goName == "Starting")
 				clone = Starting;
-            else if (go.name == "Ending")
+            else if (goName == "Ending")
                 clone = Ending;
-            else if (go.name == "bomb1") {
+            else if (goName == "bomb1") {
 				clone = bomb1;
-			} else if (go.name == "Laser") {
+			} else if (goName == "Laser") {
 				clone = Laser;
 				Data.Instance.events.OnBossDropBomb ();
 			}
-			else if (go.name == "tunel1")
+			else if (goName == "tunel1")
 				clone = tunel1;
-			else if (go.name == "tunel2")
+			else if (goName == "tunel2")
 				clone = tunel2;
-			else if (go.name == "cilindro")
+			else if (goName == "cilindro")
 				clone = cilindro;
-			else if (go.name == "cilindroBig")
+			else if (goName == "cilindroBig")
 				clone = cilindroBig;
-			else if (go.name == "enemyGhost")
+			else if (goName == "enemyGhost")
 				clone = enemyGhost;
-			else if (go.name == "streetFloor")
+			else if (goName == "streetFloor")
 				clone = streetFloor;
-			else if (go.name == "Container")
+			else if (goName == "Container")
 				clone = Container;
-			else if (go.name == "Fish")
+			else if (goName == "Fish")
 				clone = Fish;
-			else if (go.name == "streetFloorSmall")
+			else if (goName == "streetFloorSmall")
 				clone = streetFloorSmall;
-			else if (go.name == "levelSignal")
+			else if (goName == "levelSignal")
 				clone = levelSignal;
-			else if (go.name == "GrabbableItem")
+			else if (goName == "GrabbableItem")
 				clone = GrabbableItem;
-			else if (go.name == "borde1")
+			else if (goName == "borde1")
 				clone = borde1;
-			else if (go.name == "fences")
+			else if (goName == "fences")
 				clone = fences;
-			else if (go.name == "cruz")
+			else if (goName == "cruz")
 				clone = cruz;
-			else if (go.name == "CruzGrande")
+			else if (goName == "CruzGrande")
 				clone = CruzGrande;
-			else if (go.name == "rueda1")
+			else if (goName == "rueda1")
 				clone = rueda1;
-			else if (go.name == "helice1")
+			else if (goName == "helice1")
 				clone = helice1;
-			else if (go.name == "pisoRotatorio")
+			else if (goName == "pisoRotatorio")
 				clone = pisoRotatorio;
-			else if (go.name == "sombrilla")
+			else if (goName == "sombrilla")
 				clone = sombrilla;
-			else if (go.name == "FloorSlider")
+			else if (goName == "FloorSlider")
 				clone = FloorSlider;
 
 			if (clone)
@@ -325,10 +325,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 					manager.AddSceneObject (sceneObject, pos);
 				
 			}// else
-			//	Debug.Log (go.name + "_______________ (No existe) " );
+			//	Debug.Log (goName + "_______________ (No existe) " );
 			
 
-			if (go.name == "Container") {
+			if (goName == "Container") {
 				lastSceneObjectContainer = sceneObject.transform;
 			}
 		}

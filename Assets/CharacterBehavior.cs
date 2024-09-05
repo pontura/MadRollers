@@ -33,7 +33,6 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	//public CharacterBehavior hasSomeoneOver;
 	//public CharacterBehavior isOver;
-	public CharacterControls controls;
 	public CharacterShooter shooter;
 	public CharacterMovement characterMovement;
 
@@ -41,8 +40,9 @@ public class CharacterBehavior : MonoBehaviour {
 
 	private float jumpingPressedAmount = 14f;
 	float jumpingPressedAmountFactor = 2.5f;
-	private float jumpHeight = 900;
-	public float superJumpHeight = 1200;
+    //private float jumpHeight = 900;
+    private float jumpHeight = 900;
+    public float superJumpHeight = 1200;
 	private Vector3 movement;
 	private float hittedTime;
 	private float hittedSpeed;
@@ -101,12 +101,6 @@ public class CharacterBehavior : MonoBehaviour {
 
 		state = states.RUN;
 		Run ();
-
-		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
-			controls.EnabledMovements (false);
-			madRoller.gameObject.transform.localEulerAngles = Vector3.zero;
-		} 
-
 
 
 //DEBUG: para que el player ultimo nunca muera
@@ -219,7 +213,6 @@ public class CharacterBehavior : MonoBehaviour {
 
 	void StartMultiplayerRace()
 	{
-		controls.EnabledMovements (true);
 		state = states.RUN;
 		Run();
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
@@ -445,11 +438,11 @@ public class CharacterBehavior : MonoBehaviour {
 			return true;
 		return false;
 	}
-    public void SetJumpHeight(float value)
-    {
-        //default: 900
-        jumpHeight = value;
-    }
+    //public void SetJumpHeight(float value)
+    //{
+    //    //default: 900
+    //    jumpHeight = value;
+    //}
 	public void Jump()
 	{
 		jumpingPressed = false;
