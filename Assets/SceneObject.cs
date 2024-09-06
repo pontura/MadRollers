@@ -28,10 +28,17 @@ public class SceneObject : MonoBehaviour {
     public bool onlyMultiplayers;
     SceneObjectsManager manager;
 
-	public virtual void Init(SceneObjectsManager manager)
+    SceneObjectData soData;
+    public SceneObjectData SoData { get {
+            print("________" + soData);
+            if (soData == null) soData = GetComponent<SceneObjectData>(); return soData; }
+    } 
+
+    public virtual void Init(SceneObjectsManager manager)
 	{
 		this.manager = manager;
-	}
+        soData = GetComponent<SceneObjectData>();
+    }
     public SceneObjectsManager Manager
     {
         get
