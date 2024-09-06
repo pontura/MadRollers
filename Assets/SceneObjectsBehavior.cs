@@ -115,21 +115,45 @@ public class SceneObjectsBehavior : MonoBehaviour
 
             SceneObject sceneObject = null;
             Vector3 pos = go.pos;
+            Vector3 rot = go.rot;
             pos.z += z_length;
             string goName = go.name; 
             switch (goName)
             {
+                case "smallBlock1":
+                case "extraSmallBlock1":
+                    pos.y += 1;
+                    sceneObject = SetSceneObject( Pool.GetObjectForType(goName + "_real", true), pos, rot);
+                    break;
+
+                case "palm":
+                    string soName = goName;
+                    int randNum = Random.Range(0, 3);
+                    if (randNum == 1)
+                        soName = "palm2";
+                    else if (randNum == 2)
+                        soName = "palm3";
+                    sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
+                    break;
+
+                case "extralargeBlock1":
+                case "largeBlock1":
+                case "mediumBlock1":
+                    pos.y += 1;
+                    sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
+                    break;
+
+                case "Coin":
+                case "bloodx1":
+                    sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
+                    sceneObject.GetComponent<GrabbableItem>().SetComboGrabbable(z_length, areaData.totalCoins);//area.totalCoins);
+                    break;
+
                 case "LevelChanger":
                 case "Dropper":
                 case "Sapo":
-                case "extralargeBlock1":
                 case "flyer":
-                case "largeBlock1":
-                case "mediumBlock1":
-                case "smallBlock1":
-                case "extraSmallBlock1":
-                case "Coin":
-                case "bloodx1":
+              
                 //case "Yuyo":
                 case "enemyRunner":
                 case "enemyFrontal":
@@ -148,179 +172,15 @@ public class SceneObjectsBehavior : MonoBehaviour
                 case "Ray":
                 case "Special3":
                 case "enemyNaveSimple":
-                case "BichoVuela":
-                case "palm":
+                case "BichoVuela":               
                 case "palmTall":
                 case "palmSmall":
-                    if (goName == "smallBlock1" || goName == "extraSmallBlock1")
-                        sceneObject = Pool.GetObjectForType(goName + "_real", true);
-                    else
-                    {
-                        if (goName == "palm")
-                        {
-                            string soName = goName;
-                            int randNum = Random.Range(0, 3);
-                            if (randNum == 1)
-                                soName = "palm2";
-                            else if (randNum == 2)
-                                soName = "palm3";
-                            sceneObject = Pool.GetObjectForType(soName + "_real", false);
-                        }
-                        else
-                            sceneObject = Pool.GetObjectForType(goName + "_real", false);
-                    }
-
-                    if (sceneObject)
-                    {
-                        if (goName == "extralargeBlock1" || goName == "largeBlock1" || goName == "mediumBlock1" || goName == "smallBlock1" || goName == "extraSmallBlock1")
-                            pos.y += 1;
-
-                        sceneObject.isActive = false;
-                        sceneObject.transform.position = pos;
-                        sceneObject.transform.localEulerAngles = go.rot;
-
-
-
-                        if (goName == "Coin" || goName == "bloodx1")
-                        {
-                            //print (z_length + "       total coins   " +  areaData.totalCoins);
-                            sceneObject.GetComponent<GrabbableItem>().SetComboGrabbable(z_length, areaData.totalCoins);//area.totalCoins);
-                        }
-                        //else if (go.GetComponent<DecorationManager>())
-                        //					{
-                        //						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
-                        //						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, 3));
-                        //						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, -3));
-                        //						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, -3));
-                        //					}
-
-
-                    }
-                    else
-                    {
-                        Debug.LogError("___________NO EXISTIO EL OBJETO: " + goName);
-                        //Data.Instance.events.ForceFrameRate (0);
-                    }
+                    sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
+                    break;
+                default:
+                    sceneObject = SetOtherGO(goName, pos, go);
                     break;
             }
-
-
-
-
-            SceneObject clone = null;
-
-
-            if (goName == "FloorSurface")
-                clone = FloorSurface;
-            if (goName == "PisoPinche")
-                clone = PisoPinche;
-            else if (goName == "Catapulta")
-                clone = Catapulta;
-            else if (goName == "house1")
-                clone = house1;
-            else if (goName == "house2")
-                clone = house2;
-            else if (goName == "house3")
-                clone = house3;
-            else if (goName == "house4")
-                clone = house4;
-            else if (goName == "rampa")
-                clone = rampa;
-            else if (goName == "rampaHuge")
-                clone = rampaHuge;
-            else if (goName == "rampaSmall")
-                clone = rampaSmall;
-            else if (goName == "wallBig")
-            {
-                //  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
-                clone = wallBig;
-            }
-            else if (goName == "wallMedium")
-                clone = wallMedium;
-            else if (goName == "wallSmall")
-                clone = wallSmall;
-            else if (goName == "wallSuperSmall")
-                clone = wallSuperSmall;
-            else if (goName == "jumper")
-                clone = jumper;
-            else if (goName == "Lava")
-                clone = Lava;
-            else if (goName == "Star")
-                clone = Star;
-            else if (goName == "Water")
-                clone = Water;
-            else if (goName == "Boss1")
-                clone = Boss1;
-            else if (goName == "BossCalecitas1")
-                clone = BossCalecitas1;
-            else if (goName == "BossCreator")
-                clone = BossCreator;
-            else if (goName == "BossSpace1")
-                clone = BossSpace1;
-            else if (goName == "BossPacmans")
-                clone = BossPacmans;
-            else if (goName == "BossGalaga")
-                clone = BossGalaga;
-            else if (goName == "Starting")
-                clone = Starting;
-            else if (goName == "Ending")
-                clone = Ending;
-            else if (goName == "bomb1")
-            {
-                clone = bomb1;
-            }
-            else if (goName == "Laser")
-            {
-                clone = Laser;
-                Data.Instance.events.OnBossDropBomb();
-            }
-            else if (goName == "tunel1")
-                clone = tunel1;
-            else if (goName == "tunel2")
-                clone = tunel2;
-            else if (goName == "cilindro")
-                clone = cilindro;
-            else if (goName == "cilindroBig")
-                clone = cilindroBig;
-            else if (goName == "enemyGhost")
-                clone = enemyGhost;
-            else if (goName == "streetFloor")
-                clone = streetFloor;
-            else if (goName == "Container")
-                clone = Container;
-            else if (goName == "Fish")
-                clone = Fish;
-            else if (goName == "streetFloorSmall")
-                clone = streetFloorSmall;
-            else if (goName == "levelSignal")
-                clone = levelSignal;
-            else if (goName == "GrabbableItem")
-                clone = GrabbableItem;
-            else if (goName == "borde1")
-                clone = borde1;
-            else if (goName == "fences")
-                clone = fences;
-            else if (goName == "cruz")
-                clone = cruz;
-            else if (goName == "CruzGrande")
-                clone = CruzGrande;
-            else if (goName == "rueda1")
-                clone = rueda1;
-            else if (goName == "helice1")
-                clone = helice1;
-            else if (goName == "pisoRotatorio")
-                clone = pisoRotatorio;
-            else if (goName == "sombrilla")
-                clone = sombrilla;
-            else if (goName == "FloorSlider")
-                clone = FloorSlider;
-
-            if (clone)
-            {
-                sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
-                sceneObject.transform.localEulerAngles = go.rot;
-            }
-
             if (sceneObject != null)
             {
                 areaSceneObjectManager.AddComponentsToSceneObject(go, sceneObject.gameObject);
@@ -337,16 +197,135 @@ public class SceneObjectsBehavior : MonoBehaviour
                     manager.AddSceneObject(sceneObject, pos, lastSceneObjectContainer);
                 else
                     manager.AddSceneObject(sceneObject, pos);
-
-            }// else
-             //	Debug.Log (goName + "_______________ (No existe) " );
-
-
+            }
             if (goName == "Container")
             {
                 lastSceneObjectContainer = sceneObject.transform;
             }
         }
+    }
+    SceneObject SetSceneObject(SceneObject so, Vector3 pos, Vector3 rot)
+    {
+        so.isActive = false;
+        so.transform.position = pos;
+        so.transform.localEulerAngles = rot;
+        return so;
+    }
+    SceneObject SetOtherGO(string goName, Vector3 pos, AreaSceneObjectData go)
+    {
+        SceneObject clone = null;
+        if (goName == "FloorSurface")
+            clone = FloorSurface;
+        if (goName == "PisoPinche")
+            clone = PisoPinche;
+        else if (goName == "Catapulta")
+            clone = Catapulta;
+        else if (goName == "house1")
+            clone = house1;
+        else if (goName == "house2")
+            clone = house2;
+        else if (goName == "house3")
+            clone = house3;
+        else if (goName == "house4")
+            clone = house4;
+        else if (goName == "rampa")
+            clone = rampa;
+        else if (goName == "rampaHuge")
+            clone = rampaHuge;
+        else if (goName == "rampaSmall")
+            clone = rampaSmall;
+        else if (goName == "wallBig")
+        {
+            //  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
+            clone = wallBig;
+        }
+        else if (goName == "wallMedium")
+            clone = wallMedium;
+        else if (goName == "wallSmall")
+            clone = wallSmall;
+        else if (goName == "wallSuperSmall")
+            clone = wallSuperSmall;
+        else if (goName == "jumper")
+            clone = jumper;
+        else if (goName == "Lava")
+            clone = Lava;
+        else if (goName == "Star")
+            clone = Star;
+        else if (goName == "Water")
+            clone = Water;
+        else if (goName == "Boss1")
+            clone = Boss1;
+        else if (goName == "BossCalecitas1")
+            clone = BossCalecitas1;
+        else if (goName == "BossCreator")
+            clone = BossCreator;
+        else if (goName == "BossSpace1")
+            clone = BossSpace1;
+        else if (goName == "BossPacmans")
+            clone = BossPacmans;
+        else if (goName == "BossGalaga")
+            clone = BossGalaga;
+        else if (goName == "Starting")
+            clone = Starting;
+        else if (goName == "Ending")
+            clone = Ending;
+        else if (goName == "bomb1")
+        {
+            clone = bomb1;
+        }
+        else if (goName == "Laser")
+        {
+            clone = Laser;
+            Data.Instance.events.OnBossDropBomb();
+        }
+        else if (goName == "tunel1")
+            clone = tunel1;
+        else if (goName == "tunel2")
+            clone = tunel2;
+        else if (goName == "cilindro")
+            clone = cilindro;
+        else if (goName == "cilindroBig")
+            clone = cilindroBig;
+        else if (goName == "enemyGhost")
+            clone = enemyGhost;
+        else if (goName == "streetFloor")
+            clone = streetFloor;
+        else if (goName == "Container")
+            clone = Container;
+        else if (goName == "Fish")
+            clone = Fish;
+        else if (goName == "streetFloorSmall")
+            clone = streetFloorSmall;
+        else if (goName == "levelSignal")
+            clone = levelSignal;
+        else if (goName == "GrabbableItem")
+            clone = GrabbableItem;
+        else if (goName == "borde1")
+            clone = borde1;
+        else if (goName == "fences")
+            clone = fences;
+        else if (goName == "cruz")
+            clone = cruz;
+        else if (goName == "CruzGrande")
+            clone = CruzGrande;
+        else if (goName == "rueda1")
+            clone = rueda1;
+        else if (goName == "helice1")
+            clone = helice1;
+        else if (goName == "pisoRotatorio")
+            clone = pisoRotatorio;
+        else if (goName == "sombrilla")
+            clone = sombrilla;
+        else if (goName == "FloorSlider")
+            clone = FloorSlider;
+
+        if (clone)
+        {
+            SceneObject sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
+            sceneObject.transform.localEulerAngles = go.rot;
+            return sceneObject;
+        }
+        return null;
     }
     Transform lastSceneObjectContainer;
 
