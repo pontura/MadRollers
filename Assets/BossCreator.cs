@@ -30,8 +30,10 @@ public class BossCreator : Boss {
 	void Delayed()
 	{
         GameObject assets;
-        if (settings.bundle)
-            assets = Instantiate(ObjectPool.instance.bossesPool.GetBossModule(settings.bossModule));
+        // if (settings.bundle)
+        GameObject go = ObjectPool.instance.bossesPool.GetBossModule(settings.bossModule);
+        if(go != null)
+            assets = Instantiate(go);
         else
             assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
 

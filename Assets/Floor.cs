@@ -15,18 +15,21 @@ public class Floor : MonoBehaviour
 	public CharactersManager charactersManager;
 	VideogameBossPanel videoGameBossPanel;
 
-	void Start()
+    private void Awake()
     {
-        //if (Data.Instance.useOptimizedSettings)
-        //{
-        //    Destroy(this.gameObject);
-        //    return;
-        //}
-		videoGameBossPanel = Game.Instance.GetComponent<VideogameBossPanelsManager> ().actualBossPanel;
-        isMoving = true;
+        if (Data.Instance.useOptimizedSettings)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         Data.Instance.events.OnGamePaused += OnGamePaused;
-		Data.Instance.events.OnGameOver += OnGameOver;
-		Data.Instance.events.OnChangeBackgroundSide += OnChangeBackgroundSide;
+        Data.Instance.events.OnGameOver += OnGameOver;
+        Data.Instance.events.OnChangeBackgroundSide += OnChangeBackgroundSide;
+    }
+    void Start()
+    {
+		videoGameBossPanel = Game.Instance.GetComponent<VideogameBossPanelsManager> ().actualBossPanel;
+        isMoving = true;       
     }
     void OnDestroy()
     {

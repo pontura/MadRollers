@@ -84,14 +84,15 @@ public class Level : MonoBehaviour {
 		SetNewVideogameSettings ();
 
 		missions.Init (this);
+        Data.Instance.events.OnChangeBackgroundSide(Data.Instance.missions.MissionActive.fondo);
 
-//		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
-//			Area a = Data.Instance.versusManager.GetArea();
-//			sceneObjects.replaceSceneObject(a, a.z_length/2, 0, false);
-//			Area b = Data.Instance.versusManager.GetArea();
-//			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
-//			return;
-//		}
+        //		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
+        //			Area a = Data.Instance.versusManager.GetArea();
+        //			sceneObjects.replaceSceneObject(a, a.z_length/2, 0, false);
+        //			Area b = Data.Instance.versusManager.GetArea();
+        //			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
+        //			return;
+        //		}
     }
 	void OnGameStart()
 	{
@@ -119,7 +120,7 @@ public class Level : MonoBehaviour {
     }
     void StartMultiplayerRace()
     {
-		Data.Instance.events.OnChangeBackgroundSide (Data.Instance.missions.MissionActive.fondo);
+		
         waitingToStart = false;
     }
 	public void Complete()
@@ -147,7 +148,7 @@ public class Level : MonoBehaviour {
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
     {      
-		Data.Instance.events.OnSoundFX("FX break", -1);
+		Data.Instance.events.OnSoundFX("FX_break", -1);
 		SceneObject explpotionEffect = null;
         switch (type)
         {

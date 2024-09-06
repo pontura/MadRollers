@@ -23,7 +23,6 @@ public class VoicesManager : MonoBehaviour
 
 	public List<VoiceData> UIItems;
 
-	public AudioSpectrum audioSpectrum;
 	[Serializable]
 	public class VoiceData
 	{

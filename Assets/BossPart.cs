@@ -33,11 +33,13 @@ public class BossPart : MonoBehaviour {
 		Utils.RemoveAllChildsIn (transform);
 
         if (asset == null && settings.asset != null)
-        { 
-            if(settings.bundle)
-                asset = Instantiate(ObjectPool.instance.bossesPool.GetBossAsset(settings.asset).gameObject);
+        {
+            GameObject go = ObjectPool.instance.bossesPool.GetBossAsset(settings.asset).gameObject;
+            if (go != null)
+                asset = Instantiate(go);
             else
                 asset = Instantiate(Resources.Load("bosses/assets/" + settings.asset, typeof(GameObject))) as GameObject;
+
             asset.transform.SetParent (transform);
             asset.transform.localScale = Vector3.one;
             asset.transform.localEulerAngles = Vector3.zero;

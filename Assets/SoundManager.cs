@@ -9,7 +9,6 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource;
     private AudioSource loopAudioSource;
     public float volume;
-    public string coin;
 
     void Start()
     {
@@ -66,6 +65,16 @@ public class SoundManager : MonoBehaviour
     }
     float nextSoundTime;
     float delayToNextSound = 0.05f;
+
+    [SerializeField] AudioClip fire;
+    [SerializeField] AudioClip floor;
+    [SerializeField] AudioClip coin;
+    [SerializeField] AudioClip combo;
+    [SerializeField] AudioClip FX_break;
+    [SerializeField] AudioClip explotion;
+    [SerializeField] AudioClip hit;
+    [SerializeField] AudioClip laser;
+
     void OnSoundFX(string soundName, int playerID)
     {
         if (soundName == "")
@@ -80,19 +89,20 @@ public class SoundManager : MonoBehaviour
         nextSoundTime = Time.time + delayToNextSound;
        
         if (volume == 0) return;
-
-        if (playerID == 0)
-            audioSource.panStereo = -0.8f;
-        else if (playerID == 1)
-            audioSource.panStereo = -0.3f;
-        else if (playerID == 2)
-            audioSource.panStereo = 0.3f;
-        else if (playerID == 4)
-            audioSource.panStereo = 0.8f;
-        else
             audioSource.panStereo = 0;
 
-        audioSource.PlayOneShot(Resources.Load("Sound/" + soundName) as AudioClip);
+        switch(soundName)
+        {
+            case "fire": audioSource.PlayOneShot(fire); break;
+            case "floor": audioSource.PlayOneShot(floor); break;
+            case "coin": audioSource.PlayOneShot(coin); break;
+            case "combo": audioSource.PlayOneShot(combo); break;
+            case "FX_break": audioSource.PlayOneShot(FX_break); break;
+            case "explotion": audioSource.PlayOneShot(explotion); break;
+            case "hit": audioSource.PlayOneShot(hit); break;
+            case "laser": audioSource.PlayOneShot(laser); break;
+
+        }
     }
     private string GetRandomSound(string[] arr)
     {

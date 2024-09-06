@@ -12,6 +12,11 @@ public class MusicManager : MonoBehaviour {
     [SerializeField] private AudioClip enemyDead;
     [SerializeField] private AudioClip credits;
 
+    [SerializeField] private AudioClip[] bosses;
+    [SerializeField] private AudioClip[] songs;
+    [SerializeField] private AudioClip[] wins;
+    [SerializeField] private AudioClip loading;
+
     private float heartsDelay = 0.1f;
     private AudioSource audioSource;
 	float pitchSpeed = 0.015f;
@@ -122,7 +127,7 @@ public class MusicManager : MonoBehaviour {
 	public void OnLoadingMusic()
 	{
 		audioSource.pitch = 1;
-		audioSource.clip = Resources.Load("Sound/loading") as AudioClip;
+		audioSource.clip = loading;
 		audioSource.Play();
 		audioSource.loop = true;
 	}
@@ -138,7 +143,7 @@ public class MusicManager : MonoBehaviour {
 //			return;
 		if (isBoss) {
 			audioSource.pitch = 1;
-			audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
+			audioSource.clip = bosses [videogameID];//) as AudioClip;
 		//	audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "boss" + videogameID);
 			audioSource.Play ();
 			audioSource.loop = true;
@@ -187,7 +192,7 @@ public class MusicManager : MonoBehaviour {
 		StopAllCoroutines ();
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
+        audioSource.clip = wins[Data.Instance.videogamesData.actualID];//) as AudioClip;
       //  audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", "win" + Data.Instance.videogamesData.actualID);
         audioSource.Play();
 		audioSource.loop = false;
@@ -197,22 +202,9 @@ public class MusicManager : MonoBehaviour {
 	}
 	void PlayMainTheme()
 	{
-		string soundName = "song0";
-		switch(Data.Instance.videogamesData.actualID)
-		{
-		case 0:
-			soundName = "song0";
-			break;
-		case 1:
-			soundName = "song1";
-			break;
-		case 2:
-			soundName = "song2";
-			break;
-		}
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		audioSource.clip = Resources.Load("songs/" + soundName) as AudioClip;
+        audioSource.clip = songs[Data.Instance.videogamesData.actualID];//) as AudioClip;
         //audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", soundName);
         audioSource.Play();
 		audioSource.loop = true;

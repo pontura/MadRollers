@@ -72,18 +72,6 @@ public class ObjectPool : MonoBehaviour
         
         return instance;
     }
-    private int GetTotalObjectsOfType(string objectType)
-    {
-        int qty = 0;
-        foreach (SceneObject so in containerObject.GetComponentsInChildren<SceneObject>())
-        {
-            if (so.name == objectType)
-            {
-                qty++;
-            }
-        }
-        return qty;
-    }
 
     public SceneObject GetObjectForType(string instanceName, bool onlyPooled)
     {
@@ -98,6 +86,7 @@ public class ObjectPool : MonoBehaviour
             }
             else
             {
+                Debug.Log("_____________ agrega al pool : " + instanceName);
                 foreach (ObjectPoolEntry poe in Entries)
                 {
                     if (poe.Prefab.name == instanceName)
@@ -123,7 +112,7 @@ public class ObjectPool : MonoBehaviour
             Destroy(obj.gameObject);
             return;
         }
-        else  if (pool.ContainsKey(obj.name))
+        else if (pool.ContainsKey(obj.name))
         {
             obj.transform.SetParent(containerObject.transform);
             obj.gameObject.SetActive(false);
