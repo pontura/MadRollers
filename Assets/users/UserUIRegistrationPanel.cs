@@ -46,7 +46,7 @@ public class UserUIRegistrationPanel : MonoBehaviour
     {
         PhotoPanel.SetActive(true);
         PhotoTakenPanel.SetActive(false);
-        userDataUI.webcamPhoto.InitWebcam(image, aspectRatioFilter);
+      //  userDataUI.webcamPhoto.InitWebcam(image, aspectRatioFilter);
     }
     void ShowEditPanel()
     {
@@ -59,7 +59,7 @@ public class UserUIRegistrationPanel : MonoBehaviour
         UserData.Instance.avatarImages.ResetAvatar(UserData.Instance.userID);
         foreach (GameObject go in hideOnScreenshot)
             go.SetActive(false);
-        userDataUI.webcamPhoto.TakeSnapshot(OnPhotoTaken);
+      //  userDataUI.webcamPhoto.TakeSnapshot(OnPhotoTaken);
         StartCoroutine(SaveLocal(Screen.width, Screen.height));
     }
     public IEnumerator SaveLocal(int width, int height) {
