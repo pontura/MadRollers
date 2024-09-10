@@ -39,14 +39,21 @@ public class Player : MonoBehaviour {
 			SetSettings ();
 			return;
 		} 
-		madRoller.SetFxOff ();
-		Data.Instance.events.OnAvatarDie += OnAvatarDie;
+		madRoller.SetFxOff (false);
+        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+
+        Data.Instance.events.OnAvatarDie += OnAvatarDie;
 		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
 		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 
 	}
+    void StartMultiplayerRace()
+    {
+        madRoller.SetFxOff(true);
+    }
     void OnDestroy()
     {
+        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
         Data.Instance.events.OnAvatarGetItem -= OnAvatarGetItem;
         Data.Instance.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;

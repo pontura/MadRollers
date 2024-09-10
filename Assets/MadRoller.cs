@@ -14,10 +14,10 @@ public class MadRoller : MonoBehaviour {
 			Init (forceInitOnMenues - 1);
 		}
 	}
-	public void SetFxOff()
+	public void SetFxOff(bool isOn)
 	{
 		foreach (GameObject go in gameFxOffOnStart)
-			go.SetActive (false);
+			go.SetActive (isOn);
 	}
 	public void Init(int id)
 	{
