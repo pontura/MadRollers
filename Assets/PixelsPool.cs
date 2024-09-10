@@ -6,11 +6,12 @@ public class PixelsPool : MonoBehaviour {
 
 	Transform poolContainer;
 	Transform sceneContainer;
-	public List<PixelPart> all;
-	public PixelPart pixelPart;
+	List<PixelPart> all;
+	[SerializeField] PixelPart pixelPart;
 
 	public void Init (Transform poolContainer, Transform sceneContainer) {
-		this.poolContainer = poolContainer;
+        all = new List<PixelPart>();
+        this.poolContainer = poolContainer;
 		this.sceneContainer = sceneContainer;
 		for (int a = 0; a < 140; a++) {
 			PixelPart pp = Instantiate (pixelPart);

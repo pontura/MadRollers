@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UserData : MonoBehaviour
 {
-    public string URL = "http://madrollers.com/game/";
+    string URL = "https://yaguar.xyz/madRollers/";
     public string setUserURL = "setUser.php";
     public string setUserURLUpload = "updateUser.php";
     public string imageURLUploader = "uploadPhoto.php";
@@ -117,7 +117,7 @@ public class UserData : MonoBehaviour
            // avatarImages.GetImageFor(userID, null);
         }
         // serverConnect.LoadUserData(userID, OnLoaded);
-        OnLoaded(null);
+        //OnLoaded(null);
     }
     string SetRandomID()
     {

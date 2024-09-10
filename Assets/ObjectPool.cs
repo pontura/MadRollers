@@ -18,7 +18,7 @@ public class ObjectPool : MonoBehaviour
         public int Count;
     }
     #endregion
-    public ObjectPoolEntry[] Entries;
+    [SerializeField] ObjectPoolEntry[] Entries;
 
     [HideInInspector]
     public GameObject Scene, containerObject;

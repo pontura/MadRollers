@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BossesPool : MonoBehaviour
 {
-    public Material[] materials;
+    [SerializeField] Material[] materials;
     public GameObject[] assets;
     public GameObject[] modules;
 
-    public Dictionary<string, GameObject> assetsPool;
+    Dictionary<string, GameObject> assetsPool;
 
     //public void AddAll()
     //{
@@ -29,12 +29,11 @@ public class BossesPool : MonoBehaviour
     {
         foreach (MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
         {
-
             Material m = ChangeMaterialByName(mr.sharedMaterial.name);
             if (m != null)
                 mr.sharedMaterial = m;
-            else
-                Debug.Log("Falta el material " + mr.sharedMaterial.name + " para el boss");
+            //else
+            //    Debug.Log("Falta el material " + mr.sharedMaterial.name + " para el boss");
         }
     }
     Material ChangeMaterialByName(string matName)

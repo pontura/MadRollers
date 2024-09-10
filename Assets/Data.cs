@@ -51,6 +51,7 @@ public class Data : MonoBehaviour {
     public AssetsBundleLoader assetsBundleLoader ;
     public MusicManager musicManager;
     public FramesController framesController;
+    public CurvedWorldManager curvedWorldManager;
 
     public bool singlePlayer;
     public bool isAndroid;
@@ -158,8 +159,9 @@ public class Data : MonoBehaviour {
                 multiplayerData.player1 = multiplayerData.player1_played = true;
 		}
 
-       // GetComponent<Tracker>().Init();
-        GetComponent<CurvedWorldManager>().Init();
+        // GetComponent<Tracker>().Init();
+        curvedWorldManager = GetComponent<CurvedWorldManager>();
+        curvedWorldManager.Init();
 
 	}
 	void Start()
