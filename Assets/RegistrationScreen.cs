@@ -11,7 +11,7 @@ public class RegistrationScreen : MonoBehaviour
     void Start()
     {
         readyField.text = TextsManager.Instance.GetText("READY") + "!";
-        readyField.text = TextsManager.Instance.GetText("Your Name") + "...";
+        yourNameField.text = TextsManager.Instance.GetText("Your Name") + "...";
         UsersEvents.OnRegistartionDone += Done;
         UsersEvents.OnUserRegisterCanceled += Done;
         UsersEvents.OnUserUploadDone += Done;

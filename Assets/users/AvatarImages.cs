@@ -27,7 +27,7 @@ public class AvatarImages : MonoBehaviour
     void FileUploaded()
     {
         ResetAvatar(UserData.Instance.userID);
-        GetImageFor(UserData.Instance.userID, null);
+       // GetImageFor(UserData.Instance.userID, null);
     }
     public void SetImageFor(string userID, Texture2D texture)
     {
@@ -44,44 +44,44 @@ public class AvatarImages : MonoBehaviour
         newData.texture = texture;
         all.Add(newData);
     }
-    public void GetImageFor(string userID, System.Action<Texture2D> OnLoaded)
-    {
-#if UNITY_WEBGL
-        OnLoaded(defaultTexture);
-        return;
-#endif
-        foreach (Data d in all)
-        {
-            if (d.userID == userID && d.texture != null)
-            {
-                OnLoaded(d.texture);
-                return;
-            }
-        }
-        StartCoroutine(DownloadImage(userID, OnLoaded));
-    }
-    IEnumerator DownloadImage(string userID, System.Action<Texture2D> OnLoaded)
-    {
-        string url = userData.URL + userData.imagesURL + userID + ".png";
-        //Debug.Log("DownloadImage from url " + url);
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
-        yield return request.SendWebRequest();
-        if (request.isNetworkError || request.isHttpError)
-        {
-            if(OnLoaded != null)
-            OnLoaded(defaultTexture);
-        } 
-        else
-        {
-            Texture2D t = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            Data data = new Data();
-            data.userID = userID;
-            data.texture = t;
-            all.Add(data);
-            if (OnLoaded != null)
-                OnLoaded(t);
-        }
-    }
+//    public void GetImageFor(string userID, System.Action<Texture2D> OnLoaded)
+//    {
+//#if UNITY_WEBGL
+//        OnLoaded(defaultTexture);
+//        return;
+//#endif
+//        foreach (Data d in all)
+//        {
+//            if (d.userID == userID && d.texture != null)
+//            {
+//                OnLoaded(d.texture);
+//                return;
+//            }
+//        }
+//       // StartCoroutine(DownloadImage(userID, OnLoaded));
+//    }
+    //IEnumerator DownloadImage(string userID, System.Action<Texture2D> OnLoaded)
+    //{
+    //    string url = userData.URL + userData.imagesURL + userID + ".png";
+    //    //Debug.Log("DownloadImage from url " + url);
+    //    UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
+    //    yield return request.SendWebRequest();
+    //    if (request.isNetworkError || request.isHttpError)
+    //    {
+    //        if(OnLoaded != null)
+    //        OnLoaded(defaultTexture);
+    //    } 
+    //    else
+    //    {
+    //        Texture2D t = ((DownloadHandlerTexture)request.downloadHandler).texture;
+    //        Data data = new Data();
+    //        data.userID = userID;
+    //        data.texture = t;
+    //        all.Add(data);
+    //        if (OnLoaded != null)
+    //            OnLoaded(t);
+    //    }
+    //}
     public void ResetAvatar(string userID)
     {
         Data dataToRemove = null;

@@ -23,7 +23,7 @@ public class ScoreLine : MonoBehaviour {
 	}
     public void SetImage(string userID)
     {
-        UserData.Instance.avatarImages.GetImageFor(userID, OnLoaded);
+      //  UserData.Instance.avatarImages.GetImageFor(userID, OnLoaded);
     }
     void OnLoaded(Texture2D texture2d)
     {

@@ -77,17 +77,17 @@ public class SummaryMobile : MonoBehaviour
         else
             videoGameID = Data.Instance.videogamesData.actualID;
 
-        Debug.Log("____OnSaveScore");
+        Debug.Log("____OnSaveScore: " + score);
         Data.Instance.events.OnSaveScore();
 
         yield return new WaitForSecondsRealtime(4);
         //Data.Instance.events.RalentaTo(0, 0.025f);
 
 
-        HiscoreLoaded(null);//To-DO
-      //  UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
-        if (!Data.Instance.isAndroid)
-            Data.Instance.events.OnJoystickClick += OnJoystickClick;
+        //HiscoreLoaded(null);//To-DO
+        UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+        //if (!Data.Instance.isAndroid)
+        //    Data.Instance.events.OnJoystickClick += OnJoystickClick;
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
@@ -98,7 +98,7 @@ public class SummaryMobile : MonoBehaviour
         }
 
         UserData.Instance.hiscoresByMissions.CheckToAddNewHiscore(UserData.Instance.userID, score, videoGameID, missionID);
-      //  hiscores.InitLoaded(hiscoreData);
+        hiscores.InitLoaded(hiscoreData);
 
         avatarImage.Init(UserData.Instance.userID);
         usernameField.text = UserData.Instance.username;

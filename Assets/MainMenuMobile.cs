@@ -29,10 +29,10 @@ public class MainMenuMobile : MonoBehaviour
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
 
-     //   if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged())
+        if (UserData.Instance.IsLogged())
             DonePanel.SetActive(true);
-        //else
-        //    RegisterPanel.SetActive(true);
+        else
+            RegisterPanel.SetActive(true);
 
         AddPlayers();
     }
@@ -44,7 +44,7 @@ public class MainMenuMobile : MonoBehaviour
     void OnJoystickClick()
     {
         if (done) return; done = true;
-        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged() || UserData.Instance.IsOnlyLocal())
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged())
             Next();
         else
             RegisterPressed();

@@ -39,11 +39,11 @@ public class MissionButtonMobile : MonoBehaviour
 
 
         int unblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID + 1);
-        if(UserData.Instance.missionUnblockedID_1 == 0 && videoGameID == 1)
+        if(UserData.Instance.data.missionUnblockedID_1 == 0 && videoGameID == 1)
         {
             unblockedID = -1;
         }
-        if (UserData.Instance.missionUnblockedID_2 == 0 && videoGameID == 2)
+        if (UserData.Instance.data.missionUnblockedID_2 == 0 && videoGameID == 2)
         {
             unblockedID = -1;
         }

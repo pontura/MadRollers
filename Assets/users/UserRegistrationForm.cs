@@ -51,13 +51,13 @@ public class UserRegistrationForm : MonoBehaviour
     public void SaveUser(string username)
     {
         UsersEvents.OnPopup( "Checking data...");
-        UserData.Instance.username = username;
+        UserData.Instance.data.username = username;
         StartCoroutine(SendData(UserData.Instance.username));
     }
     public void UploadUser(string username)
     {
         UsersEvents.OnPopup(  "Uploading data...");
-        UserData.Instance.username = username;
+        UserData.Instance.data.username = username;
         StartCoroutine(UploadData(UserData.Instance.username));
 
     }

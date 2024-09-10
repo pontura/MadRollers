@@ -10,7 +10,7 @@ public class AvatarThumb : MonoBehaviour
 
     public void Init(string userID)
     {
-        UserData.Instance.avatarImages.GetImageFor(userID, OnLoaded);      
+      //  UserData.Instance.avatarImages.GetImageFor(userID, OnLoaded);      
     }
     public void OnLoaded(Texture2D texture2d)
     {

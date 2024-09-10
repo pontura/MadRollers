@@ -90,7 +90,7 @@ public class MissionButton : MonoBehaviour {
 
         usernameField.text = data.all[0].username;
         hiscoreField.text = Utils.FormatNumbers(data.all[0].score);
-        UserData.Instance.avatarImages.GetImageFor(data.all[0].userID, OnAvatarImageLoaded);
+       // UserData.Instance.avatarImages.GetImageFor(data.all[0].userID, OnAvatarImageLoaded);
     }
     void OnAvatarImageLoaded(Texture2D texture2d)
     {

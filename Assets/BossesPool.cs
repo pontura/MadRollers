@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossesPool : MonoBehaviour
 {
-    [SerializeField] Material[] materials;
+    public Material[] materials;
     public GameObject[] assets;
     public GameObject[] modules;
 

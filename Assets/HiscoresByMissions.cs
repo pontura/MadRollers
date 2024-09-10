@@ -6,8 +6,8 @@ using System;
 public class HiscoresByMissions : MonoBehaviour
 {
     private string secretKey = "pontura";
-    string saveNewHiscore = "http://madrollers.com/game/saveHiscore.php";
-    string getHiscore = "http://madrollers.com/game/getHiscore.php";
+    string saveNewHiscore = "saveHiscore.php";
+    string getHiscore = "getHiscore.php";
 
     public bool loaded;
 
@@ -89,27 +89,27 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void LoadHiscore(int videogame, int mission, System.Action<MissionHiscoreData> OnDone)
     {
-        OnDone(null);
+       // OnDone(null);
 
-        //if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-        //{
-        //    mission = 0;
-        //    videogame = MissionsManager.Instance.VideogameIDForTorneo;
-        //}
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            mission = 0;
+            videogame = MissionsManager.Instance.VideogameIDForTorneo;
+        }
 
-        //MissionHiscoreData md = IfAlreadyLoaded(videogame, mission);
+        MissionHiscoreData md = IfAlreadyLoaded(videogame, mission);
 
-        //if (md != null)
-        //{
-        //    OnDone(md);
-        //    return;
-        //}
+        if (md != null)
+        {
+            OnDone(md);
+            return;
+        }
 
-        //string post_url = getHiscore;
-        //post_url += "?videogame=" + (videogame);
-        //post_url += "&mission=" + mission;
-        //post_url += "&limit=50";
-        //StartCoroutine(Send(post_url, OnDone));
+        string post_url = UserData.Instance.URL + getHiscore;
+        post_url += "?videogame=" + (videogame);
+        post_url += "&mission=" + mission;
+        post_url += "&limit=50";
+        StartCoroutine(Send(post_url, OnDone));
     }
     MissionHiscoreData IfAlreadyLoaded(int videogame, int mission)
     {
@@ -122,45 +122,48 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void Save(int mission, int score)
     {
-        //int videogame;
+        int videogame;
 
-        //if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-        //    videogame = MissionsManager.Instance.VideogameIDForTorneo;
-        //else
-        //    videogame = Data.Instance.videogamesData.actualID;
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            videogame = MissionsManager.Instance.VideogameIDForTorneo;
+        else
+            videogame = Data.Instance.videogamesData.actualID;
 
-        //string hash = Utils.Md5Sum(UserData.Instance.userID + videogame + mission + score + secretKey);
-        //string post_url = saveNewHiscore + "?userID=" + WWW.EscapeURL(UserData.Instance.userID);
-        //post_url += "&username=" + UserData.Instance.username;
-        //post_url += "&videogame=" + videogame;
-        //post_url += "&mission=" + mission;
-        //post_url += "&score=" + score;
-        //post_url += "&hash=" + hash;
+        string hash = Utils.Md5Sum(UserData.Instance.userID + videogame + mission + score + secretKey);
+        string post_url = UserData.Instance.URL + saveNewHiscore + "?userID=" + WWW.EscapeURL(UserData.Instance.userID);
+        post_url += "&username=" + UserData.Instance.username;
+        post_url += "&videogame=" + videogame;
+        post_url += "&mission=" + mission;
+        post_url += "&score=" + score;
+        post_url += "&hash=" + hash;
 
-        //StartCoroutine( Send(post_url, null) );
+        print("SAVE: " + post_url);
+
+        StartCoroutine( Send(post_url, null) );
     }
-    //IEnumerator Send(string post_url, System.Action<MissionHiscoreData> OnDone)
-    //{
-    //    print("Save: " + post_url);
-    //    WWW www = new WWW(post_url);
-    //    yield return www;
+    IEnumerator Send(string post_url, System.Action<MissionHiscoreData> OnDone)
+    {
+        print("Hiscores SEND: " +  post_url);
+        WWW www = new WWW(post_url);
+        yield return www;
 
-    //    if (www.error != null)
-    //    {
-    //        //UsersEvents.OnPopup("Internet Error: " + www.error);
-    //       if (OnDone != null)
-    //            OnDone(null);
-    //    }
-    //    else
-    //    {
-    //        if (OnDone != null)
-    //            OnDataSended(www.text, OnDone);
-    //    }
-    //}
+        if (www.error != null)
+        {
+            //UsersEvents.OnPopup("Internet Error: " + www.error);
+           if (OnDone != null)
+                OnDone(null);
+        }
+        else
+        {
+            if (OnDone != null)
+                OnDataSended(www.text, OnDone);
+        }
+    }
     void OnDataSended(string result, System.Action<MissionHiscoreData> OnDone)
     {       
         MissionHiscoreData missionHiscoreData = JsonUtility.FromJson<MissionHiscoreData>(result);
 
+        print("Hiscores OnDataSended: " + missionHiscoreData.all.Count);
         if (missionHiscoreData.all.Count == 0)
         {
             OnDone(null);
@@ -174,6 +177,7 @@ public class HiscoresByMissions : MonoBehaviour
             all.Add(missionHiscoreData);
 
         OnDone(missionHiscoreData);
+        print("Hiscores missionHiscoreData: " + missionHiscoreData + " md: " + md);
     }
     public MissionHiscoreUserData GetHiscore(int videogame, int mission)
     {
