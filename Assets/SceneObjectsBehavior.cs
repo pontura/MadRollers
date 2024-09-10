@@ -329,27 +329,16 @@ public class SceneObjectsBehavior : MonoBehaviour
     }
     Transform lastSceneObjectContainer;
 
-    Component CopyComponent(Component original, GameObject destination)
-    {
-        System.Type type = original.GetType();
-        Component copy = destination.AddComponent(type);
-        System.Reflection.FieldInfo[] fields = type.GetFields();
-        foreach (System.Reflection.FieldInfo field in fields)
-        {
-            field.SetValue(copy, field.GetValue(original));
-        }
-        return copy;
-    }
-
-    public void addDecoration(string name, Vector3 pos, Vector3 offset)
-    {
-        SceneObject newSceneObject = Pool.GetObjectForType(name, true);
-        if (newSceneObject == null)
-            return;
-        pos.z += offset.z;
-        pos.x += offset.x;
-        manager.AddSceneObject(newSceneObject, pos);
-    }
+ 
+    //public void addDecoration(string name, Vector3 pos, Vector3 offset)
+    //{
+    //    SceneObject newSceneObject = Pool.GetObjectForType(name, true);
+    //    if (newSceneObject == null)
+    //        return;
+    //    pos.z += offset.z;
+    //    pos.x += offset.x;
+    //    manager.AddSceneObject(newSceneObject, pos);
+    //}
 
     public void deleteAll()
     {
@@ -360,17 +349,17 @@ public class SceneObjectsBehavior : MonoBehaviour
         }
     }
 
-    bool canBeDisplayed(AreaSceneObjectData go)
-    {
-        if (go == null)
-            return false;
-        if (go.soData.Count > 0)
-        {
-            SceneObjectDataGeneric data = go.soData[0];
-            if (data.minPayers > 0 && data.minPayers > Game.Instance.level.charactersManager.getTotalCharacters())
-                return false;
-        }
-        return true;
-    }
+    //bool canBeDisplayed(AreaSceneObjectData go)
+    //{
+    //    if (go == null)
+    //        return false;
+    //    if (go.soData.Count > 0)
+    //    {
+    //        SceneObjectDataGeneric data = go.soData[0];
+    //        if (data.minPayers > 0 && data.minPayers > Game.Instance.level.charactersManager.getTotalCharacters())
+    //            return false;
+    //    }
+    //    return true;
+    //}
 
 }
