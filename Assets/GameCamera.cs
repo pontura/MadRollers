@@ -255,8 +255,8 @@ public class GameCamera : MonoBehaviour
         if (isAndroid)
         {
             float _z1 = GetRot(transform.eulerAngles.z);
-            float _z2 = (GetRot(charactersManager.GetCharacterRot()) / 15);
-            float _z3 = Mathf.Lerp(_z1, _z2, Time.deltaTime*50);
+            float _z2 = (GetRot(charactersManager.GetCharacterRot()) / 12);
+            float _z3 = Mathf.Lerp(_z1, _z2, Time.deltaTime*80);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, _z3);
         }
         float GetRot(float _y)

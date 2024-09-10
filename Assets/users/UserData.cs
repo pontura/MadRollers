@@ -66,7 +66,12 @@ public class UserData : MonoBehaviour
     }
     private void Start()
     {
-        Invoke("Delayed", 0.1f);        
+        Invoke("Delayed", 0.1f);
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            hiscoresByMissions.Init();
+            Data.Instance.events.OnSaveScore += OnSaveScore;
+        }
     }
     private void Delayed()
     {
@@ -101,7 +106,7 @@ public class UserData : MonoBehaviour
         
         if (data.userID.Length<2)
         {
-            data.userID = SystemInfo.deviceUniqueIdentifier;
+            data.userID = SystemInfo.deviceUniqueIdentifier + "_";
         } else
         {
             data.userID = PlayerPrefs.GetString("userID");
@@ -132,9 +137,8 @@ public class UserData : MonoBehaviour
     {
         this.data = data;
         print("user on server.  username: " + data.username + " userID: " + data.userID );
-        hiscoresByMissions.Init();
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            Data.Instance.events.OnSaveScore += OnSaveScore;
+        
+        
 
         //score = PlayerPrefs.GetInt("score");
         //missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1");
