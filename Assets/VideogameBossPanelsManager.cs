@@ -15,10 +15,10 @@ public class VideogameBossPanelsManager : MonoBehaviour {
 		switch (Data.Instance.videogamesData.actualID) {
 		case 0:
 			actualBossPanel = Instantiate (boosPanel1) ;
-			break;
+                break;
 		case 1:
 			actualBossPanel = Instantiate (boosPanel2) ;
-			break;
+                break;
 		default:
 			actualBossPanel = Instantiate (boosPanel3) ;
 			break;
@@ -27,6 +27,10 @@ public class VideogameBossPanelsManager : MonoBehaviour {
         actualBossPanel.transform.localPosition = Vector3.zero;
         actualBossPanel.transform.localEulerAngles = Vector3.zero;
         actualBossPanel.transform.localScale = Vector3.one;
+
+        boosPanel2 = null;
+        boosPanel1 = null;
+        boosPanel3 = null;
 
     }
 }

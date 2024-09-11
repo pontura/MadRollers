@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CombosManager : MonoBehaviour {
 
-	public int total;
-	public int value;
+	int total;
+	int value;
 	float lastAreaIDChecked;
 
 	public void GetNewItemToCombo(float areaID, int total)

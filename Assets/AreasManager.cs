@@ -20,6 +20,8 @@ public class AreasManager : MonoBehaviour
         if (IsNameUsed(areaName))
             return;
 
+        print("_________________Add Area" + areaName);
+
         names.Add(areaName);
         TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
         all.Add(asset);

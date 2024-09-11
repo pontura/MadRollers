@@ -12,12 +12,9 @@ public class Bomb : SceneObject {
     public TrailRenderer trailRenderer;
     AudioSource audioSource;
 
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
     public override void OnRestart(Vector3 pos)
     {
+        audioSource = GetComponent<AudioSource>();
         trailRenderer = GetComponent<TrailRenderer>();
         pos.y = start_Y;
         base.OnRestart(pos);
@@ -34,11 +31,11 @@ public class Bomb : SceneObject {
         if (distanceFromCharacter > 65)
             return;        
 
-        if (!GetComponent<AudioSource>().isPlaying)
+        if (audioSource != null && !audioSource.isPlaying)
         {
             trailRenderer.time = 10;
-            GetComponent<AudioSource>().clip = soundFX;
-            GetComponent<AudioSource>().Play();
+            audioSource.clip = soundFX;
+            audioSource.Play();
         }
         Vector3 pos = base.gameObject.transform.position;
         pos.y -= speed * Time.deltaTime;

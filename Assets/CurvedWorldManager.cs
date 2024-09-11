@@ -10,22 +10,16 @@ public class CurvedWorldManager : MonoBehaviour {
 
     public CurvedWorld_Controller curvedWorld_Controller;
 
-	public void Init () {
-        
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+	public void Awake () {        
         Data.Instance.events.ChangeCurvedWorldX += ChangeCurvedWorldX;
-
 	}
     public void OnDestroy()
     {
-
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.ChangeCurvedWorldX -= ChangeCurvedWorldX;
-
     }
-    void StartMultiplayerRace()
+    public void SetController(CurvedWorld_Controller c)
     {
-        curvedWorld_Controller = GameObject.Find("CurvedWorld_Controller").GetComponent<CurvedWorld_Controller>();
+        curvedWorld_Controller = c;
         //  curvedWorld_Controller._V_CW_Bend_X = -12;
        // curvedWorld_Controller.bendSize = new Vector3(-12, 0,0);
     }

@@ -178,6 +178,7 @@ public class SceneObjectsBehavior : MonoBehaviour
                     sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
                     break;
                 default:
+                    print("OTHER: " + goName);
                     sceneObject = SetOtherGO(goName, pos, go);
                     break;
             }

@@ -222,8 +222,6 @@ public class Missions : MonoBehaviour
         if (distance > areasLength-offset) {
 			SetNextArea ();
 		}
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            return;
 	}
     
     int total_areas = 1;
@@ -305,7 +303,7 @@ public class Missions : MonoBehaviour
 			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
 			areasLength += areaDataActive.z_length/2;
 			level.sceneObjects.AddSceneObjects (areaDataActive, areasLength);
-			//print ("AREA: " + areaName + " km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName +  " totalAreas" + total_areas );
+			print ("AREA: " + areaName + " km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName +  " totalAreas" + total_areas );
 			areasLength += areaDataActive.z_length/2;
 
             //HACK : no ocupe lugar el area extra:

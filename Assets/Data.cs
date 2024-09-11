@@ -161,7 +161,6 @@ public class Data : MonoBehaviour {
 
         // GetComponent<Tracker>().Init();
         curvedWorldManager = GetComponent<CurvedWorldManager>();
-        curvedWorldManager.Init();
 
 	}
 	void Start()

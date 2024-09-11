@@ -30,7 +30,6 @@ public class SceneObject : MonoBehaviour {
 
     SceneObjectData soData;
     public SceneObjectData SoData { get {
-            print("________" + soData);
             if (soData == null) soData = GetComponent<SceneObjectData>(); return soData; }
     } 
 
