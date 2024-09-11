@@ -56,33 +56,38 @@ public class FullRotation : MonoBehaviour {
 //			Loop ();
 //		}
 	}
-//	int rotID = 0;
-//
-//	void Loop()
-//	{
-//		Vector3 rot = transform.localEulerAngles;
-//		rot.y += 90;
-//		transform.localEulerAngles = rot;
-//		Invoke ("Loop", 0.1f);
-//	}
+    //	int rotID = 0;
+    //
+    //	void Loop()
+    //	{
+    //		Vector3 rot = transform.localEulerAngles;
+    //		rot.y += 90;
+    //		transform.localEulerAngles = rot;
+    //		Invoke ("Loop", 0.1f);
+    //	}
+    float frame = 0;
 	void Update () {
-		if (frameByFrame) {
+        frame += Time.deltaTime;
+        if (frame < 0.05f) return;
+        frame = 0;
+
+        if (frameByFrame) {
 			return;
 		}
 		if (rotateX) 
-			rotationX += speed * Time.deltaTime;
+			rotationX += speed * Time.deltaTime * 3;
 		else 
 			rotationX = transform.localRotation.x;
 
 		if (rotateY) 
-			rotationY += speed * Time.deltaTime;
+			rotationY += speed * Time.deltaTime * 3;
         else 
 			rotationY = transform.localRotation.y;
 
         if (rotateZ && inverseRotation)
-			rotationZ += speed*Time.deltaTime;
+			rotationZ += speed*Time.deltaTime * 3;
         else if (rotateZ && !inverseRotation)
-            rotationZ -= speed * Time.deltaTime;
+            rotationZ -= speed * Time.deltaTime * 3;
         else rotationZ = transform.localRotation.z;
 
 			

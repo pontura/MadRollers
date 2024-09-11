@@ -10,7 +10,7 @@ public class CurvedWorldManager : MonoBehaviour {
 
     public CurvedWorld_Controller curvedWorld_Controller;
 
-	public void Awake () {        
+	public void Start () {        
         Data.Instance.events.ChangeCurvedWorldX += ChangeCurvedWorldX;
 	}
     public void OnDestroy()

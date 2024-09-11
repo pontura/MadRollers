@@ -5,57 +5,65 @@ using UnityEngine;
 public class AreasManager : MonoBehaviour
 {
     public List<TextAsset> all;
-    public List<string> names;
+    Dictionary<string, AreaData> data;
+
+    public void LoadData()
+    {
+        //print("AreasManager Start ");
+        print("AreasManager Start " + all + " Count: " + all.Count);
+        data = new Dictionary<string, AreaData>();
+        // all = new List<TextAsset>();
+        int i = all.Count;
+
+        while (i>0)
+        {
+            TextAsset t  = all[i-1];
+            if (t != null)
+            {
+               // print(t.name + " num: " + i);
+                if (t.text.Length > 10)
+                {
+                    AreaData a = JsonUtility.FromJson<AreaData>(t.text);
+                    if (a != null)
+                        data.Add(t.name, a);
+                }
+            }
+            i--;
+        }
+    }
     public void Init()
     {
-        names = new List<string>();
+        data = new Dictionary<string, AreaData>();
         all = new List<TextAsset>();
 
-        //agrega las 2 por default:
         Add("continue_Multiplayer");
         Add("start_Multiplayer");
+
     }
     public void Add(string areaName)
     {
         if (IsNameUsed(areaName))
             return;
 
-        print("_________________Add Area" + areaName);
 
-        names.Add(areaName);
+        print("AreasManager Add " + areaName);
+
         TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
         all.Add(asset);
+        data.Add(areaName, JsonUtility.FromJson<AreaData>(asset.text));
     }
-    public TextAsset GetArea(string areaName)
+    public AreaData GetArea(string areaName)
     {
         int id = 0;
-        foreach (string n in names)
-        {
-            if (n == areaName)
-            {
-                return all[id];
-            }
-            id++;
-        }
+        if (data.ContainsKey(areaName))
+            return data[areaName];
         Debug.LogError("No hay area: " + areaName + ", en MissionsManager > AreasManager");
         return null;
     }
-    bool IsNameUsed(string name)
+    bool IsNameUsed(string areaName)
     {
-        foreach (string n in names)
-            if (n == name)
-                return true;
+        if (data.ContainsKey(areaName))
+            return true;
          return false;
-    }
-    int GetIdByName(string name)
-    {
-        int id = 0;
-        foreach(string n in names)
-        {
-            if (n == name)
-                return id;
-            id++;
-        }
-        return id;
     }
 }

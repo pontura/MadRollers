@@ -3,17 +3,18 @@ using System.Collections;
 
 public class Breakable : MonoBehaviour {
 
-    public ExplotionType explotionType;
-    public enum ExplotionType
+    [SerializeField] ExplotionType explotionType;
+    [SerializeField]
+    enum ExplotionType
     {
         SIMPLE,
         BOMB,        
         ENEMY
     }
-    public bool isOn;
-	public float NumOfParticles = 30;
-	public Breakable[] childs;
-    public bool killAtHit;
+    bool isOn;
+	float NumOfParticles = 30;
+	[SerializeField] Breakable[] childs;
+    [SerializeField] bool killAtHit;
 
     //nunca mata
     public bool dontBeKilledByFloorExplotions;
@@ -30,12 +31,15 @@ public class Breakable : MonoBehaviour {
     private Vector3 originalPosition;
     private SceneObject sceneObject;
     BossPart bossPart;
-    public SceneObject GetSceneObject()
+    Rigidbody rb;
+
+    public SceneObject SceneObject
     {
-        return sceneObject;
+        get { return sceneObject; }
     }
 	void Start()
-	{
+    {
+        rb = gameObject.GetComponent<Rigidbody>();
         bossPart = GetComponent<BossPart>();
 
         sceneObject = GetComponent<SceneObject> ();
@@ -79,7 +83,7 @@ public class Breakable : MonoBehaviour {
         }
 
         foreach (Breakable breakable in childs)
-            if (breakable && breakable.isOn) breakable.hasGravity();
+            if (breakable && breakable.isOn) breakable.HasGravity();
 
 		breaker();
 
@@ -95,11 +99,10 @@ public class Breakable : MonoBehaviour {
 			Destroy(gameObject);
 
     }
-	public void hasGravity() {
+	void HasGravity() {
         isOn = false;
 		dontKillPlayers = true;
 			
-		Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
 
 		if(rb == null)
 			rb = gameObject.AddComponent<Rigidbody>();
@@ -113,25 +116,17 @@ public class Breakable : MonoBehaviour {
         Vector3 rot = new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), Random.Range(-20, 20));
         gameObject.transform.localEulerAngles += rot;
 
-		//GetComponent<Collider>().isTrigger = true;
-		//StartCoroutine(makeItTrigger());
-
-		//SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
-
 		if(childs.Length>0)
 		{
-			foreach (Breakable breakable  in childs)
+			foreach (Breakable breakable in childs)
 			{
                 if (breakable && breakable.isOn)
-					breakable.hasGravity();
+					breakable.HasGravity();
 			}
 		}
 	}
 	private void breaker(){
 		BreakStandard ();
-//		if (sceneObject.distanceFromCharacter > 25)
-//			return;
-//		BreakEveryBlock ();
 	}
 	void BreakEveryBlock()
 	{

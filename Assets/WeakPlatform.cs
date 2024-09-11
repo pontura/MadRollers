@@ -55,31 +55,15 @@ public class WeakPlatform : SceneObject {
 
                     render.SetPropertyBlock(floor_top_mat, 1);
                     render.SetPropertyBlock(floor_border_mat, 0);
-
-                   // render.materials[1].color = floor_top;
-                   // render.materials[0].color = floor_border;
-
-                    //Renderer[] renderers = GetComponentsInChildren<Renderer>();
-                    //foreach (Renderer r in renderers)
-                    //    ChangeMaterials(r);
                 }
 			} else {
-				GetComponent<Renderer>().material = Data.Instance.videogamesData.GetActualVideogameData ().wallMaterial;
+                if (render == null)
+                    render = GetComponent<Renderer>();
+
+                render.material = Data.Instance.videogamesData.GetActualVideogameData ().wallMaterial;
 			}
 		}
 	}
-	//void ChangeMaterials(Renderer renderer)
-	//{
- //       if (renderer.gameObject.name == "floorAllInOne")
- //       {
- //           renderer.materials[1].color = floor_top;
- //           renderer.materials[0].color = floor_border;
- //       }
- //       else if (renderer.gameObject.name == "top")
-	//		renderer.material.color = floor_top;
-	//	else
-	//		renderer.material.color = floor_border;
-	//}
 
 	public void breakOut(Vector3 impactPosition) {
 
@@ -132,32 +116,7 @@ public class WeakPlatform : SceneObject {
 		if (falling)
 			return;
 		falling = true;
-
         Pool();
-		//float r = (float)Random.Range (1f, 10f) / 50f;
-
-		//Invoke("Pool", r );
-		//return;
-
-
-
-		////if(rb==null)
-		////	rb = gameObject.AddComponent<Rigidbody>();
-
-		//rb.isKinematic = false;
-		//rb.useGravity = true;
-		//if (type == types.FLOOR) {
-		//	rb.mass = 40;
-		//	rb.velocity = Vector3.zero;
-		//	Vector3 dir = (Vector3.up * Random.Range(120,260));
-		//	rb.AddForce(dir, ForceMode.Impulse);
-		//} else {
-		//	rb.mass = 10;
-		//	rb.velocity = Vector3.zero;
-		//	Vector3 dir = (Vector3.forward * Random.Range(250,460));
-		//	dir += new Vector3 (Random.Range (-5, 5), Random.Range (0, 20), 0);
-		//	rb.AddForce(dir, ForceMode.Impulse);
-		//}
 	}
 	public override void OnPool()
 	{
@@ -167,10 +126,6 @@ public class WeakPlatform : SceneObject {
 
         if (collider != null)
 			collider.enabled = false;
-		//if (rb != null)
-		//	Destroy (rb);
-		//rb.useGravity = false;
-		//rb.isKinematic = true;
 	}
 
 }

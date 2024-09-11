@@ -35,7 +35,8 @@ public class Missions : MonoBehaviour
 
     public void Init()
     {
-        areasetDataLoaded.Clear();
+        MissionsManager.Instance.areasManager.LoadData();
+           areasetDataLoaded.Clear();
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
             offset -= 40;
 
@@ -57,6 +58,7 @@ public class Missions : MonoBehaviour
             data.events.OnMissionComplete += OnMissionComplete;
             data.events.OnBossActive += OnBossActive;
         }
+
     }
     public void Reset()
     {
@@ -297,10 +299,9 @@ public class Missions : MonoBehaviour
     }
     void AddAreaByName(string areaName, bool isXtra = false)
     {
-        TextAsset asset = MissionsManager.Instance.areasManager.GetArea(areaName);
+        areaDataActive = MissionsManager.Instance.areasManager.GetArea(areaName);
        // TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
-		if (asset != null) {					
-			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
+		if (areaDataActive != null) {					
 			areasLength += areaDataActive.z_length/2;
 			level.sceneObjects.AddSceneObjects (areaDataActive, areasLength);
 			print ("AREA: " + areaName + " km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName +  " totalAreas" + total_areas );
@@ -344,12 +345,10 @@ public class Missions : MonoBehaviour
             {
                 if (id < totalAreas)
                 {
-                    TextAsset asset = MissionsManager.Instance.areasManager.GetArea(areaName);
+                    AreaData areaData = MissionsManager.Instance.areasManager.GetArea(areaName);
                    // TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
-                    if (asset != null)
+                    if (areaData != null)
                     {
-                           
-                        AreaData areaData = JsonUtility.FromJson<AreaData>(asset.text);
                         totalDistance += areaData.z_length;
                         //print(":::::::::::::  area: " + areaName + "  distance: " + areaData.z_length + "  totalDistance: " + totalDistance);
                     }

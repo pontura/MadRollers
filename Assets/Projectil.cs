@@ -171,7 +171,7 @@ public class Projectil : SceneObject {
                     breakable.breakOut(other.gameObject.transform.position, true);
                   //  Debug.Log(other.gameObject.name + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
 
-                    SetScore(ScoresManager.score_for_killing + breakable.GetSceneObject().score, ScoresManager.types.KILL);
+                    SetScore(ScoresManager.score_for_killing + breakable.SceneObject.score, ScoresManager.types.KILL);
                     //other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 }
                 //---------------------------------------------------
@@ -180,7 +180,7 @@ public class Projectil : SceneObject {
 				break;
 			case "destroyable":
                 breakable = other.gameObject.GetComponent<Breakable>();
-                int total = ScoresManager.score_for_breaking + breakable.GetSceneObject().score;
+                int total = ScoresManager.score_for_breaking + breakable.SceneObject.score;
                 //Debug.Log(other.gameObject.name + " total: " + total + "   score_for_breaking " + ScoresManager.score_for_breaking + "score: " + breakable.GetSceneObject().score);
 				SetScore(total, ScoresManager.types.BREAKING);
                 breakable.breakOut(other.gameObject.transform.position, true);

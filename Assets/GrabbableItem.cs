@@ -83,7 +83,7 @@ public class GrabbableItem : SceneObject
                 player = null;
                 CheckIfIsPartOfCombo();
                 Pool();
-			}
+            }
 		}
 	}
     
