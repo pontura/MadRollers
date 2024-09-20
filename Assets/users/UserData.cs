@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yaguar.Auth;
 
 public class UserData : MonoBehaviour
 {
@@ -29,7 +30,13 @@ public class UserData : MonoBehaviour
     public HiscoresByMissions hiscoresByMissions;
     public AvatarImages avatarImages;
     public ServerConnect serverConnect;
-    public int playerID;
+    public int playerID; // Mad-Roller muñeco id
+    private bool allDone;
+
+    public bool IsReadyToInit() //if its logged or new in the game:
+    {
+        return allDone;
+    }
 
     public static UserData Instance
     {
@@ -66,28 +73,37 @@ public class UserData : MonoBehaviour
     }
     private void Start()
     {
-        Invoke("Delayed", 0.1f);
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             hiscoresByMissions.Init();
             Data.Instance.events.OnSaveScore += OnSaveScore;
         }
+#if UNITY_EDITOR
+        Invoke("LoadLocalUser", 0.1f);
+#else
+        FirebaseAuthManager.Instance.OnFirebaseAuthenticated += OnFirebaseAuthenticated;
+#endif
     }
-    private void Delayed()
+    void OnFirebaseAuthenticated(string username, string email, string uid)
     {
-        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
-        {
-            //data.missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1", 0);
-            //data.missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2", 0);
-            //data.missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3", 0);
-            score = PlayerPrefs.GetInt("score");
-            LoadUser();
-        }
+        playerID = PlayerPrefs.GetInt("playerID");
+        data.userID = uid;
 
+        serverConnect.LoadUserData(data.userID, OnLoaded);
+        //OnLoaded(null);
+    }
+    private void LoadLocalUser()
+    {
+        score = PlayerPrefs.GetInt("score");
+        LoadUser();
     }
     private void OnDestroy()
     {
         Data.Instance.events.OnSaveScore -= OnSaveScore;
+#if UNITY_EDITOR
+#else
+        FirebaseAuthManager.Instance.OnFirebaseAuthenticated -= OnFirebaseAuthenticated;
+#endif
     }
     void OnSaveScore()
     {
@@ -135,18 +151,9 @@ public class UserData : MonoBehaviour
     }
     void OnLoaded(ServerConnect.UserDataInServer data)
     {
+        allDone = true;
         this.data = data;
-        print("user on server.  username: " + data.username + " userID: " + data.userID );
-        
-        
-
-        //score = PlayerPrefs.GetInt("score");
-        //missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1");
-        //missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2");
-        //missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3");
-
-        //return;
-
+        //print("user on server.  username: " + data.username + " userID: " + data.userID );
     }
     public void UserCreation()
     {
