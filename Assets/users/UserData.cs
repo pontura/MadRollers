@@ -86,6 +86,7 @@ public class UserData : MonoBehaviour
     }
     void OnFirebaseAuthenticated(string username, string email, string uid)
     {
+        Debug.Log("USERDATA OnFirebaseAuthenticated " + username + " email" + email + " uid: " + uid);
         playerID = PlayerPrefs.GetInt("playerID");
         data.userID = uid;
 
