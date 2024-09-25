@@ -8,7 +8,7 @@ public class UserUIRegistrationPanel : MonoBehaviour
     public RawImage image;
     public AspectRatioFitter aspectRatioFilter;
 
-    public AvatarThumb avatarThumb;
+   // public AvatarThumb avatarThumb;
     public InputField field;
     UserDataUI userDataUI;
     public GameObject PhotoPanel;
@@ -21,11 +21,12 @@ public class UserUIRegistrationPanel : MonoBehaviour
         PhotoPanel.SetActive(false);
         this.userDataUI = userDataUI;
 
-        if (_username != "")
-        {
+        if(_username != "")
             field.text = _username;
+
+        if (UserData.Instance.IsRegistered())
             userExists = true;
-        }
+
         ShowEditPanel();
         UsersEvents.OnUserUploadDone += OnUserUploadDone;
     }
@@ -36,7 +37,7 @@ public class UserUIRegistrationPanel : MonoBehaviour
     }
     void OnUserUploadDone()
     {
-        avatarThumb.Reset();
+        //avatarThumb.Reset();
     }
     void OnDestroy()
     {
@@ -52,23 +53,23 @@ public class UserUIRegistrationPanel : MonoBehaviour
     {
         PhotoPanel.SetActive(false);
         PhotoTakenPanel.SetActive(true);
-        avatarThumb.Init( UserData.Instance.userID );
+       // avatarThumb.Init( UserData.Instance.userID );
     }
-    public void TakeSnapshot()
-    {
-        UserData.Instance.avatarImages.ResetAvatar(UserData.Instance.userID);
-        foreach (GameObject go in hideOnScreenshot)
-            go.SetActive(false);
-      //  userDataUI.webcamPhoto.TakeSnapshot(OnPhotoTaken);
-        StartCoroutine(SaveLocal(Screen.width, Screen.height));
-    }
-    public IEnumerator SaveLocal(int width, int height) {
-        yield return new WaitForSeconds(0.1F);
-        Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, true);
-        texture.ReadPixels(new Rect(0, 0, width, height), 0, 0); texture.Apply();
-        UserData.Instance.avatarImages.SetImageFor(UserData.Instance.userID, texture);
-        avatarThumb.OnLoaded(texture);
-    }
+    //public void TakeSnapshot()
+    //{
+    //    UserData.Instance.avatarImages.ResetAvatar(UserData.Instance.userID);
+    //    foreach (GameObject go in hideOnScreenshot)
+    //        go.SetActive(false);
+    //  //  userDataUI.webcamPhoto.TakeSnapshot(OnPhotoTaken);
+    //   // StartCoroutine(SaveLocal(Screen.width, Screen.height));
+    //}
+  //  public IEnumerator SaveLocal(int width, int height) {
+        //yield return new WaitForSeconds(0.1F);
+        //Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, true);
+        //texture.ReadPixels(new Rect(0, 0, width, height), 0, 0); texture.Apply();
+      //  UserData.Instance.avatarImages.SetImageFor(UserData.Instance.userID, texture);
+       // avatarThumb.OnLoaded(texture);
+  //  }
     void OnPhotoTaken()
     {
         foreach (GameObject go in hideOnScreenshot)
@@ -90,6 +91,7 @@ public class UserUIRegistrationPanel : MonoBehaviour
     }
     public void OnSubmit()
     {
+        Debug.Log("OnSubmit userExists: " + userExists);
         if (userExists)
         {
             userDataUI.OnUpload(field.text);

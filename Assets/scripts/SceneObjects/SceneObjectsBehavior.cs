@@ -128,11 +128,8 @@ public class SceneObjectsBehavior : MonoBehaviour
 
                 case "palm":
                     string soName = goName;
-                    int randNum = Random.Range(0, 3);
-                    if (randNum == 1)
-                        soName = "palm2";
-                    else if (randNum == 2)
-                        soName = "palm3";
+                    int randNum = Random.Range(1, 3);
+                    soName = "palm" + randNum;
                     sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
                     break;
 
@@ -184,7 +181,7 @@ public class SceneObjectsBehavior : MonoBehaviour
             }
             if (sceneObject != null)
             {
-                areaSceneObjectManager.AddComponentsToSceneObject(go, sceneObject.gameObject);
+               // areaSceneObjectManager.AddComponentsToSceneObject(go, sceneObject.gameObject);
                 //SceneObjectData soData = sceneObject.SoData;
 
                 //if (soData != null)
@@ -207,7 +204,6 @@ public class SceneObjectsBehavior : MonoBehaviour
     }
     SceneObject SetSceneObject(SceneObject so, Vector3 pos, Vector3 rot)
     {
-        so.isActive = false;
         so.transform.position = pos;
         so.transform.localEulerAngles = rot;
         return so;

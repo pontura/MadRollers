@@ -28,7 +28,7 @@ public class UserDataUI : MonoBehaviour
     
     void SetPanelsIfLogged()
     {
-        if (userData.username == "")
+        if (!userData.IsRegistered())
         {
             userRegistrationPanel.gameObject.SetActive(true);
             userRegistrationPanel.Init(this, userData.username);

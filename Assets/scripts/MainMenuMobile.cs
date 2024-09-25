@@ -28,9 +28,9 @@ public class MainMenuMobile : MonoBehaviour
         Data.Instance.events.OnInterfacesStart();
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
-
-        if (UserData.Instance.IsLogged())
-            DonePanel.SetActive(true);
+        
+        if (UserData.Instance.IsRegistered())
+            DonePanel.SetActive(true);  
         else
             RegisterPanel.SetActive(true);
 
@@ -44,7 +44,7 @@ public class MainMenuMobile : MonoBehaviour
     void OnJoystickClick()
     {
         if (done) return; done = true;
-        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsLogged())
+        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsRegistered())
             Next();
         else
             RegisterPressed();

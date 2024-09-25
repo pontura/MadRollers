@@ -11,9 +11,7 @@ public class GrabbableItem : SceneObject
     [HideInInspector]
     public float sec = 0;
 
-     [HideInInspector]
     public Collider TriggerCollider;
-     [HideInInspector]
     public Collider FloorCollider;
 
     [HideInInspector]
@@ -29,8 +27,8 @@ public class GrabbableItem : SceneObject
 		base.OnRestart(pos);
         player = null;
 
-        TriggerCollider = gameObject.GetComponent<SphereCollider>();
-        FloorCollider = gameObject.GetComponent<BoxCollider>();
+        if(TriggerCollider == null)  TriggerCollider = gameObject.GetComponent<SphereCollider>();
+        if (FloorCollider == null) FloorCollider = gameObject.GetComponent<BoxCollider>();
 
         TriggerCollider.enabled = true;
         FloorCollider.enabled = true;
@@ -39,24 +37,14 @@ public class GrabbableItem : SceneObject
         hitted = false;
         transform.localEulerAngles = new Vector3(0, 0, 0);
 
-        if (GetComponent<Rigidbody>() && !GetComponent<Rigidbody>().isKinematic)
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //if (GetComponent<Rigidbody>() && !GetComponent<Rigidbody>().isKinematic)
+        //    GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         sec = 0;
     }
 	bool isGround;
-	public void SetMaterial(Material mat)
-	{
-		isGround = false;
-		meshRenderer.material = mat;
-	}
-	public void SetGroundMaterial()
-	{
-		if (isGround)
-			return;
-		isGround = true;
-		meshRenderer.material = groundMaterial;
-	}
+	
+
     public override void OnPool()
     {
         player = null;

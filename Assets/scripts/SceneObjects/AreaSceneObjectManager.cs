@@ -75,36 +75,36 @@ public class AreaSceneObjectManager : MonoBehaviour {
 	}
 	public void AddComponentsToSceneObject(AreaSceneObjectData jsonData, GameObject so) 
 	{
-		if (jsonData.soData.Count > 0) {
-			SceneObjectDataGeneric data = jsonData.soData [0];
-			SceneObjectData sceneObjectData = so.GetComponent<SceneObjectData> ();
-			Bumper bumper = so.GetComponent<Bumper> ();
+		//if (jsonData.soData.Count > 0) {
+		//	SceneObjectDataGeneric data = jsonData.soData [0];
+		//	SceneObjectData sceneObjectData = so.GetComponent<SceneObjectData> ();
+		//	Bumper bumper = so.GetComponent<Bumper> ();
 
-			if (data.bumperForce > 0) {				
-				if(bumper == null)
-					bumper = so.gameObject.AddComponent<Bumper> ();
-				bumper.force = data.bumperForce;
-			}
-			if (data.size != Vector3.zero) {
+		//	if (data.bumperForce > 0) {				
+		//		if(bumper == null)
+		//			bumper = so.gameObject.AddComponent<Bumper> ();
+		//		bumper.force = data.bumperForce;
+		//	}
+		//	if (data.size != Vector3.zero) {
 				
-				if(sceneObjectData == null)
-					sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
-				sceneObjectData.size = data.size;
+		//		if(sceneObjectData == null)
+		//			sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
+		//		sceneObjectData.size = data.size;
 
-			}
-			if (data.random_pos_x != 0) {
-				if(sceneObjectData == null)
-					sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
+		//	}
+		//	if (data.random_pos_x != 0) {
+		//		if(sceneObjectData == null)
+		//			sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
 
-				sceneObjectData.random_pos_x = data.random_pos_x;
-			}
-			if (data.minPayers != 0) {
-				if(sceneObjectData == null)
-					sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
+		//		sceneObjectData.random_pos_x = data.random_pos_x;
+		//	}
+		//	if (data.minPayers != 0) {
+		//		if(sceneObjectData == null)
+		//			sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
 
-				sceneObjectData.minPayers = data.minPayers;
-			}
-		}
+		//		sceneObjectData.minPayers = data.minPayers;
+		//	}
+		//}
 
         MaterialSwapper mat = so.GetComponent<MaterialSwapper>();
         if (mat != null && jsonData.mat.Count > 0)

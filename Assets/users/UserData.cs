@@ -23,7 +23,6 @@ public class UserData : MonoBehaviour
     public string username { get { return data.username; } }
 
 
-    [SerializeField] private int score;
     [SerializeField] private int lastScoreWon; //solo para hacer la animacion en el levelSelector
 
     public string path;
@@ -88,14 +87,15 @@ public class UserData : MonoBehaviour
     {
         Debug.Log("USERDATA OnFirebaseAuthenticated " + username + " email" + email + " uid: " + uid);
         playerID = PlayerPrefs.GetInt("playerID");
+
         data.userID = uid;
+        data.username = username;
 
         serverConnect.LoadUserData(data.userID, OnLoaded);
         //OnLoaded(null);
     }
     private void LoadLocalUser()
     {
-        score = PlayerPrefs.GetInt("score");
         LoadUser();
     }
     private void OnDestroy()
@@ -112,8 +112,7 @@ public class UserData : MonoBehaviour
         if (Data.Instance.multiplayerData.score == 0)
             return;
         lastScoreWon = Data.Instance.multiplayerData.score;
-        score += lastScoreWon;
-        PlayerPrefs.SetInt("score", score);
+        data.score += lastScoreWon;
         SaveUserDataToServer();
     }
     void LoadUser()
@@ -131,9 +130,9 @@ public class UserData : MonoBehaviour
          serverConnect.LoadUserData(data.userID, OnLoaded);
         //OnLoaded(null);
     }
-    public bool IsLogged()
+    public bool IsRegistered()
     {
-        return data.username != "";
+        return PlayerPrefs.GetString("username") != "";
     }
     string SetRandomID()
     {
@@ -153,8 +152,13 @@ public class UserData : MonoBehaviour
     void OnLoaded(ServerConnect.UserDataInServer data)
     {
         allDone = true;
-        this.data = data;
-        //print("user on server.  username: " + data.username + " userID: " + data.userID );
+        if (data != null)
+        {
+            this.data = data;
+            Debug.Log("UserData OnLoaded . Login done!  username: " + data.username + " userID: " + data.userID);
+        }
+        else
+            Debug.LogError("No user!");
     }
     public void UserCreation()
     {
@@ -210,11 +214,7 @@ public class UserData : MonoBehaviour
     }
     public int Score()
     {
-        return score;
-    }
-    public int ScoreFormated()
-    {
-        return score;
+        return data.score;
     }
     public int GetLastScoreWon()
     {
@@ -225,7 +225,6 @@ public class UserData : MonoBehaviour
 
     public void SaveUserDataToServer()
     {
-        //PlayerPrefs.SetInt("score", score);
         //PlayerPrefs.GetInt("missionUnblockedID_1", data.missionUnblockedID_1);
         //PlayerPrefs.GetInt("missionUnblockedID_2", data.missionUnblockedID_2);
         //PlayerPrefs.GetInt("missionUnblockedID_3", data.missionUnblockedID_3);
@@ -235,11 +234,12 @@ public class UserData : MonoBehaviour
     }
     IEnumerator SaveUserDataC()
     {
-        string hash = Utils.Md5Sum(UserData.Instance.data.userID + score + data.missionUnblockedID_1 + data.missionUnblockedID_2 + data.missionUnblockedID_3 + "pontura");
-        string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.data.userID) + "&score=" + score
+        string hash = Utils.Md5Sum(UserData.Instance.data.userID + data.score + data.missionUnblockedID_1 + data.missionUnblockedID_2 + data.missionUnblockedID_3 + "pontura");
+        string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.data.userID) + "&score=" + data.score
             + "&missionUnblockedID_1=" + data.missionUnblockedID_1
             + "&missionUnblockedID_2=" + data.missionUnblockedID_2
             + "&missionUnblockedID_3=" + data.missionUnblockedID_3
+            + "&score=" + data.score
             + "&hash=" + hash;
 
         print("grabe: " + post_url);

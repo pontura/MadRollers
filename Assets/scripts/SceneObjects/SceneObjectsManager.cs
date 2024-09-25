@@ -20,7 +20,6 @@ public class SceneObjectsManager : MonoBehaviour
     public void AddSceneObject(SceneObject so, Vector3 pos)
     {
         so.gameObject.SetActive(false);
-        so.isActive = false;
         so.transform.SetParent(Pool.Scene.transform);
         so.transform.localPosition = pos;
         sceneObjectsInScene.Add(so);
@@ -29,7 +28,6 @@ public class SceneObjectsManager : MonoBehaviour
     public void AddSceneObject(SceneObject so, Vector3 pos, Transform container)
     {
         so.gameObject.SetActive(false);
-        so.isActive = false;
 
         so.transform.localPosition = pos;
         sceneObjectsInScene.Add(so);
@@ -39,9 +37,7 @@ public class SceneObjectsManager : MonoBehaviour
     }
     public void AddSceneObjectAndInitIt(SceneObject so, Vector3 pos, Transform container = null)
     {
-
         so.gameObject.SetActive(false);
-        so.isActive = true;
 
         if (container != null)
             so.transform.SetParent(container);
@@ -52,7 +48,6 @@ public class SceneObjectsManager : MonoBehaviour
         sceneObjectsInScene.Add(so);
         so.Init(this);
         so.Restart(pos);
-
 
     }
     public void RemoveSceneObject(SceneObject so)
@@ -97,9 +92,7 @@ public class SceneObjectsManager : MonoBehaviour
                 return;
             }
             float _z = so.transform.position.z;
-            if (so.transform.localPosition.y < -8)
-                so.Pool();
-            else if (distance > _z + so.size_z + 22)
+            if (so.transform.localPosition.y < -8 || distance > _z + so.size_z + 22)
                 so.Pool();
             else if (distance > _z - 58)
             {

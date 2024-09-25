@@ -132,8 +132,25 @@ public class MissionSelectorMobile : MonoBehaviour
         StartCoroutine(LoadGame());
         Data.Instance.events.SetHamburguerButton(false);
     }
+
+
+    //Skip animation:
+    bool isLoading;
+    private void Update()
+    {
+        if (!isLoading) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            StopAllCoroutines();
+            Data.Instance.LoadLevel("Game");
+            isLoading = false;
+        }
+
+    }
     IEnumerator LoadGame()
     {
+        yield return new WaitForSeconds(0.05f);
+        isLoading = true;
         yield return new WaitForSeconds(3);
         Data.Instance.musicManager.OnLoadingMusic();
         yield return new WaitForSeconds(2.8f);

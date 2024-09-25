@@ -103,16 +103,19 @@ public class LoadingScreen : MonoBehaviour {
     }
     void AllLoaded()
     {
+#if UNITY_EDITOR
+        Data.Instance.LoadLevel("Intro");
+        return;
+#endif
         Debug.Log("AllLoaded");
         Data.Instance.socialAuth.Init((authCode) => {
             Debug.Log("#socialAuth: " + authCode);
             if (authCode != "")
             {
                 FirebaseAuthManager.Instance.SignInWithPlayGames(authCode, (success) => {
-                 //   if (!success) {
-
-                        LoopForUserReady();
-                  //  }
+                    //   if (!success) {
+                    LoopForUserReady();
+                    //  }
                 });
             }
         });

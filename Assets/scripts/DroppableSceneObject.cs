@@ -20,7 +20,6 @@ public class DroppableSceneObject : SceneObject {
         isOn = false;
         base.OnRestart(pos);
         exploted = false;
-        isActive = true;
         collider = GetComponent<Collider>();
 
     }
@@ -77,7 +76,6 @@ public class DroppableSceneObject : SceneObject {
     }
     void Destroy()
     {
-        isActive = false;
         Pool();
     }
 }

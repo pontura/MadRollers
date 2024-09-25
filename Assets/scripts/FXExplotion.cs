@@ -18,22 +18,21 @@ public class FXExplotion : SceneObject {
 
 		transform.localScale = Vector3.one;
 
-        GameCamera camera = Game.Instance.gameCamera;
+        if (Game.Instance != null)
+        {
+            float distance = transform.position.z - Game.Instance.level.charactersManager.distance;
+            distance /= 2;
 
-		float distance = transform.position.z - Game.Instance.level.charactersManager.distance;
-        distance /= 2;
+            GameCamera camera = Game.Instance.gameCamera;
+            float explotionPower = 5 - distance;
 
-        float explotionPower = 5 - distance;
-
-        if (explotionPower < 1.5f) explotionPower = 1.5f;
-        else if (explotionPower > 3.5f) explotionPower = 3.5f;
-
-        camera.explote(explotionPower);
+            if (explotionPower < 1.5f) explotionPower = 1.5f;
+            else if (explotionPower > 3.5f) explotionPower = 3.5f;
+            camera.explote(explotionPower);
+            setScore();
+        }
 
         base.OnRestart(position);
-
-        setScore();
-
         position.z += 0;
         position.y += 2;
 		timer = 0f;

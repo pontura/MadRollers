@@ -12,9 +12,8 @@ public class SceneObject : MonoBehaviour {
 
     //[HideInInspector]
     //public Transform characterTransform;
-
-    [HideInInspector]
-    public bool isActive;
+    bool active;
+    public bool isActive { get { return active;  }  }
     public int score;
 
    // [HideInInspector]
@@ -35,8 +34,10 @@ public class SceneObject : MonoBehaviour {
 
     public virtual void Init(SceneObjectsManager manager)
 	{
+        active = false;
 		this.manager = manager;
-        soData = GetComponent<SceneObjectData>();
+        if(soData != null)
+            soData = GetComponent<SceneObjectData>();
     }
     public SceneObjectsManager Manager
     {
@@ -49,7 +50,7 @@ public class SceneObject : MonoBehaviour {
     {
 		gameObject.SetActive(true);
         OnRestart(pos);
-		isActive = true;
+        active = true;
     }
     public void setRotation(Vector3 rot)
     {
@@ -62,7 +63,7 @@ public class SceneObject : MonoBehaviour {
     }
     public void Pool()
     {
-        isActive = false;
+        active = false;
         Vector3 newPos = new Vector3(2000, 0, 2000);
 
 		if(transform !=null)
