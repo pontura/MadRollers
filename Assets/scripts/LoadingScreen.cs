@@ -104,7 +104,7 @@ public class LoadingScreen : MonoBehaviour {
     void AllLoaded()
     {
 #if UNITY_EDITOR
-        Data.Instance.LoadLevel("Intro");
+        UseLocalData();
         return;
 #endif
         Debug.Log("AllLoaded");
@@ -112,12 +112,16 @@ public class LoadingScreen : MonoBehaviour {
             Debug.Log("#socialAuth: " + authCode);
             if (authCode != "")
             {
-                FirebaseAuthManager.Instance.SignInWithPlayGames(authCode, (success) => {
-                    //   if (!success) {
-                    LoopForUserReady();
-                    //  }
+                FirebaseAuthManager.Instance.SignInWithPlayGames(authCode, (success) =>
+                {
+                    if (success)
+                        LoopForUserReady();
+                    else
+                        UseLocalData();
                 });
             }
+            else
+                UseLocalData();
         });
     }
     void LoopForUserReady()
@@ -127,5 +131,11 @@ public class LoadingScreen : MonoBehaviour {
             Data.Instance.LoadLevel("Intro");
         else
             Invoke("LoopForUserReady", 0.1f);
+    }
+    void UseLocalData()
+    {
+        print("UseLocalData");
+        UserData.Instance.UseLocalData();
+        Data.Instance.LoadLevel("Intro");
     }
 }

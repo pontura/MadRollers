@@ -149,6 +149,21 @@ public class UserData : MonoBehaviour
         }
         return value;
     }
+    public void UseLocalData()
+    {
+        allDone = true;
+
+        data.username = PlayerPrefs.GetString("username");
+        data.userID = PlayerPrefs.GetString("userID");
+
+        if (data.userID == "") data.userID = SystemInfo.deviceUniqueIdentifier;
+        if (data.username == "")  data.username = "MR (" + Random.Range(100, 10000) + ")";
+
+        data.missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1");
+        data.missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2");
+        data.missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3");
+        data.score = PlayerPrefs.GetInt("score");
+    }
     void OnLoaded(ServerConnect.UserDataInServer data)
     {
         allDone = true;
@@ -225,11 +240,6 @@ public class UserData : MonoBehaviour
 
     public void SaveUserDataToServer()
     {
-        //PlayerPrefs.GetInt("missionUnblockedID_1", data.missionUnblockedID_1);
-        //PlayerPrefs.GetInt("missionUnblockedID_2", data.missionUnblockedID_2);
-        //PlayerPrefs.GetInt("missionUnblockedID_3", data.missionUnblockedID_3);
-        //return;
-//
         StartCoroutine(SaveUserDataC());
     }
     IEnumerator SaveUserDataC()
@@ -241,6 +251,11 @@ public class UserData : MonoBehaviour
             + "&missionUnblockedID_3=" + data.missionUnblockedID_3
             + "&score=" + data.score
             + "&hash=" + hash;
+
+        PlayerPrefs.SetInt("missionUnblockedID_1", data.missionUnblockedID_1);
+        PlayerPrefs.SetInt("missionUnblockedID_2", data.missionUnblockedID_2);
+        PlayerPrefs.SetInt("missionUnblockedID_3", data.missionUnblockedID_3);
+        PlayerPrefs.SetInt("score", data.score);
 
         print("grabe: " + post_url);
 
