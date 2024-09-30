@@ -5461,6 +5461,12 @@ MonoBehaviour:
   m_Script: {fileID: 1395413934, guid: 09c9b883b79ef864a99683bb36c5776d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 2
+  _slowRotationSpeed: 5
+  _fastRotationSpeed: 30
+  _rotateAroundAxis: 1
+  _relativeTo: 0
+  _reverse: 0
 --- !u!1 &93883260
 GameObject:
   m_ObjectHideFlags: 0
@@ -17663,6 +17669,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 625856204}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &625856206 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7624578739186044035, guid: 0e7cb34a24db268499e589ff555aa630,
+    type: 3}
+  m_PrefabInstance: {fileID: 625856204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a12867536f5d654bb2b5ff50c63e632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639356208
 GameObject:
   m_ObjectHideFlags: 0
@@ -61229,6 +61247,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2071574781}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2071574786 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7624578739186044035, guid: 0e7cb34a24db268499e589ff555aa630,
+    type: 3}
+  m_PrefabInstance: {fileID: 2071574781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a12867536f5d654bb2b5ff50c63e632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2078974993
 GameObject:
   m_ObjectHideFlags: 0
@@ -67552,7 +67582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7515892265169874272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -67588,6 +67618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1093866035}
   aspectRatioFilter: {fileID: 1093866032}
+  avatarThumb: {fileID: 625856206}
   field: {fileID: 1187774781}
   PhotoPanel: {fileID: 7515892265284768680}
   PhotoTakenPanel: {fileID: 7515892264840707710}
@@ -67899,6 +67930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117ad238b325f66488fce0621f449d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatarThumb: {fileID: 2071574786}
   field: {fileID: 7515892265453713313}
 --- !u!1 &7515892265665354594
 GameObject:

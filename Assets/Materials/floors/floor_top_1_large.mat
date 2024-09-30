@@ -2,21 +2,25 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: floor_top_1_large
-  m_Shader: {fileID: 4800000, guid: 659dfd41c9b8f404390306092e32514c, type: 3}
-  m_ShaderKeywords: V_CW_MATCAP_BLEND_MULTIPLY V_CW_TERRAINBLEND_TEXTURE _GLOSSYREFLECTIONS_OFF
-    _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF
-  m_LightmapFlags: 4
+  m_Shader: {fileID: -6465566751694194690, guid: 76c83a3b53e34da4faab3ffa6a07d1a7,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -72,6 +76,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NM:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NrmalMap:
+        m_Texture: {fileID: 2800000, guid: 854bcaa0a32cc3e42b3ab4231951cd09, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -91,6 +103,14 @@ Material:
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: 771cf35144072db4fae60c6c3d604404, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2d:
+        m_Texture: {fileID: 2800000, guid: 771cf35144072db4fae60c6c3d604404, type: 3}
+        m_Scale: {x: 50, y: 50}
         m_Offset: {x: 0, y: 0}
     - _V_CW_Control:
         m_Texture: {fileID: 0}
@@ -120,6 +140,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - PixelSnap: 0
     - V_CW_D_OPTIONS: 0
@@ -135,6 +168,7 @@ Material:
     - V_CW_Texture_Mix_Mode: 0
     - V_CW_W_OPTIONS: 0
     - _Amount: -0.035714287
+    - _Backwards_Strength: -0.01
     - _BumpMap_UV_Scale: 1
     - _BumpScale: 1
     - _BumpStrength: 1
@@ -154,14 +188,18 @@ Material:
     - _Knee: 0.5
     - _Metallic: 0
     - _Mode: 0
+    - _NormalMap_value: 4.2
     - _OcclusionStrength: 0
     - _Parallax: 0.08
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _RimPower: 8
     - _SecondBumpMap_UV_Scale: 1
     - _Shininess: 0.7
     - _SmoothnessTextureChannel: 1
     - _SpecularHighlights: 0
     - _SrcBlend: 1
+    - _Strength: 1.7
     - _UVSec: 1
     - _V_CV_MainTex_scrollSpeed_U: 0
     - _V_CV_MainTex_scrollSpeed_V: 0
@@ -182,8 +220,10 @@ Material:
     - _V_CW_Z_Bend_Bias: 0
     - _V_CW_Z_Bend_Size: 0
     - _ZWrite: 1
+    - _curve_Strength: 0
     m_Colors:
     - _Ambient: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 0.2901961, g: 0.7254902, b: 0.2509804, a: 1}
     - _Color: {r: 0.4544431, g: 0.8161765, b: 0.24605319, a: 1}
     - _EmissionColor: {r: 0.04094742, g: 0.2264151, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
@@ -199,3 +239,17 @@ Material:
     - _V_CW_Fog_Color: {r: 1, g: 1, b: 1, a: 1}
     - _V_CW_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_CW_Rim_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
+--- !u!114 &2508022930042631760
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
