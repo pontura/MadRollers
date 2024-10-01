@@ -19,7 +19,8 @@ public class Laser : SceneObject {
 		data = GetComponent<SceneObjectData> ();
 		base.OnRestart (pos);
 		laser.SetActive (false);
-		parts [1].transform.localPosition = new Vector3 (0, data.size.y, 0);
+        if(data != null)
+		    parts [1].transform.localPosition = new Vector3 (0, data.size.y, 0);
 	}
 	bool isBeenBroken()
 	{
