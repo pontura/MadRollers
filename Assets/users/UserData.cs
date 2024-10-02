@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Yaguar.Auth;
 
 public class UserData : MonoBehaviour
 {
@@ -77,23 +76,9 @@ public class UserData : MonoBehaviour
             hiscoresByMissions.Init();
             Data.Instance.events.OnSaveScore += OnSaveScore;
         }
-#if UNITY_EDITOR
         Invoke("LoadLocalUser", 0.1f);
-#else
-        FirebaseAuthManager.Instance.OnFirebaseAuthenticated += OnFirebaseAuthenticated;
-#endif
     }
-    void OnFirebaseAuthenticated(string username, string email, string uid)
-    {
-        Debug.Log("USERDATA OnFirebaseAuthenticated " + username + " email" + email + " uid: " + uid);
-        playerID = PlayerPrefs.GetInt("playerID");
-
-        data.userID = uid;
-        data.username = username;
-
-        serverConnect.LoadUserData(data.userID, OnLoaded);
-        //OnLoaded(null);
-    }
+   
     private void LoadLocalUser()
     {
         LoadUser();
@@ -101,10 +86,6 @@ public class UserData : MonoBehaviour
     private void OnDestroy()
     {
         Data.Instance.events.OnSaveScore -= OnSaveScore;
-#if UNITY_EDITOR
-#else
-        FirebaseAuthManager.Instance.OnFirebaseAuthenticated -= OnFirebaseAuthenticated;
-#endif
     }
     void OnSaveScore()
     {
