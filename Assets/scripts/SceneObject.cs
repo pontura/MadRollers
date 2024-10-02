@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneObject : MonoBehaviour {
+public class SceneObject : MonoBehaviour
+{
 
     //public Level.Dificult Dificult;
 
     public int size_z = 0;
 
-	public bool broken;
+    public bool broken;
     public int id;
 
     //[HideInInspector]
     //public Transform characterTransform;
-    bool active;
-    public bool isActive { get { return active;  }  }
+
+    [HideInInspector]
+    public bool isActive;
     public int score;
 
-   // [HideInInspector]
-   // public CharactersManager charactersMmanager;
+    // [HideInInspector]
+    // public CharactersManager charactersMmanager;
 
     public int distanceFromCharacter;
 
@@ -28,16 +30,18 @@ public class SceneObject : MonoBehaviour {
     SceneObjectsManager manager;
 
     SceneObjectData soData;
-    public SceneObjectData SoData { get {
-            if (soData == null) soData = GetComponent<SceneObjectData>(); return soData; }
-    } 
+    public SceneObjectData SoData
+    {
+        get
+        {
+            if (soData == null) soData = GetComponent<SceneObjectData>(); return soData;
+        }
+    }
 
     public virtual void Init(SceneObjectsManager manager)
-	{
-        active = false;
-		this.manager = manager;
-        if(soData != null)
-            soData = GetComponent<SceneObjectData>();
+    {
+        this.manager = manager;
+        soData = GetComponent<SceneObjectData>();
     }
     public SceneObjectsManager Manager
     {
@@ -48,9 +52,9 @@ public class SceneObject : MonoBehaviour {
     }
     public void Restart(Vector3 pos)
     {
-		gameObject.SetActive(true);
+        gameObject.SetActive(true);
         OnRestart(pos);
-        active = true;
+        isActive = true;
     }
     public void setRotation(Vector3 rot)
     {
@@ -59,30 +63,30 @@ public class SceneObject : MonoBehaviour {
     }
     public void lookAtCharacter()
     {
-       // transform.LookAt(characterTransform);
+        // transform.LookAt(characterTransform);
     }
     public void Pool()
     {
-        active = false;
+        isActive = false;
         Vector3 newPos = new Vector3(2000, 0, 2000);
 
-		if(transform !=null)
-      		transform.position = newPos;  
-		
+        if (transform != null)
+            transform.position = newPos;
+
         ObjectPool.instance.PoolObject(this);
         if (manager == null)
         {
             OnPool();
             return;
         }
-		manager.RemoveSceneObject (this);
+        manager.RemoveSceneObject(this);
         OnPool();
         manager = null;
     }
-	public virtual void Updated(float distance)
-	{
-		distanceFromCharacter = (int)(transform.position.z - distance);
-	}
+    public virtual void Updated(float distance)
+    {
+        distanceFromCharacter = (int)(transform.position.z - distance);
+    }
     public virtual void OnRestart(Vector3 pos)
     {
         transform.position = pos;
@@ -96,26 +100,26 @@ public class SceneObject : MonoBehaviour {
     //    MeshRenderer mr = GetComponent<MeshRenderer>();
     //    mr.material.color = newColor;
     //}
-    public virtual void changeMaterial(string materialName)  {   }
-    public virtual void OnPool()  {  }
-    public virtual void onDie()  { }
-    public virtual void setScore()   { }    
+    public virtual void changeMaterial(string materialName) { }
+    public virtual void OnPool() { }
+    public virtual void onDie() { }
+    public virtual void setScore() { }
 
-	//Color matColor;
-	//int videoGameID = -1;
-	public void SetMaterialByVideoGame()
-	{
-//		matColor = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
-//		Renderer[] renderers = GetComponentsInChildren<Renderer>();
-//		int newVideoGameID = Data.Instance.videogamesData.actualID;
-//		if (newVideoGameID != videoGameID) {
-//			videoGameID = newVideoGameID;
-//			foreach(Renderer r in renderers)
-//				ChangeMaterials(r);
-//		}
-	}
-	//void ChangeMaterials(Renderer renderer)
-	//{
-	//	renderer.material.color = matColor;
-	//}
+    //Color matColor;
+    //int videoGameID = -1;
+    public void SetMaterialByVideoGame()
+    {
+        //		matColor = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+        //		Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        //		int newVideoGameID = Data.Instance.videogamesData.actualID;
+        //		if (newVideoGameID != videoGameID) {
+        //			videoGameID = newVideoGameID;
+        //			foreach(Renderer r in renderers)
+        //				ChangeMaterials(r);
+        //		}
+    }
+    //void ChangeMaterials(Renderer renderer)
+    //{
+    //	renderer.material.color = matColor;
+    //}
 }

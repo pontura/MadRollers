@@ -10,57 +10,57 @@ public class SceneObjectsBehavior : MonoBehaviour
     SceneObjectsManager manager;
     public ArrayList unused = new ArrayList();
     [SerializeField] SceneObject Catapulta;
-    [SerializeField]  SceneObject Star;
-    [SerializeField]  SceneObject Water;
-    [SerializeField]  SceneObject Lava;
+    [SerializeField] SceneObject Star;
+    [SerializeField] SceneObject Water;
+    [SerializeField] SceneObject Lava;
     [SerializeField] SceneObject Boss1;
 
     [SerializeField] SceneObject BossCreator;
-    [SerializeField]  SceneObject BossSpace1;
-    [SerializeField]  SceneObject BossCalecitas1;
-    [SerializeField]  SceneObject BossPacmans;
-    [SerializeField]  SceneObject BossGalaga;
-    [SerializeField]  SceneObject Starting;
-    [SerializeField]  SceneObject Ending;
-    [SerializeField]  SceneObject FloorSlider;
-    [SerializeField]  SceneObject FloorSurface;
-    [SerializeField]  SceneObject house1;
-    [SerializeField]  SceneObject house2;
-    [SerializeField]  SceneObject house3;
-    [SerializeField]  SceneObject house4;
-    [SerializeField]  SceneObject PisoPinche;
-    [SerializeField]  SceneObject rampa;
-    [SerializeField]  SceneObject rampaHuge;
-    [SerializeField]  SceneObject rampaSmall;
-    [SerializeField]  SceneObject bomb1;
-    [SerializeField]  SceneObject Laser;
-    [SerializeField]  SceneObject Container;
-    [SerializeField]  SceneObject enemyGhost;
-    [SerializeField]  SceneObject cilindro;
-    [SerializeField]  SceneObject cilindroBig;
+    [SerializeField] SceneObject BossSpace1;
+    [SerializeField] SceneObject BossCalecitas1;
+    [SerializeField] SceneObject BossPacmans;
+    [SerializeField] SceneObject BossGalaga;
+    [SerializeField] SceneObject Starting;
+    [SerializeField] SceneObject Ending;
+    [SerializeField] SceneObject FloorSlider;
+    [SerializeField] SceneObject FloorSurface;
+    [SerializeField] SceneObject house1;
+    [SerializeField] SceneObject house2;
+    [SerializeField] SceneObject house3;
+    [SerializeField] SceneObject house4;
+    [SerializeField] SceneObject PisoPinche;
+    [SerializeField] SceneObject rampa;
+    [SerializeField] SceneObject rampaHuge;
+    [SerializeField] SceneObject rampaSmall;
+    [SerializeField] SceneObject bomb1;
+    [SerializeField] SceneObject Laser;
+    [SerializeField] SceneObject Container;
+    [SerializeField] SceneObject enemyGhost;
+    [SerializeField] SceneObject cilindro;
+    [SerializeField] SceneObject cilindroBig;
 
     [SerializeField] SceneObject Fish;
     [SerializeField] SceneObject borde1;
 
     [SerializeField] SceneObject fences;
 
-    [SerializeField]  SceneObject tunel1;
-    [SerializeField]  SceneObject tunel2;
+    [SerializeField] SceneObject tunel1;
+    [SerializeField] SceneObject tunel2;
     [SerializeField] SceneObject jumper;
 
-    [SerializeField]  SceneObject cruz;
-    [SerializeField]  SceneObject CruzGrande;
-    [SerializeField]  SceneObject rueda1;
-    [SerializeField]  SceneObject helice1;
-    [SerializeField]  SceneObject levelSignal;
-    [SerializeField]  SceneObject streetFloor;
-    [SerializeField]  SceneObject streetFloorSmall;
-    [SerializeField]  SceneObject pisoRotatorio;
-    [SerializeField]  SceneObject wallBig;
-    [SerializeField]  SceneObject wallMedium;
-    [SerializeField]  SceneObject wallSmall;
-    [SerializeField]  SceneObject wallSuperSmall;
-    [SerializeField]  SceneObject sombrilla;
+    [SerializeField] SceneObject cruz;
+    [SerializeField] SceneObject CruzGrande;
+    [SerializeField] SceneObject rueda1;
+    [SerializeField] SceneObject helice1;
+    [SerializeField] SceneObject levelSignal;
+    [SerializeField] SceneObject streetFloor;
+    [SerializeField] SceneObject streetFloorSmall;
+    [SerializeField] SceneObject pisoRotatorio;
+    [SerializeField] SceneObject wallBig;
+    [SerializeField] SceneObject wallMedium;
+    [SerializeField] SceneObject wallSmall;
+    [SerializeField] SceneObject wallSuperSmall;
+    [SerializeField] SceneObject sombrilla;
     [SerializeField] SceneObject GrabbableItem;
 
     public Game game;
@@ -98,17 +98,17 @@ public class SceneObjectsBehavior : MonoBehaviour
     {
         id = 0;
         AddSingleSO(areaData, z_length);
-      //  StartCoroutine(AddSingleSO(areaData, z_length));
+        //  StartCoroutine(AddSingleSO(areaData, z_length));
     }
     int id;
-   // IEnumerator AddSingleSO(AreaData areaData, float z_length)
+    // IEnumerator AddSingleSO(AreaData areaData, float z_length)
     void AddSingleSO(AreaData areaData, float z_length)
     {
         foreach (AreaSceneObjectData go in areaData.data)
         {
             //if (id % 2 == 0)
-               // yield return new WaitForEndOfFrame();
-           // id++;
+            // yield return new WaitForEndOfFrame();
+            // id++;
 
             // if (!canBeDisplayed(go)) 
             //	    continue;
@@ -117,19 +117,22 @@ public class SceneObjectsBehavior : MonoBehaviour
             Vector3 pos = go.pos;
             Vector3 rot = go.rot;
             pos.z += z_length;
-            string goName = go.name; 
+            string goName = go.name;
             switch (goName)
             {
                 case "smallBlock1":
                 case "extraSmallBlock1":
                     pos.y += 1;
-                    sceneObject = SetSceneObject( Pool.GetObjectForType(goName + "_real", true), pos, rot);
+                    sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", true), pos, rot);
                     break;
 
                 case "palm":
                     string soName = goName;
-                    int randNum = Random.Range(1, 3);
-                    soName = "palm" + randNum;
+                    int randNum = Random.Range(0, 3);
+                    if (randNum == 1)
+                        soName = "palm2";
+                    else if (randNum == 2)
+                        soName = "palm3";
                     sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
                     break;
 
@@ -150,7 +153,7 @@ public class SceneObjectsBehavior : MonoBehaviour
                 case "Dropper":
                 case "Sapo":
                 case "flyer":
-              
+
                 //case "Yuyo":
                 case "enemyRunner":
                 case "enemyFrontal":
@@ -169,7 +172,7 @@ public class SceneObjectsBehavior : MonoBehaviour
                 case "Ray":
                 case "Special3":
                 case "enemyNaveSimple":
-                case "BichoVuela":               
+                case "BichoVuela":
                 case "palmTall":
                 case "palmSmall":
                     sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
@@ -181,7 +184,7 @@ public class SceneObjectsBehavior : MonoBehaviour
             }
             if (sceneObject != null)
             {
-               // areaSceneObjectManager.AddComponentsToSceneObject(go, sceneObject.gameObject);
+                areaSceneObjectManager.AddComponentsToSceneObject(go, sceneObject.gameObject);
                 //SceneObjectData soData = sceneObject.SoData;
 
                 //if (soData != null)
@@ -204,6 +207,7 @@ public class SceneObjectsBehavior : MonoBehaviour
     }
     SceneObject SetSceneObject(SceneObject so, Vector3 pos, Vector3 rot)
     {
+        so.isActive = false;
         so.transform.position = pos;
         so.transform.localEulerAngles = rot;
         return so;
@@ -326,7 +330,7 @@ public class SceneObjectsBehavior : MonoBehaviour
     }
     Transform lastSceneObjectContainer;
 
- 
+
     //public void addDecoration(string name, Vector3 pos, Vector3 offset)
     //{
     //    SceneObject newSceneObject = Pool.GetObjectForType(name, true);
