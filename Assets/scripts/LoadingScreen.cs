@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Yaguar.Auth;
 
 public class LoadingScreen : MonoBehaviour {
 	
@@ -107,22 +108,21 @@ public class LoadingScreen : MonoBehaviour {
         return;
 #endif
         Debug.Log("AllLoaded");
-        LoopForUserReady();
-        //Data.Instance.socialAuth.Init((authCode) => {
-        //    Debug.Log("#socialAuth: " + authCode);
-        //    if (authCode != "")
-        //    {
-        //        FirebaseAuthManager.Instance.SignInWithPlayGames(authCode, (success) =>
-        //        {
-        //            if (success)
-        //                LoopForUserReady();
-        //            else
-        //                UseLocalData();
-        //        });
-        //    }
-        //    else
-        //        UseLocalData();
-        //});
+        Data.Instance.socialAuth.Init((authCode) => {
+            Debug.Log("#socialAuth: " + authCode);
+            if (authCode != "")
+            {
+                FirebaseAuthManager.Instance.SignInWithPlayGames(authCode, (success) =>
+                {
+                    if (success)
+                        LoopForUserReady();
+                    else
+                        UseLocalData();
+                });
+            }
+            else
+                UseLocalData();
+        });
     }
     void LoopForUserReady()
     {
@@ -130,8 +130,7 @@ public class LoadingScreen : MonoBehaviour {
         if (UserData.Instance.IsReadyToInit())
             Data.Instance.LoadLevel("Intro");
         else
-            UseLocalData();
-        //  Invoke("LoopForUserReady", 0.1f);
+            Invoke("LoopForUserReady", 0.1f);
     }
     void UseLocalData()
     {

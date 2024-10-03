@@ -45,7 +45,17 @@ public class CharacterControls : MonoBehaviour {
         if (characterBehavior.player.charactersManager == null || Game.Instance.state == Game.states.GAME_OVER)
             return;
 
+#if UNITY_EDITOR
+        //  UpdateStandalone();
         UpdateByVirtualJoystick();
+#elif UNITY_ANDROID || UNITY_IOS
+        //if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
+        //    UpdateAccelerometer();
+        //else
+            UpdateByVirtualJoystick();
+#else
+            UpdateStandalone();
+#endif
 
         characterBehavior.UpdateByController(rotationY); 
 	}
