@@ -106,7 +106,7 @@ public class Data : MonoBehaviour {
 #elif UNITY_WEBGL
         useOptimizedSettings = true;
         playMode = PlayModes.STORYMODE;
-        isAndroid = true;
+        isAndroid = false;
 #elif UNITY_STANDALONE
         Screen.fullScreen = true;
 #endif
