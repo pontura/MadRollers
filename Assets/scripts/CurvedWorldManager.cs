@@ -12,7 +12,9 @@ public class CurvedWorldManager : MonoBehaviour {
 
 	public void Start () {        
         Data.Instance.events.ChangeCurvedWorldX += ChangeCurvedWorldX;
-	}
+        _x = curvedWorld_Controller._V_CW_Bend_X;
+
+    }
     public void OnDestroy()
     {
         Data.Instance.events.ChangeCurvedWorldX -= ChangeCurvedWorldX;
@@ -23,16 +25,20 @@ public class CurvedWorldManager : MonoBehaviour {
         //  curvedWorld_Controller._V_CW_Bend_X = -12;
        // curvedWorld_Controller.bendSize = new Vector3(-12, 0,0);
     }
+    float _x;
     void ChangeCurvedWorldX(float _x)
     {
         if(curvedWorld_Controller==null)
             return;
 
         _x /= 1.2f;
-
-       // curvedWorld_Controller.bendSize = Vector3.Lerp(curvedWorld_Controller.bendSize , new Vector3(_x, 0, 0), 0.01f);
-
-        DOTween.To(() => curvedWorld_Controller._V_CW_Bend_X, x => curvedWorld_Controller._V_CW_Bend_X = x, _x, 3);
+        // DOTween.To(() => curvedWorld_Controller._V_CW_Bend_X, x => curvedWorld_Controller._V_CW_Bend_X = x, _x, 3);
     }
-   
+    private void FixedUpdate()
+    {
+        if (Mathf.Abs(_x) - Mathf.Abs(curvedWorld_Controller._V_CW_Bend_X) < 0.01f) return;
+        float newCurve = Mathf.Lerp(curvedWorld_Controller._V_CW_Bend_X, _x, 0.05f);
+        curvedWorld_Controller._V_CW_Bend_X = newCurve;
+    }
+
 }

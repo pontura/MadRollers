@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
 	private Game game;
 	private Gui gui;
 
-    public GameObject particles;
 
     public int id; 
     public fxStates fxState;
@@ -83,9 +82,6 @@ public class Player : MonoBehaviour {
 
         characterBehavior = GetComponent<CharacterBehavior>();
 		characterBehavior.shooter.ResetWeapons ();
-
-       
-        particles.SetActive(false);
         OnAvatarProgressBarEmpty();
     }
     void OnAvatarDie(CharacterBehavior cb)
@@ -180,12 +176,10 @@ public class Player : MonoBehaviour {
     private void setNormalState()
     {
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.NORMAL);
-        fxState = fxStates.NORMAL;
-        particles.SetActive(false);        
+        fxState = fxStates.NORMAL;     
     }
     private void setSuperState()
     {        
-        fxState = fxStates.SUPER;        
-        particles.SetActive(true);
+        fxState = fxStates.SUPER;    
     }
 }
