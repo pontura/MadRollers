@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MobileMenuScreen : MonoBehaviour
 {
     public GameObject controlsMangerButton;
+    public Text soundsToggle;
     public Text controlsTypeField;
     public Text pixelateField;
     public Text langField;
@@ -38,10 +39,16 @@ public class MobileMenuScreen : MonoBehaviour
         PlayerPrefs.SetString("controlsType", Data.Instance.controlsType.ToString());
         SetFields();
     }
+    public void ToggleAudio()
+    {
+        Data.Instance.musicManager.ToggleMute();
+        SetFields();
+    }
     void SetFields()
     {
         langField.text = TextsManager.Instance.lang.ToUpper();
         controlsTypeField.text = Data.Instance.controlsType.ToString();
+        soundsToggle.text = "Music " + !(Data.Instance.musicManager.mute);
     }
     public void SwitchPixels()
     {

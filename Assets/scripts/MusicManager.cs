@@ -20,9 +20,14 @@ public class MusicManager : MonoBehaviour {
     private float heartsDelay = 0.1f;
     private AudioSource audioSource;
 	float pitchSpeed = 0.015f;
+    public bool mute;
 
     void Start()
-    {		
+    {
+
+        string s = PlayerPrefs.GetString("mute");
+        if (s.ToLower() == "true") mute = true;
+
         audioSource = GetComponent<AudioSource>();
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 
@@ -35,8 +40,6 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.SetVolume += SetVolume;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
-     //   Data.Instance.events.OnSoundFX += OnSoundFX;
-      //  Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnMusicStatus += OnMusicStatus;
 		Data.Instance.events.FreezeCharacters += FreezeCharacters;
 
@@ -48,19 +51,22 @@ public class MusicManager : MonoBehaviour {
 		audioSource.enabled = isOn;
 	}
 	void OnVersusTeamWon(int teamID)
-	{
-		playSound( interfaces );
+    {
+        if (mute) return;
+        playSound( interfaces );
 	}
 	void FreezeCharacters(bool freezeThem)
-	{
-		if(freezeThem)
+    {
+        if (mute) return;
+        if (freezeThem)
 			ChangePitch (0.7f);
 		else
 			ChangePitch (1);
 	}
 	public void ChangePitch(float pitchValue)
-	{
-		StopAllCoroutines ();
+    {
+        if (mute) return;
+        StopAllCoroutines ();
 		StartCoroutine (ChangePitchCoroutine (pitchValue));
 	}
 
@@ -95,6 +101,7 @@ public class MusicManager : MonoBehaviour {
     //}
     void OnAvatarCrash(CharacterBehavior cb)
     {
+        if (mute) return;
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
 
 		ChangePitch (0.2f);
@@ -102,10 +109,12 @@ public class MusicManager : MonoBehaviour {
     }
     public void SetVolume(float vol)
     {
+        if (mute) return;
         audioSource.volume = vol;
     }
     void playSound(AudioClip _clip, bool looped = true)
     {
+        if (mute) return;
         print(audioSource + "playSound " + _clip.name);
 		if (audioSource.clip!=null && audioSource.clip.name == _clip.name) return;
         stopAllSounds();
@@ -115,30 +124,35 @@ public class MusicManager : MonoBehaviour {
     }
     public void OnGamePaused(bool paused)
     {
-        if(paused)
+        if (mute) return;
+        if (paused)
             audioSource.Stop();
         else
             audioSource.Play();
     }
     void OnInterfacesStart()
     {
+        if (mute) return;
         playSound( interfaces );
     }
 	public void OnLoadingMusic()
-	{
-		audioSource.pitch = 1;
+    {
+        if (mute) return;
+        audioSource.pitch = 1;
 		audioSource.clip = loading;
 		audioSource.Play();
 		audioSource.loop = true;
 	}
     void StartMultiplayerRace()
     {
-		audioSource.pitch = 1;
+        if (mute) return;
+        audioSource.pitch = 1;
 		PlayMainTheme ();
     }
 	public void BossMusic(bool isBoss)
-	{
-		int videogameID = Data.Instance.videogamesData.actualID;
+    {
+        if (mute) return;
+        int videogameID = Data.Instance.videogamesData.actualID;
 //		if (videogameID > 0)
 //			return;
 		if (isBoss) {
@@ -169,6 +183,7 @@ public class MusicManager : MonoBehaviour {
     float nextHeartSoundTime;
     public void addHeartSound()
     {
+        if (mute) return;
         if (Time.time >= nextHeartSoundTime)
         {
           audioSource.PlayOneShot(heartClip);
@@ -181,6 +196,7 @@ public class MusicManager : MonoBehaviour {
     }
     public void OnExplotionSFX()
     {
+        if (mute) return;
         if (Time.time >= nextHeartSoundTime)
         {
             audioSource.PlayOneShot(explotionAudioClip);
@@ -188,8 +204,9 @@ public class MusicManager : MonoBehaviour {
         }
     }
     void OnMissionComplete(int newm)
-	{
-		StopAllCoroutines ();
+    {
+        if (mute) return;
+        StopAllCoroutines ();
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
         audioSource.clip = wins[Data.Instance.videogamesData.actualID];//) as AudioClip;
@@ -201,8 +218,9 @@ public class MusicManager : MonoBehaviour {
 		    //Invoke ("PlayMainTheme", 7);
 	}
 	void PlayMainTheme()
-	{
-		audioSource.pitch = 1;
+    {
+        if (mute) return;
+        audioSource.pitch = 1;
 		audioSource.volume = 1;
         audioSource.clip = songs[Data.Instance.videogamesData.actualID];//) as AudioClip;
         //audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", soundName);
@@ -210,4 +228,13 @@ public class MusicManager : MonoBehaviour {
 		audioSource.loop = true;
 
 	}
+    public void ToggleMute()
+    {
+        Data.Instance.musicManager.mute = !Data.Instance.musicManager.mute;
+        PlayerPrefs.SetString("mute", Data.Instance.musicManager.mute.ToString());
+        if (mute)
+            stopAllSounds();
+        else
+            audioSource.Play();
+    }
 }

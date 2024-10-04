@@ -60,8 +60,9 @@ public class MadRollersSFX : MonoBehaviour {
 		player4.enabled = isOn;
 	}
 	void OnMadRollerFX(types type, int id)
-	{
-		AudioSource audioSource;
+    {
+        if (Data.Instance.musicManager.mute) return;
+        AudioSource audioSource;
 		switch(id)
 		{
 		case 0: audioSource = player1; break;
@@ -113,8 +114,9 @@ public class MadRollersSFX : MonoBehaviour {
         return arr[UnityEngine.Random.Range(0, arr.Length - 1)];
     }
 	void OnGameOver(bool isTimeOver)
-	{
-		player1.Stop ();
+    {
+        if (Data.Instance.musicManager.mute) return;
+        player1.Stop ();
 		player2.Stop ();
 		player3.Stop ();
 		player4.Stop ();

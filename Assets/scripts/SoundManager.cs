@@ -77,6 +77,7 @@ public class SoundManager : MonoBehaviour
 
     void OnSoundFX(string soundName, int playerID)
     {
+        if (Data.Instance.musicManager.mute) return;
         if (soundName == "")
         {
             audioSource.Stop();
