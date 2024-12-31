@@ -58,7 +58,7 @@ public class PixelsPool : MonoBehaviour {
                     rot_y = a * (360 / NumOfParticles);
                 pp.transform.localEulerAngles = new Vector3 (0, rot_y, 0);
 				Vector3 direction = ((pp.transform.forward * force) + (Vector3.up * (force * 2)));
-				pp.Rb.velocity = Vector3.zero;
+				pp.Rb.linearVelocity = Vector3.zero;
                 pp.Rb.isKinematic = false;
                 pp.Rb.AddForce (direction, ForceMode.Impulse);
 				pp.Init(colors[a]);

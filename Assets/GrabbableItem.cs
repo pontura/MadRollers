@@ -40,7 +40,7 @@ public class GrabbableItem : SceneObject
         transform.localEulerAngles = new Vector3(0, 0, 0);
 
         if (GetComponent<Rigidbody>() && !GetComponent<Rigidbody>().isKinematic)
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
         sec = 0;
     }

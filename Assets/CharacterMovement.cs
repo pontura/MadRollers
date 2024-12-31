@@ -97,7 +97,7 @@ public class CharacterMovement : MonoBehaviour {
 			Vector3 pos = transform.position;
 			pos.y = -0.16f;
 			transform.position = pos;
-			GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			GetComponent<Rigidbody> ().linearVelocity = Vector3.zero;
 		} else if (transform.position.y < heightToFall) {
 			 cb.Fall ();
 		}
