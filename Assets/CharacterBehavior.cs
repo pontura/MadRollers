@@ -325,7 +325,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if(player!=null && !player.IsDebbugerPlayer())
 			rb.useGravity = true;
 		
-		rb.velocity = new Vector3(0,2,0);
+		rb.linearVelocity = new Vector3(0,2,0);
 		transform.localEulerAngles = Vector3.zero;
 		rb.freezeRotation = true;
 		state = states.RUN;
@@ -432,9 +432,9 @@ public class CharacterBehavior : MonoBehaviour {
 		if (jumpingPressedAmountReal < 0)
 			jumpingPressedAmountReal = 0;
 
-		Vector3 v = rb.velocity;
+		Vector3 v = rb.linearVelocity;
 		v.y = 0;
-		rb.velocity = v;
+		rb.linearVelocity = v;
 		Vector3 pos = transform.localPosition;
 		pos.y += jumpingPressedAmount*Time.deltaTime;
 		transform.localPosition = pos;
@@ -475,7 +475,7 @@ public class CharacterBehavior : MonoBehaviour {
 			return;
 		}
 
-		rb.velocity = Vector3.zero;
+		rb.linearVelocity = Vector3.zero;
 		OnAvatarJump();
 
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
@@ -501,11 +501,11 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
-		float velocityY = rb.velocity.y;
+		float velocityY = rb.linearVelocity.y;
 		if (velocityY < 10) {
 			OnAvatarJump();
 			velocityY = Mathf.Abs (velocityY);
-			rb.velocity = Vector3.zero;
+			rb.linearVelocity = Vector3.zero;
 
 			if (velocityY > 4)
 				velocityY = 4;
@@ -603,7 +603,7 @@ public class CharacterBehavior : MonoBehaviour {
             lastTimeCollision = Time.time;
             Data.Instance.events.OnSoundFX("hit", player.id);
             state = states.COLLISIONED;
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);
         }
     }
@@ -617,7 +617,7 @@ public class CharacterBehavior : MonoBehaviour {
 		Data.Instance.events.OnAvatarCrash(this);
 
 		state = states.CRASH;
-		rb.velocity = Vector3.zero;
+		rb.linearVelocity = Vector3.zero;
 		rb.AddForce(new Vector3(Random.Range(-500,500), 1500, Random.Range(0,-200)), ForceMode.Impulse);
 		rb.freezeRotation = false;
 

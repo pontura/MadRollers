@@ -160,7 +160,7 @@ public class CharactersManagerVersus : CharactersManager {
 			return;
 		
 		foreach (CharacterBehavior cb in characters) {
-			cb.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			cb.GetComponent<Rigidbody> ().linearVelocity = Vector3.zero;
 			Vector3 pos = cb.transform.localPosition;
 			pos.y = 16;
 			cb.transform.localPosition = pos;

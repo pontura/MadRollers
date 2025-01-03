@@ -20,12 +20,8 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     float newVictoryAreaScore;
 
     bool hiscoreWinned;
-    bool isAndroid;
 
     void Start () {
-        if (Data.Instance.isAndroid)
-            isAndroid = true;
-
         panel.SetActive(true);
 
         scoreSignalAnimation = scoreSignal.GetComponent<Animation>();
@@ -84,8 +80,8 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	}
 	void Update()
 	{
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL || totalAdded == 0)
-			return;
+   //     if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL || totalAdded == 0)
+			//return;
 		if (Time.time > ResetFieldsTimer) {
 			totalAdded = 0;
 			scoreAdviseNum.text = "";

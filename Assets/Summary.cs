@@ -25,7 +25,7 @@ public class Summary : MonoBehaviour {
         mobilePanel.SetActive(false);
        // if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Data.Instance.events.OnGameOver += OnGameOver;
-       if (Data.Instance.playMode == Data.PlayModes.PARTYMODE  )
+       if (!Data.Instance.isAndroid )
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
     }
     void OnDestroy()

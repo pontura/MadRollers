@@ -33,18 +33,18 @@ namespace LeoLuz.PlugAndPlayJoystick
         // Update is called once per frame
         void Update()
         {
-            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocity, rb.velocity.y);
+            rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * velocity, rb.linearVelocity.y);
 
             if (grounded && Input.GetButton(JumpAxis))
             {
-                rb.velocity = new Vector2(rb.velocity.x, 10f);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 10f);
                 grounded = false;
             }
             if (Input.GetButtonDown(FireAxis))
             {
                 GameObject obj = (GameObject)Instantiate(Projectile, transform.position + Vector3.right * 0.3f, Quaternion.identity);
                 Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-                obj.GetComponent<Rigidbody2D>().velocity = new Vector2(ProjectileVelocity, 0f);
+                obj.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(ProjectileVelocity, 0f);
             }
         }
 

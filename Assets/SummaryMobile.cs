@@ -31,6 +31,8 @@ public class SummaryMobile : MonoBehaviour
 
     void Start()
     {
+        if (!Data.Instance.isAndroid)
+            return;
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
             return;
         puestoField.text = "";
@@ -39,6 +41,8 @@ public class SummaryMobile : MonoBehaviour
     
     public void Init()
     {
+        if (!Data.Instance.isAndroid)
+            return;
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             Data.Instance.events.OnMadRollersSFXStatus(false);
@@ -129,6 +133,8 @@ public class SummaryMobile : MonoBehaviour
     void MyScoreLoaded(int a) { }
     public void Next()
     {
+        if (!Data.Instance.isAndroid)
+            return;
         Data.Instance.events.OnResetScores();
         Data.Instance.events.FreezeCharacters(true);
         Data.Instance.musicManager.stopAllSounds();
@@ -140,6 +146,8 @@ public class SummaryMobile : MonoBehaviour
     }
     public void Retry()
     {
+        if (!Data.Instance.isAndroid)
+            return;
         Data.Instance.events.OnResetScores();
         Data.Instance.events.ForceFrameRate(1);
         Data.Instance.missions.MissionActiveID--;
