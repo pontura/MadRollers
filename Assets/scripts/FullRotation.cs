@@ -67,6 +67,7 @@ public class FullRotation : MonoBehaviour {
     //	}
     float frame = 0;
 	void Update () {
+		float mult = 14;
         frame += Time.deltaTime;
         if (frame < 0.05f) return;
         frame = 0;
@@ -75,19 +76,19 @@ public class FullRotation : MonoBehaviour {
 			return;
 		}
 		if (rotateX) 
-			rotationX += speed * Time.deltaTime * 3;
+			rotationX += speed * Time.deltaTime * mult;
 		else 
 			rotationX = transform.localRotation.x;
 
 		if (rotateY) 
-			rotationY += speed * Time.deltaTime * 3;
+			rotationY += speed * Time.deltaTime * mult;
         else 
 			rotationY = transform.localRotation.y;
 
         if (rotateZ && inverseRotation)
-			rotationZ += speed*Time.deltaTime * 3;
+			rotationZ += speed*Time.deltaTime * mult;
         else if (rotateZ && !inverseRotation)
-            rotationZ -= speed * Time.deltaTime * 3;
+            rotationZ -= speed * Time.deltaTime * mult;
         else rotationZ = transform.localRotation.z;
 
 			

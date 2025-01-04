@@ -19,14 +19,13 @@ public class ScoresUI : MonoBehaviour
 
     void Start()
     {
-        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        if (!Data.Instance.isAndroid)
         {
-           /// panel.SetActive(false);
             Destroy(this);
         }
        // panel.SetActive(true);
-      //  Data.Instance.events.OnMissionStart += OnMissionStart;
-      //  myAvatarThumb.Init(UserData.Instance.userID);
+        Data.Instance.events.OnMissionStart += OnMissionStart;
+       // myAvatarThumb.Init(UserData.Instance.userID);
         Loop();
     }
     private void Loop()
@@ -46,14 +45,14 @@ public class ScoresUI : MonoBehaviour
 
     void OnMissionStart(int missionID)
     {
-        HiscoreLoaded(null);//TO-DO:
-        //if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-        //{
-        //    int videoGameID = Data.Instance.videogamesData.actualID;
-        //    UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
-        //}
-        //else  if( Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-        //    UserData.Instance.hiscoresByMissions.LoadHiscore(MissionsManager.Instance.VideogameIDForTorneo, missionID, HiscoreLoaded);
+        //HiscoreLoaded(null);//TO-DO:
+       if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+       {
+           int videoGameID = Data.Instance.videogamesData.actualID;
+           UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
+       }
+       //else  if( Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+       //    UserData.Instance.hiscoresByMissions.LoadHiscore(MissionsManager.Instance.VideogameIDForTorneo, missionID, HiscoreLoaded);
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
@@ -64,9 +63,9 @@ public class ScoresUI : MonoBehaviour
         else
         {
           //  otherAvatarThumb.Init(hiscoreData.all[0].userID);
-          //  hiscore = hiscoreData.all[0].score;
-          //  otherScore.text = Utils.FormatNumbers((int)hiscore);
-         //   otherName.text = hiscoreData.all[0].username.ToUpper();
+            hiscore = hiscoreData.all[0].score;
+            otherScore.text = Utils.FormatNumbers((int)hiscore);
+            otherName.text = hiscoreData.all[0].username.ToUpper();
         }
     }
 }

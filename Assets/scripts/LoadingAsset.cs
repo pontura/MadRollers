@@ -55,8 +55,8 @@ public class LoadingAsset : MonoBehaviour {
 
                 int missionID = Data.Instance.missions.MissionActiveID;
                 int videoGameID = Data.Instance.videogamesData.actualID;
-                //   UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
-                HiscoreLoaded(null);
+                UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+                //HiscoreLoaded(null);
                 missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
             }
             else if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
@@ -109,16 +109,16 @@ public class LoadingAsset : MonoBehaviour {
 		AddText("Club-Social-911 >system ...");
         UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
 		yield return new WaitForSeconds (0.5f);
-        if (!Data.Instance.isReplay)
-        {
-            int i = texts.Length;
-            while (i > 0)
-            {
-                yield return new WaitForSeconds((float)Random.Range(6, 10) / 10f);
-                AddText(texts[i - 1]);
-                i--;
-            }
-        }
+        //if (!Data.Instance.isReplay)
+        //{
+        //    int i = texts.Length;
+        //    while (i > 0)
+        //    {
+        //        yield return new WaitForSeconds((float)Random.Range(6, 10) / 10f);
+        //        AddText(texts[i - 1]);
+        //        i--;
+        //    }
+        //}
 		AddText("COMPLETE!");
 		yield return new WaitForSeconds (0.5f);
         SetOn (false);
@@ -131,9 +131,9 @@ public class LoadingAsset : MonoBehaviour {
 
     IEnumerator LoadingRoutineAndroid()
     {
-        //VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData();
-        //HiscoresByMissions.MissionHiscoreUserData missionHiscoreUserData = UserData.Instance.hiscoresByMissions.GetHiscore(videogameData.id, Data.Instance.missions.MissionActiveID);
-        //string username = UserData.Instance.username;
+        VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData();
+        HiscoresByMissions.MissionHiscoreUserData missionHiscoreUserData = UserData.Instance.hiscoresByMissions.GetHiscore(videogameData.id, Data.Instance.missions.MissionActiveID);
+        string username = UserData.Instance.username;
 
         VoicesManager.Instance.PlaySpecificClipFromList(VoicesManager.Instance.UIItems, 1);
         Data.Instance.musicManager.OnLoadingMusic();
@@ -142,25 +142,25 @@ public class LoadingAsset : MonoBehaviour {
         //yield return new WaitForSeconds(0.5f);
         //AddText("Loading " + videogameData.name + "...");
         //yield return new WaitForSeconds(0.2f);
-        //if (missionHiscoreUserData != null)
-        //{
-        //    AddText("*****************");
-        //    yield return new WaitForSeconds(0.12f);
-        //    AddText("Hiscore by:");
-        //    yield return new WaitForSeconds(0.1f);
-        //    AddText("HACKER: " + missionHiscoreUserData.username + " [" + Utils.FormatNumbers( missionHiscoreUserData.score) + "]");
-        //    yield return new WaitForSeconds(0.15f);
-        //    AddText("in mission_id: [" + Data.Instance.missions.MissionActiveID + "]");
-        //    AddText("*****************");
-        //    AddText(" ");
-        //    yield return new WaitForSeconds(5f);
-        //}
-        //AddText("Buenos Aires <" + username + "> USER ALLOWING ACCESS!");        
-        //yield return new WaitForSeconds(0.35f);
-        //AddText(username + " -> GOTO 1985 ");
+        if (missionHiscoreUserData != null)
+        {
+            AddText("*****************");
+            yield return new WaitForSeconds(0.12f);
+            AddText("Hiscore by:");
+            yield return new WaitForSeconds(0.1f);
+            AddText("HACKER: " + missionHiscoreUserData.username + " [" + Utils.FormatNumbers( missionHiscoreUserData.score) + "]");
+            yield return new WaitForSeconds(0.15f);
+            AddText("in mission_id: [" + Data.Instance.missions.MissionActiveID + "]");
+            AddText("*****************");
+            AddText(" ");
+            yield return new WaitForSeconds(5f);
+        }
+        AddText("Buenos Aires <" + username + "> USER ALLOWING ACCESS!");        
+        yield return new WaitForSeconds(0.35f);
+        AddText(username + " -> GOTO 1985 ");
         yield return new WaitForSeconds(2f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
-       // AddText("COMPLETE!");
+        AddText("COMPLETE!");
         yield return new WaitForSeconds(0.35f);
         Data.Instance.events.OnStartGameScene();
         Data.Instance.musicManager.ChangePitch(0.2f);
