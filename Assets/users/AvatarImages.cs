@@ -47,8 +47,8 @@ public class AvatarImages : MonoBehaviour
     public void GetImageFor(string userID, System.Action<Texture2D> OnLoaded)
     {
         if(OnLoaded != null)
-        OnLoaded(null);
-        return ;
+            OnLoaded(null);
+        return;
 #if UNITY_WEBGL
         OnLoaded(defaultTexture);
         return;

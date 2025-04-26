@@ -6,7 +6,7 @@ using System;
 public class ServerConnect : MonoBehaviour
 {
     private string secretKey = "pontura";
-    string getUserURL = "http://madrollers.com/game/getUser.php";
+    string getUserURL = UserData.Instance.URL;
 
     public bool loaded;
 

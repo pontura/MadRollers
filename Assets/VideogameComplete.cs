@@ -56,13 +56,5 @@ public class VideogameComplete : MonoBehaviour {
 		Data.Instance.videogamesData.SetOtherGameActive();
 		Data.Instance.missions.MissionActiveID = 0;
 		Data.Instance.LoadLevel("Game");
-
-//		if(Data.Instance.videogamesData.actualID == 0)
-//			Data.Instance.videogamesData.actualID = 1;
-//		else if(Data.Instance.videogamesData.actualID == 1)
-//			Data.Instance.videogamesData.actualID = 2;
-//		else
-//			Data.Instance.videogamesData.actualID = 0;
-//		Data.Instance.LoadLevel ("Hiscores");
 	}
 }

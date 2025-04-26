@@ -225,4 +225,9 @@ public class Game : MonoBehaviour {
             Data.Instance.events.OnBossActive(false);
         }
     }
+    private void Update()//CHEAT: pontura P para ganar level:
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            OnListenerDispatcher(ListenerDispatcher.myEnum.LevelFinish);
+    }
 }
