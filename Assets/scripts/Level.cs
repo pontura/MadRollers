@@ -93,7 +93,6 @@ public class Level : MonoBehaviour {
         //			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
         //			return;
         //		}
-      //  StartCoroutine(LoopLoadAll());
     }
 	void OnGameStart()
 	{
@@ -240,26 +239,12 @@ public class Level : MonoBehaviour {
             }
         }
     }
-    //IEnumerator LoopLoadAll()//TO-OD
-    //{
-    //    int i = 1;
-    //    while(i<1000)
-    //    {
-    //        print("carga " + i);
-    //        i += 10;
-    //        yield return new WaitForEndOfFrame();
-    //        missions.OnUpdateDistance(i);
-    //    }
-    //}
-    float lastDist = 0;
-    private void Update () 
-    {	
+	private void Update () {
+	
+		//if (Data.Instance.playMode == Data.PlayModes.VERSUS )
+		//	return;
 		float dist = charactersManager.getDistance ();
-        if (dist>lastDist)
-        {
-            lastDist = dist+5;
-            missions.OnUpdateDistance(dist);
-        }
+		missions.OnUpdateDistance (dist);
 	}
     public void FallDown(int fallDownHeight)
     {
