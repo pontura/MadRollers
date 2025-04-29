@@ -219,8 +219,13 @@ public class Missions : MonoBehaviour
 	}
 	public void OnUpdateDistance(float distance)
 	{
-        if (areasetDataLoaded.Count>0 && distance > areasetDataLoaded[0].totalDistanceToCamFX)
-            OnAvatarReachedNextArea(areasetDataLoaded[0]);
+        print("OnUpdateDistance " + distance);
+        if (areasetDataLoaded.Count > 0)
+        {
+            MissionData.AreaSetData m = areasetDataLoaded[0];
+            if (distance > m.totalDistanceToCamFX)
+                OnAvatarReachedNextArea(m);
+        }
         if (distance > areasLength-offset) {
 			SetNextArea ();
 		}
