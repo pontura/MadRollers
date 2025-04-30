@@ -6,8 +6,7 @@ using System;
 public class ServerConnect : MonoBehaviour
 {
     private string secretKey = "pontura";
-    string getUserURL = UserData.Instance.URL;
-
+    public string getUserURL;
     public bool loaded;
 
     [Serializable]
@@ -23,6 +22,7 @@ public class ServerConnect : MonoBehaviour
    
     public void LoadUserData(string userID, System.Action<UserDataInServer> OnDone)
     {
+        getUserURL = UserData.Instance.URL;
         string post_url = getUserURL;
         post_url += "?userID=" + userID;
 

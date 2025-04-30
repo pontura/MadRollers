@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UserData : MonoBehaviour
 {
-    public string URL = "https://yaguar.xyz/madRollers/";
+    public string URL = "https://dev.yaguar.xyz/madRollers/";
     public string setUserURL = "setUser.php";
     public string setUserURLUpload = "updateUser.php";
     public string imageURLUploader = "uploadPhoto.php";
@@ -36,10 +36,6 @@ public class UserData : MonoBehaviour
     {
         get
         {
-            if (mInstance == null)
-            {
-                mInstance = FindObjectOfType<UserData>();
-            }
             return mInstance;
         }
     }
