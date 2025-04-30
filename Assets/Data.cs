@@ -112,7 +112,7 @@ public class Data : MonoBehaviour {
         Application.targetFrameRate = 60;
 #elif UNITY_WEBGL
         useOptimizedSettings = true;
-        playMode = PlayModes.STORYMODE;
+        //playMode = PlayModes.STORYMODE;
         isAndroid = false;
 #elif UNITY_EDITOR
         Application.targetFrameRate = 60;

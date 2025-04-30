@@ -8,7 +8,10 @@ public class Missions : MonoBehaviour
 {
 
     //areasetData que vas guardando para cambiar el angulo de la camara:
-    public List<MissionData.AreaSetData> areasetDataLoaded;
+   // public List<MissionData.AreaSetData> areasetDataLoaded;
+    int totalDistanceToCamFX;
+    Vector3 cameraOrientation;
+    float bending;
 
     public bool hasReachedBoss;
     public ExtraAreasManager extraAreasManager;
@@ -41,7 +44,7 @@ public class Missions : MonoBehaviour
     public void Init()
     {
         LoadInit();
-        areasetDataLoaded.Clear();
+       // areasetDataLoaded.Clear();
         if (_data.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
             offset -= 40;
 
@@ -224,8 +227,11 @@ public class Missions : MonoBehaviour
 	}
 	public void OnUpdateDistance(float distance)
 	{
-        if (areasetDataLoaded.Count>0 && distance > areasetDataLoaded[0].totalDistanceToCamFX)
-            OnAvatarReachedNextArea(areasetDataLoaded[0]);
+        //MissionData.AreaSetData asl = areasetDataLoaded[0];
+        //if (areasetDataLoaded.Count>0 && distance > asl.totalDistanceToCamFX)
+        //    OnAvatarReachedNextArea(asl);
+        if (totalDistanceToCamFX>0)
+            OnAvatarReachedNextArea(cameraOrientation, bending);
         if (distance > areasLength-offset) {
 			SetNextArea ();
 		}
@@ -240,13 +246,13 @@ public class Missions : MonoBehaviour
 	void SetNextArea()
 	{
         MissionData.AreaSetData data = MissionActive.areaSetData[areaSetId];
-
        
         if (areasetIDLastAdded != areaSetId)
         {
             areasetIDLastAdded = areaSetId;
-            data.totalDistanceToCamFX = (int)areasLength;
-            areasetDataLoaded.Add(data);
+            this.totalDistanceToCamFX = (int)areasLength;
+            bending = data.bending;
+            cameraOrientation = data.cameraOrientation;
         }
 
         total_areas = data.total_areas;
@@ -278,13 +284,13 @@ public class Missions : MonoBehaviour
 		}
 		
 	}
-    void OnAvatarReachedNextArea(MissionData.AreaSetData data)
+    void OnAvatarReachedNextArea(Vector3 cameraOrientation, float bending)
     {
       //  print("__________ distance: "  + data.totalDistanceToCamFX +  " areaName: " + data.areas[0] +   " cam: "  + data.cameraOrientation + " bending: " + data.bending);
-        Game.Instance.gameCamera.SetOrientation(data.cameraOrientation);
-        if (data.bending != 0)
-            Data.Instance.events.ChangeCurvedWorldX(data.bending);
-        areasetDataLoaded.RemoveAt(0);
+        Game.Instance.gameCamera.SetOrientation(cameraOrientation);
+        if (bending != 0)
+            Data.Instance.events.ChangeCurvedWorldX(bending);
+       // areasetDataLoaded.RemoveAt(0);
     }
 	void ResetAreaSet()
 	{

@@ -44,6 +44,7 @@ public class LevelComplete : MonoBehaviour {
 	}
 	void OnDisable()
 	{
+		StopAllCoroutines();
 		Close();
 	}
 

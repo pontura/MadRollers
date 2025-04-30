@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
         {
             horizontal_UI_Partymode.SetActive(true);
             vertical_UI.gameObject.SetActive(false);
+            horizontal_UI.gameObject.SetActive(false);
         }
         else
         {
