@@ -4,6 +4,8 @@ using System.Collections;
 using System;
 using System.IO;
 using System.Linq;
+using UnityEngine.Networking;
+using LootLocker.Requests;
 
 public class ArcadeRanking : MonoBehaviour {
 
@@ -17,18 +19,118 @@ public class ArcadeRanking : MonoBehaviour {
 		public string username;
 		public int hiscore;       
 	}
-	void Start () {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            return;
-        Data.Instance.events.RefreshHiscores += RefreshHiscores;
-		path = Application.streamingAssetsPath + "/hiscores.txt";
-		LoadHiscores(path);
-	}
-	void RefreshHiscores()
+	//void Start () {
+ //       if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+ //           return;
+ //       Data.Instance.events.RefreshHiscores += RefreshHiscores;
+	//	path = Application.streamingAssetsPath + "/hiscores.txt";
+ //       //LoadHiscores(path);
+ //       //StartCoroutine(LoadHiscoresForWeb());
+ //       GetTopScores();
+ //   }
+    void RefreshHiscores()
 	{
-		LoadHiscores (path);
-	}
-	void LoadHiscores(string fileName)
+        //LoadHiscores (path);
+        // StartCoroutine(LoadHiscoresForWeb());
+        GetTopScores();
+    }
+    void Start()
+    {
+        StartCoroutine(StartSession());
+    }
+    IEnumerator StartSession()
+    {
+        bool done = false;
+
+        LootLockerSDKManager.StartGuestSession((response) =>
+        {
+            if (response.success)
+            {
+                Debug.Log("Session started");
+                GetTopScores();
+            }
+            else
+            {
+                Debug.Log("Session failed");
+            }
+            done = true;
+        });
+
+        yield return new WaitUntil(() => done);
+    }
+
+
+    string leaderboardKey = "partymode";
+    //
+    public void GetTopScores()
+    {
+
+
+        LootLockerSDKManager.GetScoreList(leaderboardKey, 10, 0, (response) =>
+        {
+            if (response.success)
+            {
+                foreach (var item in response.items)
+                {
+                   Debug.Log(item.member_id + " metadata: " +  item.metadata + " : " + item.score);
+                    Hiscore hiscore = new Hiscore();
+                    hiscore.username = item.metadata;
+                    hiscore.hiscore = item.score;
+                    all.Add(hiscore);
+                }
+            }
+            else
+            {
+                Debug.Log("Failed to get scores.");
+            }
+        });
+    }
+    public void Save(string username, int score)
+    {
+        Debug.Log("Save score");
+        LootLockerSDKManager.SubmitScore(username, score, leaderboardKey, username , (response) =>
+        {
+            if (response.success)
+            {
+                Debug.Log("Score submitted!");
+            }
+            else
+            {
+                Debug.Log("Failed to submit score.");
+            }
+        });
+    }
+
+
+
+
+
+    IEnumerator LoadHiscoresForWeb()
+    {
+        string path = Application.streamingAssetsPath + "/hiscores.txt";
+        UnityWebRequest www = UnityWebRequest.Get(path);
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error al cargar el archivo: " + www.error);
+        }
+        else
+        {
+            string text = www.downloadHandler.text;
+            string[] lineas = text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+            all.Clear();
+            foreach (string line in lineas)
+            {
+                string[] lines = line.Split("_"[0]);
+                Hiscore hiscore = new Hiscore();
+                hiscore.username = lines[0];
+                hiscore.hiscore = int.Parse(lines[1]);
+                all.Add(hiscore);
+            }
+        }
+    }
+    void LoadHiscores(string fileName)
 	{
 		String[] arrLines = File.ReadAllLines(fileName);
 		all.Clear ();

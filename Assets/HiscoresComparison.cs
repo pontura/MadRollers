@@ -80,7 +80,7 @@ public class HiscoresComparison : MonoBehaviour {
 			}
 		}
         yield return new WaitForSeconds(3f);
-        if (puesto < rankingNum)
+        if (puesto < rankingNum && puesto != 0)
         {
             GotoNewHiscore();
             Reset();

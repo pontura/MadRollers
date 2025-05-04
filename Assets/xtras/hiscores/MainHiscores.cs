@@ -42,7 +42,7 @@ public class MainHiscores : MonoBehaviour {
 		
         puesto = 1;
         Screen.fullScreen = true;
-		LoadHiscores(Data.Instance.GetComponent<ArcadeRanking>().path);
+		LoadHiscores();
         if (puesto > 15)
         {
             hiscoreInput.SetActive(false);
@@ -126,16 +126,15 @@ public class MainHiscores : MonoBehaviour {
         letterActive.GetComponent<Animation>().Play("letterOn");
     }
     private bool yaAgrego;
-    void LoadHiscores(string fileName)
+    void LoadHiscores()
     {
-            String[] arrLines = File.ReadAllLines(fileName);
+            //String[] arrLines = File.ReadAllLines(fileName);
             int num = 1;
-            foreach (string line in arrLines)
+            foreach (ArcadeRanking.Hiscore line in Data.Instance.GetComponent<ArcadeRanking>().all)
             {
-                string[] lines = line.Split("_"[0]);
                 Hiscore hiscore = new Hiscore();
-                hiscore.username = lines[0];
-                hiscore.hiscore = int.Parse(lines[1]);
+                hiscore.username = line.username;
+                hiscore.hiscore = line.hiscore;
                 hiscores.Add(hiscore);
 
                 if (hiscore.hiscore < _hiscore && !yaAgrego)
@@ -158,8 +157,7 @@ public class MainHiscores : MonoBehaviour {
                     newScoreLine.Init(num, hiscore.username, hiscore.hiscore);               
                     newScoreLine.transform.SetParent(container);
                     newScoreLine.transform.localScale = Vector3.one;
-                }               
-
+                }     
                 num++;
             } 
      }
@@ -178,26 +176,28 @@ public class MainHiscores : MonoBehaviour {
             if (letra == "_") letra = " ";
             username += letra;
         }
-		SaveNew(Data.Instance.GetComponent<ArcadeRanking>().path, username, _hiscore);
+        Data.Instance.GetComponent<ArcadeRanking>().Save(username, _hiscore);
+        Invoke("grabaEnd", 0.25f);
+        //SaveNew(Data.Instance.GetComponent<ArcadeRanking>().path, username, _hiscore);
     }
-    public void SaveNew(string fileName, string username, int newHiscoreToSave)
-    {
-		Hiscore newHiscore = new Hiscore ();
-		newHiscore.username = username;
-		newHiscore.hiscore = newHiscoreToSave;
-		hiscores.Add (newHiscore);
+  //  public void SaveNew(string fileName, string username, int newHiscoreToSave)
+  //  {
+		//Hiscore newHiscore = new Hiscore ();
+		//newHiscore.username = username;
+		//newHiscore.hiscore = newHiscoreToSave;
+		//hiscores.Add (newHiscore);
 
-		arrengedHiscores = OrderByHiscore (hiscores);
+		//arrengedHiscores = OrderByHiscore (hiscores);
 
-		String[] arrLines = new String[hiscores.Count];
-		int a = 0;
-		foreach (Hiscore hs in arrengedHiscores) {
-			arrLines [a] = hs.username + "_" + hs.hiscore;
-			a++;
-		}
-		File.WriteAllLines (fileName, arrLines);
-		Invoke ("grabaEnd", 0.25f);
-    }
+		//String[] arrLines = new String[hiscores.Count];
+		//int a = 0;
+		//foreach (Hiscore hs in arrengedHiscores) {
+		//	arrLines [a] = hs.username + "_" + hs.hiscore;
+		//	a++;
+		//}
+		//File.WriteAllLines (fileName, arrLines);
+		//Invoke ("grabaEnd", 0.25f);
+  //  }
     void Reset()
     {
         grabaEnd();
