@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity WebGL + Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <div id="unity-container"></div>
+
+    <script type="module">
+        // Configuración de Firebase
+          const firebaseConfig = {
+			  apiKey: "AIzaSyDmXU4lnl6bC7l-GzMRKLBo6orMsdphuU4",
+			  authDomain: "mad-r-55c46.firebaseapp.com",
+			  databaseURL: "https://mad-r-55c46-default-rtdb.firebaseio.com",
+			  projectId: "mad-r-55c46",
+			  storageBucket: "mad-r-55c46.firebasestorage.app",
+			  messagingSenderId: "1012217925239",
+			  appId: "1:1012217925239:web:beb67fe0a2b2c67f9dc072",
+			  measurementId: "G-3B0CGB92GE"
+			};
+
+        // Inicializa Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Funciones Firebase
+        function signInAnonymously() {
+            return signInAnonymously(auth).then((userCredential) => {
+                console.log("Signed in anonymously with user:", userCredential.user.uid);
+                return userCredential.user.uid;
+            }).catch((error) => {
+                console.error("Error signing in anonymously:", error);
+            });
+        }
+
+        function submitScore(userId, score, username) {
+            const leaderboardRef = collection(db, "leaderboard");
+            addDoc(leaderboardRef, {
+                uid: userId,
+                score: score,
+                username: username,
+                timestamp: serverTimestamp()
+            }).then(() => {
+                console.log("Puntaje enviado exitosamente");
+            }).catch((error) => {
+                console.error("Error al enviar puntaje:", error);
+            });
+        }
+		
+	  // Función para obtener los puntajes más altos desde Firestore
+	  function getHighScores() {
+		const leaderboardRef = collection(db, "leaderboard");
+		
+		// Ordenar por puntaje de mayor a menor y limitar a los primeros 10
+		const q = query(leaderboardRef, orderBy("score", "desc"), limit(10));
+		
+		getDocs(q).then((querySnapshot) => {
+		  const highScores = [];
+		  querySnapshot.forEach((doc) => {
+			highScores.push(doc.data());
+		  });
+		  
+		  // Retorna los puntajes a Unity
+		  console.log("High Scores: ", highScores);
+		  window.ReceiveHighScores(highScores);  // Llama a la función en Unity
+		}).catch((error) => {
+		  console.error("Error al obtener los puntajes: ", error);
+		});
+	  }
+  
+
+        // Exponer las funciones a Unity
+        window.SignInAnonymously = signInAnonymously;
+        window.SubmitScore = submitScore;
+		window.GetHighScores = getHighScores;
+</script>
+</body>
+</html>
