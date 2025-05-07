@@ -47,15 +47,15 @@ public class CommodoreUI : MonoBehaviour {
 		field.text = "";
         AddText("NEW HI-SCORE -> CONGRATULATIONS!");
         yield return new WaitForSeconds(0.8f);
-        AddText("*** MAD ROLLERS ***");
-		yield return new WaitForSeconds (0.8f);
-		AddText("Hacking " + Data.Instance.videogamesData.GetActualVideogameData ().name + " -> scores.list");
-		yield return new WaitForSeconds (0.5f);
-		AddText("Commander64 P_HASH[ASDL??89348");
-		yield return new WaitForSeconds (0.8f);
-		AddText("Write Permisson Accepted!");
-		yield return new WaitForSeconds (0.5f);
-		yield return null;
+  //      AddText("*** MAD ROLLERS ***");
+		//yield return new WaitForSeconds (0.8f);
+		//AddText("Hacking " + Data.Instance.videogamesData.GetActualVideogameData ().name + " -> scores.list");
+		//yield return new WaitForSeconds (0.5f);
+		//AddText("Commander64 P_HASH[ASDL??89348");
+		//yield return new WaitForSeconds (0.8f);
+		//AddText("Write Permisson Accepted!");
+		//yield return new WaitForSeconds (0.5f);
+		//yield return null;
 	}
 	IEnumerator LoadingRoutine_GAME_COMPLETED()
 	{

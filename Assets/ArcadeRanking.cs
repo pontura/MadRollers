@@ -9,10 +9,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using System.Runtime.InteropServices;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ArcadeRanking : MonoBehaviour
 {
     public string path;
+    [Serializable]
+    public class DataFromJS
+    {
+        public List<Hiscore> data;
+    }
     [Serializable]
     public class Hiscore
     {
@@ -22,10 +28,10 @@ public class ArcadeRanking : MonoBehaviour
     }
     public List<Hiscore> all;
 
-#if UNITY_WEBGL && !UNITY_EDITOR  
+#if UNITY_WEBGL && !UNITY_EDITOR
    
     [DllImport("__Internal")]
-    private static extern void SignInAnonymously();
+    private static extern void SignIn();
 
     [DllImport("__Internal")]
     private static extern void SubmitScore(string userId, int score, string username);
@@ -34,14 +40,18 @@ public class ArcadeRanking : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void GetHighScores();
 
-    private string userId;
+    private string userId = "";
 
     void Start()
     {
         Data.Instance.events.RefreshHiscores += RefreshHiscores;
         // Intentar iniciar sesión anónimamente
-        SignInAnonymously(); 
-        GetHighScores();  // Llamar para obtener los puntajes más altos
+        //SignIn(); 
+        Invoke("Delayed", 2);
+    }
+    void Delayed()
+    {
+        GetHighScores();
     }
     private void OnDestroy()
     {
@@ -63,19 +73,44 @@ public class ArcadeRanking : MonoBehaviour
         userId = id;
     }
     // Este método será llamado desde JavaScript para recibir los puntajes
-    public void ReceiveHighScores(string highScoresJson)
+    public void OnReceiveHighScores(string highScoresJson)
     {
-        // Parseamos el JSON recibido de JavaScript (deberás convertirlo desde el formato de JavaScript a C#)
-        List<Hiscore> highScores = JsonUtility.FromJson<List<Hiscore>>(highScoresJson);
+        all.Clear();
+        string r = "{\"data\":" + highScoresJson + "}";
+        Debug.Log("OnReceiveHighScores: " + r);
+        DataFromJS dataFromJS = JsonUtility.FromJson<DataFromJS>(r);
 
-        foreach (var score in highScores)
+        foreach (Hiscore score in dataFromJS.data)
         {
-            Debug.Log("UID: " + score.uid + ", Score: " + score.hiscore + ", username: " + score.username);
+            if (score.username != "")
+            {
+                Hiscore hiscore = new Hiscore();
+                hiscore.username = score.username;
+                hiscore.hiscore = score.hiscore;
+                all.Add(hiscore);
+            }
         }
     }
+    //SAVE y volver a compilar
 #else
+    public void OnReceiveHighScores(string highScoresJson)
+    {
+        all.Clear();
+        string r = "{\"data\":" + highScoresJson + "}";
+        Debug.Log("OnReceiveHighScores: " + r);
+        DataFromJS dataFromJS = JsonUtility.FromJson<DataFromJS>(r);
 
-
+        foreach (Hiscore score in dataFromJS.data)
+        {
+            if (score.username != "")
+            {
+                Hiscore hiscore = new Hiscore();
+                hiscore.username = score.username;
+                hiscore.hiscore = score.hiscore;
+                all.Add(hiscore);
+            }
+        }
+    }
     FirebaseAuth auth;
     FirebaseFirestore db;
     FirebaseUser user;
@@ -88,11 +123,11 @@ public class ArcadeRanking : MonoBehaviour
             auth = FirebaseAuth.DefaultInstance;
             db = FirebaseFirestore.DefaultInstance;
 
-            SignInAnonymously();
+            SignIn();
         });
     }
 
-    void SignInAnonymously()
+    void SignIn()
     {
         auth.SignInAnonymouslyAsync().ContinueWithOnMainThread(task =>
         {

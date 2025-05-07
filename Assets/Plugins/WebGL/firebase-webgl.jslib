@@ -1,7 +1,7 @@
 mergeInto(LibraryManager.library, {
-    SignInAnonymously: function() {
+    SignIn: function() {
         return new Promise(function(resolve, reject) {
-            window.SignInAnonymously().then(function(userId) {
+            window.SignIn().then(function(userId) {
                 resolve(userId);
             }).catch(function(error) {
                 reject(error);

@@ -27,12 +27,13 @@ public class HiscoresComparison : MonoBehaviour {
 	}
 
 	public void Init() {
-
+		Debug.Log("HiscoresComparison Init");
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL && Data.Instance.playMode != Data.PlayModes.PARTYMODE) {
 			GetComponent<GameOverPartyMode> ().Init ();
 			return;
-		}
-		if (arcadeRanking.all.Count == 0)
+        }
+        Debug.Log("arcadeRanking.all.Count:" + arcadeRanking.all.Count);
+        if (arcadeRanking.all.Count == 0)
 			return;
 
 		hiscore = (float)arcadeRanking.all [0].hiscore;
