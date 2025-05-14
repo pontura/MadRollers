@@ -167,7 +167,7 @@ public class Game : MonoBehaviour {
 
         Data.Instance.events.OnResetLevel();
         Data.Instance.events.ForceFrameRate(1);
-        Data.Instance.LoadLevel("LevelSelectorMobile");
+        Data.Instance.LoadLevel("Game");
     }
     public void GotoMainMenu()
     {
