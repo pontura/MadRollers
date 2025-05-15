@@ -176,6 +176,8 @@ public class MainHiscores : MonoBehaviour {
             if (letra == "_") letra = " ";
             username += letra;
         }
+        Debug.Log("<<< SAVE user to DB: " + username);
+        Debug.Log("<<< SAVE _hiscore: " + _hiscore);
         Data.Instance.GetComponent<ArcadeRanking>().Save(username, _hiscore);
         Invoke("grabaEnd", 0.25f);
         //SaveNew(Data.Instance.GetComponent<ArcadeRanking>().path, username, _hiscore);

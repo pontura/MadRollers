@@ -34,7 +34,7 @@ public class ArcadeRanking : MonoBehaviour
     private static extern void SignIn();
 
     [DllImport("__Internal")]
-    private static extern void SubmitScore(string userId, int score, string username);
+    private static extern void SubmitScore(string username, int score);
 
 
     [DllImport("__Internal")]
@@ -61,10 +61,11 @@ public class ArcadeRanking : MonoBehaviour
 	{
         GetHighScores();
     }
-    public void Save(string username, int score)
+    public void Save(string _username, int score)
     {
         // Asegúrate de que el userId se haya obtenido de la sesión de Firebase
-        SubmitScore(userId, score, username);
+        Debug.Log("Save score: " + score + " _username" + _username);
+        SubmitScore(_username, score);
     }
 
     // Este método debe ser llamado desde JavaScript para devolver el userId

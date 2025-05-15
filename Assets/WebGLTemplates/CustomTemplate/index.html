@@ -74,10 +74,10 @@
 		  });
 		}
 
-        function SubmitScore(userId, hiscore, username) {		
-			  console.log("SubmitScore userId" + userId + " hiscore: " + hiscore + " username: " + username);
+        function SubmitScore(username, hiscore) {		
+			  console.log("SubmitScore user.uid: " + user.uid + " hiscore: " + hiscore + " username: " + username);
 			db.collection("leaderboard").add({
-              uid: userId,
+              uid: user.uid,
 			  username: username,
 			  hiscore: hiscore,
 			  timestamp: Date.now()

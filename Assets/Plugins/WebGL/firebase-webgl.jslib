@@ -9,8 +9,9 @@ mergeInto(LibraryManager.library, {
         });
     },
 
-    SubmitScore: function(userId, score, username) {
-        window.SubmitScore(userId, score, username);
+    SubmitScore: function(usernamePtr, score) {
+		var username = UTF8ToString(usernamePtr);
+        window.SubmitScore(username, score);
     },
 
     GetHighScores: function() {
