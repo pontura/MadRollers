@@ -97,22 +97,20 @@ public class LoadingAsset : MonoBehaviour {
 		Data.Instance.musicManager.OnLoadingMusic();
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.1f);
 		AddText("Buenos Aires USER ALLOWING ACCESS!");
-		yield return new WaitForSeconds (0.35f);
-        AddText("Ana-Maria version");
-		yield return new WaitForSeconds (0.4f);
+		yield return new WaitForSeconds (0.1f);
+        AddText("404 CLUB version");
+		yield return new WaitForSeconds (0.2f);
         AddText("-> GOTO 1985 ");
-		yield return new WaitForSeconds (0.5f);
-		AddText("Club-Social-911 >system ...");
         UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.2f);
         if (!Data.Instance.isReplay)
         {
             int i = texts.Length;
             while (i > 0)
             {
-                yield return new WaitForSeconds((float)Random.Range(6, 10) / 10f);
+                yield return new WaitForSeconds((float)Random.Range(2, 4) / 10f);
                 AddText(texts[i - 1]);
                 i--;
             }

@@ -175,17 +175,17 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	void AddAutomaticPlayersToAll()
 	{
-		int totalAvatars = characters.Count;
-		for (int a = 0; a < totalAvatars; a++) {
-			if (!characters [a].controls.isAutomata) {
-				CharacterBehavior cb = AddChildPlayer (characters [a]);
-				cb.team_for_versus = characters [a].team_for_versus;
-				if(cb.team_for_versus == 1)
-					cb.transform.SetParent (team1Container);
-				else if(cb.team_for_versus == 2)
-					cb.transform.SetParent (team2Container);
-			}
-		}
+		//int totalAvatars = characters.Count;
+		//for (int a = 0; a < totalAvatars; a++) {
+		//	if (!characters [a].controls.isAutomata) {
+		//		CharacterBehavior cb = AddChildPlayer (characters [a]);
+		//		cb.team_for_versus = characters [a].team_for_versus;
+		//		if(cb.team_for_versus == 1)
+		//			cb.transform.SetParent (team1Container);
+		//		else if(cb.team_for_versus == 2)
+		//			cb.transform.SetParent (team2Container);
+		//	}
+		//}
 	}
 	bool powerupsAdded;
 	void AddPowerUps()

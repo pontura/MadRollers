@@ -30,7 +30,6 @@ public class GameCamera : MonoBehaviour
 	public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, -0.8f);
 	public Vector3 newCameraOrientationVector;
 
-	public Vector3 defaultRotation =  new Vector3 (48,0,0);
     bool started;
     bool isAndroid;
     public bool onExplotion;
@@ -40,10 +39,10 @@ public class GameCamera : MonoBehaviour
 	float pixel_speed_recovery = 20;
 	private GameObject flow_target;
 	float _Y_correction = 10;
-    float targetZOffset = 6.5f;
+    float targetZOffset = 5f;
 
     float camSensorSpeed = 1;
-    float sensorSizeValueInitial = 9;
+    float sensorSizeValueInitial = 12;
     float sensorSizeValue;
 
     private void Awake()
@@ -266,8 +265,8 @@ public class GameCamera : MonoBehaviour
 		Vector3 _newPos  = newPos;
 		_newPos += newCameraOrientationVector;
 
-        if (_newPos.x < -15) _newPos.x = -15;
-		else if (_newPos.x > 15) _newPos.x = 15;
+        if (_newPos.x < -12) _newPos.x = -15;
+		else if (_newPos.x > 12) _newPos.x = 15;
 
 		//_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*10);
 		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*10);
@@ -315,7 +314,7 @@ public class GameCamera : MonoBehaviour
     }
 	public void SetOrientation(Vector4 orientation)
 	{
-        orientation /= 6;
+        orientation /= 12;
         sensorSizeValue = sensorSizeValueInitial - (orientation.z * 12);
        // Debug.Log("orientation: " + orientation + "   Change sensor value to: " + sensorSizeValue);
         newCameraOrientationVector = cameraOrientationVector + new Vector3(orientation.x, orientation.y, 0); //, orientation.z);

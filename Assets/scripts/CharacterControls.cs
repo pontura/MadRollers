@@ -21,9 +21,12 @@ public class CharacterControls : MonoBehaviour {
 	float jumpingPressedSince;
 	float jumpingPressedTime = 0.28f;
 
+    IInputManager inputManager;
 
-	void Start () {
-		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game")
+    void Start ()
+    {
+        inputManager = Data.Instance.inputManager;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game")
 			return;
         characterBehavior = GetComponent<CharacterBehavior>();
         player = GetComponent<Player>();
@@ -78,7 +81,7 @@ public class CharacterControls : MonoBehaviour {
 	float last_x_timer;
     private void moveByKeyboard()
     {
-        float _speed = Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal);
+        float _speed = inputManager.GetAxis(player.id, InputAction.horizontal);
 
 		if ( _speed>0 && lastHorizontalKeyPressed <=0
 			|| _speed<0 && lastHorizontalKeyPressed >=0
@@ -173,24 +176,25 @@ public class CharacterControls : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Alpha8))
             characterBehavior.characterMovement.DH(-1);
 
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
+
+        if (inputManager.GetButtonDown(player.id, InputAction.action3))
             characterBehavior.shooter.ChangeNextWeapon();
 
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
+        if (inputManager.GetButtonDown(player.id, InputAction.action2))
             characterBehavior.shooter.CheckFire();
 
-        if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) <-0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) ==0)
+        if (inputManager.GetAxis(player.id, InputAction.vertical) <-0.1f && inputManager.GetAxis(player.id, InputAction.horizontal) ==0)
         {
             characterBehavior.characterMovement.DashForward();
         }
 
         if (characterBehavior.state == CharacterBehavior.states.RUN)
         {
-            if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
+            if (inputManager.GetButtonDown(player.id, InputAction.action1))
             {
                 jumpingPressedSince = 0;
             }
-            if (Data.Instance.inputManager.GetButton(player.id, InputAction.action1))
+            if (inputManager.GetButton(player.id, InputAction.action1))
             {
                 jumpingPressedSince += Time.deltaTime;
                 if (jumpingPressedSince > jumpingPressedTime)
@@ -198,12 +202,12 @@ public class CharacterControls : MonoBehaviour {
                 else
                     characterBehavior.JumpingPressed();
             }
-            else if  (Data.Instance.inputManager.GetButtonUp(player.id, InputAction.action1))
+            else if  (inputManager.GetButtonUp(player.id, InputAction.action1))
                 {
                 Jump();
             }
         }
-        else if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
+        else if (inputManager.GetButtonDown(player.id, InputAction.action1))
         {
             Jump();
         }
@@ -244,13 +248,13 @@ public class CharacterControls : MonoBehaviour {
     {
 
 #if UNITY_EDITOR
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
+        if (inputManager.GetButtonDown(player.id, InputAction.action3))
             characterBehavior.shooter.ChangeNextWeapon();
 
-        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
+        if (inputManager.GetButtonDown(player.id, InputAction.action2))
             characterBehavior.shooter.CheckFire();
 
-        if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) < -0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) == 0)
+        if (inputManager.GetAxis(player.id, InputAction.vertical) < -0.1f && inputManager.GetAxis(player.id, InputAction.horizontal) == 0)
         {
             characterBehavior.characterMovement.DashForward();
         }

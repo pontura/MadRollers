@@ -246,15 +246,15 @@ public class CharactersManager : MonoBehaviour {
 		automaticIdPosition++;
 		return newCharacter;
 	}
-	public CharacterBehavior AddChildPlayer(CharacterBehavior parentPlayer)
-	{
-		int id = parentPlayer.controls.childs.Count + 4;
-		CharacterBehavior newCharacter = addCharacter(parentPlayer.transform.position, id);
-		newCharacter.controls.isAutomata = true;
-		parentPlayer.controls.AddNewChild( newCharacter );
-		newCharacter.GetComponent<CharacterAutomata> ().Init ();
-		return newCharacter;
-	}
+	//public CharacterBehavior AddChildPlayer(CharacterBehavior parentPlayer)
+	//{
+	//	int id = parentPlayer.controls.childs.Count + 4;
+	//	CharacterBehavior newCharacter = addCharacter(parentPlayer.transform.position, id);
+	//	newCharacter.controls.isAutomata = true;
+	//	parentPlayer.controls.AddNewChild( newCharacter );
+	//	newCharacter.GetComponent<CharacterAutomata> ().Init ();
+	//	return newCharacter;
+	//}
 	float separationOnReplay = 1f;
 	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
 	{		

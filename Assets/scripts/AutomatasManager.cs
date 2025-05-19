@@ -23,6 +23,11 @@ public class AutomatasManager : MonoBehaviour
 
     void Start()
     {
+        if(Data.Instance.isArcadeMultiplayer)
+        {
+            Destroy(this);
+            return;
+        }
         charactersManager = Game.Instance.level.charactersManager;
         Invoke("CheckToAdd", 8);
         if (Data.Instance.videogamesData.actualID == 2)
