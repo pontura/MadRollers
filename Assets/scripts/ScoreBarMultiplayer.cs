@@ -56,16 +56,14 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	{	
 		RefreshScore ();
 
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-        {
             if (score < 0)
                 return;
-            scoreSignalAnimation[scoreSignalAnimation.clip.name].normalizedTime = 0;
-            scoreSignalAnimation.Play();
-            scoreSignal.SetActive(true);
-            scoreSignalField.text = "+" + score.ToString();
-            return;
-        }
+        scoreSignalAnimation[scoreSignalAnimation.clip.name].normalizedTime = 0;
+        scoreSignalAnimation.Play();
+        scoreSignal.SetActive(true);
+        scoreSignalField.text = "+" + score.ToString();
+
+		return;
             
 
 		ResetFieldsTimer = Time.time + delayToReset;
