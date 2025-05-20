@@ -81,7 +81,7 @@ public class MissionsManager : MonoBehaviour
             videogame.missions.Add(LoadDataFromMission("missions", missionName));
         }
     }
-    public MissionsData LoadDataFromMission(string folder, string missionName)
+    MissionsData LoadDataFromMission(string folder, string missionName)
     {
         string dataAsJson = LoadResourceTextfile(folder, missionName);
         MissionsData missionData = JsonUtility.FromJson<MissionsData>(dataAsJson);

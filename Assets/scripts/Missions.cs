@@ -34,7 +34,7 @@ public class Missions : MonoBehaviour
     int areaID = 0;
     float totalDistance = 0;
 
-    VideogamesData videogamesData;
+    [SerializeField] VideogamesData videogamesData;
 
     void LoadInit()
     {
@@ -175,7 +175,7 @@ public class Missions : MonoBehaviour
         }
         else
         {
-            NextMission();               
+         //   NextMission();               
             int videogameID = videogamesData.actualID + 1;
             UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
         }
@@ -190,7 +190,7 @@ public class Missions : MonoBehaviour
 	}
 	void NextMission()
 	{
-		MissionActiveID++;
+		//MissionActiveID++;
   //      AddAreaByName("newLevel_playing");
   //      StartNewMission ();
 		//Data.Instance.events.OnChangeBackgroundSide (MissionActive.fondo);
