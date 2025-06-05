@@ -39,12 +39,11 @@ public class MadRollersSFX : MonoBehaviour {
 
 	void Start () {
         DontDestroyOnLoad(this);
-
         Data.Instance.events.OnMadRollerFX += OnMadRollerFX;	
 		Data.Instance.events.OnGameOver += OnGameOver;
 		Data.Instance.events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
         
-        OnMadRollersSFXStatus( Data.Instance.madRollersSoundsOn);
+        OnMadRollersSFXStatus( Data.Instance.madRollersSoundsOn );
 	}
     void OnDestroy()
     {
@@ -73,10 +72,10 @@ public class MadRollersSFX : MonoBehaviour {
 		AudioClip ac = null;
 		switch(type)
 		{
-		case types.ENGINES:
-			ac = playerClips [id].engines;
-			audioSource.loop = true; 
-			break;
+		//case types.ENGINES:
+		//	ac = playerClips [id].engines;
+		//	audioSource.loop = true; 
+		//	break;
 		case types.JUMP: 
 			ac = playerClips[id].jump; 
 			audioSource.loop = false; 

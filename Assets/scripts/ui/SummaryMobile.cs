@@ -129,6 +129,12 @@ public class SummaryMobile : MonoBehaviour
     public void Next()
     {
         Data.Instance.events.OnResetScores();
+        Data.Instance.events.ForceFrameRate(1);
+        Game.Instance.Continue();        
+    }
+    public void ChangeVideoGame()
+    {
+        Data.Instance.events.OnResetScores();
         Data.Instance.events.FreezeCharacters(true);
         Data.Instance.musicManager.stopAllSounds();
         Data.Instance.isReplay = false;

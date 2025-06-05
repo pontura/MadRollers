@@ -62,7 +62,7 @@ public class UICountDown : MonoBehaviour {
         {
             Data.Instance.events.StartMultiplayerRace();
             countDownField.text = TextsManager.Instance.GetText("GO!"); ;
-            Invoke("Done", 1f);
+            Invoke("Done", 0.5f);
             Data.Instance.events.OnSoundFX("FX upgrade003", -1);
             return;
         }
@@ -73,7 +73,7 @@ public class UICountDown : MonoBehaviour {
         }
 
         countDown--;
-		Invoke ("SetNextCountDown", 1.25f);
+		Invoke ("SetNextCountDown", 0.75f);
 	}
     void Done()
     {        
