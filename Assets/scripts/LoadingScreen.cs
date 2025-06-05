@@ -41,7 +41,7 @@ public class LoadingScreen : MonoBehaviour {
                 Data.Instance.LoadLevel("Settings");
             else
             {
-                AllLoaded();
+               // AllLoaded();
             }
         }
     }
@@ -107,7 +107,7 @@ public class LoadingScreen : MonoBehaviour {
         UseLocalData();
         return;
 #endif
-        Debug.Log("AllLoaded");
+        Debug.Log("LoadingScreen AllLoaded");
         Data.Instance.socialAuth.Init((authCode) => {
             Debug.Log("#socialAuth: " + authCode);
             if (authCode != "")

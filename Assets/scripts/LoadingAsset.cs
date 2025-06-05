@@ -99,16 +99,16 @@ public class LoadingAsset : MonoBehaviour {
 		Data.Instance.musicManager.OnLoadingMusic();
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.1f);
 		AddText("Buenos Aires USER ALLOWING ACCESS!");
-		yield return new WaitForSeconds (0.35f);
+		yield return new WaitForSeconds (0.2f);
         AddText("Ana-Maria version");
-		yield return new WaitForSeconds (0.4f);
+		yield return new WaitForSeconds (0.2f);
         AddText("-> GOTO 1985 ");
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.2f);
 		AddText("Club-Social-911 >system ...");
         UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.2f);
         //if (!Data.Instance.isReplay)
         //{
         //    int i = texts.Length;
@@ -120,7 +120,7 @@ public class LoadingAsset : MonoBehaviour {
         //    }
         //}
 		AddText("COMPLETE!");
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.2f);
         SetOn (false);
 		if (!Data.Instance.isReplay) {
 			Data.Instance.musicManager.stopAllSounds();
@@ -142,23 +142,23 @@ public class LoadingAsset : MonoBehaviour {
         //yield return new WaitForSeconds(0.5f);
         //AddText("Loading " + videogameData.name + "...");
         //yield return new WaitForSeconds(0.2f);
-        if (missionHiscoreUserData != null)
-        {
-            AddText("*****************");
-            yield return new WaitForSeconds(0.12f);
-            AddText("Hiscore by:");
-            yield return new WaitForSeconds(0.1f);
-            AddText("HACKER: " + missionHiscoreUserData.username + " [" + Utils.FormatNumbers( missionHiscoreUserData.score) + "]");
-            yield return new WaitForSeconds(0.15f);
-            AddText("in mission_id: [" + Data.Instance.missions.MissionActiveID + "]");
-            AddText("*****************");
-            AddText(" ");
-            yield return new WaitForSeconds(5f);
-        }
-        AddText("Buenos Aires <" + username + "> USER ALLOWING ACCESS!");        
-        yield return new WaitForSeconds(0.35f);
-        AddText(username + " -> GOTO 1985 ");
-        yield return new WaitForSeconds(2f);
+        // if (missionHiscoreUserData != null)
+        // {
+            // AddText("*****************");
+            // yield return new WaitForSeconds(0.12f);
+            // AddText("Hiscore by:");
+            // yield return new WaitForSeconds(0.1f);
+            // AddText("HACKER: " + missionHiscoreUserData.username + " [" + Utils.FormatNumbers( missionHiscoreUserData.score) + "]");
+            // yield return new WaitForSeconds(0.15f);
+            // AddText("in mission_id: [" + Data.Instance.missions.MissionActiveID + "]");
+            // AddText("*****************");
+            // AddText(" ");
+            // yield return new WaitForSeconds(5f);
+        // }
+        // AddText("Buenos Aires <" + username + "> USER ALLOWING ACCESS!");        
+        // yield return new WaitForSeconds(0.35f);
+        // AddText(username + " -> GOTO 1985 ");
+        yield return new WaitForSeconds(0.1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
         AddText("COMPLETE!");
         yield return new WaitForSeconds(0.35f);

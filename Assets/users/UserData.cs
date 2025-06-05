@@ -5,7 +5,9 @@ using Yaguar.Auth;
 
 public class UserData : MonoBehaviour
 {
-    string url = "https://yaguar.xyz/madRollers/";
+    // string url = "https://pontura.github.io/madrollers/";
+    // string url = "https://yaguar.xyz/madRollers/";
+    string url = "https://dev.yaguar.xyz/madRollers/";
     public string URL { get { return url; } }
     public string setUserURL = "setUser.php";
     public string setUserURLUpload = "updateUser.php";

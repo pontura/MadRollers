@@ -239,12 +239,17 @@ public class Level : MonoBehaviour {
             }
         }
     }
+	float lastDist = 0;
 	private void Update () {
 	
 		//if (Data.Instance.playMode == Data.PlayModes.VERSUS )
-		//	return;
+		//	return;		
 		float dist = charactersManager.getDistance ();
-		missions.OnUpdateDistance (dist);
+        if (dist>lastDist)
+        {
+            lastDist = dist+5;
+            missions.OnUpdateDistance(dist);
+        }
 	}
     public void FallDown(int fallDownHeight)
     {
