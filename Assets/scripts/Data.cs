@@ -166,8 +166,8 @@ public class Data : MonoBehaviour {
 	}
 	void Start()
 	{
-      //  QualitySettings.vSyncCount = 0;
-      //  Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
 
 #if UNITY_EDITOR
         isEditor = true;
