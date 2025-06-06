@@ -1,0 +1,9 @@
+Bajate el SDK de firebase
+https://firebase.google.com/download/unity?hl=es-419
+De estos packages instalá el Auth y el Database
+
+En Package Manager, instalá de Git:
+https://github.com/jpamato/FirebaseAuth.git
+
+Seteá todo para Android.
+Voilá

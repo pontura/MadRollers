@@ -101,28 +101,42 @@ public class LoadingScreen : MonoBehaviour {
         // Data.Instance.LoadLevel("Intro"); 
         AllLoaded();
     }
+    string authCode = "";
     void AllLoaded()
     {
 #if UNITY_EDITOR
         UseLocalData();
         return;
 #endif
-        Debug.Log("LoadingScreen AllLoaded");
-        Data.Instance.socialAuth.Init((authCode) => {
-            Debug.Log("#socialAuth: " + authCode);
-            if (authCode != "")
+        Debug.Log("LoadingScreen AllLoaded authCode: " + authCode);
+        authCode = PlayerPrefs.GetString("authCode", "");
+
+        if (authCode != "")
+            SignInWithPlayGames(authCode);
+        else
+        {
+            Data.Instance.socialAuth.Init((authCode) =>
             {
-                FirebaseAuthManager.Instance.SignInWithPlayGames(authCode, (success) =>
+                Debug.Log("#socialAuth: " + authCode);
+                if (authCode != "")
                 {
-                    if (success)
-                        LoopForUserReady();
-                    else
-                        UseLocalData();
-                });
-            }
+                    PlayerPrefs.SetString("authCode", authCode);                    
+                    SignInWithPlayGames(authCode);
+                }
+                else
+                    UseLocalData();
+            });
+        }
+    }
+    void SignInWithPlayGames(string authCode)
+    {
+        FirebaseAuthManager.Instance.SignInWithPlayGames(authCode, (success) =>
+        {
+            if (success)
+                LoopForUserReady();
             else
                 UseLocalData();
-        });
+        });
     }
     void LoopForUserReady()
     {
