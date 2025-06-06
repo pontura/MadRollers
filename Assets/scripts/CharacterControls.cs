@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CharacterControls : MonoBehaviour {
 
-	//public bool isAutomata;
+	public bool isAutomata;
     CharacterBehavior characterBehavior;
     Player player;
     private float rotationY;
@@ -21,20 +21,23 @@ public class CharacterControls : MonoBehaviour {
 	float jumpingPressedTime = 0.28f;
 
 
-	void Start () {
-		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game")
-			return;
+	void Start ()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Game")
+            return;
         characterBehavior = GetComponent<CharacterBehavior>();
-        player = GetComponent<Player>();
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
+        
+        player = GetComponent<Player>();
 	}
 	public void EnabledMovements(bool enabledControls)
     {
 		ControlsEnabled = enabledControls;
     }
 
-	void LateUpdate () {
-		if (characterBehavior == null || characterBehavior.player == null)
+	void LateUpdate ()
+    {
+        if (characterBehavior == null || characterBehavior.player == null)
 			return;
         if (Game.Instance == null || Game.Instance.state != Game.states.PLAYING)
             return;
@@ -80,8 +83,8 @@ public class CharacterControls : MonoBehaviour {
 		//	if(!isAutomata)
 			//	Data.Instance.inputSaver.MoveInX (transform.position.x);
 		}
-
-		MoveInX (_speed);
+        if (!isAutomata)
+            MoveInX (_speed);
     }
 	bool playerPlayed;
 	public void MoveInX(float _speed)
@@ -246,11 +249,13 @@ public class CharacterControls : MonoBehaviour {
         //     else
         //         characterBehavior.JumpingPressed();
         // }
-
-        float v = Input.GetAxis("Horizontal");
-        if (v != 0)
-            v /= 1.25f;
-        MoveInX(v);    
+        if (!isAutomata)
+        {
+            float v = Input.GetAxis("Horizontal");
+            if (v != 0)
+                v /= 1.25f;
+            MoveInX(v);
+        }
 
        
 
