@@ -14,9 +14,9 @@ public class Automata : MonoBehaviour
         this.cb = cb;
         StopAllCoroutines();
         CancelInvoke();
-        Invoke("MoveLoop", moveRandomTry*2);
-        Invoke("ShootLoop", shootRandomTry*2);
-        Invoke("JumpLoop", jumpRandomTry*2);
+        Invoke("MoveLoop", moveRandomTry);
+        Invoke("ShootLoop", shootRandomTry);
+        Invoke("JumpLoop", jumpRandomTry);
         cb.GetComponent<CharacterControls>().isAutomata = true;
     }
     bool CanDoIt()
@@ -29,7 +29,7 @@ public class Automata : MonoBehaviour
     {
         if(CanDoIt())
         {
-            int rand = Random.Range(0, 100);
+            int rand = Random.Range(0, 50);
             if(rand<5)
                 cb.shooter.SetFire(Weapon.types.TRIPLE, 0.3f);
             else if (rand < 10)
@@ -45,7 +45,7 @@ public class Automata : MonoBehaviour
         if (CanDoIt())
         {
             int rand = Random.Range(0, 100);
-            if (rand < 30)
+            if (rand < 50)
                 cb.Jump();
         }
         if (Game.Instance.state != Game.states.GAME_OVER)

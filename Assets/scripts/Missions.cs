@@ -219,7 +219,6 @@ public class Missions : MonoBehaviour
 	}
 	public void OnUpdateDistance(float distance)
 	{
-		print("OnUpdateDistance " + distance);
         if (areasetDataLoaded.Count > 0)
         {
             MissionData.AreaSetData m = areasetDataLoaded[0];

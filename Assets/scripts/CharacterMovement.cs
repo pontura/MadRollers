@@ -19,11 +19,13 @@ public class CharacterMovement : MonoBehaviour {
 	public Vector3 offset;
 	float DHSpeed =-20f;
 	float DHMoveTo;
+	Rigidbody rb;
 
-	void Start()
+    void Start()
 	{
 		cb = GetComponent<CharacterBehavior> ();
-        if(!Data.Instance.isAndroid)
+        rb = GetComponent<Rigidbody> ();
+        if (!Data.Instance.isAndroid)
 		    Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 	}
 
@@ -80,7 +82,8 @@ public class CharacterMovement : MonoBehaviour {
 
         float _z = cb.player.charactersManager.distance;
 
-        _z -= characterScorePosition;
+		if(cb.player.id != 0)
+			_z -= 1f + (cb.player.id/2);
 
 		float speedRotation= 4;
 
@@ -97,21 +100,15 @@ public class CharacterMovement : MonoBehaviour {
 			Vector3 pos = transform.position;
 			pos.y = -0.16f;
 			transform.position = pos;
-			GetComponent<Rigidbody> ().linearVelocity = Vector3.zero;
+			rb.linearVelocity = Vector3.zero;
 		} else if (transform.position.y < heightToFall) {
 			 cb.Fall ();
 		}
-
-
-            transform.position = goTo;
+		transform.position = goTo;
 	}
 	void StartMultiplayerRace()
 	{
 		this.characterScorePosition = cb.player.id;
-	}
-	public void SetCharacterScorePosition()
-	{
-        characterScorePosition = Data.Instance.multiplayerData.GetPositionByScore (cb.player.id);
 	}
 
 }

@@ -141,8 +141,10 @@ public class Breakable : MonoBehaviour {
 
 			if (rb == null) 
 				rb = mr.gameObject.AddComponent< Rigidbody >();
-			
-			BreakedBlock bb = mr.gameObject.AddComponent< BreakedBlock >();
+
+            BreakedBlock bb = mr.gameObject.GetComponent<BreakedBlock>();
+
+            if (bb == null)  bb = mr.gameObject.AddComponent< BreakedBlock >();
 
 			rb.mass = 100;
 			rb.useGravity = true;
@@ -151,8 +153,13 @@ public class Breakable : MonoBehaviour {
 			bb.Init ();
 			mr.transform.SetParent (container);
 			mr.sortingLayerName = "Default";
-			mr.gameObject.AddComponent<BoxCollider> ();
-			mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
+
+            BoxCollider bc = mr.gameObject.GetComponent<BoxCollider>();
+            if(bc == null)
+                mr.gameObject.AddComponent<BoxCollider>();
+
+            mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
+
 			Vector3 direction = ((mr.transform.forward * force) + (Vector3.up * (force*2)));
 			rb.AddForce(direction, ForceMode.Impulse);
 
@@ -175,14 +182,15 @@ public class Breakable : MonoBehaviour {
         int id = 0;
         foreach (MeshRenderer mr in all)
         {
-            if (mr.gameObject.GetComponent<BoxCollider>() != null)
+            BoxCollider bc = mr.gameObject.GetComponent<BoxCollider>();
+            if (bc != null)
             {
                 print($"<color=#20E7B0>Borra collieder</color>");
-                mr.gameObject.GetComponent<BoxCollider>().enabled = false;
+                bc.enabled = false;
             }
-            if (mr.material.HasProperty("_Color"))
-            {
-            }
+            //if (mr.material.HasProperty("_Color"))
+            //{
+            //}
 
             pos[id] = mr.transform.position;
             scale[id] = mr.transform.localScale.x;

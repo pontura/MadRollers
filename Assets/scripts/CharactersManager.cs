@@ -2,8 +2,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using static UnityEditor.PlayerSettings;
-using UnityEngine.UIElements;
 
 public class CharactersManager : MonoBehaviour {
 
@@ -258,6 +256,8 @@ public class CharactersManager : MonoBehaviour {
     {
         if (Game.Instance.state == Game.states.GAME_OVER)
             return;
+
+        print("DIE: " + characters.Count);
         
         characters.Remove(characterBehavior);
         totalCharacters = characters.Count;
@@ -271,8 +271,10 @@ public class CharactersManager : MonoBehaviour {
             bool stillPlayingRealCharacters = false;
             foreach(CharacterBehavior cb in characters)
             {
-                stillPlayingRealCharacters = true;
+                if (cb.GetComponent<Automata>() == null)
+                    stillPlayingRealCharacters = true;
             }
+            print("DIE: stillPlayingRealCharacters " + stillPlayingRealCharacters);
             if (!stillPlayingRealCharacters)
             {                   
                 StartCoroutine(restart(characterBehavior));
