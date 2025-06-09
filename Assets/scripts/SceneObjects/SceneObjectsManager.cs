@@ -5,13 +5,17 @@ using UnityEngine;
 public class SceneObjectsManager : MonoBehaviour
 {
 
-
     public AreaSceneObjectManager areaSceneObjectManager;
     public CharactersManager charactersManager;
     List<SceneObject> sceneObjectsInScene;
     private ObjectPool Pool;
     bool isOn;
+    int videoGameID; 
 
+    public void ChangeVideogame(int videoGameID)
+    {
+        this.videoGameID = videoGameID;
+    }
     void Awake()
     {
         areaSceneObjectManager = GetComponent<AreaSceneObjectManager>();
@@ -25,7 +29,8 @@ public class SceneObjectsManager : MonoBehaviour
         so.transform.SetParent(Pool.Scene.transform);
         so.transform.localPosition = pos;
         sceneObjectsInScene.Add(so);
-        so.Init(this);
+        so.Init();
+        so.CheckVideoGame(videoGameID);
     }
     public void AddSceneObject(SceneObject so, Vector3 pos, Transform container)
     {
@@ -34,7 +39,8 @@ public class SceneObjectsManager : MonoBehaviour
 
         so.transform.localPosition = pos;
         sceneObjectsInScene.Add(so);
-        so.Init(this);
+        so.Init();
+        so.CheckVideoGame(videoGameID);
 
         so.transform.SetParent(container);
     }
@@ -51,8 +57,9 @@ public class SceneObjectsManager : MonoBehaviour
 
         so.transform.localPosition = pos;
         sceneObjectsInScene.Add(so);
-        so.Init(this);
+        so.Init();
         so.Restart(pos);
+        so.CheckVideoGame(videoGameID);
 
 
     }
@@ -105,7 +112,9 @@ public class SceneObjectsManager : MonoBehaviour
             else if (distance > _z - 58)
             {
                 if (!so.isActive)
+                {
                     so.Restart(so.transform.position);
+                }
                 so.Updated(distance);
             }
         }

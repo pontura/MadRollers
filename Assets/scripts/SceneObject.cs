@@ -27,7 +27,6 @@ public class SceneObject : MonoBehaviour
 
     //se dibuja solo si hay mas de un avatar vivo:
     public bool onlyMultiplayers;
-    SceneObjectsManager manager;
 
     SceneObjectData soData;
     public SceneObjectData SoData
@@ -37,17 +36,17 @@ public class SceneObject : MonoBehaviour
             if (soData == null) soData = GetComponent<SceneObjectData>(); return soData;
         }
     }
-
-    public virtual void Init(SceneObjectsManager manager)
+    public virtual void CheckVideoGame(int newVideoGameID) { }
+    public virtual void Init()
     {
-        this.manager = manager;
+
         soData = GetComponent<SceneObjectData>();
     }
     public SceneObjectsManager Manager
     {
         get
         {
-            return manager;
+            return Game.Instance.sceneObjectsManager;
         }
     }
     public void Restart(Vector3 pos)
@@ -74,14 +73,13 @@ public class SceneObject : MonoBehaviour
             transform.position = newPos;
 
         ObjectPool.instance.PoolObject(this);
-        if (manager == null)
+        if (Manager == null)
         {
             OnPool();
             return;
         }
-        manager.RemoveSceneObject(this);
+        Manager.RemoveSceneObject(this);
         OnPool();
-        manager = null;
     }
     public virtual void Updated(float distance)
     {

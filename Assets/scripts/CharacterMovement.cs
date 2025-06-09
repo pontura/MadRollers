@@ -60,7 +60,7 @@ public class CharacterMovement : MonoBehaviour {
             Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.DASH, cb.player.id);
         }
 	}
-	void Update()
+	void Calculate()
 	{
 		if (type == types.NORMAL)
 			return; 
@@ -78,7 +78,8 @@ public class CharacterMovement : MonoBehaviour {
 	}
 	public void UpdateByController(float rotationY)
 	{
-		Vector3 goTo = transform.position;
+		Calculate();
+        Vector3 goTo = transform.position;
 
         float _z = cb.player.charactersManager.distance;
 

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class GrabbableItem : SceneObject
 {
-	public Material groundMaterial;
 	public MeshRenderer meshRenderer;
 	public int energy = 1;
     //[HideInInspector]
@@ -11,12 +10,11 @@ public class GrabbableItem : SceneObject
     [HideInInspector]
     public float sec = 0;
 
-    public Collider TriggerCollider;
-    public Collider FloorCollider;
+    Collider TriggerCollider;
+    Collider FloorCollider;
 
     [HideInInspector]
     public Player player;
-   // public AudioClip heartClip;
    
 
     public float areaID;

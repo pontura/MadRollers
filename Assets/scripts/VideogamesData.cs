@@ -9,24 +9,20 @@ public class VideogamesData : MonoBehaviour {
 	public VideogameData[] all;
 
 
-	public void ChangeID(int id)
-	{
-		actualID = id;
-	}
 	public VideogameData GetActualVideogameData()
 	{
 		return all [actualID];
 	}
 	public VideogameData GetActualVideogameDataByID(int id)
-	{
-		return all [id];
+    {
+        return all [id];
 	}
 	public void SetOtherGameActive()
 	{
 		actualID++;
 		if (actualID > all.Length-1)
 			actualID = 0;
-	}
+    }
     public void Reset()
     {
         actualID = 0;

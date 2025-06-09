@@ -3,9 +3,9 @@ using System.Collections;
 
 public class WeakPlatform : SceneObject {
 
-	Collider collider;
+	Collider col;
 	[SerializeField] private  GameObject to;
-	public int videoGame_ID;
+	int videoGame_ID;
 
     [SerializeField] private Renderer render;
 
@@ -21,22 +21,25 @@ public class WeakPlatform : SceneObject {
 		FLOOR,
 		WALL
 	}
-    public override void Init(SceneObjectsManager manager)
+    public override void Init()
     {
-        base.Init(manager);
-        collider = GetComponent<Collider>();
+        base.Init();
+        col = GetComponent<Collider>();
     }
     public override void OnRestart(Vector3 pos)
 	{
         falling = false;
 
 		base.OnRestart(pos);
-		collider.enabled = true;
-
-		int newVideoGameID = Data.Instance.videogamesData.actualID;
-		if (newVideoGameID != videoGame_ID) {
-            if (type == types.FLOOR) {
-                videoGame_ID = newVideoGameID;
+        col.enabled = true;
+	}
+	public override void CheckVideoGame(int newVideoGameID)
+	{
+        if (newVideoGameID != videoGame_ID)
+        {
+            videoGame_ID = newVideoGameID;
+            if (type == types.FLOOR)
+            {
                 VideogameData vd = Data.Instance.videogamesData.GetActualVideogameData();
                 Color newColorTop = vd.floor_top;
                 if (floor_top == null || newColorTop != floor_top)
@@ -56,18 +59,19 @@ public class WeakPlatform : SceneObject {
                     render.SetPropertyBlock(floor_top_mat, 1);
                     render.SetPropertyBlock(floor_border_mat, 0);
                 }
-			} else {
+            }
+            else
+            {
                 if (render == null)
                     render = GetComponent<Renderer>();
 
-                render.material = Data.Instance.videogamesData.GetActualVideogameData ().wallMaterial;
-			}
-		}
-	}
-
+                render.material = Data.Instance.videogamesData.GetActualVideogameData().wallMaterial;
+            }
+        }
+    }
 	public void breakOut(Vector3 impactPosition) {
 
-		collider.enabled = false;
+        col.enabled = false;
 		if (!to)
 		{
 			Fall();
@@ -124,8 +128,8 @@ public class WeakPlatform : SceneObject {
             CancelInvoke();
         falling = false;
 
-        if (collider != null)
-			collider.enabled = false;
+        if (col != null)
+            col.enabled = false;
 	}
 
 }

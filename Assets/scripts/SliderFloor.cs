@@ -33,10 +33,10 @@ public class SliderFloor : MonoBehaviour {
                 go = other.gameObject;
             }
             if (go == null) return;
-            
-            if (go.GetComponent<SliderEffect>())
+            SliderEffect se = go.GetComponent<SliderEffect>();
+            if (se != null)
             {
-                go.GetComponent<SliderEffect>().speed = scroll;
+                se.speed = scroll;
             }
             else
             {

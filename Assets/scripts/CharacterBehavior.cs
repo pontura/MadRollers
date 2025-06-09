@@ -215,7 +215,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		state = states.RUN;
 		Run();
-		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
+		//Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
 	}
 
 
@@ -346,7 +346,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (state == states.RUN) {
             SetRunState();
-            Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
+           // Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
 		}
 	}
 	public void Run()

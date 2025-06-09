@@ -120,6 +120,4 @@ public class MadRollersSFX : MonoBehaviour {
 		player3.Stop ();
 		player4.Stop ();
 	}
-
-
 }

@@ -44,9 +44,10 @@ public class Game : MonoBehaviour {
     {
         mInstance = this;
         Data.Instance.curvedWorldManager.SetController(curvedWorld_Controller);
+        sceneObjectsManager.ChangeVideogame(Data.Instance.videogamesData.actualID);
     }
     void Start()
-    {        
+    {
         DOTween.Clear();
      
         if (Data.Instance.isReplay) {
@@ -190,7 +191,7 @@ public class Game : MonoBehaviour {
 		Data.Instance.missions.times_trying_same_mission = 0;
 		Data.Instance.missions.MissionActiveID++;
 		Data.Instance.videogamesData.actualID = videogameID;
-		Data.Instance.isReplay = true;
+        Data.Instance.isReplay = true;
 		ResetLevel ();
 	}
 	public void Continue()

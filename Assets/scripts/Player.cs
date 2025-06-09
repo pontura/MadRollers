@@ -10,8 +10,6 @@ public class Player : MonoBehaviour {
 	public bool isPlaying = true;
 
 	private Game game;
-	private Gui gui;
-
 
     public int id; 
     public fxStates fxState;

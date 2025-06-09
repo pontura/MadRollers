@@ -33,5 +33,5 @@ public class MadRoller : MonoBehaviour {
 			else
 				asset.gameObject.SetActive (false);
 		}
-	}
+    }
 }
