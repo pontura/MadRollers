@@ -66,11 +66,11 @@ public class FullRotation : MonoBehaviour {
     //		Invoke ("Loop", 0.1f);
     //	}
     float frame = 0;
-	void Update () {
-		float mult = 7;
-        frame += Time.deltaTime;
-        if (frame < 0.1f) return;
-        frame = 0;
+	void FixedUpdate () {
+		float mult = 1;
+        //frame += Time.deltaTime;
+        //if (frame < 0.1f) return;
+        //frame = 0;
 
         if (frameByFrame) {
 			return;

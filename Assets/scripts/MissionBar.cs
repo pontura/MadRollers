@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class MissionBar : MonoBehaviour {
 
-	public GameObject bossSignal;
+	public Animation anim;
+
+    public GameObject bossSignal;
 	public ProgressBar progressBar;
 
   //  public GameObject routeProgressSignal;
@@ -77,6 +79,7 @@ public class MissionBar : MonoBehaviour {
         //if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
         //    routeProgressSignal.gameObject.SetActive(true);
         bossSignal.gameObject.SetActive(false);
+        anim.Play("bossSignalOff");
     }
 	void OnGameOver(bool isTimeOut)
 	{
@@ -126,6 +129,7 @@ public class MissionBar : MonoBehaviour {
         progressBar.SetProgression (1);
 		this.totalHits = totalHits;
         bossSignal.gameObject.SetActive(true);
+		anim.Play("BossSignalOn");
     }
 	void OnBossSetTimer(int timer)
 	{
@@ -150,6 +154,7 @@ public class MissionBar : MonoBehaviour {
 	{       
 		if (!isOn) {
             bossSignal.gameObject.SetActive(false);
+			anim.Play("bossSignalOff");
             CancelInvoke ();
 		}
        // routeProgressBar.SetProgression(0);
