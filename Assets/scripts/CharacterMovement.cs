@@ -84,7 +84,7 @@ public class CharacterMovement : MonoBehaviour {
         float _z = cb.player.charactersManager.distance;
 
 		if(cb.player.id != 0)
-			_z -= 1f + (cb.player.id/2);
+			_z -= 1.75f + (cb.player.id/2);
 
 		float speedRotation= 4;
 

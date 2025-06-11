@@ -244,7 +244,7 @@ public class CharactersManager : MonoBehaviour {
 		else
 			_x = (separationX * positionID+1) - ((separationX*2)- separationX/2);
 
-		return new Vector3(_x-1.5f,pos.y);
+		return new Vector3(_x-1.75f,pos.y);
 	}
 
 	public void KillAllCharacters()
@@ -345,7 +345,7 @@ public class CharactersManager : MonoBehaviour {
                 p = characters[0].transform.position;
 
             p.y += 0.5f;
-            p.z = distance - 2f;
+            p.z = distance - 1.9f;
             return p;
         }
     }
