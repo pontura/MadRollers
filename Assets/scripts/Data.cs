@@ -56,8 +56,8 @@ public class Data : MonoBehaviour {
 
     public bool singlePlayer;
     public bool isAndroid;
-    public bool useRetroPixelPro;
-    public bool useOptimizedSettings;
+    public bool useRetroPixelPro = false;
+    public bool useOptimizedSettings = true;
 
     public PlayModes playMode;
     public enum PlayModes
@@ -79,7 +79,7 @@ public class Data : MonoBehaviour {
     public bool hasContinueOnce;
     public static string ServerAssetsUrl()
     {
-        return UserData.Instance.URL + "AssetBundles/Android/";
+        return UserData.Instance.URL_assetBundles + "AssetsBundles/Android/";
     }
     public static Data Instance
     {

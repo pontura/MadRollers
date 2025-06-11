@@ -32,7 +32,7 @@ public class AutomatasManager : MonoBehaviour
     }
     void CheckToAdd()
     {
-        Invoke("CheckToAdd", timeToCheck);
+        Invoke("CheckToAdd", Random.Range(2, timeToCheck));
 
         if (Game.Instance.state == Game.states.GAME_OVER)
             return;
@@ -52,7 +52,7 @@ public class AutomatasManager : MonoBehaviour
             if (!characterExists)
             {
                 AddAutomata(rand);
-                timeToCheck += 3;
+                timeToCheck += 1;
             }
         }
 

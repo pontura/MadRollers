@@ -147,7 +147,7 @@ public class GameCamera : MonoBehaviour
         }
         else
         {
-            cam.transform.localPosition = new Vector3(0, 0, -4);
+            cam.transform.localPosition = new Vector3(0, 0, -6);
             cam.gameObject.transform.DOLocalMove(Vector3.zero, 3);
         }
 
@@ -334,15 +334,14 @@ public class GameCamera : MonoBehaviour
 		transform.localPosition = pos; 
 	}
 
-
     //pixeles
     public void SetPixels(float _pixelSize)
     {
-        if (!Data.Instance.useRetroPixelPro)
-            return;
+       if (!Data.Instance.useRetroPixelPro)
+         return;
 
-        this.pixelSize = _pixelSize;
-        retroPixelPro.pixelSize = (int)(pixelSize);
+       this.pixelSize = _pixelSize;
+       retroPixelPro.pixelSize = (int)(pixelSize);
     }
     void UpdatePixels()
     {

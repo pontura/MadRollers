@@ -5,10 +5,11 @@ using Yaguar.Auth;
 
 public class UserData : MonoBehaviour
 {
-    // string url = "https://pontura.github.io/madrollers/";
+    string assetBundles = "https://pontura.github.io/madrollers/";
     // string url = "https://yaguar.xyz/madRollers/";
     string url = "https://dev.yaguar.xyz/madRollers/";
     public string URL { get { return url; } }
+    public string URL_assetBundles { get { return assetBundles; } }
     public string setUserURL = "setUser.php";
     public string setUserURLUpload = "updateUser.php";
     public string imageURLUploader = "uploadPhoto.php";

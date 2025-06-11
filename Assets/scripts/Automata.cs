@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Automata : MonoBehaviour
 {
-    public CharacterBehavior cb;
+    CharacterBehavior cb;
     int shootRandomTry = 2;
     float moveRandomTry = 0.5f;
     int jumpRandomTry = 2;
+    CharacterControls controls;
 
     public void Init(CharacterBehavior cb)
     {
+        controls = cb.GetComponent<CharacterControls>();
         this.cb = cb;
         StopAllCoroutines();
         CancelInvoke();
         Invoke("MoveLoop", moveRandomTry);
-        Invoke("ShootLoop", shootRandomTry);
+        Invoke("ShootLoop", Random.Range(1f, shootRandomTry));
         Invoke("JumpLoop", jumpRandomTry);
         cb.GetComponent<CharacterControls>().isAutomata = true;
     }
@@ -29,7 +31,7 @@ public class Automata : MonoBehaviour
     {
         if(CanDoIt())
         {
-            int rand = Random.Range(0, 50);
+            int rand = Random.Range(0, 45);
             if(rand<5)
                 cb.shooter.SetFire(Weapon.types.TRIPLE, 0.3f);
             else if (rand < 10)
@@ -38,7 +40,7 @@ public class Automata : MonoBehaviour
                 cb.shooter.SetFire(Weapon.types.SIMPLE, 0.3f);
         }
         if (Game.Instance.state != Game.states.GAME_OVER)
-            Invoke("ShootLoop", shootRandomTry);
+            Invoke("ShootLoop", Random.Range(0.25f,shootRandomTry));
     }
     void JumpLoop()
     {
@@ -49,7 +51,7 @@ public class Automata : MonoBehaviour
                 cb.Jump();
         }
         if (Game.Instance.state != Game.states.GAME_OVER)
-            Invoke("JumpLoop", jumpRandomTry);
+            Invoke("JumpLoop", Random.Range(1f, jumpRandomTry));
     }
     void MoveLoop()
     {
@@ -79,7 +81,8 @@ public class Automata : MonoBehaviour
                 i *= 2;
             i += Time.deltaTime;
             float f = i * _x;
-            cb.GetComponent<CharacterControls>().MoveInX(f);
+            if(controls != null)
+                controls.MoveInX(f);
             yield return new WaitForEndOfFrame();
         }
     }

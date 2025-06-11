@@ -67,9 +67,9 @@ public class FullRotation : MonoBehaviour {
     //	}
     float frame = 0;
 	void Update () {
-		float mult = 5;
+		float mult = 7;
         frame += Time.deltaTime;
-        if (frame < 0.05f) return;
+        if (frame < 0.1f) return;
         frame = 0;
 
         if (frameByFrame) {

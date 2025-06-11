@@ -25,7 +25,7 @@ public class Missions : MonoBehaviour
 
     public AreaData areaDataActive;
     float areasLength;
-    int offset = 100;
+    int offset = 150;
     int areaSetId = 0;
     int areaNum = 0;
     int areaID = 0;
@@ -304,9 +304,12 @@ public class Missions : MonoBehaviour
             AddAreaByName(areaName, isXtra);
 
     }
+    AreasManager areasManager;
     void AddAreaByName(string areaName, bool isXtra = false)
     {
-        areaDataActive = MissionsManager.Instance.areasManager.GetArea(areaName);
+        if (areasManager == null)
+            areasManager = MissionsManager.Instance.areasManager;
+        areaDataActive = areasManager.GetArea(areaName);
        // TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
 		if (areaDataActive != null) {					
 			areasLength += areaDataActive.z_length/2;

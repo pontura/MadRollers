@@ -101,14 +101,14 @@ public class LoadingAsset : MonoBehaviour {
 		AddText("*** MAD ROLLERS ***");
 		yield return new WaitForSeconds (0.1f);
 		AddText("Buenos Aires USER ALLOWING ACCESS!");
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.1f);
         AddText("Ana-Maria version");
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.1f);
         AddText("-> GOTO 1985 ");
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.1f);
 		AddText("Club-Social-911 >system ...");
         UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.1f);
         //if (!Data.Instance.isReplay)
         //{
         //    int i = texts.Length;
@@ -120,7 +120,7 @@ public class LoadingAsset : MonoBehaviour {
         //    }
         //}
 		AddText("COMPLETE!");
-		yield return new WaitForSeconds (0.2f);
+		yield return new WaitForSeconds (0.1f);
         SetOn (false);
 		if (!Data.Instance.isReplay) {
 			Data.Instance.musicManager.stopAllSounds();

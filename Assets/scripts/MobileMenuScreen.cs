@@ -58,7 +58,11 @@ public class MobileMenuScreen : MonoBehaviour
     }
     void SetTexts()
     {
-        string useRetroPixelPro = PlayerPrefs.GetString("useRetroPixelPro", "true");
+        string useRetroPixelPro = "true";
+        if (Data.Instance.isAndroid)
+            useRetroPixelPro = PlayerPrefs.GetString("useRetroPixelPro", "false");
+           else
+            useRetroPixelPro = PlayerPrefs.GetString("useRetroPixelPro", "true");
 
         if (useRetroPixelPro == "false")
             Data.Instance.useRetroPixelPro = false;

@@ -8,8 +8,8 @@ public class MissionBar : MonoBehaviour {
 	public GameObject bossSignal;
 	public ProgressBar progressBar;
 
-    public GameObject routeProgressSignal;
-    public ProgressBar routeProgressBar;
+  //  public GameObject routeProgressSignal;
+  //  public ProgressBar routeProgressBar;
 
 	public Text field;
 	
@@ -20,11 +20,11 @@ public class MissionBar : MonoBehaviour {
     int sec;
     int totalHits;
     public float totalDistance;
-    public bool routeProgressOn;
+   // public bool routeProgressOn;
 
     void Start() {
 
-        routeProgressSignal.gameObject.SetActive(false);
+        // routeProgressSignal.gameObject.SetActive(false);
         videogameField.text = Data.Instance.videogamesData.GetActualVideogameData().name;
         missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID+1);
 		bossTimer.SetActive (false);
@@ -38,26 +38,29 @@ public class MissionBar : MonoBehaviour {
 		    Data.Instance.events.OnBossHitsUpdate += OnBossHitsUpdate;
 		    Data.Instance.events.OnBossSetNewAsset += OnBossSetNewAsset;
 		    Data.Instance.events.OnBossSetTimer += OnBossSetTimer;
-            LoopDistance();
+          //  LoopDistance();
         }
 
 		Data.Instance.events.OnGameOver += OnGameOver;
 	}
-    void LoopDistance()
-    {
-        if(routeProgressOn)
-        {           
-            float distance = Game.Instance.level.charactersManager.getDistance();
-            routeProgressBar.SetProgression(distance/totalDistance);
-            if (distance >= totalDistance)
-            {
-                routeProgressOn = false;
-                routeProgressSignal.SetActive(false);
-            }
+    //void LoopDistance()
+    //{
+    //    if(routeProgressOn)
+    //    {           
+  //          float distance = Game.Instance.level.charactersManager.getDistance();
 
-        }
-        Invoke("LoopDistance", 0.1f);
-    }
+  //  totalDistance = Data.Instance.missions.GetTotalRoutDistance();
+		//routeProgressBar.SetProgression(distance/totalDistance);
+    //        //  routeProgressBar.SetProgression(distance/totalDistance);
+    //        //if (distance >= totalDistance)
+    //        //{
+    //        //    routeProgressOn = false;
+    //        //    routeProgressSignal.SetActive(false);
+    //        //}
+
+    //    }
+    //    Invoke("LoopDistance", 0.1f);
+    //}
 	void OnDestroy () {
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
 		Data.Instance.events.OnBossInit -= OnBossInit;
@@ -70,9 +73,9 @@ public class MissionBar : MonoBehaviour {
 	void StartMultiplayerRace()
 	{
         totalDistance = Data.Instance.missions.GetTotalRoutDistance();
-        routeProgressOn = true;
-        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
-            routeProgressSignal.gameObject.SetActive(true);
+        //routeProgressOn = true;
+        //if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        //    routeProgressSignal.gameObject.SetActive(true);
         bossSignal.gameObject.SetActive(false);
     }
 	void OnGameOver(bool isTimeOut)
@@ -149,9 +152,9 @@ public class MissionBar : MonoBehaviour {
             bossSignal.gameObject.SetActive(false);
             CancelInvoke ();
 		}
-        routeProgressBar.SetProgression(0);
+       // routeProgressBar.SetProgression(0);
         progressBar.SetProgression(0);
-        routeProgressSignal.SetActive(false);
-        routeProgressOn = false;
+       // routeProgressSignal.SetActive(false);
+       // routeProgressOn = false;
 	}
 }
