@@ -72,36 +72,14 @@ public class SceneObjectsBehavior : MonoBehaviour
         manager = GetComponent<SceneObjectsManager>();
         Pool = Data.Instance.sceneObjectsPool;
     }
-    public void Add(GameObject go)
-    {
-        go.transform.parent = transform;
-        unused.Add(go);
-    }
-    public GameObject GetUnusedObject(string name)
-    {
-        foreach (GameObject go in unused)
-        {
-            if (go && go.name == name + "_real(Clone)")
-            {
-                unused.Remove(go);
-                return go;
-            }
-        }
-        return null;
-    }
-    private void resetGO(GameObject go)
-    {
-        go.GetComponentInChildren<Renderer>().enabled = true;
-    }
-
     public void AddSceneObjects(AreaData areaData, float z_length)
     {
         id = 0;
         AddSingleSO(areaData, z_length);
-        //  StartCoroutine(AddSingleSO(areaData, z_length));
+       // StartCoroutine(AddSingleSO(areaData, z_length));
     }
     int id;
-    // IEnumerator AddSingleSO(AreaData areaData, float z_length)
+    //IEnumerator AddSingleSO(AreaData areaData, float z_length)
     void AddSingleSO(AreaData areaData, float z_length)
     {
         foreach (AreaSceneObjectData go in areaData.data)
@@ -178,8 +156,11 @@ public class SceneObjectsBehavior : MonoBehaviour
                     sceneObject = SetSceneObject(Pool.GetObjectForType(goName + "_real", false), pos, rot);
                     break;
                 default:
-                    print("OTHER: " + goName);
-                    sceneObject = SetOtherGO(goName, pos, go);
+                    if (goName != "Coin1")
+                    {
+                        print("OTHER: " + goName);
+                        sceneObject = SetOtherGO(goName, pos, go);
+                    }
                     break;
             }
             if (sceneObject != null)

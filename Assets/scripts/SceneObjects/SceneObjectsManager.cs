@@ -88,36 +88,42 @@ public class SceneObjectsManager : MonoBehaviour
         if (isOn)
         {
             Invoke("Loop", tick);
-            LateUpdatesss();
+            UpdateSObjects();
         }
     }
-    void LateUpdatesss()
+    void UpdateSObjects()
     {
         float distance = charactersManager.getDistance();
         int i = sceneObjectsInScene.Count;
+        SceneObject so;
+        SceneObject so_null = null;
         while (i > 0)
         {
-            SceneObject so = sceneObjectsInScene[i - 1];
-            i--;
+            so = sceneObjectsInScene[i - 1];
             if (so == null)
             {
-                sceneObjectsInScene.RemoveAt(i);
-                return;
+                // Debug.LogError("SceneObject is null in SceneObjectsManager.UpdateSObjects " + sceneObjectsInScene[i-1].name);
+                so_null = sceneObjectsInScene[i - 1];
             }
-            float _z = so.transform.position.z;
-            if (so.transform.localPosition.y < -8)
-                so.Pool();
-            else if (distance > _z + so.size_z + 22)
-                so.Pool();
-            else if (distance > _z - 58)
+            else
             {
-                if (!so.isActive)
+                float _z = so.transform.position.z;
+                if (so.transform.localPosition.y < -7)
+                    so.Pool();
+                else if (distance > _z + so.size_z + 22)
+                    so.Pool();
+                else if (distance > _z - 60)
                 {
-                    so.Restart(so.transform.position);
+                    if (!so.isActive)
+                        so.Restart(so.transform.position);
+                    else
+                        so.Updated(distance);
                 }
-                so.Updated(distance);
             }
+            i--;
         }
+        if(so_null != null)
+            sceneObjectsInScene.Remove(so_null);
     }
     public void PoolSceneObjectsInScene()
     {
