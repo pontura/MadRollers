@@ -49,8 +49,15 @@ public class AreasManager : MonoBehaviour
         print("AreasManager Add " + areaName);
 
         TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
-        all.Add(asset);
-        data.Add(areaName, JsonUtility.FromJson<AreaData>(asset.text));
+        if (asset == null)
+        {
+            Debug.LogError("No hay un areaName = " + areaName);
+        }
+        else
+        {
+            all.Add(asset);
+            data.Add(areaName, JsonUtility.FromJson<AreaData>(asset.text));
+        }
     }
     public AreaData GetArea(string areaName)
     {

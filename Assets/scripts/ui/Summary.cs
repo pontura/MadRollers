@@ -91,7 +91,9 @@ public class Summary : MonoBehaviour {
             i += Time.deltaTime * 300;
             float v = i / totalDistance;
             routeProgressBar.SetProgression(v);
-            percentfield.text = ((int)(v * 100)).ToString() + "%";
+            int value = (int)(v * 100);
+            if (value > 99) v = 99;
+            percentfield.text = value.ToString() + "%";
             yield return null;
         }
     }
