@@ -40,10 +40,10 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
     {
         Clicked(videoGameID, missionID);
         Utils.RemoveAllChildsIn(missionscontainer);
-        List<MissionsManager.MissionsData> missionData = MissionsManager.Instance.videogames[videoGameID].missions;
+        List<MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions;
         videogameTitleField.text = Data.Instance.videogamesData.all[videoGameID].name;
         //int missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID;
-        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID);
+        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
 
 
         int id = 0;
@@ -55,10 +55,6 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
             m.transform.localScale = Vector3.one;
             m.Init(this, videoGameID, id, data);
 
-            if (id == missionUnblockedID)
-                m.SetSelected(true);
-            else
-                m.SetSelected(false);
 
             id++;
         }

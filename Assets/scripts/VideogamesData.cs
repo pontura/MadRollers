@@ -17,6 +17,11 @@ public class VideogamesData : MonoBehaviour {
     {
         return all [id];
 	}
+	public void UpdateVideogame()
+	{
+		int missionID = Data.Instance.missions.MissionActiveID;
+        actualID = MissionsManager.Instance.missions[missionID].data[0].videoGameID;
+    }
 	public void SetOtherGameActive()
 	{
 		actualID++;

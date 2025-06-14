@@ -73,12 +73,12 @@ public class LevelChanger : SceneObject {
         Game.Instance.GameOver();
 
         //Data.Instance.events.OnCameraZoomTo (t.position);
-		StartCoroutine (GotoVideogame(videogameId));
+	//	StartCoroutine (GotoVideogame(videogameId));
 
 	}
-	IEnumerator GotoVideogame(int videogameID)
-	{
-		yield return new WaitForSecondsRealtime (1f);
-		Game.Instance.ChangeVideogame(videogameID);
-	}
+	//IEnumerator GotoVideogame(int videogameID)
+	//{
+	//	yield return new WaitForSecondsRealtime (1f);
+	//	//Game.Instance.ChangeVideogame(videogameID);
+	//}
 }

@@ -70,6 +70,6 @@ public class MissionSelectorByJoystick : MonoBehaviour
         if (clicked)
             return;
         clicked = true;
-        missionSelectorMobile.Clicked(Data.Instance.videogamesData.actualID, Data.Instance.missions.MissionActiveID);
+        missionSelectorMobile.Clicked(Data.Instance.missions.MissionActiveID);
     }
 }

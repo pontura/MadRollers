@@ -186,14 +186,14 @@ public class Game : MonoBehaviour {
         Time.timeScale = 1;
         Data.Instance.LoadLevel("Continue");
     }
-	public void ChangeVideogame(int videogameID)
-	{
-		Data.Instance.missions.times_trying_same_mission = 0;
-		Data.Instance.missions.MissionActiveID++;
-		Data.Instance.videogamesData.actualID = videogameID;
-        Data.Instance.isReplay = true;
-		ResetLevel ();
-	}
+	//public void ChangeVideogame(int videogameID)
+	//{
+	//	Data.Instance.missions.times_trying_same_mission = 0;
+	//	Data.Instance.missions.MissionActiveID++;
+	//	Data.Instance.videogamesData.actualID = videogameID;
+ //       Data.Instance.isReplay = true;
+	//	ResetLevel ();
+	//}
 	public void Continue()
 	{
 		Data.Instance.missions.times_trying_same_mission++;

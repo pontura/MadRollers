@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class MissionSelectorMobile : MonoBehaviour
 {
-    public Transform videogame1_container;
-    public Transform videogame2_container;
-    public Transform videogame3_container;
+    public Transform container;
 
     public Canvas canvas;
     public Animation anim;
@@ -19,9 +17,7 @@ public class MissionSelectorMobile : MonoBehaviour
     public Image disketteLogo;
     public Image disketteFloppy;
 
-    public ScrollSnapTo scrollSnap_level1;
-    public ScrollSnapTo scrollSnap_level2;
-    public ScrollSnapTo scrollSnap_level3;
+    public ScrollSnapTo scrollSnap;
 
     public List<MissionButtonMobile> allButtons;
 
@@ -31,26 +27,18 @@ public class MissionSelectorMobile : MonoBehaviour
     {
         title1.text = TextsManager.Instance.GetText("VIDEOGAMES");
         videogameID = Data.Instance.videogamesData.actualID;
-        AddButtons(0);
-        AddButtons(1);
-        AddButtons(2);
+        AddButtons();
 
         ChangeVideoGame();
         SetSelector();
     }
-    void AddButtons(int videoGameID)
+    void AddButtons()
     {
-        List < MissionsManager.MissionsData> missionData = MissionsManager.Instance.videogames[videoGameID].missions; 
-        Transform container = null;
-        switch(videoGameID)
-        {
-            case 0: container = videogame1_container; break;
-            case 1: container = videogame2_container; break;
-            default: container = videogame3_container; break;
-        }
-        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID + 1);
-        
+        List < MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions; 
+        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
 
+
+        int videoGameID = 0;//TO-DO REFACTOR HOY pontura
         int id = 0;
         foreach (MissionsManager.MissionsData data in missionData)
         {
@@ -58,42 +46,29 @@ public class MissionSelectorMobile : MonoBehaviour
             m.transform.SetParent(container);
             m.transform.localPosition = Vector3.zero;
             m.transform.localScale = Vector3.one;
-            m.Init(this, videoGameID, id, data);
-
-            if (id == missionUnblockedID)
-                m.SetSelected(true);
-            else
-                m.SetSelected(false);
-
+            m.Init(this, data.data[0].videoGameID, id, data);
             id++;
             allButtons.Add(m);
         }
-
-        switch (videoGameID)
-        {
-            case 0: scrollSnap_level1.Init(missionUnblockedID); break;
-            case 1: scrollSnap_level2.Init(missionUnblockedID); break;
-            default: scrollSnap_level3.Init(missionUnblockedID); break;
-        }
+        scrollSnap.Init(missionUnblockedID); 
     }
     public void ClickedABlockedButton()
     {
         Data.Instance.events.OnAlertSignal("YOU MUST DESTROY ALL PREVIOUS DISKETTES!");
     }
     bool clicked;
-    public void Clicked(int videoGameID, int MissionActiveID)
+    public void Clicked(int MissionActiveID)
     {
         if (clicked)   return;  clicked = true;
 
         if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             Data.Instance.playMode = Data.PlayModes.STORYMODE;
 
-        //print("videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
         {
             foreach (MissionButtonMobile mbm in allButtons)
             {
-                if (mbm.videoGameID == Data.Instance.videogamesData.actualID && mbm.missionID == Data.Instance.missions.MissionActiveID)
+                if (mbm.missionID == Data.Instance.missions.MissionActiveID)
                 {
                     if (mbm.isBlocked)
                     {
@@ -105,10 +80,14 @@ public class MissionSelectorMobile : MonoBehaviour
         }
 
         Data.Instance.events.OnSoundFX("whip", -1);
-        List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
+        List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;        
+        int videoGameID = MissionsManager.Instance.GetMission(MissionActiveID).videoGameID;
         VoicesManager.Instance.PlaySpecificClipFromList(list, videoGameID);
 
-        if(canvas != null)
+
+        print("SELECT videogame: " + videoGameID + " MissionActiveID: " + MissionActiveID);
+
+        if (canvas != null)
             canvas.enabled = false;
 
         string m = (MissionActiveID + 1).ToString();
@@ -167,27 +146,18 @@ public class MissionSelectorMobile : MonoBehaviour
             else
                 mbm.SetSelector(false);
         }
-        switch (Data.Instance.videogamesData.actualID)
-        {
-            case 0:                
-                scrollSnap_level1.Init(Data.Instance.missions.MissionActiveID);
-                break;
-            case 1:
-                scrollSnap_level2.Init(Data.Instance.missions.MissionActiveID);
-                break;
-            case 2:
-                scrollSnap_level3.Init(Data.Instance.missions.MissionActiveID);
-                break;
-        }
+        scrollSnap.Init(Data.Instance.missions.MissionActiveID);
+             
         
     }
     public void ChangeVideoGame()
     {
-        switch(Data.Instance.videogamesData.actualID)
-        {
-            case 0: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblockedID_1; break;
-            case 1: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblockedID_2; break;
-            case 2: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblockedID_3; break;
-        }
+        Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblocked;
+        //switch(Data.Instance.videogamesData.actualID)
+        //{
+        //    case 0: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblocked; break;
+        //    case 1: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblockedID_2; break;
+        //    case 2: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblockedID_3; break;
+        //}
     }
 }

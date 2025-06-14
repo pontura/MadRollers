@@ -14,12 +14,11 @@ public class MissionSelector : MonoBehaviour {
 	public Text percentField;
 	public int totalMissions;
 	public int actualMission;
-	public int videogameID;
+	int videogameID;
 	int missionUnblockedID;
 
-	public void LoadVideoGameData(int _videogameID)
+	public void LoadVideoGameData()
 	{
-		this.videogameID = _videogameID;
 
 		if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL || Data.Instance.playMode == Data.PlayModes.CONTINUEMODE)
 			titleField.text = Data.Instance.videogamesData.all [videogameID].name;
@@ -29,12 +28,12 @@ public class MissionSelector : MonoBehaviour {
 		}
 
 
-        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videogameID);
+        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
         missionUnblockedID = missionUnblockedID;
 
         print(" missionUnblockedID: " + missionUnblockedID);
 		actualMission = missionUnblockedID;
-		totalMissions = Data.Instance.missions.GetTotalMissionsInVideoGame (videogameID);
+		totalMissions = Data.Instance.missions.GetTotalMissions ();
 		SetTexts ();
 	}
 	public void ChangeMission(int _actualMission)

@@ -35,7 +35,7 @@ public class LevelSelectorMobile : MonoBehaviour
        // Data.Instance.multiplayerData.ResetAll();
        // Data.Instance.events.OnResetMultiplayerData();
        // Data.Instance.isReplay = false;
-        missionSelectorMobile.Clicked(Data.Instance.videogamesData.actualID, Data.Instance.missions.MissionActiveID);
+        missionSelectorMobile.Clicked(Data.Instance.missions.MissionActiveID);
     }
     void InitStoryMode()
     { 
@@ -98,7 +98,7 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     public void Torneo()
     {
-        if(UserData.Instance.data.missionUnblockedID_3<=0)
+        if(UserData.Instance.data.missionUnblocked<=0)
         {
             Data.Instance.events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
             return;

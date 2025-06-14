@@ -8,30 +8,29 @@ public class MissionsManager : MonoBehaviour
     public int VideogameIDForTorneo = 100;
     public TextAsset _all;
     public TextAsset _all_partymode;
-    public MissionsListInVideoGame all;
-    public List<MissionsByVideoGame> videogames;
+    // public MissionsListInVideoGame all;
+    public MissionsList all;
+    public List<MissionsData> missions;
+    public List<MissionsData> missionsSurvival;
     public AreasManager areasManager;
     [Serializable]
-    public class MissionsListInVideoGame
+    public class MissionsList
     {
-        public string[] missionsVideoGame1;
-        public string[] missionsVideoGame2;
-        public string[] missionsVideoGame3;
+        public string[] missions;
+        //public string[] missionsVideoGame1;
+        //public string[] missionsVideoGame2;
+        //public string[] missionsVideoGame3;
         public string[] torneo;
-    }
-    [Serializable]
-    public class MissionsByVideoGame
-    {
-        public List<MissionsData> missions;
     }
     [Serializable]
     public class MissionsData
     {
-        public string title;
         public List<MissionData> data;
     }
-
-
+    public MissionData GetMission(int id)
+    {
+        return missions[id].data[0];
+    }
     static MissionsManager mInstance = null;
     public static MissionsManager Instance
     {
@@ -63,22 +62,18 @@ public class MissionsManager : MonoBehaviour
         areasManager.Init();
 
         if(playmode == Data.PlayModes.PARTYMODE)
-            all = JsonUtility.FromJson<MissionsListInVideoGame>(_all_partymode.text);
+            all = JsonUtility.FromJson<MissionsList>(_all_partymode.text);
         else
-            all = JsonUtility.FromJson<MissionsListInVideoGame>(_all.text);
+            all = JsonUtility.FromJson<MissionsList>(_all.text);
 
-        LoadByVideogame(all.missionsVideoGame1, 0);
-        LoadByVideogame(all.missionsVideoGame2, 1);
-        LoadByVideogame(all.missionsVideoGame3, 2);
-        LoadByVideogame(all.torneo, 3);
+        Load(all.missions);
     }
-    public void LoadByVideogame(string[] missionsInVideogame, int videogameID)
+    public void Load(string[] m)
     {
-        MissionsByVideoGame videogame = videogames[videogameID];
-        videogame.missions = new List<MissionsData>();
-        foreach (string missionName in missionsInVideogame)
+        missions = new List<MissionsData>();
+        foreach (string missionName in m)
         {
-            videogame.missions.Add(LoadDataFromMission("missions", missionName));
+            missions.Add(LoadDataFromMission("missions", missionName));
         }
     }
     public MissionsData LoadDataFromMission(string folder, string missionName)
@@ -86,6 +81,7 @@ public class MissionsManager : MonoBehaviour
         string dataAsJson = LoadResourceTextfile(folder, missionName);
         MissionsData missionData = JsonUtility.FromJson<MissionsData>(dataAsJson);
         missionData.data[0].jsonName = missionName;
+        print("______videogameID: " + missionData.data[0].videoGameID);
         foreach (MissionData.AreaSetData areasSetData in missionData.data[0].areaSetData)
         {
             foreach (string areaName in areasSetData.areas)

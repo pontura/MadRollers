@@ -9,9 +9,6 @@ using UnityEngine;
 public class LevelCreatorUI : Editor {
 
 	string[] videogames = new string[]{"Boy-Land", "Gallax", "Inferno"};
-	string[] videogame1;
-	string[] videogame2;
-	string[] videogame3;
 
 	int _choiceIndex = 0;
 	int _videogameIndex = 0;
@@ -24,15 +21,15 @@ public class LevelCreatorUI : Editor {
 
         LevelCreator levelCreator = (LevelCreator)target;
 
-        _videogameIndex = levelCreator.videoGameID - 1;
+       // _videogameIndex = levelCreator.videoGameID - 1;
 		_choiceIndex = levelCreator.missionID;
 
 		string[] videogameData;
 		int vid = _videogameIndex;
 
-		videogameData = new string[levelCreator.missionsManager.videogames[vid].missions.Count];
+		videogameData = new string[levelCreator.missionsManager.missions.Count];
 		int id = 0;
-		foreach (MissionsManager.MissionsData c in levelCreator.missionsManager.videogames[vid].missions) {
+		foreach (MissionsManager.MissionsData c in levelCreator.missionsManager.missions) {
             MissionData md = c.data[0];
             
             videogameData [id] = id + "-" + md.title + " - " + md.jsonName;
@@ -40,12 +37,12 @@ public class LevelCreatorUI : Editor {
 		}
 
 		levelCreator.missionID = _choiceIndex;
-		levelCreator.videoGameID = _videogameIndex+1;
-        string n = levelCreator.missionsManager.videogames[vid].missions[_choiceIndex].data[0].jsonName;
+		//levelCreator.videoGameID = _videogameIndex+1;
+        string n = levelCreator.missionsManager.missions[_choiceIndex].data[0].jsonName;
         levelCreator.missionAsset = Resources.Load("missions/" + n ) as TextAsset;
+		levelCreator.videogameID = levelCreator.missionsManager.missions[_choiceIndex].data[0].videoGameID;
 
-
-        EditorUtility.SetDirty (target);
+       EditorUtility.SetDirty (target);
 
 		if(GUILayout.Button("Load Area"))
 		{

@@ -38,15 +38,7 @@ public class MissionButtonMobile : MonoBehaviour
         floppyCover.sprite = videogameData.floppyCover;
 
 
-        int unblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videoGameID + 1);
-        if(UserData.Instance.data.missionUnblockedID_1 == 0 && videoGameID == 1)
-        {
-            unblockedID = -1;
-        }
-        if (UserData.Instance.data.missionUnblockedID_2 == 0 && videoGameID == 2)
-        {
-            unblockedID = -1;
-        }
+        int unblockedID = UserData.Instance.GetMissionUnblocked();
 
         if (missionID <= unblockedID || Data.Instance.isAdmin)
         {
@@ -77,22 +69,13 @@ public class MissionButtonMobile : MonoBehaviour
         else
             field.text = id.ToString();
 
-
-    }
-    public void SetSelected(bool isSelected)
-    {
-        if (isSelected)
-        { 
-        } else
-        {
-        }
     }
     public void Clicked()
     {
         if (isBlocked)
             missionSelectorMobile.ClickedABlockedButton();
         else if (missionSelectorMobile != null)
-            missionSelectorMobile.Clicked(videoGameID, missionID);
+            missionSelectorMobile.Clicked(missionID);
         else if (hiscoresLevelSelectorUI != null)
             hiscoresLevelSelectorUI.Clicked(videoGameID, missionID);
     }

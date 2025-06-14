@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEditor;
+
 public class LevelCreator : MonoBehaviour {
 
     public MissionsManager missionsManager;
@@ -12,11 +13,10 @@ public class LevelCreator : MonoBehaviour {
 	public bool Debbug;
 
 	//[HideInInspector]
-	public int videoGameID;
-	//[HideInInspector]
-	public int missionID;
+	public int missionID = 1;
+    public int videogameID = 0;
 
-	public TextAsset mission;
+    public TextAsset mission;
 	public Missions missions;
 	public AreaCreator areaCreator;
     public TextAsset missionAsset;
@@ -30,7 +30,7 @@ public class LevelCreator : MonoBehaviour {
             LevelDataDebug.Instance.playOnlyBosses = playOnlyBosses;
             LevelDataDebug.Instance.isArcadeMultiplayer = isArcadeMultiplayer;
 			LevelDataDebug.Instance.isDebbug = true;
-			LevelDataDebug.Instance.videogameID = videoGameID-1;
+		//	LevelDataDebug.Instance.videogameID = videoGameID-1;
 			LevelDataDebug.Instance.missionID = missionID;
             LevelDataDebug.Instance.playMode = playMode;
             if (area != null && LevelDataDebug.Instance.playMode != Data.PlayModes.SURVIVAL)
@@ -44,6 +44,7 @@ public class LevelCreator : MonoBehaviour {
 		totalDistance = 0;
 		AddAreaByName (area.name);
 	}
+
 	List<string> allNames = new List<string>();
 	public void LoadMissions()
 	{		
@@ -53,11 +54,12 @@ public class LevelCreator : MonoBehaviour {
 		allNames = new List<string>();
 		if (mission != null) {
 			MissionData missionData = missions.GetMissionsDataByJsonName (mission.name);
-			foreach (MissionData.AreaSetData data in missionData.areaSetData) {
+
+            foreach (MissionData.AreaSetData data in missionData.areaSetData) {
 				LoadMissionData (data);
 			}
 		} else {
-			foreach (MissionData.AreaSetData data in missionsManager.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
+			foreach (MissionData.AreaSetData data in missionsManager.missions[missionID].data[0].areaSetData) {
 				LoadMissionData (data);
 			}
 		}
@@ -65,7 +67,7 @@ public class LevelCreator : MonoBehaviour {
 	void LoadMissionData(MissionData.AreaSetData data)
 	{
 		foreach (string areaName in data.areas) {
-			bool exists = false;
+            bool exists = false;
 			foreach (string savedAreaName in allNames) {
 				if(savedAreaName == areaName)
 					exists = true;
@@ -81,7 +83,7 @@ public class LevelCreator : MonoBehaviour {
 		TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
 		if (asset != null) {					
 			AreaData areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
-			totalDistance += areaDataActive.z_length / 2;
+            totalDistance += areaDataActive.z_length / 2;
 			areaCreator.AddSceneObjectsToNewArea(areaName, areaDataActive, totalDistance);
 			totalDistance += areaDataActive.z_length/2;
 		} else {

@@ -6,7 +6,8 @@ using System;
 [Serializable]
 public class MissionData  {
 
-	public string jsonName;
+    public int videoGameID; // solo se usa para los seteos de la camara real-time
+    public string jsonName;
     public string title;
 	public int id;
 	public int maxScore;

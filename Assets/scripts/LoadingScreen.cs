@@ -48,6 +48,9 @@ public class LoadingScreen : MonoBehaviour {
 	void LoadBundles () {
         if (Data.Instance.isAndroid)
         {
+            //Data.Instance.missions.Init();
+            //AllLoaded();
+
             // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
             field.text = "DOWNLOADING ROMS...";
             StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAll(Data.ServerAssetsUrl(), OnLoaded));

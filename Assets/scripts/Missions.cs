@@ -36,7 +36,7 @@ public class Missions : MonoBehaviour
     public void Init()
     {
         MissionsManager.Instance.areasManager.LoadData();
-           areasetDataLoaded.Clear();
+        areasetDataLoaded.Clear();
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE && Data.Instance.isReplay)
             offset -= 40;
 
@@ -48,7 +48,7 @@ public class Missions : MonoBehaviour
             offset -= 40;
             MissionsManager.Instance.all = null;
             //MissionActive = MissionsManager.Instance.LoadDataFromMission("survival", "boyland").data[0];
-            MissionActive = MissionsManager.Instance.videogames[3].missions[0].data[0];
+            MissionActive = MissionsManager.Instance.missionsSurvival[0].data[0];
             // extraAreasManager.Init();              
         }
         else
@@ -87,15 +87,12 @@ public class Missions : MonoBehaviour
     public MissionData GetMissionsDataByJsonName(string jsonName)
     {
         Debug.Log(jsonName);
-        foreach (MissionsManager.MissionsByVideoGame mvv in MissionsManager.Instance.videogames)
+        foreach (MissionsManager.MissionsData mvv in MissionsManager.Instance.missions)
         {
-            foreach (MissionsManager.MissionsData mmData in mvv.missions)
+            foreach (MissionData mData in mvv.data)
             {
-                foreach (MissionData mData in mmData.data)
-                {
-                    if (mData.jsonName == jsonName)
-                        return mData;
-                }
+                if (mData.jsonName == jsonName)
+                    return mData;
             }
         }
         return null;
@@ -105,7 +102,7 @@ public class Missions : MonoBehaviour
 
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
-            MissionActive = MissionsManager.Instance.videogames[3].missions[0].data[0];
+            MissionActive = MissionsManager.Instance.missionsSurvival[0].data[0];
             extraAreasManager.Init();
         }
 
@@ -126,21 +123,7 @@ public class Missions : MonoBehaviour
             AddAreaByName("start_Multiplayer");
         }
     }
-    void ShuffleMissions()
-    {
-        foreach (MissionsManager.MissionsByVideoGame mbv in MissionsManager.Instance.videogames)
-        {
-            for (int a = 0; a < 50; a++)
-            {
-                int rand = UnityEngine.Random.Range(3, mbv.missions.Count);
-                MissionsManager.MissionsData randomMission1 = mbv.missions[2];
-                MissionsManager.MissionsData randomMission2 = mbv.missions[rand];
-
-                mbv.missions[rand] = randomMission1;
-                mbv.missions[2] = randomMission2;
-            }
-        }
-    }
+   
     void OnComplete()
     {
         bossResetedOnce = true;
@@ -155,29 +138,29 @@ public class Missions : MonoBehaviour
     }
     //si no...
     void OnMissionComplete(int id)
-	{
+    {
         hasReachedBoss = false;
         times_trying_same_mission = 0;
 
-        if (MissionActiveID >= MissionsManager.Instance.videogames[videogamesData.actualID].missions.Count - 1)
+        if (MissionActiveID >= MissionsManager.Instance.missions.Count - 1)
         {
             Game.Instance.GotoVideogameComplete();
         }
         else
         {
-            NextMission();               
-            int videogameID = videogamesData.actualID + 1;
             MissionActiveID++;
-            UserData.Instance.SetMissionReady(videogameID, MissionActiveID);
+            print("StartNewMission " + MissionActiveID);
+            Data.Instance.videogamesData.UpdateVideogame();
+            UserData.Instance.SetMissionReady(MissionActiveID);
         }
     }
-	public int GetTotalMissionsInVideoGame(int videogameID)
+    public int GetTotalMissions()
+    {
+        return MissionsManager.Instance.missions.Count;
+    }
+    public List<MissionsManager.MissionsData> GetMissionsByVideoGame(int videogameID)
 	{
-		return MissionsManager.Instance.videogames [videogameID].missions.Count;
-	}
-	public MissionsManager.MissionsByVideoGame GetMissionsByVideoGame(int videogameID)
-	{
-		return MissionsManager.Instance.videogames [videogameID];
+		return MissionsManager.Instance.missions;
 	}
 	void NextMission()
 	{
@@ -192,25 +175,25 @@ public class Missions : MonoBehaviour
 		areaSetId = 0;
 		ResetAreaSet ();
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
-			MissionActive = MissionsManager.Instance.videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
+			MissionActive = MissionsManager.Instance.missions[MissionActiveID].data[0];
 		this.missionCompletedPercent = 0;
-	}
+    }
 	public MissionData GetActualMissionData()
 	{
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return MissionActive;
         else
-            return MissionsManager.Instance.videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
+            return MissionsManager.Instance.missions[MissionActiveID].data[0];
 	}
 	public MissionData GetMission(int videoGameID, int missionID)
 	{
-		return MissionsManager.Instance.videogames[videoGameID].missions[missionID].data[0];
+		return MissionsManager.Instance.missions[missionID].data[0];
 	}
 	public int GetActualMissionByVideogame()
 	{
 		int viedogameActive = videogamesData.actualID;
 		int id = 0;
-		foreach (MissionData mission in MissionsManager.Instance.videogames[viedogameActive].missions[0].data) {
+		foreach (MissionData mission in MissionsManager.Instance.missions[0].data) {
 			if (mission.id == MissionActive.id)
 				return id;
 			id++;

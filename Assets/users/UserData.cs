@@ -162,9 +162,7 @@ public class UserData : MonoBehaviour
         if (data.userID == "") data.userID = SystemInfo.deviceUniqueIdentifier;
         if (data.username == "")  data.username = "MR (" + Random.Range(100, 10000) + ")";
 
-        data.missionUnblockedID_1 = PlayerPrefs.GetInt("missionUnblockedID_1");
-        data.missionUnblockedID_2 = PlayerPrefs.GetInt("missionUnblockedID_2");
-        data.missionUnblockedID_3 = PlayerPrefs.GetInt("missionUnblockedID_3");
+        data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
         data.score = PlayerPrefs.GetInt("score");
     }
     void OnLoaded(ServerConnect.UserDataInServer data)
@@ -173,6 +171,7 @@ public class UserData : MonoBehaviour
         if (data != null)
         {
             this.data = data;
+            data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
             Debug.Log("UserData OnLoaded . Login done!  username: " + data.username + " userID: " + data.userID);
         }
         else
@@ -203,32 +202,22 @@ public class UserData : MonoBehaviour
         print("UpdateData");
       //  Data.Instance.serverManager.LoadUserData(userID);
     }
-    public void SetMissionReady(int videogameID, int missionID)
+    public void SetMissionReady(int missionID)
     {
-        print("SetMissionReady videogameID" + videogameID + " missionID: " + videogameID);
+        print("SetMissionReady missionID: " + missionID);
         if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
         {
-            int id = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID);
+            int id = PlayerPrefs.GetInt("missionUnblocked");
             if (id < missionID)
             {
-                PlayerPrefs.SetInt("missionUnblockedID_" + videogameID, missionID);
-                switch (videogameID)
-                {
-                    case 1: data.missionUnblockedID_1 = missionID; break;
-                    case 2: data.missionUnblockedID_2 = missionID; break;
-                    case 3: data.missionUnblockedID_3 = missionID; break;
-                }
+                PlayerPrefs.SetInt("missionUnblocked", missionID);
+                data.missionUnblocked = missionID;
             }
         }
     }
-    public int GetMissionUnblockedByVideogame(int videogameID)
+    public int GetMissionUnblocked()
     {
-        switch (videogameID)
-        {
-            case 1: return data.missionUnblockedID_1;
-            case 2: return data.missionUnblockedID_2;
-            default: return data.missionUnblockedID_3;
-        }
+        return data.missionUnblocked;
     }
     public int Score()
     {
@@ -247,17 +236,13 @@ public class UserData : MonoBehaviour
     }
     IEnumerator SaveUserDataC()
     {
-        string hash = Utils.Md5Sum(UserData.Instance.data.userID + data.score + data.missionUnblockedID_1 + data.missionUnblockedID_2 + data.missionUnblockedID_3 + "pontura");
+        string hash = Utils.Md5Sum(UserData.Instance.data.userID + data.score + data.missionUnblocked + "pontura");
         string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.data.userID) + "&score=" + data.score
-            + "&missionUnblockedID_1=" + data.missionUnblockedID_1
-            + "&missionUnblockedID_2=" + data.missionUnblockedID_2
-            + "&missionUnblockedID_3=" + data.missionUnblockedID_3
+            + "&missionUnblocked=" + data.missionUnblocked
             + "&score=" + data.score
             + "&hash=" + hash;
 
-        PlayerPrefs.SetInt("missionUnblockedID_1", data.missionUnblockedID_1);
-        PlayerPrefs.SetInt("missionUnblockedID_2", data.missionUnblockedID_2);
-        PlayerPrefs.SetInt("missionUnblockedID_3", data.missionUnblockedID_3);
+        PlayerPrefs.SetInt("missionUnblocked", data.missionUnblocked);
         PlayerPrefs.SetInt("score", data.score);
 
         print("grabe: " + post_url);

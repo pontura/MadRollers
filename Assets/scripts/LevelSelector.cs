@@ -19,7 +19,7 @@ public class LevelSelector : MonoBehaviour {
 
 	public MissionButton diskette;
     public MissionButton diskette2;
-    VideogameData videogameData;
+    //VideogameData videogameData;
 	public int videgameID;
 	//VideogamesUIManager videogameUI;
 	bool canInteract;
@@ -59,19 +59,18 @@ public class LevelSelector : MonoBehaviour {
         title.text = TextsManager.Instance.GetText("CHANGE GAME");
        // title.text = "SELECT GAME";
 
-		videgameID = Data.Instance.videogamesData.actualID;
-        missionSelector.LoadVideoGameData(videgameID);
+        missionSelector.LoadVideoGameData();
         //videogameUI = GetComponent<VideogamesUIManager> ();
         //videogameUI.Init ();
         SetSelected ();
 
 		VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 0);
 
-		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
-		Data.Instance.events.OnJoystickRight += OnJoystickRight;
+		//Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
+		//Data.Instance.events.OnJoystickRight += OnJoystickRight;
         Data.Instance.events.ResetHandwritingText += ResetHandwritingText;
 
-        Data.Instance.events.OnJoystickClick += OnJoystickClick;
+        //Data.Instance.events.OnJoystickClick += OnJoystickClick;
 
         if(Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             camAnimnation.Play("levelSelectorCameraIdleStoryMode");
@@ -88,30 +87,30 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnDestroy()
 	{
-		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+		//Data.Instance.events.OnJoystickClick -= OnJoystickClick;
 		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
 		Data.Instance.events.OnJoystickUp -= OnJoystickUp;
-		Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
-		Data.Instance.events.OnJoystickRight -= OnJoystickRight;
+		//Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
+		//Data.Instance.events.OnJoystickRight -= OnJoystickRight;
         Data.Instance.events.ResetHandwritingText -= ResetHandwritingText;
 
     }
-    void OnJoystickClick()
-	{
-		if (!canInteract)
-			return;
+ //   void OnJoystickClick()
+	//{
+	//	if (!canInteract)
+	//		return;
 		
-		canInteract = false;
-		//computerUI.SetActive (false);
-		diskette.SetOn ();
-		Invoke ("Delayed", 4f);
-		camAnimnation.Play ("levelSelectorCamera");
-	}
-	void Delayed()
-	{
-		Data.Instance.videogamesData.actualID = videgameID;
-		Data.Instance.LoadLevel ("Game");
-	}
+	//	canInteract = false;
+	//	//computerUI.SetActive (false);
+	//	diskette.SetOn ();
+	//	Invoke ("Delayed", 4f);
+	//	camAnimnation.Play ("levelSelectorCamera");
+	//}
+	//void Delayed()
+	//{
+	//	Data.Instance.videogamesData.actualID = videgameID;
+	//	Data.Instance.LoadLevel ("Game");
+	//}
 	void OnJoystickUp()
 	{
 		if (!canInteract)
@@ -121,7 +120,7 @@ public class LevelSelector : MonoBehaviour {
 
 
         int MissionActiveID = Data.Instance.missions.MissionActiveID;
-        int missionUnblockedID = UserData.Instance.GetMissionUnblockedByVideogame(videogameData.id);
+        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
         if (MissionActiveID < missionUnblockedID) {
 			Data.Instance.missions.MissionActiveID++;
 			missionSelector.ChangeMission (Data.Instance.missions.MissionActiveID);
@@ -141,41 +140,41 @@ public class LevelSelector : MonoBehaviour {
 			missionSelector.ChangeMission (Data.Instance.missions.MissionActiveID);
 		}
 	}
-	void OnJoystickLeft()
-	{		
-		if (!canInteract)
-			return;
+	//void OnJoystickLeft()
+	//{		
+	//	if (!canInteract)
+	//		return;
 
-        button_left.Play();
+ //       button_left.Play();
 
-        int total =  Data.Instance.videogamesData.all.Length-1;
-		if (videgameID < total)
-			videgameID++;
-		else
-			return;
+ //       int total =  Data.Instance.videogamesData.all.Length-1;
+	//	if (videgameID < total)
+	//		videgameID++;
+	//	else
+	//		return;
 
-		SetSelected ();
-	}
-	void OnJoystickRight()
-	{
-		if (!canInteract)
-			return;
+	//	SetSelected ();
+	//}
+	//void OnJoystickRight()
+	//{
+	//	if (!canInteract)
+	//		return;
 
-        button_right.Play();
+ //       button_right.Play();
 
-        if (videgameID>0)
-			videgameID--;
-		else
-			return;
+ //       if (videgameID>0)
+	//		videgameID--;
+	//	else
+	//		return;
 
-        SetSelected ();	
-	}
+ //       SetSelected ();	
+	//}
 	void SetSelected()
 	{
 		List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;
-		VoicesManager.Instance.PlaySpecificClipFromList (list, videgameID);
-		videogameData = Data.Instance.videogamesData.all [videgameID];
-		missionSelector.LoadVideoGameData (videgameID);
+        //VoicesManager.Instance.PlaySpecificClipFromList (list, videgameID);
+        VideogameData videogameData = Data.Instance.videogamesData.all [0]; // TO-DO
+		missionSelector.LoadVideoGameData();
 		diskette.Init (videogameData);
 
         int _videgameID = videgameID + 1;
@@ -186,10 +185,10 @@ public class LevelSelector : MonoBehaviour {
         diskette2.Init(_videogameData, false);
 
         //videogameUI.Change ();
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-			Data.Instance.handWriting.WriteTo (credits, videogameData.credits, null);
-		else
-			Data.Instance.handWriting.WriteTo (creditsParty, videogameData.credits, null);
+  //      if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+		//	Data.Instance.handWriting.WriteTo (credits, videogameData.credits, null);
+		//else
+		//	Data.Instance.handWriting.WriteTo (creditsParty, videogameData.credits, null);
 	}
     void ResetHandwritingText()
     {
