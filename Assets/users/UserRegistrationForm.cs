@@ -37,7 +37,7 @@ public class UserRegistrationForm : MonoBehaviour
 
     void UserCreation()
     {
-        UsersEvents.OnPopup("new User Created " + UserData.Instance.username);
+        //UsersEvents.OnPopup("new User Created " + UserData.Instance.username);
         UserData.Instance.UserCreation();
         UsersEvents.OnRegistartionDone();
     }

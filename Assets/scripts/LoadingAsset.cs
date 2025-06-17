@@ -159,6 +159,8 @@ public class LoadingAsset : MonoBehaviour {
         // yield return new WaitForSeconds(0.35f);
         // AddText(username + " -> GOTO 1985 ");
         yield return new WaitForSeconds(0.1f);
+        if (Data.Instance.missions.MissionActiveID == 0)
+            Data.Instance.isReplay = true;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
         AddText("COMPLETE!");
         yield return new WaitForSeconds(0.35f);

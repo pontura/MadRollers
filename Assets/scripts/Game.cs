@@ -68,6 +68,7 @@ public class Game : MonoBehaviour {
     }
     void Timeout()
     {
+        print("Timeout");
         gameCamera.Init();
         Data.Instance.GetComponent<Fade>().FadeOut();
         GetComponent<CharactersManager>().Init();

@@ -21,6 +21,8 @@ public class RegistrationScreen : MonoBehaviour
     {
         if (UserData.Instance.username == "")
             return;
-        Data.Instance.LoadLevel("LevelSelectorMobile");
+
+        //init tutorial:
+        Data.Instance.InitTutorial();
     }
 }

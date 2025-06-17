@@ -9,7 +9,6 @@ public class MobileInputs : MonoBehaviour
     float jumpingPressedTime = 0.28f;
     public GameObject panel;
 
-    public GameObject panel_gyroscope;
     public GameObject panel_virtualJoystick;
 
     private void Start()
@@ -19,12 +18,10 @@ public class MobileInputs : MonoBehaviour
         {
             if(Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
             {
-                panel_gyroscope.SetActive(true);
                 panel_virtualJoystick.SetActive(false);
             }
             else
             {
-                panel_gyroscope.SetActive(false);
                 panel_virtualJoystick.SetActive(true);
             }
             Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
@@ -85,6 +82,13 @@ public class MobileInputs : MonoBehaviour
             jumpingPressedSince = 0;
             jumping = true;
         }
+    }
+    public IEnumerator ForceBigJump()
+    {
+        GetCharacter().ResetJump();
+        Jump();
+        yield return new WaitForSecondsRealtime(0.15f);
+        JumpRelease();
     }
     public void JumpRelease()
     {

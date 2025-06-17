@@ -38,7 +38,9 @@ public class CharactersManager : MonoBehaviour {
         print("CharactersManager Init");
         missions = Data.Instance.GetComponent<Missions>();
         StartCoroutine(AddCharactersInitials());
-        gameObject.AddComponent<AutomatasManager>();
+
+        if (Data.Instance.missions.MissionActiveID != 0)
+            gameObject.AddComponent<AutomatasManager>();
     }
 
     public bool freezed;
@@ -108,10 +110,12 @@ public class CharactersManager : MonoBehaviour {
 			yield return null;
 		
 		if (Data.Instance.multiplayerData.player1) { addCharacter(CalculateInitialPosition(pos, positionID), 0); playerPositions.Add(0); };
-		//if (Data.Instance.multiplayerData.player2) { addCharacter(CalculateInitialPosition(pos, positionID+1), 1); playerPositions.Add(1); };
-		//if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID+2), 2); playerPositions.Add(2); };
-		//if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID+3), 3); playerPositions.Add(3); };
-        Add3Automatas(pos);
+        //if (Data.Instance.multiplayerData.player2) { addCharacter(CalculateInitialPosition(pos, positionID+1), 1); playerPositions.Add(1); };
+        //if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID+2), 2); playerPositions.Add(2); };
+        //if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID+3), 3); playerPositions.Add(3); };
+
+        if (Data.Instance.missions.MissionActiveID != 0)
+            Add3Automatas(pos);
         yield return null;
 	}
     void Add3Automatas(Vector3 pos)

@@ -55,10 +55,17 @@ public class MainMenuMobile : MonoBehaviour
     }
     public void Next()
     {
-        if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-            Data.Instance.LoadLevel("LevelSelector");
+        //if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+        //    Data.Instance.LoadLevel("LevelSelector");
+        //else
+        if (UserData.Instance.GetMissionUnblocked() == 0)
+            GotoTutorial();
         else
             Data.Instance.LoadLevel("LevelSelectorMobile");
+    }
+    void GotoTutorial()
+    {
+        Data.Instance.InitTutorial();
     }
     void AddPlayers()
     {

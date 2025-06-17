@@ -224,4 +224,25 @@ public class Data : MonoBehaviour {
 	{
 		credits++;
 	}
+    public void InitTutorial()
+    {
+        Data.Instance.multiplayerData.player1 = true;
+        StartCoroutine(InitTutorialC());
+    }
+    IEnumerator InitTutorialC()
+    {
+        Data.Instance.missions.MissionActiveID = 0;
+        Data.Instance.videogamesData.actualID = 0;
+
+        Data.Instance.LoadLevel("Game");
+
+
+        yield return new WaitForSeconds(3.5f); 
+        
+        Data.Instance.musicManager.stopAllSounds();
+
+        Data.Instance.events.OnStartGameScene();
+        Data.Instance.musicManager.ChangePitch(0.2f);
+
+    }
 }
