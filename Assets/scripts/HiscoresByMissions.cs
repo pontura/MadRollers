@@ -16,7 +16,6 @@ public class HiscoresByMissions : MonoBehaviour
 
     public bool loaded;
 
-    public List<MissionHiscoreData> all;
 
     [Serializable]
     public class MissionHiscoreData
@@ -39,10 +38,6 @@ public class HiscoresByMissions : MonoBehaviour
         auth = FirebaseAuth.DefaultInstance;
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
-    }
-    public void ResetAllHiscores()
-    {
-        all.Clear();
     }
     private void OnDestroy()
     {

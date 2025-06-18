@@ -14,7 +14,7 @@ public class LevelCreator : MonoBehaviour {
 
 	//[HideInInspector]
 	public int missionID = 1;
-    public int videogameID = 0;
+    //public int videogameID = 0;
 
     public TextAsset mission;
 	public Missions missions;

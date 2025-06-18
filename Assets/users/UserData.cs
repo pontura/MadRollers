@@ -1,20 +1,24 @@
-﻿using System.Collections;
+﻿using Firebase.Auth;
+using Firebase.Firestore;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using Yaguar.Auth;
 
 public class UserData : MonoBehaviour
 {
     string assetBundles = "https://pontura.github.io/madrollers/";
     // string url = "https://yaguar.xyz/madRollers/";
-    string url = "https://dev.yaguar.xyz/madRollers/";
-    public string URL { get { return url; } }
+    //string url = "https://dev.yaguar.xyz/madRollers/";
+   // public string URL { get { return url; } }
     public string URL_assetBundles { get { return assetBundles; } }
-    public string setUserURL = "setUser.php";
-    public string setUserURLUpload = "updateUser.php";
-    public string imageURLUploader = "uploadPhoto.php";
-    public string setUserDataURL = "setUserData.php";
-    public string imagesURL = "users/";
+    //public string setUserURL = "setUser.php";
+    //public string setUserURLUpload = "updateUser.php";
+    //public string imageURLUploader = "uploadPhoto.php";
+    //public string setUserDataURL = "setUserData.php";
+    //public string imagesURL = "users/";
 
     const string PREFAB_PATH = "UserData";
     static UserData mInstance = null;
@@ -82,8 +86,10 @@ public class UserData : MonoBehaviour
 
         data.userID = uid;
         data.username = username;
+
         allDone = true;
         GetLevelsPlayedCount();
+        _ =  GetScore();
     }
     private void OnDestroy()
     {
@@ -204,39 +210,81 @@ public class UserData : MonoBehaviour
 
     public void SaveUserDataToServer()
     {
-        StartCoroutine(SaveUserDataC());
+        _ = UpdateTotalScore(data.score);
+        //StartCoroutine(SaveUserDataC());
     }
-    IEnumerator SaveUserDataC()
+    //IEnumerator SaveUserDataC()
+    //{
+    //    string hash = Utils.Md5Sum(UserData.Instance.data.userID + data.score + data.missionUnblocked + "pontura");
+    //    string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.data.userID) + "&score=" + data.score
+    //        + "&missionUnblocked=" + data.missionUnblocked
+    //        + "&score=" + data.score
+    //        + "&hash=" + hash;
+
+    //    PlayerPrefs.SetInt("missionUnblocked", data.missionUnblocked);
+    //    PlayerPrefs.SetInt("score", data.score);
+
+    //    print("grabe: " + post_url);
+
+    //    WWW www = new WWW(post_url);
+    //    yield return www;
+
+    //    if (www.error != null)
+    //    {
+    //        //UsersEvents.OnPopup("There was an error: " + www.error);
+    //    }
+    //    else
+    //    {
+    //        string result = www.text;
+    //        if (result == "exists")
+    //        {
+    //            UsersEvents.OnPopup("ya existe");
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("UserData updated " + post_url);
+    //        }
+    //    }
+    //}
+    public async Task<int?> GetScore()
     {
-        string hash = Utils.Md5Sum(UserData.Instance.data.userID + data.score + data.missionUnblocked + "pontura");
-        string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.data.userID) + "&score=" + data.score
-            + "&missionUnblocked=" + data.missionUnblocked
-            + "&score=" + data.score
-            + "&hash=" + hash;
+        string userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        var db = FirebaseFirestore.DefaultInstance;
 
-        PlayerPrefs.SetInt("missionUnblocked", data.missionUnblocked);
-        PlayerPrefs.SetInt("score", data.score);
+        DocumentReference userRef = db.Collection("users").Document(userId);
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
 
-        print("grabe: " + post_url);
-
-        WWW www = new WWW(post_url);
-        yield return www;
-
-        if (www.error != null)
+        if (snapshot.Exists && snapshot.ContainsField("score"))
         {
-            //UsersEvents.OnPopup("There was an error: " + www.error);
+            data.score = snapshot.GetValue<int>("score");
+            Debug.Log($"📥 score del usuario: {data.score}");
+            return data.score;
         }
         else
         {
-            string result = www.text;
-            if (result == "exists")
-            {
-                UsersEvents.OnPopup("ya existe");
-            }
-            else
-            {
-                Debug.Log("UserData updated " + post_url);
-            }
+            Debug.Log("❌ No se encontró score para este usuario.");
+            return null;
         }
     }
+
+    public async Task UpdateTotalScore(int score)
+    {
+        string userId = UserData.Instance.userID;
+        var db = FirebaseFirestore.DefaultInstance;
+
+        DocumentReference userRef = db.Collection("users").Document(userId);
+
+        Dictionary<string, object> data = new Dictionary<string, object>
+        {
+            { "score", score },
+            { "updatedAt", Timestamp.GetCurrentTimestamp() }
+        };
+
+        await userRef.SetAsync(data, SetOptions.MergeAll);
+
+        Debug.Log($"✅ score actualizado a {score}");
+
+
+    }
+
 }

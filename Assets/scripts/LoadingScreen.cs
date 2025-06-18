@@ -63,10 +63,7 @@ public class LoadingScreen : MonoBehaviour {
 #else
             //solo se juega Story Mode!
             Data.Instance.missions.Init();
-            if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-                Data.Instance.LoadLevel("Settings");
-            else
-                Data.Instance.LoadLevel("Intro");
+            Data.Instance.LoadLevel("LevelSelectorMobile");
             // Data.Instance.LoadLevel("Settings");
 #endif
         }
@@ -145,7 +142,7 @@ public class LoadingScreen : MonoBehaviour {
     {
         print("LoopForUserReady IsReadyToInit " + UserData.Instance.IsReadyToInit());
         if (UserData.Instance.IsReadyToInit())
-            Data.Instance.LoadLevel("Intro");
+            Data.Instance.LoadLevel("MainMenuMobile");
         else
             Invoke("LoopForUserReady", 0.1f);
     }

@@ -47,87 +47,30 @@ public class LoadingAsset : MonoBehaviour {
 		loadingPanel.SetActive (_isOn);
         if (isOn)
         {
-            if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-            {
-                horizontal.SetActive(false);
-                vertical.SetActive(true);
-                logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
+            horizontal.SetActive(false);
+            vertical.SetActive(true);
+            logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
 
-                int missionID = Data.Instance.missions.MissionActiveID;
-                UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);
-                //HiscoreLoaded(null);
-                missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
-            }
-            else if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            {
-                horizontal.SetActive(false);
-                vertical.SetActive(true);
-                logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
-                int missionID = Data.Instance.missions.MissionActiveID;
-                int videoGameID = Data.Instance.videogamesData.actualID;
-                HiscoreLoaded(null);
-             //   UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
-                missionField.text = TextsManager.Instance.GetText("TOURNAMENT");
-            }
-            else
-            {
-                
-                horizontal.SetActive(true);
-                vertical.SetActive(false);
-                logo.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
-                StartCoroutine(LoadingRoutine());
-            }
+            int missionID = Data.Instance.missions.MissionActiveID;
+            UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);
+            //HiscoreLoaded(null);
+            missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
         }
 	}
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData data)
     {
         if (isOn)
         {
-            if (data != null)
+            if (data != null && data.all.Count >0)
             {
                 hiscorePanel.SetActive(true);
-                avatarThumb.Init(data.all[0].userID);
+               // avatarThumb.Init(data.all[0].userID);
                 avatarName.text = data.all[0].username.ToUpper();
             }
             StartCoroutine(LoadingRoutineAndroid());    
         }
     }
-    IEnumerator LoadingRoutine()
-	{
-        VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 1);
-		Data.Instance.musicManager.OnLoadingMusic();
-		field.text = "";		
-		AddText("*** MAD ROLLERS ***");
-		yield return new WaitForSeconds (0.1f);
-		AddText("Buenos Aires USER ALLOWING ACCESS!");
-		yield return new WaitForSeconds (0.1f);
-        AddText("Ana-Maria version");
-		yield return new WaitForSeconds (0.1f);
-        AddText("-> GOTO 1985 ");
-		yield return new WaitForSeconds (0.1f);
-		AddText("Club-Social-911 >system ...");
-        UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
-		yield return new WaitForSeconds (0.1f);
-        //if (!Data.Instance.isReplay)
-        //{
-        //    int i = texts.Length;
-        //    while (i > 0)
-        //    {
-        //        yield return new WaitForSeconds((float)Random.Range(6, 10) / 10f);
-        //        AddText(texts[i - 1]);
-        //        i--;
-        //    }
-        //}
-		AddText("COMPLETE!");
-		yield return new WaitForSeconds (0.1f);
-        SetOn (false);
-		if (!Data.Instance.isReplay) {
-			Data.Instance.musicManager.stopAllSounds();
-            Data.Instance.events.OnStartGameScene();
-        }
-		yield return null;
-    }
-
+   
     IEnumerator LoadingRoutineAndroid()
     {
         VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData();
@@ -136,12 +79,12 @@ public class LoadingAsset : MonoBehaviour {
 
         VoicesManager.Instance.PlaySpecificClipFromList(VoicesManager.Instance.UIItems, 1);
         Data.Instance.musicManager.OnLoadingMusic();
-        //field.text = "";
-        //AddText("*** MAD ROLLERS ***");
-        //yield return new WaitForSeconds(0.5f);
-        //AddText("Loading " + videogameData.name + "...");
-        //yield return new WaitForSeconds(0.2f);
-        // if (missionHiscoreUserData != null)
+        field.text = "";
+        AddText("*** MAD ROLLERS ***");
+        yield return new WaitForSeconds(0.3f);
+        AddText("Loading " + videogameData.name + "...");
+        yield return new WaitForSeconds(0.2f);
+       //  if (missionHiscoreUserData != null)
         // {
             // AddText("*****************");
             // yield return new WaitForSeconds(0.12f);
@@ -164,7 +107,6 @@ public class LoadingAsset : MonoBehaviour {
         AddText("COMPLETE!");
         yield return new WaitForSeconds(0.35f);
         Data.Instance.events.OnStartGameScene();
-        Data.Instance.musicManager.ChangePitch(0.2f);
         SetOn(false);
     }
     void AddText(string text)

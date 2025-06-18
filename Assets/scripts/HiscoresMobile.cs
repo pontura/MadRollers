@@ -14,14 +14,12 @@ public class HiscoresMobile : MonoBehaviour
         this.MyScoreLoaded = MyScoreLoaded;
         Utils.RemoveAllChildsIn(container);
         HiscoresByMissions hiscoresByMission = UserData.Instance.hiscoresByMissions;
-        hiscoresByMission.ResetAllHiscores();
         hiscoresByMission.LoadHiscore(missionID, OnDone);       
     }
     public void InitLoaded(HiscoresByMissions.MissionHiscoreData data)
     {
         Utils.RemoveAllChildsIn(container);
         HiscoresByMissions hiscoresByMission = UserData.Instance.hiscoresByMissions;
-        hiscoresByMission.ResetAllHiscores();
         OnDone(data);
     }
     public void OnDone(HiscoresByMissions.MissionHiscoreData data)

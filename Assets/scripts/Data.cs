@@ -114,8 +114,6 @@ public class Data : MonoBehaviour {
         Screen.fullScreen = true;
 #endif
 
-        auth = FirebaseAuth.DefaultInstance;
-
         string _controlsType = PlayerPrefs.GetString("controlsType");
         if (_controlsType == "GYROSCOPE")
             controlsType = ControlsType.GYROSCOPE;
@@ -239,8 +237,6 @@ public class Data : MonoBehaviour {
         Data.Instance.videogamesData.actualID = 0;
 
         Data.Instance.LoadLevel("Game");
-
-
         yield return new WaitForSeconds(3.5f); 
         
         Data.Instance.musicManager.stopAllSounds();
@@ -249,21 +245,5 @@ public class Data : MonoBehaviour {
         Data.Instance.musicManager.ChangePitch(0.2f);
 
     }
-    private FirebaseAuth auth;
-
-
-    public async Task SignInWithEmail(string email, string password)
-    {
-        try
-        {
-            string _email = "test@gmail.com";
-            string _password = "123456789";
-            FirebaseUser user = auth.SignInWithEmailAndPasswordAsync(_email, _password).Result.User;
-            Debug.Log($"✅ Usuario autenticado: {user.Email}");
-        }
-        catch (FirebaseException e)
-        {
-            Debug.LogError($"❌ Error al autenticar: {e.Message}");
-        }
-    }
+   
 }

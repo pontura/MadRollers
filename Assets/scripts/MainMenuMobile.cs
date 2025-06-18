@@ -49,10 +49,10 @@ public class MainMenuMobile : MonoBehaviour
         //else
         //    RegisterPressed();
     }
-    public void RegisterPressed()
-    {
-        Data.Instance.LoadLevel("Registration");
-    }
+    //public void RegisterPressed()
+    //{
+    //    Data.Instance.LoadLevel("Registration");
+    //}
     public void Next()
     {
         //if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
