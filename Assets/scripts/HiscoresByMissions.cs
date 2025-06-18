@@ -113,45 +113,61 @@ public class HiscoresByMissions : MonoBehaviour
 
         return topList;
     }
-    public async Task GetScore(int levelNumber, System.Action<MissionHiscoreData> OnDone)
+    public async Task<int> GetLevelsPlayedCount()
     {
-        if (FirebaseAuth.DefaultInstance.CurrentUser == null)
-        {
-            Debug.LogError("⚠️ El usuario no está autenticado.");
-            return;
-        }
         string userId = UserData.Instance.userID;
         var db = FirebaseFirestore.DefaultInstance;
 
-        DocumentReference docRef = db
+        CollectionReference scoresRef = db
             .Collection("users")
             .Document(userId)
-            .Collection("scores")
-            .Document("level_" + levelNumber);
+            .Collection("scores");
 
-        try
-        {
-            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+        QuerySnapshot snapshot = await scoresRef.GetSnapshotAsync();
 
-            if (snapshot.Exists && snapshot.ContainsField("score"))
-            {
-                int score = snapshot.GetValue<int>("score");
-                Debug.Log($"📥 Score del nivel {levelNumber}: {score}");
-                OnDone(null);
-            }
-            else
-            {
-                Debug.Log($"❌ No hay score guardado para nivel {levelNumber}.");
-                OnDone(null);
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error al obtener el score del nivel {levelNumber}: {e.Message}");
-            OnDone(null);
-        }
-        
+        int count = snapshot.Count;
+        Debug.Log("🎮 El usuario " + userId  + " jugó " + count + " niveles.");
+        return count;
     }
+    //public async Task GetScore(int levelNumber, System.Action<MissionHiscoreData> OnDone)
+    //{
+    //    if (FirebaseAuth.DefaultInstance.CurrentUser == null)
+    //    {
+    //        Debug.LogError("⚠️ El usuario no está autenticado.");
+    //        return;
+    //    }
+    //    string userId = UserData.Instance.userID;
+    //    var db = FirebaseFirestore.DefaultInstance;
+
+    //    DocumentReference docRef = db
+    //        .Collection("users")
+    //        .Document(userId)
+    //        .Collection("scores")
+    //        .Document("level_" + levelNumber);
+
+    //    try
+    //    {
+    //        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+    //        if (snapshot.Exists && snapshot.ContainsField("score"))
+    //        {
+    //            int score = snapshot.GetValue<int>("score");
+    //            Debug.Log($"📥 Score del nivel {levelNumber}: {score}");
+    //            OnDone(null);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log($"❌ No hay score guardado para nivel {levelNumber}.");
+    //            OnDone(null);
+    //        }
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Debug.LogError($"Error al obtener el score del nivel {levelNumber}: {e.Message}");
+    //        OnDone(null);
+    //    }
+        
+    //}
    
     public void Save(int mission, int score)
     {

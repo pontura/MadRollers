@@ -156,8 +156,9 @@ public class LoadingScreen : MonoBehaviour {
 
         FirebaseAuthManager.Instance.LoginUserByEmail(testEmail, testPassword);
 
+        LoopForUserReady();
         print("UseLocalData");
-        UserData.Instance.UseLocalData();
-        Data.Instance.LoadLevel("Intro");
+       // UserData.Instance.UseLocalData();
+       // Data.Instance.LoadLevel("Intro");
     }
 }

@@ -63,11 +63,7 @@ public class UserData : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
-#if UNITY_EDITOR
         path = Application.persistentDataPath + "/";
-#else
-        path = Application.persistentDataPath + "/";
-#endif
       
        // serverConnect = GetComponent<ServerConnect>();
         avatarImages = GetComponent<AvatarImages>();
@@ -75,16 +71,9 @@ public class UserData : MonoBehaviour
     }
     private void Start()
     {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-        {
-            hiscoresByMissions.Init();
-            Data.Instance.events.OnSaveScore += OnSaveScore;
-        }
-#if UNITY_EDITOR
-        Invoke("LoadLocalUser", 0.1f);
-#else
+        hiscoresByMissions.Init();
+        Data.Instance.events.OnSaveScore += OnSaveScore;
         FirebaseAuthManager.Instance.OnFirebaseAuthenticated += OnFirebaseAuthenticated;
-#endif
     }
     void OnFirebaseAuthenticated(string username, string email, string uid)
     {
@@ -94,20 +83,12 @@ public class UserData : MonoBehaviour
         data.userID = uid;
         data.username = username;
         allDone = true;
-       // serverConnect.LoadUserData(data.userID, OnLoaded);
-        //OnLoaded(null);
-    }
-    private void LoadLocalUser()
-    {
-        LoadUser();
+        GetLevelsPlayedCount();
     }
     private void OnDestroy()
     {
         Data.Instance.events.OnSaveScore -= OnSaveScore;
-#if UNITY_EDITOR
-#else
         FirebaseAuthManager.Instance.OnFirebaseAuthenticated -= OnFirebaseAuthenticated;
-#endif
     }
     void OnSaveScore()
     {
@@ -118,26 +99,7 @@ public class UserData : MonoBehaviour
         data.score += lastScoreWon;
         SaveUserDataToServer();
     }
-    void LoadUser()
-    {
-        playerID = PlayerPrefs.GetInt("playerID");
-#if UNITY_EDITOR
-        data.userID = "sJgYfFhH7wWHwmoPLOAFT6cbvKt1"; // firebase test user:
-        data.username = "TEST";
-#else
-        data.userID = PlayerPrefs.GetString("userID");
-         if (data.userID.Length<2)
-        {
-            data.userID = SystemInfo.deviceUniqueIdentifier + "_";
-        } else
-        {
-            data.userID = PlayerPrefs.GetString("userID");
-        }
-#endif
-        allDone = true;
-       // serverConnect.LoadUserData(data.userID, OnLoaded);
-        //OnLoaded(null);
-    }
+    
     //public bool IsRegistered()
     //{
     //    return PlayerPrefs.GetString("username") != "";
@@ -223,6 +185,11 @@ public class UserData : MonoBehaviour
     public int GetMissionUnblocked()
     {
         return data.missionUnblocked;
+    }
+    private async void GetLevelsPlayedCount()
+    {
+        data.missionUnblocked = await hiscoresByMissions.GetLevelsPlayedCount();
+        Debug.Log("Niveles jugados: " + data.missionUnblocked);
     }
     public int Score()
     {
