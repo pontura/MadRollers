@@ -15,7 +15,7 @@ public class HiscoresMobile : MonoBehaviour
         Utils.RemoveAllChildsIn(container);
         HiscoresByMissions hiscoresByMission = UserData.Instance.hiscoresByMissions;
         hiscoresByMission.ResetAllHiscores();
-        hiscoresByMission.LoadHiscore(videoGameID, missionID, OnDone);       
+        hiscoresByMission.LoadHiscore(missionID, OnDone);       
     }
     public void InitLoaded(HiscoresByMissions.MissionHiscoreData data)
     {

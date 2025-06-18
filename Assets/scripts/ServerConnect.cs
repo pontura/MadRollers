@@ -14,33 +14,33 @@ public class ServerConnect : MonoBehaviour
     public class UserDataInServer
     {
         public string username;
-        public string userID;
+        public string userID = "sJgYfFhH7wWHwmoPLOAFT6cbvKt1";
         public int score;
         public int missionUnblocked;
     }
    
     public void LoadUserData(string userID, System.Action<UserDataInServer> OnDone)
     {
-        string post_url = UserData.Instance.URL + getUserURL;
-        post_url += "?userID=" + userID;
-        StartCoroutine(Send(post_url, OnDone));
+        //string post_url = UserData.Instance.URL + getUserURL;
+        //post_url += "?userID=" + userID;
+        //StartCoroutine(Send(post_url, OnDone));
     }
-    IEnumerator Send(string post_url, System.Action<UserDataInServer> OnDone)
-    {
-        print(post_url);
-        WWW www = new WWW(post_url);
-        yield return www;
+    //IEnumerator Send(string post_url, System.Action<UserDataInServer> OnDone)
+    //{
+    //    print(post_url);
+    //    WWW www = new WWW(post_url);
+    //    yield return www;
 
-        if (www.error != null)
-        {
-            UsersEvents.OnPopup("Error en UserData server: " + www.error);
-            OnDone(null);
-        }
-        else
-        {
-            OnDataSended(www.text, OnDone);
-        }
-    }
+    //    if (www.error != null)
+    //    {
+    //        UsersEvents.OnPopup("Error en UserData server: " + www.error);
+    //        OnDone(null);
+    //    }
+    //    else
+    //    {
+    //        OnDataSended(www.text, OnDone);
+    //    }
+    //}
     void OnDataSended(string result, System.Action<UserDataInServer> OnDone)
     {
         if (result != null && result.Length>5)

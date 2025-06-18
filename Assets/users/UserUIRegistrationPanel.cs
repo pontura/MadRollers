@@ -24,7 +24,7 @@ public class UserUIRegistrationPanel : MonoBehaviour
         if(_username != "")
             field.text = _username;
 
-        if (UserData.Instance.IsRegistered())
+       // if (UserData.Instance.IsRegistered())
             userExists = true;
 
         ShowEditPanel();

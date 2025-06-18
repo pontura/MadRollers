@@ -48,8 +48,7 @@ public class ScoresUI : MonoBehaviour
         //HiscoreLoaded(null);//TO-DO:
        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
        {
-           int videoGameID = Data.Instance.videogamesData.actualID;
-           UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);           
+           UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);           
        }
        //else  if( Data.Instance.playMode == Data.PlayModes.SURVIVAL)
        //    UserData.Instance.hiscoresByMissions.LoadHiscore(MissionsManager.Instance.VideogameIDForTorneo, missionID, HiscoreLoaded);

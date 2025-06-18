@@ -54,8 +54,7 @@ public class LoadingAsset : MonoBehaviour {
                 logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
 
                 int missionID = Data.Instance.missions.MissionActiveID;
-                int videoGameID = Data.Instance.videogamesData.actualID;
-                UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+                UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);
                 //HiscoreLoaded(null);
                 missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
             }
@@ -132,7 +131,7 @@ public class LoadingAsset : MonoBehaviour {
     IEnumerator LoadingRoutineAndroid()
     {
         VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData();
-        HiscoresByMissions.MissionHiscoreUserData missionHiscoreUserData = UserData.Instance.hiscoresByMissions.GetHiscore(videogameData.id, Data.Instance.missions.MissionActiveID);
+       // HiscoresByMissions.MissionHiscoreUserData missionHiscoreUserData = UserData.Instance.hiscoresByMissions.GetHiscore(videogameData.id, Data.Instance.missions.MissionActiveID);
         string username = UserData.Instance.username;
 
         VoicesManager.Instance.PlaySpecificClipFromList(VoicesManager.Instance.UIItems, 1);

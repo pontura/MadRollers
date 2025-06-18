@@ -22,17 +22,17 @@ public class MainMenuMobile : MonoBehaviour
         Data.Instance.missions.Reset();
 
         playField.text = TextsManager.Instance.GetText("PLAY");
-        registerField.text = TextsManager.Instance.GetText("REGISTER");
+       // registerField.text = TextsManager.Instance.GetText("REGISTER");
 
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
         Data.Instance.events.OnInterfacesStart();
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
         
-        if (UserData.Instance.IsRegistered())
+       // if (UserData.Instance.IsRegistered())
             DonePanel.SetActive(true);  
-        else
-            RegisterPanel.SetActive(true);
+        //else
+        //    RegisterPanel.SetActive(true);
 
         AddPlayers();
     }
@@ -44,10 +44,10 @@ public class MainMenuMobile : MonoBehaviour
     void OnJoystickClick()
     {
         if (done) return; done = true;
-        if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsRegistered())
+     //   if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsRegistered())
             Next();
-        else
-            RegisterPressed();
+        //else
+        //    RegisterPressed();
     }
     public void RegisterPressed()
     {

@@ -151,6 +151,11 @@ public class LoadingScreen : MonoBehaviour {
     }
     void UseLocalData()
     {
+        string testEmail = "test@gmail.com";
+        string testPassword = "1234567890";
+
+        FirebaseAuthManager.Instance.LoginUserByEmail(testEmail, testPassword);
+
         print("UseLocalData");
         UserData.Instance.UseLocalData();
         Data.Instance.LoadLevel("Intro");

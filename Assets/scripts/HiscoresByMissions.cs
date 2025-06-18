@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+using Firebase;
+using Firebase.Firestore;
+using Firebase.Auth;
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
+
 public class HiscoresByMissions : MonoBehaviour
 {
-    private string secretKey = "pontura";
-    string saveNewHiscore = "saveHiscore.php";
-    string getHiscore = "getHiscore.php";
+    FirebaseFirestore db;
+    FirebaseAuth auth;
 
     public bool loaded;
 
@@ -17,7 +22,6 @@ public class HiscoresByMissions : MonoBehaviour
     public class MissionHiscoreData
     {
         public int mission;
-        public int videogame;
         public List<MissionHiscoreUserData> all;
     }
     [Serializable]
@@ -25,15 +29,15 @@ public class HiscoresByMissions : MonoBehaviour
     {
         [HideInInspector]
         public int mission;
-        [HideInInspector]
-        public int videogame;
         public string userID;
         public string username;
         public int score;
     }
     public void Init()
     {
-        if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+        db = FirebaseFirestore.DefaultInstance;
+        auth = FirebaseAuth.DefaultInstance;
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
     }
     public void ResetAllHiscores()
@@ -59,136 +63,183 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public void CheckToAddNewHiscore(string userID, int score, int videogame, int mission)
     {
-        MissionHiscoreData md = IfAlreadyLoaded(videogame, mission);
-        if (md == null) return;
-        int id = 0;
-        int addNewHiscoreID = 0;
-        foreach (MissionHiscoreUserData mhd in md.all)
-        {
-            if (mhd.userID == userID)
-                return; //ya tenias un hiscore mayor
-            if (mhd.score < score && addNewHiscoreID == 0)
-                addNewHiscoreID = id;
-            id++;
-        }
-        if (addNewHiscoreID != 0)
-        {
-            foreach (MissionHiscoreData md2 in all)
-            {
-                if (md2.videogame == videogame && md2.mission == mission)
-                {
-                    MissionHiscoreUserData mhd = new MissionHiscoreUserData();
-                    mhd.userID = userID;
-                    mhd.score = score;
-                    mhd.videogame = videogame;
-                    mhd.mission = mission;
-                    md.all.Insert(addNewHiscoreID, mhd);
-                }
-            }
-        }
+        Save(mission, score);
     }
-    public void LoadHiscore(int videogame, int mission, System.Action<MissionHiscoreData> OnDone)
+    public void LoadHiscore(int mission, System.Action<MissionHiscoreData> OnDone)
     {
-       // OnDone(null);
+        LoadHiscoreC(mission, OnDone);
+    }
 
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+    private async void LoadHiscoreC(int mission, System.Action<MissionHiscoreData> OnDone)
+    {
+        var topScores = await GetTopScores(mission, 50);
+        MissionHiscoreData m = new MissionHiscoreData();
+        m.all = new List<MissionHiscoreUserData>();
+        foreach (var entry in topScores)
         {
-            mission = 0;
-            videogame = MissionsManager.Instance.VideogameIDForTorneo;
+            MissionHiscoreUserData data = new MissionHiscoreUserData
+            {
+                username = entry.username,
+                score = entry.score,
+                mission = mission
+            };
+            m.all.Add(data);
+            Debug.Log($"{entry.username}: {entry.score}");
+        }
+        OnDone(m);
+    }
+   
+    public async Task<List<(string username, int score)>> GetTopScores(int level, int limit = 50)
+    {
+        var db = FirebaseFirestore.DefaultInstance;
+
+        Query query = db
+            .Collection("leaderboards")
+            .Document("level_" + level)
+            .Collection("scores")
+            .OrderByDescending("score")
+            .Limit(limit);
+
+        QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+        List<(string username, int score)> topList = new List<(string, int)>();
+
+        foreach (var doc in snapshot.Documents)
+        {
+            string username = doc.ContainsField("username") ? doc.GetValue<string>("username") : "Anon";
+            int score = doc.GetValue<int>("score");
+            topList.Add((username, score));
         }
 
-        MissionHiscoreData md = IfAlreadyLoaded(videogame, mission);
-
-        if (md != null)
+        return topList;
+    }
+    public async Task GetScore(int levelNumber, System.Action<MissionHiscoreData> OnDone)
+    {
+        if (FirebaseAuth.DefaultInstance.CurrentUser == null)
         {
-            OnDone(md);
+            Debug.LogError("⚠️ El usuario no está autenticado.");
             return;
         }
+        string userId = UserData.Instance.userID;
+        var db = FirebaseFirestore.DefaultInstance;
 
-        string post_url = UserData.Instance.URL + getHiscore;
-        post_url += "?videogame=" + (videogame);
-        post_url += "&mission=" + mission;
-        post_url += "&limit=50";
-        StartCoroutine(Send(post_url, OnDone));
-    }
-    MissionHiscoreData IfAlreadyLoaded(int videogame, int mission)
-    {
-        foreach(MissionHiscoreData md in all)
+        DocumentReference docRef = db
+            .Collection("users")
+            .Document(userId)
+            .Collection("scores")
+            .Document("level_" + levelNumber);
+
+        try
         {
-            if (md.videogame == videogame && md.mission == mission)
-                return md;
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            if (snapshot.Exists && snapshot.ContainsField("score"))
+            {
+                int score = snapshot.GetValue<int>("score");
+                Debug.Log($"📥 Score del nivel {levelNumber}: {score}");
+                OnDone(null);
+            }
+            else
+            {
+                Debug.Log($"❌ No hay score guardado para nivel {levelNumber}.");
+                OnDone(null);
+            }
         }
-        return null;
+        catch (Exception e)
+        {
+            Debug.LogError($"Error al obtener el score del nivel {levelNumber}: {e.Message}");
+            OnDone(null);
+        }
+        
     }
+   
     public void Save(int mission, int score)
     {
-        int videogame;
-
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            videogame = MissionsManager.Instance.VideogameIDForTorneo;
-        else
-            videogame = Data.Instance.videogamesData.actualID;
-
-        string hash = Utils.Md5Sum(UserData.Instance.userID + videogame + mission + score + secretKey);
-        string post_url = UserData.Instance.URL + saveNewHiscore + "?userID=" + WWW.EscapeURL(UserData.Instance.userID);
-        post_url += "&username=" + UserData.Instance.username;
-        post_url += "&videogame=" + videogame;
-        post_url += "&mission=" + mission;
-        post_url += "&score=" + score;
-        post_url += "&hash=" + hash;
-
-        print("SAVE: " + post_url);
-
-        StartCoroutine( Send(post_url, null) );
+        _ = SaveScore(mission, score);       
     }
-    IEnumerator Send(string post_url, System.Action<MissionHiscoreData> OnDone)
+    public async Task SaveScore(int levelNumber, int score)
     {
-        print("Hiscores SEND: " +  post_url);
-        WWW www = new WWW(post_url);
-        yield return www;
+        string userId = UserData.Instance.userID;
+        var db = FirebaseFirestore.DefaultInstance;
 
-        if (www.error != null)
+        DocumentReference docRef = db
+            .Collection("users")
+            .Document(userId)
+            .Collection("scores")
+            .Document("level_" + levelNumber);
+
+        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+        bool shouldUpdate = false;
+
+        if (!snapshot.Exists)
         {
-            //UsersEvents.OnPopup("Internet Error: " + www.error);
-           if (OnDone != null)
-                OnDone(null);
+            // No hay score previo → grabar
+            shouldUpdate = true;
         }
         else
         {
-            if (OnDone != null)
-                OnDataSended(www.text, OnDone);
-        }
-    }
-    void OnDataSended(string result, System.Action<MissionHiscoreData> OnDone)
-    {       
-        MissionHiscoreData missionHiscoreData = JsonUtility.FromJson<MissionHiscoreData>(result);
-
-        print("Hiscores OnDataSended: " + missionHiscoreData.all.Count);
-        if (missionHiscoreData.all.Count == 0)
-        {
-            OnDone(null);
-            return;
-        }
-     
-
-        MissionHiscoreData md = IfAlreadyLoaded(missionHiscoreData.videogame, missionHiscoreData.mission);
-
-        if (md == null)
-            all.Add(missionHiscoreData);
-
-        OnDone(missionHiscoreData);
-        print("Hiscores missionHiscoreData: " + missionHiscoreData + " md: " + md);
-    }
-    public MissionHiscoreUserData GetHiscore(int videogame, int mission)
-    {
-        foreach (MissionHiscoreData md in all)
-        {
-            if (md.videogame == videogame && md.mission == mission)
+            int previousScore = snapshot.GetValue<int>("score");
+            if (score > previousScore)
             {
-                return md.all[0];
+                // El nuevo score es mayor → actualizar
+                shouldUpdate = true;
             }
         }
-        return null;
-    }
 
+        if (shouldUpdate)
+        {
+            Dictionary<string, object> scoreData = new Dictionary<string, object>
+            {
+                { "score", score },
+                { "timestamp", Timestamp.GetCurrentTimestamp() }
+            };
+
+            await docRef.SetAsync(scoreData);
+            Debug.Log($"✅ Nuevo highscore guardado: nivel {levelNumber} → {score}");
+            _ = SaveLeaderboardScore(levelNumber, score, UserData.Instance.userID, UserData.Instance.username);
+        }
+        else
+        {
+            Debug.Log($"🔁 No se guardó: el score actual ({score}) no supera el anterior.");
+        }
+    }
+    public async Task SaveLeaderboardScore(int levelNumber, int score, string userID, string username)
+    {
+        var db = FirebaseFirestore.DefaultInstance;
+
+        DocumentReference docRef = db
+            .Collection("leaderboards")
+            .Document("level_" + levelNumber)
+            .Collection("scores")
+            .Document(userID);
+
+        // Traer el score actual del usuario (si existe)
+        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+        bool update = true;
+
+        if (snapshot.Exists)
+        {
+            int previousScore = snapshot.GetValue<int>("score");
+            if (score <= previousScore)
+            {
+                update = false; // No lo supera, no actualizamos
+            }
+        }
+
+        if (update)
+        {
+            Dictionary<string, object> scoreData = new Dictionary<string, object>
+        {
+            { "score", score },
+            { "timestamp", Timestamp.GetCurrentTimestamp() },
+            { "username", username },
+            { "userID", userID }
+        };
+
+            await docRef.SetAsync(scoreData);
+            Debug.Log($"🏆 Nuevo highscore para level {levelNumber}: {score}");
+        }
+    }
 }

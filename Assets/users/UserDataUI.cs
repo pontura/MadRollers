@@ -28,19 +28,19 @@ public class UserDataUI : MonoBehaviour
     
     void SetPanelsIfLogged()
     {
-        if (!userData.IsRegistered())
-        {
+        //if (!userData.IsRegistered())
+        //{
             userRegistrationPanel.gameObject.SetActive(true);
             userRegistrationPanel.Init(this, userData.username);
 
             userRegisteredPanel.gameObject.SetActive(false);
-        } else
-        {
-            userRegisteredPanel.gameObject.SetActive(true);
-            userRegisteredPanel.Init(this, userData.userID, userData.username);
+        //} else
+        //{
+        //    userRegisteredPanel.gameObject.SetActive(true);
+        //    userRegisteredPanel.Init(this, userData.userID, userData.username);
 
-            userRegistrationPanel.gameObject.SetActive(false);
-        }
+        //    userRegistrationPanel.gameObject.SetActive(false);
+        //}
     }
     public void EditData()
     {

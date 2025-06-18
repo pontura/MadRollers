@@ -85,7 +85,7 @@ public class SummaryMobile : MonoBehaviour
 
 
         //HiscoreLoaded(null);//To-DO
-        UserData.Instance.hiscoresByMissions.LoadHiscore(videoGameID, missionID, HiscoreLoaded);
+        UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);
         //if (!Data.Instance.isAndroid)
         //    Data.Instance.events.OnJoystickClick += OnJoystickClick;
     }

@@ -31,7 +31,7 @@ public class UserData : MonoBehaviour
     public string path;
     public HiscoresByMissions hiscoresByMissions;
     public AvatarImages avatarImages;
-    public ServerConnect serverConnect;
+   // public ServerConnect serverConnect;
     public int playerID; // Mad-Roller muñeco id
     private bool allDone;
 
@@ -69,7 +69,7 @@ public class UserData : MonoBehaviour
         path = Application.persistentDataPath + "/";
 #endif
       
-        serverConnect = GetComponent<ServerConnect>();
+       // serverConnect = GetComponent<ServerConnect>();
         avatarImages = GetComponent<AvatarImages>();
         hiscoresByMissions = GetComponent<HiscoresByMissions>();
     }
@@ -93,8 +93,8 @@ public class UserData : MonoBehaviour
 
         data.userID = uid;
         data.username = username;
-
-        serverConnect.LoadUserData(data.userID, OnLoaded);
+        allDone = true;
+       // serverConnect.LoadUserData(data.userID, OnLoaded);
         //OnLoaded(null);
     }
     private void LoadLocalUser()
@@ -121,22 +121,27 @@ public class UserData : MonoBehaviour
     void LoadUser()
     {
         playerID = PlayerPrefs.GetInt("playerID");
+#if UNITY_EDITOR
+        data.userID = "sJgYfFhH7wWHwmoPLOAFT6cbvKt1"; // firebase test user:
+        data.username = "TEST";
+#else
         data.userID = PlayerPrefs.GetString("userID");
-        
-        if (data.userID.Length<2)
+         if (data.userID.Length<2)
         {
             data.userID = SystemInfo.deviceUniqueIdentifier + "_";
         } else
         {
             data.userID = PlayerPrefs.GetString("userID");
         }
-         serverConnect.LoadUserData(data.userID, OnLoaded);
+#endif
+        allDone = true;
+       // serverConnect.LoadUserData(data.userID, OnLoaded);
         //OnLoaded(null);
     }
-    public bool IsRegistered()
-    {
-        return PlayerPrefs.GetString("username") != "";
-    }
+    //public bool IsRegistered()
+    //{
+    //    return PlayerPrefs.GetString("username") != "";
+    //}
     string SetRandomID()
     {
         string value = "";
@@ -156,27 +161,27 @@ public class UserData : MonoBehaviour
     {
         allDone = true;
 
-        data.username = PlayerPrefs.GetString("username");
-        data.userID = PlayerPrefs.GetString("userID");
+        //data.username = PlayerPrefs.GetString("username");
+        //data.userID = PlayerPrefs.GetString("userID");
 
-        if (data.userID == "") data.userID = SystemInfo.deviceUniqueIdentifier;
-        if (data.username == "")  data.username = "MR (" + Random.Range(100, 10000) + ")";
+        //if (data.userID == "") data.userID = SystemInfo.deviceUniqueIdentifier;
+        //if (data.username == "")  data.username = "MR (" + Random.Range(100, 10000) + ")";
 
         data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
         data.score = PlayerPrefs.GetInt("score");
     }
-    void OnLoaded(ServerConnect.UserDataInServer data)
-    {
-        allDone = true;
-        if (data != null)
-        {
-            this.data = data;
-            data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
-            Debug.Log("UserData OnLoaded . Login done!  username: " + data.username + " userID: " + data.userID);
-        }
-        else
-            Debug.LogError("No user!");
-    }
+    //void OnLoaded(ServerConnect.UserDataInServer data)
+    //{
+    //    allDone = true;
+    //    if (data != null)
+    //    {
+    //        this.data = data;
+    //        data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
+    //        Debug.Log("UserData OnLoaded . Login done!  username: " + data.username + " userID: " + data.userID);
+    //    }
+    //    else
+    //        Debug.LogError("No user!");
+    //}
     public void UserCreation()
     {
         PlayerPrefs.SetString("username", data.username);
