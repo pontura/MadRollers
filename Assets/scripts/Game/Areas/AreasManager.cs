@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class AreasManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class AreasManager : MonoBehaviour
 
     public void LoadData()
     {
-        //print("AreasManager Start ");
+        print("AreasManager Start ");
         print("AreasManager Start " + all + " Count: " + all.Count);
         data = new Dictionary<string, AreaData>();
         // all = new List<TextAsset>();
@@ -45,7 +46,6 @@ public class AreasManager : MonoBehaviour
         if (IsNameUsed(areaName))
             return;
 
-
         print("AreasManager Add " + areaName);
 
         TextAsset asset = Resources.Load("areas/" + areaName) as TextAsset;
@@ -59,6 +59,7 @@ public class AreasManager : MonoBehaviour
             data.Add(areaName, JsonUtility.FromJson<AreaData>(asset.text));
         }
     }
+
     public AreaData GetArea(string areaName)
     {
         int id = 0;

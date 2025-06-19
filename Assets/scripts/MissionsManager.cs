@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 public class MissionsManager : MonoBehaviour
 {
+    [SerializeField] GameObject thisPrefab;
     public int VideogameIDForTorneo = 100;
     public TextAsset _all;
     public TextAsset _all_partymode;
@@ -67,6 +69,9 @@ public class MissionsManager : MonoBehaviour
             all = JsonUtility.FromJson<MissionsList>(_all.text);
 
         Load(all.missions);
+
+
+        PrefabUtility.ApplyPrefabInstance(thisPrefab, InteractionMode.UserAction);
     }
     public void Load(string[] m)
     {

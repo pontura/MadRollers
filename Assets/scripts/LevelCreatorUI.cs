@@ -25,7 +25,6 @@ public class LevelCreatorUI : Editor {
 		_choiceIndex = levelCreator.missionID;
 
 		string[] videogameData;
-		int vid = _videogameIndex;
 
 		videogameData = new string[levelCreator.missionsManager.missions.Count];
 		int id = 0;
@@ -37,7 +36,7 @@ public class LevelCreatorUI : Editor {
 		}
 
 		levelCreator.missionID = _choiceIndex;
-		//levelCreator.videoGameID = _videogameIndex+1;
+		int _videogameIndex = levelCreator.missionsManager.missions[_choiceIndex].data[0].videoGameID;
         string n = levelCreator.missionsManager.missions[_choiceIndex].data[0].jsonName;
         levelCreator.missionAsset = Resources.Load("missions/" + n ) as TextAsset;
 		//levelCreator.videogameID = levelCreator.missionsManager.missions[_choiceIndex].data[0].videoGameID;
@@ -55,7 +54,7 @@ public class LevelCreatorUI : Editor {
 
 
 		if (GUILayout.Button ("Load Mission")) {
-			levelCreator.LoadMissions (); 
+			levelCreator.LoadMissions (_videogameIndex); 
 		}
 
 		GUILayout.Space (20);

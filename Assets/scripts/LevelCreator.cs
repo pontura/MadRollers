@@ -14,7 +14,7 @@ public class LevelCreator : MonoBehaviour {
 
 	//[HideInInspector]
 	public int missionID = 1;
-    //public int videogameID = 0;
+    public int videoGameID = 0;
 
     public TextAsset mission;
 	public Missions missions;
@@ -30,7 +30,7 @@ public class LevelCreator : MonoBehaviour {
             LevelDataDebug.Instance.playOnlyBosses = playOnlyBosses;
             LevelDataDebug.Instance.isArcadeMultiplayer = isArcadeMultiplayer;
 			LevelDataDebug.Instance.isDebbug = true;
-		//	LevelDataDebug.Instance.videogameID = videoGameID-1;
+			LevelDataDebug.Instance.videogameID = videoGameID;
 			LevelDataDebug.Instance.missionID = missionID;
             LevelDataDebug.Instance.playMode = playMode;
             if (area != null && LevelDataDebug.Instance.playMode != Data.PlayModes.SURVIVAL)
@@ -39,16 +39,18 @@ public class LevelCreator : MonoBehaviour {
 		Application.LoadLevel("00_Loading");        
     }
 	public void LoadArea()
-	{		
-		Clear ();
+	{
+        Clear ();
 		totalDistance = 0;
 		AddAreaByName (area.name);
 	}
 
 	List<string> allNames = new List<string>();
-	public void LoadMissions()
-	{		
-		Clear ();
+	public void LoadMissions(int videoGameID)
+	{
+		this.videoGameID = videoGameID;
+
+        Clear ();
 		totalDistance = 0;
 
 		allNames = new List<string>();
@@ -134,5 +136,7 @@ public class LevelCreator : MonoBehaviour {
 			GetComponent<AreaCreator> ().CreateData (area);
 		}
 		Utils.RemoveAllChildsIn (transform);
-	}
+		UpdateMissions();
+		Caching.ClearCache();
+    }
 }
