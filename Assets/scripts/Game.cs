@@ -161,7 +161,6 @@ public class Game : MonoBehaviour {
     public void GotoNextGame()
     {
         //  Pause();
-        Data.Instance.videogamesData.SetOtherGameActive();
 
         if(Data.Instance.videogamesData.actualID == 0)
             Data.Instance.missions.MissionActiveID++;

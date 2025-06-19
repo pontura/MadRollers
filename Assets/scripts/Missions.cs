@@ -150,7 +150,6 @@ public class Missions : MonoBehaviour
         {
             MissionActiveID++;
             print("StartNewMission " + MissionActiveID);
-            Data.Instance.videogamesData.UpdateVideogame();
             UserData.Instance.SetMissionReady(MissionActiveID);
         }
     }

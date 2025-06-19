@@ -53,7 +53,6 @@ public class VideogameComplete : MonoBehaviour {
 	public void OnJoystickClick()
 	{
 		Data.Instance.isReplay = true;
-		Data.Instance.videogamesData.SetOtherGameActive();
 		Data.Instance.missions.MissionActiveID = 0;
 		Data.Instance.LoadLevel("Game");
 	}

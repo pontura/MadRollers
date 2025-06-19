@@ -52,8 +52,10 @@ MonoBehaviour:
   all:
     missions:
     - boy_init_jump
+    - boy_helices
     - boy_firstBoss
     - gallax_jumps
+    - gallax_jumps2
     - gallax_bosses_air
     - per_init_jumps
     - per_boss_serpientes
@@ -63,7 +65,6 @@ MonoBehaviour:
     - boy_init_woods
     - boy_ene_easy
     - boy_pulpo
-    - boy_helices
     - boy_pigs
     - boy_walkers
     - boy_deformeEspada
@@ -183,6 +184,75 @@ MonoBehaviour:
         cameraOrientation: {x: 0, y: 1, z: -2}
   - data:
     - videoGameID: 0
+      jsonName: boy_helices
+      title: SOBREVIVE A LAS CUCHILLAS
+      id: 0
+      maxScore: 460
+      fondo: wonderland_nubes
+      areaSetData:
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 6
+        bending: 0
+        randomize: 0
+        areas:
+        - heliceSmall
+        - heliceSmall2
+        - descanso4a
+        - anchoCalleHelices
+        - heliceDoubleSmall
+        - heliceSmall2
+        cameraOrientation: {x: 0, y: -1, z: -1}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 1
+        randomize: 0
+        areas:
+        - descansoAncho3
+        cameraOrientation: {x: 0, y: 3, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -4
+        randomize: 0
+        areas:
+        - anchoCalleHelices
+        cameraOrientation: {x: 0, y: 2, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 3
+        bending: -2
+        randomize: 0
+        areas:
+        - enemigosx2
+        - dobleCamino_helices
+        - enemigosx2
+        cameraOrientation: {x: 0, y: -4, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 2
+        bending: -18
+        randomize: 0
+        areas:
+        - Ending
+        cameraOrientation: {x: 0, y: 0, z: -3}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1000
+        bending: -18
+        randomize: 1
+        areas:
+        - Ending
+        cameraOrientation: {x: 0, y: -4, z: -4}
+  - data:
+    - videoGameID: 0
       jsonName: boy_firstBoss
       title: DESTROY RULO
       id: 0
@@ -255,8 +325,8 @@ MonoBehaviour:
         bending: -2
         randomize: 0
         areas:
-        - subibaja1
         - subibaja2
+        - subibaja1
         cameraOrientation: {x: 0, y: -10, z: -1}
       - totalDistanceToCamFX: 0
         boss: 0
@@ -275,8 +345,8 @@ MonoBehaviour:
         bending: -10
         randomize: 0
         areas:
-        - subibaja1
         - subibaja2
+        - subibaja1
         cameraOrientation: {x: 0, y: 20, z: -2}
       - totalDistanceToCamFX: 0
         boss: 0
@@ -297,6 +367,42 @@ MonoBehaviour:
         areas:
         - navesSimple2
         cameraOrientation: {x: 0, y: -4, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -12
+        randomize: 0
+        areas:
+        - zigzag_Rays_1
+        - zigzag_Rays_2
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 1
+        areas:
+        - navesSimple2
+        cameraOrientation: {x: 0, y: -4, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -12
+        randomize: 0
+        areas:
+        - Ending
+        cameraOrientation: {x: 0, y: -2, z: -3}
+  - data:
+    - videoGameID: 1
+      jsonName: gallax_jumps2
+      title: RAYOS OSCUROS
+      id: 0
+      maxScore: 3000
+      fondo: gallax
+      areaSetData:
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -328,7 +434,7 @@ MonoBehaviour:
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
-        total_areas: 4
+        total_areas: 2
         bending: -20
         randomize: 1
         areas:
@@ -376,15 +482,6 @@ MonoBehaviour:
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
-        total_areas: 1
-        bending: -5
-        randomize: 0
-        areas:
-        - descanso3
-        cameraOrientation: {x: 0, y: -4, z: -4}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
         total_areas: 2
         bending: 0
         randomize: 1
@@ -403,7 +500,7 @@ MonoBehaviour:
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
-        total_areas: 1
+        total_areas: 2
         bending: -4
         randomize: 0
         areas:
@@ -435,6 +532,15 @@ MonoBehaviour:
         areas:
         - descanso_vacio1
         cameraOrientation: {x: 0, y: -15, z: -4}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -3
+        randomize: 0
+        areas:
+        - container_descanso_cruz
+        cameraOrientation: {x: 0, y: -3, z: -4}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -1260,65 +1366,6 @@ MonoBehaviour:
         areas:
         - boss_Pulpo_free
         cameraOrientation: {x: 0, y: -3, z: 0}
-  - data:
-    - videoGameID: 0
-      jsonName: boy_helices
-      title: SOBREVIVE A LAS CUCHILLAS
-      id: 0
-      maxScore: 460
-      fondo: wonderland_nubes
-      areaSetData:
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 5
-        bending: 0
-        randomize: 0
-        areas:
-        - heliceSmall
-        - heliceSmall2
-        - anchoCalleHelices
-        - heliceDoubleSmall
-        - heliceSmall2
-        cameraOrientation: {x: 0, y: -1, z: -1}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: -4
-        randomize: 0
-        areas:
-        - anchoCalleHelices
-        cameraOrientation: {x: 0, y: 2, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 3
-        bending: -2
-        randomize: 0
-        areas:
-        - enemigosx2
-        - dobleCamino_helices
-        - enemigosx2
-        cameraOrientation: {x: 0, y: -4, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 1
-        json: {fileID: 0}
-        total_areas: 2
-        bending: -18
-        randomize: 0
-        areas:
-        - Ending
-        cameraOrientation: {x: 0, y: 0, z: -3}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1000
-        bending: -18
-        randomize: 1
-        areas:
-        - Ending
-        cameraOrientation: {x: 0, y: -4, z: -4}
   - data:
     - videoGameID: 0
       jsonName: boy_pigs
@@ -2834,16 +2881,22 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 1e7165a530b5228489953c15a13f9e2d, type: 3}
   - {fileID: 4900000, guid: 49860966aff298542ba81654280c2a27, type: 3}
   - {fileID: 4900000, guid: ca70e232c58005647ba33ba5f8a7dcff, type: 3}
+  - {fileID: 4900000, guid: 6319d8df8b0a3ba48a4e9c408fc24586, type: 3}
+  - {fileID: 4900000, guid: 35a4d9e3635ed2e4ab61dfe0a7384d63, type: 3}
+  - {fileID: 4900000, guid: 90a17201f7e284c4fbc612618a439cdf, type: 3}
+  - {fileID: 4900000, guid: c27ef293d88f80b4182f2b70cbbb9c9e, type: 3}
+  - {fileID: 4900000, guid: 48d82dc064146504781d75cb6ff1581d, type: 3}
+  - {fileID: 4900000, guid: 2e12abff3ddee7543a24c2c42e390f7b, type: 3}
+  - {fileID: 4900000, guid: 3479e40f9983231499cc09c7d457b64e, type: 3}
   - {fileID: 4900000, guid: 6969f401f4285d149af1ce68c3828299, type: 3}
   - {fileID: 4900000, guid: 7ada5de4f2e4570479696969b29651ea, type: 3}
-  - {fileID: 4900000, guid: 35a4d9e3635ed2e4ab61dfe0a7384d63, type: 3}
   - {fileID: 4900000, guid: 8fec53bcabe63324ca7e0602960e29a7, type: 3}
   - {fileID: 4900000, guid: 68ac16b37c94661429016f3dba7dad44, type: 3}
   - {fileID: 4900000, guid: 58c8471432293074ebcbddeadfbdc094, type: 3}
   - {fileID: 4900000, guid: a49ff5ca311a726478ed8e117930b793, type: 3}
   - {fileID: 4900000, guid: 3b719d17c0d6897458a9d0a466a31d76, type: 3}
-  - {fileID: 4900000, guid: 6ecb62a0844584b46ae958ba01fd9526, type: 3}
   - {fileID: 4900000, guid: 3b4cbe344a0e7b641bd0eff1d211f5a9, type: 3}
+  - {fileID: 4900000, guid: 6ecb62a0844584b46ae958ba01fd9526, type: 3}
   - {fileID: 4900000, guid: 5a0862f3b208c1748a292054b7fdd5ce, type: 3}
   - {fileID: 4900000, guid: 9c3d98ed1a3f6e14e8c78f5573f9301c, type: 3}
   - {fileID: 4900000, guid: 1ae6151c2587e2f4bbe85bdfc33e2484, type: 3}
@@ -2855,6 +2908,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6cab663c249ddb4479562dcd4e5f4aaf, type: 3}
   - {fileID: 4900000, guid: 729aefcedded6f245998e984ea233ad4, type: 3}
   - {fileID: 4900000, guid: 4629cf7a71653b34da05f0fde1dfa248, type: 3}
+  - {fileID: 4900000, guid: c0f682c128f206d4f94dca627a2e3c71, type: 3}
   - {fileID: 4900000, guid: 52cf7497c91201b4c8491fcf344cca6c, type: 3}
   - {fileID: 4900000, guid: 8aae240934684fd4db37157eb38d7891, type: 3}
   - {fileID: 4900000, guid: b71bf6af58fb2f941ab04736d5befad1, type: 3}
@@ -2875,7 +2929,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ff100f15feb0484409088859501fe9b1, type: 3}
   - {fileID: 4900000, guid: 3f34861a1f9f12e48a916f1ca1e65fec, type: 3}
   - {fileID: 4900000, guid: 0745b18a7c38703498874b244221f8a5, type: 3}
-  - {fileID: 4900000, guid: 90a17201f7e284c4fbc612618a439cdf, type: 3}
   - {fileID: 4900000, guid: b2be39e88a24fc34fa0484585b2230c1, type: 3}
   - {fileID: 4900000, guid: a9e8750e41df37142b8be74aad6104b7, type: 3}
   - {fileID: 4900000, guid: 19eb29a6346b3cc4792b6e2bba00831f, type: 3}
@@ -2921,10 +2974,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 70a81fc9edeb2af4696e0081db85d5f2, type: 3}
   - {fileID: 4900000, guid: 041f7468078abdb4fb4c336b2289a29f, type: 3}
   - {fileID: 4900000, guid: 0cf6661ca75135c42b67fbbb3225187c, type: 3}
-  - {fileID: 4900000, guid: 6319d8df8b0a3ba48a4e9c408fc24586, type: 3}
-  - {fileID: 4900000, guid: c27ef293d88f80b4182f2b70cbbb9c9e, type: 3}
-  - {fileID: 4900000, guid: 48d82dc064146504781d75cb6ff1581d, type: 3}
-  - {fileID: 4900000, guid: 3479e40f9983231499cc09c7d457b64e, type: 3}
   - {fileID: 4900000, guid: 8f625183c8bd750439ff3e243f792581, type: 3}
   - {fileID: 4900000, guid: 6683f602d3ad2f441ac848254f5960b5, type: 3}
   - {fileID: 4900000, guid: c8e48d98644f6f74187101df2ad5bffe, type: 3}
@@ -2959,7 +3008,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 1d3beb09b8450bd4babb196a282c730b, type: 3}
   - {fileID: 4900000, guid: bf491cff84f33124ba378bb5b47056f8, type: 3}
   - {fileID: 4900000, guid: 983f3866a5adf4244803ac11d0456695, type: 3}
-  - {fileID: 4900000, guid: c0f682c128f206d4f94dca627a2e3c71, type: 3}
   - {fileID: 4900000, guid: d09175e138f9af24fa0bbff75e402362, type: 3}
   - {fileID: 4900000, guid: e846e0c4122b6b54a801e280fd1b347a, type: 3}
   - {fileID: 4900000, guid: a0e16323690566e41bf345e4ac9019d1, type: 3}

@@ -7,7 +7,7 @@ public class VideogameFilter : MonoBehaviour {
 	public GameObject[] only_show_in_videogame_1;
 	public GameObject[] only_show_in_videogame_2;
 	public GameObject[] only_show_in_videogame_3;
-	int lastVideogame = 0;
+	int lastVideogame = -1;
 
 	void OnEnable () {
 		int id = Data.Instance.videogamesData.GetActualVideogameData ().id;

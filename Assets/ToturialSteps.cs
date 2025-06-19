@@ -24,7 +24,7 @@ public class ToturialSteps : MonoBehaviour
     {
         missionActiveID = Data.Instance.missions.MissionActiveID;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-        if (missionActiveID > 1)
+        if (missionActiveID > 2)
         {
             Destroy(panel.gameObject);
             Destroy(this);
@@ -76,13 +76,18 @@ public class ToturialSteps : MonoBehaviour
                 InitPanel(stepID);
             else if (stepID == 10 && charactersManager.distance > 588)
                 InitPanel(stepID);
-        } else
+        } else if (missionActiveID == 1)
         {
             if (stepID == 0 && charactersManager.distance > 20)
                 InitPanel(stepID);
-            else if (stepID == 1 && charactersManager.distance > 200)
+            else if (stepID == 1 && charactersManager.distance > 90)
                 InitPanel(stepID);
-            else if (stepID == 2 && charactersManager.distance > 204)
+        }
+        else if (missionActiveID == 2)
+        {
+            if (stepID == 0 && charactersManager.distance > 200)
+                InitPanel(stepID);
+            else if (stepID == 1 && charactersManager.distance > 204)
                 InitPanel(stepID);
         }
     }
@@ -171,7 +176,7 @@ public class ToturialSteps : MonoBehaviour
                     break;
             }
         }
-        else
+        else if (missionActiveID == 1)
         {
             switch (id)
             {
@@ -179,9 +184,18 @@ public class ToturialSteps : MonoBehaviour
                     step_generic.Open("A VER COMO TE VA AHORA, CON EL TEAM COMPLETO!");
                     break;
                 case 1:
+                    step_generic.Open("CUIDADO CON ESTAS CUCHILLAS!");
+                    break;
+            }
+        }
+        else if (missionActiveID == 2)
+        {
+            switch (id)
+            {
+                case 0:
                     step_generic.Open("UN BOSS!");
                     break;
-                case 2:
+                case 1:
                     step_generic.Open("DESTRUYANLO! SI SE ANIMAN A GANAR!");
                     break;
             }
