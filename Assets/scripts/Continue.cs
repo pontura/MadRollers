@@ -99,7 +99,7 @@ public class Continue : MonoBehaviour {
 		if (canClick) {
 			canClick = false;
 			CancelInvoke ();
-			Game.Instance.Continue();  
+			Game.Instance.PlayAgain();  
 		}
 	}
 

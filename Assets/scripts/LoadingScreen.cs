@@ -108,13 +108,13 @@ public class LoadingScreen : MonoBehaviour {
         UseLocalData();
         return;
 #endif
-        Debug.Log("LoadingScreen AllLoaded authCode: " + authCode);
-        authCode = PlayerPrefs.GetString("authCode", "");
+        //authCode = PlayerPrefs.GetString("authCode", "");
+        //Debug.Log("LoadingScreen AllLoaded authCode: " + authCode);
 
-        if (authCode != "")
-            SignInWithPlayGames(authCode);
-        else
-        {
+        //if (authCode != "")
+        //    SignInWithPlayGames(authCode);
+        //else
+        //{
             Data.Instance.socialAuth.Init((authCode) =>
             {
                 Debug.Log("#socialAuth: " + authCode);
@@ -126,7 +126,7 @@ public class LoadingScreen : MonoBehaviour {
                 else
                     UseLocalData();
             });
-        }
+      //  }
     }
     void SignInWithPlayGames(string authCode)
     {
@@ -148,11 +148,9 @@ public class LoadingScreen : MonoBehaviour {
     }
     void UseLocalData()
     {
-        string testEmail = "test@gmail.com";
-        string testPassword = "1234567890";
-
-        FirebaseAuthManager.Instance.LoginUserByEmail(testEmail, testPassword);
-
+#if UNITY_EDITOR
+        FirebaseAuthManager.Instance.LoginUserByEmail(UserData.Instance.test_email, UserData.Instance.test_password);
+#endif
         LoopForUserReady();
         print("UseLocalData");
        // UserData.Instance.UseLocalData();

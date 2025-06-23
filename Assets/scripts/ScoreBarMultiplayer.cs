@@ -21,8 +21,10 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
     bool hiscoreWinned;
     bool isAndroid;
+    int totalAdded;
 
     void Start () {
+
         if (Data.Instance.isAndroid)
             isAndroid = true;
 
@@ -34,27 +36,37 @@ public class ScoreBarMultiplayer : MonoBehaviour {
         RefreshScore ();
 		Data.Instance.events.OnDrawScore += OnDrawScore;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        Data.Instance.events.OnPayPixeles += OnPayPixeles;
+        Data.Instance.events.OnContinue += OnContinue;
 
         scoreAdviseNum.text = "";
 		scoreAdviseDesc.text = "";
-        if(Data.Instance.playMode == Data.PlayModes.PARTYMODE && Data.Instance.multiplayerData.score>0)
-            myScoreFields.text = Utils.FormatNumbers(Data.Instance.multiplayerData.score);
-        else
-            myScoreFields.text = "00";
+        Data.Instance.multiplayerData.score = 0;
+        RefreshScore();
+    }
+    void OnContinue()
+    {
+        RefreshScore();
     }
     void OnMissionComplete(int id)
     {
         panel.SetActive(false);
     }
-
+    void OnPayPixeles(int price)
+    {
+        Data.Instance.multiplayerData.score -= price;
+        if(Data.Instance.multiplayerData.score < 0) Data.Instance.multiplayerData.score = 0;
+        myScoreFields.text = Utils.FormatNumbers(Data.Instance.multiplayerData.score);
+    }
     void OnDestroy()
 	{
 		Data.Instance.events.OnDrawScore -= OnDrawScore;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Data.Instance.events.OnPayPixeles -= OnPayPixeles;
+        Data.Instance.events.OnContinue -= OnContinue;
     }
 	float delayToReset = 1;
 	float ResetFieldsTimer;
-	int totalAdded;
 
 	void OnDrawScore(int score, string desc)
 	{	

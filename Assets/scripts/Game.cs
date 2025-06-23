@@ -160,8 +160,6 @@ public class Game : MonoBehaviour {
 	}
     public void GotoNextGame()
     {
-        //  Pause();
-
         if(Data.Instance.videogamesData.actualID == 0)
             Data.Instance.missions.MissionActiveID++;
 
@@ -171,7 +169,6 @@ public class Game : MonoBehaviour {
     }
     public void GotoMainMenu()
     {
-      //  Pause();
         Data.Instance.events.OnResetLevel();
 		Data.Instance.events.ForceFrameRate (1);
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
@@ -181,20 +178,18 @@ public class Game : MonoBehaviour {
     }
     public void GotoContinue()
     {
-       // Pause();
         Data.Instance.events.OnResetLevel();
         Time.timeScale = 1;
         Data.Instance.LoadLevel("Continue");
     }
-	//public void ChangeVideogame(int videogameID)
-	//{
-	//	Data.Instance.missions.times_trying_same_mission = 0;
-	//	Data.Instance.missions.MissionActiveID++;
-	//	Data.Instance.videogamesData.actualID = videogameID;
- //       Data.Instance.isReplay = true;
-	//	ResetLevel ();
-	//}
-	public void Continue()
+    public void Continue()
+    {
+        state = states.PLAYING;
+        level.charactersManager.Continue();
+        gameCamera.Continue();
+        Data.Instance.events.OnContinue();
+    }
+    public void PlayAgain()
 	{
 		Data.Instance.missions.times_trying_same_mission++;
 		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
@@ -224,9 +219,11 @@ public class Game : MonoBehaviour {
             Data.Instance.events.OnBossActive(false);
         }
     }
+#if UNITY_EDITOR
     private void Update()//CHEAT: pontura P para ganar level:
     {
         if (Input.GetKeyDown(KeyCode.P))
             OnListenerDispatcher(ListenerDispatcher.myEnum.LevelFinish);
     }
+#endif
 }

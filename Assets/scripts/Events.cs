@@ -17,6 +17,7 @@ public class Events : MonoBehaviour {
 	public System.Action<int, string> OnDrawScore = delegate { };
     public System.Action ResetHandwritingText = delegate { };
     public System.Action<bool> OnGameOver = delegate { };
+    public System.Action OnContinue = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };
     public System.Action<string, int> OnSoundFX = delegate { };
 	public System.Action<MadRollersSFX.types, int> OnMadRollerFX = delegate { };
@@ -118,6 +119,7 @@ public class Events : MonoBehaviour {
 	public System.Action OnJoystickClick = delegate { };
 	public System.Action OnJoystickBack= delegate { };
     public System.Action OnSaveScore = delegate { };
+    public System.Action<int> OnPayPixeles = delegate { };
     public System.Action<bool> OnTalk = delegate { };
 	public System.Action<float, float> RalentaTo = delegate { };
 	public System.Action<float> ForceFrameRate = delegate { };

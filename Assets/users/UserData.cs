@@ -9,21 +9,17 @@ using Yaguar.Auth;
 
 public class UserData : MonoBehaviour
 {
+
+    public string test_username = "MAD-ROLLER";
+    public string test_email = "test@gmail.com";
+    public string test_password = "1234567890";
+    public string test_userID = "DMZgakyMpdTm8qTECRdgllItjJQ2";
+
     string assetBundles = "https://pontura.github.io/madrollers/";
-    // string url = "https://yaguar.xyz/madRollers/";
-    //string url = "https://dev.yaguar.xyz/madRollers/";
-   // public string URL { get { return url; } }
     public string URL_assetBundles { get { return assetBundles; } }
-    //public string setUserURL = "setUser.php";
-    //public string setUserURLUpload = "updateUser.php";
-    //public string imageURLUploader = "uploadPhoto.php";
-    //public string setUserDataURL = "setUserData.php";
-    //public string imagesURL = "users/";
 
     const string PREFAB_PATH = "UserData";
     static UserData mInstance = null;
-   // public string userID;
-   // public string username;
     public ServerConnect.UserDataInServer data;
 
     public string userID { get { return data.userID;  } }
@@ -35,7 +31,6 @@ public class UserData : MonoBehaviour
     public string path;
     public HiscoresByMissions hiscoresByMissions;
     public AvatarImages avatarImages;
-   // public ServerConnect serverConnect;
     public int playerID; // Mad-Roller muñeco id
     private bool allDone;
 
@@ -77,10 +72,17 @@ public class UserData : MonoBehaviour
     {
         hiscoresByMissions.Init();
         Data.Instance.events.OnSaveScore += OnSaveScore;
+        Data.Instance.events.OnPayPixeles += OnPayPixeles;
         FirebaseAuthManager.Instance.OnFirebaseAuthenticated += OnFirebaseAuthenticated;
     }
     void OnFirebaseAuthenticated(string username, string email, string uid)
     {
+        if(username == "" && email == "" && uid == "")
+        {
+            Debug.Log("Enter as TESTER");
+            uid = UserData.Instance.test_userID;
+            username = UserData.Instance.test_username;
+        }
         Debug.Log("USERDATA OnFirebaseAuthenticated " + username + " email" + email + " uid: " + uid);
         playerID = PlayerPrefs.GetInt("playerID");
 
@@ -94,62 +96,35 @@ public class UserData : MonoBehaviour
     private void OnDestroy()
     {
         Data.Instance.events.OnSaveScore -= OnSaveScore;
+        Data.Instance.events.OnPayPixeles -= OnPayPixeles;
         FirebaseAuthManager.Instance.OnFirebaseAuthenticated -= OnFirebaseAuthenticated;
+    }
+    public bool CanPay(int price)
+    {
+        return (data.score >= price);
+    }
+    void OnPayPixeles(int pay)
+    {
+        data.score -= pay;
+        if (data.score < 0) data.score = 0;
+        SaveUserDataToServer();
     }
     void OnSaveScore()
     {
-        print("OnSaveScore: " + Data.Instance.multiplayerData.score);
         if (Data.Instance.multiplayerData.score == 0)
             return;
+        Debug.Log("OnSaveScore: " + data.score + " + " + Data.Instance.multiplayerData.score);
         lastScoreWon = Data.Instance.multiplayerData.score;
         data.score += lastScoreWon;
         SaveUserDataToServer();
-    }
-    
-    //public bool IsRegistered()
-    //{
-    //    return PlayerPrefs.GetString("username") != "";
-    //}
-    string SetRandomID()
-    {
-        string value = "";
-#if UNITY_WEBGL
-        value += "web_";
-#else
-        value += "exe_";
-#endif
-
-        for (int a= 0; a<20; a++)
-        {
-            value += Random.Range(0, 9).ToString();
-        }
-        return value;
     }
     public void UseLocalData()
     {
         allDone = true;
 
-        //data.username = PlayerPrefs.GetString("username");
-        //data.userID = PlayerPrefs.GetString("userID");
-
-        //if (data.userID == "") data.userID = SystemInfo.deviceUniqueIdentifier;
-        //if (data.username == "")  data.username = "MR (" + Random.Range(100, 10000) + ")";
-
         data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
         data.score = PlayerPrefs.GetInt("score");
     }
-    //void OnLoaded(ServerConnect.UserDataInServer data)
-    //{
-    //    allDone = true;
-    //    if (data != null)
-    //    {
-    //        this.data = data;
-    //        data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
-    //        Debug.Log("UserData OnLoaded . Login done!  username: " + data.username + " userID: " + data.userID);
-    //    }
-    //    else
-    //        Debug.LogError("No user!");
-    //}
     public void UserCreation()
     {
         PlayerPrefs.SetString("username", data.username);
@@ -157,23 +132,7 @@ public class UserData : MonoBehaviour
     }
     private Sprite LoadSprite(string path)
     {
-        //Debug.Log("Busca imagen en: " + path);
-        //if (string.IsNullOrEmpty(path)) return null;
-        //if (System.IO.File.Exists(path))
-        //{
-        //    Debug.Log("Image exists in local");
-        //    byte[] bytes = System.IO.File.ReadAllBytes(path);
-        //    Texture2D texture = new Texture2D(300, 300);
-        //    texture.LoadImage(bytes);
-        //    Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        //    return sprite;
-        //}
         return null;
-    }
-    public void UpdateData()
-    {
-        print("UpdateData");
-      //  Data.Instance.serverManager.LoadUserData(userID);
     }
     public void SetMissionReady(int missionID)
     {
@@ -211,41 +170,7 @@ public class UserData : MonoBehaviour
     public void SaveUserDataToServer()
     {
         _ = UpdateTotalScore(data.score);
-        //StartCoroutine(SaveUserDataC());
     }
-    //IEnumerator SaveUserDataC()
-    //{
-    //    string hash = Utils.Md5Sum(UserData.Instance.data.userID + data.score + data.missionUnblocked + "pontura");
-    //    string post_url = URL + setUserDataURL + "?userID=" + WWW.EscapeURL(UserData.Instance.data.userID) + "&score=" + data.score
-    //        + "&missionUnblocked=" + data.missionUnblocked
-    //        + "&score=" + data.score
-    //        + "&hash=" + hash;
-
-    //    PlayerPrefs.SetInt("missionUnblocked", data.missionUnblocked);
-    //    PlayerPrefs.SetInt("score", data.score);
-
-    //    print("grabe: " + post_url);
-
-    //    WWW www = new WWW(post_url);
-    //    yield return www;
-
-    //    if (www.error != null)
-    //    {
-    //        //UsersEvents.OnPopup("There was an error: " + www.error);
-    //    }
-    //    else
-    //    {
-    //        string result = www.text;
-    //        if (result == "exists")
-    //        {
-    //            UsersEvents.OnPopup("ya existe");
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("UserData updated " + post_url);
-    //        }
-    //    }
-    //}
     public async Task<int?> GetScore()
     {
         string userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
@@ -283,8 +208,6 @@ public class UserData : MonoBehaviour
         await userRef.SetAsync(data, SetOptions.MergeAll);
 
         Debug.Log($"✅ score actualizado a {score}");
-
-
     }
 
 }

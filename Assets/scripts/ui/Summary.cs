@@ -8,31 +8,48 @@ using UnityEngine.SceneManagement;
 public class Summary : MonoBehaviour {
     
     private int countDown;
-    public Animation anim;
+    [SerializeField] Animation anim;
 
-    public GameObject mobilePanel; 
-    public ProgressBar routeProgressBar;
+    [SerializeField] GameObject mobilePanel;
+    [SerializeField] ProgressBar routeProgressBar;
 
-    public int optionSelected = 0;
+    [SerializeField] int optionSelected = 0;
     private bool isOn;
 
-    public Text percentfield;
-    public Text missionField;
+    [SerializeField] Text percentfield;
+    [SerializeField] Text missionField;
+
+    [SerializeField] ContinuePanel continuePanel;
 
 	float delayToReact = 0.3f;
 
     void Start()
     {
-        mobilePanel.SetActive(false);
-       // if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        SetOff();
             Data.Instance.events.OnGameOver += OnGameOver;
        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE  )
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        Data.Instance.events.OnContinue += OnContinue;
+    }
+    public void SetOff()
+    {
+        mobilePanel.SetActive(false);
     }
     void OnDestroy()
     {
         Data.Instance.events.OnGameOver -= OnGameOver;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Data.Instance.events.OnContinue -= OnContinue;
+    }
+    void OnContinue()
+    {
+        isOn = false;
+        anim.Play("summaryMobileClose");
+        Invoke("SetOffDelayed", 0.5f);
+    }
+    void SetOffDelayed()
+    {
+        SetOff();
     }
     void OnMissionComplete(int missionID)
     {
@@ -52,7 +69,6 @@ public class Summary : MonoBehaviour {
             Invoke("GotoDirectToSummary", 2F);
         else if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
             Invoke("SetOn", 1.5F);
-
     }
     
     void GotoDirectToSummary()
@@ -74,9 +90,11 @@ public class Summary : MonoBehaviour {
         totalDistance = Data.Instance.missions.GetTotalRoutDistance();
         Data.Instance.events.RalentaTo(1, 0.05f);
         mobilePanel.SetActive(true);
+        int continuePrice = Data.Instance.missions.MissionActive.GetContinuePrice();
+        continuePanel.Init(continuePrice);
         StartCoroutine(SetProgress());
 
-        if(distance>= totalDistance)
+        if(distance >= totalDistance)
             missionField.text = TextsManager.Instance.GetText("BOSS") + "! M." + (Data.Instance.missions.MissionActiveID + 1);
         else
             missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID + 1);
@@ -92,7 +110,7 @@ public class Summary : MonoBehaviour {
             float v = i / totalDistance;
             routeProgressBar.SetProgression(v);
             int value = (int)(v * 100);
-            if (value > 99) v = 99;
+            if (value > 99) value = 99;
             percentfield.text = value.ToString() + "%";
             yield return null;
         }
@@ -102,55 +120,4 @@ public class Summary : MonoBehaviour {
 		Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();        
 	}
-    //IEnumerator Play(Animation animation, string clipName, bool useTimeScale, Action onComplete)
-    //{
-
-    //    //We Don't want to use timeScale, so we have to animate by frame..
-    //    if (!useTimeScale)
-    //    {
-    //        AnimationState _currState = animation[clipName];
-    //        bool isPlaying = true;
-    //        float _progressTime = 0F;
-    //        float _timeAtLastFrame = 0F;
-    //        float _timeAtCurrentFrame = 0F;
-    //        float deltaTime = 0F;
-
-
-    //        animation.Play(clipName);
-
-    //        _timeAtLastFrame = Time.realtimeSinceStartup;
-    //        while (isPlaying)
-    //        {
-    //            _timeAtCurrentFrame = Time.realtimeSinceStartup;
-    //            deltaTime = _timeAtCurrentFrame - _timeAtLastFrame;
-    //            _timeAtLastFrame = _timeAtCurrentFrame;
-
-    //            _progressTime += deltaTime;
-    //            _currState.normalizedTime = _progressTime / _currState.length;
-    //            animation.Sample();
-
-    //            if (_progressTime >= _currState.length)
-    //            {
-    //                if (_currState.wrapMode != WrapMode.Loop)
-    //                {
-    //                    isPlaying = false;
-    //                }
-    //                else
-    //                {
-    //                    _progressTime = 0.0f;
-    //                }
-
-    //            }
-
-    //            yield return new WaitForEndOfFrame();
-    //        }
-    //        yield return null;
-    //        if (onComplete != null)
-    //        {
-    //            onComplete();
-    //        }
-    //    }
-    //    else
-    //        animation.Play(clipName);
-    //}  
 }

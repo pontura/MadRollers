@@ -49,7 +49,7 @@ public class MultiplayerData : MonoBehaviour
     {
         NextScoreToWinCredit = 0;
         score_player1 = score_player2 = score_player3 = score_player4 = 0;
-        score = 0;
+        score = UserData.Instance.data.score;
         distance = 0;
         creditsWon = 0;
         Data.Instance.RefreshCredits();
@@ -166,10 +166,10 @@ public class MultiplayerData : MonoBehaviour
 
 		switch (playerID)
 		{
-		case 0: score_player1 += points; break;
-		case 1: score_player2 += points;  break;
-		case 2: score_player3 += points;  break;
-		case 3: score_player4 += points;  break;
+			case 0: score_player1 += points; break;
+			case 1: score_player2 += points;  break;
+			case 2: score_player3 += points;  break;
+			case 3: score_player4 += points;  break;
 		}
 		string desc = type.ToString ().ToLower ();
 		Data.Instance.events.OnDrawScore (points, desc);

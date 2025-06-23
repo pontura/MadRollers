@@ -26,6 +26,7 @@ public class MobileInputs : MonoBehaviour
             }
             Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
             Data.Instance.events.OnGameOver += OnGameOver;
+            Data.Instance.events.OnContinue += OnContinue;
         }
         else
         {
@@ -36,6 +37,11 @@ public class MobileInputs : MonoBehaviour
     {
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnGameOver -= OnGameOver;
+        Data.Instance.events.OnContinue -= OnContinue;
+    }
+    void OnContinue()
+    {
+        panel.SetActive(true);
     }
     void OnGameOver(bool a)
     {

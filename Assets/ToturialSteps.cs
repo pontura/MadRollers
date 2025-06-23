@@ -51,7 +51,7 @@ public class ToturialSteps : MonoBehaviour
     }
     private void Update()
     {
-        print("Distance: " + charactersManager.distance + " timer: " + timer + " _______ " + Time.realtimeSinceStartup);
+       // print("Distance: " + charactersManager.distance + " timer: " + timer + " _______ " + Time.realtimeSinceStartup);
         if (missionActiveID == 0)
         {
             if (stepID == 0 && charactersManager.distance > 30)

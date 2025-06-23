@@ -131,7 +131,7 @@ public class SummaryMobile : MonoBehaviour
         Data.Instance.videogamesData.UpdateVideogame();
         Data.Instance.events.OnResetScores();
         Data.Instance.events.ForceFrameRate(1);
-        Game.Instance.Continue();
+        Game.Instance.PlayAgain();
     }
     public void ChangeVideoGame()
     {
@@ -151,7 +151,7 @@ public class SummaryMobile : MonoBehaviour
         Data.Instance.missions.MissionActiveID--;
         if (Data.Instance.missions.MissionActiveID < 0)
             Data.Instance.missions.MissionActiveID = 0;
-        Game.Instance.Continue();
+        Game.Instance.PlayAgain();
     }
     //public void Exit()
     //{

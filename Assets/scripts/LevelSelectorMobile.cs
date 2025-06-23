@@ -47,14 +47,14 @@ public class LevelSelectorMobile : MonoBehaviour
         avatarName.text = UserData.Instance.username.ToUpper();
 
         scoreTo =  UserData.Instance.Score();
-        score = UserData.Instance.GetLastScoreWon();
+      //  score = UserData.Instance.GetLastScoreWon();
 
-        if (score == scoreTo || score == 0)
+       // if (score == scoreTo || score == 0)
             scoreField.text = Utils.FormatNumbers(scoreTo);
-        else
-        {           
-            LoopForScore();
-        }
+        //else
+        //{           
+        //    LoopForScore();
+        //}
 
 
         Data.Instance.events.SetHamburguerButton(true);

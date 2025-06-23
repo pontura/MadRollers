@@ -86,6 +86,10 @@ public class GameCamera : MonoBehaviour
             //Destroy(vignette);           
         }
     }
+    public void Continue()
+    {
+        state = states.PLAYING;
+    }
     void OnDestroy()
     {
         StopAllCoroutines();

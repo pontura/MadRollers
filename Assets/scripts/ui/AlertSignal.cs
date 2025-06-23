@@ -26,6 +26,7 @@ public class AlertSignal : MonoBehaviour
     }
     void OnAlertSignal(string text)
     {
+        print("OnAlertSignal: " + text);
         CancelInvoke();
         field.text = text;
         panel.SetActive(true);

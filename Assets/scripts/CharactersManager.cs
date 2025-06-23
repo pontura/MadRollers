@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -32,6 +31,21 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.FreezeCharacters += FreezeCharacters;
+    }
+    public void Continue()
+    {
+        print("Continue");
+        int i = characters.Count;
+        while(i>0)
+        {
+            i--;
+            CharacterBehavior ch = characters[i];
+            ch.Die();
+        }
+        characters = new List<CharacterBehavior>();
+        Vector3 pos = new (0, 5, distance);
+        addCharacter(pos, 0);
+
     }
     public virtual void Init()
     {
@@ -148,7 +162,8 @@ public class CharactersManager : MonoBehaviour {
     public void OnAvatarCrash(CharacterBehavior characterBehavior)
     {
 #if UNITY_ANDROID
-        Handheld.Vibrate();
+        if(characterBehavior.player.id == 0)
+            Handheld.Vibrate();
 #endif
         killCharacter(characterBehavior);
     }
@@ -269,7 +284,7 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnAvatarDie(characterBehavior);
 
         if (characters.Count == 0)
-            StartCoroutine(restart(characterBehavior));
+            StartCoroutine(GameOver(characterBehavior));
         else
         {
             bool stillPlayingRealCharacters = false;
@@ -281,14 +296,14 @@ public class CharactersManager : MonoBehaviour {
             print("DIE: stillPlayingRealCharacters " + stillPlayingRealCharacters);
             if (!stillPlayingRealCharacters)
             {                   
-                StartCoroutine(restart(characterBehavior));
+                StartCoroutine(GameOver(characterBehavior));
             }
         }
 
     }
-    IEnumerator restart(CharacterBehavior cb)
+    IEnumerator GameOver(CharacterBehavior cb)
     {
-		Data.Instance.events.OnCameraChroma (CameraChromaManager.types.RED);
+		//Data.Instance.events.OnCameraChroma (CameraChromaManager.types.RED);
 		Data.Instance.events.OnSoundFX("dead", -1);
 
         Game.Instance.GameOver();

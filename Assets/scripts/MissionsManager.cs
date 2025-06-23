@@ -70,8 +70,9 @@ public class MissionsManager : MonoBehaviour
 
         Load(all.missions);
 
-
+#if UNITY_EDITOR
         PrefabUtility.ApplyPrefabInstance(thisPrefab, InteractionMode.UserAction);
+#endif
     }
     public void Load(string[] m)
     {

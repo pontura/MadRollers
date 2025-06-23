@@ -7,6 +7,8 @@ using System;
 public class MissionData  {
 
     public int videoGameID; // solo se usa para los seteos de la camara real-time
+    public int continuePrice = 7500;
+	public int GetContinuePrice() { if (continuePrice == 0) return 7500; else  return continuePrice; }
     public string jsonName;
     public string title;
 	public int id;
