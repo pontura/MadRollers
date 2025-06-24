@@ -49,7 +49,7 @@ public class MultiplayerData : MonoBehaviour
     {
         NextScoreToWinCredit = 0;
         score_player1 = score_player2 = score_player3 = score_player4 = 0;
-        score = UserData.Instance.data.score;
+        score = 0;
         distance = 0;
         creditsWon = 0;
         Data.Instance.RefreshCredits();
