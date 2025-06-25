@@ -62,6 +62,8 @@ public class Data : MonoBehaviour {
     public bool useRetroPixelPro = false;
     public bool useOptimizedSettings = true;
 
+    public RewardedAdsManager ads;
+
     public PlayModes playMode;
     public enum PlayModes
     {
@@ -150,6 +152,7 @@ public class Data : MonoBehaviour {
         assetsBundleLoader = GetComponent<AssetsBundleLoader > ();
         framesController = GetComponent<FramesController>();
         socialAuth = GetComponent<SocialAuth>();
+        ads = GetComponent<RewardedAdsManager>();
 
         if (LevelDataDebug.Instance) {
 			playMode = PlayModes.STORYMODE;

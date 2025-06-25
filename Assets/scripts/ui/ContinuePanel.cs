@@ -39,4 +39,21 @@ public class ContinuePanel : MonoBehaviour {
             Data.Instance.events.OnAlertSignal(s);
         }
     }
+    bool adClicked;
+    public void AdClicked()
+    {
+        if (adClicked) return;
+        adClicked = true;
+        Data.Instance.ads.ShowAd(OnAdDone);
+    }
+    void OnAdDone(bool isOK)
+    {
+        if(isOK)
+            Game.Instance.Continue();
+        else
+        {
+            adClicked = false;
+            Data.Instance.events.OnAlertSignal("Algo falló con el ad");
+        }
+    }
 }
