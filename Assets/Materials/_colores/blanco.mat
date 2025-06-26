@@ -13,11 +13,12 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - V_CW_FOG
+  - _EMISSION
   - _GLOSSYREFLECTIONS_OFF
   - _SPECULARHIGHLIGHTS_OFF
   m_InvalidKeywords:
   - V_CW_MATCAP_BLEND_MULTIPLY
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -32,6 +33,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -75,6 +80,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _V_CW_Cube:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -106,6 +115,7 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
+    - V_CW_D_OPTIONS: 0
     - V_CW_Label_Albedo: 0
     - V_CW_Label_Matcap: 0
     - V_CW_Label_Modes: 0
@@ -113,7 +123,9 @@ Material:
     - V_CW_Label_UnityDefaults: 0
     - V_CW_MATCAP_BLEND: 0
     - V_CW_Rendering_Mode: 0
+    - V_CW_TAG: 0
     - V_CW_Texture_Mix_Mode: 0
+    - V_CW_W_OPTIONS: 0
     - _BumpMap_UV_Scale: 1
     - _BumpScale: 1
     - _BumpStrength: 1
@@ -134,6 +146,11 @@ Material:
     - _SpecularHighlights: 0
     - _SrcBlend: 1
     - _UVSec: 0
+    - _V_CW_Camera_Bend_Offset: 0
+    - _V_CW_Emission_Strength: 1
+    - _V_CW_Fog_Density: 1
+    - _V_CW_Fog_End: 100
+    - _V_CW_Fog_Start: 0
     - _V_CW_Fresnel_Bias: 0
     - _V_CW_IBL_Contrast: 1
     - _V_CW_IBL_Intensity: 1
@@ -147,13 +164,21 @@ Material:
     - _V_CW_SpecularOffset: 0
     - _V_CW_Specular_Intensity: 1
     - _V_CW_UnityAmbient: 1
+    - _V_CW_X_Bend_Size: 0
+    - _V_CW_Y_Bend_Size: 0
+    - _V_CW_Z_Bend_Bias: 0
+    - _V_CW_Z_Bend_Size: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.6132076, g: 0.6103151, b: 0.6103151, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _ReflectColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _V_CW_DetailTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
+    - _V_CW_Emission_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _V_CW_Fog_Color: {r: 1, g: 1, b: 1, a: 1}
     - _V_CW_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_CW_ReflectColor: {r: 1, g: 1, b: 1, a: 1}
     - _V_CW_Rim_Color: {r: 1, g: 1, b: 1, a: 1}
