@@ -148,9 +148,9 @@ public class LoadingScreen : MonoBehaviour {
     }
     void UseLocalData()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         FirebaseAuthManager.Instance.LoginUserByEmail(UserData.Instance.test_email, UserData.Instance.test_password);
-#endif
+//#endif
         LoopForUserReady();
         print("UseLocalData");
        // UserData.Instance.UseLocalData();
