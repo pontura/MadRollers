@@ -12,8 +12,6 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     public Text scoreSignalField;
 
 	public Text myScoreFields;
-	public Text scoreAdviseNum;
-	public Text scoreAdviseDesc;
 	//public Image bar;
 	//public RawImage hiscoreImage;
 	public int hiscore;
@@ -39,8 +37,6 @@ public class ScoreBarMultiplayer : MonoBehaviour {
         Data.Instance.events.OnPayPixeles += OnPayPixeles;
         Data.Instance.events.OnContinue += OnContinue;
 
-        scoreAdviseNum.text = "";
-		scoreAdviseDesc.text = "";
         Data.Instance.multiplayerData.score = 0;
         RefreshScore();
     }
@@ -86,7 +82,6 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
 		ResetFieldsTimer = Time.time + delayToReset;
 		totalAdded += score;
-		scoreAdviseNum.text = "+" + totalAdded.ToString ();
 		SetDesc(desc);
         
 
@@ -100,8 +95,6 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 			return;
 		if (Time.time > ResetFieldsTimer) {
 			totalAdded = 0;
-			scoreAdviseNum.text = "";
-			scoreAdviseDesc.text = "";
 			lastDesc = "";
 		}
 	}
@@ -111,7 +104,5 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 		if (text == lastDesc)
 			return;
 		lastDesc = text;
-		string lastChars = scoreAdviseDesc.text;
-		scoreAdviseDesc.text = "\n" + text + lastChars;
 	}
 }

@@ -625,7 +625,6 @@ public class CharacterBehavior : MonoBehaviour {
 		if (player.charactersManager.getTotalCharacters () == 1) return;
 		Data.Instance.framesController.ForceFrameRate (0.025f);
 		Data.Instance.events.RalentaTo (1, 0.15f);
-
 	}
 	//void SaveDistance()
 	//{

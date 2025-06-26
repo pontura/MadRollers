@@ -31,7 +31,8 @@ public class MusicManager : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 
-		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
+        Data.Instance.events.OnContinue += OnContinue;
+        Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
 		Data.Instance.events.OnMissionComplete += OnMissionComplete;
@@ -46,7 +47,22 @@ public class MusicManager : MonoBehaviour {
 		if (!Data.Instance.musicOn)
 			audioSource.enabled = false;
     }
-	void OnMusicStatus(bool isOn)
+    void OnDestroy()
+    {
+        Data.Instance.events.OnContinue -= OnContinue;
+        Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
+        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Data.Instance.events.OnInterfacesStart -= OnInterfacesStart;
+        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Data.Instance.events.OnGameOver -= OnGameOver;
+        Data.Instance.events.OnGamePaused -= OnGamePaused;
+        Data.Instance.events.SetVolume -= SetVolume;
+        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
+        Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
+        Data.Instance.events.OnMusicStatus -= OnMusicStatus;
+        Data.Instance.events.FreezeCharacters -= FreezeCharacters;
+    }
+    void OnMusicStatus(bool isOn)
 	{
 		audioSource.enabled = isOn;
 	}
@@ -99,6 +115,10 @@ public class MusicManager : MonoBehaviour {
     //        case "consumeHearts": audioSource.PlayOneShot(consumeHearts); break;
     //    }
     //}
+    void OnContinue()
+    {
+        ChangePitch(1);
+    }
     void OnAvatarCrash(CharacterBehavior cb)
     {
         if (mute) return;

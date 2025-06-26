@@ -5,13 +5,16 @@ public class RewardedAdsManager : MonoBehaviour, IUnityAdsLoadListener, IUnityAd
 {
     [SerializeField] string androidAdUnitId = "Rewarded_Android";
     [SerializeField] string iosAdUnitId = "Rewarded_iOS";
-    [SerializeField] bool testMode = true;
+    [SerializeField] bool testMode = false;
     string adUnitId;
     string gameID; 
 
     void Start()
     {
-#if UNITY_IOS
+#if UNITY_EDITOR
+        testMode = true;
+#endif
+#if UNITY_IOS          
         adUnitId = iosAdUnitId;
         gameID = "5885018";
 #else

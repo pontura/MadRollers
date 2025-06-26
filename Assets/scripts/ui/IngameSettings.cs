@@ -20,6 +20,10 @@ public class IngameSettings : MonoBehaviour
         panel.SetActive(true);
         SetAudio();
     }
+    public void Exit()
+    {
+        Game.Instance.GotoLevelSelector();
+    }
     public void ToggleAudio()
     {
         audioOn = !audioOn;

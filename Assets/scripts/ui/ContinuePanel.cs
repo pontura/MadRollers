@@ -48,12 +48,10 @@ public class ContinuePanel : MonoBehaviour {
     }
     void OnAdDone(bool isOK)
     {
-        if(isOK)
+        adClicked = false;
+        if (isOK)
             Game.Instance.Continue();
         else
-        {
-            adClicked = false;
             Data.Instance.events.OnAlertSignal("Algo falló con el ad");
-        }
     }
 }

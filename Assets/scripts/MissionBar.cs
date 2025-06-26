@@ -1,35 +1,27 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MissionBar : MonoBehaviour {
 
-	public Animation anim;
+    [SerializeField] Animation anim;
 
-    public GameObject bossSignal;
-	public ProgressBar progressBar;
+    [SerializeField] GameObject bossSignal;
+	[SerializeField] ProgressBar progressBar;
 
-  //  public GameObject routeProgressSignal;
-  //  public ProgressBar routeProgressBar;
+    [SerializeField] Text field;
 
-	public Text field;
-	
-	public GameObject bossTimer;
-	public Text videogameField;
-	public Text missionField;
+    [SerializeField] GameObject bossTimer;
+	public bool isOn;
+
+    public float progress;
 
     int sec;
     int totalHits;
-    public float totalDistance;
-   // public bool routeProgressOn;
 
-    void Start() {
-
-        // routeProgressSignal.gameObject.SetActive(false);
-        videogameField.text = Data.Instance.videogamesData.GetActualVideogameData().name;
-        missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID+1);
-		bossTimer.SetActive (false);
+    void Start() 
+	{
+        bossTimer.SetActive (false);
         bossSignal.gameObject.SetActive (false);
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 
@@ -38,67 +30,43 @@ public class MissionBar : MonoBehaviour {
             Data.Instance.events.OnBossInit += OnBossInit;        
             Data.Instance.events.OnBossActive += OnBossActive;
 		    Data.Instance.events.OnBossHitsUpdate += OnBossHitsUpdate;
-		    Data.Instance.events.OnBossSetNewAsset += OnBossSetNewAsset;
 		    Data.Instance.events.OnBossSetTimer += OnBossSetTimer;
-          //  LoopDistance();
         }
 
 		Data.Instance.events.OnGameOver += OnGameOver;
-	}
-    //void LoopDistance()
-    //{
-    //    if(routeProgressOn)
-    //    {           
-  //          float distance = Game.Instance.level.charactersManager.getDistance();
-
-  //  totalDistance = Data.Instance.missions.GetTotalRoutDistance();
-		//routeProgressBar.SetProgression(distance/totalDistance);
-    //        //  routeProgressBar.SetProgression(distance/totalDistance);
-    //        //if (distance >= totalDistance)
-    //        //{
-    //        //    routeProgressOn = false;
-    //        //    routeProgressSignal.SetActive(false);
-    //        //}
-
-    //    }
-    //    Invoke("LoopDistance", 0.1f);
-    //}
+        Data.Instance.events.OnContinue += OnContinue;
+    }
 	void OnDestroy () {
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
 		Data.Instance.events.OnBossInit -= OnBossInit;
 		Data.Instance.events.OnBossActive -= OnBossActive;
 		Data.Instance.events.OnBossHitsUpdate -= OnBossHitsUpdate;
-		Data.Instance.events.OnBossSetNewAsset -= OnBossSetNewAsset;
 		Data.Instance.events.OnBossSetTimer -= OnBossSetTimer;
 		Data.Instance.events.OnGameOver -= OnGameOver;
+		Data.Instance.events.OnContinue -= OnContinue;
 	}
 	void StartMultiplayerRace()
 	{
-        totalDistance = Data.Instance.missions.GetTotalRoutDistance();
-        //routeProgressOn = true;
-        //if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
-        //    routeProgressSignal.gameObject.SetActive(true);
         bossSignal.gameObject.SetActive(false);
         anim.Play("bossSignalOff");
     }
-	void OnGameOver(bool isTimeOut)
+	void OnContinue()
 	{
-		if (isTimeOut)
+		if(isOn)
+			Loop();
+    }
+    void OnGameOver(bool isTimeOut)
+	{
+        bossTimer.SetActive(false);
+        field.text = "";
+        if (isTimeOut)
 			return;
-        bossSignal.gameObject.SetActive(false);
         CancelInvoke ();
-	}
-	void OnBossSetNewAsset(string assetName)
-	{
-//		Utils.RemoveAllChildsIn (itemContainer);
-//		GameObject icon = Instantiate(Resources.Load("bosses/" + assetName, typeof(GameObject))) as GameObject;
-//		icon.transform.SetParent (itemContainer);
-//		icon.transform.localScale = Vector3.one;
-//		icon.transform.localPosition = Vector3.zero;
 	}
 	void OnBossHitsUpdate(float actualHits)
 	{
-		progressBar.SetProgression (1-(actualHits / (float)totalHits));
+		progress = 1 - (actualHits / (float)totalHits);
+        progressBar.SetProgression (progress);
 	}
 	void Loop()
 	{		
@@ -115,7 +83,6 @@ public class MissionBar : MonoBehaviour {
 		} else {
 			Invoke ("Loop", 1);
 		}
-
 	}
 	IEnumerator SetBossTimer()
 	{
@@ -125,7 +92,7 @@ public class MissionBar : MonoBehaviour {
 		bossTimer.SetActive (false);
 	}
 	void OnBossInit (int totalHits) {
-       
+		isOn = true;
         progressBar.SetProgression (1);
 		this.totalHits = totalHits;
         bossSignal.gameObject.SetActive(true);
@@ -157,9 +124,8 @@ public class MissionBar : MonoBehaviour {
 			anim.Play("bossSignalOff");
             CancelInvoke ();
 		}
-       // routeProgressBar.SetProgression(0);
-        progressBar.SetProgression(0);
-       // routeProgressSignal.SetActive(false);
-       // routeProgressOn = false;
+		else
+			progress = 0;
+        progressBar.SetProgression(progress);
 	}
 }

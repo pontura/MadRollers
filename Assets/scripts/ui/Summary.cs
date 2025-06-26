@@ -7,13 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class Summary : MonoBehaviour {
     
-    private int countDown;
     [SerializeField] Animation anim;
 
     [SerializeField] GameObject mobilePanel;
     [SerializeField] ProgressBar routeProgressBar;
+    [SerializeField] MissionBar missionBarBoss;
 
-    [SerializeField] int optionSelected = 0;
     private bool isOn;
 
     [SerializeField] Text percentfield;
@@ -21,7 +20,6 @@ public class Summary : MonoBehaviour {
 
     [SerializeField] ContinuePanel continuePanel;
 
-	float delayToReact = 0.3f;
 
     void Start()
     {
@@ -81,37 +79,43 @@ public class Summary : MonoBehaviour {
         Data.Instance.isReplay = true;
         Game.Instance.GotoNextGame();
     }
-    float distance;
-    float totalDistance;
-
     void SetOn()
     {
-        distance = Game.Instance.level.charactersManager.getDistance();
-        totalDistance = Data.Instance.missions.GetTotalRoutDistance();
+        float value;
+        float total;
         Data.Instance.events.RalentaTo(1, 0.05f);
         mobilePanel.SetActive(true);
         int continuePrice = Data.Instance.missions.MissionActive.GetContinuePrice();
         continuePanel.Init(continuePrice);
-        StartCoroutine(SetProgress());
 
-        if(distance >= totalDistance)
-            missionField.text = TextsManager.Instance.GetText("BOSS") + "! M." + (Data.Instance.missions.MissionActiveID + 1);
-        else
-            missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID + 1);
-    }
-    IEnumerator SetProgress()
-    {
-        if (distance > totalDistance)
-            distance = totalDistance;
-        float i = 0;
-        while (i < distance)
+        if(missionBarBoss.isOn)
         {
-            i += Time.deltaTime * 300;
-            float v = i / totalDistance;
-            routeProgressBar.SetProgression(v);
-            int value = (int)(v * 100);
-            if (value > 99) value = 99;
-            percentfield.text = value.ToString() + "%";
+            missionField.text = TextsManager.Instance.GetText("BOSS") + "! M." + (Data.Instance.missions.MissionActiveID + 1);
+            value = 1-missionBarBoss.progress;
+            total = 1;
+        }
+        else
+        {
+            missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (Data.Instance.missions.MissionActiveID + 1);
+            value = Game.Instance.level.charactersManager.getDistance();
+            total = Data.Instance.missions.GetTotalRoutDistance();
+        }
+        StartCoroutine(SetProgress(value, total));
+    }
+            
+    IEnumerator SetProgress(float value, float total)
+    {
+        if (value > total)
+            value = total;
+        float i = 0;
+        while (i < value)
+        {
+            i += Time.deltaTime * total;
+            float v1 = i / total;
+            routeProgressBar.SetProgression(v1);
+            int v = (int)(v1 * 100);
+            if (v > 99) v = 99;
+            percentfield.text = v.ToString() + "%";
             yield return null;
         }
     }

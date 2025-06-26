@@ -17,7 +17,6 @@ public class CharactersManager : MonoBehaviour {
     private Missions missions;
     public List<int> playerPositions;
 	bool canStartPlayers;
-    private IEnumerator RalentaCoroutine;
     public int totalCharacters;
     bool isAndroid;
 
@@ -73,23 +72,13 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.isReplay) {
 			speedRun = MAX_SPEED;
 		}
-        //if (!isAndroid)
-        //    Loop ();
     }
-	//void Loop()	{
-	//	foreach (CharacterBehavior cb in characters)
-	//		cb.characterMovement.SetCharacterScorePosition ();
-	//	Invoke ("Loop", 1);
-	//}
 	void Update()
     {
-		if (freezed)
+        if (freezed)
 			return;
-		
-//		if(Input.GetKeyDown(KeyCode.M))
-//			AddChildPlayer( getMainCharacter() );
-		
-		if (Game.Instance.level.waitingToStart) return;
+
+        if (Game.Instance.level.waitingToStart) return;
         if (Game.Instance.state == Game.states.GAME_OVER) return;
 
         OnUpdate();

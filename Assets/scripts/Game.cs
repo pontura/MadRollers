@@ -135,22 +135,16 @@ public class Game : MonoBehaviour {
     }
 	public void GotoVideogameComplete()
 	{
-		// Pause();
 		Data.Instance.events.OnResetLevel();
-		// Application.LoadLevel("LevelSelector");
 		Data.Instance.events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("VideogameComplete");
 	}
     public void GotoLevelSelector()
     {
-       // Pause();
+        Data.Instance.events.OnResetScores();
         Data.Instance.events.OnResetLevel();
-       // Application.LoadLevel("LevelSelector");
 		Data.Instance.events.ForceFrameRate (1);
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-            Data.Instance.LoadLevel("LevelSelectorMobile");
-        else
-           Data.Instance.LoadLevel("LevelSelector");
+        Data.Instance.LoadLevel("LevelSelectorMobile");
     }
 	public void LoadGame()
 	{
@@ -184,6 +178,7 @@ public class Game : MonoBehaviour {
     }
     public void Continue()
     {
+        //Data.Instance.events.RalentaTo(1, 1f);
         state = states.PLAYING;
         level.charactersManager.Continue();
         gameCamera.Continue();

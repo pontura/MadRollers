@@ -40,7 +40,6 @@ public class MainMenuButton : MonoBehaviour {
                 Game.Instance.ResetLevel();
                 break;
             case 1:
-                Data.Instance.events.OnResetScores();
                 Game.Instance.GotoLevelSelector();
                 break;
         }
