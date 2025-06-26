@@ -20,7 +20,7 @@ public class CharacterControls : MonoBehaviour {
 	float jumpingPressedSince;
 	float jumpingPressedTime = 0.28f;
 
-
+    bool isPlayerPlayable;
 	void Start ()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Game")
@@ -29,7 +29,10 @@ public class CharacterControls : MonoBehaviour {
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
         
         player = GetComponent<Player>();
-	}
+
+        isPlayerPlayable = (characterBehavior.player.id == 0);
+
+    }
 	public void EnabledMovements(bool enabledControls)
     {
 		ControlsEnabled = enabledControls;
@@ -37,6 +40,7 @@ public class CharacterControls : MonoBehaviour {
 
 	void LateUpdate ()
     {
+       
         if (characterBehavior == null || characterBehavior.player == null)
 			return;
         if (Game.Instance == null || Game.Instance.state != Game.states.PLAYING)
@@ -48,8 +52,14 @@ public class CharacterControls : MonoBehaviour {
         if (characterBehavior.player.charactersManager == null || Game.Instance.state == Game.states.GAME_OVER)
             return;
 
+        if (!isPlayerPlayable)
+        {
+            characterBehavior.UpdateByController(rotationY);
+            return;
+        }
+
 #if UNITY_EDITOR
-        //  UpdateStandalone();
+        UpdateStandalone();
         UpdateByVirtualJoystick();
 #elif UNITY_ANDROID || UNITY_IOS
         //if (Data.Instance.controlsType == Data.ControlsType.GYROSCOPE)
@@ -69,8 +79,6 @@ public class CharacterControls : MonoBehaviour {
 		characterBehavior.Jump ();
 	}  
 	float lastHorizontalKeyPressed;
-	float last_x;
-	float last_x_timer;
     private void moveByKeyboard()
     {
         float _speed = 0;// Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal);
@@ -150,56 +158,13 @@ public class CharacterControls : MonoBehaviour {
     //	}
     //
 
-    //void UpdateStandalone()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Alpha7))
-    //        characterBehavior.characterMovement.DH(1);
-    //    else if (Input.GetKeyDown(KeyCode.Alpha8))
-    //        characterBehavior.characterMovement.DH(-1);
-
-    //    if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action3))
-    //        characterBehavior.shooter.ChangeNextWeapon();
-
-    //    if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action2))
-    //        characterBehavior.shooter.CheckFire();
-
-    //    if (Data.Instance.inputManager.GetAxis(player.id, InputAction.vertical) <-0.1f && Data.Instance.inputManager.GetAxis(player.id, InputAction.horizontal) ==0)
-    //    {
-    //        characterBehavior.characterMovement.DashForward();
-    //    }
-
-    //    if (characterBehavior.state == CharacterBehavior.states.RUN)
-    //    {
-    //        if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
-    //        {
-    //            jumpingPressedSince = 0;
-    //        }
-    //        if (Data.Instance.inputManager.GetButton(player.id, InputAction.action1))
-    //        {
-    //            jumpingPressedSince += Time.deltaTime;
-    //            if (jumpingPressedSince > jumpingPressedTime)
-    //                Jump();
-    //            else
-    //                characterBehavior.JumpingPressed();
-    //        }
-    //        else if  (Data.Instance.inputManager.GetButtonUp(player.id, InputAction.action1))
-    //            {
-    //            Jump();
-    //        }
-    //    }
-    //    else if (Data.Instance.inputManager.GetButtonDown(player.id, InputAction.action1))
-    //    {
-    //        Jump();
-    //    }
-    //    if (characterBehavior.player.charactersManager == null)
-    //        return;
-
-    //    if (characterBehavior.player.charactersManager.distance < 12)
-    //        return;
-
-    //    if(!isAutomata)
-    //         moveByKeyboard();
-    //}
+    void UpdateStandalone()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            characterBehavior.shooter.CheckFire();
+        else if (Input.GetKeyDown(KeyCode.Space))
+            characterBehavior.Jump();       
+    }
     private void UpdateAccelerometer()
     {
 
@@ -217,6 +182,8 @@ public class CharacterControls : MonoBehaviour {
         JUMPING,
         JUMP_DONE
     }
+    float last_x;
+    float dash_h_value = 0.3f;
     void UpdateByVirtualJoystick()
     {
         if (characterBehavior.player.charactersManager == null)
@@ -224,42 +191,33 @@ public class CharacterControls : MonoBehaviour {
         if (characterBehavior.player.charactersManager.distance < 6)
             return;
 
-        //if (Input.GetAxis("Vertical") > 0.6f)
-        //{
-        //    if (jumpligState == JumpligStates.IDLE)
-        //        JumpInit();
-        //} else
+        float new_x = Input.GetAxis("Horizontal");
+
+#if !UNITY_EDITOR
+        float diff = Mathf.Abs(new_x) - Mathf.Abs(last_x);
+
+        if (new_x >0.99f && diff > dash_h_value)
+        {
+            print("last_x " + last_x + " new_x: " + new_x + " diff: " + diff);
+            characterBehavior.characterMovement.DH(-1);
+        }
+        else if (new_x < -0.99f && diff > dash_h_value)
+        {
+            print("last_x " + last_x + " new_x: " + new_x + " diff: " + diff);
+            characterBehavior.characterMovement.DH(1);
+        }
+#endif
         if (Input.GetAxis("Vertical") < -0.8f)
         {
             characterBehavior.characterMovement.DashForward();
         }
-        //else
-        //{
-        //    if (jumpligState == JumpligStates.JUMPING)
-        //        DOJump();
-        //    else
-        //        jumpligState = JumpligStates.IDLE;
-        //}
-
-        //if (jumpligState == JumpligStates.JUMPING)
-        //   {
-        //     jumpingPressedSince += Time.deltaTime;
-        //     if (jumpingPressedSince > jumpingPressedTime)
-        //         DOJump();
-        //     else
-        //         characterBehavior.JumpingPressed();
-        // }
         if (!isAutomata)
         {
-            float v = Input.GetAxis("Horizontal");
-            if (v != 0)
-                v /= 1.25f;
-            MoveInX(v);
+            if (new_x != 0)
+                new_x /= 1.25f;
+            MoveInX(new_x);
         }
-
-       
-
-        
+        last_x = new_x;
     }
     Vector2 pos;
     private void OnDown()

@@ -5,9 +5,9 @@ using UnityEngine;
 public class Automata : MonoBehaviour
 {
     CharacterBehavior cb;
-    int shootRandomTry = 2;
+    float shootRandomTry = 2;
     float moveRandomTry = 0.5f;
-    int jumpRandomTry = 2;
+    float jumpRandomTry = 2.5f;
     CharacterControls controls;
 
     public void Init(CharacterBehavior cb)
@@ -20,6 +20,20 @@ public class Automata : MonoBehaviour
         Invoke("ShootLoop", Random.Range(1f, shootRandomTry));
         Invoke("JumpLoop", jumpRandomTry);
         cb.GetComponent<CharacterControls>().isAutomata = true;
+        if(Data.Instance.missions.MissionActiveID == 1)
+        {
+            shootRandomTry *= 2.8f;
+            jumpRandomTry *= 1.75f;
+        } else if (Data.Instance.missions.MissionActiveID == 2)
+        {
+            shootRandomTry *= 1.5f;
+            jumpRandomTry *= 1.5f;
+        }
+        else if (Data.Instance.missions.MissionActiveID == 3)
+        {
+            shootRandomTry *= 1.25f;
+            jumpRandomTry *= 1.2f;
+        }
     }
     bool CanDoIt()
     {
@@ -48,10 +62,19 @@ public class Automata : MonoBehaviour
         {
             int rand = Random.Range(0, 100);
             if (rand < 50)
+            {
                 cb.Jump();
+                if (Random.Range(0, 10)<3)
+                    Invoke("DoubleJump", Random.Range(0.15f, 0.35f));
+            }
         }
         if (Game.Instance.state != Game.states.GAME_OVER)
             Invoke("JumpLoop", Random.Range(1f, jumpRandomTry));
+    }
+    void DoubleJump()
+    {
+        if (Game.Instance.state != Game.states.GAME_OVER)
+            cb.Jump();
     }
     void MoveLoop()
     {

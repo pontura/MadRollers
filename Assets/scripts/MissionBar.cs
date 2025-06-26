@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ public class MissionBar : MonoBehaviour {
     [SerializeField] GameObject bossTimer;
 	public bool isOn;
 
-    public float progress;
+    public float progress = 1;
 
     int sec;
     int totalHits;
@@ -77,8 +78,9 @@ public class MissionBar : MonoBehaviour {
 			field.color = Color.red;
 			StartCoroutine (SetBossTimer ());
 		} 
-		if (sec <=  0) {
-			Data.Instance.events.OnGameOver (true);
+		if (sec <=  0)
+        {
+            Data.Instance.events.OnGameOver (true);
 			Data.Instance.events.FreezeCharacters (true);
 		} else {
 			Invoke ("Loop", 1);
@@ -124,8 +126,6 @@ public class MissionBar : MonoBehaviour {
 			anim.Play("bossSignalOff");
             CancelInvoke ();
 		}
-		else
-			progress = 0;
         progressBar.SetProgression(progress);
 	}
 }

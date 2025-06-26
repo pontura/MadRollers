@@ -158,7 +158,7 @@ public class SceneObjectsBehavior : MonoBehaviour
                 default:
                     if (goName != "Coin1")
                     {
-                        print("OTHER: " + goName);
+                       // print("OTHER: " + goName);
                         sceneObject = SetOtherGO(goName, pos, go);
                     }
                     break;

@@ -54,4 +54,8 @@ public class ContinuePanel : MonoBehaviour {
         else
             Data.Instance.events.OnAlertSignal("Algo falló con el ad");
     }
+    public void SetOff()
+    {
+        panel.SetActive(false);
+    }
 }

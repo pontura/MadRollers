@@ -53,12 +53,14 @@ public class Summary : MonoBehaviour {
     {
         Invoke("SetOnPartyMode", 2F);
     }
+    bool isTimeOver;
     void OnGameOver(bool isTimeOver)
     {
-        print("on game over");
-        /// se hace cargo el continue:
-        if (Data.Instance.playMode != Data.PlayModes.PARTYMODE && !Data.Instance.isAndroid)
-            return;
+        this.isTimeOver = isTimeOver;
+        print("on game over " + isTimeOver);
+        if(isTimeOver)
+            Game.Instance.GameOver();
+
 
         if (isOn) return;
         isOn = true;
@@ -86,12 +88,17 @@ public class Summary : MonoBehaviour {
         Data.Instance.events.RalentaTo(1, 0.05f);
         mobilePanel.SetActive(true);
         int continuePrice = Data.Instance.missions.MissionActive.GetContinuePrice();
-        continuePanel.Init(continuePrice);
+
+        if (isTimeOver)
+            continuePanel.SetOff();
+        else
+            continuePanel.Init(continuePrice);
 
         if(missionBarBoss.isOn)
         {
             missionField.text = TextsManager.Instance.GetText("BOSS") + "! M." + (Data.Instance.missions.MissionActiveID + 1);
             value = 1-missionBarBoss.progress;
+            if (value == 1) value = 0.01f;
             total = 1;
         }
         else
