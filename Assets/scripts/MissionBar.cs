@@ -58,8 +58,6 @@ public class MissionBar : MonoBehaviour {
     }
     void OnGameOver(bool isTimeOut)
 	{
-        bossTimer.SetActive(false);
-        field.text = "";
         if (isTimeOut)
 			return;
         CancelInvoke ();
