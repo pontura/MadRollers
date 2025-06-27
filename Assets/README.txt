@@ -7,3 +7,5 @@ https://github.com/jpamato/FirebaseAuth.git
 
 Seteá todo para Android.
 Voilá
+
+instalate "Advertisement Legacy" desde Registry en Package Manager
