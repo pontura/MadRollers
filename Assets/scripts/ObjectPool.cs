@@ -21,7 +21,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] ObjectPoolEntry[] Entries;
 
     [HideInInspector]
-    public GameObject Scene, containerObject;
+    public GameObject containerObject;
 
     public static ObjectPool instance;
 
@@ -41,12 +41,12 @@ public class ObjectPool : MonoBehaviour
         DontDestroyOnLoad(this);
 
         containerObject = new GameObject("ObjectPool");
-        Scene = new GameObject("Scene");
+       // Scene = new GameObject("Scene");
 
-        pixelsPool.Init(containerObject.transform, Scene.transform);
+        pixelsPool.Init(containerObject.transform, containerObject.transform);
 
         DontDestroyOnLoad(containerObject);
-        DontDestroyOnLoad(Scene);
+       // DontDestroyOnLoad(Scene);
 
         pool = new Dictionary<string, List<SceneObject>>();
 
@@ -121,10 +121,10 @@ public class ObjectPool : MonoBehaviour
         else
             Destroy(obj.gameObject);
     }
-    public void PoolSceneObjectsInScene()
-    {
-        foreach(SceneObject so in Scene.GetComponentsInChildren<SceneObject>())
-            so.Pool();
-        Utils.RemoveAllChildsIn(Scene.transform);
-    }
+    //public void PoolSceneObjectsInScene()
+    //{
+    //    foreach(SceneObject so in Scene.GetComponentsInChildren<SceneObject>())
+    //        so.Pool();
+    //    Utils.RemoveAllChildsIn(Scene.transform);
+    //}
 }

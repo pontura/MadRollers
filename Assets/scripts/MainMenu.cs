@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour {
 
 	void Start()
 	{
-        ObjectPool.instance.PoolSceneObjectsInScene(); // Borra si quedó alguno:
+      //  ObjectPool.instance.PoolSceneObjectsInScene(); // Borra si quedó alguno:
         Data.Instance.musicManager.ChangePitch(1);
         Data.Instance.events.OnInterfacesStart();
         Data.Instance.isReplay = false;

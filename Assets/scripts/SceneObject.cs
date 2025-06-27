@@ -3,23 +3,14 @@ using System.Collections;
 
 public class SceneObject : MonoBehaviour
 {
-
-    //public Level.Dificult Dificult;
-
     public int size_z = 0;
 
     public bool broken;
     public int id;
 
-    //[HideInInspector]
-    //public Transform characterTransform;
-
     [HideInInspector]
     public bool isActive;
     public int score;
-
-    // [HideInInspector]
-    // public CharactersManager charactersMmanager;
 
     public int distanceFromCharacter;
 
@@ -89,35 +80,12 @@ public class SceneObject : MonoBehaviour
     {
         transform.position = pos;
     }
-
-    //public virtual void ChangeColor(Color newColor)
-    //{
-    //    if (newColor == lastColor)
-    //        return;
-    //    lastColor = newColor;
-    //    MeshRenderer mr = GetComponent<MeshRenderer>();
-    //    mr.material.color = newColor;
-    //}
     public virtual void changeMaterial(string materialName) { }
     public virtual void OnPool() { }
     public virtual void onDie() { }
     public virtual void setScore() { }
 
-    //Color matColor;
-    //int videoGameID = -1;
     public void SetMaterialByVideoGame()
     {
-        //		matColor = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
-        //		Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        //		int newVideoGameID = Data.Instance.videogamesData.actualID;
-        //		if (newVideoGameID != videoGameID) {
-        //			videoGameID = newVideoGameID;
-        //			foreach(Renderer r in renderers)
-        //				ChangeMaterials(r);
-        //		}
     }
-    //void ChangeMaterials(Renderer renderer)
-    //{
-    //	renderer.material.color = matColor;
-    //}
 }

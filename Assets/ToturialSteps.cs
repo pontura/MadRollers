@@ -54,15 +54,15 @@ public class ToturialSteps : MonoBehaviour
        // print("Distance: " + charactersManager.distance + " timer: " + timer + " _______ " + Time.realtimeSinceStartup);
         if (missionActiveID == 0)
         {
-            if (stepID == 0 && charactersManager.distance > 30)
+            if (stepID == 0 && charactersManager.distance > 40)
                 InitPanel(stepID);
-            else if (stepID == 1 && charactersManager.distance > 50)
+            else if (stepID == 1 && charactersManager.distance > 55)
                 InitPanel(stepID);
             else if (stepID == 2 && charactersManager.distance > 70)
                 InitPanel(stepID);
-            else if (stepID == 3 && charactersManager.distance > 90)
+            else if (stepID == 3 && charactersManager.distance > 85)
                 InitPanel(stepID);
-            else if (stepID == 4 && charactersManager.distance > 110)
+            else if (stepID == 4 && charactersManager.distance > 100)
                 InitPanel(stepID);
             else if (stepID == 5 && charactersManager.distance > 177)
                 InitPanel(stepID);

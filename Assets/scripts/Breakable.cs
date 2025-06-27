@@ -130,7 +130,7 @@ public class Breakable : MonoBehaviour {
 	}
 	void BreakEveryBlock()
 	{
-		Transform container = Data.Instance.sceneObjectsPool.Scene.transform;
+		//Transform container = Data.Instance.sceneObjectsPool.Scene.transform;
 		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
 		int id = 0;
 		float force = 500;
@@ -151,7 +151,7 @@ public class Breakable : MonoBehaviour {
 			rb.isKinematic = false;
 
 			bb.Init ();
-			mr.transform.SetParent (container);
+			//mr.transform.SetParent (container);
 			mr.sortingLayerName = "Default";
 
             BoxCollider bc = mr.gameObject.GetComponent<BoxCollider>();

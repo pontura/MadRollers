@@ -6,12 +6,23 @@ public class SceneObjectsManager : MonoBehaviour
 {
 
     public AreaSceneObjectManager areaSceneObjectManager;
-    public CharactersManager charactersManager;
+    [SerializeField] CharactersManager charactersManager;
     List<SceneObject> sceneObjectsInScene;
     private ObjectPool Pool;
     bool isOn;
-    int videoGameID; 
+    int videoGameID;
 
+    void Start()
+    {
+        isOn = true;
+        Invoke("Loop", tick);
+        Data.Instance.events.OnMissionComplete += OnMissionComplete;
+    }
+    private void OnDestroy()
+    {
+        isOn = false;
+        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+    }
     public void ChangeVideogame(int videoGameID)
     {
         this.videoGameID = videoGameID;
@@ -26,7 +37,7 @@ public class SceneObjectsManager : MonoBehaviour
     {
         so.gameObject.SetActive(false);
         so.isActive = false;
-        so.transform.SetParent(Pool.Scene.transform);
+       // so.transform.SetParent(Pool.Scene.transform);
         so.transform.localPosition = pos;
         sceneObjectsInScene.Add(so);
         so.Init();
@@ -52,32 +63,20 @@ public class SceneObjectsManager : MonoBehaviour
 
         if (container != null)
             so.transform.SetParent(container);
-        else
-            so.transform.SetParent(Pool.Scene.transform);
+        //else
+        //    so.transform.SetParent(Pool.Scene.transform);
 
         so.transform.localPosition = pos;
         sceneObjectsInScene.Add(so);
         so.Init();
         so.Restart(pos);
         so.CheckVideoGame(videoGameID);
-
-
     }
     public void RemoveSceneObject(SceneObject so)
     {
         sceneObjectsInScene.Remove(so);
     }
-    void Start()
-    {
-        isOn = true;
-        Invoke("Loop", tick);
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
-    }
-    private void OnDestroy()
-    {
-        isOn = false;
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
-    }
+    
     void OnMissionComplete(int levelID)
     {
         isOn = false;
