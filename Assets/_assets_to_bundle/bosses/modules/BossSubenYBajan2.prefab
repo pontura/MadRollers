@@ -23,13 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621142143479197020}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.04, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4626890375291121870}
   m_Father: {fileID: 4623254748396279040}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4621174046256313502
 GameObject:
@@ -54,13 +55,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621174046256313502}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.6099997, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4623337848438425454}
   m_Father: {fileID: 4623254748396279040}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4621279686409947340
 GameObject:
@@ -87,13 +89,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621279686409947340}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4623072044659951040}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4665840938576164946
 BoxCollider:
@@ -103,9 +106,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621279686409947340}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 0
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.17, y: 6.44, z: 3.17}
   m_Center: {x: 0, y: 3.52, z: 0}
 --- !u!114 &4733450584233165256
@@ -120,12 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797e466f0689fac40a6d12e7909b85db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dificult: 0
-  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
-  characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   distanceFromCharacter: 22
@@ -160,13 +168,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621385625248189334}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.5600004, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4623195980051128824}
   m_Father: {fileID: 4623254748396279040}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4621418870417502498
 GameObject:
@@ -196,12 +205,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621418870417502498}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4623155277953276166}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4670219122620103548
 BoxCollider:
@@ -211,9 +221,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621418870417502498}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.37, y: 3.2, z: 1.9}
   m_Center: {x: 0, y: 1.83, z: 0.5}
 --- !u!114 &4737588124789598390
@@ -229,14 +247,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  isOn: 0
-  NumOfParticles: 15
   childs: []
+  killAtHit: 0
   dontBeKilledByFloorExplotions: 0
   dontKillPlayers: 0
   dontDieOnHit: 0
   ifJumpingDontKill: 0
-  score: 120
+  colors: []
+  pos: []
+  scale: []
 --- !u!111 &4731631724088429134
 Animation:
   m_ObjectHideFlags: 0
@@ -245,13 +264,14 @@ Animation:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621418870417502498}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Animation: {fileID: 7400000, guid: 1e49f997d879e664ea69923557f49fbe, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 1e49f997d879e664ea69923557f49fbe, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
+  m_UpdateMode: 0
   m_CullingType: 0
 --- !u!114 &4737514854199753994
 MonoBehaviour:
@@ -267,7 +287,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 4733450584233165256}
   progressBarPosition: {x: 0, y: 5, z: 0}
-  lifes: 2
+  lifes: 4
+  asset: {fileID: 0}
   anim: {fileID: 0}
 --- !u!114 &8424041408816200964
 MonoBehaviour:
@@ -286,7 +307,10 @@ MonoBehaviour:
   delayToSoundAttack: 1
   RandomBetween: 10
   attackDuration: 1.6
+  bossPart: {fileID: 0}
+  bossPartAnim: {fileID: 0}
   attacking: 0
+  speedAnim: 0
 --- !u!1 &4621605521693088676
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,13 +334,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621605521693088676}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4623254748396279040}
   m_Father: {fileID: 4626917552612097110}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4621613949940999876
 GameObject:
@@ -341,15 +366,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621613949940999876}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: -5}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4627397731948434450}
   - {fileID: 4623486934157360876}
   - {fileID: 4623155277953276166}
   m_Father: {fileID: 4623072044659951040}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4621705747595622934
 GameObject:
@@ -379,12 +405,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621705747595622934}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4627397731948434450}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4665815183951362658
 BoxCollider:
@@ -394,9 +421,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621705747595622934}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.37, y: 3.2, z: 1.9}
   m_Center: {x: 0, y: 1.83, z: 0.5}
 --- !u!114 &4737617372788295196
@@ -412,14 +447,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  isOn: 0
-  NumOfParticles: 15
   childs: []
+  killAtHit: 0
   dontBeKilledByFloorExplotions: 0
   dontKillPlayers: 0
   dontDieOnHit: 0
   ifJumpingDontKill: 0
-  score: 120
+  colors: []
+  pos: []
+  scale: []
 --- !u!111 &4732324428630661682
 Animation:
   m_ObjectHideFlags: 0
@@ -428,13 +464,14 @@ Animation:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621705747595622934}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Animation: {fileID: 7400000, guid: 1e49f997d879e664ea69923557f49fbe, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 1e49f997d879e664ea69923557f49fbe, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
+  m_UpdateMode: 0
   m_CullingType: 0
 --- !u!114 &4733717183946895266
 MonoBehaviour:
@@ -450,7 +487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 4733450584233165256}
   progressBarPosition: {x: 0, y: 5, z: 0}
-  lifes: 2
+  lifes: 4
+  asset: {fileID: 0}
   anim: {fileID: 0}
 --- !u!114 &8125988422303391822
 MonoBehaviour:
@@ -469,7 +507,10 @@ MonoBehaviour:
   delayToSoundAttack: 1
   RandomBetween: 10
   attackDuration: 1.6
+  bossPart: {fileID: 0}
+  bossPartAnim: {fileID: 0}
   attacking: 0
+  speedAnim: 0
 --- !u!1 &4621726158424996768
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,12 +539,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621726158424996768}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4623486934157360876}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4665842921998352234
 BoxCollider:
@@ -513,9 +555,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621726158424996768}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.37, y: 3.2, z: 1.9}
   m_Center: {x: 0, y: 1.83, z: 0.5}
 --- !u!114 &4733496175800661438
@@ -531,14 +581,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  isOn: 0
-  NumOfParticles: 15
   childs: []
+  killAtHit: 0
   dontBeKilledByFloorExplotions: 0
   dontKillPlayers: 0
   dontDieOnHit: 0
   ifJumpingDontKill: 0
-  score: 120
+  colors: []
+  pos: []
+  scale: []
 --- !u!111 &4732047701259937852
 Animation:
   m_ObjectHideFlags: 0
@@ -547,13 +598,14 @@ Animation:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621726158424996768}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Animation: {fileID: 7400000, guid: 1e49f997d879e664ea69923557f49fbe, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 1e49f997d879e664ea69923557f49fbe, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
+  m_UpdateMode: 0
   m_CullingType: 0
 --- !u!114 &4733557182243788372
 MonoBehaviour:
@@ -569,7 +621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 4733450584233165256}
   progressBarPosition: {x: 0, y: 5, z: 0}
-  lifes: 2
+  lifes: 4
+  asset: {fileID: 0}
   anim: {fileID: 0}
 --- !u!114 &4922812357061411235
 MonoBehaviour:
@@ -588,4 +641,7 @@ MonoBehaviour:
   delayToSoundAttack: 1
   RandomBetween: 10
   attackDuration: 1.6
+  bossPart: {fileID: 0}
+  bossPartAnim: {fileID: 0}
   attacking: 0
+  speedAnim: 0

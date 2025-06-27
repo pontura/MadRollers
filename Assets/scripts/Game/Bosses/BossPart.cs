@@ -25,6 +25,8 @@ public class BossPart : MonoBehaviour {
     }
     public void Init(Boss _boss, BossSettings settings)
 	{
+
+        print("ASSERTTEETT: " + settings.asset);
         isOn = true;
         this.totalLife = lifes;
 
