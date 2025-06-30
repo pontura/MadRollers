@@ -11,8 +11,8 @@ public class Intro : MonoBehaviour {
     public Transform containerBosses;
     public Transform container;
     public Player player_to_instantiate;
-    public Text field;
-    public Text subtitles;
+    public TMPro.TMP_Text field;
+    public TMPro.TMP_Text subtitles;
     int id;
 
     void Start () {

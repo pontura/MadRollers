@@ -1,8 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-
 public class Gui : MonoBehaviour {
     
 	public LevelComplete levelComplete;
@@ -12,7 +8,7 @@ public class Gui : MonoBehaviour {
 	private int barWidth = 200;
     private bool MainMenuOpened = false;
 
-	public Text genericField;
+	public TMPro.TMP_Text genericField;
 	public GameObject centerPanel;
 
 	void Start()

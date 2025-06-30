@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HandWriting : MonoBehaviour {
 	
@@ -22,8 +20,8 @@ public class HandWriting : MonoBehaviour {
             field.text = "";
         field = null;
     }
-    Text field;
-    public void WriteTo(Text field, string textToWrite,  System.Action OnReadyFunc)
+    TMPro.TMP_Text field;
+    public void WriteTo(TMPro.TMP_Text field, string textToWrite,  System.Action OnReadyFunc)
 	{
         
         Data.Instance.events.ResetHandwritingText();

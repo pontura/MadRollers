@@ -5,7 +5,7 @@ using System.Collections;
 public class LevelComplete : MonoBehaviour {
 
 	public GameObject panel;
-    public Text[] fields;
+    public TMPro.TMP_Text[] fields;
 
 	void Start()
 	{
@@ -25,7 +25,7 @@ public class LevelComplete : MonoBehaviour {
 
 		string titleText ="";
 
-		foreach (Text label in fields)
+		foreach (TMPro.TMP_Text label in fields)
 			Data.Instance.handWriting.WriteTo(label, titleText, null);
 
         // Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
