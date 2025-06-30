@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class MissionSignal : MonoBehaviour {
 
 	public GameObject panel;
 
-    public Text title;
-    public Text subtitle;
+    public TMPro.TMP_Text title;
+    public TMPro.TMP_Text subtitle;
 
 	Missions missions;
 
@@ -45,12 +44,13 @@ public class MissionSignal : MonoBehaviour {
             title.color = Data.Instance.videogamesData.GetActualVideogameData().floor_top;
 
             subtitle.text = "";
-			SetState(true);
-			string text = "";			
-			text += "DISKETTE " + (missions.MissionActiveID+1) + "\n";
-			text += missionData.title;
 
-            Data.Instance.handWriting.WriteTo(subtitle,text , DoneText2);
+			SetState(true);
+
+            title.text = "mission " + (missions.MissionActiveID+1) + "\n";
+            subtitle.text = "";
+
+            Data.Instance.handWriting.WriteTo(subtitle, missionData.title, DoneText2);
 		}
 	}
 	void DoneText2()

@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class SummaryMobile : MonoBehaviour
 {
     public GameObject panel;
-    public Text titleField;
+    public TMPro.TMP_Text titleField;
 
     public HiscoresMobile hiscores;
-    public AvatarThumb avatarImage;
-    public AvatarThumb hiscoreAvatarThumb;
+   // public AvatarThumb avatarImage;
+   // public AvatarThumb hiscoreAvatarThumb;
 
-    public Text scoreField;
-    public Text usernameField;
+    public TMPro.TMP_Text scoreField;
+    public TMPro.TMP_Text usernameField;
 
-    public Text hiscoreScoreField;
-    public Text hiscoreNameField;
-    public Text puestoField;
-    public Text initialSignalTitleField;
+    public TMPro.TMP_Text hiscoreScoreField;
+    public TMPro.TMP_Text hiscoreNameField;
+    public TMPro.TMP_Text puestoField;
+    public TMPro.TMP_Text initialSignalTitleField;
 
     public GameObject hiscoreOtherPanel;
 
@@ -100,7 +100,7 @@ public class SummaryMobile : MonoBehaviour
         UserData.Instance.hiscoresByMissions.CheckToAddNewHiscore(UserData.Instance.userID, score, videoGameID, missionID);
         hiscores.InitLoaded(hiscoreData);
 
-        avatarImage.Init(UserData.Instance.userID);
+     //   avatarImage.Init(UserData.Instance.userID);
         usernameField.text = UserData.Instance.username;
         
         if (hiscoreData == null || hiscoreData.all.Count < 1)
@@ -120,7 +120,7 @@ public class SummaryMobile : MonoBehaviour
             float p = (float)score / (float)hiscoreData.all[0].score;
             progressBar.gameObject.SetActive(true);
             progressBar.SetProgression(p);
-            hiscoreAvatarThumb.Init(hiscoreData.all[0].userID);
+            //hiscoreAvatarThumb.Init(hiscoreData.all[0].userID);
             hiscoreScoreField.text = Utils.FormatNumbers(hiscoreData.all[0].score);
             hiscoreNameField.text = hiscoreData.all[0].username.ToUpper();
         }
