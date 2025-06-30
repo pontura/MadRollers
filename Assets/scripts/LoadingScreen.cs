@@ -9,7 +9,7 @@ public class LoadingScreen : MonoBehaviour {
     public MissionsManager missionsManager_in_scene;
     public BossesPool boss_pool_in_scene;
     public bool useLocalAssets;
-    public Text field;
+    public TMPro.TMP_Text field;
     public Image progressBar;
 
     void Start () {
