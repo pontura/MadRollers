@@ -9,10 +9,10 @@ public class MainMenu : MonoBehaviour {
 	public GameObject standaloneButtons;
 	public GameObject partyGameButtons;
 
-	List<MainMenuButton> buttons; 
-	public List<MainMenuButton> buttonsStandalone; 
-	public List<MainMenuButton> buttonsArcade; 
-	MainMenuButton activeButton;
+	//List<MainMenuButton> buttons; 
+	//public List<MainMenuButton> buttonsStandalone; 
+	//public List<MainMenuButton> buttonsArcade; 
+	//MainMenuButton activeButton;
 	public Text playersField;
 
 	public Transform container;
@@ -32,16 +32,16 @@ public class MainMenu : MonoBehaviour {
         if(Data.Instance.playMode != Data.PlayModes.STORYMODE)
             Cursor.visible = false; 
 
-        buttons = new List<MainMenuButton> ();
-		if (Data.Instance.isArcadeMultiplayer) {
-			partyGameButtons.SetActive (false);
-			standaloneButtons.SetActive (false);
-			buttons = buttonsArcade;
-		} else  {
-			partyGameButtons.SetActive (false);
-			standaloneButtons.SetActive (true);
-			buttons = buttonsStandalone;
-		}
+  //      buttons = new List<MainMenuButton> ();
+		//if (Data.Instance.isArcadeMultiplayer) {
+		//	partyGameButtons.SetActive (false);
+		//	standaloneButtons.SetActive (false);
+		//	buttons = buttonsArcade;
+		//} else  {
+		//	partyGameButtons.SetActive (false);
+		//	standaloneButtons.SetActive (true);
+		//	buttons = buttonsStandalone;
+		//}
 		Init ();
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 	//	Data.Instance.events.OnJoystickDown += OnJoystickDown;
@@ -49,27 +49,27 @@ public class MainMenu : MonoBehaviour {
 	//	Data.Instance.events.OnJoystickLeft += OnJoystickDown;
 	//	Data.Instance.events.OnJoystickRight += OnJoystickUp;
 		
-		foreach (MainMenuButton m in buttons)
-			m.SetOn (false);
+		//foreach (MainMenuButton m in buttons)
+		//	m.SetOn (false);
 
-		if(Data.Instance.isArcadeMultiplayer)
-		{
-			activeID = 0;		
-		} else{
-			activeID = 1;
-		}
-		SetButtons ();
-		activeButton.SetOn (true);
-		float _separation = 4.5f;
-		for (int a = 0; a < 4; a++) {
-			Player p = Instantiate (player_to_instantiate);
-			p.isPlaying = false;
-			p.transform.SetParent (container);
-			p.id = a;
-			p.transform.localPosition = new Vector3((-(_separation*3)/2)+(_separation*a),0,0);
-			p.transform.localScale = Vector3.one;
-			p.transform.localEulerAngles = Vector3.zero;
-		}
+		//if(Data.Instance.isArcadeMultiplayer)
+		//{
+		//	activeID = 0;		
+		//} else{
+		//	activeID = 1;
+		//}
+		//SetButtons ();
+		//activeButton.SetOn (true);
+		//float _separation = 4.5f;
+		//for (int a = 0; a < 4; a++) {
+		//	Player p = Instantiate (player_to_instantiate);
+		//	p.isPlaying = false;
+		//	p.transform.SetParent (container);
+		//	p.id = a;
+		//	p.transform.localPosition = new Vector3((-(_separation*3)/2)+(_separation*a),0,0);
+		//	p.transform.localScale = Vector3.one;
+		//	p.transform.localEulerAngles = Vector3.zero;
+		//}
 	}
     //private void Update()
     //{
@@ -112,26 +112,26 @@ public class MainMenu : MonoBehaviour {
 	}
 	void OnJoystickUp()
 	{
-		if (activeID == 0)
-			activeID = buttons.Count-1;
-		else
-			activeID--;
-		SetButtons ();
+		//if (activeID == 0)
+		//	activeID = buttons.Count-1;
+		//else
+		//	activeID--;
+		//SetButtons ();
 	}
 	void OnJoystickDown()
 	{
-		if (activeID == buttons.Count-1)
-			activeID = 0;
-		else
-			activeID++;
-		SetButtons ();
+		//if (activeID == buttons.Count-1)
+		//	activeID = 0;
+		//else
+		//	activeID++;
+		//SetButtons ();
 	}
 	void SetButtons ()
 	{
-		if(activeButton != null)
-			activeButton.SetOn (false);
-		activeButton = buttons [activeID];
-		activeButton.SetOn (true);
+		//if(activeButton != null)
+		//	activeButton.SetOn (false);
+		//activeButton = buttons [activeID];
+		//activeButton.SetOn (true);
 	}
 	void MissionsScene()
 	{

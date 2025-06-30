@@ -15,8 +15,8 @@ public class Summary : MonoBehaviour {
 
     private bool isOn;
 
-    [SerializeField] Text percentfield;
-    [SerializeField] Text missionField;
+    [SerializeField] TMPro.TMP_Text percentfield;
+    [SerializeField] TMPro.TMP_Text missionField;
 
     [SerializeField] ContinuePanel continuePanel;
 
@@ -131,4 +131,14 @@ public class Summary : MonoBehaviour {
 		Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();        
 	}
+    public void Replay()
+    {
+        Data.Instance.events.OnResetScores();
+        Data.Instance.isReplay = true;
+        Game.Instance.ResetLevel();
+    }
+    public void Exit()
+    {
+         Game.Instance.GotoLevelSelector();
+    }
 }

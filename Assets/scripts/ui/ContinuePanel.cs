@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class ContinuePanel : MonoBehaviour {
 
-    [SerializeField] Text titleField;
-    [SerializeField] Text field;
-    [SerializeField] Text field2;
+    [SerializeField] TMPro.TMP_Text titleField;
+    [SerializeField] TMPro.TMP_Text field;
+    [SerializeField] TMPro.TMP_Text field2;
     [SerializeField] GameObject panel;
-    [SerializeField] Button continueBtn;
+
     int price;
     bool canPay;
     bool clicked;
