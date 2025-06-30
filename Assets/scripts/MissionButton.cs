@@ -52,7 +52,7 @@ public class MissionButton : MonoBehaviour {
 
         anim.Play ("videoGameButtonMobile");
         Data.Instance.videogamesData.actualID = videogameData.id;
-        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
+        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
         Data.Instance.missions.MissionActiveID = missionUnblockedID;
         Invoke("DelayedClick", 1);
        // levelSelectorMobile.OnMissionButtonClicked(this);
@@ -76,7 +76,7 @@ public class MissionButton : MonoBehaviour {
     }
     public void GetHiscore()
     {
-        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
+        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
         missionActive = missionUnblockedID;
         missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionActive + 1);
         usernameField.text = "<loading...>";

@@ -35,7 +35,7 @@ public class MissionSelectorMobile : MonoBehaviour
     void AddButtons()
     {
         List < MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions; 
-        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
+        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
 
 
         int videoGameID = 0;//TO-DO REFACTOR HOY pontura
@@ -46,7 +46,8 @@ public class MissionSelectorMobile : MonoBehaviour
             m.transform.SetParent(container);
             m.transform.localPosition = Vector3.zero;
             m.transform.localScale = Vector3.one;
-            m.Init(this, data.data[0].videoGameID, id, data);
+            data.data[0].id = id;
+            m.Init(this, data.data[0]);
             id++;
             allButtons.Add(m);
         }
@@ -152,7 +153,7 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void ChangeVideoGame()
     {
-        Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblocked;
+        Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnlocked;
         //switch(Data.Instance.videogamesData.actualID)
         //{
         //    case 0: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblocked; break;

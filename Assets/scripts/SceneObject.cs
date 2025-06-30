@@ -30,8 +30,8 @@ public class SceneObject : MonoBehaviour
     public virtual void CheckVideoGame(int newVideoGameID) { }
     public virtual void Init()
     {
-
-        soData = GetComponent<SceneObjectData>();
+        if(soData == null)
+            soData = GetComponent<SceneObjectData>();
     }
     public SceneObjectsManager Manager
     {

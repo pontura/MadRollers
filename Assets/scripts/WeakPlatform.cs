@@ -24,7 +24,8 @@ public class WeakPlatform : SceneObject {
     public override void Init()
     {
         base.Init();
-        col = GetComponent<Collider>();
+        if (col == null)
+            col = GetComponent<Collider>();
     }
     public override void OnRestart(Vector3 pos)
 	{

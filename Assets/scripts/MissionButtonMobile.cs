@@ -9,36 +9,32 @@ public class MissionButtonMobile : MonoBehaviour
     public int videoGameID;
     public int missionID;
     public bool isBlocked;
-    public GameObject blocked;
+    [SerializeField] GameObject blocked;
+    [SerializeField] Image logo;
+    [SerializeField] Image floppyCover;
+    [SerializeField] GameObject selector;
+    [SerializeField] Stars stars;
+    [SerializeField] TMPro.TMP_Text nameField;
+    [SerializeField] TMPro.TMP_Text missionNumField;
+
     MissionSelectorMobile missionSelectorMobile;
     HiscoresLevelSelectorUI hiscoresLevelSelectorUI;
-    public Image logo;
-    public Image floppyCover;
-    public GameObject selector;
 
-    public void Init(MissionSelectorMobile missionSelectorMobile, int videoGameID, int missionID, MissionsManager.MissionsData data)
+    public void Init(MissionSelectorMobile missionSelectorMobile, MissionData missionData)
     {
         this.missionSelectorMobile = missionSelectorMobile;
-        this.videoGameID = videoGameID;
-        this.missionID = missionID;
-        OnInit(data);
-    }
-    public void Init(HiscoresLevelSelectorUI hiscoresLevelSelectorUI, int videoGameID, int missionID, MissionsManager.MissionsData data)
-    {
-        this.hiscoresLevelSelectorUI = hiscoresLevelSelectorUI;
-        this.videoGameID = videoGameID;
-        this.missionID = missionID;
-        OnInit(data);
-    }
-    public void OnInit(MissionsManager.MissionsData data)
-    {
+        this.videoGameID = missionData.videoGameID;
+        this.missionID = missionData.id;
+        nameField.text = missionData.title;
+        missionNumField.text = "MISSION " + (missionData.id+1);
+
         SetSelector(false);
         VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
         logo.sprite = videogameData.logo;
         floppyCover.sprite = videogameData.floppyCover;
 
 
-        int unblockedID = UserData.Instance.GetMissionUnblocked();
+        int unblockedID = UserData.Instance.GetMissionUnlocked();
 
         if (missionID <= unblockedID || Data.Instance.isAdmin)
         {
@@ -55,10 +51,12 @@ public class MissionButtonMobile : MonoBehaviour
 
         if (isBlocked)
         {
+            stars.Init(0);
             blocked.SetActive(true);
         }
         else
         {
+            stars.Init(2);
             blocked.SetActive(false);
         }
 

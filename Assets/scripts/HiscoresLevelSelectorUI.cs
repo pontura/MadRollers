@@ -43,20 +43,20 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
         List<MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions;
         videogameTitleField.text = Data.Instance.videogamesData.all[videoGameID].name;
         //int missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID;
-        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
+        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
 
 
         int id = 0;
         foreach (MissionsManager.MissionsData data in missionData)
         {
-            MissionButtonMobile m = Instantiate(missionButton);
-            m.transform.SetParent(missionscontainer);
-            m.transform.localPosition = Vector3.zero;
-            m.transform.localScale = Vector3.one;
-            m.Init(this, videoGameID, id, data);
+            //MissionButtonMobile m = Instantiate(missionButton);
+            //m.transform.SetParent(missionscontainer);
+            //m.transform.localPosition = Vector3.zero;
+            //m.transform.localScale = Vector3.one;
+            //m.Init(this, videoGameID, id);
 
 
-            id++;
+            //id++;
         }
     }
     public void Clicked(int videoGameID, int MissionActiveID)

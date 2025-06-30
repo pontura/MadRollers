@@ -28,7 +28,7 @@ public class MissionSelector : MonoBehaviour {
 		}
 
 
-        int missionUnblockedID = UserData.Instance.GetMissionUnblocked();
+        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
         missionUnblockedID = missionUnblockedID;
 
         print(" missionUnblockedID: " + missionUnblockedID);

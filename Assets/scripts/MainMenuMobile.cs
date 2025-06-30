@@ -58,7 +58,7 @@ public class MainMenuMobile : MonoBehaviour
         //if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
         //    Data.Instance.LoadLevel("LevelSelector");
         //else
-        if (UserData.Instance.GetMissionUnblocked() == 0)
+        if (UserData.Instance.GetMissionUnlocked() == 0)
             GotoTutorial();
         else
             Data.Instance.LoadLevel("LevelSelectorMobile");

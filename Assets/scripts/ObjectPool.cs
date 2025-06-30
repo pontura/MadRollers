@@ -92,6 +92,7 @@ public class ObjectPool : MonoBehaviour
                     if (poe.Prefab.name == instanceName)
                     {
                         SceneObject so = CreateSceneObject(poe.Prefab);
+                        so.Init();
                         return so;
                     }
                 }

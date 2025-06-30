@@ -236,6 +236,7 @@ public class Missions : MonoBehaviour
             areaSetId++;
             ResetAreaSet();
             SetNextArea();
+            print("SetNextArea " + areaSetId);
             return;
         }
 

@@ -98,7 +98,7 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     public void Torneo()
     {
-        if(UserData.Instance.data.missionUnblocked<=0)
+        if(UserData.Instance.data.missionUnlocked<=0)
         {
             Data.Instance.events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
             return;

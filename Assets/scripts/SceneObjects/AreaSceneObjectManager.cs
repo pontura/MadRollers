@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AreaSceneObjectManager : MonoBehaviour
 {
-
     public void AddComponentsToJson(AreaSceneObjectData newSOdata, GameObject go)
     {
         FullRotation fullRotation = go.GetComponent<FullRotation>();
@@ -160,7 +159,6 @@ public class AreaSceneObjectManager : MonoBehaviour
 
         if (jsonData.bossSettings.Count > 0)
         {
-
             BossSettingsData data = jsonData.bossSettings[0];
             BossSettings newcomponent = so.GetComponent<BossSettings>();
 

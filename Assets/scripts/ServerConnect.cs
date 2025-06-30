@@ -16,7 +16,7 @@ public class ServerConnect : MonoBehaviour
         public string username;
         public string userID = "sJgYfFhH7wWHwmoPLOAFT6cbvKt1";
         public int score;
-        public int missionUnblocked;
+        public int missionUnlocked;
     }
    
     public void LoadUserData(string userID, System.Action<UserDataInServer> OnDone)

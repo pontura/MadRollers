@@ -33,7 +33,7 @@ public class UserData : MonoBehaviour
     public AvatarImages avatarImages;
     public int playerID; // Mad-Roller muñeco id
     private bool allDone;
-
+    const string missionUnlocked = "missionUnlocked";
     public bool IsReadyToInit() //if its logged or new in the game:
     {
         return allDone;
@@ -122,7 +122,7 @@ public class UserData : MonoBehaviour
     {
         allDone = true;
 
-        data.missionUnblocked = PlayerPrefs.GetInt("missionUnblocked");
+        data.missionUnlocked = PlayerPrefs.GetInt(missionUnlocked);
         data.score = PlayerPrefs.GetInt("score");
     }
     public void UserCreation()
@@ -139,22 +139,22 @@ public class UserData : MonoBehaviour
         print("SetMissionReady missionID: " + missionID);
         if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
         {
-            int id = PlayerPrefs.GetInt("missionUnblocked");
+            int id = PlayerPrefs.GetInt(missionUnlocked);
             if (id < missionID)
             {
-                PlayerPrefs.SetInt("missionUnblocked", missionID);
-                data.missionUnblocked = missionID;
+                PlayerPrefs.SetInt(missionUnlocked, missionID);
+                data.missionUnlocked = missionID;
             }
         }
     }
-    public int GetMissionUnblocked()
+    public int GetMissionUnlocked()
     {
-        return data.missionUnblocked;
+        return data.missionUnlocked;
     }
     private async void GetLevelsPlayedCount()
     {
-        data.missionUnblocked = await hiscoresByMissions.GetLevelsPlayedCount();
-        Debug.Log("Niveles jugados: " + data.missionUnblocked);
+        data.missionUnlocked = await hiscoresByMissions.GetLevelsPlayedCount();
+        Debug.Log("Niveles jugados: " + data.missionUnlocked);
     }
     public int Score()
     {

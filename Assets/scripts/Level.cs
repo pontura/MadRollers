@@ -93,6 +93,7 @@ public class Level : MonoBehaviour {
         //			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
         //			return;
         //		}
+        StartCoroutine(AddAllAreasTEST());
     }
 	void OnGameStart()
 	{
@@ -251,6 +252,18 @@ public class Level : MonoBehaviour {
             missions.OnUpdateDistance(dist);
         }
 	}
+    IEnumerator AddAllAreasTEST()
+    {
+        int _dist = 0;
+        while(_dist<500)
+        {
+            print("_____ADD ");
+            _dist += 10;
+            missions.OnUpdateDistance(_dist);
+            yield return new WaitForEndOfFrame();
+        }
+        //Game.Instance.sceneObjectsManager.PoolSceneObjectsInScene();
+    }
     public void FallDown(int fallDownHeight)
     {
         GameCamera camera = game.gameCamera;
