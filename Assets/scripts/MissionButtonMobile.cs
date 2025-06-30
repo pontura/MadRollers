@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class MissionButtonMobile : MonoBehaviour
 {
-    public Text field;
     public int videoGameID;
     public int missionID;
     public bool isBlocked;
     [SerializeField] GameObject blocked;
-    [SerializeField] Image logo;
-    [SerializeField] Image floppyCover;
+   // [SerializeField] Image logo;
+    [SerializeField] Image image;
     [SerializeField] GameObject selector;
     [SerializeField] Stars stars;
     [SerializeField] TMPro.TMP_Text nameField;
@@ -22,6 +21,7 @@ public class MissionButtonMobile : MonoBehaviour
 
     public void Init(MissionSelectorMobile missionSelectorMobile, MissionData missionData)
     {
+        Animation anim = GetComponent<Animation>();
         this.missionSelectorMobile = missionSelectorMobile;
         this.videoGameID = missionData.videoGameID;
         this.missionID = missionData.id;
@@ -30,9 +30,8 @@ public class MissionButtonMobile : MonoBehaviour
 
         SetSelector(false);
         VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
-        logo.sprite = videogameData.logo;
-        floppyCover.sprite = videogameData.floppyCover;
-
+        // logo.sprite = videogameData.logo;
+        image.sprite = videogameData.floppyCover;
 
         int unblockedID = UserData.Instance.GetMissionUnlocked();
 
@@ -41,31 +40,20 @@ public class MissionButtonMobile : MonoBehaviour
             isBlocked = false;
             if (missionID == unblockedID)
             {
-                Animation anim = GetComponent<Animation>();
-                anim[anim.clip.name].time = Random.Range(0, 300) / 10;
-                anim.Play();
+                anim.Play("MissionButtonActive");
+            }
+            else
+            {
+                anim.Play("MissionButtonOn");
+                stars.Init(2);
             }
         } 
         else
+        {
             isBlocked = true;
-
-        if (isBlocked)
-        {
+            anim.Play("MissionButtonLocked");
             stars.Init(0);
-            blocked.SetActive(true);
         }
-        else
-        {
-            stars.Init(2);
-            blocked.SetActive(false);
-        }
-
-        int id = missionID + 1;
-        //field.text = "MISION " + id;
-        if (id < 10)
-            field.text = "0" + id;
-        else
-            field.text = id.ToString();
 
     }
     public void Clicked()
@@ -79,6 +67,6 @@ public class MissionButtonMobile : MonoBehaviour
     }
     public void SetSelector(bool isOn)
     {
-        selector.SetActive(isOn);
+       // selector.SetActive(isOn);
     }
 }

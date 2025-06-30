@@ -52,7 +52,7 @@ public class LoadingScreen : MonoBehaviour {
             //AllLoaded();
 
             // StartCoroutine( Data.Instance.assetsBundleLoader.DownloadAll(OnLoaded) ); 
-            field.text = "DOWNLOADING ROMS...";
+            field.text = "LOADING ROMS...";
             StartCoroutine(Data.Instance.assetsBundleLoader.DownloadAll(Data.ServerAssetsUrl(), OnLoaded));
         }
         else
@@ -71,7 +71,7 @@ public class LoadingScreen : MonoBehaviour {
     void OnLoaded(string result)
     {
         Debug.Log("AssetsBundle OnLoaded isSuccess: " + result);
-        field.text = "";
+        field.text = "PLEASE WAIT...";
         if (result == "ok")
         {
             DestroyImmediate(VoicesManager.Instance.gameObject);

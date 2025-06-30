@@ -37,13 +37,11 @@ public class MissionSelectorMobile : MonoBehaviour
         List < MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions; 
         int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
 
-
-        int videoGameID = 0;//TO-DO REFACTOR HOY pontura
+        Utils.RemoveAllChildsIn(container); 
         int id = 0;
         foreach (MissionsManager.MissionsData data in missionData)
         {
-            MissionButtonMobile m = Instantiate(missionButton);
-            m.transform.SetParent(container);
+            MissionButtonMobile m = Instantiate(missionButton, container);
             m.transform.localPosition = Vector3.zero;
             m.transform.localScale = Vector3.one;
             data.data[0].id = id;
@@ -55,7 +53,7 @@ public class MissionSelectorMobile : MonoBehaviour
     }
     public void ClickedABlockedButton()
     {
-        Data.Instance.events.OnAlertSignal("YOU MUST DESTROY ALL PREVIOUS DISKETTES!");
+        Data.Instance.events.OnAlertSignal("UNLOCK ALL PREVIOUS MISSIONS FIRST");
     }
     bool clicked;
     public void Clicked(int MissionActiveID)

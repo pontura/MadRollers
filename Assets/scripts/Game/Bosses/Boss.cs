@@ -14,7 +14,7 @@ public class Boss : SceneObject {
 	{		
 		base.OnRestart (pos);
 		Data data = Data.Instance;
-		data.events.OnBossActive (true);
+		//data.events.OnBossActive (true);
 		data.GetComponent<MusicManager> ().BossMusic (true);
         VoicesManager.Instance.PlayRandom (VoicesManager.Instance.killThemAll);
 	}
@@ -56,7 +56,7 @@ public class Boss : SceneObject {
         if(Data.Instance.playMode != Data.PlayModes.SURVIVAL)
 		    Game.Instance.level.Complete ();
 		
-		Data.Instance.events.OnBossActive (false);
+		//Data.Instance.events.OnBossActive (false);
         Pool();
     }
 	public virtual void Hit(){}
