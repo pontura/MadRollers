@@ -112,6 +112,9 @@ public class Summary : MonoBehaviour {
             
     IEnumerator SetProgress(float value, float total)
     {
+        routeProgressBar.SetProgression(0);
+        percentfield.text = "0%";
+        yield return new WaitForSeconds(0.5f);
         if (value > total)
             value = total;
         float i = 0;

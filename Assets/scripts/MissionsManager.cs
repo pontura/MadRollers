@@ -15,6 +15,8 @@ public class MissionsManager : MonoBehaviour
     public List<MissionsData> missions;
     public List<MissionsData> missionsSurvival;
     public AreasManager areasManager;
+    public LevelsThumbsData thumbs;
+
     [Serializable]
     public class MissionsList
     {
@@ -54,6 +56,7 @@ public class MissionsManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        thumbs = GetComponent<LevelsThumbsData>();
         areasManager = GetComponent<AreasManager>();
         DontDestroyOnLoad(this);       
     }

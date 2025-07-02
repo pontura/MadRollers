@@ -11,6 +11,7 @@ public class MissionButtonMobile : MonoBehaviour
     [SerializeField] GameObject blocked;
    // [SerializeField] Image logo;
     [SerializeField] Image image;
+    [SerializeField] RawImage rawImage;
     [SerializeField] GameObject selector;
     [SerializeField] Stars stars;
     [SerializeField] TMPro.TMP_Text nameField;
@@ -27,11 +28,18 @@ public class MissionButtonMobile : MonoBehaviour
         this.missionID = missionData.id;
         nameField.text = missionData.title;
         missionNumField.text = "MISSION " + (missionData.id+1);
+        RenderTexture rt = missionSelectorMobile.levelsThumbsRecorder.GetRenderTexture(missionID);
+        if (rt != null)
+            AddAnimatedTexture(rt);
+        else
+        {
+            Destroy(rawImage.gameObject);
+            VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
+            image.sprite = videogameData.floppyCover;
+        }
 
         SetSelector(false);
-        VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
-        // logo.sprite = videogameData.logo;
-        image.sprite = videogameData.floppyCover;
+        
 
         int unblockedID = UserData.Instance.GetMissionUnlocked();
 
@@ -55,6 +63,11 @@ public class MissionButtonMobile : MonoBehaviour
             stars.Init(0);
         }
 
+    }
+    void AddAnimatedTexture(RenderTexture rt)
+    {
+        Destroy(image.gameObject);
+        rawImage.texture = rt;
     }
     public void Clicked()
     {

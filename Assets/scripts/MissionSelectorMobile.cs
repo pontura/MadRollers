@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MissionSelectorMobile : MonoBehaviour
 {
     public Transform container;
+    public LevelsThumbsRecorder levelsThumbsRecorder;
 
     public Canvas canvas;
     public Animation anim;
@@ -41,6 +42,7 @@ public class MissionSelectorMobile : MonoBehaviour
         int id = 0;
         foreach (MissionsManager.MissionsData data in missionData)
         {
+            levelsThumbsRecorder.AddLevel(data.data[0].jsonName, id);
             MissionButtonMobile m = Instantiate(missionButton, container);
             m.transform.localPosition = Vector3.zero;
             m.transform.localScale = Vector3.one;

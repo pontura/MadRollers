@@ -1,8 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 
 public class LevelSelectorMobile : MonoBehaviour
 {
@@ -14,9 +11,9 @@ public class LevelSelectorMobile : MonoBehaviour
     public Text scoreField;
     public Text avatarName;
 
-    public Text tournamentField;
-    public Text hiscoresField;
-    public Text pluginsField;
+    //public Text tournamentField;
+    //public Text hiscoresField;
+    //public Text pluginsField;
 
     int score;
     int scoreTo;
@@ -39,9 +36,9 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     void InitStoryMode()
     { 
-        tournamentField.text = TextsManager.Instance.GetText("TOURNAMENT");
-        hiscoresField.text = TextsManager.Instance.GetText("HI-SCORES");
-        pluginsField.text = TextsManager.Instance.GetText("PLUG-INS");
+        //tournamentField.text = TextsManager.Instance.GetText("TOURNAMENT");
+        //hiscoresField.text = TextsManager.Instance.GetText("HI-SCORES");
+        //pluginsField.text = TextsManager.Instance.GetText("PLUG-INS");
 
       //  avatarThumb.Init(UserData.Instance.userID);
         avatarName.text = UserData.Instance.username.ToUpper();
