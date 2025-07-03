@@ -30,4 +30,8 @@ public class ScrollSnapTo : MonoBehaviour
         totalItems = container.GetComponentsInChildren<Button>().Length;
         scrollBar.value = (float)id / (float)totalItems;
     }
+    public float GetScrollValue()
+    {
+        return scrollBar.value;
+    }
 }

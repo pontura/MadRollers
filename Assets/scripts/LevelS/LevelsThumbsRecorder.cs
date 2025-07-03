@@ -13,10 +13,6 @@ public class LevelsThumbsRecorder : MonoBehaviour
     Dictionary<int, GameObject> all;
     [SerializeField] Transform container;
 
-    //DEBUG:
-    [SerializeField] RawImage[] raws;
-    [SerializeField] GameObject[] gameObjects;
-
     private void Awake()
     {
         all = new Dictionary<int, GameObject>();
@@ -37,21 +33,6 @@ public class LevelsThumbsRecorder : MonoBehaviour
         }
         return null;
     }
-    //private void Start()
-    //{
-    //    int id = 0;
-    //    all = new Dictionary<int, GameObject>();
-    //    foreach (GameObject g in gameObjects)
-    //    {
-    //        AddLevel(id, g);
-    //        GameObject go = GetGO(id);
-    //        if(go !=null)
-    //        {
-    //            raws[id].texture = go.GetComponentInChildren<Camera>().targetTexture;
-    //        }
-    //        id++;
-    //    }
-    //}
     public void AddLevel(string levelName, int id)
     {
         GameObject go = MissionsManager.Instance.thumbs.GetThumb(levelName);
@@ -77,7 +58,16 @@ public class LevelsThumbsRecorder : MonoBehaviour
         {
             go.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-          //  go.SetActive(false);
+            go.SetActive(false);
+        }
+    }
+    public void ResetAll()
+    {
+        foreach (KeyValuePair<int, GameObject> entry in all)
+        {
+            int id = entry.Key;
+            GameObject go = entry.Value;
+            go.SetActive(false);
         }
     }
     public void Activate(int id)

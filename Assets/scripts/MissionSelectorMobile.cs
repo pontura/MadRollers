@@ -22,7 +22,9 @@ public class MissionSelectorMobile : MonoBehaviour
 
     public List<MissionButtonMobile> allButtons;
 
+    [SerializeField] int missionID;
     int videogameID = -1;
+    int totalMissions;
 
     public void Init()
     {
@@ -40,6 +42,7 @@ public class MissionSelectorMobile : MonoBehaviour
 
         Utils.RemoveAllChildsIn(container); 
         int id = 0;
+        totalMissions = missionData.Count;
         foreach (MissionsManager.MissionsData data in missionData)
         {
             levelsThumbsRecorder.AddLevel(data.data[0].jsonName, id);
@@ -115,17 +118,37 @@ public class MissionSelectorMobile : MonoBehaviour
 
 
     //Skip animation:
-    bool isLoading;
+    bool isLoading; float last_Y;
+    int lastMissionID;
     private void Update()
     {
-        if (!isLoading) return;
-        if (Input.GetMouseButtonDown(0))
+        if (isLoading)
         {
-            StopAllCoroutines();
-            Data.Instance.LoadLevel("Game");
-            isLoading = false;
+            if (Input.GetMouseButtonDown(0))
+            {
+                StopAllCoroutines();
+                Data.Instance.LoadLevel("Game");
+                isLoading = false;
+            }
         }
-
+        else
+        {
+            float newY = scrollSnap.GetScrollValue();
+            if (last_Y == newY) return;
+            last_Y = newY;
+            missionID = (int)((float)newY * (float)totalMissions)+2;
+            if (lastMissionID == missionID) return;
+            lastMissionID = missionID;
+            levelsThumbsRecorder.ResetAll();
+            int from = missionID - 2;
+            int to = missionID + 2;
+            if (from < 0) from = 0;
+            if (to > totalMissions - 1) to = totalMissions - 1;
+            for (int a = from; a < to; a++)
+            {
+                levelsThumbsRecorder.Activate(a);
+            }
+        }
     }
     IEnumerator LoadGame()
     {
