@@ -56,7 +56,7 @@ public class Boss : SceneObject {
         if(Data.Instance.playMode != Data.PlayModes.SURVIVAL)
 		    Game.Instance.level.Complete ();
 		
-		//Data.Instance.events.OnBossActive (false);
+		Data.Instance.events.OnBossActive (false);
         Pool();
     }
 	public virtual void Hit(){}
