@@ -136,12 +136,12 @@ public class MissionSelectorMobile : MonoBehaviour
             float newY = scrollSnap.GetScrollValue();
             if (last_Y == newY) return;
             last_Y = newY;
-            missionID = (int)((float)newY * (float)totalMissions)+2;
+            missionID = (int)((float)newY * (float)totalMissions)+3;
             if (lastMissionID == missionID) return;
             lastMissionID = missionID;
             levelsThumbsRecorder.ResetAll();
-            int from = missionID - 2;
-            int to = missionID + 2;
+            int from = missionID - 3;
+            int to = missionID + 3;
             if (from < 0) from = 0;
             if (to > totalMissions - 1) to = totalMissions - 1;
             for (int a = from; a < to; a++)

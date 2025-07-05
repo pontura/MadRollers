@@ -11,11 +11,13 @@ public class LevelsThumbsRecorder : MonoBehaviour
     int height = 200;
 
     Dictionary<int, GameObject> all;
+    Dictionary<int, Sprite> sprites;
     [SerializeField] Transform container;
 
     private void Awake()
     {
         all = new Dictionary<int, GameObject>();
+        sprites = new Dictionary<int, Sprite>();
     }
     public RenderTexture GetRenderTexture(int id)
     {
@@ -33,12 +35,25 @@ public class LevelsThumbsRecorder : MonoBehaviour
         }
         return null;
     }
+    public Sprite GetSprite(int id)
+    {
+        if (sprites.ContainsKey(id))
+        {
+            Sprite s = sprites[id];
+            if (s != null)
+                return s;
+        }
+        return null;
+    }
     public void AddLevel(string levelName, int id)
     {
         GameObject go = MissionsManager.Instance.thumbs.GetThumb(levelName);
         if(go == null)
         {
-            Debug.LogError("No se ha encontrado el prefab de la mision: " + levelName);
+            
+            Sprite s = MissionsManager.Instance.thumbs.GetSprite(levelName);
+            if(s != null)
+                sprites.Add(id, s);
             return;
         }
         GameObject newGO = Instantiate(go, container);
@@ -49,7 +64,9 @@ public class LevelsThumbsRecorder : MonoBehaviour
     }
     GameObject GetGO(int id)
     {
-        return all[id];
+        if(all.ContainsKey(id))
+            return all[id];
+        return null;
     }
     IEnumerator Add(int id)
     {

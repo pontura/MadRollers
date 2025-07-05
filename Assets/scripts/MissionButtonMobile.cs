@@ -34,8 +34,15 @@ public class MissionButtonMobile : MonoBehaviour
         else
         {
             Destroy(rawImage.gameObject);
-            VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
-            image.sprite = videogameData.floppyCover;
+            Sprite s = missionSelectorMobile.levelsThumbsRecorder.GetSprite(missionID);
+            if(s != null)
+                image.sprite = s;
+            else
+            {
+                VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameDataByID(videoGameID);
+                image.sprite = videogameData.floppyCover;
+            }
+           
         }
 
         SetSelector(false);
