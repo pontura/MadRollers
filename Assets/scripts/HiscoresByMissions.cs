@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
-using Firebase;
-using Firebase.Firestore;
+﻿using Firebase;
 using Firebase.Auth;
+using Firebase.Extensions;
+using Firebase.Firestore;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class HiscoresByMissions : MonoBehaviour
 {
@@ -15,7 +16,37 @@ public class HiscoresByMissions : MonoBehaviour
     FirebaseAuth auth;
 
     public bool loaded;
+    public List<ScoreData> all;
 
+    void AddNewHiscore(int levelID, int score)
+    {
+        ScoreData scoreData = new ScoreData();
+        scoreData.level = levelID;
+        scoreData.score = score;
+        all.Add(scoreData);
+    }
+    public void SetNewHiscore(int levelID, int score)
+    {
+        ScoreData sd = GetScore(levelID);
+        if (sd == null)
+            AddNewHiscore(levelID, score);
+        else
+            sd.score = score;
+
+    }
+    public ScoreData GetScore(int levelID)
+    {
+        foreach (ScoreData sd in all)
+            if (sd.level == levelID)
+                return sd;
+        return null;
+    }
+    [Serializable]
+    public class ScoreData
+    {
+        public int level;
+        public int score;
+    }
 
     [Serializable]
     public class MissionHiscoreData
@@ -110,6 +141,7 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public async Task<int> GetLevelsPlayedCount()
     {
+        all = new List<ScoreData>();
         string userId = UserData.Instance.userID;
         var db = FirebaseFirestore.DefaultInstance;
 
@@ -119,11 +151,25 @@ public class HiscoresByMissions : MonoBehaviour
             .Collection("scores");
 
         QuerySnapshot snapshot = await scoresRef.GetSnapshotAsync();
-
+        foreach (var doc in snapshot.Documents)
+        {
+            Dictionary<string, object> data = doc.ToDictionary();
+            int score = data.ContainsKey("score") ? Convert.ToInt32(data["score"]) : 0;
+            string level = doc.Id;
+            print("::::::::: score: " + score + " in level: " +  doc.Id);
+            string[] arr = doc.Id.Split("_");
+            if (arr.Length > 1)
+            {
+                int levelID = int.Parse(arr[1]);
+                AddNewHiscore(levelID, score);
+               
+            }
+        }
         int count = snapshot.Count;
         Debug.Log("🎮 El usuario " + userId  + " jugó " + count + " niveles.");
         return count;
     }
+    
     //public async Task GetScore(int levelNumber, System.Action<MissionHiscoreData> OnDone)
     //{
     //    if (FirebaseAuth.DefaultInstance.CurrentUser == null)
@@ -185,7 +231,6 @@ public class HiscoresByMissions : MonoBehaviour
 
         if (!snapshot.Exists)
         {
-            // No hay score previo → grabar
             shouldUpdate = true;
         }
         else
@@ -193,8 +238,8 @@ public class HiscoresByMissions : MonoBehaviour
             int previousScore = snapshot.GetValue<int>("score");
             if (score > previousScore)
             {
-                // El nuevo score es mayor → actualizar
                 shouldUpdate = true;
+                SetNewHiscore(levelNumber, score);
             }
         }
 

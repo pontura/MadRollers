@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static HiscoresByMissions;
 
 public class MissionButtonMobile : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class MissionButtonMobile : MonoBehaviour
             else
             {
                 anim.Play("MissionButtonOn");
-                stars.Init(2);
+                SetStars();
             }
         } 
         else
@@ -88,5 +89,18 @@ public class MissionButtonMobile : MonoBehaviour
     public void SetSelector(bool isOn)
     {
        // selector.SetActive(isOn);
+    }
+    void SetStars()
+    {
+        int starsNum = 0;
+        ScoreData scoreData = UserData.Instance.hiscoresByMissions.GetScore(missionID);
+        if (scoreData.score > 15000)
+            starsNum = 3;
+        else if (scoreData.score > 12000)
+            starsNum = 2;
+        else if (scoreData.score > 8000)
+            starsNum = 1;
+
+        stars.Init(starsNum);
     }
 }

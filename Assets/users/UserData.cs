@@ -1,10 +1,8 @@
 ﻿using Firebase.Auth;
 using Firebase.Firestore;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using Yaguar.Auth;
 
 public class UserData : MonoBehaviour
@@ -14,6 +12,8 @@ public class UserData : MonoBehaviour
     public string test_email = "test@gmail.com";
     public string test_password = "1234567890";
     public string test_userID = "DMZgakyMpdTm8qTECRdgllItjJQ2";
+
+    
 
     string assetBundles = "https://pontura.github.io/madrollers/";
     public string URL_assetBundles { get { return assetBundles; } }
@@ -141,11 +141,13 @@ public class UserData : MonoBehaviour
         {
             int id = PlayerPrefs.GetInt(missionUnlocked);
             if (id < missionID)
-            {
-                PlayerPrefs.SetInt(missionUnlocked, missionID);
-                data.missionUnlocked = missionID;
-            }
+                SetNewUnlockedMission(missionID);
         }
+    }
+    public void SetNewUnlockedMission(int missionID)
+    {
+        PlayerPrefs.SetInt(missionUnlocked, missionID);
+        data.missionUnlocked = missionID;
     }
     public int GetMissionUnlocked()
     {
