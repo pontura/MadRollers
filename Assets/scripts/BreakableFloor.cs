@@ -5,6 +5,7 @@ public class BreakableFloor : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        print("___________ " + other.tag);
         switch (other.tag)
         {
             case "explotion":

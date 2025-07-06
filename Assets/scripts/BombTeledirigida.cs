@@ -28,8 +28,7 @@ public class BombTeledirigida : Bomb {
     
 	void Update()
 	{
-		if (!isActive)
-			return;
+		if (!isActive) return;
 
         trailRenderer.time = 10;
 

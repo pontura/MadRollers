@@ -27,35 +27,35 @@ public class ArcadeSummary : MonoBehaviour {
         ScoreLabel.text = score.ToString();
 	}
 
-    void Update()
-    {
-        if(ready) return;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Application.Quit();
-        } else
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            id++;
-            if (id == 4) id = 1;
-            SetOn();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            id--;
-            if (id == 0) id = 3;
-            SetOn();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            switch (id)
-            {
-                case 1: OpenHiscores(); break;
-                case 2: Data.Instance.LoadLevel("GameForArcade"); break;
-                case 3: Application.Quit(); break;
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if(ready) return;
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        Application.Quit();
+    //    } else
+    //    if (Input.GetKeyDown(KeyCode.DownArrow))
+    //    {
+    //        id++;
+    //        if (id == 4) id = 1;
+    //        SetOn();
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.UpArrow))
+    //    {
+    //        id--;
+    //        if (id == 0) id = 3;
+    //        SetOn();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        switch (id)
+    //        {
+    //            case 1: OpenHiscores(); break;
+    //            case 2: Data.Instance.LoadLevel("GameForArcade"); break;
+    //            case 3: Application.Quit(); break;
+    //        }
+    //    }
+    //}
 	
 	// Update is called once per frame
 	void SetOn () {

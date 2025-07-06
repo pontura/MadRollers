@@ -339,10 +339,13 @@ public class GameCamera : MonoBehaviour
 	}
 
     //pixeles
+    float lastPixelSize;
     public void SetPixels(float _pixelSize)
     {
        if (!Data.Instance.useRetroPixelPro)
          return;
+        if (lastPixelSize == _pixelSize) return;
+        lastPixelSize = _pixelSize;
 
        this.pixelSize = _pixelSize;
        retroPixelPro.pixelSize = (int)(pixelSize);

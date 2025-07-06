@@ -30,16 +30,16 @@ public class Continue : MonoBehaviour {
 
 
     }
-	void Update()
-	{
-		if (canClick) {
-            for (int a = 0; a < 4; a++)
-            {
-                if (Input.GetMouseButtonDown(0))
-                    OnJoystickClick();
-            }
-		}
-	}
+	//void Update()
+	//{
+	//	if (canClick) {
+ //           for (int a = 0; a < 4; a++)
+ //           {
+ //               if (Input.GetMouseButtonDown(0))
+ //                   OnJoystickClick();
+ //           }
+	//	}
+	//}
     void OnDestroy()
 	{
 		Data.Instance.events.OnGameOver -= OnGameOver;

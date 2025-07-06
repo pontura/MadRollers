@@ -28,6 +28,7 @@ public class Bomb : SceneObject {
     }
     private void Update()
     {
+        if (!isActive) return;
         if (distanceFromCharacter > 65)
             return;        
 

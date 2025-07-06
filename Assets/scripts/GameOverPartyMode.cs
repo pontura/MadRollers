@@ -41,32 +41,32 @@ public class GameOverPartyMode : MonoBehaviour {
 		yield return new WaitForSeconds (3);
 		canClick = true;
 	}
-	void Update()
-	{
-		if (canClick) {
-            if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-            {
-                UpdateAndroid();
-            }
-            else
-            {
-                for (int a = 0; a < 4; a++)
-                {
-                    if (Input.GetMouseButtonDown(0))
-                        OnJoystickClick();
-                }
-            }
-		}
-	}
-    void UpdateAndroid()
-    {
-        if (Input.touchCount > 0)
-        {
-            if (Input.touches[0].phase == TouchPhase.Ended)
-                OnJoystickClick();
-        }
+	//void Update()
+	//{
+	//	if (canClick) {
+ //           if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+ //           {
+ //               UpdateAndroid();
+ //           }
+ //           else
+ //           {
+ //               for (int a = 0; a < 4; a++)
+ //               {
+ //                   if (Input.GetMouseButtonDown(0))
+ //                       OnJoystickClick();
+ //               }
+ //           }
+	//	}
+	//}
+    //void UpdateAndroid()
+    //{
+    //    if (Input.touchCount > 0)
+    //    {
+    //        if (Input.touches[0].phase == TouchPhase.Ended)
+    //            OnJoystickClick();
+    //    }
 
-    }
+    //}
     void OnJoystickClick()
 	{
 		canClick = false;

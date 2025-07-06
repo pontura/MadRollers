@@ -10,6 +10,7 @@ public class DestroyByTags : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        print("___________ " + other.tag);
         switch (other.tag)
         {
             case "destroyable":

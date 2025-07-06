@@ -198,17 +198,17 @@ public class VoicesManager : MonoBehaviour
 		Data.Instance.events.OnTalk (true);
     }
 	float timer;
-	void Update()
-	{
-        if (!IsBundleReady())
-            return;
-        if (!talking)
-			return;
+	//void Update()
+	//{
+ //       if (!IsBundleReady())
+ //           return;
+ //       if (!talking)
+	//		return;
 		
-		if (audioSource.clip != null && audioSource.clip.length>0.1f && audioSource.time >= (audioSource.clip.length-0.02f)) {
-			Done ();
-		}
-	}
+	//	if (audioSource.clip != null && audioSource.clip.length>0.1f && audioSource.time >= (audioSource.clip.length-0.02f)) {
+	//		Done ();
+	//	}
+	//}
 	void Done()
 	{
 		if (onSequence)

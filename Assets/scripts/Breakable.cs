@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Breakable : MonoBehaviour {
 
+    MeshRenderer[] all;
     [SerializeField] ExplotionType explotionType;
     [SerializeField]
     enum ExplotionType
@@ -128,44 +129,44 @@ public class Breakable : MonoBehaviour {
 	private void breaker(){
 		BreakStandard ();
 	}
-	void BreakEveryBlock()
-	{
-		//Transform container = Data.Instance.sceneObjectsPool.Scene.transform;
-		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
-		int id = 0;
-		float force = 500;
+	//void BreakEveryBlock()
+	//{
+	//	//Transform container = Data.Instance.sceneObjectsPool.Scene.transform;
+	//	MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
+	//	int id = 0;
+	//	float force = 500;
 
-		Rigidbody rb;
-		foreach (MeshRenderer mr in all) {
-			rb = mr.gameObject.GetComponent<Rigidbody> ();
+	//	Rigidbody rb;
+	//	foreach (MeshRenderer mr in all) {
+	//		rb = mr.gameObject.GetComponent<Rigidbody> ();
 
-			if (rb == null) 
-				rb = mr.gameObject.AddComponent< Rigidbody >();
+	//		if (rb == null) 
+	//			rb = mr.gameObject.AddComponent< Rigidbody >();
 
-            BreakedBlock bb = mr.gameObject.GetComponent<BreakedBlock>();
+ //           BreakedBlock bb = mr.gameObject.GetComponent<BreakedBlock>();
 
-            if (bb == null)  bb = mr.gameObject.AddComponent< BreakedBlock >();
+ //           if (bb == null)  bb = mr.gameObject.AddComponent< BreakedBlock >();
 
-			rb.mass = 100;
-			rb.useGravity = true;
-			rb.isKinematic = false;
+	//		rb.mass = 100;
+	//		rb.useGravity = true;
+	//		rb.isKinematic = false;
 
-			bb.Init ();
-			//mr.transform.SetParent (container);
-			mr.sortingLayerName = "Default";
+	//		bb.Init ();
+	//		//mr.transform.SetParent (container);
+	//		mr.sortingLayerName = "Default";
 
-            BoxCollider bc = mr.gameObject.GetComponent<BoxCollider>();
-            if(bc == null)
-                mr.gameObject.AddComponent<BoxCollider>();
+ //           BoxCollider bc = mr.gameObject.GetComponent<BoxCollider>();
+ //           if(bc == null)
+ //               mr.gameObject.AddComponent<BoxCollider>();
 
-            mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
+ //           mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
 
-			Vector3 direction = ((mr.transform.forward * force) + (Vector3.up * (force*2)));
-			rb.AddForce(direction, ForceMode.Impulse);
+	//		Vector3 direction = ((mr.transform.forward * force) + (Vector3.up * (force*2)));
+	//		rb.AddForce(direction, ForceMode.Impulse);
 
-			id++;
-		}
-	}
+	//		id++;
+	//	}
+	//}
 
     [SerializeField] Color[] colors;
     [SerializeField] Vector3[] pos;
@@ -174,10 +175,12 @@ public class Breakable : MonoBehaviour {
     [ContextMenu("Set Data")]
     void SetData()
     {
-        MeshRenderer[] all = GetComponentsInChildren<MeshRenderer>();
-        colors = new Color[all.Length];
-        pos = new Vector3[all.Length];
-        scale = new float[all.Length];
+        if (all == null)
+            all = GetComponentsInChildren<MeshRenderer>();
+        int total = all.Length;
+        colors = new Color[total];
+        pos = new Vector3[total];
+        scale = new float[total];
 
         int id = 0;
         foreach (MeshRenderer mr in all)
@@ -191,9 +194,9 @@ public class Breakable : MonoBehaviour {
             //if (mr.material.HasProperty("_Color"))
             //{
             //}
-
-            pos[id] = mr.transform.position;
-            scale[id] = mr.transform.localScale.x;
+            Transform t = mr.transform;
+            pos[id] = t.position;
+            scale[id] = t.localScale.x;
             id++;
         }
         // Print Results
@@ -203,7 +206,7 @@ public class Breakable : MonoBehaviour {
 
     void BreakStandard()
     {
-        if (colors.Length == 0)
+        if (all == null)
             SetData();
         ObjectPool.instance.pixelsPool.AddPixelsByBreaking(transform.position, colors, pos, scale);
 	}

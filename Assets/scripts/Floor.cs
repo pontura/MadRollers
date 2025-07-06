@@ -17,6 +17,16 @@ public class Floor : MonoBehaviour
 
     private void Awake()
     {
+        Destroy(this.gameObject);
+
+
+
+
+
+
+
+
+
         if (Data.Instance.useOptimizedSettings)
         {
             Destroy(this.gameObject);

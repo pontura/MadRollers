@@ -89,15 +89,15 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	void RefreshScore(){
 		myScoreFields.text = Utils.FormatNumbers(  Data.Instance.multiplayerData.score);
 	}
-	void Update()
-	{
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL || totalAdded == 0)
-			return;
-		if (Time.time > ResetFieldsTimer) {
-			totalAdded = 0;
-			lastDesc = "";
-		}
-	}
+	//void Update()
+	//{
+ //       if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL || totalAdded == 0)
+	//		return;
+	//	if (Time.time > ResetFieldsTimer) {
+	//		totalAdded = 0;
+	//		lastDesc = "";
+	//	}
+	//}
 	string lastDesc = "";
 	void SetDesc(string text)
 	{

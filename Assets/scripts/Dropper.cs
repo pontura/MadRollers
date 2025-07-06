@@ -4,7 +4,7 @@ using System.Collections;
 public class Dropper : MonoBehaviour
 {
 	public string SceneObjectName;
-    public float delay = 1;
+    public float delay = 0;
     public float delayRandom = 0;
 
     float sec;
@@ -22,7 +22,7 @@ public class Dropper : MonoBehaviour
 
     void Update()
     {
-		if (delay == 0)
+        if (delay == 0)
 			return;
         if (sec > delayRandom)
         {

@@ -94,32 +94,32 @@ public class SummaryMultiplayer : MonoBehaviour {
             ShowRanking();
     }
     int n = 0;
-    void Update()
-    {
-        n++;
-        if (n > 5)
-        {
-            //lightInScene.intensity = (float)Random.Range(70, 100) / 100;
-            n = 0;
-        }
-                
-		//if (
-  //          Data.Instance.inputManager.GetButtonDown(0, InputAction.action1) 
-  //          || Data.Instance.inputManager.GetButtonDown(1, InputAction.action1)
-  //          || Data.Instance.inputManager.GetButtonDown(2, InputAction.action1)
-  //          || Data.Instance.inputManager.GetButtonDown(3, InputAction.action1)
-  //          )
+  //  void Update()
+  //  {
+  //      n++;
+  //      if (n > 5)
   //      {
-  //          if (state == states.READY)
-  //          {
-  //              ShowRanking();
-  //          }
-  //          else if (state == states.READY_RANKING)
-  //          {
-  //              Ready();
-  //          }
+  //          //lightInScene.intensity = (float)Random.Range(70, 100) / 100;
+  //          n = 0;
   //      }
-    }
+                
+		////if (
+  ////          Data.Instance.inputManager.GetButtonDown(0, InputAction.action1) 
+  ////          || Data.Instance.inputManager.GetButtonDown(1, InputAction.action1)
+  ////          || Data.Instance.inputManager.GetButtonDown(2, InputAction.action1)
+  ////          || Data.Instance.inputManager.GetButtonDown(3, InputAction.action1)
+  ////          )
+  ////      {
+  ////          if (state == states.READY)
+  ////          {
+  ////              ShowRanking();
+  ////          }
+  ////          else if (state == states.READY_RANKING)
+  ////          {
+  ////              Ready();
+  ////          }
+  ////      }
+  //  }
     void Reset()
     {
         StopCoroutine(nextRoutine);
