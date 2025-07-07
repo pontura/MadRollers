@@ -14,6 +14,7 @@ public class Stars : MonoBehaviour {
 	public void Init(int stars)
     {
 		Color grey = new Color (0,0,0);
+        Color yellow = Color.yellow;
         if (stars == 0)
         {
 			star1.color = grey;
@@ -22,12 +23,21 @@ public class Stars : MonoBehaviour {
         }
         else if (stars == 1)
         {
-			star2.color = grey;
+            star1.color = yellow;
+            star2.color = grey;
 			star3.color = grey;
         }
         else if (stars == 2)
         {
-			star3.color = grey;
+            star1.color = yellow;
+            star2.color = yellow;
+            star3.color = grey;
         }
-	}
+        else
+        {
+            star1.color = yellow;
+            star2.color = yellow;
+            star3.color = yellow;
+        }
+    }
 }

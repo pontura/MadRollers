@@ -1,61 +1,41 @@
-﻿using System.Collections;
+﻿using GamesTan.UI;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MissionSelectorMobile : MonoBehaviour
+public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
 {
-    public Transform container;
     public LevelsThumbsRecorder levelsThumbsRecorder;
-
+    public GameObject scene;
     public Canvas canvas;
     public Animation anim;
 
-    public Text title1;    
     public MissionButtonMobile missionButton;
 
     public Text disketteField;
     public Image disketteLogo;
     public Image disketteFloppy;
 
-    public ScrollSnapTo scrollSnap;
+
+    [Header("Basic")] public SuperScrollRect ScrollRect;
+    public int Count = 0;
 
     public List<MissionButtonMobile> allButtons;
 
     [SerializeField] int missionID;
-    int videogameID = -1;
-    int totalMissions;
 
     public void Init()
     {
-        title1.text = TextsManager.Instance.GetText("VIDEOGAMES");
-        videogameID = Data.Instance.videogamesData.actualID;
+        scene.gameObject.SetActive(false);
+       // title1.text = TextsManager.Instance.GetText("VIDEOGAMES");
         AddButtons();
 
         ChangeVideoGame();
         SetSelector();
     }
-    void AddButtons()
-    {
-        List < MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions; 
-        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
-
-        Utils.RemoveAllChildsIn(container); 
-        int id = 0;
-        totalMissions = missionData.Count;
-        foreach (MissionsManager.MissionsData data in missionData)
-        {
-            levelsThumbsRecorder.AddLevel(data.data[0].jsonName, id);
-            MissionButtonMobile m = Instantiate(missionButton, container);
-            m.transform.localPosition = Vector3.zero;
-            m.transform.localScale = Vector3.one;
-            data.data[0].id = id;
-            m.Init(this, data.data[0]);
-            id++;
-            allButtons.Add(m);
-        }
-        scrollSnap.Init(missionUnblockedID); 
-    }
+    
     public void ClickedABlockedButton()
     {
         Data.Instance.events.OnAlertSignal("UNLOCK ALL PREVIOUS MISSIONS FIRST");
@@ -83,6 +63,7 @@ public class MissionSelectorMobile : MonoBehaviour
             }
         }
 
+        scene.gameObject.SetActive(true);
         Data.Instance.events.OnSoundFX("whip", -1);
         List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;        
         int videoGameID = MissionsManager.Instance.GetMission(MissionActiveID).videoGameID;
@@ -93,6 +74,7 @@ public class MissionSelectorMobile : MonoBehaviour
 
         if (canvas != null)
             canvas.enabled = false;
+
 
         string m = (MissionActiveID + 1).ToString();
 
@@ -115,41 +97,7 @@ public class MissionSelectorMobile : MonoBehaviour
         StartCoroutine(LoadGame());
         Data.Instance.events.SetHamburguerButton(false);
     }
-
-
-    //Skip animation:
-    bool isLoading; float last_Y;
-    int lastMissionID;
-    private void Update()
-    {
-        if (isLoading)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                StopAllCoroutines();
-                Data.Instance.LoadLevel("Game");
-                isLoading = false;
-            }
-        }
-        else
-        {
-            float newY = scrollSnap.GetScrollValue();
-            if (last_Y == newY) return;
-            last_Y = newY;
-            missionID = (int)((float)newY * (float)totalMissions)+3;
-            if (lastMissionID == missionID) return;
-            lastMissionID = missionID;
-            levelsThumbsRecorder.ResetAll();
-            int from = missionID - 3;
-            int to = missionID + 3;
-            if (from < 0) from = 0;
-            if (to > totalMissions - 1) to = totalMissions - 1;
-            for (int a = from; a < to; a++)
-            {
-                levelsThumbsRecorder.Activate(a);
-            }
-        }
-    }
+    bool isLoading;
     IEnumerator LoadGame()
     {
         yield return new WaitForSeconds(0.05f);
@@ -170,18 +118,77 @@ public class MissionSelectorMobile : MonoBehaviour
             else
                 mbm.SetSelector(false);
         }
-        scrollSnap.Init(Data.Instance.missions.MissionActiveID);
+       // scrollSnap.Init(Data.Instance.missions.MissionActiveID);
              
         
     }
     public void ChangeVideoGame()
     {
         Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnlocked;
-        //switch(Data.Instance.videogamesData.actualID)
-        //{
-        //    case 0: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblocked; break;
-        //    case 1: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblockedID_2; break;
-        //    case 2: Data.Instance.missions.MissionActiveID = UserData.Instance.data.missionUnblockedID_3; break;
-        //}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    void AddButtons()
+    {
+        List<MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions;
+        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
+
+        int id = 0;
+        Count = missionData.Count;
+
+        foreach (MissionsManager.MissionsData data in missionData)
+        {
+            levelsThumbsRecorder.AddLevel(data.data[0].jsonName, id);
+            data.data[0].id = id;
+            // MissionButtonMobile m = Instantiate(missionButton, container);
+            // m.transform.localPosition = Vector3.zero;
+            // m.transform.localScale = Vector3.one;
+            //// m.Init(this, data.data[0]);
+            // allButtons.Add(m);
+            id++;
+
+        }
+        ScrollRect.DoAwake(this);
+        DoAwake();
+        int mission = missionUnblockedID - 1;
+        if (mission < 0) mission = 0;
+        ScrollRect.JumpTo(mission);
+    }
+   
+
+
+    protected virtual void DoAwake()
+    {
+    }
+    
+    public int GetCellCount()
+    {
+        return Count;
+    }
+
+    public void SetCell(GameObject cell, int index)
+    {
+        print("SetCell " + index);
+        var item = cell.GetComponent<MissionButtonMobile>();
+        item.Init(this, MissionsManager.Instance.missions[index].data[0]);
+        //levelsThumbsRecorder.Activate(index);
+    }
+    public void Activate(int index)
+    {
+        levelsThumbsRecorder.Activate(index);
+    }
+    public void Inactive(int index)
+    {
+        levelsThumbsRecorder.Inactive(index);
     }
 }

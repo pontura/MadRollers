@@ -40,6 +40,7 @@ namespace GamesTan.SuperScrollRectDemo {
         }
 
         public void SetCell(GameObject cell, int index) {
+            print("set cell ");
             var item = cell.GetComponent<DemoCell>();
             item.BindData(Datas[index]);
         }

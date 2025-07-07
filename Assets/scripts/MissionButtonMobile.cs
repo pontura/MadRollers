@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using GamesTan.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static HiscoresByMissions;
 
-public class MissionButtonMobile : MonoBehaviour
+public class MissionButtonMobile : MonoBehaviour, IScrollCell
 {
     public int videoGameID;
     public int missionID;
@@ -34,7 +35,8 @@ public class MissionButtonMobile : MonoBehaviour
             AddAnimatedTexture(rt);
         else
         {
-            Destroy(rawImage.gameObject);
+            image.gameObject.SetActive(true);
+            rawImage.gameObject.SetActive(false);
             Sprite s = missionSelectorMobile.levelsThumbsRecorder.GetSprite(missionID);
             if(s != null)
                 image.sprite = s;
@@ -71,10 +73,26 @@ public class MissionButtonMobile : MonoBehaviour
             stars.Init(0);
         }
 
+        missionSelectorMobile.Activate(missionID);
     }
+    void OnDisable()
+    {
+        if(missionSelectorMobile != null)
+            missionSelectorMobile.Inactive(missionID);
+    }
+    //public void BindData(DemoCellData data)
+    //{
+    //    _data = data;
+    //    BtnItem.onClick.RemoveListener(OnClick_BtnItem);
+    //    BtnItem.onClick.AddListener(OnClick_BtnItem);
+    //    // TextCount.text = data.Count.ToString();
+    //    // TextName.text = data.Name.ToString();
+    //    name = "Cell " + data.Idx;
+    //}
     void AddAnimatedTexture(RenderTexture rt)
     {
-        Destroy(image.gameObject);
+        rawImage.gameObject.SetActive(true);
+        image.gameObject.SetActive(false);
         rawImage.texture = rt;
     }
     public void Clicked()

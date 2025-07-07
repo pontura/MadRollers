@@ -75,7 +75,7 @@ public class LevelsThumbsRecorder : MonoBehaviour
         {
             go.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            go.SetActive(false);
+            //go.SetActive(false);
         }
     }
     public void ResetAll()
