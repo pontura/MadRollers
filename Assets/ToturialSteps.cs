@@ -1,4 +1,6 @@
+using Unity.Jobs;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class ToturialSteps : MonoBehaviour
 {
@@ -124,7 +126,7 @@ public class ToturialSteps : MonoBehaviour
                     break;
             }
         }
-        Time.timeScale = 1;
+        Data.Instance.events.RalentaTo(1, 0.15f);
         panel.SetActive(false);
     }
     void InitPanel(int id)
@@ -139,40 +141,40 @@ public class ToturialSteps : MonoBehaviour
             switch (id)
             {
                 case 0:
-                    step_generic.Open("BIENVENIDX. YA ERES UN MAD ROLLER!");
+                    step_generic.Open("Welcome. YOU ARE A MAD ROLLER!");
                     break;
                 case 1:
-                    step_generic.Open("O SEA, UN VIDEOGAME HATTER!");
+                    step_generic.Open("...a Videogame VIRUS!");
                     break;
                 case 2:
-                    step_generic.Open("SI... ODIAS LOS VIDEOJUEGOS...");
+                    step_generic.Open("you hate videogames...");
                     break;
                 case 3:
-                    step_generic.Open("...SOBRE TODO ESTAS CHATARRAS OCHENTOSAS");
+                    step_generic.Open(".. and all this 80s crap");
                     break;
                 case 4:
                     moveGO.SetActive(true);
-                    step_move.Open("MOVETE PARA ESQUIVAR O RECOGER PIXELES");
+                    step_move.Open("Move fast. Don´t crash!");
                     break;
                 case 5:
                     jumpGO.SetActive(true);
-                    step_jump.Open("SALTA! CUIDADO CON CAERTE!");
+                    step_jump.Open("Jump quick or say goodbye!");
                     break;
                 case 6:
-                    step_jump.Open("HAY DOBLE SALTO! (A VECES TE SALVA)");
+                    step_jump.Open("Double jump time!");
                     break;
                 case 7:
                     shootGO.SetActive(true);
-                    step_shot.Open("ROMPE TODO! DISPARA, DESTRUYE, DISFRUTALO!");
+                    step_shot.Open("Destroy mode: ON. Let the fun begin!");
                     break;
                 case 8:
-                    step_generic.Open("OJO... ABSOLUTAMENTE TODO ES ROMPIBLE");
+                    step_generic.Open("Watch out... everything goes BOOM");
                     break;
                 case 9:
-                    step_generic.Open("MUY BIEN! YA CASI TERMINAS EL ENTRENAMIENTO...");
+                    step_generic.Open("Nice job! You’re almost done training!");
                     break;
                 case 10:
-                    step_generic.Open("ENTRA EN EL PORTAL Y ESTARAS LISTO!");
+                    step_generic.Open("Jump into the portal and become a legend!");
                     break;
             }
         }
@@ -181,10 +183,10 @@ public class ToturialSteps : MonoBehaviour
             switch (id)
             {
                 case 0:
-                    step_generic.Open("A VER COMO TE VA AHORA, CON EL TEAM COMPLETO!");
+                    step_generic.Open("No more solo play… time to squad up!");
                     break;
                 case 1:
-                    step_generic.Open("CUIDADO CON ESTAS CUCHILLAS!");
+                    step_generic.Open("Watch out—those blades are sharp!");
                     break;
             }
         }
@@ -193,10 +195,10 @@ public class ToturialSteps : MonoBehaviour
             switch (id)
             {
                 case 0:
-                    step_generic.Open("UN BOSS!");
+                    step_generic.Open("First Boss Fight!");
                     break;
                 case 1:
-                    step_generic.Open("DESTRUYANLO! SI SE ANIMAN A GANAR!");
+                    step_generic.Open("Destroy it… if you dare to win!");
                     break;
             }
         }
