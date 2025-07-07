@@ -43,7 +43,7 @@ public class PixelsPool : MonoBehaviour {
 		{
 			PixelPart pp = GetPart();
 			if (pp != null) {
-				pp.transform.SetParent (sceneContainer);
+				//pp.transform.SetParent (sceneContainer);
 				pp.gameObject.SetActive (true);
 				pp.transform.position = pos[a];
                 float s = scale[a];
