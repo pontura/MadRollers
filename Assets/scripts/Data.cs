@@ -102,6 +102,7 @@ public class Data : MonoBehaviour {
         if (RESET)
 			PlayerPrefs.DeleteAll ();
 #if UNITY_ANDROID || UNITY_IOS
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         isAndroid = true;
         isAdmin = false;
         controlsType = ControlsType.VIRTUAL_JOYSTICK;
