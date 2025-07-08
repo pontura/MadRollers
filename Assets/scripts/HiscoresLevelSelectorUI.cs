@@ -16,13 +16,13 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
 
     void Start()
     {
-        panel.SetActive(false);
+      //  panel.SetActive(false);
     }
     public void Init()
     {
-        Data.Instance.events.SetHamburguerButton(false);
-        panel.SetActive(true);
-        InitMissions();        
+        //Data.Instance.events.SetHamburguerButton(false);
+        //panel.SetActive(true);
+        //InitMissions();        
     }
     public void NextVideogame(bool next)
     {
