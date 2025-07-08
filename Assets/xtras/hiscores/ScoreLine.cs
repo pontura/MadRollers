@@ -15,9 +15,15 @@ public class ScoreLine : MonoBehaviour {
             else
                 num.text = "";
         }
-		username.text = _username;
+		username.text = TruncateText(_username, 10);
 		score.text = Utils.FormatNumbers(_score);
 	}
+    public string TruncateText(string text, int maxLength)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+        if (text.Length <= maxLength) return text;
+        return text.Substring(0, maxLength - 3) + "...";
+    }
     public void SetImage(string userID)
     {
       //  UserData.Instance.avatarImages.GetImageFor(userID, OnLoaded);
