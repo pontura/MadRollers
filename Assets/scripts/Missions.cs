@@ -106,7 +106,6 @@ public class Missions : MonoBehaviour
             extraAreasManager.Init();
         }
 
-
         totalDistance = 0;
         this.level = level;
         areasLength = -4;

@@ -26,6 +26,7 @@ public class ContinuePanel : MonoBehaviour {
         if (clicked) return;
         if (canPay)
         {
+            Data.Instance.tracker.ContinuePaid();
             clicked = true;
             Data.Instance.events.OnPayPixeles(5000);
             Game.Instance.Continue();
@@ -44,6 +45,7 @@ public class ContinuePanel : MonoBehaviour {
         if (adClicked) return;
         adClicked = true;
         Data.Instance.ads.ShowAd(OnAdDone);
+        Data.Instance.tracker.WatchAd();
     }
     void OnAdDone(bool isOK)
     {

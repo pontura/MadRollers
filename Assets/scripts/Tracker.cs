@@ -1,43 +1,62 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Firebase;
+using Firebase.Analytics;
+using UnityEngine;
 
 public class Tracker : MonoBehaviour {
 
-    //private GoogleAnalyticsV3 googleAnalytics;
-    private int tries = 1;
+    private int mission_tries = 1;
     private Data data;
     public bool enableTracking;
 
-    public void Init()
+    private void Start()
     {
-        
-      //  Data.Instance.events.OnMissionComplete += OnMissionComplete;
-     //   Data.Instance.events.OnAvatarDie += OnAvatarDie;
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        {
+            if (task.Result == DependencyStatus.Available)
+            {
+                FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
+            }
+            else
+            {
+                Debug.LogError("Firebase no disponible: " + task.Result);
+            }
+        });
+    }
+    public void Init()
+    {        
+        Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        Data.Instance.events.OnAvatarDie += OnAvatarDie;
+        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+    }
+    private void StartMultiplayerRace()
+    {
+        mission_tries = 0;
+        int id = Data.Instance.missions.MissionActiveID;
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("mission_init", "mission_id", id);
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
-        tries++;
+        int id = Data.Instance.missions.MissionActiveID;
+        FirebaseAnalytics.LogEvent("die",
+            new Parameter[] {
+                new Parameter("mission_id", id),
+                new Parameter("mission_tries", mission_tries)
+            }
+        );
+        mission_tries++;
     }
     void OnMissionComplete(int id)
     {
-        TrackMission(id, tries);
-        tries = 1;
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("mission_complete", "mission_id", id);
     }
-	public void TrackScreen (string SCreenName) 
+    public void WatchAd()
     {
-        if (enableTracking)
-        {
-           // googleAnalytics.LogScreen(SCreenName);
-          //  GA.API.Design.NewEvent(SCreenName);
-        }
-	}
-
-    public void TrackMission(int levelID,int tries)
+        int id = Data.Instance.missions.MissionActiveID;
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("watch_ad", "mission_id", id);
+    }
+    public void ContinuePaid()
     {
-        if (enableTracking)
-        {
-          //  googleAnalytics.LogEvent("Mission", "Mission Complete", "mission " + levelID, tries);
-           // GA.API.Design.NewEvent("Tries_Completed_Mission:" + levelID, tries);
-        }
+        int id = Data.Instance.missions.MissionActiveID;
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("continue_paid", "mission_id", id);
     }
 }

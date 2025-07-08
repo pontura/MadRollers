@@ -59,8 +59,9 @@ public class Game : MonoBehaviour {
         Invoke("Timeout", 0.5f);
 		level.Init();
         Data.Instance.events.OnGamePaused += OnGamePaused;
-        
-        Init();
+
+        Data.Instance.events.MissionStart(Data.Instance.missions.MissionActiveID);
+        Data.Instance.events.OnGamePaused(false);
 
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.SetSettingsButtonStatus(false);
@@ -95,11 +96,6 @@ public class Game : MonoBehaviour {
 	{
         Data.Instance.events.OnMadRollersSFXStatus(true);
         state = states.PLAYING;
-	}
-	private void Init()
-	{
-		Data.Instance.events.MissionStart(Data.Instance.missions.MissionActiveID);
-        Data.Instance.events.OnGamePaused(false);
 	}
     public void Revive()
     {

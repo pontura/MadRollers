@@ -38,6 +38,8 @@ public class Data : MonoBehaviour {
     public Missions missions;
     [HideInInspector]
     public MultiplayerData multiplayerData;
+    [HideInInspector]
+    public Tracker tracker;
 	[HideInInspector]
 	public VideogamesData videogamesData;
 	[HideInInspector]
@@ -166,7 +168,8 @@ public class Data : MonoBehaviour {
                 multiplayerData.player1 = multiplayerData.player1_played = true;
 		}
 
-        // GetComponent<Tracker>().Init();
+        tracker = GetComponent<Tracker>();
+        tracker.Init();
         curvedWorldManager = GetComponent<CurvedWorldManager>();
 
 	}

@@ -29,7 +29,6 @@ public class MusicManager : MonoBehaviour {
         if (s.ToLower() == "true") mute = true;
 
         audioSource = GetComponent<AudioSource>();
-		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 
         Data.Instance.events.OnContinue += OnContinue;
         Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
