@@ -10,17 +10,14 @@ public class Tracker : MonoBehaviour {
 
     private void Start()
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-        {
-            if (task.Result == DependencyStatus.Available)
-            {
-                FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
-            }
-            else
-            {
-                Debug.LogError("Firebase no disponible: " + task.Result);
-            }
-        });
+        Invoke("Loop", 1);
+    }
+    private void Loop()
+    {
+        if (FirebaseOn())
+            FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
+        else
+            Invoke("Loop", 1);
     }
     public void Init()
     {        
@@ -28,14 +25,22 @@ public class Tracker : MonoBehaviour {
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
     }
+    bool FirebaseOn()
+    {
+        return (FirebaseApp.DefaultInstance != null);
+    }
     private void StartMultiplayerRace()
     {
-        mission_tries = 0;
+        if (!FirebaseOn()) return;
+
+        if (FirebaseApp.DefaultInstance == null)
+            mission_tries = 0;
         int id = Data.Instance.missions.MissionActiveID;
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("mission_init", "mission_id", id);
+        FirebaseAnalytics.LogEvent("mission_init", "mission_id", id);
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
+        if (!FirebaseOn()) return;
         int id = Data.Instance.missions.MissionActiveID;
         FirebaseAnalytics.LogEvent("die",
             new Parameter[] {
@@ -47,16 +52,19 @@ public class Tracker : MonoBehaviour {
     }
     void OnMissionComplete(int id)
     {
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("mission_complete", "mission_id", id);
+        if (!FirebaseOn()) return;
+        FirebaseAnalytics.LogEvent("mission_complete", "mission_id", id);
     }
     public void WatchAd()
     {
+        if (!FirebaseOn()) return;
         int id = Data.Instance.missions.MissionActiveID;
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("watch_ad", "mission_id", id);
+        FirebaseAnalytics.LogEvent("watch_ad", "mission_id", id);
     }
     public void ContinuePaid()
     {
+        if (!FirebaseOn()) return;
         int id = Data.Instance.missions.MissionActiveID;
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("continue_paid", "mission_id", id);
+        FirebaseAnalytics.LogEvent("continue_paid", "mission_id", id);
     }
 }
