@@ -7,18 +7,21 @@ public class IngameSettings : MonoBehaviour
 {
     public GameObject panel;
     public GameObject[] soundIcons;
-    public Text field;
+    public TMPro.TMP_Text field;
+    public TMPro.TMP_Text fieldExit;
     bool audioOn = true;
 
     void Start()
     {
-        panel.SetActive(false);
+        panel.SetActive(false); 
+        fieldExit.text = "MAIN MENU";
     }    
     public void Open()
     {
         Time.timeScale = 0;
         panel.SetActive(true);
         SetAudio();
+        AudioListener.volume = 0f;
     }
     public void Exit()
     {
@@ -33,14 +36,12 @@ public class IngameSettings : MonoBehaviour
     {
         if (audioOn)
         {
-            AudioListener.volume = 1f;
             soundIcons[0].SetActive(true);
             soundIcons[1].SetActive(false);
             field.text = "ON";
         }
         else
         {
-            AudioListener.volume = 0f;
             soundIcons[1].SetActive(true);
             soundIcons[0].SetActive(false);
             field.text = "OFF";
@@ -48,7 +49,9 @@ public class IngameSettings : MonoBehaviour
     }
     public void Close()
     {
-        Time.timeScale = 1;
+        if(field.text == "ON")
+            AudioListener.volume = 1f;
+        Data.Instance.events.RalentaTo(1, 0.15f);
         panel.SetActive(false);
     }
 }

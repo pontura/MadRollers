@@ -7,7 +7,7 @@ public class MobileMenu : MonoBehaviour
 {
     public GameObject panel;
     public MobileMenuScreen mobileMenuScreen;
-    public AvatarThumb avatarThumb;
+  //  public AvatarThumb avatarThumb;
     public Text debugField;
     void Start()
     {
@@ -45,6 +45,7 @@ public class MobileMenu : MonoBehaviour
     }
     public void Open()
     {
+        print("Open");
         mobileMenuScreen.gameObject.SetActive(true);
         //if (UserData.Instance.IsReadyToInit() && avatarThumb != null)
         //    avatarThumb.Init(UserData.Instance.userID);
