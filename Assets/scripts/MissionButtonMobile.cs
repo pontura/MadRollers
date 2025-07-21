@@ -11,7 +11,8 @@ public class MissionButtonMobile : MonoBehaviour, IScrollCell
     public int missionID;
     public bool isBlocked;
     [SerializeField] GameObject blocked;
-   // [SerializeField] Image logo;
+    [SerializeField] GameObject bossFight;
+    // [SerializeField] Image logo;
     [SerializeField] Image image;
     [SerializeField] RawImage rawImage;
     [SerializeField] GameObject selector;
@@ -31,8 +32,11 @@ public class MissionButtonMobile : MonoBehaviour, IScrollCell
         nameField.text = missionData.title;
         missionNumField.text = "MISSION " + (missionData.id+1);
         RenderTexture rt = missionSelectorMobile.levelsThumbsRecorder.GetRenderTexture(missionID);
+        bossFight.SetActive(rt != null);
         if (rt != null)
+        {
             AddAnimatedTexture(rt);
+        }
         else
         {
             image.gameObject.SetActive(true);
