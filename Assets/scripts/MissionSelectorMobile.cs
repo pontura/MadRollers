@@ -137,11 +137,11 @@ public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
 
 
 
-
+    int missionUnblockedID;
     void AddButtons()
     {
         List<MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions;
-        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
+        missionUnblockedID = UserData.Instance.GetMissionUnlocked();
 
         int id = 0;
         Count = missionData.Count;
@@ -160,12 +160,16 @@ public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
         }
         ScrollRect.DoAwake(this);
         DoAwake();
+       
+        Invoke("ResetAll", 0.1f);
+    }
+    void ResetAll()
+    {
+        levelsThumbsRecorder.ResetAll(); 
         int mission = missionUnblockedID - 1;
         if (mission < 0) mission = 0;
         ScrollRect.JumpTo(mission);
     }
-   
-
 
     protected virtual void DoAwake()
     {
