@@ -37,11 +37,11 @@ public class ScoresInGame : MonoBehaviour
         if(s != null)
         {
             s.SetActive(true, score);
-            Vector3 _pos = Data.Instance.curvedWorldManager.curvedWorld_Controller.TransformPoint(pos, VacuumShaders.CurvedWorld.BEND_TYPE.ClassicRunner);
-            Vector2 viewportPosition = cam.WorldToViewportPoint(_pos);
-            viewportPosition.x *= Screen.width;
-            viewportPosition.y *= Screen.height;
-            s.transform.position = viewportPosition;
+            //Vector3 _pos = Data.Instance.curvedWorldManager.curvedWorld_Controller.TransformPoint(pos, VacuumShaders.CurvedWorld.BEND_TYPE.ClassicRunner);
+            //Vector2 viewportPosition = cam.WorldToViewportPoint(_pos);
+            //viewportPosition.x *= Screen.width;
+            //viewportPosition.y *= Screen.height;
+            //s.transform.position = viewportPosition;
         }
     }
     ScoreInGame GetScoreAvailable()

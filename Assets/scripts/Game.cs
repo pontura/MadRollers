@@ -1,14 +1,11 @@
 using UnityEngine;
-using System.Collections;
 using DG.Tweening;
-using VacuumShaders.CurvedWorld;
 
 public class Game : MonoBehaviour {
 
     const string PREFAB_PATH = "Prefabs/Game";
     public GameCamera gameCamera;
     static Game mInstance = null;
-    [SerializeField] CurvedWorld_Controller curvedWorld_Controller;
 
     private float pausedSpeed = 0.005f;
 	private float pausedMiniumSpeed = 0.05f;
@@ -43,7 +40,6 @@ public class Game : MonoBehaviour {
     void Awake()
     {
         mInstance = this;
-        Data.Instance.curvedWorldManager.SetController(curvedWorld_Controller);
         sceneObjectsManager.ChangeVideogame(Data.Instance.videogamesData.actualID);
     }
     void Start()
