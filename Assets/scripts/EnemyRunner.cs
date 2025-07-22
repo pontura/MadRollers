@@ -8,7 +8,7 @@ public class EnemyRunner : MonoBehaviour
     private MmoCharacter mmoCharacter;
     public Animation anim;
     public states state;
-    float speed = 10;
+    float speed;
     public enum states
     {
         IDLE,
@@ -22,6 +22,7 @@ public class EnemyRunner : MonoBehaviour
     }
     void OnEnable()
     {
+        speed = Random.Range(4.1f, 6);
         Idle();
     }
     void Idle()
@@ -33,14 +34,14 @@ public class EnemyRunner : MonoBehaviour
     {
         if (!mmoCharacter) return;
         if (mmoCharacter.state == MmoCharacter.states.DEAD) return;
-        if (mmoCharacter.distanceFromCharacter < 28 && state == states.IDLE)
+        if (mmoCharacter.distanceFromCharacter < 19 && state == states.IDLE)
             Rotate();
         else if (state == states.RUN)
             Running();
     }
     void Rotate()
     {
-        float rand = Random.Range(-360, 360);
+        float rand = Random.Range(0, 360);
         state = states.ROTATING;
         transform.DORotate(new Vector3(0, rand, 0), 0.2f, RotateMode.Fast).OnComplete(RotateDone);
     }

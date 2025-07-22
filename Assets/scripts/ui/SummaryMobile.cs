@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static HiscoresByMissions;
 
 public class SummaryMobile : MonoBehaviour
 {
     public GameObject panel;
     public TMPro.TMP_Text titleField;
 
+    public Stars stars;
     public HiscoresMobile hiscores;
    // public AvatarThumb avatarImage;
    // public AvatarThumb hiscoreAvatarThumb;
@@ -45,12 +47,33 @@ public class SummaryMobile : MonoBehaviour
             hiscoreOtherPanel.SetActive(false);
             Data.Instance.events.RalentaTo(0, 0.005f);
             panel.SetActive(true);
-            if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-                Data.Instance.handWriting.WriteTo(initialSignalTitleField, "YOU ARE DONE!", NextScreen);
-            else
-                Data.Instance.handWriting.WriteTo(initialSignalTitleField, "DISKETTE DESTROYED!", NextScreen);
             StartCoroutine(InitCoroutine());
         } 
+    }
+    void SetStars()
+    {
+        string result = "MISSION COMPLETE!";
+        int starsNum = 0;
+       // ScoreData scoreData = UserData.Instance.hiscoresByMissions.GetScore(missionID);
+        if (score > 15000)
+        {
+            result = "A glorious victory!";
+            starsNum = 3;
+        }
+        else if (score > 12000)
+        {
+            result = "A solid success!";
+            starsNum = 2;
+        }
+        else if (score > 8000)
+        {
+            result = "Job done, no heroics.";
+            starsNum = 1;
+        }
+
+        Data.Instance.handWriting.WriteTo(initialSignalTitleField, result.ToUpper(), NextScreen);
+
+        stars.Init(starsNum);
     }
     private void OnDestroy()
     {
@@ -68,6 +91,7 @@ public class SummaryMobile : MonoBehaviour
         titleField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
         score = Data.Instance.multiplayerData.GetTotalScore();
         scoreField.text = Utils.FormatNumbers(score);
+        SetStars();
 
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
@@ -101,7 +125,7 @@ public class SummaryMobile : MonoBehaviour
         hiscores.InitLoaded(hiscoreData);
 
      //   avatarImage.Init(UserData.Instance.userID);
-        usernameField.text = UserData.Instance.username;
+        usernameField.text = UserData.Instance.username.ToUpper();
         
         if (hiscoreData == null || hiscoreData.all.Count < 1)
         {

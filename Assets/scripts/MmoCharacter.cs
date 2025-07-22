@@ -97,29 +97,29 @@ public class MmoCharacter : SceneObject
         //SendMessage("OnReachFloor", SendMessageOptions.DontRequireReceiver);
     }
 
-    public void ChangeSkinMaterial(Material material)
-    {
-        SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
-        if (skinnedMesh)
-             skinnedMesh.material = material;
-    }
-    public void ChangeClothesColor(Color color)
-    {
-        SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
-        if (skinnedMesh)
-        {
-            skinnedMesh.materials[1].color = color;
-            skinnedMesh.materials[4].color = color;
-        }
-    }
-    public void ChangeSkinColor(Color color)
-    {
-        SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
-        if (skinnedMesh)
-        {
-            skinnedMesh.materials[2].color = color;
-        }
-    }
+    //public void ChangeSkinMaterial(Material material)
+    //{
+    //    SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+    //    if (skinnedMesh)
+    //         skinnedMesh.material = material;
+    //}
+    //public void ChangeClothesColor(Color color)
+    //{
+    //    SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+    //    if (skinnedMesh)
+    //    {
+    //        skinnedMesh.materials[1].color = color;
+    //        skinnedMesh.materials[4].color = color;
+    //    }
+    //}
+    //public void ChangeSkinColor(Color color)
+    //{
+    //    SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+    //    if (skinnedMesh)
+    //    {
+    //        skinnedMesh.materials[2].color = color;
+    //    }
+    //}
 	public void Shoot()
 	{
 		if (shooterAnimation != null)

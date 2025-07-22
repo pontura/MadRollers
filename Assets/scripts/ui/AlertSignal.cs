@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class AlertSignal : MonoBehaviour
 {
-    public Text field;
+    public TMPro.TMP_Text field;
     public GameObject panel;
     bool isOn;
 
