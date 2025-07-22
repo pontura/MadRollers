@@ -32,10 +32,10 @@ public class BossPart : MonoBehaviour {
 
         initialScale = transform.localScale;
         this.boss = _boss;
-		Utils.RemoveAllChildsIn (transform);
 
         if (asset == null && settings.asset != null)
         {
+            Utils.RemoveAllChildsIn(transform);
             GameObject go = ObjectPool.instance.bossesPool.GetBossAsset(settings.asset).gameObject;
             if (go != null)
                 asset = Instantiate(go);
@@ -63,7 +63,7 @@ public class BossPart : MonoBehaviour {
 		if (!isOn)
 			return;
         if (transform.position.y < -22)
-            Die();
+            boss.Fall(lifes);
 
     }
 	public void Hitted()

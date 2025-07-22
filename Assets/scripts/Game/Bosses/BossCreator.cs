@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossCreator : Boss {
 	
-	public GameObject assets_to_instantiate;
 	public float time_to_init_enemies;
 
 	//[HideInInspector]

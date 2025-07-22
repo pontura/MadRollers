@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
-using UnityEngine.UI;
 
 public class LevelsThumbsRecorder : MonoBehaviour
 {
@@ -59,7 +56,7 @@ public class LevelsThumbsRecorder : MonoBehaviour
         GameObject newGO = Instantiate(go, container);
         newGO.transform.position = new Vector2(id*10, 0);
         all.Add(id, newGO);
-        StartCoroutine(Add(id));
+        newGO.SetActive(true);
         CreateRenderTexture(newGO);
     }
     GameObject GetGO(int id)
@@ -67,16 +64,6 @@ public class LevelsThumbsRecorder : MonoBehaviour
         if(all.ContainsKey(id))
             return all[id];
         return null;
-    }
-    IEnumerator Add(int id)
-    {
-        GameObject go = GetGO(id);
-        if (go != null)
-        {
-            go.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            //go.SetActive(false);
-        }
     }
     public void ResetAll()
     {

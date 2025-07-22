@@ -37,6 +37,11 @@ public class Boss : SceneObject {
 		if (hits >= totalHits)
 			Killed ();		
 	}
+    public void Fall(int numHits)
+    {
+        hits += numHits;
+        Data.Instance.events.OnBossHitsUpdate(hits);
+    }
     public void Hitted()
     {
         Data.Instance.events.OncharacterCheer();

@@ -75,11 +75,13 @@ MonoBehaviour:
     - gallax_plataformas_giran
     - gallax_rays_yellow_army
     - boy_pigs
+    - boy_sapos
     - per_ene_easy
     - gallax_space_eyes_shooters
     - gallax_blue_Army_fortress
     - per_snakes
     - boy_walkers
+    - boy_peces
     - gallax_backPlatforms
     - gallax_backPlatforms_boss
     - per_Boss_2_gorgonas
@@ -92,31 +94,27 @@ MonoBehaviour:
     - per_vienen_de_atras
     - boy_sliders
     - gallax_boss_2_caminos
-    - per_lava_gargolas
     - boy_barrancas
     - boy_pisosMueven
     - gallax_pisosHelices
     - per_catapultas
     - boy_plataformas1
-    - boy_sapos
     - gallax_navesOcultas
     - per_barrancas
     - boy_ruedas
-    - boy_peces
     - gallax_subibaja
     - per_curvo
     - boy_estrellas
     - boy_throwers
     - gallax_space_circles
     - per_pisoAlto
-    - boy_sombrillas
     - gallax_dark_hills
     - per_7
     - boy_helices_altas
     - boy_cepillos
-    - boy_helices_2
     - gallax_firewalls
     - per_sliders
+    - boy_sombrillas
     torneo:
     - TORNEO
     - TORNEO_extras
@@ -2137,6 +2135,105 @@ MonoBehaviour:
         - pisoCurvo5
         cameraOrientation: {x: 0, y: -4.6, z: -2}
   - data:
+    - videoGameID: 0
+      defaultContinuePrice: 15000
+      continuePrice: 0
+      jsonName: boy_sapos
+      title: JUMPING FROGS
+      id: 0
+      maxScore: 3000
+      fondo: wonderland_ghosts
+      areaSetData:
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 0
+        areas:
+        - descansoAnchoMinimal
+        - ancho2Sapos
+        cameraOrientation: {x: 0, y: 2, z: -1.5}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 1
+        areas:
+        - saposLinea
+        - ancho2Sapos
+        cameraOrientation: {x: 0, y: -4, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - descanso1
+        - descanso2
+        cameraOrientation: {x: 0, y: -2, z: -1.5}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 1
+        areas:
+        - enemiesLineaJumpYSapos
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - container_lineaLargaSapos
+        cameraOrientation: {x: 0, y: -3, z: -1}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - subibaja1
+        - subibaja2
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - container_descanso_cruz
+        cameraOrientation: {x: 0, y: -1, z: -1}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 4
+        bending: 0
+        randomize: 1
+        areas:
+        - subibajaSapos1
+        - subibajaSapos2
+        - subibaja2Enemies
+        - subibajaEnemy
+        cameraOrientation: {x: 0, y: 1, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 0
+        areas:
+        - subibajaBoss
+        - subibajaBossFree
+        cameraOrientation: {x: 0, y: 1, z: -2}
+  - data:
     - videoGameID: 2
       defaultContinuePrice: 15000
       continuePrice: 0
@@ -2506,6 +2603,90 @@ MonoBehaviour:
         areas:
         - Ending
         cameraOrientation: {x: 0, y: -3, z: -2}
+  - data:
+    - videoGameID: 0
+      defaultContinuePrice: 15000
+      continuePrice: 0
+      jsonName: boy_peces
+      title: DELFINES LISERGICOS
+      id: 0
+      maxScore: 460
+      fondo: wonderland_nubes
+      areaSetData:
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 0
+        areas:
+        - descansoAnchoMinimal
+        cameraOrientation: {x: 0, y: 2, z: -1.5}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 3
+        bending: 0
+        randomize: 1
+        areas:
+        - agua_lados
+        - ancho_agua_simple
+        - ancho_agua_simple_lados
+        - agua_lados
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 1
+        areas:
+        - doble_agua
+        - doble_agua_simple
+        - doble_1 1
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - container_cruz
+        - container_cruz_2
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 1
+        areas:
+        - ancho_agua_simple1
+        - ancho_agua_simple2
+        cameraOrientation: {x: 0, y: 1, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 0
+        areas:
+        - boss_agua
+        - boss_agua_free2
+        cameraOrientation: {x: 0, y: -2, z: -0.5}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 100
+        bending: 0
+        randomize: 1
+        areas:
+        - boss_agua_free2
+        - boss_agua_free2
+        - boss_agua_free
+        - boss_agua_fences
+        cameraOrientation: {x: 0, y: -4.5, z: -1}
   - data:
     - videoGameID: 1
       defaultContinuePrice: 15000
@@ -3101,21 +3282,21 @@ MonoBehaviour:
       defaultContinuePrice: 15000
       continuePrice: 0
       jsonName: per_vienen_de_atras
-      title: SABUESOS ASESINOS
+      title: HOUNDS POO
       id: 0
-      maxScore: 150
+      maxScore: 7000
       fondo: inferno
       areaSetData:
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
         total_areas: 1
-        bending: -16
+        bending: -7
         randomize: 1
         areas:
         - ruedasEnemigos
         - ruedaSimple
-        cameraOrientation: {x: 0, y: 0, z: 0}
+        cameraOrientation: {x: 0, y: 0, z: -2}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -3126,7 +3307,7 @@ MonoBehaviour:
         - killRunner
         - killRunner2
         - killRunner3
-        cameraOrientation: {x: 0, y: 0, z: 0}
+        cameraOrientation: {x: 0, y: 0, z: -2}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -3141,13 +3322,13 @@ MonoBehaviour:
         boss: 0
         json: {fileID: 0}
         total_areas: 2
-        bending: 0
+        bending: -8
         randomize: 1
         areas:
         - killRunner
         - killRunner2
         - killRunner3
-        cameraOrientation: {x: 0, y: 0, z: -2}
+        cameraOrientation: {x: 0, y: 2, z: -7}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -3166,7 +3347,7 @@ MonoBehaviour:
         - boss1Corre
         - boss1Corre2
         - boss1Corre3
-        cameraOrientation: {x: 0, y: 6, z: -18}
+        cameraOrientation: {x: 0, y: 6, z: -13}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -3176,7 +3357,7 @@ MonoBehaviour:
         areas:
         - descanso1
         - descanso2
-        cameraOrientation: {x: 0, y: 7, z: -16}
+        cameraOrientation: {x: 0, y: 2, z: -3}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -3186,7 +3367,7 @@ MonoBehaviour:
         areas:
         - ruedaSimple
         - ruedaSimple2
-        cameraOrientation: {x: 0, y: 6, z: -15}
+        cameraOrientation: {x: 0, y: 6, z: -3}
       - totalDistanceToCamFX: 0
         boss: 1
         json: {fileID: 0}
@@ -3196,7 +3377,7 @@ MonoBehaviour:
         areas:
         - bossHuyenCorriendo
         - barrancas_free_ancha
-        cameraOrientation: {x: 0, y: 7, z: -14}
+        cameraOrientation: {x: 0, y: 7, z: -3}
   - data:
     - videoGameID: 0
       defaultContinuePrice: 15000
@@ -3303,57 +3484,6 @@ MonoBehaviour:
         - boss_2_filas_free_eyes
         cameraOrientation: {x: 0, y: 5, z: -4}
   - data:
-    - videoGameID: 2
-      defaultContinuePrice: 15000
-      continuePrice: 0
-      jsonName: per_lava_gargolas
-      title: GORGOLAS DE LAVA
-      id: 0
-      maxScore: 1000
-      fondo: inferno
-      areaSetData:
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 4
-        bending: 0
-        randomize: 1
-        areas:
-        - gargolaDeforme1
-        - gargolaDeforme2
-        cameraOrientation: {x: 0, y: 5, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 5
-        bending: 0
-        randomize: 1
-        areas:
-        - gargola1
-        - gargola2
-        - gargola3
-        cameraOrientation: {x: 0, y: 1, z: -1}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - gargolaDeforme1
-        - gargolaDeforme2
-        cameraOrientation: {x: 0, y: 1, z: 1}
-      - totalDistanceToCamFX: 0
-        boss: 1
-        json: {fileID: 0}
-        total_areas: 100
-        bending: 0
-        randomize: 0
-        areas:
-        - escupe_boss
-        - escupeBoss_free1
-        cameraOrientation: {x: 0, y: 2, z: -1}
-  - data:
     - videoGameID: 0
       defaultContinuePrice: 15000
       continuePrice: 0
@@ -3440,7 +3570,7 @@ MonoBehaviour:
       defaultContinuePrice: 15000
       continuePrice: 0
       jsonName: boy_pisosMueven
-      title: ROTATIVOS
+      title: GHOSTS CAN DANCE
       id: 0
       maxScore: 5000
       fondo: wonderland_castles
@@ -3526,7 +3656,7 @@ MonoBehaviour:
       defaultContinuePrice: 15000
       continuePrice: 0
       jsonName: gallax_pisosHelices
-      title: LA NAVE OSCURA
+      title: JUMPING BLACK DEATH
       id: 0
       maxScore: 3000
       fondo: gallax
@@ -3664,7 +3794,7 @@ MonoBehaviour:
       defaultContinuePrice: 15000
       continuePrice: 0
       jsonName: boy_plataformas1
-      title: PLATAFORMAS
+      title: MOVING PLATAFORMS
       id: 0
       maxScore: 0
       fondo: wonderland_nubes
@@ -3760,110 +3890,11 @@ MonoBehaviour:
         - pisoCurvo_boss_free
         cameraOrientation: {x: 0, y: -4, z: -2.5}
   - data:
-    - videoGameID: 0
-      defaultContinuePrice: 15000
-      continuePrice: 0
-      jsonName: boy_sapos
-      title: SIMPATICOS SAPITOS
-      id: 0
-      maxScore: 3000
-      fondo: wonderland_ghosts
-      areaSetData:
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 2
-        bending: 0
-        randomize: 0
-        areas:
-        - descansoAnchoMinimal
-        - ancho2Sapos
-        cameraOrientation: {x: 0, y: 2, z: -1.5}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 2
-        bending: 0
-        randomize: 1
-        areas:
-        - saposLinea
-        - ancho2Sapos
-        cameraOrientation: {x: 0, y: -4, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - descanso1
-        - descanso2
-        cameraOrientation: {x: 0, y: -2, z: -1.5}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 2
-        bending: 0
-        randomize: 1
-        areas:
-        - enemiesLineaJumpYSapos
-        cameraOrientation: {x: 0, y: 0, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - container_lineaLargaSapos
-        cameraOrientation: {x: 0, y: -3, z: -1}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - subibaja1
-        - subibaja2
-        cameraOrientation: {x: 0, y: 0, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - container_descanso_cruz
-        cameraOrientation: {x: 0, y: -1, z: -1}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 4
-        bending: 0
-        randomize: 1
-        areas:
-        - subibajaSapos1
-        - subibajaSapos2
-        - subibaja2Enemies
-        - subibajaEnemy
-        cameraOrientation: {x: 0, y: 1, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 1
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 0
-        areas:
-        - subibajaBoss
-        - subibajaBossFree
-        cameraOrientation: {x: 0, y: 1, z: -2}
-  - data:
     - videoGameID: 1
       defaultContinuePrice: 15000
       continuePrice: 0
       jsonName: gallax_navesOcultas
-      title: OJOS DARK
+      title: SPACESHIPS
       id: 0
       maxScore: 0
       fondo: gallax
@@ -4065,90 +4096,6 @@ MonoBehaviour:
         - boss_circular
         - areaFree_boss2
         cameraOrientation: {x: 0, y: 0, z: -2}
-  - data:
-    - videoGameID: 0
-      defaultContinuePrice: 15000
-      continuePrice: 0
-      jsonName: boy_peces
-      title: DELFINES LISERGICOS
-      id: 0
-      maxScore: 460
-      fondo: wonderland_nubes
-      areaSetData:
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 0
-        areas:
-        - descansoAnchoMinimal
-        cameraOrientation: {x: 0, y: 2, z: -1.5}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 3
-        bending: 0
-        randomize: 1
-        areas:
-        - agua_lados
-        - ancho_agua_simple
-        - ancho_agua_simple_lados
-        - agua_lados
-        cameraOrientation: {x: 0, y: 0, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 2
-        bending: 0
-        randomize: 1
-        areas:
-        - doble_agua
-        - doble_agua_simple
-        - doble_1 1
-        cameraOrientation: {x: 0, y: 0, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - container_cruz
-        - container_cruz_2
-        cameraOrientation: {x: 0, y: 0, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 2
-        bending: 0
-        randomize: 1
-        areas:
-        - ancho_agua_simple1
-        - ancho_agua_simple2
-        cameraOrientation: {x: 0, y: 1, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 1
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 0
-        areas:
-        - boss_agua
-        - boss_agua_free2
-        cameraOrientation: {x: 0, y: -2, z: -0.5}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 100
-        bending: 0
-        randomize: 1
-        areas:
-        - boss_agua_free2
-        - boss_agua_free2
-        - boss_agua_free
-        - boss_agua_fences
-        cameraOrientation: {x: 0, y: -4.5, z: -1}
   - data:
     - videoGameID: 1
       defaultContinuePrice: 15000
@@ -4599,7 +4546,7 @@ MonoBehaviour:
       defaultContinuePrice: 15000
       continuePrice: 0
       jsonName: per_pisoAlto
-      title: INFERNO ALTO
+      title: WORLD ON WAR
       id: 0
       maxScore: 0
       fondo: inferno
@@ -4624,75 +4571,20 @@ MonoBehaviour:
         randomize: 0
         areas:
         - descanso1
-        - boss_Calecitas_altas
         - boss_45grados_free
         cameraOrientation: {x: 0, y: -2, z: -8}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
-        total_areas: 200
-        bending: -2
+        total_areas: 8
+        bending: -8
         randomize: 1
         areas:
         - pisoAlto1
         - pisoAlto_rueda
         - pisoAlto_helices
-        cameraOrientation: {x: 0, y: -20, z: -10}
-  - data:
-    - videoGameID: 0
-      defaultContinuePrice: 15000
-      continuePrice: 0
-      jsonName: boy_sombrillas
-      title: SOMBRILLAS SALTARINAS
-      id: 0
-      maxScore: 0
-      fondo: wonderland_ghosts
-      areaSetData:
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 0
-        areas:
-        - descansoAnchoMinimal
-        cameraOrientation: {x: 0, y: 2, z: -1.5}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 6
-        bending: 0
-        randomize: 0
-        areas:
-        - sombrillaIntro
-        - sombrillaPozo
-        - sombrilla2Caminos
-        - sombrillaEnemigos
-        - sombrillaIntro2
-        - sombrillaIntro3
-        - sombrillaPozo
-        - sombrillaEnemigos
-        cameraOrientation: {x: 0, y: 0, z: 0}
-      - totalDistanceToCamFX: 0
-        boss: 1
-        json: {fileID: 0}
-        total_areas: 3
-        bending: 0
-        randomize: 0
-        areas:
-        - boss_Crusader
-        - areaFree_boss1
-        - areaFree_boss1
-        cameraOrientation: {x: 0, y: -3.6, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 10000
-        bending: 0
-        randomize: 0
-        areas:
-        - areaFree_boss1
-        cameraOrientation: {x: 0, y: 0, z: -1}
+        - boss_45grados_free
+        cameraOrientation: {x: 0, y: 1, z: -6}
   - data:
     - videoGameID: 1
       defaultContinuePrice: 15000
@@ -4912,106 +4804,6 @@ MonoBehaviour:
         - areaFree_boss2
         cameraOrientation: {x: 0, y: 0, z: -2}
   - data:
-    - videoGameID: 0
-      defaultContinuePrice: 15000
-      continuePrice: 0
-      jsonName: boy_helices_2
-      title: THE DIRTY PIGS
-      id: 0
-      maxScore: 460
-      fondo: wonderland_nubes
-      areaSetData:
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: -18
-        randomize: 0
-        areas:
-        - descansoAnchoMinimal
-        cameraOrientation: {x: 0, y: 2, z: -1.5}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: -14
-        randomize: 1
-        areas:
-        - dobleCamino_helices
-        cameraOrientation: {x: 0, y: -4, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 4
-        bending: 0
-        randomize: 1
-        areas:
-        - heliceSmall
-        - heliceSmall2
-        - heliceDoubleSmall
-        - helicesx4
-        - helicesx4_enemies
-        - pisoCurvo_helices
-        - helicesx2_larga
-        cameraOrientation: {x: 0, y: -1, z: -1}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 2
-        bending: 0
-        randomize: 1
-        areas:
-        - heliceSmall
-        - heliceSmall2
-        - heliceDoubleSmall
-        - helicesx4
-        - helicesx4_enemies
-        - pisoCurvo_helices
-        - helicesx2_larga
-        cameraOrientation: {x: 0, y: -2, z: -1}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: -2
-        randomize: 1
-        areas:
-        - container_helice
-        cameraOrientation: {x: 0, y: -2, z: -1}
-      - totalDistanceToCamFX: 0
-        boss: 1
-        json: {fileID: 0}
-        total_areas: 3
-        bending: -1
-        randomize: 0
-        areas:
-        - boss_naves_boyland
-        - boss_ancho_free
-        cameraOrientation: {x: 0, y: 0, z: -3}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: -18
-        randomize: 1
-        areas:
-        - boss_free_agua
-        cameraOrientation: {x: 0, y: -4, z: -5}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1000
-        bending: 0
-        randomize: 1
-        areas:
-        - pisoCurvo0
-        - pisoCurvo0
-        - pisoCurvo1
-        - pisoCurvo2
-        - pisoCurvo4
-        - pisoCurvo5
-        cameraOrientation: {x: 0, y: -1.6, z: 1.5}
-  - data:
     - videoGameID: 1
       defaultContinuePrice: 15000
       continuePrice: 0
@@ -5192,6 +4984,61 @@ MonoBehaviour:
         - sliderWalls_seguidas1
         - sliderWalls_seguidas2
         cameraOrientation: {x: 0, y: -2, z: 0}
+  - data:
+    - videoGameID: 0
+      defaultContinuePrice: 15000
+      continuePrice: 0
+      jsonName: boy_sombrillas
+      title: SOMBRILLAS SALTARINAS
+      id: 0
+      maxScore: 0
+      fondo: wonderland_ghosts
+      areaSetData:
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 0
+        areas:
+        - descansoAnchoMinimal
+        cameraOrientation: {x: 0, y: 2, z: -1.5}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 6
+        bending: 0
+        randomize: 0
+        areas:
+        - sombrillaIntro
+        - sombrillaPozo
+        - sombrilla2Caminos
+        - sombrillaEnemigos
+        - sombrillaIntro2
+        - sombrillaIntro3
+        - sombrillaPozo
+        - sombrillaEnemigos
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 3
+        bending: 0
+        randomize: 0
+        areas:
+        - boss_Crusader
+        - areaFree_boss1
+        - areaFree_boss1
+        cameraOrientation: {x: 0, y: -3.6, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 10000
+        bending: 0
+        randomize: 0
+        areas:
+        - areaFree_boss1
+        cameraOrientation: {x: 0, y: 0, z: -1}
   missionsSurvival: []
   areasManager: {fileID: 4232662971968698083}
   thumbs: {fileID: 0}
@@ -5361,6 +5208,16 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 8f625183c8bd750439ff3e243f792581, type: 3}
   - {fileID: 4900000, guid: 6683f602d3ad2f441ac848254f5960b5, type: 3}
   - {fileID: 4900000, guid: c8e48d98644f6f74187101df2ad5bffe, type: 3}
+  - {fileID: 4900000, guid: 0b61c1e09a39f0848a72f53b9f7b2ec2, type: 3}
+  - {fileID: 4900000, guid: 96f4d409e2853df4b9d7029b6f41a564, type: 3}
+  - {fileID: 4900000, guid: dc36584feab260c41a63ef4a5a3b874e, type: 3}
+  - {fileID: 4900000, guid: 288ec9791fff7844f910266f5afc023d, type: 3}
+  - {fileID: 4900000, guid: 348c02d59681d00429795874c45f04a9, type: 3}
+  - {fileID: 4900000, guid: 2be33950a720e4b4388e5db5f285afa8, type: 3}
+  - {fileID: 4900000, guid: 7bc4d3aedc2b4394a851ba22d984c644, type: 3}
+  - {fileID: 4900000, guid: 40be162716373ef4ba64cf244f96fd86, type: 3}
+  - {fileID: 4900000, guid: 47828f1b1c03daf4aa2fb0c003b901dd, type: 3}
+  - {fileID: 4900000, guid: 2f5396192a41d3741a30899804ecc35c, type: 3}
   - {fileID: 4900000, guid: 5c54f77ea190c2445813ced7bdbb75cb, type: 3}
   - {fileID: 4900000, guid: da991e93feaeb7840b456060e288439d, type: 3}
   - {fileID: 4900000, guid: c126c9dfc1d0399489e102afa806d7eb, type: 3}
@@ -5397,6 +5254,16 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 3dab0451442b81546a58fac7c710bcb6, type: 3}
   - {fileID: 4900000, guid: 0ed56955eb2897d4d9e3f8336abbea24, type: 3}
   - {fileID: 4900000, guid: afe7200b055e070499d87f4d7a7b6160, type: 3}
+  - {fileID: 4900000, guid: 716a94d665c9cd543a6a059ecd21023b, type: 3}
+  - {fileID: 4900000, guid: fbfc283be93005f4c9f45d5a1f493e73, type: 3}
+  - {fileID: 4900000, guid: 67a9f6a8a107a8743afae9425bc7019e, type: 3}
+  - {fileID: 4900000, guid: 31227acbeb1a6784593fdc92cdad3343, type: 3}
+  - {fileID: 4900000, guid: 55e5f30a36303ba4ba0523e0e1b314a5, type: 3}
+  - {fileID: 4900000, guid: a948722033970d54eb199927fab06845, type: 3}
+  - {fileID: 4900000, guid: 55288eccf44a6954ba5d5422238a5057, type: 3}
+  - {fileID: 4900000, guid: 142912ca125df244dae27d552c0cfc3b, type: 3}
+  - {fileID: 4900000, guid: afbeec5f6c961f8498222661622e162e, type: 3}
+  - {fileID: 4900000, guid: ae9871108f47b1f488ba6f717b41a6cd, type: 3}
   - {fileID: 4900000, guid: f67ea39338bb5c24287507a50327221c, type: 3}
   - {fileID: 4900000, guid: 7cbb2e2db54d3b54f8fb038713186eec, type: 3}
   - {fileID: 4900000, guid: 43f9374e36fac584a949c67cfde2b92c, type: 3}
@@ -5458,8 +5325,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 7351195777ac41d4fbb6e96e363ad39b, type: 3}
   - {fileID: 4900000, guid: 8644402ca9d8d904d91f3517a8733e1d, type: 3}
   - {fileID: 4900000, guid: a6c0ca048d31a2a458cbb0099deddf9e, type: 3}
-  - {fileID: 4900000, guid: 85d9142f51d525245a34a8beb5323678, type: 3}
-  - {fileID: 4900000, guid: 17aee8045be1278459b31d155ce8dc2f, type: 3}
   - {fileID: 4900000, guid: 8ec0b71f34c791c42af8bb4285c0273a, type: 3}
   - {fileID: 4900000, guid: c5d449422b8bbc645aa5524a0cf92446, type: 3}
   - {fileID: 4900000, guid: b38eda875c6b1d24f96e2e6b74997480, type: 3}
@@ -5473,7 +5338,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: bf51c5e3fc2c1af45b2120cbac032af4, type: 3}
   - {fileID: 4900000, guid: aae292a1a4963f5469599c7960e5bcf0, type: 3}
   - {fileID: 4900000, guid: 84383bed1b009b541a872b5c9cda3a10, type: 3}
-  - {fileID: 4900000, guid: 96f4d409e2853df4b9d7029b6f41a564, type: 3}
   - {fileID: 4900000, guid: 00e170eaac65eb24384ee04bdba7a2a9, type: 3}
   - {fileID: 4900000, guid: 73367464bd45c9140965b0c5028d9d31, type: 3}
   - {fileID: 4900000, guid: 177f9e4d82bc58c4683d05da860c712b, type: 3}
@@ -5487,17 +5351,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d568d30107f9aa042825cef916590b88, type: 3}
   - {fileID: 4900000, guid: c5762ebf64889054ca94a7a389bf0f1b, type: 3}
   - {fileID: 4900000, guid: af1a7d1fa9cda0a40bc3b5090082439c, type: 3}
-  - {fileID: 4900000, guid: 55288eccf44a6954ba5d5422238a5057, type: 3}
   - {fileID: 4900000, guid: 066e3886dd2527f41b443972164417f9, type: 3}
-  - {fileID: 4900000, guid: 0b61c1e09a39f0848a72f53b9f7b2ec2, type: 3}
-  - {fileID: 4900000, guid: dc36584feab260c41a63ef4a5a3b874e, type: 3}
-  - {fileID: 4900000, guid: 288ec9791fff7844f910266f5afc023d, type: 3}
-  - {fileID: 4900000, guid: 348c02d59681d00429795874c45f04a9, type: 3}
-  - {fileID: 4900000, guid: 2be33950a720e4b4388e5db5f285afa8, type: 3}
-  - {fileID: 4900000, guid: 7bc4d3aedc2b4394a851ba22d984c644, type: 3}
-  - {fileID: 4900000, guid: 40be162716373ef4ba64cf244f96fd86, type: 3}
-  - {fileID: 4900000, guid: 47828f1b1c03daf4aa2fb0c003b901dd, type: 3}
-  - {fileID: 4900000, guid: 2f5396192a41d3741a30899804ecc35c, type: 3}
   - {fileID: 4900000, guid: 7986353e1df0f5943bc6da7f88718909, type: 3}
   - {fileID: 4900000, guid: 899804b2e5b41ce4f966875e22ecfc05, type: 3}
   - {fileID: 4900000, guid: 2195d5e93239ecc4aabf44bcb6f311af, type: 3}
@@ -5508,15 +5362,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ec28da7f9bd82da4b9baaef14b8aa1fd, type: 3}
   - {fileID: 4900000, guid: c496ab54199769a4ea37c0b8b0a47164, type: 3}
   - {fileID: 4900000, guid: a1071fa2341bff44495f3d1e94adf3da, type: 3}
-  - {fileID: 4900000, guid: 716a94d665c9cd543a6a059ecd21023b, type: 3}
-  - {fileID: 4900000, guid: fbfc283be93005f4c9f45d5a1f493e73, type: 3}
-  - {fileID: 4900000, guid: 67a9f6a8a107a8743afae9425bc7019e, type: 3}
-  - {fileID: 4900000, guid: 31227acbeb1a6784593fdc92cdad3343, type: 3}
-  - {fileID: 4900000, guid: 55e5f30a36303ba4ba0523e0e1b314a5, type: 3}
-  - {fileID: 4900000, guid: a948722033970d54eb199927fab06845, type: 3}
-  - {fileID: 4900000, guid: 142912ca125df244dae27d552c0cfc3b, type: 3}
-  - {fileID: 4900000, guid: afbeec5f6c961f8498222661622e162e, type: 3}
-  - {fileID: 4900000, guid: ae9871108f47b1f488ba6f717b41a6cd, type: 3}
   - {fileID: 4900000, guid: 09a6e938e078afc47aa6e3b96fa9f3d6, type: 3}
   - {fileID: 4900000, guid: aae5fa1d4a8d9a34e9d7e21e3ad4f434, type: 3}
   - {fileID: 4900000, guid: 667cb691c978012468870575926a8a15, type: 3}
@@ -5545,16 +5390,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 1fe5d39563a7efb408f710b16fb8265e, type: 3}
   - {fileID: 4900000, guid: fdba504cbb6d0044b93fd2348c098b86, type: 3}
   - {fileID: 4900000, guid: d86693a298d0de942bcb417c8e63c323, type: 3}
-  - {fileID: 4900000, guid: 063e085625178e246bb5570574015fb3, type: 3}
   - {fileID: 4900000, guid: 0eaf66cdcce64b44baba75f4f02632b2, type: 3}
-  - {fileID: 4900000, guid: ef21a60528083be47ad950054118a4e6, type: 3}
-  - {fileID: 4900000, guid: 77589d4d46a45194585595ca8aa380c5, type: 3}
-  - {fileID: 4900000, guid: 65f89030806528640861310c6ba8b195, type: 3}
-  - {fileID: 4900000, guid: 500defa0d81a4a448b2249a434fecec0, type: 3}
-  - {fileID: 4900000, guid: 9151b1743202f0140b6e3f596ad51899, type: 3}
-  - {fileID: 4900000, guid: f1ac7f906d3e72843adba35e436300b0, type: 3}
-  - {fileID: 4900000, guid: 7ee850c088a2e6541afcca572a5c971b, type: 3}
-  - {fileID: 4900000, guid: 3ca07091b3c07cc4989ae4959703b440, type: 3}
   - {fileID: 4900000, guid: 1789347bc6e30414c8bd798314ed9260, type: 3}
   - {fileID: 4900000, guid: 9e21e39b8d36d69469c7e08e9ecef095, type: 3}
   - {fileID: 4900000, guid: 27dd337b7d26f754c83649f0799936dd, type: 3}
@@ -5573,10 +5409,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: e875313a71eb1894bb8a996c8bf4a76b, type: 3}
   - {fileID: 4900000, guid: 0171210f43f56f242ac79aed8c4b01c4, type: 3}
   - {fileID: 4900000, guid: 9f0788c0d419c4d4280d2eff10546f96, type: 3}
-  - {fileID: 4900000, guid: 63926940c84e7704bbb70b49890d6eaf, type: 3}
-  - {fileID: 4900000, guid: 741ffdd449e836a45b579bc04243c72c, type: 3}
-  - {fileID: 4900000, guid: d726fb68604351240864865869170353, type: 3}
-  - {fileID: 4900000, guid: 3218320e10ca1d64ca98b4314e4f79a2, type: 3}
   - {fileID: 4900000, guid: f2db5f4cb5c28e84392f6899d9c7646d, type: 3}
   - {fileID: 4900000, guid: 7d382555649f89f47827f85575035825, type: 3}
   - {fileID: 4900000, guid: 235de3093a6827b4cacb197fbea3c54f, type: 3}
@@ -5587,6 +5419,14 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 25a2f4bc238c60742912e5e05aa14b02, type: 3}
   - {fileID: 4900000, guid: 051306129f3807f46bcaa85609fcc8f2, type: 3}
   - {fileID: 4900000, guid: 990b1288ef784f24abebebec7308a82e, type: 3}
+  - {fileID: 4900000, guid: ef21a60528083be47ad950054118a4e6, type: 3}
+  - {fileID: 4900000, guid: 77589d4d46a45194585595ca8aa380c5, type: 3}
+  - {fileID: 4900000, guid: 65f89030806528640861310c6ba8b195, type: 3}
+  - {fileID: 4900000, guid: 500defa0d81a4a448b2249a434fecec0, type: 3}
+  - {fileID: 4900000, guid: 9151b1743202f0140b6e3f596ad51899, type: 3}
+  - {fileID: 4900000, guid: f1ac7f906d3e72843adba35e436300b0, type: 3}
+  - {fileID: 4900000, guid: 7ee850c088a2e6541afcca572a5c971b, type: 3}
+  - {fileID: 4900000, guid: 3ca07091b3c07cc4989ae4959703b440, type: 3}
 --- !u!114 &1446291509246174839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5602,22 +5442,41 @@ MonoBehaviour:
   thumbs:
   - {fileID: 2718244367487807685, guid: 35d49845e4b32b24995d2c2f4a6301a5, type: 3}
   - {fileID: 7170683178188298545, guid: 6f3e591ddaff5b84e9d0bdc88b0a03cf, type: 3}
+  - {fileID: 2486096054995552361, guid: 9f83b044038a8844fa407a8c40785cd5, type: 3}
   - {fileID: 4212835508375194654, guid: 27f44eb0132c1514ba0e9ae2cb7243e5, type: 3}
   - {fileID: 5403031870173960722, guid: 767f1786bc247004eadcdf1667e95c89, type: 3}
+  - {fileID: 4567210256181747217, guid: 122609f499c0f7349b7913e2224585aa, type: 3}
   - {fileID: 4212835508375194654, guid: 503b624deb5cb0b45a83c0c86754c2a5, type: 3}
+  - {fileID: 1611698799120769256, guid: 25233d8d6a29bd645a68fb9e2492f88e, type: 3}
   - {fileID: 6374430030169679532, guid: ffbc0c154152bf3418e6b7e9fa3667b9, type: 3}
+  - {fileID: 8226723368545543942, guid: dc4219d55848a6a428130ecbd36d6983, type: 3}
+  - {fileID: 5949379789455952864, guid: dfe4bd54273cc9d43b61c25818bf91ee, type: 3}
   - {fileID: 6374430030169679532, guid: d556f8c231661294292b27e4f202a88a, type: 3}
+  - {fileID: 5953691807663329063, guid: b7c4f64e5b66a9a45b8acad520fc4148, type: 3}
+  - {fileID: 6471065135930875561, guid: 816854a3b64098e47b714b7dd25817e1, type: 3}
+  - {fileID: 2002493005132355326, guid: a07cd2c871e60334689cceacca6e28fc, type: 3}
+  - {fileID: 7396400840603749725, guid: 859d8deb6aaa02842b7e05930dbeae05, type: 3}
   - {fileID: 8721991466743050337, guid: aab0b30ab97162448aeadde349baa33a, type: 3}
   - {fileID: 6970746273841673394, guid: 2c8491db50bb83042b1016744d57b49d, type: 3}
+  - {fileID: 5511231987331668885, guid: 1297865d2a964e048807751a4af34408, type: 3}
   - {fileID: 4212835508375194654, guid: a5801a0c3a398ce4e87a2f57d3680906, type: 3}
+  - {fileID: 7322199446010493095, guid: 5c0f23ed421452c4ca81bd04ad941217, type: 3}
   - {fileID: 3550704808332784008, guid: 96ba619c5f77f924d806424543f35bb2, type: 3}
+  - {fileID: 4185024685760862240, guid: f6035e5317309c840beb5fc43b724ed5, type: 3}
   - {fileID: 8336598816641981946, guid: 1c1cdfc8d2077ea43a0cc608a01a3c14, type: 3}
+  - {fileID: 1608883335635784777, guid: 92ff140ecee07f548b3b9fb10815321f, type: 3}
+  - {fileID: 1279402273831124133, guid: ba887cf2c52f5ec4ab3f6748d04d510d, type: 3}
   - {fileID: 8336598816641981946, guid: e13904f19ca87084a817bdcf228995a9, type: 3}
+  - {fileID: 1663050610190436899, guid: 036ac931524a2d8408011708ffd06539, type: 3}
+  - {fileID: 4148683098793846203, guid: 9d53baaa1ba7ec841aafc80117c60f79, type: 3}
   - {fileID: 5533466206077688710, guid: afb514cd2e9b6b64a840a6f14abcf49d, type: 3}
   - {fileID: 4212835508375194654, guid: 7af12b9af0435ff4fbea439f5b9e04ae, type: 3}
   - {fileID: 2846929835403378652, guid: 3516def84b260e042a819797be509682, type: 3}
+  - {fileID: 6277792821134282188, guid: c20363957d3a6ed48a27941174ff647e, type: 3}
+  - {fileID: 804684433970327856, guid: 5f347d6d24bbe2c4891fca2cf679cde1, type: 3}
   - {fileID: 6943941813148128921, guid: fae21c0bdea10f04ab349a7fa1ec9787, type: 3}
   - {fileID: 1989081893743840872, guid: f6a3a981ebe5b844396af9e2841bffb4, type: 3}
+  - {fileID: 980931033368244530, guid: f702d022a1bbcd24ab9cee0c82464741, type: 3}
   sprites:
   - {fileID: 21300000, guid: 9ee0e02ce5e22124685f260647ba4496, type: 3}
   - {fileID: 21300000, guid: a97eda0ad7082714b8a10a6e2758697f, type: 3}
@@ -5626,6 +5485,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 099bc3b1cc66c8b43a83fd1a25fd3d47, type: 3}
   - {fileID: 21300000, guid: f4e07274f76223c4093db8cd5306f4b4, type: 3}
   - {fileID: 21300000, guid: bf85fa9179609764186fc1c6893037e1, type: 3}
+  - {fileID: 21300000, guid: 8702817173acc6a478764ec9fcef1ec5, type: 3}
+  - {fileID: 21300000, guid: e2da48326e8a67241b3cb5f2306f0a06, type: 3}
   - {fileID: 21300000, guid: 94c53e1d791400c459a34daa24f68c2c, type: 3}
   - {fileID: 21300000, guid: cfea5fc52394609418c176a46b4f5b77, type: 3}
   - {fileID: 21300000, guid: 464c002ceeb2e684b9d4edcab94f92a2, type: 3}
@@ -5633,9 +5494,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a6c0df8b7663ecc4080d84cf7fe0ab74, type: 3}
   - {fileID: 21300000, guid: 086d55482b02e304d923aa08a972a622, type: 3}
   - {fileID: 21300000, guid: 54048fbe33c51c14caea36b159015e23, type: 3}
+  - {fileID: 21300000, guid: c0234bbd13c6dd34e80432d8c571b15f, type: 3}
   - {fileID: 21300000, guid: fe892d3afc3837f4d8424b63d07f02d2, type: 3}
   - {fileID: 21300000, guid: d7716c65a5cd3334c919054954023add, type: 3}
+  - {fileID: 21300000, guid: efa4960c3cbc9e346a2d7c22a25b7122, type: 3}
+  - {fileID: 21300000, guid: 9e6e40c5aaa54b64cabd46e1fb7a1e50, type: 3}
   - {fileID: 21300000, guid: e98880cb901762b46b4adbd9fe6c7cd4, type: 3}
   - {fileID: 21300000, guid: c6c153219b4e8d04b82a331bdbb7d283, type: 3}
-  - {fileID: 21300000, guid: 9e6e40c5aaa54b64cabd46e1fb7a1e50, type: 3}
-  - {fileID: 21300000, guid: efa4960c3cbc9e346a2d7c22a25b7122, type: 3}
+  - {fileID: 21300000, guid: 368eac7a9efa6704f938d49940a20066, type: 3}
