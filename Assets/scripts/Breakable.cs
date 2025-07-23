@@ -191,9 +191,10 @@ public class Breakable : MonoBehaviour {
                 print($"<color=#20E7B0>Borra collieder</color>");
                 bc.enabled = false;
             }
-            //if (mr.material.HasProperty("_Color"))
-            //{
-            //}
+            if (mr.material.HasProperty("_Color"))
+            {
+                colors[id] = mr.material.color;
+            }
             Transform t = mr.transform;
             pos[id] = t.position;
             scale[id] = t.localScale.x;

@@ -12,21 +12,22 @@ public class PixelPart : MonoBehaviour {
     {
         get { return rb; }
     }
+	Color color;
 	public void Init(Color newColor)
 	{
 		Invoke ("Reset", 2);
 
-		//if (color == newColor)
-		//	return;
+		if (color == newColor)
+			return;
 		
-		//this.color = newColor;
+		this.color = newColor;
 
-  //      MaterialPropertyBlock mat = new MaterialPropertyBlock();
-  //      mr.GetPropertyBlock(mat);
-  //      mat.SetColor("_Color", color);
-  //      mr.SetPropertyBlock(mat);
+        MaterialPropertyBlock mat = new MaterialPropertyBlock();
+        mr.GetPropertyBlock(mat);
+        mat.SetColor("_Color", color);
+        mr.SetPropertyBlock(mat);
 
-        //mr.material.color = color;
+        mr.material.color = color;
 
 	}
 	void Reset()
