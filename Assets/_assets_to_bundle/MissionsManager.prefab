@@ -65,6 +65,7 @@ MonoBehaviour:
     - boy_conejitos
     - gallax_curvo
     - per_geometrias
+    - boy_init_sapos
     - boy_3
     - gallax_curvo2
     - per_bossEscupenHilera
@@ -1051,10 +1052,20 @@ MonoBehaviour:
         - descansoAnchoMinimal
         cameraOrientation: {x: 0, y: -2, z: 0}
       - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 3
+        bending: 1
+        randomize: 0
+        areas:
+        - slider1
+        - slider2
+        cameraOrientation: {x: 0, y: 12, z: -1}
+      - totalDistanceToCamFX: 0
         boss: 1
         json: {fileID: 0}
         total_areas: 4
-        bending: 0
+        bending: -10
         randomize: 0
         areas:
         - entrance
@@ -1314,6 +1325,127 @@ MonoBehaviour:
     - videoGameID: 0
       defaultContinuePrice: 15000
       continuePrice: 0
+      jsonName: boy_init_sapos
+      title: JUMPING FROGS
+      id: 0
+      maxScore: 460
+      fondo: wonderland_nubes
+      areaSetData:
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 3
+        bending: 0
+        randomize: 1
+        areas:
+        - heliceSmall
+        - heliceSmall2
+        - heliceDoubleSmall
+        cameraOrientation: {x: 0, y: -1, z: -1}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 3
+        bending: -14
+        randomize: 1
+        areas:
+        - saposLinea
+        cameraOrientation: {x: 0, y: -4, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -18
+        randomize: 0
+        areas:
+        - descansoAnchoMinimal
+        cameraOrientation: {x: 0, y: 2, z: -1.5}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -14
+        randomize: 1
+        areas:
+        - anchoCalleHelicesSapos
+        cameraOrientation: {x: 0, y: -4, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 1
+        areas:
+        - heliceSmall
+        - heliceSmall2
+        - heliceDoubleSmall
+        cameraOrientation: {x: 0, y: -1, z: -1}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 5
+        bending: -1
+        randomize: 0
+        areas:
+        - saposLinea
+        - subibajaSapos1
+        - subibajaSapos2
+        cameraOrientation: {x: 0, y: 0, z: -3}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -18
+        randomize: 1
+        areas:
+        - boss_free_agua
+        cameraOrientation: {x: 0, y: 2, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 3
+        bending: -1
+        randomize: 0
+        areas:
+        - saposLinea
+        cameraOrientation: {x: 0, y: 0, z: -3}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - pisoCurvo0
+        - pisoCurvo0
+        - pisoCurvo1
+        - pisoCurvo2
+        - pisoCurvo4
+        - pisoCurvo5
+        cameraOrientation: {x: 0, y: -4.6, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 4
+        bending: -13
+        randomize: 1
+        areas:
+        - subibajaSapos1
+        - subibajaSapos2
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 0
+        areas:
+        - Ending
+        cameraOrientation: {x: 0, y: -2.5, z: -4}
+  - data:
+    - videoGameID: 0
+      defaultContinuePrice: 15000
+      continuePrice: 0
       jsonName: boy_3
       title: calles pacmaneras
       id: 0
@@ -1329,6 +1461,19 @@ MonoBehaviour:
         areas:
         - descansoAnchoMinimal
         cameraOrientation: {x: 0, y: 5, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: -10
+        randomize: 0
+        areas:
+        - slider_intro
+        - slider_intro1
+        - slider_intro2
+        - slider_intro3
+        - slider_intro4
+        cameraOrientation: {x: 0, y: 5, z: -4}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -1599,6 +1744,15 @@ MonoBehaviour:
         areas:
         - enemiesRunnersSmall_2Palms
         cameraOrientation: {x: 0, y: 2, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 3
+        bending: -1
+        randomize: 0
+        areas:
+        - saposLinea
+        cameraOrientation: {x: 0, y: 0, z: -3}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -1978,6 +2132,15 @@ MonoBehaviour:
         - coinsHard3
         cameraOrientation: {x: 0, y: 1, z: 0}
       - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 3
+        bending: -1
+        randomize: 0
+        areas:
+        - saposLinea
+        cameraOrientation: {x: 0, y: 0, z: -3}
+      - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
         total_areas: 2
@@ -1987,6 +2150,17 @@ MonoBehaviour:
         - CoinsHard1
         - coinsHard1b
         cameraOrientation: {x: 0, y: 5, z: -4}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 3
+        bending: -1
+        randomize: 0
+        areas:
+        - saposLinea
+        - subibajaSapos1
+        - subibajaSapos2
+        cameraOrientation: {x: 0, y: 0, z: -3}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
@@ -2782,6 +2956,16 @@ MonoBehaviour:
         areas:
         - container_cruz
         - container_cruz_2
+        cameraOrientation: {x: 0, y: 0, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: -13
+        randomize: 1
+        areas:
+        - subibajaSapos1
+        - subibajaSapos2
         cameraOrientation: {x: 0, y: 0, z: 0}
       - totalDistanceToCamFX: 0
         boss: 0
@@ -5117,7 +5301,7 @@ MonoBehaviour:
       defaultContinuePrice: 15000
       continuePrice: 0
       jsonName: boy_sombrillas
-      title: SOMBRILLAS SALTARINAS
+      title: LAST CRUSADER
       id: 0
       maxScore: 0
       fondo: wonderland_ghosts
@@ -5295,6 +5479,12 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 261bd749ca1f4aa47a28e8aefcc7da95, type: 3}
   - {fileID: 4900000, guid: f1fe8a8239539e642a48123a979bca45, type: 3}
   - {fileID: 4900000, guid: 08db436c72d90294cb649ef49de81d2b, type: 3}
+  - {fileID: 4900000, guid: 96f4d409e2853df4b9d7029b6f41a564, type: 3}
+  - {fileID: 4900000, guid: 193c182aa17973f47adf249921bbbb7e, type: 3}
+  - {fileID: 4900000, guid: 348c02d59681d00429795874c45f04a9, type: 3}
+  - {fileID: 4900000, guid: 2be33950a720e4b4388e5db5f285afa8, type: 3}
+  - {fileID: 4900000, guid: 6683f602d3ad2f441ac848254f5960b5, type: 3}
+  - {fileID: 4900000, guid: c8e48d98644f6f74187101df2ad5bffe, type: 3}
   - {fileID: 4900000, guid: db3882e293b8f54438cd5b9a943b1d55, type: 3}
   - {fileID: 4900000, guid: 2a88040933d3c614093dbbcfcee24b1c, type: 3}
   - {fileID: 4900000, guid: daf7b51d969c64448bc1cd4fa73ff85d, type: 3}
@@ -5346,14 +5536,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 32ab4e62b15063d42a082e9979b48ae4, type: 3}
   - {fileID: 4900000, guid: 10927dc594926d04fbe925b2734986da, type: 3}
   - {fileID: 4900000, guid: 8f625183c8bd750439ff3e243f792581, type: 3}
-  - {fileID: 4900000, guid: 6683f602d3ad2f441ac848254f5960b5, type: 3}
-  - {fileID: 4900000, guid: c8e48d98644f6f74187101df2ad5bffe, type: 3}
   - {fileID: 4900000, guid: 0b61c1e09a39f0848a72f53b9f7b2ec2, type: 3}
-  - {fileID: 4900000, guid: 96f4d409e2853df4b9d7029b6f41a564, type: 3}
   - {fileID: 4900000, guid: dc36584feab260c41a63ef4a5a3b874e, type: 3}
   - {fileID: 4900000, guid: 288ec9791fff7844f910266f5afc023d, type: 3}
-  - {fileID: 4900000, guid: 348c02d59681d00429795874c45f04a9, type: 3}
-  - {fileID: 4900000, guid: 2be33950a720e4b4388e5db5f285afa8, type: 3}
   - {fileID: 4900000, guid: 7bc4d3aedc2b4394a851ba22d984c644, type: 3}
   - {fileID: 4900000, guid: 40be162716373ef4ba64cf244f96fd86, type: 3}
   - {fileID: 4900000, guid: 47828f1b1c03daf4aa2fb0c003b901dd, type: 3}
@@ -5532,7 +5717,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: f14f95467ef2c1f429a1481a00919543, type: 3}
   - {fileID: 4900000, guid: fe1bf420b55c31d43ad0b89f81d4e956, type: 3}
   - {fileID: 4900000, guid: 08a79f211c4d7ca42bf3862b51f7056e, type: 3}
-  - {fileID: 4900000, guid: 193c182aa17973f47adf249921bbbb7e, type: 3}
   - {fileID: 4900000, guid: 79c610862ac43b24aa26b3e5b8aa635d, type: 3}
   - {fileID: 4900000, guid: efca781cad69f284686c816fc7775df8, type: 3}
   - {fileID: 4900000, guid: 979e92c2378046848883f6ce96700110, type: 3}
@@ -5607,6 +5791,9 @@ MonoBehaviour:
   - {fileID: 6943941813148128921, guid: fae21c0bdea10f04ab349a7fa1ec9787, type: 3}
   - {fileID: 1989081893743840872, guid: f6a3a981ebe5b844396af9e2841bffb4, type: 3}
   - {fileID: 980931033368244530, guid: f702d022a1bbcd24ab9cee0c82464741, type: 3}
+  - {fileID: 7374469504172651760, guid: 8bd8e40a7a804674e95b2a4fd20d9f9d, type: 3}
+  - {fileID: 3673587277661966652, guid: 5576e0cf325134c4b94213c890636496, type: 3}
+  - {fileID: 5343099981725934305, guid: 60c5d19b6adb5044db12fd9403777170, type: 3}
   sprites:
   - {fileID: 21300000, guid: 9ee0e02ce5e22124685f260647ba4496, type: 3}
   - {fileID: 21300000, guid: a97eda0ad7082714b8a10a6e2758697f, type: 3}

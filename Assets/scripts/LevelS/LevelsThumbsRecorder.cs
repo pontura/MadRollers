@@ -54,7 +54,7 @@ public class LevelsThumbsRecorder : MonoBehaviour
             return;
         }
         GameObject newGO = Instantiate(go, container);
-        newGO.transform.position = new Vector2(id*10, 0);
+        newGO.transform.position = new Vector2(id*20, 0);
         all.Add(id, newGO);
         newGO.SetActive(true);
         CreateRenderTexture(newGO);
