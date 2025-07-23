@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class MainMenuMobile : MonoBehaviour
 {
-    public Text playField;
-    public Text registerField;
-
+    [SerializeField] TMPro.TMP_Text welcomeField;
     public GameObject DonePanel;
     public GameObject RegisterPanel;
 
@@ -21,7 +16,7 @@ public class MainMenuMobile : MonoBehaviour
         Data.Instance.videogamesData.Reset();
         Data.Instance.missions.Reset();
 
-        playField.text = TextsManager.Instance.GetText("PLAY");
+        welcomeField.text = "HELLO " + UserData.Instance.username.ToUpper();
        // registerField.text = TextsManager.Instance.GetText("REGISTER");
 
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
