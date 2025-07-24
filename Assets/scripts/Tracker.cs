@@ -36,7 +36,10 @@ public class Tracker : MonoBehaviour {
         if (FirebaseApp.DefaultInstance == null)
             mission_tries = 0;
         int id = Data.Instance.missions.MissionActiveID;
-        FirebaseAnalytics.LogEvent("mission_init", "mission_init_mission_id", id);
+        FirebaseAnalytics.LogEvent(
+           "mission_init",
+           new Parameter("mission_init_mission_id", id)
+       );
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
@@ -53,18 +56,26 @@ public class Tracker : MonoBehaviour {
     void OnMissionComplete(int id)
     {
         if (!FirebaseOn()) return;
-        FirebaseAnalytics.LogEvent("mission_complete", "mission_complete_mission_id", id);
+
+        FirebaseAnalytics.LogEvent(
+            "mission_complete",
+            new Parameter("mission_complete_mission_id", id)
+        );
     }
     public void WatchAd()
     {
         if (!FirebaseOn()) return;
         int id = Data.Instance.missions.MissionActiveID;
-        FirebaseAnalytics.LogEvent("watch_ad", "watch_ad_mission_id", id);
+        FirebaseAnalytics.LogEvent("watch_ad",
+            new Parameter("watch_ad_mission_id", id)
+            );
     }
     public void ContinuePaid()
     {
         if (!FirebaseOn()) return;
         int id = Data.Instance.missions.MissionActiveID;
-        FirebaseAnalytics.LogEvent("continue_paid", "continue_paid_mission_id", id);
+        FirebaseAnalytics.LogEvent("continue_paid",
+           new Parameter("continue_paid_mission_id", id)
+           );
     }
 }
