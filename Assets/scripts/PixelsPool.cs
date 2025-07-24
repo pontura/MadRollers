@@ -5,35 +5,39 @@ using UnityEngine;
 public class PixelsPool : MonoBehaviour {
 
 	Transform poolContainer;
-	Transform sceneContainer;
+	//Transform sceneContainer;
 	List<PixelPart> all;
 	[SerializeField] PixelPart pixelPart;
 
 	public void Init (Transform poolContainer, Transform sceneContainer) {
         all = new List<PixelPart>();
         this.poolContainer = poolContainer;
-		this.sceneContainer = sceneContainer;
-		for (int a = 0; a < 140; a++) {
+		for (int a = 0; a < 200; a++) {
 			PixelPart pp = Instantiate (pixelPart);
 			pp.gameObject.SetActive (false);
 			all.Add (pp);
-			pp.transform.SetParent (poolContainer);
-		}
+			pp.transform.SetParent (poolContainer); 
+			pp.Rb.isKinematic = false;
+        }
 	}
 	PixelPart GetPart()
 	{
 		if (all.Count == 0)
 			return null;
-		PixelPart pp = all [0];
-		all.RemoveAt (0);
-		return pp;
+		foreach (PixelPart pp in all)
+		{
+			if(!pp.gameObject.activeSelf)
+			{
+                pp.gameObject.SetActive(true);
+                return pp;
+
+            }
+		}
+		return null;
 	}
 	public void Pool(PixelPart pp)
 	{
-        pp.Rb.isKinematic = true;
         pp.gameObject.SetActive (false);
-		all.Add (pp);
-		pp.transform.SetParent (poolContainer);
 	}
 	public void AddPixelsByBreaking(Vector3 position, Color[] colors, Vector3[] pos, float[] scale)
 	{
@@ -43,7 +47,6 @@ public class PixelsPool : MonoBehaviour {
 		{
 			PixelPart pp = GetPart();
 			if (pp == null) return;
-				//pp.transform.SetParent (sceneContainer);
 			pp.gameObject.SetActive (true);
 			pp.transform.position = pos[a];
             float s = scale[a];
@@ -59,7 +62,7 @@ public class PixelsPool : MonoBehaviour {
                 rot_y = a * (360 / NumOfParticles);
             pp.transform.localEulerAngles = new Vector3 (0, rot_y, 0);
 			Vector3 direction = ((pp.transform.forward * force) + (Vector3.up * (force * 2)));				
-            pp.Rb.isKinematic = false; 
+
 			pp.Rb.linearVelocity = Vector3.zero;
             pp.Rb.AddForce (direction, ForceMode.Impulse);
 			pp.Init(colors[a]);
@@ -67,7 +70,7 @@ public class PixelsPool : MonoBehaviour {
 	}
 	public void PoolAll()
 	{
-		foreach(PixelPart pp in sceneContainer.GetComponentsInChildren<PixelPart>())
+		foreach(PixelPart pp in all)
 			Pool(pp);
 	}
 }
