@@ -38,12 +38,19 @@ public class MadRollersSFX : MonoBehaviour {
 	public AudioSource player4;
 
 	void Start () {
-        DontDestroyOnLoad(this);
-        Data.Instance.events.OnMadRollerFX += OnMadRollerFX;	
-		Data.Instance.events.OnGameOver += OnGameOver;
-		Data.Instance.events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
-        
-        OnMadRollersSFXStatus( Data.Instance.madRollersSoundsOn );
+		GameObject go = GameObject.Find("madrollerssfx_NO_OVERRIDE");
+		
+        if (go != null && go != this.gameObject)
+			Destroy(this.gameObject);
+		else
+		{
+			DontDestroyOnLoad(this);
+			Data.Instance.events.OnMadRollerFX += OnMadRollerFX;
+			Data.Instance.events.OnGameOver += OnGameOver;
+			Data.Instance.events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
+
+			OnMadRollersSFXStatus(Data.Instance.madRollersSoundsOn);
+		}
 	}
     void OnDestroy()
     {
