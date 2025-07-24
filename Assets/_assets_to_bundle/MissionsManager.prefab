@@ -68,8 +68,9 @@ MonoBehaviour:
     - boy_init_sapos
     - boy_3
     - gallax_curvo2
-    - per_bossEscupenHilera
+    - boy_mario
     - boy_init_woods
+    - per_bossEscupenHilera
     - gallax_rays
     - gallax_vertical_boss
     - boy_ene_easy
@@ -1631,43 +1632,58 @@ MonoBehaviour:
         - Ending
         cameraOrientation: {x: 0, y: 2, z: -4}
   - data:
-    - videoGameID: 2
+    - videoGameID: 0
       defaultContinuePrice: 15000
       continuePrice: 0
-      jsonName: per_bossEscupenHilera
-      title: INFERNAL GARGOYLES
+      jsonName: boy_mario
+      title: KILL MARIO
       id: 0
-      maxScore: 1000
-      fondo: inferno
+      maxScore: 3000
+      fondo: castles_helicopteros
       areaSetData:
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
-        total_areas: 2
+        total_areas: 1
         bending: -2
-        randomize: 1
+        randomize: 0
         areas:
-        - cuboGiratorioFrente
-        cameraOrientation: {x: 0, y: 5, z: -2}
+        - enemigosDoble
+        - enemigosDobleEnemies
+        cameraOrientation: {x: 0, y: -10, z: 0}
       - totalDistanceToCamFX: 0
         boss: 0
         json: {fileID: 0}
         total_areas: 1
-        bending: -1
+        bending: 5
         randomize: 1
         areas:
-        - descansoSimpleCoins
-        cameraOrientation: {x: 0, y: -8, z: 0}
+        - sliderHard1
+        cameraOrientation: {x: 0, y: -10, z: -4}
       - totalDistanceToCamFX: 0
         boss: 1
         json: {fileID: 0}
-        total_areas: 2
-        bending: -13
+        total_areas: 3
+        bending: -16
         randomize: 0
         areas:
-        - escupe_boss
-        - escupeBoss_free1
-        cameraOrientation: {x: 0, y: 2, z: -1}
+        - boss_Pacmans_intro_free_simple
+        - boss_mario
+        - boss_Pacmans_intro_free
+        cameraOrientation: {x: 0, y: 10, z: -3}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1000
+        bending: -8
+        randomize: 1
+        areas:
+        - boss_Pacmans_intro_free
+        - boss_Pacmans_intro_free2
+        - boss_free_fences
+        - boss_agua_fences
+        - descansoEstrellas
+        cameraOrientation: {x: 0, y: 3, z: -5}
   - data:
     - videoGameID: 0
       defaultContinuePrice: 15000
@@ -1826,6 +1842,44 @@ MonoBehaviour:
         areas:
         - Ending
         cameraOrientation: {x: 0, y: -2.5, z: -4}
+  - data:
+    - videoGameID: 2
+      defaultContinuePrice: 15000
+      continuePrice: 0
+      jsonName: per_bossEscupenHilera
+      title: INFERNAL GARGOYLES
+      id: 0
+      maxScore: 1000
+      fondo: inferno
+      areaSetData:
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: -2
+        randomize: 1
+        areas:
+        - cuboGiratorioFrente
+        cameraOrientation: {x: 0, y: 5, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: -1
+        randomize: 1
+        areas:
+        - descansoSimpleCoins
+        cameraOrientation: {x: 0, y: -8, z: 0}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 2
+        bending: -13
+        randomize: 0
+        areas:
+        - escupe_boss
+        - escupeBoss_free1
+        cameraOrientation: {x: 0, y: 2, z: -1}
   - data:
     - videoGameID: 1
       defaultContinuePrice: 15000
@@ -5494,8 +5548,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 2d9109b585ad2e8478fb424919bca867, type: 3}
   - {fileID: 4900000, guid: 31b7f4ac04688904296b64433e240956, type: 3}
   - {fileID: 4900000, guid: e2d67c86acf6d5645ab57c54e5f088ff, type: 3}
-  - {fileID: 4900000, guid: fc245ea5ee886fe43884e9d012163a06, type: 3}
-  - {fileID: 4900000, guid: 84ef166e07437e5448c52bce7e0fd166, type: 3}
+  - {fileID: 4900000, guid: b53689609cc460040a5933f3757617a7, type: 3}
   - {fileID: 4900000, guid: 69727ab550ed0364c8343b7b6d0e5d5a, type: 3}
   - {fileID: 4900000, guid: de9426ae1656165458693dc728231454, type: 3}
   - {fileID: 4900000, guid: 2bf8b601cefd64644bd94e35d965ab9c, type: 3}
@@ -5505,6 +5558,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 6848b05d33aee9849ac2ac36ca675cda, type: 3}
   - {fileID: 4900000, guid: 85a7ada6ac7e76540a22de132a5a20b9, type: 3}
   - {fileID: 4900000, guid: 27d3dca4572a9964a84c1ab7306f8a03, type: 3}
+  - {fileID: 4900000, guid: fc245ea5ee886fe43884e9d012163a06, type: 3}
+  - {fileID: 4900000, guid: 84ef166e07437e5448c52bce7e0fd166, type: 3}
   - {fileID: 4900000, guid: cbb7fd932941dfd4e80ff3b8f7389269, type: 3}
   - {fileID: 4900000, guid: 9aa0fd1009921004db82ea34c9240a0b, type: 3}
   - {fileID: 4900000, guid: e922862639d1244438bef4324c7a9b92, type: 3}
@@ -5794,6 +5849,7 @@ MonoBehaviour:
   - {fileID: 7374469504172651760, guid: 8bd8e40a7a804674e95b2a4fd20d9f9d, type: 3}
   - {fileID: 3673587277661966652, guid: 5576e0cf325134c4b94213c890636496, type: 3}
   - {fileID: 5343099981725934305, guid: 60c5d19b6adb5044db12fd9403777170, type: 3}
+  - {fileID: 4225801138991497227, guid: 5bf922c50cf42ab4ba321f95a33a9ebd, type: 3}
   sprites:
   - {fileID: 21300000, guid: 9ee0e02ce5e22124685f260647ba4496, type: 3}
   - {fileID: 21300000, guid: a97eda0ad7082714b8a10a6e2758697f, type: 3}
