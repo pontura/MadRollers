@@ -6,7 +6,6 @@ public class MusicManager : MonoBehaviour {
     [SerializeField] private AudioClip explotionAudioClip;
     [SerializeField] private AudioClip interfaces;
     [SerializeField] private AudioClip heartClip;
-    [SerializeField] private AudioClip consumeHearts;
     [SerializeField] private AudioClip deathFX;
     [SerializeField] private AudioClip enemyShout;
     [SerializeField] private AudioClip enemyDead;

@@ -610,10 +610,13 @@ public class CharacterBehavior : MonoBehaviour {
 
 		state = states.CRASH;
 		rb.linearVelocity = Vector3.zero;
-		rb.AddForce(new Vector3(Random.Range(-500,500), 1500, Random.Range(0,-200)), ForceMode.Impulse);
-		rb.freezeRotation = false;
+		rb.AddForce(new Vector3(Random.Range(-500,500), 2500, Random.Range(0,-200)), ForceMode.Impulse);
+		int torqueAmount = Random.Range(1000, 2000);
 
-		madRoller.Play("hit");
+        rb.freezeRotation = false;
+        rb.AddTorque(Vector3.right * torqueAmount, ForceMode.Impulse);
+
+        madRoller.Play("hit");
 
 		if (player.charactersManager.characters.Count >1) return;
 
