@@ -10,15 +10,13 @@ public class Automata : MonoBehaviour
     float jumpRandomTry = 2.5f;
     CharacterControls controls;
 
-    public void Init(CharacterBehavior cb)
+    public void Init(CharacterBehavior cb, bool firstTime)
     {
         controls = cb.GetComponent<CharacterControls>();
         this.cb = cb;
         StopAllCoroutines();
         CancelInvoke();
-        Invoke("MoveLoop", moveRandomTry);
-        Invoke("ShootLoop", Random.Range(1f, shootRandomTry));
-        Invoke("JumpLoop", jumpRandomTry);
+       
         cb.GetComponent<CharacterControls>().isAutomata = true;
         if(Data.Instance.missions.MissionActiveID == 1)
         {
@@ -34,6 +32,15 @@ public class Automata : MonoBehaviour
             shootRandomTry *= 1.25f;
             jumpRandomTry *= 1.2f;
         }
+        if (firstTime)
+            Invoke("InitActing", 3);
+        else InitActing();
+    }
+    void InitActing()
+    {
+        Invoke("MoveLoop", moveRandomTry);
+        Invoke("ShootLoop", Random.Range(1f, shootRandomTry));
+        Invoke("JumpLoop", jumpRandomTry);
     }
     bool CanDoIt()
     {

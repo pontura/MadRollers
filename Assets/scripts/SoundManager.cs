@@ -1,22 +1,54 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Threading;
+using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    
 
     public AudioSource audioSource;
+    public AudioSource audioSourceGrab;
+    public AudioSource audioSourceFloorExplotions;
+
+    [SerializeField] AudioClip typing;
+    [SerializeField] AudioClip boss_punch;
+    [SerializeField] AudioClip boss_attack_init;
+    [SerializeField] AudioClip bossDie;
+    [SerializeField] AudioClip fire_me;
+    [SerializeField] AudioClip fire_other;
+    [SerializeField] AudioClip floor;
+    [SerializeField] AudioClip coin;
+    [SerializeField] AudioClip combo;
+    [SerializeField] AudioClip FX_break;
+    [SerializeField] AudioClip explotion;
+    [SerializeField] AudioClip hit;
+    [SerializeField] AudioClip laser;
+    [SerializeField] AudioClip whip;
+    [SerializeField] AudioClip countDownStart;
+    [SerializeField] AudioClip countDown;
+    [SerializeField] AudioClip laserDrop;
+
+    [SerializeField] AudioClip pixelGrab;
+    [SerializeField] AudioClip deathFX;
+    [SerializeField] AudioClip enemyDead;
+    [SerializeField] AudioClip continueClip;
+
+
     private AudioSource loopAudioSource;
     public float volume;
 
     void Start()
     {
-        OnSoundsVolumeChanged(volume);		
+        audioSourceFloorExplotions.clip = explotion;
+        audioSourceGrab.clip = pixelGrab;
+        
+        OnSoundsVolumeChanged(volume);
+
+        Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
         Data.Instance.events.OnSoundFX += OnSoundFX;
 		Data.Instance.events.OnSFXStatus += OnSFXStatus;
+        Data.Instance.events.OnGrabHeart += OnGrabHeart;
+        Data.Instance.events.OnAddExplotion += OnAddExplotion;
 
-		if (!Data.Instance.soundsFXOn)
+        if (!Data.Instance.soundsFXOn)
 			audioSource.enabled = false;
 	}
 	void OnSFXStatus(bool isOn)
@@ -25,17 +57,33 @@ public class SoundManager : MonoBehaviour
 	}
     void OnHeroDie()
     {
-        OnSoundFXLoop("");
     }
     void OnDestroy()
     {
+        Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
         Data.Instance.events.OnSoundFX -= OnSoundFX;
 		Data.Instance.events.OnSFXStatus -= OnSFXStatus;
+        Data.Instance.events.OnGrabHeart -= OnGrabHeart;
+        Data.Instance.events.OnAddExplotion -= OnAddExplotion;
+
         if (loopAudioSource)
         {
             loopAudioSource = null;
             loopAudioSource.Stop();
         }
+    }
+
+    private void OnAvatarShoot(int playerID)
+    {
+        if (playerID == 0)
+            OnSoundFX("fire_me");
+        else
+            OnSoundFX("fire_other");
+    }
+
+    void OnAddExplotion(Vector3 pos, Color c)
+    {
+        audioSourceFloorExplotions.Play();
     }
     void OnSoundsVolumeChanged(float value)
     {
@@ -45,39 +93,15 @@ public class SoundManager : MonoBehaviour
         if (value == 0 || value == 1)
             PlayerPrefs.SetFloat("SFXVol", value);
     }
-    void OnSoundFXLoop(string soundName)
-    {
-        if (volume == 0) return;
-
-        if (!loopAudioSource)
-            loopAudioSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-
-        if (soundName != "")
-        {
-            loopAudioSource.clip = Resources.Load("Sound/" + soundName) as AudioClip;
-            loopAudioSource.Play();
-            loopAudioSource.loop = true;
-        }
-        else
-        {
-            loopAudioSource.Stop();
-        }
-    }
+   
     float nextSoundTime;
     float delayToNextSound = 0.05f;
 
-    [SerializeField] AudioClip fire;
-    [SerializeField] AudioClip floor;
-    [SerializeField] AudioClip coin;
-    [SerializeField] AudioClip combo;
-    [SerializeField] AudioClip FX_break;
-    [SerializeField] AudioClip explotion;
-    [SerializeField] AudioClip hit;
-    [SerializeField] AudioClip laser;
+  
 
-    void OnSoundFX(string soundName, int playerID)
+    void OnSoundFX(string soundName)
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         if (soundName == "")
         {
             audioSource.Stop();
@@ -94,15 +118,36 @@ public class SoundManager : MonoBehaviour
 
         switch(soundName)
         {
-            case "fire": audioSource.PlayOneShot(fire); break;
+            case "typing": audioSource.PlayOneShot(typing); break;
+            case "countDownStart": audioSource.PlayOneShot(countDownStart); break;
+            case "countDown": audioSource.PlayOneShot(countDown); break;
+            case "fire_me": audioSource.PlayOneShot(fire_me); break;
+            case "fire_other": audioSource.PlayOneShot(fire_other); break;
             case "floor": audioSource.PlayOneShot(floor); break;
             case "coin": audioSource.PlayOneShot(coin); break;
             case "combo": audioSource.PlayOneShot(combo); break;
             case "FX_break": audioSource.PlayOneShot(FX_break); break;
-            case "explotion": audioSource.PlayOneShot(explotion); break;
             case "hit": audioSource.PlayOneShot(hit); break;
             case "laser": audioSource.PlayOneShot(laser); break;
-
+            case "whip": audioSource.PlayOneShot(whip); break;
+            case "enemyDead": audioSource.PlayOneShot(enemyDead); break;
+            case "deathFX": audioSource.PlayOneShot(deathFX); break;
+            case "continueClip": audioSource.PlayOneShot(continueClip); break;
+            case "bossDie": audioSource.PlayOneShot(bossDie); break;
+            case "boss_attack_init": audioSource.PlayOneShot(boss_attack_init); break;
+            case "boss_punch": audioSource.PlayOneShot(boss_punch); break;
+            case "laserDrop": audioSource.PlayOneShot(laserDrop); break;
+        }
+    }
+    private float heartsDelay = 0.1f;
+    float nextHeartSoundTime;
+    public void OnGrabHeart()
+    {
+        if (volume == 0) return;
+        if (Time.time >= nextHeartSoundTime)
+        {
+            audioSourceGrab.Play();
+            nextHeartSoundTime = Time.time + heartsDelay;
         }
     }
     private string GetRandomSound(string[] arr)

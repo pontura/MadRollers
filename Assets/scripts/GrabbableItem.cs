@@ -55,6 +55,7 @@ public class GrabbableItem : SceneObject
 		if(hitted)
 		{
             if (player == null) return;
+            if (player.id != 0) return;
             sec += Time.deltaTime * 100;
 			Vector3 position = transform.position;
             Vector3 characterPosition = player.transform.position;
@@ -64,8 +65,7 @@ public class GrabbableItem : SceneObject
 			if(sec>20)
 			{
 				Data.Instance.events.OnScoreOn(player.id, transform.position, 10, ScoresManager.types.GRAB_PIXEL);
-                Data.Instance.events.OnGrabHeart();
-                Data.Instance.musicManager.addHeartSound();
+                Data.Instance.events.OnGrabHeart(); 
                 player = null;
                 CheckIfIsPartOfCombo();
                 Pool();

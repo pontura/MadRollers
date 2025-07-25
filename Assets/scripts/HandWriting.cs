@@ -38,7 +38,7 @@ public class HandWriting : MonoBehaviour {
             yield return null;
             StopAllCoroutines();
         }
-        Data.Instance.events.OnSoundFX("typing", -1);
+        Data.Instance.events.OnSoundFX("typing");
         field.text = ">";
 		int letterId = 0;
 		int totalWords = textToWrite.Length;
@@ -54,7 +54,7 @@ public class HandWriting : MonoBehaviour {
 				yield return new WaitForSeconds (speed);
 			}
 		}
-        Data.Instance.events.OnSoundFX("", -1);
+        Data.Instance.events.OnSoundFX("");
         if (OnReadyFunc != null)
 			OnReadyFunc ();
 		yield return null;

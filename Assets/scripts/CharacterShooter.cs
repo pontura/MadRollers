@@ -89,7 +89,6 @@ public class CharacterShooter : MonoBehaviour {
 			characterBehavior.madRoller.Play("shoot");
 
 		characterBehavior.shooter.weapon.Shoot();
-		Data.Instance.events.OnSoundFX("fire", characterBehavior.player.id);
 
 		lastShot = Time.time;
 

@@ -55,7 +55,6 @@ public class Data : MonoBehaviour {
 
 	public LoadingAsset loadingAsset;
     public AssetsBundleLoader assetsBundleLoader ;
-    public MusicManager musicManager;
     public FramesController framesController;
     public CurvedWorldManager curvedWorldManager;
 
@@ -246,10 +245,10 @@ public class Data : MonoBehaviour {
         Data.Instance.LoadLevel("Game");
         yield return new WaitForSeconds(3.5f); 
         
-        Data.Instance.musicManager.stopAllSounds();
+        MusicManager.Instance.stopAllSounds();
 
         Data.Instance.events.OnStartGameScene();
-        Data.Instance.musicManager.ChangePitch(0.2f);
+        MusicManager.Instance.ChangePitch(0.2f);
 
     }
    

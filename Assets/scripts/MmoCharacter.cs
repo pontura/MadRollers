@@ -40,9 +40,10 @@ public class MmoCharacter : SceneObject
     }
 
 	public void Die() {
+
 		if(state== states.DEAD) return;
 
-        Data.Instance.events.OnSoundFX("FX muerte malo00", -1);
+        Data.Instance.events.OnSoundFX("enemyDead");
         setScore();
 		       
 		state = states.DEAD;

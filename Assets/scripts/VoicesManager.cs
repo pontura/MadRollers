@@ -88,7 +88,7 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnMissionComplete(int id)
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
 		PlayRandom (missionComplete);
 
 		if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
@@ -96,12 +96,12 @@ public class VoicesManager : MonoBehaviour
     }
 	void NextDestination()
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 6);
 	}
     private void OnAvatarCrash(CharacterBehavior cb)
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         if (Game.Instance.level.charactersManager.getTotalCharacters()<=1)
 			Dead ();
     }
@@ -111,7 +111,7 @@ public class VoicesManager : MonoBehaviour
     }
 	void Dead()
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         float distance = Game.Instance.level.charactersManager.distance;
 		if (distance < 100)
 			PlayRandom (lose_bad);
@@ -125,7 +125,7 @@ public class VoicesManager : MonoBehaviour
     }
     public void PlayCountDown(int id)
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         if (IsBundleReady())
             PlayClip(countDown[id].audioClip);
     }
@@ -135,7 +135,7 @@ public class VoicesManager : MonoBehaviour
 	List<VoiceData> sequenceSaying;
 	public void PlaySequence( List<VoiceData> clips)
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         if (!IsBundleReady())
             return;
         if (clips.Count == 0)
@@ -149,7 +149,7 @@ public class VoicesManager : MonoBehaviour
 	}
 	void PlayNextSequencedClip()
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         if (!IsBundleReady())
             return;
         VoiceData newAudio = sequenceSaying[sequenceID];
@@ -164,14 +164,14 @@ public class VoicesManager : MonoBehaviour
 	}
 	public void PlaySpecificClipFromList( List<VoiceData> clips, int id)
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         if (!IsBundleReady())
             return;
         PlayClip(clips[id].audioClip); 
 	}
 	public void PlayRandom( List<VoiceData> clips)
     {
-        if (Data.Instance.musicManager.mute) return;
+        if (MusicManager.Instance.mute) return;
         if (!IsBundleReady())
             return;
         int rand = UnityEngine.Random.Range(0, clips.Count);

@@ -64,7 +64,7 @@ public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
         }
 
         scene.gameObject.SetActive(true);
-        Data.Instance.events.OnSoundFX("whip", -1);
+        Data.Instance.events.OnSoundFX("whip");
         List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;        
         int videoGameID = MissionsManager.Instance.GetMission(MissionActiveID).videoGameID;
         VoicesManager.Instance.PlaySpecificClipFromList(list, videoGameID);
@@ -103,7 +103,7 @@ public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
         yield return new WaitForSeconds(0.05f);
         isLoading = true;
         yield return new WaitForSeconds(3);
-        Data.Instance.musicManager.OnLoadingMusic();
+        MusicManager.Instance.OnLoadingMusic();
         yield return new WaitForSeconds(2.8f);
         //Data.Instance.playMode = Data.PlayModes.STORYMODE;
         Data.Instance.LoadLevel("Game");

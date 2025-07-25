@@ -38,8 +38,7 @@ public class Laser : SceneObject {
 	{
 		if (isBeenBroken ()) return;
 		laser.SetActive (true);
-
-		Vector3 initPos = parts [0].transform.localPosition;
+        Vector3 initPos = parts [0].transform.localPosition;
 		Vector3 lastPos = parts [1].transform.localPosition;
 		Vector3 newPos = initPos;
 		while (newPos.y < lastPos.y - 0.4f) {

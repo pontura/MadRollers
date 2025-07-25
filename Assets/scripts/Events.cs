@@ -19,7 +19,7 @@ public class Events : MonoBehaviour {
     public System.Action<bool> OnGameOver = delegate { };
     public System.Action OnContinue = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };
-    public System.Action<string, int> OnSoundFX = delegate { };
+    public System.Action<string> OnSoundFX = delegate { };
 	public System.Action<MadRollersSFX.types, int> OnMadRollerFX = delegate { };
     public System.Action<float> SetVolume = delegate { };
     public System.Action<bool> OnFadeALittle = delegate { };

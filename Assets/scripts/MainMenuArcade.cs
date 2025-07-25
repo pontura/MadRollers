@@ -107,7 +107,7 @@ public class MainMenuArcade : MonoBehaviour {
     void Clicked(int playerID)
     {		
         totalPlayers = 0;
-        Data.Instance.events.OnSoundFX("coin", playerID);
+        Data.Instance.events.OnSoundFX("coin");
 
         playerMainMenuUI[playerID].Toogle();
 

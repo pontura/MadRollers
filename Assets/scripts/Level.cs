@@ -149,7 +149,7 @@ public class Level : MonoBehaviour {
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
     {      
-		Data.Instance.events.OnSoundFX("FX_break", -1);
+		Data.Instance.events.OnSoundFX("FX_break");
 		SceneObject explpotionEffect = null;
         switch (type)
         {
@@ -180,7 +180,6 @@ public class Level : MonoBehaviour {
     }
     public void OnAddExplotion(Vector3 position, string _name, string _explotionEffect, string _explotionGift, int force, Color color)
 	{
-        Data.Instance.musicManager.OnExplotionSFX();
         Vector3 newPos = position;
 
         SceneObject explotionNew = ObjectPool.instance.GetObjectForType(_name, true);
@@ -216,9 +215,9 @@ public class Level : MonoBehaviour {
 
         }
 
-		if (Random.Range(0,100)>70 && Data.Instance.isArcadeMultiplayer)
-			Data.Instance.events.OnAddPowerUp (position);
-		else
+		//if (Random.Range(0,100)>70 && Data.Instance.isArcadeMultiplayer)
+		//	Data.Instance.events.OnAddPowerUp (position);
+		//else
 			AddHeartsByBreaking (position, 14, 470);
 	}
 

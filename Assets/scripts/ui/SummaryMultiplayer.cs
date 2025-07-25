@@ -32,7 +32,7 @@ public class SummaryMultiplayer : MonoBehaviour {
     private IEnumerator nextRoutine;
 
 	void Start () {
-        //Data.Instance.musicManager.stopAllSounds();
+        //MusicManager.Instance.stopAllSounds();
 //        int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[0].score;
 //
 //        rawimageRanking.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;

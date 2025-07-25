@@ -3,34 +3,37 @@ using System.Collections;
 
 public class MusicManager : MonoBehaviour {
 
-    [SerializeField] private AudioClip explotionAudioClip;
+
     [SerializeField] private AudioClip interfaces;
-    [SerializeField] private AudioClip heartClip;
-    [SerializeField] private AudioClip deathFX;
-    [SerializeField] private AudioClip enemyShout;
-    [SerializeField] private AudioClip enemyDead;
-    [SerializeField] private AudioClip credits;
+
 
     [SerializeField] private AudioClip[] bosses;
     [SerializeField] private AudioClip[] songs;
     [SerializeField] private AudioClip[] wins;
     [SerializeField] private AudioClip loading;
 
-    private float heartsDelay = 0.1f;
-    private AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
 	float pitchSpeed = 0.015f;
     public bool mute;
 
+    static MusicManager mInstance = null;
+    private void Awake()
+    {
+        if (!mInstance)  mInstance = this;
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        DontDestroyOnLoad(this);
+    }
+    public static MusicManager Instance
+    {
+        get{if (mInstance == null) Debug.LogError("Algo llama a MusicManager antes de inicializarse"); return mInstance; }
+    }
     void Start()
     {
-
-        string s = PlayerPrefs.GetString("mute");
-        if (s.ToLower() == "true") mute = true;
-
-        audioSource = GetComponent<AudioSource>();
-
         Data.Instance.events.OnContinue += OnContinue;
-        Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
 		Data.Instance.events.OnMissionComplete += OnMissionComplete;
@@ -48,7 +51,6 @@ public class MusicManager : MonoBehaviour {
     void OnDestroy()
     {
         Data.Instance.events.OnContinue -= OnContinue;
-        Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnInterfacesStart -= OnInterfacesStart;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
@@ -64,11 +66,7 @@ public class MusicManager : MonoBehaviour {
 	{
 		audioSource.enabled = isOn;
 	}
-	void OnVersusTeamWon(int teamID)
-    {
-        if (mute) return;
-        playSound( interfaces );
-	}
+	
 	void FreezeCharacters(bool freezeThem)
     {
         if (mute) return;
@@ -104,15 +102,6 @@ public class MusicManager : MonoBehaviour {
     {
 		ChangePitch (1);
     }
-    //void OnSoundFX(string name)
-    //{
-    //    switch (name)
-    //    {
-    //        case "enemyShout": audioSource.PlayOneShot(enemyShout); break;
-    //        case "enemyDead": audioSource.PlayOneShot(enemyDead); break;
-    //        case "consumeHearts": audioSource.PlayOneShot(consumeHearts); break;
-    //    }
-    //}
     void OnContinue()
     {
         ChangePitch(1);
@@ -198,29 +187,6 @@ public class MusicManager : MonoBehaviour {
 		audioSource.clip = null;
     }
 
-    float nextHeartSoundTime;
-    public void addHeartSound()
-    {
-        if (mute) return;
-        if (Time.time >= nextHeartSoundTime)
-        {
-          audioSource.PlayOneShot(heartClip);
-          nextHeartSoundTime = Time.time + heartsDelay;
-          //if (Random.Range(0, 500) > 490)
-          //{
-          //    VoicesManager.Instance.ComiendoCorazones();
-          //}
-        }
-    }
-    public void OnExplotionSFX()
-    {
-        if (mute) return;
-        if (Time.time >= nextHeartSoundTime)
-        {
-            audioSource.PlayOneShot(explotionAudioClip);
-            nextHeartSoundTime = Time.time + heartsDelay;
-        }
-    }
     void OnMissionComplete(int newm)
     {
         if (mute) return;
@@ -248,8 +214,8 @@ public class MusicManager : MonoBehaviour {
 	}
     public void ToggleMute()
     {
-        Data.Instance.musicManager.mute = !Data.Instance.musicManager.mute;
-        PlayerPrefs.SetString("mute", Data.Instance.musicManager.mute.ToString());
+        MusicManager.Instance.mute = !MusicManager.Instance.mute;
+        PlayerPrefs.SetString("mute", MusicManager.Instance.mute.ToString());
         if (mute)
             stopAllSounds();
         else

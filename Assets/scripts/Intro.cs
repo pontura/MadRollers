@@ -16,7 +16,7 @@ public class Intro : MonoBehaviour {
     int id;
 
     void Start () {
-        Data.Instance.musicManager.stopAllSounds();
+        MusicManager.Instance.stopAllSounds();
         Data.Instance.events.OnJoystickClick += OnJoystickClick;
         container.gameObject.SetActive(true);
         containerBosses.gameObject.SetActive(false);
@@ -89,7 +89,7 @@ public class Intro : MonoBehaviour {
     }
     public void NextStep()
     {
-        Data.Instance.events.OnSoundFX("", -1);
+        Data.Instance.events.OnSoundFX("");
         StopAllCoroutines();
         CancelInvoke();
         id++;

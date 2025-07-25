@@ -18,11 +18,13 @@ public class RaySceneObject : SceneObject {
 	{
 		yield return new WaitForSeconds (1.5f);
 		Data.Instance.events.OnBossDropRay ((int)transform.localPosition.x);
+
 		yield return new WaitForSeconds (0.5f);
 		float randomValue = 20;
 		rayObject.transform.localEulerAngles = new Vector3 (Random.Range (-randomValue, randomValue), 0, Random.Range (-randomValue, randomValue));
-		rayObject.SetActive (true);      
-	}
+		rayObject.SetActive (true);
+        Data.Instance.events.OnSoundFX("laserDrop");
+    }
 	public override void OnPool()
 	{
 		StopAllCoroutines ();
@@ -35,7 +37,7 @@ public class RaySceneObject : SceneObject {
 	void addExplotion(float _y)
 	{
 		if (hasBrokenFloor) return;
-		hasBrokenFloor = true;
+        hasBrokenFloor = true;
 		Game.Instance.level.OnAddExplotion(transform.position, 6, Color.red);
 	}
 }

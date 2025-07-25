@@ -41,14 +41,14 @@ public class MobileMenuScreen : MonoBehaviour
     }
     public void ToggleAudio()
     {
-        Data.Instance.musicManager.ToggleMute();
+        MusicManager.Instance.ToggleMute();
         SetFields();
     }
     void SetFields()
     {
         langField.text = TextsManager.Instance.lang.ToUpper();
         controlsTypeField.text = Data.Instance.controlsType.ToString();
-        soundsToggle.text = "Music " + !(Data.Instance.musicManager.mute);
+        soundsToggle.text = "Music " + !(MusicManager.Instance.mute);
     }
     public void SwitchPixels()
     {

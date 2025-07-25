@@ -78,7 +78,7 @@ public class LoadingAsset : MonoBehaviour {
         string username = UserData.Instance.username;
 
         VoicesManager.Instance.PlaySpecificClipFromList(VoicesManager.Instance.UIItems, 1);
-        Data.Instance.musicManager.OnLoadingMusic();
+        MusicManager.Instance.OnLoadingMusic();
         field.text = "";
         AddText("*** MAD ROLLERS ***");
         yield return new WaitForSeconds(0.3f);

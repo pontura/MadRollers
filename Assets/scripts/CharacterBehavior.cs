@@ -334,7 +334,8 @@ public class CharacterBehavior : MonoBehaviour {
         jumpsNumber = 0;
 		state = states.RUN;
 
-		Data.Instance.events.OnSoundFX ("floor", player.id);
+		if(player.id == 0)
+			Data.Instance.events.OnSoundFX ("floor");
 
 		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
 
@@ -593,7 +594,7 @@ public class CharacterBehavior : MonoBehaviour {
         else
         {
             lastTimeCollision = Time.time;
-            Data.Instance.events.OnSoundFX("hit", player.id);
+            Data.Instance.events.OnSoundFX("hit");
             state = states.COLLISIONED;
             rb.linearVelocity = Vector3.zero;
             rb.AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using GooglePlayGames.BasicApi;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CharactersManager : MonoBehaviour {
 
@@ -127,7 +128,7 @@ public class CharactersManager : MonoBehaviour {
         {
             CharacterBehavior cb = addCharacter(CalculateInitialPosition(pos, a + 1), a + 1); playerPositions.Add(a + 1);
             cb.gameObject.AddComponent<Automata>();
-            cb.GetComponent<Automata>().Init(cb);
+            cb.GetComponent<Automata>().Init(cb, true);
         }
     }
     void OnDestroy()
@@ -172,7 +173,7 @@ public class CharactersManager : MonoBehaviour {
         if (cb != null)
         {
             cb.gameObject.AddComponent<Automata>();
-            cb.GetComponent<Automata>().Init(cb);
+            cb.GetComponent<Automata>().Init(cb, false);
             return cb;
         }
         else return null;
@@ -184,8 +185,9 @@ public class CharactersManager : MonoBehaviour {
             return null;
         if (characters.Count == 0 && Game.Instance.gameCamera.state != GameCamera.states.WAITING_TO_TRAVEL)
             return null;
-        
-        Data.Instance.events.OnSoundFX("coin", id);
+
+        Data.Instance.events.OnSoundFX("coin");
+
 		Vector3 pos = Vector3.zero;
 
 		if(characters.Count >0)
@@ -292,11 +294,10 @@ public class CharactersManager : MonoBehaviour {
     }
     IEnumerator GameOver(CharacterBehavior cb)
     {
-		//Data.Instance.events.OnCameraChroma (CameraChromaManager.types.RED);
-		Data.Instance.events.OnSoundFX("dead", -1);
-
+		Data.Instance.events.OnSoundFX("deathFX");
         Game.Instance.GameOver();
         yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(1);
         Data.Instance.events.OnGameOver(false);
         yield return new WaitForSeconds(1.32f);
     }

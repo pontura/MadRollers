@@ -13,9 +13,8 @@ public class Boss : SceneObject {
 	public override void OnRestart(Vector3 pos)
 	{		
 		base.OnRestart (pos);
-		Data data = Data.Instance;
-		//data.events.OnBossActive (true);
-		data.GetComponent<MusicManager> ().BossMusic (true);
+        //data.events.OnBossActive (true);
+        MusicManager.Instance.BossMusic (true);
         VoicesManager.Instance.PlayRandom (VoicesManager.Instance.killThemAll);
 	}
 	public void SetTotal(int totalHits)
@@ -50,7 +49,7 @@ public class Boss : SceneObject {
     }
 	public void Killed()
 	{
-		Data.Instance.events.OnSoundFX("FX explot00", -1);
+		Data.Instance.events.OnSoundFX("bossDie");
 		Death ();
 		Invoke ("Died", 0.2f);
 	}
