@@ -80,8 +80,9 @@ public class VideogameBossPanel : MonoBehaviour {
     }
 
     void OnGameOver(bool isTimeOver)
-	{
-		Laugh (10);
+    {
+		panel.SetActive(true);
+        Laugh (10);
         Reset();
 	}
     void OnBossSpecial(int _x)

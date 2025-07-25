@@ -55,7 +55,8 @@ public class Boss : SceneObject {
 	}
 	void Died()
 	{
-		Data.Instance.GetComponent<MusicManager> ().BossMusic (false);
+
+        MusicManager.Instance.BossMusic(false);
 
         if(Data.Instance.playMode != Data.PlayModes.SURVIVAL)
 		    Game.Instance.level.Complete ();
