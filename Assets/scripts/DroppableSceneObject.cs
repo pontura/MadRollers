@@ -66,13 +66,13 @@ public class DroppableSceneObject : SceneObject {
     {
         if (!isActive) return;
         exploted = true;
-        Data.Instance.events.AddExplotion(transform.position, Color.yellow);
+        Events.AddExplotion(transform.position, Color.yellow);
     }
     void addExplotionWall()
     {
         if (!isActive) return;
         exploted = true;
-        Data.Instance.events.AddWallExplotion(transform.position, Color.yellow);
+        Events.AddWallExplotion(transform.position, Color.yellow);
     }
     void Destroy()
     {

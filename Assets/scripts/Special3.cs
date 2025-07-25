@@ -18,7 +18,7 @@ public class Special3 : SceneObject
     IEnumerator ActionsToBeDone()
     {
         yield return new WaitForSeconds(1.25f);
-        Data.Instance.events.OnBossSpecial((int)transform.localPosition.x);
+        Events.OnBossSpecial((int)transform.localPosition.x);
         yield return new WaitForSeconds(0.5f);
         float randomValue = Random.Range(0, 5);
         Vector3 pos = transform.localPosition;

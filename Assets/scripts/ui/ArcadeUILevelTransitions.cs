@@ -15,13 +15,13 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
         SetOff();
         level = 1;
         panel.SetActive(false);
-      //  Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-		Data.Instance.events.ShowNotification += ShowNotification;
+      //  Events.OnListenerDispatcher += OnListenerDispatcher;
+		Events.ShowNotification += ShowNotification;
 	}
     void OnDestroy()
     {
-      //  Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
-		Data.Instance.events.ShowNotification -= ShowNotification;
+      //  Events.OnListenerDispatcher -= OnListenerDispatcher;
+		Events.ShowNotification -= ShowNotification;
     }
     int percent = 0;
     bool ready;
@@ -154,7 +154,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
             blackMask.color = color;
         }
 		yield return new WaitForSeconds(waitInBlack);
-        Data.Instance.events.OnAlignAllCharacters();
+        Events.OnAlignAllCharacters();
         while (t > 0)
         {
             yield return new WaitForEndOfFrame();

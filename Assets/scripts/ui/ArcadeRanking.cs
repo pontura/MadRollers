@@ -20,7 +20,7 @@ public class ArcadeRanking : MonoBehaviour {
 	void Start () {
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
-        Data.Instance.events.RefreshHiscores += RefreshHiscores;
+        Events.RefreshHiscores += RefreshHiscores;
 		path = Application.streamingAssetsPath + "/hiscores.txt";
 		LoadHiscores(path);
 	}
@@ -94,7 +94,7 @@ public class ArcadeRanking : MonoBehaviour {
 //        return false;
 //    }
 //    void Start () {
-//		Data.Instance.events.OnHiscore += OnHiscore;
+//		Events.OnHiscore += OnHiscore;
 //	}
 //	void OnHiscore(Texture2D texture, int _hiscore)
 //	{

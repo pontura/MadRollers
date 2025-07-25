@@ -217,7 +217,7 @@ public class Projectil : SceneObject {
   //              //	return;
 
   //              Data.Instance.framesController.ForceFrameRate(0.05f);
-		//	    Data.Instance.events.RalentaTo (1, 0.05f);
+		//	    Events.RalentaTo (1, 0.05f);
 		//	    cb.Hit ();
   //              ResetProjectil();
 		//	break;
@@ -226,19 +226,19 @@ public class Projectil : SceneObject {
 	void SetScore(int score, ScoresManager.types type)
     {
 		if(playerID>=0 && score >0)
-			Data.Instance.events.OnScoreOn(playerID, transform.position, score, type);
+			Events.OnScoreOn(playerID, transform.position, score, type);
     }
 	void addExplotion(float _y)
 	{
         if (!isActive) return;
 		exploted = true;        
-        Data.Instance.events.AddExplotion(transform.position, color);
+        Events.AddExplotion(transform.position, color);
 	}
     void addExplotionWall()
     {
         if (!isActive) return;
         exploted = true;
-        Data.Instance.events.AddWallExplotion(transform.position, color);
+        Events.AddWallExplotion(transform.position, color);
     }
 	void ResetProjectil()
     {

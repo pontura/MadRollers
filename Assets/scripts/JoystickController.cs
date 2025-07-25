@@ -57,26 +57,26 @@ public class JoystickController : MonoBehaviour {
     //    }
     //}
 	void OnJoystickUp () {
-		Data.Instance.events.OnJoystickUp ();
+		Events.OnJoystickUp ();
 		ResetMove ();
 	}
 	void OnJoystickDown () {
-		Data.Instance.events.OnJoystickDown ();
+		Events.OnJoystickDown ();
 		ResetMove ();
 	}
 	void OnJoystickRight () {
-		Data.Instance.events.OnJoystickRight ();
+		Events.OnJoystickRight ();
 		ResetMove ();
 	}
 	void OnJoystickLeft () {
-		Data.Instance.events.OnJoystickLeft ();
+		Events.OnJoystickLeft ();
 		ResetMove ();
 	}
 	void OnJoystickClick () {
-		Data.Instance.events.OnJoystickClick ();
+		Events.OnJoystickClick ();
 	}
 	void OnJoystickBack () {
-		Data.Instance.events.OnJoystickBack ();
+		Events.OnJoystickBack ();
 	}
 	void ResetMove()
 	{

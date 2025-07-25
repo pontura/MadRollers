@@ -9,12 +9,12 @@ public class AlertSignal : MonoBehaviour
     void Start()
     {
         panel.SetActive(false);
-        Data.Instance.events.OnAlertSignal += OnAlertSignal;
+        Events.OnAlertSignal += OnAlertSignal;
         UsersEvents.OnPopup += OnPopup;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnAlertSignal -= OnAlertSignal;
+        Events.OnAlertSignal -= OnAlertSignal;
         UsersEvents.OnPopup -= OnPopup;
     }
     void OnPopup(string text)

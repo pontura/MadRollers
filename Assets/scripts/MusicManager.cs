@@ -33,34 +33,34 @@ public class MusicManager : MonoBehaviour {
     }
     void Start()
     {
-        Data.Instance.events.OnContinue += OnContinue;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-        Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
-		Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnGameOver += OnGameOver;
-        Data.Instance.events.OnGamePaused += OnGamePaused;
-        Data.Instance.events.SetVolume += SetVolume;
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall += OnAvatarCrash;
-		Data.Instance.events.OnMusicStatus += OnMusicStatus;
-		Data.Instance.events.FreezeCharacters += FreezeCharacters;
+        Events.OnContinue += OnContinue;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.OnInterfacesStart += OnInterfacesStart;
+		Events.OnMissionComplete += OnMissionComplete;
+        Events.OnGameOver += OnGameOver;
+        Events.OnGamePaused += OnGamePaused;
+        Events.SetVolume += SetVolume;
+        Events.OnAvatarCrash += OnAvatarCrash;
+        Events.OnAvatarFall += OnAvatarCrash;
+		Events.OnMusicStatus += OnMusicStatus;
+		Events.FreezeCharacters += FreezeCharacters;
 
 		if (!Data.Instance.musicOn)
 			audioSource.enabled = false;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnContinue -= OnContinue;
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-        Data.Instance.events.OnInterfacesStart -= OnInterfacesStart;
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
-        Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.OnGamePaused -= OnGamePaused;
-        Data.Instance.events.SetVolume -= SetVolume;
-        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
-        Data.Instance.events.OnMusicStatus -= OnMusicStatus;
-        Data.Instance.events.FreezeCharacters -= FreezeCharacters;
+        Events.OnContinue -= OnContinue;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnInterfacesStart -= OnInterfacesStart;
+        Events.OnMissionComplete -= OnMissionComplete;
+        Events.OnGameOver -= OnGameOver;
+        Events.OnGamePaused -= OnGamePaused;
+        Events.SetVolume -= SetVolume;
+        Events.OnAvatarCrash -= OnAvatarCrash;
+        Events.OnAvatarFall -= OnAvatarCrash;
+        Events.OnMusicStatus -= OnMusicStatus;
+        Events.FreezeCharacters -= FreezeCharacters;
     }
     void OnMusicStatus(bool isOn)
 	{

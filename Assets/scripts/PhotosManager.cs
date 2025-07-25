@@ -41,7 +41,7 @@ public class PhotosManager : MonoBehaviour {
 //        File.WriteAllBytes(url, bytes);
 //		print("GRABA: " + url);
 //        Texture2D winners = photo;
-//        Data.Instance.events.OnHiscore(winners, score);
+//        Events.OnHiscore(winners, score);
     }
 	 public string GetFullPathByFolder(string FolderName, string fileName)
     {

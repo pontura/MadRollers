@@ -27,10 +27,10 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     void InitParty()
     {
-        Data.Instance.events.OnMadRollersSFXStatus(false);
+        Events.OnMadRollersSFXStatus(false);
         //missionSelectorMobile.Init();
        // Data.Instance.multiplayerData.ResetAll();
-       // Data.Instance.events.OnResetMultiplayerData();
+       // Events.OnResetMultiplayerData();
        // Data.Instance.isReplay = false;
         missionSelectorMobile.Clicked(Data.Instance.missions.MissionActiveID);
     }
@@ -54,11 +54,11 @@ public class LevelSelectorMobile : MonoBehaviour
         //}
 
 
-        Data.Instance.events.SetHamburguerButton(true);
-        Data.Instance.events.OnMadRollersSFXStatus(false);
+        Events.SetHamburguerButton(true);
+        Events.OnMadRollersSFXStatus(false);
         missionSelectorMobile.Init();
         Data.Instance.multiplayerData.ResetAll();
-        Data.Instance.events.OnResetMultiplayerData();
+        Events.OnResetMultiplayerData();
         Data.Instance.isReplay = false;
         VoicesManager.Instance.PlaySpecificClipFromList(VoicesManager.Instance.UIItems, 0);
 
@@ -97,7 +97,7 @@ public class LevelSelectorMobile : MonoBehaviour
     {
         if(UserData.Instance.data.missionUnlocked<=0)
         {
-            Data.Instance.events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
+            Events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
             return;
         }
         Data.Instance.videogamesData.actualID = UnityEngine.Random.Range(0, 3);
@@ -116,7 +116,7 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     public void Plugins()
     {
-        Data.Instance.events.OnAlertSignal("Todavía no puedes gastar tus pixeles para construir plugins! (Próximamente)");
+        Events.OnAlertSignal("Todavía no puedes gastar tus pixeles para construir plugins! (Próximamente)");
     }
     
 }

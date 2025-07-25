@@ -258,7 +258,7 @@ public class SceneObjectsBehavior : MonoBehaviour
         else if (goName == "Laser")
         {
             clone = Laser;
-            Data.Instance.events.OnBossDropBomb();
+            Events.OnBossDropBomb();
         }
         else if (goName == "tunel1")
             clone = tunel1;

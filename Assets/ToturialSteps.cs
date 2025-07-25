@@ -126,7 +126,7 @@ public class ToturialSteps : MonoBehaviour
                     break;
             }
         }
-        Data.Instance.events.RalentaTo(1, 0.15f);
+        Events.RalentaTo(1, 0.15f);
         panel.SetActive(false);
     }
     void InitPanel(int id)

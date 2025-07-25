@@ -65,7 +65,7 @@ public class BossAttacksManager : MonoBehaviour
     public virtual void Attack()
     {
         if(delayToSoundAttack>0)
-            Data.Instance.events.OnSoundFX("boss_attack_init");
+            Events.OnSoundFX("boss_attack_init");
         attacking = true;
         bossPart.anim.Play("attack");
         bossPartAnim[bossPartAnim.clip.name].normalizedSpeed = 0;
@@ -75,9 +75,9 @@ public class BossAttacksManager : MonoBehaviour
     void PlaySound()
     {
         if(sound == sounds.LATIGO)
-            Data.Instance.events.OnSoundFX("whip"); 
+            Events.OnSoundFX("whip"); 
         else
-            Data.Instance.events.OnSoundFX("laser");
+            Events.OnSoundFX("laser");
     }
     public virtual void ResetAttack()
     {

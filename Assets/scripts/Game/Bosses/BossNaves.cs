@@ -9,8 +9,8 @@ public class BossNaves : Boss {
 
 	public override void OnRestart(Vector3 pos)
 	{
-		Data.Instance.events.OnBossSetNewAsset ("alien");
-		Data.Instance.events.OnBossSetTimer (30);
+		Events.OnBossSetNewAsset ("alien");
+		Events.OnBossSetTimer (30);
 
 		base.OnRestart (pos);	
 

@@ -15,24 +15,24 @@ public class JoysticksCanvas : MonoBehaviour {
  //           standalonePanel.SetActive(false);
  //           return;
  //       }
- //       Data.Instance.events.OnGameOver += OnGameOver;
- //       Data.Instance.events.OnAvatarDie += OnAvatarDie;
- //       Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;
- //       Data.Instance.events.OnMissionComplete += OnMissionComplete;
+ //       Events.OnGameOver += OnGameOver;
+ //       Events.OnAvatarDie += OnAvatarDie;
+ //       Events.OnAddNewPlayer += OnAddNewPlayer;
+ //       Events.OnMissionComplete += OnMissionComplete;
 
  //       if (Data.Instance.playMode != Data.PlayModes.PARTYMODE)
- //           Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+ //           Events.OnListenerDispatcher += OnListenerDispatcher;
 
  //       standalonePanel.SetActive(true);
       
 	//}
 	//void OnDestroy()
 	//{
-	//	Data.Instance.events.OnAddNewPlayer -= OnAddNewPlayer;
-	//	Data.Instance.events.OnAvatarDie -= OnAvatarDie;
-	//	Data.Instance.events.OnGameOver -= OnGameOver;
-	//	Data.Instance.events.OnMissionComplete -= OnMissionComplete;
-	//	Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+	//	Events.OnAddNewPlayer -= OnAddNewPlayer;
+	//	Events.OnAvatarDie -= OnAvatarDie;
+	//	Events.OnGameOver -= OnGameOver;
+	//	Events.OnMissionComplete -= OnMissionComplete;
+	//	Events.OnListenerDispatcher -= OnListenerDispatcher;
 	//}
 	//void OnListenerDispatcher(ListenerDispatcher.myEnum message)
 	//{

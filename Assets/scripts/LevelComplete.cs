@@ -17,7 +17,7 @@ public class LevelComplete : MonoBehaviour {
      }
     public void Init(int missionNum)
     {
-		Data.Instance.events.RalentaTo (0.6f, 0.05f);
+		Events.RalentaTo (0.6f, 0.05f);
 		panel.SetActive (true);
 	//	int maxScore = Data.Instance.GetComponent<Missions>().GetActualMissionData().maxScore;
       //  int missionScore = Data.Instance.userData.missionScore;
@@ -28,7 +28,7 @@ public class LevelComplete : MonoBehaviour {
 		foreach (TMPro.TMP_Text label in fields)
 			Data.Instance.handWriting.WriteTo(label, titleText, null);
 
-        // Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
+        // Events.OnSetStarsToMission(missionNum, starsQty);
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             return;
         CloseAfter (3);
@@ -49,7 +49,7 @@ public class LevelComplete : MonoBehaviour {
 
 	public void Close()
 	{
-		Data.Instance.events.RalentaTo (1, 0.05f);
+		Events.RalentaTo (1, 0.05f);
 		Game.Instance.level.charactersManager.ResetJumps ();
 		panel.SetActive (false);
 	}

@@ -21,9 +21,9 @@ public class Tracker : MonoBehaviour {
     }
     public void Init()
     {        
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnAvatarDie += OnAvatarDie;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.OnMissionComplete += OnMissionComplete;
+        Events.OnAvatarDie += OnAvatarDie;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
     }
     bool FirebaseOn()
     {

@@ -31,7 +31,7 @@ public class CommodoreUI : MonoBehaviour {
 		this.isOn = _isOn;
 		if (isOn) {
 			
-			//Data.Instance.events.OnSoundFX("loading", -1);
+			//Events.OnSoundFX("loading", -1);
 			field.text = "";	
 
 			if(type == types.HISCORE)

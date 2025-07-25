@@ -12,13 +12,13 @@ public class PowerupsManager : MonoBehaviour {
 
 	public  void Init()
     {
-       // Data.Instance.events.OnAddPowerUp += OnAddPowerUp;
-		//Data.Instance.events.OnAddSpecificPowerUp += OnAddSpecificPowerUp;
+       // Events.OnAddPowerUp += OnAddPowerUp;
+		//Events.OnAddSpecificPowerUp += OnAddSpecificPowerUp;
     }    
     public void OnDestroy()
     {
-       // Data.Instance.events.OnAddPowerUp -= OnAddPowerUp;
-	//	Data.Instance.events.OnAddSpecificPowerUp -= OnAddSpecificPowerUp;
+       // Events.OnAddPowerUp -= OnAddPowerUp;
+	//	Events.OnAddSpecificPowerUp -= OnAddSpecificPowerUp;
 		CancelInvoke ();
     }
     public bool CanBeThrown()

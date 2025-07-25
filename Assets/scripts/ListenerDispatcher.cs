@@ -33,7 +33,7 @@ public class ListenerDispatcher : MonoBehaviour {
 		if(other.tag == "Player")
 		{
 			if (!ready)
-				data.events.ListenerDispatcher(message);
+				Events.ListenerDispatcher(message);
 			ready = true;		
 		}
         

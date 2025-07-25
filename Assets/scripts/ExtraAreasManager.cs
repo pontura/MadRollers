@@ -17,15 +17,15 @@ public class ExtraAreasManager : MonoBehaviour
 
     void Start()
     {
-        Data.Instance.events.OnBossActive += OnBossActive;
-        Data.Instance.events.OnGameOver += OnGameOver;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.OnBossActive += OnBossActive;
+        Events.OnGameOver += OnGameOver;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnBossActive -= OnBossActive;
-        Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnBossActive -= OnBossActive;
+        Events.OnGameOver -= OnGameOver;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
     }
     void StartMultiplayerRace()
     {

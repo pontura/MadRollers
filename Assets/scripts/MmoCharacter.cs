@@ -43,7 +43,7 @@ public class MmoCharacter : SceneObject
 
 		if(state== states.DEAD) return;
 
-        Data.Instance.events.OnSoundFX("enemyDead");
+        Events.OnSoundFX("enemyDead");
         setScore();
 		       
 		state = states.DEAD;
@@ -57,7 +57,7 @@ public class MmoCharacter : SceneObject
         gameObject.GetComponent<Collider>().enabled = false;
 
 		//nuevo:
-		Data.Instance.events.OncharacterCheer();
+		Events.OncharacterCheer();
 		Pool();
 	}
     void OnCollisionEnter(Collision other)

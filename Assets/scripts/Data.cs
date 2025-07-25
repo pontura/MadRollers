@@ -31,8 +31,6 @@ public class Data : MonoBehaviour {
 
     public int pixelSize = 1;
 
-    [HideInInspector]
-    public Events events;
     public ObjectPool sceneObjectsPool;
     [HideInInspector]
     public Missions missions;
@@ -146,7 +144,6 @@ public class Data : MonoBehaviour {
         }
 		DontDestroyOnLoad(this);
 
-        events = GetComponent<Events>();
         missions = GetComponent<Missions>();
         multiplayerData = GetComponent<MultiplayerData>();
         videogamesData = GetComponent<VideogamesData>();
@@ -192,9 +189,9 @@ public class Data : MonoBehaviour {
 	}
     public void LoadLevel(string levelName)
     {
-		Data.Instance.events.ForceFrameRate (1);
+		Events.ForceFrameRate (1);
 		float delay = 0.1f;
-        events.OnChangeScene(levelName);
+        Events.OnChangeScene(levelName);
 
         if (playMode == PlayModes.PARTYMODE && levelName == "Game")
         {
@@ -213,7 +210,7 @@ public class Data : MonoBehaviour {
 	}
 	public void LoadLevelNotFading(string levelName)
 	{
-		Data.Instance.events.ForceFrameRate (1);
+		Events.ForceFrameRate (1);
 		GetComponent<Fade>().LoadSceneNotFading (levelName);
 	}
 	public void RefreshCredits()
@@ -247,7 +244,7 @@ public class Data : MonoBehaviour {
         
         MusicManager.Instance.stopAllSounds();
 
-        Data.Instance.events.OnStartGameScene();
+        Events.OnStartGameScene();
         MusicManager.Instance.ChangePitch(0.2f);
 
     }

@@ -28,13 +28,13 @@ public class MainMenuArcade : MonoBehaviour {
     public MeshRenderer backgruond;
 
 	void Start () {
-		Data.Instance.events.OnResetScores ();
+		Events.OnResetScores ();
 		sec = 10;
 		string desc = ""; //Data.Instance.missions.GetMissionActive ().description;
 		foreach (Text t in missionFields) {
 			t.text = desc;
 		}
-        //Data.Instance.events.OnInterfacesStart();
+        //Events.OnInterfacesStart();
         multiplayerData = Data.Instance.multiplayerData;
 		CountDownField.text = "";
         int id = 0;
@@ -107,7 +107,7 @@ public class MainMenuArcade : MonoBehaviour {
     void Clicked(int playerID)
     {		
         totalPlayers = 0;
-        Data.Instance.events.OnSoundFX("coin");
+        Events.OnSoundFX("coin");
 
         playerMainMenuUI[playerID].Toogle();
 

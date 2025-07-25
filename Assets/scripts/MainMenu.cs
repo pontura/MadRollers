@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour {
 	{
       //  ObjectPool.instance.PoolSceneObjectsInScene(); // Borra si quedó alguno:
         MusicManager.Instance.ChangePitch(1);
-        Data.Instance.events.OnInterfacesStart();
+        Events.OnInterfacesStart();
         Data.Instance.isReplay = false;
         Data.Instance.videogamesData.Reset();
         Data.Instance.missions.Reset();
@@ -43,11 +43,11 @@ public class MainMenu : MonoBehaviour {
 		//	buttons = buttonsStandalone;
 		//}
 		Init ();
-		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-	//	Data.Instance.events.OnJoystickDown += OnJoystickDown;
-	//	Data.Instance.events.OnJoystickUp += OnJoystickUp;
-	//	Data.Instance.events.OnJoystickLeft += OnJoystickDown;
-	//	Data.Instance.events.OnJoystickRight += OnJoystickUp;
+		Events.OnJoystickClick += OnJoystickClick;
+	//	Events.OnJoystickDown += OnJoystickDown;
+	//	Events.OnJoystickUp += OnJoystickUp;
+	//	Events.OnJoystickLeft += OnJoystickDown;
+	//	Events.OnJoystickRight += OnJoystickUp;
 		
 		//foreach (MainMenuButton m in buttons)
 		//	m.SetOn (false);
@@ -82,11 +82,11 @@ public class MainMenu : MonoBehaviour {
 	}
 	void Reset()
 	{
-		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-		//Data.Instance.events.OnJoystickDown -= OnJoystickDown;
-		//Data.Instance.events.OnJoystickUp -= OnJoystickUp;
-	//	Data.Instance.events.OnJoystickLeft -= OnJoystickDown;
-		//Data.Instance.events.OnJoystickRight -= OnJoystickUp;
+		Events.OnJoystickClick -= OnJoystickClick;
+		//Events.OnJoystickDown -= OnJoystickDown;
+		//Events.OnJoystickUp -= OnJoystickUp;
+	//	Events.OnJoystickLeft -= OnJoystickDown;
+		//Events.OnJoystickRight -= OnJoystickUp;
 	}
 	void Init () {
 		SetButtons ();

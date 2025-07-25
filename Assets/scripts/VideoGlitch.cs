@@ -13,8 +13,8 @@ public class VideoGlitch : MonoBehaviour {
 		//panel.SetActive (false);
 		//videoPlayer.prepareCompleted += VideoPlayer_prepareCompleted;
 		//videoPlayer.Prepare();
-	//	Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-	//	Data.Instance.events.OnGameOver += OnGameOver;
+	//	Events.StartMultiplayerRace += StartMultiplayerRace;
+	//	Events.OnGameOver += OnGameOver;
 	}
 	public void Init()
 	{

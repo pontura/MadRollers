@@ -106,7 +106,7 @@ public class LoadingAsset : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
         AddText("COMPLETE!");
         yield return new WaitForSeconds(0.35f);
-        Data.Instance.events.OnStartGameScene();
+        Events.OnStartGameScene();
         SetOn(false);
     }
     void AddText(string text)

@@ -6,12 +6,12 @@ public class HandWriting : MonoBehaviour {
 	float speed = 0.05f;
     private void Start()
     {
-         Data.Instance.events.OnGameOver += OnGameOver;
+         Events.OnGameOver += OnGameOver;
     }
     void OnDestroy()
     {
         StopAllCoroutines();
-        Data.Instance.events.OnGameOver -= OnGameOver;
+        Events.OnGameOver -= OnGameOver;
     }
     void OnGameOver(bool isOn)
     {
@@ -24,7 +24,7 @@ public class HandWriting : MonoBehaviour {
     public void WriteTo(TMPro.TMP_Text field, string textToWrite,  System.Action OnReadyFunc)
 	{
         
-        Data.Instance.events.ResetHandwritingText();
+        Events.ResetHandwritingText();
         
         this.field = field;
         StopAllCoroutines();
@@ -38,7 +38,7 @@ public class HandWriting : MonoBehaviour {
             yield return null;
             StopAllCoroutines();
         }
-        Data.Instance.events.OnSoundFX("typing");
+        Events.OnSoundFX("typing");
         field.text = ">";
 		int letterId = 0;
 		int totalWords = textToWrite.Length;
@@ -54,7 +54,7 @@ public class HandWriting : MonoBehaviour {
 				yield return new WaitForSeconds (speed);
 			}
 		}
-        Data.Instance.events.OnSoundFX("");
+        Events.OnSoundFX("");
         if (OnReadyFunc != null)
 			OnReadyFunc ();
 		yield return null;

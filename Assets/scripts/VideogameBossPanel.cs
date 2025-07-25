@@ -22,19 +22,19 @@ public class VideogameBossPanel : MonoBehaviour {
 	{
         panel.SetActive (false);
 
-        Data.Instance.events.OnGameStart += OnGameStart;
-		Data.Instance.events.OnBossActive += OnBossActive;
+        Events.OnGameStart += OnGameStart;
+		Events.OnBossActive += OnBossActive;
 
 		if (Data.Instance.videogamesData.actualID == 0)
-			Data.Instance.events.OnBossDropBomb += OnBossDropBomb;
+			Events.OnBossDropBomb += OnBossDropBomb;
 		
 		if (Data.Instance.videogamesData.actualID == 1)
-			Data.Instance.events.OnBossDropRay += OnBossDropRay;
+			Events.OnBossDropRay += OnBossDropRay;
 		
-		Data.Instance.events.OnAvatarDie += OnAvatarDie;
-		Data.Instance.events.OnGameOver += OnGameOver;
-        Data.Instance.events.OnBossSpecial += OnBossSpecial;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		Events.OnAvatarDie += OnAvatarDie;
+		Events.OnGameOver += OnGameOver;
+        Events.OnBossSpecial += OnBossSpecial;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
 
         if (!Data.Instance.isReplay)
             OnBossActive(true);
@@ -61,14 +61,14 @@ public class VideogameBossPanel : MonoBehaviour {
 
     void OnDestroy()
 	{
-        Data.Instance.events.OnGameStart -= OnGameStart;
-		Data.Instance.events.OnBossActive -= OnBossActive;
-		Data.Instance.events.OnBossDropBomb -= OnBossDropBomb;
-		Data.Instance.events.OnBossDropRay -= OnBossDropRay;		
-        Data.Instance.events.OnBossSpecial -= OnBossSpecial;
-        Data.Instance.events.OnAvatarDie -= OnAvatarDie;	
-		Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnGameStart -= OnGameStart;
+		Events.OnBossActive -= OnBossActive;
+		Events.OnBossDropBomb -= OnBossDropBomb;
+		Events.OnBossDropRay -= OnBossDropRay;		
+        Events.OnBossSpecial -= OnBossSpecial;
+        Events.OnAvatarDie -= OnAvatarDie;	
+		Events.OnGameOver -= OnGameOver;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
     }
     private void OnDisable()
     {

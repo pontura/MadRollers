@@ -15,7 +15,7 @@ public class Fade : MonoBehaviour
     {
         masker.enabled = true;
         masker.color = new Color(0, 0, 0, 0);
-        Data.Instance.events.OnFadeALittle += OnFadeALittle;
+        Events.OnFadeALittle += OnFadeALittle;
     }
 	public void FadeOut()
 	{

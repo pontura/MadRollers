@@ -10,14 +10,14 @@ public class MissionsTopPanel : MonoBehaviour
     void Start()
     {
         anim =  GetComponent<Animation>();
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
-		Data.Instance.events.OnMissionProgress += OnMissionProgress;
+        Events.OnMissionComplete += OnMissionComplete;
+		Events.OnMissionProgress += OnMissionProgress;
 
     }
     void OnDisable()
     {
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
-		Data.Instance.events.OnMissionProgress -= OnMissionProgress;
+        Events.OnMissionComplete -= OnMissionComplete;
+		Events.OnMissionProgress -= OnMissionProgress;
     }
     private void OnMissionComplete(int levelID)
     {

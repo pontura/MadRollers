@@ -71,8 +71,8 @@ public class UserData : MonoBehaviour
     private void Start()
     {
         hiscoresByMissions.Init();
-        Data.Instance.events.OnSaveScore += OnSaveScore;
-        Data.Instance.events.OnPayPixeles += OnPayPixeles;
+        Events.OnSaveScore += OnSaveScore;
+        Events.OnPayPixeles += OnPayPixeles;
         FirebaseAuthManager.Instance.OnFirebaseAuthenticated += OnFirebaseAuthenticated;
     }
     void OnFirebaseAuthenticated(string username, string email, string uid)
@@ -95,8 +95,8 @@ public class UserData : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Data.Instance.events.OnSaveScore -= OnSaveScore;
-        Data.Instance.events.OnPayPixeles -= OnPayPixeles;
+        Events.OnSaveScore -= OnSaveScore;
+        Events.OnPayPixeles -= OnPayPixeles;
         FirebaseAuthManager.Instance.OnFirebaseAuthenticated -= OnFirebaseAuthenticated;
     }
     public bool CanPay(int price)

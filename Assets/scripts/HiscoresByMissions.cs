@@ -68,11 +68,11 @@ public class HiscoresByMissions : MonoBehaviour
         db = FirebaseFirestore.DefaultInstance;
         auth = FirebaseAuth.DefaultInstance;
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
-            Data.Instance.events.OnMissionComplete += OnMissionComplete;
+            Events.OnMissionComplete += OnMissionComplete;
     }
     private void OnDestroy()
     {
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Events.OnMissionComplete -= OnMissionComplete;
     }    
     public void SaveSurvivalScore()
     {

@@ -74,7 +74,7 @@ public class BossPart : MonoBehaviour {
             bossAttackManager.Reset();
 
         ParticlesSceneObject effect = ObjectPool.instance.GetObjectForType("ExplotionEffectBoss", false) as ParticlesSceneObject;
-        Data.Instance.events.OnSoundFX("boss_punch");
+        Events.OnSoundFX("boss_punch");
         lifes--;
         if (lifes > 0)
         {
@@ -101,7 +101,7 @@ public class BossPart : MonoBehaviour {
         CancelInvoke();
 
      //   if (boss.HasOnlyOneLifeLeft())
-        //    Data.Instance.events.OnProjectilStartSnappingTarget(transform.position);
+        //    Events.OnProjectilStartSnappingTarget(transform.position);
 
         boss.OnPartBroken(this);
         gameObject.SetActive(false);

@@ -43,8 +43,8 @@ public class LevelSelector : MonoBehaviour {
 			Invoke ("TimeOver", 90);
 			Invoke ("SetCanInteract", 1);
 		} else {			
-			Data.Instance.events.OnJoystickUp += OnJoystickUp;
-			Data.Instance.events.OnJoystickDown += OnJoystickDown;
+			Events.OnJoystickUp += OnJoystickUp;
+			Events.OnJoystickDown += OnJoystickDown;
 			partyMode.SetActive (false);
 			storyMode.SetActive (true);
 			Invoke ("SetCanInteract", 0.2f);
@@ -54,7 +54,7 @@ public class LevelSelector : MonoBehaviour {
         
 
         Data.Instance.multiplayerData.ResetAll ();
-		Data.Instance.events.OnResetMultiplayerData();
+		Events.OnResetMultiplayerData();
 
         title.text = TextsManager.Instance.GetText("CHANGE GAME");
        // title.text = "SELECT GAME";
@@ -66,11 +66,11 @@ public class LevelSelector : MonoBehaviour {
 
 		VoicesManager.Instance.PlaySpecificClipFromList (VoicesManager.Instance.UIItems, 0);
 
-		//Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
-		//Data.Instance.events.OnJoystickRight += OnJoystickRight;
-        Data.Instance.events.ResetHandwritingText += ResetHandwritingText;
+		//Events.OnJoystickLeft += OnJoystickLeft;
+		//Events.OnJoystickRight += OnJoystickRight;
+        Events.ResetHandwritingText += ResetHandwritingText;
 
-        //Data.Instance.events.OnJoystickClick += OnJoystickClick;
+        //Events.OnJoystickClick += OnJoystickClick;
 
         if(Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             camAnimnation.Play("levelSelectorCameraIdleStoryMode");
@@ -87,12 +87,12 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnDestroy()
 	{
-		//Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
-		Data.Instance.events.OnJoystickUp -= OnJoystickUp;
-		//Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
-		//Data.Instance.events.OnJoystickRight -= OnJoystickRight;
-        Data.Instance.events.ResetHandwritingText -= ResetHandwritingText;
+		//Events.OnJoystickClick -= OnJoystickClick;
+		Events.OnJoystickDown -= OnJoystickDown;
+		Events.OnJoystickUp -= OnJoystickUp;
+		//Events.OnJoystickLeft -= OnJoystickLeft;
+		//Events.OnJoystickRight -= OnJoystickRight;
+        Events.ResetHandwritingText -= ResetHandwritingText;
 
     }
  //   void OnJoystickClick()

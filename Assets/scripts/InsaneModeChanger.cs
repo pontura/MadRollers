@@ -14,11 +14,11 @@ public class InsaneModeChanger : MonoBehaviour
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
             this.enabled = false;
         else
-            Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+            Events.StartMultiplayerRace += StartMultiplayerRace;
     }
     void OnDestroy()
     {
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
     }
     void StartMultiplayerRace()
     {
@@ -45,7 +45,7 @@ public class InsaneModeChanger : MonoBehaviour
 
     //    if(player0 && player1 && player2 && player3)
     //    {
-    //        Data.Instance.events.OnResetMultiplayerData();
+    //        Events.OnResetMultiplayerData();
     //        Data.Instance.inputSavedAutomaticPlay.RemoveAllData();
     //        Data.Instance.isReplay = false;
     //        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)

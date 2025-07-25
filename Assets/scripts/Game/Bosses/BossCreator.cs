@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BossCreator : Boss {
@@ -20,7 +21,7 @@ public class BossCreator : Boss {
 	IEnumerator DoSequence()
 	{
 		yield return new WaitForSeconds (0.2f);
-		Data.Instance.events.OnBossSetTimer (settings.time_to_kill);
+		Events.OnBossSetTimer (settings.time_to_kill);
 
 		distance_from_avatars = settings.distance_from_avatars;
 		time_to_init_enemies = settings.time_to_init_enemies;
@@ -64,11 +65,17 @@ public class BossCreator : Boss {
 		pos.z = _z;
 		transform.localPosition = pos;
 		Vector3 lightsPos = Vector3.zero;
+		int total = 0;
 		foreach (BossPart part in parts)
 		{
-			lightsPos += part.transform.position;
+			if(part != null)
+			{
+				total++;
+                lightsPos += part.transform.position;
+            }
         }
-		lightsPos /= parts.Length;
+		lightsPos /= total;
+        lightsPos.y = 0;
         lights.transform.position = lightsPos;
     }
 	int partID;

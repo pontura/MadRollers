@@ -42,11 +42,11 @@ public class SoundManager : MonoBehaviour
         
         OnSoundsVolumeChanged(volume);
 
-        Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
-        Data.Instance.events.OnSoundFX += OnSoundFX;
-		Data.Instance.events.OnSFXStatus += OnSFXStatus;
-        Data.Instance.events.OnGrabHeart += OnGrabHeart;
-        Data.Instance.events.OnAddExplotion += OnAddExplotion;
+        Events.OnAvatarShoot += OnAvatarShoot;
+        Events.OnSoundFX += OnSoundFX;
+		Events.OnSFXStatus += OnSFXStatus;
+        Events.OnGrabHeart += OnGrabHeart;
+        Events.OnAddExplotion += OnAddExplotion;
 
         if (!Data.Instance.soundsFXOn)
 			audioSource.enabled = false;
@@ -60,11 +60,11 @@ public class SoundManager : MonoBehaviour
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
-        Data.Instance.events.OnSoundFX -= OnSoundFX;
-		Data.Instance.events.OnSFXStatus -= OnSFXStatus;
-        Data.Instance.events.OnGrabHeart -= OnGrabHeart;
-        Data.Instance.events.OnAddExplotion -= OnAddExplotion;
+        Events.OnAvatarShoot -= OnAvatarShoot;
+        Events.OnSoundFX -= OnSoundFX;
+		Events.OnSFXStatus -= OnSFXStatus;
+        Events.OnGrabHeart -= OnGrabHeart;
+        Events.OnAddExplotion -= OnAddExplotion;
 
         if (loopAudioSource)
         {
@@ -72,7 +72,10 @@ public class SoundManager : MonoBehaviour
             loopAudioSource.Stop();
         }
     }
-
+    void OnMissionComplete(int id)
+    {
+        audioSource.volume = 0;
+    }
     private void OnAvatarShoot(int playerID)
     {
         if (playerID == 0)

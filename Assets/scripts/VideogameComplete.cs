@@ -16,8 +16,8 @@ public class VideogameComplete : MonoBehaviour {
 	bool done;
 
 	void Start () {
-		//Data.Instance.events.OnJoystickClick += OnJoystickClick;
-		//Data.Instance.events.OnJoystickBack += OnJoystickClick;
+		//Events.OnJoystickClick += OnJoystickClick;
+		//Events.OnJoystickBack += OnJoystickClick;
 
 		SetText("Congratulations! This videogame is completely ruined...");
 
@@ -25,8 +25,8 @@ public class VideogameComplete : MonoBehaviour {
 	}
 	void OnDestroy()
 	{
-		//Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-	//	Data.Instance.events.OnJoystickBack -= OnJoystickClick;
+		//Events.OnJoystickClick -= OnJoystickClick;
+	//	Events.OnJoystickBack -= OnJoystickClick;
 	}
 	void SetText (string sentence) {
 		this.sentence = sentence;

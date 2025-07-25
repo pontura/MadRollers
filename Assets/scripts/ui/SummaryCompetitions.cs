@@ -32,19 +32,19 @@ public class SummaryCompetitions : MonoBehaviour {
  //   }
  //   private void OnDestroy()
  //   {
- //       Data.Instance.events.OnJoystickClick -= OnJoystickClick;
- //       Data.Instance.events.OnJoystickUp -= OnJoystickUp;
- //       Data.Instance.events.OnJoystickDown -= OnJoystickDown;
+ //       Events.OnJoystickClick -= OnJoystickClick;
+ //       Events.OnJoystickUp -= OnJoystickUp;
+ //       Events.OnJoystickDown -= OnJoystickDown;
  //   }
  //   float fillAmount;
 	//public void SetOn()
 	//{
- //       Data.Instance.events.OnJoystickClick += OnJoystickClick;
- //       Data.Instance.events.OnJoystickUp += OnJoystickUp;
- //       Data.Instance.events.OnJoystickDown += OnJoystickDown;
+ //       Events.OnJoystickClick += OnJoystickClick;
+ //       Events.OnJoystickUp += OnJoystickUp;
+ //       Events.OnJoystickDown += OnJoystickDown;
 
  //       videogameLogo.sprite = Data.Instance.videogamesData.GetActualVideogameData().logo;
- //       Data.Instance.events.RalentaTo (1, 0.05f);
+ //       Events.RalentaTo (1, 0.05f);
 	//	isOn = true;
 	//	panel.SetActive(true);
 	//	SetSelected ();
@@ -101,7 +101,7 @@ public class SummaryCompetitions : MonoBehaviour {
  //           Data.Instance.isReplay = true;
  //           Game.Instance.ResetLevel();
  //       } else if (optionSelected == 1) {
-	//		Data.Instance.events.OnResetScores ();
+	//		Events.OnResetScores ();
 	//		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 
  //           if(Data.Instance.playMode != Data.PlayModes.STORYMODE)

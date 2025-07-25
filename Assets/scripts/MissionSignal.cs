@@ -12,15 +12,15 @@ public class MissionSignal : MonoBehaviour {
 
 	void Start () {
 		missions =  Data.Instance.GetComponent<Missions> ();
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-        Data.Instance.events.ResetHandwritingText += ResetHandwritingText;
+        Events.OnListenerDispatcher += OnListenerDispatcher;
+        Events.ResetHandwritingText += ResetHandwritingText;
 
         SetState(false);
 	}
     void OnDestroy()
     {
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
-        Data.Instance.events.ResetHandwritingText -= ResetHandwritingText;
+        Events.OnListenerDispatcher -= OnListenerDispatcher;
+        Events.ResetHandwritingText -= ResetHandwritingText;
     }
 	void SetState(bool isOff)
     {

@@ -52,18 +52,18 @@ public class GameCamera : MonoBehaviour
         initialPixelSize = Data.Instance.pixelSize;
         sensorSizeValue = sensorSizeValueInitial;
         cam.enabled = false;
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-        Data.Instance.events.OnChangeMood += OnChangeMood;
-        Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnStartGameScene += OnStartGameScene;
+        Events.OnAvatarCrash += OnAvatarCrash;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.OnChangeMood += OnChangeMood;
+        Events.OnVersusTeamWon += OnVersusTeamWon;
+        Events.OnMissionComplete += OnMissionComplete;
+        Events.OnStartGameScene += OnStartGameScene;
         //if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
         //{
-        //    Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
-        //    Data.Instance.events.OnCameraZoomTo += OnCameraZoomTo;
+        //    Events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
+        //    Events.OnCameraZoomTo += OnCameraZoomTo;
         //}
-        Data.Instance.events.OnGameOver += OnGameOver;
+        Events.OnGameOver += OnGameOver;
         pixelSize = 10;
 
       //  vignette = GetComponentInChildren<FinalVignetteCommandBuffer>();
@@ -93,13 +93,13 @@ public class GameCamera : MonoBehaviour
     void OnDestroy()
     {
         StopAllCoroutines();
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnChangeMood -= OnChangeMood;
-        Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
-        Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
-        Data.Instance.events.OnStartGameScene -= OnStartGameScene;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnAvatarCrash -= OnAvatarCrash;
+        Events.OnChangeMood -= OnChangeMood;
+        Events.OnVersusTeamWon -= OnVersusTeamWon;
+        Events.OnGameOver -= OnGameOver;
+        Events.OnMissionComplete -= OnMissionComplete;
+        Events.OnStartGameScene -= OnStartGameScene;
     }
     void OnStartGameScene()
     {

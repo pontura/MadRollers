@@ -84,7 +84,7 @@ public class WeaponEnemy : SceneObject {
 				return;
 
 			Data.Instance.framesController.ForceFrameRate (0.05f);
-			Data.Instance.events.RalentaTo (1, 0.05f);
+			Events.RalentaTo (1, 0.05f);
 			cb.Hit ();
 			Reset();
 			break;
@@ -94,13 +94,13 @@ public class WeaponEnemy : SceneObject {
 	{
 		if (!isActive) return;
 		exploted = true;        
-		Data.Instance.events.AddExplotion(transform.position, Color.red);
+		Events.AddExplotion(transform.position, Color.red);
 	}
 	void addExplotionWall()
 	{
 		if (!isActive) return;
 		exploted = true;
-		Data.Instance.events.AddWallExplotion(transform.position, Color.red);
+		Events.AddWallExplotion(transform.position, Color.red);
 	}
 	void Reset()
 	{

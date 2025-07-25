@@ -18,7 +18,7 @@ public class Bomb : SceneObject {
         trailRenderer = GetComponent<TrailRenderer>();
         pos.y = start_Y;
         base.OnRestart(pos);
-        Data.Instance.events.OnBossDropBomb();
+        Events.OnBossDropBomb();
     }
     public override void onDie()
     {

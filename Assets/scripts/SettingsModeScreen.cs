@@ -16,12 +16,12 @@ public class SettingsModeScreen : MonoBehaviour {
             toggleControls.isOn = false;
 
         Cursor.visible = true;
-        Data.Instance.events.OnJoystickClick += OnJoystickClick;
+        Events.OnJoystickClick += OnJoystickClick;
         SetControls();
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+        Events.OnJoystickClick -= OnJoystickClick;
     }
     void OnJoystickClick()
     {
@@ -56,7 +56,7 @@ public class SettingsModeScreen : MonoBehaviour {
 	}
     public void Controls()
     {
-        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+        Events.OnJoystickClick -= OnJoystickClick;
        // Data.Instance.controlMapper.Open();
     }
     public void TooglePlayers()

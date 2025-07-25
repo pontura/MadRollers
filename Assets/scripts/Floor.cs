@@ -32,9 +32,9 @@ public class Floor : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        Data.Instance.events.OnGamePaused += OnGamePaused;
-        Data.Instance.events.OnGameOver += OnGameOver;
-        Data.Instance.events.OnChangeBackgroundSide += OnChangeBackgroundSide;
+        Events.OnGamePaused += OnGamePaused;
+        Events.OnGameOver += OnGameOver;
+        Events.OnChangeBackgroundSide += OnChangeBackgroundSide;
     }
     void Start()
     {
@@ -43,10 +43,10 @@ public class Floor : MonoBehaviour
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnGamePaused -= OnGamePaused;
-		Data.Instance.events.OnGameOver -= OnGameOver;
-		Data.Instance.events.OnChangeBackgroundSide -= OnChangeBackgroundSide;
-      //  Data.Instance.events.OnChangeMood -= OnChangeMood;
+        Events.OnGamePaused -= OnGamePaused;
+		Events.OnGameOver -= OnGameOver;
+		Events.OnChangeBackgroundSide -= OnChangeBackgroundSide;
+      //  Events.OnChangeMood -= OnChangeMood;
     }
     void OnGamePaused(bool paused)
     {

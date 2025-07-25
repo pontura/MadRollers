@@ -4,7 +4,7 @@ using System.Collections;
 public class WinnersInGameSignal : MonoBehaviour {
     
 //	void Start () {
-//        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+//        Events.StartMultiplayerRace += StartMultiplayerRace;
 //        if (Data.Instance.GetComponent<ArcadeRanking>().all.Count>0)
 //            GetComponent<MeshRenderer>().material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
 //	}
@@ -16,6 +16,6 @@ public class WinnersInGameSignal : MonoBehaviour {
 //    }
 //    void OnDestroy()
 //    {
-//        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+//        Events.StartMultiplayerRace -= StartMultiplayerRace;
 //    }
 }
