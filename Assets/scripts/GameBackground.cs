@@ -12,13 +12,13 @@ public class GameBackground : MonoBehaviour {
     {
         id = 0;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
- //      	Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-        Data.Instance.events.OnChangeMood += OnChangeMood;
+ //      	Events.OnListenerDispatcher += OnListenerDispatcher;
+        Events.OnChangeMood += OnChangeMood;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnChangeMood -= OnChangeMood;
-//        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+        Events.OnChangeMood -= OnChangeMood;
+//        Events.OnListenerDispatcher -= OnListenerDispatcher;
     }
 //    void OnListenerDispatcher(string type)
 //    {

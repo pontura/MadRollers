@@ -14,24 +14,24 @@ public class Gui : MonoBehaviour {
 	void Start()
 	{
 		centerPanel.SetActive (false);
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall += OnAvatarCrash;
+        Events.OnAvatarCrash += OnAvatarCrash;
+        Events.OnAvatarFall += OnAvatarCrash;
 
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
-            Data.Instance.events.OnBossActive += OnBossActive;
+            Events.OnBossActive += OnBossActive;
 
-		Data.Instance.events.OnGenericUIText += OnGenericUIText;
-        Data.Instance.events.OnGameOver += OnGameOver;
-        Data.Instance.events.ResetHandwritingText += ResetHandwritingText;
+		Events.OnGenericUIText += OnGenericUIText;
+        Events.OnGameOver += OnGameOver;
+        Events.ResetHandwritingText += ResetHandwritingText;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
-		Data.Instance.events.OnBossActive -= OnBossActive;
-		Data.Instance.events.OnGenericUIText -= OnGenericUIText;
-        Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.ResetHandwritingText -= ResetHandwritingText;
+        Events.OnAvatarCrash -= OnAvatarCrash;
+        Events.OnAvatarFall -= OnAvatarCrash;
+		Events.OnBossActive -= OnBossActive;
+		Events.OnGenericUIText -= OnGenericUIText;
+        Events.OnGameOver -= OnGameOver;
+        Events.ResetHandwritingText -= ResetHandwritingText;
 
         levelComplete = null;
     }

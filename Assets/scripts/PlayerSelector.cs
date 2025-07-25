@@ -16,11 +16,11 @@ public class PlayerSelector : MonoBehaviour
             buttons.SetActive(false);
         AddPlayers();
         SetActive(UserData.Instance.playerID);
-        Data.Instance.events.ChangePlayer += ChangePlayer;
+        Events.ChangePlayer += ChangePlayer;
     }
     void OnDestroy()
     {
-        Data.Instance.events.ChangePlayer -= ChangePlayer;
+        Events.ChangePlayer -= ChangePlayer;
     }
     public void Next()
     {

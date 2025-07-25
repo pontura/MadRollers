@@ -24,7 +24,7 @@ public class ScoresUI : MonoBehaviour
             Destroy(this);
         }
        // panel.SetActive(true);
-        Data.Instance.events.OnMissionStart += OnMissionStart;
+        Events.OnMissionStart += OnMissionStart;
        // myAvatarThumb.Init(UserData.Instance.userID);
         Loop();
     }
@@ -40,7 +40,7 @@ public class ScoresUI : MonoBehaviour
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnMissionStart -= OnMissionStart;
+        Events.OnMissionStart -= OnMissionStart;
     }
 
     void OnMissionStart(int missionID)

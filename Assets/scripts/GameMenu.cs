@@ -20,7 +20,7 @@ public class GameMenu : MonoBehaviour {
 //        popup.SetActive(false);
 //        button.SetActive(false);
        // soundsLabel.text = "OFF!";
-      //  Data.Instance.events.SetSettingsButtonStatus += SetSettingsButtonStatus;
+      //  Events.SetSettingsButtonStatus += SetSettingsButtonStatus;
     }
 //    public void SetSettingsButtonStatus(bool show)
 //    {
@@ -32,8 +32,8 @@ public class GameMenu : MonoBehaviour {
 //    }
 //    public void Init()
 //    {
-//        Data.Instance.events.OnFadeALittle(true);
-//        Data.Instance.events.OnGamePaused(true);
+//        Events.OnFadeALittle(true);
+//        Events.OnGamePaused(true);
 //        popup.SetActive(true);
 //        StartCoroutine(Play(anim, "GameMenuOpen", false, null));
 //	}
@@ -44,26 +44,26 @@ public class GameMenu : MonoBehaviour {
 //            soundsLabel.text = "ON!";
 //            soundOn.SetActive(false);
 //            soundOff.SetActive(true);
-//            Data.Instance.events.SetVolume(0);
+//            Events.SetVolume(0);
 //        }else{
 //            soundsLabel.text = "OFF!";
 //            soundOn.SetActive(true);
 //            soundOff.SetActive(false);
-//            Data.Instance.events.SetVolume(1);
+//            Events.SetVolume(1);
 //        }
 //        sounds = !sounds;
 //        Close();
 //    }
 //    public void Close()
 //    {
-//        Data.Instance.events.OnGamePaused(false);
-//        Data.Instance.events.OnFadeALittle(false);
+//        Events.OnGamePaused(false);
+//        Events.OnFadeALittle(false);
 //        StartCoroutine(Play(anim, "GameMenuClose", false, Reset));
 //    }
 //    public void Compite()
 //    {
 //        //Data.Instance.playMode = Data.PlayModes.COMPETITION;
-//        Data.Instance.events.OnResetLevel();
+//        Events.OnResetLevel();
 //        SocialEvents.OnGetHiscores(1);
 //        Data.Instance.LoadLevel("Competitions");
 //        Close();
@@ -71,13 +71,13 @@ public class GameMenu : MonoBehaviour {
 //    public void Misiones()
 //    {
 //       // Data.Instance.playMode = Data.PlayModes.STORY;
-//        Data.Instance.events.OnResetLevel();
+//        Events.OnResetLevel();
 //        Data.Instance.LoadLevel("LevelSelector");
 //        Close();
 //    }
 //    public void ChangeLevels()
 //    {
-//        Data.Instance.events.OnResetLevel();
+//        Events.OnResetLevel();
 //        SocialEvents.OnGetHiscores(1);
 //        Data.Instance.LoadLevel("MainMenuMobile");
 //        Close();
@@ -92,20 +92,20 @@ public class GameMenu : MonoBehaviour {
 //    {
 //       // Data.Instance.resetProgress();
 //        ChangeLevels();
-//        Data.Instance.events.OnFadeALittle(false);
+//        Events.OnFadeALittle(false);
 //        StartCoroutine(Play(popupReset.GetComponent<Animation>(), "GameMenuClose", false, Reset));
 //    }
 //    public void CloseResetPopup()
 //    {
-//        Data.Instance.events.OnFadeALittle(false);
+//        Events.OnFadeALittle(false);
 //        StartCoroutine(Play(popupReset.GetComponent<Animation>(), "GameMenuClose", false, Reset));
 //    }
 //    private void Reset()
 //    {
-//		Data.Instance.events.ForceFrameRate (1);
+//		Events.ForceFrameRate (1);
 //        popup.SetActive(false);
 //       // Game.Instance.UnPause();
-//        Data.Instance.events.OnCloseMainmenu();
+//        Events.OnCloseMainmenu();
 //    }
 //    IEnumerator Play(Animation animation, string clipName, bool useTimeScale, Action onComplete)
 //    {

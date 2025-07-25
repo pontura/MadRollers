@@ -8,6 +8,6 @@ public class MissionSceneObject : MonoBehaviour {
 
 	public void Die()
 	{
-		Data.Instance.events.OnDestroySceneObject (missionName);
+		Events.OnDestroySceneObject (missionName);
 	}
 }

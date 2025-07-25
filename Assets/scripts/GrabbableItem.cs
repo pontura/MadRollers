@@ -64,8 +64,8 @@ public class GrabbableItem : SceneObject
 			transform.position = Vector3.MoveTowards(position, characterPosition, 18 * Time.deltaTime);
 			if(sec>20)
 			{
-				Data.Instance.events.OnScoreOn(player.id, transform.position, 10, ScoresManager.types.GRAB_PIXEL);
-                Data.Instance.events.OnGrabHeart(); 
+				Events.OnScoreOn(player.id, transform.position, 10, ScoresManager.types.GRAB_PIXEL);
+                Events.OnGrabHeart(); 
                 player = null;
                 CheckIfIsPartOfCombo();
                 Pool();

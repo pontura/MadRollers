@@ -72,14 +72,14 @@ public class Breakable : MonoBehaviour {
 		sceneObject.broken = true;
         if (destroyedByWeapon)
         {
-            Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
+            Events.OnAddObjectExplotion(transform.position, (int)explotionType);
 
             // si no es un enemigo agrega una explosion que rompe los objetos cercanos:
             if (gameObject.layer != 17)
             {
                 MeshRenderer firstMeshRenderer = GetComponentInChildren<MeshRenderer>();
                 Color color = Color.black;
-                Data.Instance.events.AddWallExplotion(transform.position, color);
+                Events.AddWallExplotion(transform.position, color);
             }
         }
 

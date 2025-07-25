@@ -14,17 +14,17 @@ public class HearsManager : MonoBehaviour {
         particles.gameObject.SetActive(false);
         newHearts = 0;
         total = PlayerPrefs.GetInt("totalHearts");
-        Data.Instance.events.OnGrabHeart += OnGrabHeart;
-        Data.Instance.events.OnAvatarFall += OnAvatarDie;
-        Data.Instance.events.OnAvatarCrash += OnAvatarDie;
-        Data.Instance.events.OnUseHearts += OnUseHearts;
+        Events.OnGrabHeart += OnGrabHeart;
+        Events.OnAvatarFall += OnAvatarDie;
+        Events.OnAvatarCrash += OnAvatarDie;
+        Events.OnUseHearts += OnUseHearts;
         SetHearts();
 	}
     void OnDestroy () {
-        Data.Instance.events.OnGrabHeart -= OnGrabHeart;
-        Data.Instance.events.OnAvatarFall -= OnAvatarDie;
-        Data.Instance.events.OnAvatarCrash -= OnAvatarDie;
-        Data.Instance.events.OnUseHearts -= OnUseHearts;
+        Events.OnGrabHeart -= OnGrabHeart;
+        Events.OnAvatarFall -= OnAvatarDie;
+        Events.OnAvatarCrash -= OnAvatarDie;
+        Events.OnUseHearts -= OnUseHearts;
 	}
     void OnUseHearts(int qty)
     {

@@ -24,27 +24,27 @@ public class MissionBar : MonoBehaviour {
 	{
         bossTimer.SetActive (false);
         bossSignal.gameObject.SetActive (false);
-		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		Events.StartMultiplayerRace += StartMultiplayerRace;
 
         if (Data.Instance.playMode != Data.PlayModes.SURVIVAL)
         {
-            Data.Instance.events.OnBossInit += OnBossInit;        
-            Data.Instance.events.OnBossActive += OnBossActive;
-		    Data.Instance.events.OnBossHitsUpdate += OnBossHitsUpdate;
-		    Data.Instance.events.OnBossSetTimer += OnBossSetTimer;
+            Events.OnBossInit += OnBossInit;        
+            Events.OnBossActive += OnBossActive;
+		    Events.OnBossHitsUpdate += OnBossHitsUpdate;
+		    Events.OnBossSetTimer += OnBossSetTimer;
         }
 
-		Data.Instance.events.OnGameOver += OnGameOver;
-        Data.Instance.events.OnContinue += OnContinue;
+		Events.OnGameOver += OnGameOver;
+        Events.OnContinue += OnContinue;
     }
 	void OnDestroy () {
-		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-		Data.Instance.events.OnBossInit -= OnBossInit;
-		Data.Instance.events.OnBossActive -= OnBossActive;
-		Data.Instance.events.OnBossHitsUpdate -= OnBossHitsUpdate;
-		Data.Instance.events.OnBossSetTimer -= OnBossSetTimer;
-		Data.Instance.events.OnGameOver -= OnGameOver;
-		Data.Instance.events.OnContinue -= OnContinue;
+		Events.StartMultiplayerRace -= StartMultiplayerRace;
+		Events.OnBossInit -= OnBossInit;
+		Events.OnBossActive -= OnBossActive;
+		Events.OnBossHitsUpdate -= OnBossHitsUpdate;
+		Events.OnBossSetTimer -= OnBossSetTimer;
+		Events.OnGameOver -= OnGameOver;
+		Events.OnContinue -= OnContinue;
 	}
 	void StartMultiplayerRace()
 	{
@@ -78,8 +78,8 @@ public class MissionBar : MonoBehaviour {
 		} 
 		if (sec <=  0)
         {
-            Data.Instance.events.OnGameOver (true);
-			Data.Instance.events.FreezeCharacters (true);
+            Events.OnGameOver (true);
+			Events.FreezeCharacters (true);
 		} else {
 			Invoke ("Loop", 1);
 		}

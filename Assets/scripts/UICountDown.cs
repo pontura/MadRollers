@@ -21,7 +21,7 @@ public class UICountDown : MonoBehaviour {
     {
         MusicManager.Instance.OnGamePaused(true);
 		panel.SetActive (true);
-		Data.Instance.events.OnGameStart ();
+		Events.OnGameStart ();
 		SetNextCountDown ();
 	}
 	void SetNextCountDown()
@@ -31,16 +31,16 @@ public class UICountDown : MonoBehaviour {
         VoicesManager.Instance.PlayCountDown(countDown);
         if (countDown == 0)
         {
-            Data.Instance.events.StartMultiplayerRace();
+            Events.StartMultiplayerRace();
             countDownField.text = TextsManager.Instance.GetText("GO!"); ;
             Invoke("Done", 0.5f);
-            Data.Instance.events.OnSoundFX("countDownStart");
+            Events.OnSoundFX("countDownStart");
             return;
         }
         else
         {            
             countDownField.text = countDown.ToString();
-            Data.Instance.events.OnSoundFX("countDown");
+            Events.OnSoundFX("countDown");
         }
         countDown--;
 		Invoke ("SetNextCountDown", 0.75f);
@@ -48,7 +48,7 @@ public class UICountDown : MonoBehaviour {
     void Done()
     {        
         panel.SetActive(false);
-        Data.Instance.events.OnGenericUIText( TextsManager.Instance.GetText("DESTROY") + "!" );
+        Events.OnGenericUIText( TextsManager.Instance.GetText("DESTROY") + "!" );
         MusicManager.Instance.ChangePitch(1);
         Destroy(this);
     }

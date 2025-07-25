@@ -11,7 +11,7 @@ public class MainMenuMobile : MonoBehaviour
 
     private void Start()
     {
-        Data.Instance.events.OnResetMultiplayerData();
+        Events.OnResetMultiplayerData();
         Data.Instance.isReplay = false;
         Data.Instance.videogamesData.Reset();
         Data.Instance.missions.Reset();
@@ -19,8 +19,8 @@ public class MainMenuMobile : MonoBehaviour
         welcomeField.text = "HELLO " + UserData.Instance.username.ToUpper();
        // registerField.text = TextsManager.Instance.GetText("REGISTER");
 
-        Data.Instance.events.OnJoystickClick += OnJoystickClick;
-        Data.Instance.events.OnInterfacesStart();
+        Events.OnJoystickClick += OnJoystickClick;
+        Events.OnInterfacesStart();
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
         
@@ -33,7 +33,7 @@ public class MainMenuMobile : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+        Events.OnJoystickClick -= OnJoystickClick;
     }
     bool done;
     void OnJoystickClick()

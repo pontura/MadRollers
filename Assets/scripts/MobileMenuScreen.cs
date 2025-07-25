@@ -75,7 +75,7 @@ public class MobileMenuScreen : MonoBehaviour
     }
     public void ResetMissions()
     {
-        Data.Instance.events.ResetMissionsBlocked();
+        Events.ResetMissionsBlocked();
         Data.Instance.LoadLevel("LevelSelectorMobile");
     }
     public void Credits()

@@ -20,7 +20,7 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
     }
     public void Init()
     {
-        //Data.Instance.events.SetHamburguerButton(false);
+        //Events.SetHamburguerButton(false);
         //panel.SetActive(true);
         //InitMissions();        
     }
@@ -68,7 +68,7 @@ public class HiscoresLevelSelectorUI : MonoBehaviour
     { }
     public void Close()
     {
-        Data.Instance.events.SetHamburguerButton(true);
+        Events.SetHamburguerButton(true);
         panel.SetActive(false);
     }
 }

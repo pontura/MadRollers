@@ -7,9 +7,9 @@ public class InputSaver : MonoBehaviour {
 	public List<InputSaverData> recordingList;
 
 	void Start () {
-  //      Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
-		//Data.Instance.events.OnAvatarJump += OnAvatarJump;
-		//Data.Instance.events.OnGameOver += OnGameOver;
+  //      Events.OnAvatarShoot += OnAvatarShoot;
+		//Events.OnAvatarJump += OnAvatarJump;
+		//Events.OnGameOver += OnGameOver;
 	}
 	public void MoveInX(float posX)
 	{

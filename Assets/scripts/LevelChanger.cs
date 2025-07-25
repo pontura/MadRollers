@@ -15,7 +15,7 @@ public class LevelChanger : SceneObject {
 	public override void OnRestart(Vector3 pos)
 	{
 		isDone = false;
-		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+		Events.OnListenerDispatcher += OnListenerDispatcher;
 		base.OnRestart( pos );
 		VideogamesData videogamesData = Data.Instance.videogamesData;
 		actualVideogameID = videogamesData.actualID;
@@ -41,11 +41,11 @@ public class LevelChanger : SceneObject {
 		Reset ();
 	}
 	void OnDestroy()  { 
-		Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+		Events.OnListenerDispatcher -= OnListenerDispatcher;
 	}
 	void Reset()  { 
 		StopAllCoroutines ();
-		Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+		Events.OnListenerDispatcher -= OnListenerDispatcher;
 	}
 	void OnListenerDispatcher(ListenerDispatcher.myEnum message)
 	{
@@ -72,7 +72,7 @@ public class LevelChanger : SceneObject {
         //Game.Instance.level.charactersManager.gameOver = true;
         Game.Instance.GameOver();
 
-        //Data.Instance.events.OnCameraZoomTo (t.position);
+        //Events.OnCameraZoomTo (t.position);
 	//	StartCoroutine (GotoVideogame(videogameId));
 
 	}

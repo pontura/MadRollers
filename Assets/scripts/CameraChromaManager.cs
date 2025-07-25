@@ -20,10 +20,10 @@ public class CameraChromaManager : MonoBehaviour {
         if (Data.Instance.useOptimizedSettings)
             return;
 
-		Data.Instance.events.OnCameraChroma += OnCameraChroma;
+		Events.OnCameraChroma += OnCameraChroma;
 	}
 	void OnDestroy () {
-		Data.Instance.events.OnCameraChroma -= OnCameraChroma;
+		Events.OnCameraChroma -= OnCameraChroma;
 	}
 	void OnCameraChroma(types type)
 	{

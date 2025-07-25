@@ -45,18 +45,18 @@ public class MadRollersSFX : MonoBehaviour {
 		else
 		{
 			DontDestroyOnLoad(this);
-			Data.Instance.events.OnMadRollerFX += OnMadRollerFX;
-			Data.Instance.events.OnGameOver += OnGameOver;
-			Data.Instance.events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
+			Events.OnMadRollerFX += OnMadRollerFX;
+			Events.OnGameOver += OnGameOver;
+			Events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
 
 			OnMadRollersSFXStatus(Data.Instance.madRollersSoundsOn);
 		}
 	}
     void OnDestroy()
     {
-        Data.Instance.events.OnMadRollerFX -= OnMadRollerFX;
-        Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.OnMadRollersSFXStatus -= OnMadRollersSFXStatus;
+        Events.OnMadRollerFX -= OnMadRollerFX;
+        Events.OnGameOver -= OnGameOver;
+        Events.OnMadRollersSFXStatus -= OnMadRollersSFXStatus;
     }
     void OnMadRollersSFXStatus(bool isOn)
 	{

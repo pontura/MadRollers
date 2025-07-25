@@ -21,14 +21,14 @@ public class MobileMenu : MonoBehaviour
             debugField.text = "version: [" + Application.version + "]";
             mobileMenuScreen.gameObject.SetActive(false);
             panel.SetActive(false);
-            Data.Instance.events.OnChangeScene += OnChangeScene;
-            Data.Instance.events.SetHamburguerButton += SetHamburguerButton;
+            Events.OnChangeScene += OnChangeScene;
+            Events.SetHamburguerButton += SetHamburguerButton;
         }
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnChangeScene -= OnChangeScene;
-        Data.Instance.events.SetHamburguerButton -= SetHamburguerButton;
+        Events.OnChangeScene -= OnChangeScene;
+        Events.SetHamburguerButton -= SetHamburguerButton;
     }
     void  SetHamburguerButton(bool isOn)
     {

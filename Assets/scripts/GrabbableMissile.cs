@@ -58,7 +58,7 @@ public class GrabbableMissile : Powerup {
             if (sec > 13)
             {
                 if (player != null)
-                    Data.Instance.events.OnChangeWeapon(player.id, missileType);
+                    Events.OnChangeWeapon(player.id, missileType);
 
                 Pool();
             }

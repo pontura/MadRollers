@@ -14,11 +14,11 @@ public class CharacterShooter : MonoBehaviour {
 	void Start()
 	{
 		ResetWeapons ();
-		Data.Instance.events.OnChangeWeapon += OnChangeWeapon;
+		Events.OnChangeWeapon += OnChangeWeapon;
 	}
 	void OnDestroy()
 	{
-		Data.Instance.events.OnChangeWeapon -= OnChangeWeapon;
+		Events.OnChangeWeapon -= OnChangeWeapon;
 	}
 	public void ResetWeapons()
 	{
@@ -45,7 +45,7 @@ public class CharacterShooter : MonoBehaviour {
 			else
 				nextWeapon = Weapon.types.SIMPLE;
 		
-			Data.Instance.events.OnChangeWeapon (characterBehavior.player.id, nextWeapon);
+			Events.OnChangeWeapon (characterBehavior.player.id, nextWeapon);
 		}
 	}
 	public void StartPressingFire(){
@@ -68,7 +68,7 @@ public class CharacterShooter : MonoBehaviour {
         if (characterBehavior.state == CharacterBehavior.states.DEAD)
             return;
 
-        Data.Instance.events.OnAvatarShoot (characterBehavior.player.id);
+        Events.OnAvatarShoot (characterBehavior.player.id);
 
 		if (Game.Instance.state !=  Game.states.PLAYING)
 			return;

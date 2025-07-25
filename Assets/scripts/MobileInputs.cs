@@ -24,9 +24,9 @@ public class MobileInputs : MonoBehaviour
             {
                 panel_virtualJoystick.SetActive(true);
             }
-            Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-            Data.Instance.events.OnGameOver += OnGameOver;
-            Data.Instance.events.OnContinue += OnContinue;
+            Events.StartMultiplayerRace += StartMultiplayerRace;
+            Events.OnGameOver += OnGameOver;
+            Events.OnContinue += OnContinue;
         }
         else
         {
@@ -35,9 +35,9 @@ public class MobileInputs : MonoBehaviour
     }
     void OnDestroy()
     {
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-        Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.OnContinue -= OnContinue;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnGameOver -= OnGameOver;
+        Events.OnContinue -= OnContinue;
     }
     void OnContinue()
     {
@@ -154,12 +154,12 @@ public class MobileInputs : MonoBehaviour
     //{
     //    isActive  = false;
     //    if (_y < Input.mousePosition.y - 5f)
-    //        Data.Instance.events.OnJump();
+    //        Events.OnJump();
     //    else
     //    if (_y > Input.mousePosition.y + 20f)
-    //        Data.Instance.events.OnDash();
+    //        Events.OnDash();
     //    else
-    //        Data.Instance.events.OnShoot();
+    //        Events.OnShoot();
     //}
     //public void OnMouseUp()
     //{

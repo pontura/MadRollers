@@ -66,14 +66,14 @@ public class Level : MonoBehaviour {
 		data = Data.Instance;
 		game = Game.Instance;
 
-		data.events.OnResetLevel += reset;
-		data.events.OnScoreOn += OnScoreOn;
-		data.events.OnAddExplotion += OnAddExplotion;
-		data.events.OnAddWallExplotion += OnAddWallExplotion;
-		data.events.OnAddObjectExplotion += OnAddObjectExplotion;
-		//data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
-		data.events.StartMultiplayerRace += StartMultiplayerRace;
-		Data.Instance.events.OnGameStart += OnGameStart;
+		Events.OnResetLevel += reset;
+		Events.OnScoreOn += OnScoreOn;
+		Events.OnAddExplotion += OnAddExplotion;
+		Events.OnAddWallExplotion += OnAddWallExplotion;
+		Events.OnAddObjectExplotion += OnAddObjectExplotion;
+		//Events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
+		Events.StartMultiplayerRace += StartMultiplayerRace;
+		Events.OnGameStart += OnGameStart;
 
 		charactersManager = game.GetComponent<CharactersManager>();
 		//powerupsManager = GetComponent<PowerupsManager>();
@@ -84,7 +84,7 @@ public class Level : MonoBehaviour {
 		SetNewVideogameSettings ();
 
 		missions.Init (this);
-        Data.Instance.events.OnChangeBackgroundSide(Data.Instance.missions.MissionActive.fondo);
+        Events.OnChangeBackgroundSide(Data.Instance.missions.MissionActive.fondo);
 
         //		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
         //			Area a = Data.Instance.versusManager.GetArea();
@@ -110,14 +110,14 @@ public class Level : MonoBehaviour {
     
     public void OnDestroy()
     {
-		Data.Instance.events.OnGameStart -= OnGameStart;
-        data.events.OnResetLevel -= reset;
-		data.events.OnScoreOn -= OnScoreOn;
-        data.events.OnAddExplotion -= OnAddExplotion;
-        data.events.OnAddWallExplotion -= OnAddWallExplotion;
-        data.events.OnAddObjectExplotion -= OnAddObjectExplotion;
-        data.events.StartMultiplayerRace -= StartMultiplayerRace;
-       // data.events.OnAddHeartsByBreaking -= OnAddHeartsByBreaking;
+		Events.OnGameStart -= OnGameStart;
+        Events.OnResetLevel -= reset;
+		Events.OnScoreOn -= OnScoreOn;
+        Events.OnAddExplotion -= OnAddExplotion;
+        Events.OnAddWallExplotion -= OnAddWallExplotion;
+        Events.OnAddObjectExplotion -= OnAddObjectExplotion;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
+       // Events.OnAddHeartsByBreaking -= OnAddHeartsByBreaking;
     }
     void StartMultiplayerRace()
     {
@@ -128,7 +128,7 @@ public class Level : MonoBehaviour {
 	{
 		charactersManager.OnLevelComplete ();
 		showStartArea = true;		
-		data.events.MissionComplete ();
+		Events.MissionComplete ();
 		VoicesManager.Instance.PlayRandom (VoicesManager.Instance.missionComplete);
 		//SetNewVideogameSettings ();
 	}
@@ -149,7 +149,7 @@ public class Level : MonoBehaviour {
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
     {      
-		Data.Instance.events.OnSoundFX("FX_break");
+		Events.OnSoundFX("FX_break");
 		SceneObject explpotionEffect = null;
         switch (type)
         {
@@ -216,7 +216,7 @@ public class Level : MonoBehaviour {
         }
 
 		//if (Random.Range(0,100)>70 && Data.Instance.isArcadeMultiplayer)
-		//	Data.Instance.events.OnAddPowerUp (position);
+		//	Events.OnAddPowerUp (position);
 		//else
 			AddHeartsByBreaking (position, 14, 470);
 	}

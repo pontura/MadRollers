@@ -67,13 +67,13 @@ public class VoicesManager : MonoBehaviour
 		if (!Data.Instance.voicesOn)
 			return;
 		
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall += OnAvatarFall;
-        Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
-        Data.Instance.events.SetVolume += SetVolume;
-        Data.Instance.events.VoiceFromResources += VoiceFromResources; 
-		Data.Instance.events.OnVoicesStatus += OnVoicesStatus;
+        Events.OnMissionComplete += OnMissionComplete;
+        Events.OnAvatarCrash += OnAvatarCrash;
+        Events.OnAvatarFall += OnAvatarFall;
+        Events.OnAvatarChangeFX += OnAvatarChangeFX;
+        Events.SetVolume += SetVolume;
+        Events.VoiceFromResources += VoiceFromResources; 
+		Events.OnVoicesStatus += OnVoicesStatus;
 
 		if (!Data.Instance.voicesOn)
 			audioSource.enabled = false;
@@ -195,7 +195,7 @@ public class VoicesManager : MonoBehaviour
 		//audioSpectrum.SetOn ();
         audioSource.clip = audioClip;
         audioSource.Play();
-		Data.Instance.events.OnTalk (true);
+		Events.OnTalk (true);
     }
 	float timer;
 	//void Update()
@@ -216,7 +216,7 @@ public class VoicesManager : MonoBehaviour
 		else {
 			//audioSpectrum.SetOff ();
 			talking = false;			
-			Data.Instance.events.OnTalk (false);
+			Events.OnTalk (false);
 		}
 	}
 }

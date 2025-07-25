@@ -10,8 +10,8 @@ public class BossThrower : Boss {
 	public override void OnRestart(Vector3 pos)
 	{
 		base.OnRestart (pos);
-		Data.Instance.events.OnBossSetNewAsset ("helicopter");
-		Data.Instance.events.OnBossSetTimer (40);
+		Events.OnBossSetNewAsset ("helicopter");
+		Events.OnBossSetTimer (40);
 		SetTotal (8);
 	}
 

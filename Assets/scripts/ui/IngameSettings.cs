@@ -51,7 +51,7 @@ public class IngameSettings : MonoBehaviour
     {
         if(field.text == "ON")
             AudioListener.volume = 1f;
-        Data.Instance.events.RalentaTo(1, 0.15f);
+        Events.RalentaTo(1, 0.15f);
         panel.SetActive(false);
     }
 }

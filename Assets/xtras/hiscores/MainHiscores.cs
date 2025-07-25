@@ -53,10 +53,10 @@ public class MainHiscores : MonoBehaviour {
         puestoField.text = TextsManager.Instance.GetText("RANK") + " " + puesto;
 		field.text += _hiscore.ToString ();
 
-		Data.Instance.events.OnJoystickRight += OnJoystickRight;
-		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
-		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-	//	Data.Instance.events.OnJoystickBack += OnJoystickBack;
+		Events.OnJoystickRight += OnJoystickRight;
+		Events.OnJoystickLeft += OnJoystickLeft;
+		Events.OnJoystickClick += OnJoystickClick;
+	//	Events.OnJoystickBack += OnJoystickBack;
 
 		foreach (LeterChanger letterChanger in letters)
 		{
@@ -68,10 +68,10 @@ public class MainHiscores : MonoBehaviour {
 	}
 	void OnDestroy()
 	{
-		Data.Instance.events.OnJoystickRight -= OnJoystickRight;
-		Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
-		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-		//	Data.Instance.events.OnJoystickBack -= OnJoystickBack;
+		Events.OnJoystickRight -= OnJoystickRight;
+		Events.OnJoystickLeft -= OnJoystickLeft;
+		Events.OnJoystickClick -= OnJoystickClick;
+		//	Events.OnJoystickBack -= OnJoystickBack;
 	}
 	void OnJoystickRight()
 	{
@@ -204,10 +204,10 @@ public class MainHiscores : MonoBehaviour {
     }
     void grabaEnd()
     {
-		Data.Instance.events.RefreshHiscores ();
+		Events.RefreshHiscores ();
 		Data.Instance.missions.MissionActiveID = 0;
-		Data.Instance.events.OnResetMultiplayerData();
-		Data.Instance.events.ForceFrameRate (1);
+		Events.OnResetMultiplayerData();
+		Events.ForceFrameRate (1);
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
             Data.Instance.LoadLevel("MainMenu");
         else

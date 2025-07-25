@@ -145,7 +145,7 @@ public class HiscoresComparison : MonoBehaviour {
 		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
 		Data.Instance.isReplay = false;
 		CancelInvoke ();
-		Data.Instance.events.OnResetLevel();
+		Events.OnResetLevel();
 		Data.Instance.LoadLevel ("Hiscores");
 		Reset ();
 	}

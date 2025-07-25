@@ -26,7 +26,7 @@ public class StartingPlatform : SceneObject {
 		//}
 
         if(!Data.Instance.isAndroid)
-		    Data.Instance.events.OnCharacterInit += OnCharacterInit;
+		    Events.OnCharacterInit += OnCharacterInit;
 
 //		foreach (GameObject go in platforms) {
 //			Vector3 pos = go.transform.localPosition;
@@ -38,7 +38,7 @@ public class StartingPlatform : SceneObject {
 	public override void OnPool()
 	{
         playerToInstantiate = null;
-		Data.Instance.events.OnCharacterInit -= OnCharacterInit;
+		Events.OnCharacterInit -= OnCharacterInit;
 	}
 	void OnCharacterInit(int _avatarID)
 	{

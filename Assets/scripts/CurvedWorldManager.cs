@@ -11,7 +11,7 @@ public class CurvedWorldManager : MonoBehaviour {
     public CurvedWorld_Controller curvedWorld_Controller;
 
 	public void Start () {        
-        Data.Instance.events.ChangeCurvedWorldX += ChangeCurvedWorldX;
+        Events.ChangeCurvedWorldX += ChangeCurvedWorldX;
         if (curvedWorld_Controller == null)
             return;
         _x = curvedWorld_Controller._V_CW_Bend_X;
@@ -19,7 +19,7 @@ public class CurvedWorldManager : MonoBehaviour {
     }
     public void OnDestroy()
     {
-        Data.Instance.events.ChangeCurvedWorldX -= ChangeCurvedWorldX;
+        Events.ChangeCurvedWorldX -= ChangeCurvedWorldX;
     }
     public void SetController(CurvedWorld_Controller c)
     {

@@ -32,10 +32,10 @@ public class ScoreBarMultiplayer : MonoBehaviour {
         scoreSignal.SetActive(false);
 
         RefreshScore ();
-		Data.Instance.events.OnDrawScore += OnDrawScore;
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnPayPixeles += OnPayPixeles;
-        Data.Instance.events.OnContinue += OnContinue;
+		Events.OnDrawScore += OnDrawScore;
+        Events.OnMissionComplete += OnMissionComplete;
+        Events.OnPayPixeles += OnPayPixeles;
+        Events.OnContinue += OnContinue;
 
         Data.Instance.multiplayerData.score = 0;
         RefreshScore();
@@ -56,10 +56,10 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     }
     void OnDestroy()
 	{
-		Data.Instance.events.OnDrawScore -= OnDrawScore;
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
-        Data.Instance.events.OnPayPixeles -= OnPayPixeles;
-        Data.Instance.events.OnContinue -= OnContinue;
+		Events.OnDrawScore -= OnDrawScore;
+        Events.OnMissionComplete -= OnMissionComplete;
+        Events.OnPayPixeles -= OnPayPixeles;
+        Events.OnContinue -= OnContinue;
     }
 	float delayToReset = 1;
 	float ResetFieldsTimer;

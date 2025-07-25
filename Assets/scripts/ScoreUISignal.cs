@@ -13,13 +13,13 @@ public class ScoreUISignal : MonoBehaviour
     //{
     //   // playerID = GetComponent<JoystickPlayer>().playerID;
     //    panel.SetActive(false);
-    //    Data.Instance.events.OnScoreOn += OnScoreOn;
+    //    Events.OnScoreOn += OnScoreOn;
     //    field.color = Data.Instance.multiplayerData.colors[playerID];
     //    anim = panel.GetComponent<Animation>();
     //}
     //void OnDestroy()
     //{
-    //    Data.Instance.events.OnScoreOn -= OnScoreOn;
+    //    Events.OnScoreOn -= OnScoreOn;
     //}
     //void OnScoreOn(int playerID, Vector3 pos, int points, ScoresManager.types type)
     //{

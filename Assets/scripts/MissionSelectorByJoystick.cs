@@ -11,24 +11,24 @@ public class MissionSelectorByJoystick : MonoBehaviour
         if (Data.Instance.isAndroid)
             Destroy(this);
 
-        Data.Instance.events.OnJoystickClick += OnJoystickClick;
+        Events.OnJoystickClick += OnJoystickClick;
 
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
             return;
-        Data.Instance.events.OnJoystickUp += OnJoystickUp;
-        Data.Instance.events.OnJoystickDown += OnJoystickDown;
-        Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
-        Data.Instance.events.OnJoystickRight += OnJoystickRight;
+        Events.OnJoystickUp += OnJoystickUp;
+        Events.OnJoystickDown += OnJoystickDown;
+        Events.OnJoystickLeft += OnJoystickLeft;
+        Events.OnJoystickRight += OnJoystickRight;
         
     }
 
     void OnDestroy()
     {
-        Data.Instance.events.OnJoystickUp -= OnJoystickUp;
-        Data.Instance.events.OnJoystickDown -= OnJoystickDown;
-        Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
-        Data.Instance.events.OnJoystickRight -= OnJoystickRight;
-        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+        Events.OnJoystickUp -= OnJoystickUp;
+        Events.OnJoystickDown -= OnJoystickDown;
+        Events.OnJoystickLeft -= OnJoystickLeft;
+        Events.OnJoystickRight -= OnJoystickRight;
+        Events.OnJoystickClick -= OnJoystickClick;
     }
     void OnJoystickUp()
     {

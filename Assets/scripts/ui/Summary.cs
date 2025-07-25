@@ -24,10 +24,10 @@ public class Summary : MonoBehaviour {
     void Start()
     {
         SetOff();
-            Data.Instance.events.OnGameOver += OnGameOver;
+            Events.OnGameOver += OnGameOver;
        if (Data.Instance.playMode == Data.PlayModes.PARTYMODE  )
-            Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnContinue += OnContinue;
+            Events.OnMissionComplete += OnMissionComplete;
+        Events.OnContinue += OnContinue;
     }
     public void SetOff()
     {
@@ -35,9 +35,9 @@ public class Summary : MonoBehaviour {
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnGameOver -= OnGameOver;
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
-        Data.Instance.events.OnContinue -= OnContinue;
+        Events.OnGameOver -= OnGameOver;
+        Events.OnMissionComplete -= OnMissionComplete;
+        Events.OnContinue -= OnContinue;
     }
     void OnContinue()
     {
@@ -85,7 +85,7 @@ public class Summary : MonoBehaviour {
     {
         float value;
         float total;
-        Data.Instance.events.RalentaTo(1, 0.05f);
+        Events.RalentaTo(1, 0.05f);
         mobilePanel.SetActive(true);
         int continuePrice = Data.Instance.missions.MissionActive.GetContinuePrice();
 
@@ -136,7 +136,7 @@ public class Summary : MonoBehaviour {
 	}
     public void Replay()
     {
-        Data.Instance.events.OnResetScores();
+        Events.OnResetScores();
         Data.Instance.isReplay = true;
         Game.Instance.ResetLevel();
     }

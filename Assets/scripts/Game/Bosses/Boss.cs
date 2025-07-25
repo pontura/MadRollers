@@ -13,14 +13,14 @@ public class Boss : SceneObject {
 	public override void OnRestart(Vector3 pos)
 	{		
 		base.OnRestart (pos);
-        //data.events.OnBossActive (true);
+        //Events.OnBossActive (true);
         MusicManager.Instance.BossMusic (true);
         VoicesManager.Instance.PlayRandom (VoicesManager.Instance.killThemAll);
 	}
 	public void SetTotal(int totalHits)
 	{
 		this.totalHits = totalHits;
-		Data.Instance.events.OnBossInit (totalHits);
+		Events.OnBossInit (totalHits);
 	}
 	public bool HasOnlyOneLifeLeft()
 	{
@@ -39,28 +39,29 @@ public class Boss : SceneObject {
     public void Fall(int numHits)
     {
         hits += numHits;
-        Data.Instance.events.OnBossHitsUpdate(hits);
+        Events.OnBossHitsUpdate(hits);
     }
     public void Hitted()
     {
-        Data.Instance.events.OncharacterCheer();
+        Events.OncharacterCheer();
         hits++;
-        Data.Instance.events.OnBossHitsUpdate(hits);
+        Events.OnBossHitsUpdate(hits);
     }
 	public void Killed()
 	{
-		Data.Instance.events.OnSoundFX("bossDie");
+		Events.OnSoundFX("bossDie");
 		Death ();
 		Invoke ("Died", 0.2f);
 	}
 	void Died()
 	{
-		Data.Instance.GetComponent<MusicManager> ().BossMusic (false);
+
+        MusicManager.Instance.BossMusic(false);
 
         if(Data.Instance.playMode != Data.PlayModes.SURVIVAL)
 		    Game.Instance.level.Complete ();
 		
-		Data.Instance.events.OnBossActive (false);
+		Events.OnBossActive (false);
         Pool();
     }
 	public virtual void Hit(){}

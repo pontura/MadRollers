@@ -14,11 +14,11 @@ public class ScoresInGame : MonoBehaviour
     {
         cam = Game.Instance.gameCamera.cam;
         Init();
-        Data.Instance.events.OnScoreOn += OnScoreOn;
+        Events.OnScoreOn += OnScoreOn;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnScoreOn -= OnScoreOn;
+        Events.OnScoreOn -= OnScoreOn;
     }
     private void Init()
     {

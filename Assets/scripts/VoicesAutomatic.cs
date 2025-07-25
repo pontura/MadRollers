@@ -8,15 +8,15 @@ public class VoicesAutomatic : MonoBehaviour {
     private int seconds_didnt_shoot = 0;
 
 	void Start () {
-        //Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
-        //Data.Instance.events.OnSoundFX += OnSoundFX;
+        //Events.OnAvatarShoot += OnAvatarShoot;
+        //Events.OnSoundFX += OnSoundFX;
 
         Invoke("Loop", 4);
 	}
     void OnDestroy()
     {
-       // Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
-       // Data.Instance.events.OnSoundFX -= OnSoundFX;
+       // Events.OnAvatarShoot -= OnAvatarShoot;
+       // Events.OnSoundFX -= OnSoundFX;
     }
     void Loop()
     {

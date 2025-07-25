@@ -36,10 +36,10 @@ public class SettingsScreen : MonoBehaviour {
 		Data.Instance.voicesOn = voicesFXToggle.isOn;
 		Data.Instance.switchPlayerInputs = switchPlayers.isOn;
 
-		Data.Instance.events.OnMusicStatus (Data.Instance.musicOn);
-		Data.Instance.events.OnSFXStatus (Data.Instance.soundsFXOn);
-		Data.Instance.events.OnMadRollersSFXStatus (Data.Instance.madRollersSoundsOn);
-		Data.Instance.events.OnVoicesStatus (Data.Instance.voicesOn);
+		Events.OnMusicStatus (Data.Instance.musicOn);
+		Events.OnSFXStatus (Data.Instance.soundsFXOn);
+		Events.OnMadRollersSFXStatus (Data.Instance.madRollersSoundsOn);
+		Events.OnVoicesStatus (Data.Instance.voicesOn);
 
 		Data.Instance.LoadLevel("MainMenuMobile");
 	}

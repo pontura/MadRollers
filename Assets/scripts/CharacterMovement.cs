@@ -26,13 +26,13 @@ public class CharacterMovement : MonoBehaviour {
 		cb = GetComponent<CharacterBehavior> ();
         rb = GetComponent<Rigidbody> ();
         if (!Data.Instance.isAndroid)
-		    Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		    Events.StartMultiplayerRace += StartMultiplayerRace;
 	}
 
 	void OnDestroy()
 	{
         if (!Data.Instance.isAndroid)
-            Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+            Events.StartMultiplayerRace -= StartMultiplayerRace;
 	}
 	public void DH(float value)
 	{
@@ -43,7 +43,7 @@ public class CharacterMovement : MonoBehaviour {
             cb.madRoller.Play("dh_left");
         else
             cb.madRoller.Play("dh_right");
-        Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.COLEADA, cb.player.id);
+        Events.OnMadRollerFX(MadRollersSFX.types.COLEADA, cb.player.id);
         DHMoveTo = value * DHSpeed;
         Invoke("DHDone", 0.15f);
 	}
@@ -57,7 +57,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (type == types.NORMAL) {
 			type = types.DASHING_FORWARD;
 			cb.madRoller.Play("dashForward");
-            Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.DASH, cb.player.id);
+            Events.OnMadRollerFX(MadRollersSFX.types.DASH, cb.player.id);
         }
 	}
 	void Calculate()

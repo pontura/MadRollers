@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BossCreator : Boss {
 	
 	public float time_to_init_enemies;
+    public GameObject lights;
 
-	//[HideInInspector]
-	public BossPart[] parts;
+    //[HideInInspector]
+    public BossPart[] parts;
 	BossSettings settings;
 
 	public override void OnRestart(Vector3 pos)
@@ -19,7 +21,7 @@ public class BossCreator : Boss {
 	IEnumerator DoSequence()
 	{
 		yield return new WaitForSeconds (0.2f);
-		Data.Instance.events.OnBossSetTimer (settings.time_to_kill);
+		Events.OnBossSetTimer (settings.time_to_kill);
 
 		distance_from_avatars = settings.distance_from_avatars;
 		time_to_init_enemies = settings.time_to_init_enemies;
@@ -54,7 +56,7 @@ public class BossCreator : Boss {
 	{
 		if (!isActive)
 			return;
-		float avatarsDistance = Game.Instance.level.charactersManager.getDistance ();
+		float avatarsDistance = Game.Instance.level.charactersManager.getDistance();
 		if (avatarsDistance + distance_from_avatars < transform.localPosition.z)
 			return;
 		float _z = avatarsDistance + distance_from_avatars;
@@ -62,7 +64,20 @@ public class BossCreator : Boss {
 		Vector3 pos = transform.localPosition;
 		pos.z = _z;
 		transform.localPosition = pos;
-	} 
+		Vector3 lightsPos = Vector3.zero;
+		int total = 0;
+		foreach (BossPart part in parts)
+		{
+			if(part != null)
+			{
+				total++;
+                lightsPos += part.transform.position;
+            }
+        }
+		lightsPos /= total;
+        lightsPos.y = 0;
+        lights.transform.position = lightsPos;
+    }
 	int partID;
 	void Init()	
 	{

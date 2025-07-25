@@ -43,9 +43,9 @@ public class SummaryMobile : MonoBehaviour
     {
         if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
-            Data.Instance.events.OnMadRollersSFXStatus(false);
+            Events.OnMadRollersSFXStatus(false);
             hiscoreOtherPanel.SetActive(false);
-            Data.Instance.events.RalentaTo(0, 0.005f);
+            Events.RalentaTo(0, 0.005f);
             panel.SetActive(true);
             StartCoroutine(InitCoroutine());
         } 
@@ -77,7 +77,7 @@ public class SummaryMobile : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+        Events.OnJoystickClick -= OnJoystickClick;
     }
     void OnJoystickClick()
     {
@@ -102,16 +102,16 @@ public class SummaryMobile : MonoBehaviour
             videoGameID = Data.Instance.videogamesData.actualID;
 
         Debug.Log("____OnSaveScore: " + score);
-        Data.Instance.events.OnSaveScore();
+        Events.OnSaveScore();
 
         yield return new WaitForSecondsRealtime(4);
-        //Data.Instance.events.RalentaTo(0, 0.025f);
+        //Events.RalentaTo(0, 0.025f);
 
 
         //HiscoreLoaded(null);//To-DO
         UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);
         //if (!Data.Instance.isAndroid)
-        //    Data.Instance.events.OnJoystickClick += OnJoystickClick;
+        //    Events.OnJoystickClick += OnJoystickClick;
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
@@ -153,25 +153,25 @@ public class SummaryMobile : MonoBehaviour
     public void Next()
     {
         Data.Instance.videogamesData.UpdateVideogame();
-        Data.Instance.events.OnResetScores();
-        Data.Instance.events.ForceFrameRate(1);
+        Events.OnResetScores();
+        Events.ForceFrameRate(1);
         Game.Instance.PlayAgain();
     }
     public void ChangeVideoGame()
     {
-        Data.Instance.events.OnResetScores();
-        Data.Instance.events.FreezeCharacters(true);
+        Events.OnResetScores();
+        Events.FreezeCharacters(true);
         MusicManager.Instance.stopAllSounds();
         Data.Instance.isReplay = false;
         // Game.Instance.ResetLevel();
-        Data.Instance.events.OnResetLevel();
+        Events.OnResetLevel();
         Data.Instance.LoadLevel("LevelSelectorMobile");
-        Data.Instance.events.ForceFrameRate(1);
+        Events.ForceFrameRate(1);
     }
     public void Retry()
     {
-        Data.Instance.events.OnResetScores();
-        Data.Instance.events.ForceFrameRate(1);
+        Events.OnResetScores();
+        Events.ForceFrameRate(1);
         Data.Instance.missions.MissionActiveID--;
         if (Data.Instance.missions.MissionActiveID < 0)
             Data.Instance.missions.MissionActiveID = 0;
@@ -179,8 +179,8 @@ public class SummaryMobile : MonoBehaviour
     }
     //public void Exit()
     //{
-    //    Data.Instance.events.OnResetScores();
-    //    Data.Instance.events.ForceFrameRate(1);
+    //    Events.OnResetScores();
+    //    Events.ForceFrameRate(1);
     //    Game.Instance.GotoMainMobile();
     //}
 }

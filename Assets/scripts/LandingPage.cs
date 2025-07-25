@@ -4,12 +4,12 @@ using System.Collections;
 public class LandingPage : MonoBehaviour {
 
 	void Start () {
-		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-		Data.Instance.events.OnJoystickUp += OnJoystickUp;
+		Events.OnJoystickClick += OnJoystickClick;
+		Events.OnJoystickUp += OnJoystickUp;
 	}
 	void OnDestroy () {
-		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-		Data.Instance.events.OnJoystickUp -= OnJoystickUp;
+		Events.OnJoystickClick -= OnJoystickClick;
+		Events.OnJoystickUp -= OnJoystickUp;
 	}
 	void OnJoystickClick () {
 		GetComponent<AudioWriter> ().Done ();

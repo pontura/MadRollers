@@ -33,12 +33,12 @@ public class MultiplayerData : MonoBehaviour
 
     void Start()
     {
-		Data.Instance.events.OnGameStart += OnGameStart;
-		Data.Instance.events.OnMissionComplete += OnMissionComplete;
-		Data.Instance.events.OnScoreOn += OnScoreOn;
-        Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
-		Data.Instance.events.OnResetScores += OnResetScores;
-        Data.Instance.events.OnResetMultiplayerData += OnResetMultiplayerData;
+		Events.OnGameStart += OnGameStart;
+		Events.OnMissionComplete += OnMissionComplete;
+		Events.OnScoreOn += OnScoreOn;
+        Events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
+		Events.OnResetScores += OnResetScores;
+        Events.OnResetMultiplayerData += OnResetMultiplayerData;
     }
 	void OnGameStart()
 	{
@@ -160,7 +160,7 @@ public class MultiplayerData : MonoBehaviour
 		if (NextScoreToWinCredit < score) {
 			creditsWon ++;
 			SetNextScoreToWinCredit ();
-			Data.Instance.events.AddNewCredit ();
+			Events.AddNewCredit ();
 		}
 		score += points;
 
@@ -172,7 +172,7 @@ public class MultiplayerData : MonoBehaviour
 			case 3: score_player4 += points;  break;
 		}
 		string desc = type.ToString ().ToLower ();
-		Data.Instance.events.OnDrawScore (points, desc);
+		Events.OnDrawScore (points, desc);
 	}
 	void OnMissionComplete(int id)
 	{

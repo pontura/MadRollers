@@ -15,13 +15,13 @@ public class JoystickWeaponUI : MonoBehaviour {
 	//	forbidden.SetActive (false);
 	//	playerID = GetComponent<JoystickPlayer> ().playerID;
 	//	Reset ();
-	//	Data.Instance.events.OnChangeWeapon += OnChangeWeapon;
-	//	Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
+	//	Events.OnChangeWeapon += OnChangeWeapon;
+	//	Events.OnAvatarShoot += OnAvatarShoot;
 	//	image.color = Data.Instance.multiplayerData.colors [playerID];
 	//}
 	//void OnDestroy () {
-	//	Data.Instance.events.OnChangeWeapon -= OnChangeWeapon;
-	//	Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+	//	Events.OnChangeWeapon -= OnChangeWeapon;
+	//	Events.OnAvatarShoot -= OnAvatarShoot;
 	//}
 	//void OnAvatarShoot(int _playerID)
 	//{

@@ -93,10 +93,10 @@ public class CharacterBehavior : MonoBehaviour {
 			rb.isKinematic = false;
 		}
 
-        Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
-        Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
-        Data.Instance.events.OncharacterCheer += OncharacterCheer;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.OnVersusTeamWon += OnVersusTeamWon;
+        Events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
+        Events.OncharacterCheer += OncharacterCheer;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
 
 
 		state = states.RUN;
@@ -122,10 +122,10 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	void OnDestroy ()
 	{
-        Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
-        Data.Instance.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
-        Data.Instance.events.OncharacterCheer -= OncharacterCheer;
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnVersusTeamWon -= OnVersusTeamWon;
+        Events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
+        Events.OncharacterCheer -= OncharacterCheer;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
 	}
 	void OnVersusTeamWon(int _team_id)
 	{
@@ -215,14 +215,14 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		state = states.RUN;
 		Run();
-		//Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
+		//Events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
 	}
 
 
 	public void OncharacterCheer()
 	{
 		if (Random.Range(0, 6) < 2)
-			Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CHEER, player.id);
+			Events.OnMadRollerFX(MadRollersSFX.types.CHEER, player.id);
 		
 	}
 	public void Slide()
@@ -335,9 +335,9 @@ public class CharacterBehavior : MonoBehaviour {
 		state = states.RUN;
 
 		if(player.id == 0)
-			Data.Instance.events.OnSoundFX ("floor");
+			Events.OnSoundFX ("floor");
 
-		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
+		Events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
 
 		madRoller.Play("floorHit");
 		Invoke ("OnFloorDone", 0.5f);
@@ -347,7 +347,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (state == states.RUN) {
             SetRunState();
-           // Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
+           // Events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
 		}
 	}
 	public void Run()
@@ -454,7 +454,7 @@ public class CharacterBehavior : MonoBehaviour {
 		jumpsNumber++;
 		if (jumpsNumber > 3) return;
 
-        data.events.OnAvatarJump (player.id);
+        Events.OnAvatarJump (player.id);
 
 		//print ("JUMP  " + state);
 		if (state == states.JUMP || jumpsNumber >1 || state == states.SUPERJUMP)
@@ -471,7 +471,7 @@ public class CharacterBehavior : MonoBehaviour {
 		rb.linearVelocity = Vector3.zero;
 		OnAvatarJump();
 
-		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
+		Events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
 
         rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 
@@ -510,7 +510,7 @@ public class CharacterBehavior : MonoBehaviour {
 			
 			rb.AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*velocityY, ForceMode.Impulse);
 
-			Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
+			Events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 
 			int rand = Random.Range (0, 10);
 			if(rand<5)
@@ -535,7 +535,7 @@ public class CharacterBehavior : MonoBehaviour {
 		transform.localPosition = pos;
 		SuperJump(force);
 		state = states.SUPERJUMP;
-		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
+		Events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 
 		if (!dir_forward)
 		{
@@ -552,8 +552,8 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD) return;
 		if (state == states.FALL) return;
 		state = states.FALL;
-		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.FALL, player.id);
-		Data.Instance.events.OnAvatarFall(this);
+		Events.OnMadRollerFX(MadRollersSFX.types.FALL, player.id);
+		Events.OnAvatarFall(this);
 
 		if(team_for_versus == 0)
 			Game.Instance.gameCamera.OnAvatarFall (this);
@@ -594,7 +594,7 @@ public class CharacterBehavior : MonoBehaviour {
         else
         {
             lastTimeCollision = Time.time;
-            Data.Instance.events.OnSoundFX("hit");
+            Events.OnSoundFX("hit");
             state = states.COLLISIONED;
             rb.linearVelocity = Vector3.zero;
             rb.AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);
@@ -605,9 +605,9 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD || state == states.CRASH) return;
         //SaveDistance();
 
-        Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CRASH, player.id);
+        Events.OnMadRollerFX(MadRollersSFX.types.CRASH, player.id);
 
-		Data.Instance.events.OnAvatarCrash(this);
+		Events.OnAvatarCrash(this);
 
 		state = states.CRASH;
 		rb.linearVelocity = Vector3.zero;
@@ -628,7 +628,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (player.charactersManager.getTotalCharacters () == 1) return;
 		Data.Instance.framesController.ForceFrameRate (0.025f);
-		Data.Instance.events.RalentaTo (1, 0.15f);
+		Events.RalentaTo (1, 0.15f);
 	}
 	//void SaveDistance()
 	//{

@@ -35,7 +35,7 @@ public class RainManager : MonoBehaviour {
 //            distanceToAdd = charactersManager.distance + (offset * 2) - dificultLevel;  
 //            offset -= restaOffset;
 //            if (offset < min_offset) offset = min_offset;
-//			Data.Instance.events.OnBossDropBomb ();
+//			Events.OnBossDropBomb ();
 //            if(Random.Range(0,10)<5)
 //                AddSceneObject(new Vector3(0, 0, charactersManager.distance + 100), "Bomb1_real");
 //         //   else

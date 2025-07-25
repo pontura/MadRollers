@@ -25,7 +25,7 @@ public class Continue : MonoBehaviour {
 			countdown_txt.fontSize = 41;
 			icon.enabled = false;
 		}
-        Data.Instance.events.OnGameOver += OnGameOver;
+        Events.OnGameOver += OnGameOver;
 
 
 
@@ -42,7 +42,7 @@ public class Continue : MonoBehaviour {
 	//}
     void OnDestroy()
 	{
-		Data.Instance.events.OnGameOver -= OnGameOver;
+		Events.OnGameOver -= OnGameOver;
 	}
 	void OnGameOver(bool isTimeOver)
 	{	

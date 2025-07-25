@@ -37,7 +37,7 @@ public class Powerup : GrabbableItem {
             if (sec > 13)
             {
                 if(player!=null && player.id!=null)
-                    Data.Instance.events.OnAvatarGetItem( player.id, type );
+                    Events.OnAvatarGetItem( player.id, type );
 
                 Pool();               
             }

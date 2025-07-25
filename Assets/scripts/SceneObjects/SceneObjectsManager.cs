@@ -16,12 +16,12 @@ public class SceneObjectsManager : MonoBehaviour
     {
         isOn = true;
         Invoke("Loop", tick);
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
+        Events.OnMissionComplete += OnMissionComplete;
     }
     private void OnDestroy()
     {
         isOn = false;
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Events.OnMissionComplete -= OnMissionComplete;
     }
     public void ChangeVideogame(int videoGameID)
     {

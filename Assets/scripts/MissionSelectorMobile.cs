@@ -38,7 +38,7 @@ public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
     
     public void ClickedABlockedButton()
     {
-        Data.Instance.events.OnAlertSignal("UNLOCK ALL PREVIOUS MISSIONS FIRST");
+        Events.OnAlertSignal("UNLOCK ALL PREVIOUS MISSIONS FIRST");
     }
     bool clicked;
     public void Clicked(int MissionActiveID)
@@ -64,7 +64,7 @@ public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
         }
 
         scene.gameObject.SetActive(true);
-        Data.Instance.events.OnSoundFX("whip");
+        Events.OnSoundFX("whip");
         List<VoicesManager.VoiceData> list = VoicesManager.Instance.videogames_names;        
         int videoGameID = MissionsManager.Instance.GetMission(MissionActiveID).videoGameID;
         VoicesManager.Instance.PlaySpecificClipFromList(list, videoGameID);
@@ -95,7 +95,7 @@ public class MissionSelectorMobile : MonoBehaviour, ISuperScrollRectDataProvider
         anim.Play("levelSelectorOn");
 
         StartCoroutine(LoadGame());
-        Data.Instance.events.SetHamburguerButton(false);
+        Events.SetHamburguerButton(false);
     }
     bool isLoading;
     IEnumerator LoadGame()

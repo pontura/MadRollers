@@ -28,7 +28,7 @@ public class ContinuePanel : MonoBehaviour {
         {
             Data.Instance.tracker.ContinuePaid();
             clicked = true;
-            Data.Instance.events.OnPayPixeles(5000);
+            Events.OnPayPixeles(5000);
             Game.Instance.Continue();
             //GetComponent<Summary>().SetOff();
         }
@@ -36,7 +36,7 @@ public class ContinuePanel : MonoBehaviour {
         {
             string s = "TENES " + Utils.FormatNumbers(UserData.Instance.data.score) + ". NECESITAS AL MENOS " + Utils.FormatNumbers(price) + " PIXELES";
             Debug.Log(s);
-            Data.Instance.events.OnAlertSignal(s);
+            Events.OnAlertSignal(s);
         }
     }
     bool adClicked;
@@ -53,7 +53,7 @@ public class ContinuePanel : MonoBehaviour {
         if (isOK)
             Game.Instance.Continue();
         else
-            Data.Instance.events.OnAlertSignal("Algo falló con el ad");
+            Events.OnAlertSignal("Algo falló con el ad");
     }
     public void SetOff()
     {

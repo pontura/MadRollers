@@ -37,11 +37,11 @@ public class Player : MonoBehaviour {
 			return;
 		} 
 		madRoller.SetFxOff (false);
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
 
-        Data.Instance.events.OnAvatarDie += OnAvatarDie;
-		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
-		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
+        Events.OnAvatarDie += OnAvatarDie;
+		Events.OnAvatarGetItem += OnAvatarGetItem;
+		Events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 
 	}
     void StartMultiplayerRace()
@@ -50,10 +50,10 @@ public class Player : MonoBehaviour {
     }
     void OnDestroy()
     {
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-        Data.Instance.events.OnAvatarDie -= OnAvatarDie;
-        Data.Instance.events.OnAvatarGetItem -= OnAvatarGetItem;
-        Data.Instance.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnAvatarDie -= OnAvatarDie;
+        Events.OnAvatarGetItem -= OnAvatarGetItem;
+        Events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
     }
 	void SetSettings()
 	{
@@ -135,8 +135,8 @@ public class Player : MonoBehaviour {
 //                transport.transform.localPosition = Vector3.zero;
 //                transport.transform.localEulerAngles = Vector3.zero;
 //                transport.transform.localScale = Vector3.one;
-//                Data.Instance.events.AdvisesOn("JETPACK!");
-//                Data.Instance.events.VoiceFromResources("jetpack_Activado");
+//                Events.AdvisesOn("JETPACK!");
+//                Events.VoiceFromResources("jetpack_Activado");
 //            }
 //            OnAvatarProgressBarStart(Color.green);
         }
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour {
 		if (fxState == fxStates.SUPER) return;
 		setSuperState();
 
-	//	Data.Instance.events.AdvisesOn("INVENSIBLE!");
+	//	Events.AdvisesOn("INVENSIBLE!");
 		progressBarCoroutine = StartProgressBarCoroutine(timer);
 
 		StartCoroutine(progressBarCoroutine);    
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour {
     }
     private void setNormalState()
     {
-        Data.Instance.events.OnAvatarChangeFX(Player.fxStates.NORMAL);
+        Events.OnAvatarChangeFX(Player.fxStates.NORMAL);
         fxState = fxStates.NORMAL;     
     }
     private void setSuperState()

@@ -25,12 +25,12 @@ public class CharactersManager : MonoBehaviour {
     {
         isAndroid = Data.Instance.isAndroid;
         distance = 0;
-        Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
-        Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall += OnAvatarFall;
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-        Data.Instance.events.FreezeCharacters += FreezeCharacters;
+        Events.OnAlignAllCharacters += OnAlignAllCharacters;
+        Events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
+        Events.OnAvatarCrash += OnAvatarCrash;
+        Events.OnAvatarFall += OnAvatarFall;
+        Events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.FreezeCharacters += FreezeCharacters;
     }
     public void Continue()
     {
@@ -133,12 +133,12 @@ public class CharactersManager : MonoBehaviour {
     }
     void OnDestroy()
     {
-		Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall -= OnAvatarFall;
-        Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
-        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-        Data.Instance.events.OnAlignAllCharacters -= OnAlignAllCharacters;
-		Data.Instance.events.FreezeCharacters -= FreezeCharacters;
+		Events.OnAvatarCrash -= OnAvatarCrash;
+        Events.OnAvatarFall -= OnAvatarFall;
+        Events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
+        Events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnAlignAllCharacters -= OnAlignAllCharacters;
+		Events.FreezeCharacters -= FreezeCharacters;
     }
 	
     void OnReorderAvatarsByPosition(List<int> playerPositions)
@@ -186,7 +186,7 @@ public class CharactersManager : MonoBehaviour {
         if (characters.Count == 0 && Game.Instance.gameCamera.state != GameCamera.states.WAITING_TO_TRAVEL)
             return null;
 
-        Data.Instance.events.OnSoundFX("coin");
+        Events.OnSoundFX("coin");
 
 		Vector3 pos = Vector3.zero;
 
@@ -201,12 +201,12 @@ public class CharactersManager : MonoBehaviour {
 
         CharacterBehavior cb = addCharacter(pos, id);
 
-        Data.Instance.events.ForceFrameRate(1);
+        Events.ForceFrameRate(1);
         return cb;
     }
 	public CharacterBehavior addCharacter(Vector3 pos, int id)
 	{
-        Data.Instance.events.OnAddNewPlayer(id);
+        Events.OnAddNewPlayer(id);
 		CharacterBehavior newCharacter = null;
 		foreach (CharacterBehavior cb in deadCharacters)
 		{
@@ -229,7 +229,7 @@ public class CharactersManager : MonoBehaviour {
        // if (isAndroid) pos.x = 0;
 
         newCharacter.transform.position = pos;
-		Data.Instance.events.OnCharacterInit (id);
+		Events.OnCharacterInit (id);
         player.SetInvensible(3);
         return newCharacter;
 	}
@@ -272,7 +272,7 @@ public class CharactersManager : MonoBehaviour {
         characters.Remove(characterBehavior);
         totalCharacters = characters.Count;
         deadCharacters.Add(characterBehavior);
-        Data.Instance.events.OnAvatarDie(characterBehavior);
+        Events.OnAvatarDie(characterBehavior);
 
         if (characters.Count == 0)
             StartCoroutine(GameOver(characterBehavior));
@@ -294,11 +294,11 @@ public class CharactersManager : MonoBehaviour {
     }
     IEnumerator GameOver(CharacterBehavior cb)
     {
-		Data.Instance.events.OnSoundFX("deathFX");
+		Events.OnSoundFX("deathFX");
         Game.Instance.GameOver();
         yield return new WaitForSeconds(0.05f);
         yield return new WaitForSeconds(1);
-        Data.Instance.events.OnGameOver(false);
+        Events.OnGameOver(false);
         yield return new WaitForSeconds(1.32f);
     }
     public float GetCharacterRot()

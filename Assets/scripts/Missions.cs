@@ -53,10 +53,10 @@ public class Missions : MonoBehaviour
         }
         else
         {
-            data.events.StartMultiplayerRace += StartMultiplayerRace;
-            data.events.ResetMissionsBlocked += ResetMissionsBlocked;
-            data.events.OnMissionComplete += OnMissionComplete;
-            data.events.OnBossActive += OnBossActive;
+            Events.StartMultiplayerRace += StartMultiplayerRace;
+            Events.ResetMissionsBlocked += ResetMissionsBlocked;
+            Events.OnMissionComplete += OnMissionComplete;
+            Events.OnBossActive += OnBossActive;
         }
 
     }
@@ -68,10 +68,10 @@ public class Missions : MonoBehaviour
     {
         if (data != null)
         {
-            data.events.StartMultiplayerRace -= StartMultiplayerRace;
-            data.events.ResetMissionsBlocked -= ResetMissionsBlocked;
-            data.events.OnMissionComplete -= OnMissionComplete;
-            data.events.OnBossActive -= OnBossActive;
+            Events.StartMultiplayerRace -= StartMultiplayerRace;
+            Events.ResetMissionsBlocked -= ResetMissionsBlocked;
+            Events.OnMissionComplete -= OnMissionComplete;
+            Events.OnBossActive -= OnBossActive;
         }
     }
     bool bossResetedOnce;
@@ -166,7 +166,7 @@ public class Missions : MonoBehaviour
       //  if(Data.Instance.videogamesData.actualID == 2) MissionActiveID++;
   //      AddAreaByName("newLevel_playing");
   //      StartNewMission ();
-		//Data.Instance.events.OnChangeBackgroundSide (MissionActive.fondo);
+		//Events.OnChangeBackgroundSide (MissionActive.fondo);
 	}
 	void StartNewMission()
 	{
@@ -263,7 +263,7 @@ public class Missions : MonoBehaviour
       //  print("__________ distance: "  + data.totalDistanceToCamFX +  " areaName: " + data.areas[0] +   " cam: "  + data.cameraOrientation + " bending: " + data.bending);
         Game.Instance.gameCamera.SetOrientation(data.cameraOrientation);
         if (data.bending != 0)
-            Data.Instance.events.ChangeCurvedWorldX(data.bending);
+            Events.ChangeCurvedWorldX(data.bending);
         areasetDataLoaded.RemoveAt(0);
     }
 	void ResetAreaSet()

@@ -58,14 +58,14 @@ public class Game : MonoBehaviour {
 		}
         Invoke("Timeout", 0.5f);
 		level.Init();
-        Data.Instance.events.OnGamePaused += OnGamePaused;
+        Events.OnGamePaused += OnGamePaused;
 
-        Data.Instance.events.MissionStart(Data.Instance.missions.MissionActiveID);
-        Data.Instance.events.OnGamePaused(false);
+        Events.MissionStart(Data.Instance.missions.MissionActiveID);
+        Events.OnGamePaused(false);
 
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-        Data.Instance.events.SetSettingsButtonStatus(false);
-		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+        Events.OnListenerDispatcher += OnListenerDispatcher;
+        Events.SetSettingsButtonStatus(false);
+		Events.StartMultiplayerRace += StartMultiplayerRace;
     }
     void Timeout()
     {
@@ -77,29 +77,29 @@ public class Game : MonoBehaviour {
 	void Delayed()
 	{
         //gameCamera.Init ();
-        Data.Instance.events.OnGameStart();
-		Data.Instance.events.StartMultiplayerRace();
+        Events.OnGameStart();
+		Events.StartMultiplayerRace();
 	}
     void OnDestroy()
     {
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
-        Data.Instance.events.OnGamePaused -= OnGamePaused;
-		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Events.OnListenerDispatcher -= OnListenerDispatcher;
+        Events.OnGamePaused -= OnGamePaused;
+		Events.StartMultiplayerRace -= StartMultiplayerRace;
     }
     public void GameOver()
     {
-        Data.Instance.events.OnSaveScore();
+        Events.OnSaveScore();
         state = states.GAME_OVER;
     }
 
     void StartMultiplayerRace()
 	{
-        Data.Instance.events.OnMadRollersSFXStatus(true);
+        Events.OnMadRollersSFXStatus(true);
         state = states.PLAYING;
 	}
     public void Revive()
     {
-        Data.Instance.events.OnGamePaused(false);
+        Events.OnGamePaused(false);
 
 		//if(gameCamera != null)
   //      	gameCamera.Init();
@@ -115,37 +115,37 @@ public class Game : MonoBehaviour {
     }
     public void ResetLevel()
 	{		
-        Data.Instance.events.OnResetLevel();
+        Events.OnResetLevel();
         Data.Instance.LoadLevel("Game");
 	}
     public void OnGamePaused(bool paused)
     {
         if (paused)
         {
-			Data.Instance.events.ForceFrameRate (0);
+			Events.ForceFrameRate (0);
         }
         else
         {
-			Data.Instance.events.ForceFrameRate (1);
+			Events.ForceFrameRate (1);
         }
     }
 	public void GotoVideogameComplete()
 	{
-		Data.Instance.events.OnResetLevel();
-		Data.Instance.events.ForceFrameRate (1);
+		Events.OnResetLevel();
+		Events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("VideogameComplete");
 	}
     public void GotoLevelSelector()
     {
-        Data.Instance.events.OnResetScores();
-        Data.Instance.events.OnResetLevel();
-		Data.Instance.events.ForceFrameRate (1);
+        Events.OnResetScores();
+        Events.OnResetLevel();
+		Events.ForceFrameRate (1);
         Data.Instance.LoadLevel("LevelSelectorMobile");
     }
 	public void LoadGame()
 	{
-		Data.Instance.events.OnResetLevel();
-		Data.Instance.events.ForceFrameRate (1);
+		Events.OnResetLevel();
+		Events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("Game");
 	}
     public void GotoNextGame()
@@ -153,14 +153,14 @@ public class Game : MonoBehaviour {
         if(Data.Instance.videogamesData.actualID == 0)
             Data.Instance.missions.MissionActiveID++;
 
-        Data.Instance.events.OnResetLevel();
-        Data.Instance.events.ForceFrameRate(1);
+        Events.OnResetLevel();
+        Events.ForceFrameRate(1);
         Data.Instance.LoadLevel("LevelSelectorMobile");
     }
     public void GotoMainMenu()
     {
-        Data.Instance.events.OnResetLevel();
-		Data.Instance.events.ForceFrameRate (1);
+        Events.OnResetLevel();
+		Events.ForceFrameRate (1);
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
             Data.Instance.LoadLevel("MainMenu");
         else
@@ -168,17 +168,17 @@ public class Game : MonoBehaviour {
     }
     public void GotoContinue()
     {
-        Data.Instance.events.OnResetLevel();
+        Events.OnResetLevel();
         Time.timeScale = 1;
         Data.Instance.LoadLevel("Continue");
     }
     public void Continue()
     {
-        //Data.Instance.events.RalentaTo(1, 1f);
+        //Events.RalentaTo(1, 1f);
         state = states.PLAYING;
         level.charactersManager.Continue();
         gameCamera.Continue();
-        Data.Instance.events.OnContinue();
+        Events.OnContinue();
     }
     public void PlayAgain()
 	{
@@ -189,8 +189,8 @@ public class Game : MonoBehaviour {
 	}
     public void GotoMainMobile()
     {
-        Data.Instance.events.OnResetLevel();
-        Data.Instance.events.ForceFrameRate(1);
+        Events.OnResetLevel();
+        Events.ForceFrameRate(1);
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
             Data.Instance.LoadLevel("MainMenu");
         else
@@ -207,7 +207,7 @@ public class Game : MonoBehaviour {
             levelCompleted = true;
             Debug.Log("<<<<<<<<<<<< Llego a un final de level:");
             level.Complete();
-            Data.Instance.events.OnBossActive(false);
+            Events.OnBossActive(false);
         }
     }
 #if UNITY_EDITOR
