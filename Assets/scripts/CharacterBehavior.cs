@@ -610,7 +610,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		state = states.CRASH;
 		rb.linearVelocity = Vector3.zero;
-		rb.AddForce(new Vector3(Random.Range(-500,500), 2500, Random.Range(0,-200)), ForceMode.Impulse);
+		rb.AddForce(new Vector3(Random.Range(-250,250), 1500, Random.Range(100,-200)), ForceMode.Impulse);
 		int torqueAmount = Random.Range(1000, 2000);
 
         rb.freezeRotation = false;
