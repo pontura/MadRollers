@@ -126,6 +126,7 @@ public class ToturialSteps : MonoBehaviour
                     break;
             }
         }
+        Events.OnGamePaused(false);
         Events.RalentaTo(1, 0.15f);
         panel.SetActive(false);
     }
@@ -204,5 +205,6 @@ public class ToturialSteps : MonoBehaviour
         }
         stepID++;
         Time.timeScale = 0;
+        Events.OnGamePaused(true);
     }
 }

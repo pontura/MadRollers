@@ -82,6 +82,7 @@ MonoBehaviour:
     - per_ene_easy
     - gallax_space_eyes_shooters
     - gallax_blue_Army_fortress
+    - boy_cepillos
     - per_snakes
     - boy_walkers
     - boy_peces
@@ -114,7 +115,6 @@ MonoBehaviour:
     - gallax_dark_hills
     - per_7
     - boy_helices_altas
-    - boy_cepillos
     - gallax_firewalls
     - per_sliders
     - boy_sombrillas
@@ -2808,6 +2808,65 @@ MonoBehaviour:
         - paredes1BossFree1
         cameraOrientation: {x: 0, y: -5.5, z: -3}
   - data:
+    - videoGameID: 0
+      defaultContinuePrice: 15000
+      continuePrice: 0
+      jsonName: boy_cepillos
+      title: "IT\xB4s A TRAP!"
+      id: 0
+      maxScore: 1000
+      fondo: wonderland_nubes
+      areaSetData:
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 2
+        bending: 0
+        randomize: 0
+        areas:
+        - subibaja1
+        - subibaja2
+        cameraOrientation: {x: 0, y: 1, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - cepillo1
+        cameraOrientation: {x: 0, y: 1, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 4
+        bending: 0
+        randomize: 1
+        areas:
+        - subibaja2Enemies
+        - subibajaEnemy
+        cameraOrientation: {x: 0, y: 1, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 0
+        json: {fileID: 0}
+        total_areas: 1
+        bending: 0
+        randomize: 1
+        areas:
+        - cepillo1
+        cameraOrientation: {x: 0, y: 1, z: -2}
+      - totalDistanceToCamFX: 0
+        boss: 1
+        json: {fileID: 0}
+        total_areas: 10000
+        bending: 0
+        randomize: 0
+        areas:
+        - water_1
+        - boss_circular
+        - areaFree_boss2
+        cameraOrientation: {x: 0, y: 0, z: -2}
+  - data:
     - videoGameID: 2
       defaultContinuePrice: 15000
       continuePrice: 0
@@ -5111,65 +5170,6 @@ MonoBehaviour:
         - anchoCalleHelicesBossFree2
         cameraOrientation: {x: 0, y: -3, z: -1.5}
   - data:
-    - videoGameID: 0
-      defaultContinuePrice: 15000
-      continuePrice: 0
-      jsonName: boy_cepillos
-      title: "IT\xB4s A TRAP!"
-      id: 0
-      maxScore: 1000
-      fondo: wonderland_nubes
-      areaSetData:
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 2
-        bending: 0
-        randomize: 0
-        areas:
-        - subibaja1
-        - subibaja2
-        cameraOrientation: {x: 0, y: 1, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - cepillo1
-        cameraOrientation: {x: 0, y: 1, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 4
-        bending: 0
-        randomize: 1
-        areas:
-        - subibaja2Enemies
-        - subibajaEnemy
-        cameraOrientation: {x: 0, y: 1, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 0
-        json: {fileID: 0}
-        total_areas: 1
-        bending: 0
-        randomize: 1
-        areas:
-        - cepillo1
-        cameraOrientation: {x: 0, y: 1, z: -2}
-      - totalDistanceToCamFX: 0
-        boss: 1
-        json: {fileID: 0}
-        total_areas: 10000
-        bending: 0
-        randomize: 0
-        areas:
-        - water_1
-        - boss_circular
-        - areaFree_boss2
-        cameraOrientation: {x: 0, y: 0, z: -2}
-  - data:
     - videoGameID: 1
       defaultContinuePrice: 15000
       continuePrice: 0
@@ -5622,6 +5622,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d7a1a7da9ee4add42b3f854873856d4e, type: 3}
   - {fileID: 4900000, guid: ee2786e9602c2464ca6c332c3e3f7673, type: 3}
   - {fileID: 4900000, guid: 4c84b080c170404499ce4ccd5fe64df9, type: 3}
+  - {fileID: 4900000, guid: 09a6e938e078afc47aa6e3b96fa9f3d6, type: 3}
+  - {fileID: 4900000, guid: c9f89d82737c76046a2fdd0dae94a5f4, type: 3}
+  - {fileID: 4900000, guid: a1071fa2341bff44495f3d1e94adf3da, type: 3}
   - {fileID: 4900000, guid: ddf2b5c79b6c84d449a143c39f8d0ad4, type: 3}
   - {fileID: 4900000, guid: cef2fcb0ebbd6cd428a7c7f29b2b90ba, type: 3}
   - {fileID: 4900000, guid: 04ebda48dde66e94ab102e6f45b482d3, type: 3}
@@ -5715,7 +5718,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 5b5e4286bf3cc2a4e82b7293a1adc9c0, type: 3}
   - {fileID: 4900000, guid: 9afcd63bc8d50954aa4924026cbcf7d0, type: 3}
   - {fileID: 4900000, guid: ea3fac49201a59347b88a9820150cb2c, type: 3}
-  - {fileID: 4900000, guid: c9f89d82737c76046a2fdd0dae94a5f4, type: 3}
   - {fileID: 4900000, guid: 5798fe598247cb44e88844d74df7379a, type: 3}
   - {fileID: 4900000, guid: c728f2a0537f2c147a9a012630ae9267, type: 3}
   - {fileID: 4900000, guid: d568d30107f9aa042825cef916590b88, type: 3}
@@ -5731,8 +5733,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 3ca0ea288ffb6024a9ee2d203c86b62a, type: 3}
   - {fileID: 4900000, guid: ec28da7f9bd82da4b9baaef14b8aa1fd, type: 3}
   - {fileID: 4900000, guid: c496ab54199769a4ea37c0b8b0a47164, type: 3}
-  - {fileID: 4900000, guid: a1071fa2341bff44495f3d1e94adf3da, type: 3}
-  - {fileID: 4900000, guid: 09a6e938e078afc47aa6e3b96fa9f3d6, type: 3}
   - {fileID: 4900000, guid: aae5fa1d4a8d9a34e9d7e21e3ad4f434, type: 3}
   - {fileID: 4900000, guid: 667cb691c978012468870575926a8a15, type: 3}
   - {fileID: 4900000, guid: 45c1cba749bcabc439d4d3ad867f2777, type: 3}
@@ -5812,16 +5812,20 @@ MonoBehaviour:
   - {fileID: 2718244367487807685, guid: 35d49845e4b32b24995d2c2f4a6301a5, type: 3}
   - {fileID: 7170683178188298545, guid: 6f3e591ddaff5b84e9d0bdc88b0a03cf, type: 3}
   - {fileID: 2486096054995552361, guid: 9f83b044038a8844fa407a8c40785cd5, type: 3}
+  - {fileID: 1834931009080091627, guid: 7e875123ff7b7fc4e8e7fb6e23503158, type: 3}
   - {fileID: 4212835508375194654, guid: 27f44eb0132c1514ba0e9ae2cb7243e5, type: 3}
   - {fileID: 5403031870173960722, guid: 767f1786bc247004eadcdf1667e95c89, type: 3}
   - {fileID: 4567210256181747217, guid: 122609f499c0f7349b7913e2224585aa, type: 3}
   - {fileID: 4212835508375194654, guid: 503b624deb5cb0b45a83c0c86754c2a5, type: 3}
+  - {fileID: 141982718775066848, guid: eab055910d20dfe45a69fc4670132353, type: 3}
+  - {fileID: 4225801138991497227, guid: 5bf922c50cf42ab4ba321f95a33a9ebd, type: 3}
   - {fileID: 1611698799120769256, guid: 25233d8d6a29bd645a68fb9e2492f88e, type: 3}
   - {fileID: 6374430030169679532, guid: ffbc0c154152bf3418e6b7e9fa3667b9, type: 3}
   - {fileID: 8226723368545543942, guid: dc4219d55848a6a428130ecbd36d6983, type: 3}
   - {fileID: 5949379789455952864, guid: dfe4bd54273cc9d43b61c25818bf91ee, type: 3}
   - {fileID: 6374430030169679532, guid: d556f8c231661294292b27e4f202a88a, type: 3}
   - {fileID: 5953691807663329063, guid: b7c4f64e5b66a9a45b8acad520fc4148, type: 3}
+  - {fileID: 7374469504172651760, guid: 8bd8e40a7a804674e95b2a4fd20d9f9d, type: 3}
   - {fileID: 6471065135930875561, guid: 816854a3b64098e47b714b7dd25817e1, type: 3}
   - {fileID: 2002493005132355326, guid: a07cd2c871e60334689cceacca6e28fc, type: 3}
   - {fileID: 7396400840603749725, guid: 859d8deb6aaa02842b7e05930dbeae05, type: 3}
@@ -5830,6 +5834,8 @@ MonoBehaviour:
   - {fileID: 5511231987331668885, guid: 1297865d2a964e048807751a4af34408, type: 3}
   - {fileID: 4212835508375194654, guid: a5801a0c3a398ce4e87a2f57d3680906, type: 3}
   - {fileID: 7322199446010493095, guid: 5c0f23ed421452c4ca81bd04ad941217, type: 3}
+  - {fileID: 5343099981725934305, guid: 60c5d19b6adb5044db12fd9403777170, type: 3}
+  - {fileID: 8676854786144759334, guid: acb6f23af2cc67241a59afbf50895de4, type: 3}
   - {fileID: 3550704808332784008, guid: 96ba619c5f77f924d806424543f35bb2, type: 3}
   - {fileID: 4185024685760862240, guid: f6035e5317309c840beb5fc43b724ed5, type: 3}
   - {fileID: 8336598816641981946, guid: 1c1cdfc8d2077ea43a0cc608a01a3c14, type: 3}
@@ -5844,12 +5850,9 @@ MonoBehaviour:
   - {fileID: 6277792821134282188, guid: c20363957d3a6ed48a27941174ff647e, type: 3}
   - {fileID: 804684433970327856, guid: 5f347d6d24bbe2c4891fca2cf679cde1, type: 3}
   - {fileID: 6943941813148128921, guid: fae21c0bdea10f04ab349a7fa1ec9787, type: 3}
+  - {fileID: 3673587277661966652, guid: 5576e0cf325134c4b94213c890636496, type: 3}
   - {fileID: 1989081893743840872, guid: f6a3a981ebe5b844396af9e2841bffb4, type: 3}
   - {fileID: 980931033368244530, guid: f702d022a1bbcd24ab9cee0c82464741, type: 3}
-  - {fileID: 7374469504172651760, guid: 8bd8e40a7a804674e95b2a4fd20d9f9d, type: 3}
-  - {fileID: 3673587277661966652, guid: 5576e0cf325134c4b94213c890636496, type: 3}
-  - {fileID: 5343099981725934305, guid: 60c5d19b6adb5044db12fd9403777170, type: 3}
-  - {fileID: 4225801138991497227, guid: 5bf922c50cf42ab4ba321f95a33a9ebd, type: 3}
   sprites:
   - {fileID: 21300000, guid: 9ee0e02ce5e22124685f260647ba4496, type: 3}
   - {fileID: 21300000, guid: a97eda0ad7082714b8a10a6e2758697f, type: 3}

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 public class MadRollersSFX : MonoBehaviour {
@@ -67,7 +65,7 @@ public class MadRollersSFX : MonoBehaviour {
 	}
 	void OnMadRollerFX(types type, int id)
     {
-        if (MusicManager.Instance.mute) return;
+        if (MusicManager.Instance.soundManager.mute) return;
         AudioSource audioSource;
 		switch(id)
 		{

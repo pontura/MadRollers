@@ -8,6 +8,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSourceGrab;
     public AudioSource audioSourceFloorExplotions;
 
+    [SerializeField] AudioClip popup;
+    [SerializeField] AudioClip popupClose;
+
     [SerializeField] AudioClip typing;
     [SerializeField] AudioClip boss_punch;
     [SerializeField] AudioClip boss_attack_init;
@@ -31,6 +34,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip enemyDead;
     [SerializeField] AudioClip continueClip;
 
+    public bool mute;
 
     private AudioSource loopAudioSource;
     public float volume;
@@ -42,11 +46,14 @@ public class SoundManager : MonoBehaviour
         
         OnSoundsVolumeChanged(volume);
 
+        Events.OnGamePaused += OnGamePaused;
         Events.OnAvatarShoot += OnAvatarShoot;
         Events.OnSoundFX += OnSoundFX;
 		Events.OnSFXStatus += OnSFXStatus;
         Events.OnGrabHeart += OnGrabHeart;
         Events.OnAddExplotion += OnAddExplotion;
+        Events.SetSoundsVolume += SetSoundsVolume;
+        Events.MuteSounds += MuteSounds;
 
         if (!Data.Instance.soundsFXOn)
 			audioSource.enabled = false;
@@ -60,11 +67,14 @@ public class SoundManager : MonoBehaviour
     }
     void OnDestroy()
     {
+        Events.OnGamePaused -= OnGamePaused;
         Events.OnAvatarShoot -= OnAvatarShoot;
         Events.OnSoundFX -= OnSoundFX;
 		Events.OnSFXStatus -= OnSFXStatus;
         Events.OnGrabHeart -= OnGrabHeart;
         Events.OnAddExplotion -= OnAddExplotion;
+        Events.SetSoundsVolume -= SetSoundsVolume;
+        Events.MuteSounds -= MuteSounds;
 
         if (loopAudioSource)
         {
@@ -72,6 +82,23 @@ public class SoundManager : MonoBehaviour
             loopAudioSource.Stop();
         }
     }
+    void MuteSounds(bool mute)
+    {
+        this.mute = mute;
+    }
+    private void SetSoundsVolume(float v)
+    {
+        OnSoundsVolumeChanged(v);
+    }
+
+    private void OnGamePaused(bool isOn)
+    {
+        if(isOn)
+            OnSoundFX("popup");
+        else
+            OnSoundFX("popupClose");
+    }
+
     void OnMissionComplete(int id)
     {
         audioSource.volume = 0;
@@ -86,15 +113,15 @@ public class SoundManager : MonoBehaviour
 
     void OnAddExplotion(Vector3 pos, Color c)
     {
+        if (mute) return;
         audioSourceFloorExplotions.Play();
     }
     void OnSoundsVolumeChanged(float value)
     {
         audioSource.volume = value;
+        audioSourceGrab.volume = value;
+        audioSourceFloorExplotions.volume = value;
         volume = value;
-
-        if (value == 0 || value == 1)
-            PlayerPrefs.SetFloat("SFXVol", value);
     }
    
     float nextSoundTime;
@@ -104,7 +131,7 @@ public class SoundManager : MonoBehaviour
 
     void OnSoundFX(string soundName)
     {
-        if (MusicManager.Instance.mute) return;
+        if (mute) return;
         if (soundName == "")
         {
             audioSource.Stop();
@@ -121,6 +148,8 @@ public class SoundManager : MonoBehaviour
 
         switch(soundName)
         {
+            case "popup": audioSource.PlayOneShot(popup); break;
+            case "popupClose": audioSource.PlayOneShot(popupClose); break;
             case "typing": audioSource.PlayOneShot(typing); break;
             case "countDownStart": audioSource.PlayOneShot(countDownStart); break;
             case "countDown": audioSource.PlayOneShot(countDown); break;
@@ -146,7 +175,7 @@ public class SoundManager : MonoBehaviour
     float nextHeartSoundTime;
     public void OnGrabHeart()
     {
-        if (volume == 0) return;
+        if (mute) return;
         if (Time.time >= nextHeartSoundTime)
         {
             audioSourceGrab.Play();

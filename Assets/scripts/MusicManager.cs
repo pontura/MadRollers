@@ -3,15 +3,13 @@ using System.Collections;
 
 public class MusicManager : MonoBehaviour {
 
-
     [SerializeField] private AudioClip interfaces;
-
-
     [SerializeField] private AudioClip[] bosses;
     [SerializeField] private AudioClip[] songs;
     [SerializeField] private AudioClip[] wins;
     [SerializeField] private AudioClip loading;
-
+    public SoundManager soundManager;
+           
     [SerializeField] AudioSource audioSource;
 	float pitchSpeed = 0.015f;
     public bool mute;
@@ -44,8 +42,9 @@ public class MusicManager : MonoBehaviour {
         Events.OnAvatarFall += OnAvatarCrash;
 		Events.OnMusicStatus += OnMusicStatus;
 		Events.FreezeCharacters += FreezeCharacters;
+        Events.MuteMusic += MuteMusic;
 
-		if (!Data.Instance.musicOn)
+        if (!Data.Instance.musicOn)
 			audioSource.enabled = false;
     }
     void OnDestroy()
@@ -61,6 +60,7 @@ public class MusicManager : MonoBehaviour {
         Events.OnAvatarFall -= OnAvatarCrash;
         Events.OnMusicStatus -= OnMusicStatus;
         Events.FreezeCharacters -= FreezeCharacters;
+        Events.MuteMusic -= MuteMusic;
     }
     void OnMusicStatus(bool isOn)
 	{
@@ -152,6 +152,7 @@ public class MusicManager : MonoBehaviour {
 	}
     void StartMultiplayerRace()
     {
+        print("StartMultiplayerRace " + mute);
         if (mute) return;
         audioSource.pitch = 1;
 		PlayMainTheme ();
@@ -206,8 +207,7 @@ public class MusicManager : MonoBehaviour {
         if (mute) return;
         audioSource.pitch = 1;
 		audioSource.volume = 1;
-        audioSource.clip = songs[Data.Instance.videogamesData.actualID];//) as AudioClip;
-        //audioSource.clip = Data.Instance.assetsBundleLoader.GetAssetAsAudioClip("music.all", soundName);
+        audioSource.clip = songs[Data.Instance.videogamesData.actualID];
         audioSource.Play();
 		audioSource.loop = true;
 
@@ -215,7 +215,11 @@ public class MusicManager : MonoBehaviour {
     public void ToggleMute()
     {
         MusicManager.Instance.mute = !MusicManager.Instance.mute;
-        PlayerPrefs.SetString("mute", MusicManager.Instance.mute.ToString());
+        MuteMusic(mute);
+    }
+    public void MuteMusic(bool mute)
+    {
+        this.mute = mute;
         if (mute)
             stopAllSounds();
         else

@@ -20,7 +20,6 @@ public static class Events
     public static System.Action<string> VoiceFromResources = delegate { };
     public static System.Action<string> OnSoundFX = delegate { };
 	public static System.Action<MadRollersSFX.types, int> OnMadRollerFX = delegate { };
-    public static System.Action<float> SetVolume = delegate { };
     public static System.Action<bool> OnFadeALittle = delegate { };
     public static System.Action OnInterfacesStart = delegate { };
     public static System.Action OnGameStart = delegate { };
@@ -110,4 +109,10 @@ public static class Events
 	public static System.Action<bool> FreezeCharacters = delegate { };
     public static System.Action<int> ChangePlayer = delegate { };
     public static System.Action<CameraChromaManager.types> OnCameraChroma = delegate { };
+
+
+    public static System.Action<float> SetVolume = delegate { };
+    public static System.Action<float> SetSoundsVolume = delegate { };
+    public static System.Action<bool> MuteMusic = delegate { };
+    public static System.Action<bool> MuteSounds = delegate { };
 }
