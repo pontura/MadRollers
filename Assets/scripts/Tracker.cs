@@ -35,20 +35,19 @@ public class Tracker : MonoBehaviour {
 
         if (FirebaseApp.DefaultInstance == null)
             mission_tries = 0;
-        int id = Data.Instance.missions.MissionActiveID;
         FirebaseAnalytics.LogEvent(
            "mission_init",
-           new Parameter("mission_init_mission_id", id)
+           new Parameter("mission_init_mission_id", GetMission())
        );
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
         if (!FirebaseOn()) return;
-        int id = Data.Instance.missions.MissionActiveID;
+        string tries = "tries_" + mission_tries.ToString();
         FirebaseAnalytics.LogEvent("die",
             new Parameter[] {
-                new Parameter("die_mission_id", id),
-                new Parameter("die_mission_tries", mission_tries)
+                new Parameter("die_mission_id", GetMission()),
+                new Parameter("die_mission_tries",tries )
             }
         );
         mission_tries++;
@@ -59,23 +58,27 @@ public class Tracker : MonoBehaviour {
 
         FirebaseAnalytics.LogEvent(
             "mission_complete",
-            new Parameter("mission_complete_mission_id", id)
+            new Parameter("mission_complete_mission_id", GetMission())
         );
     }
     public void WatchAd()
     {
         if (!FirebaseOn()) return;
-        int id = Data.Instance.missions.MissionActiveID;
         FirebaseAnalytics.LogEvent("watch_ad",
-            new Parameter("watch_ad_mission_id", id)
+            new Parameter("watch_ad_mission_id", GetMission())
             );
     }
     public void ContinuePaid()
     {
         if (!FirebaseOn()) return;
-        int id = Data.Instance.missions.MissionActiveID;
         FirebaseAnalytics.LogEvent("continue_paid",
-           new Parameter("continue_paid_mission_id", id)
+           new Parameter("continue_paid_mission_id", GetMission())
            );
+    }
+    string GetMission()
+    {
+        int id = Data.Instance.missions.MissionActiveID +1;
+        return "mission_" + id;
+
     }
 }

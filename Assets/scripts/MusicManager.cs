@@ -185,7 +185,6 @@ public class MusicManager : MonoBehaviour {
     public void stopAllSounds()
     {
         audioSource.Stop();
-		audioSource.clip = null;
     }
 
     void OnMissionComplete(int newm)

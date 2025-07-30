@@ -77,11 +77,15 @@ public class MadRollersSFX : MonoBehaviour {
 		AudioClip ac = null;
 		switch(type)
 		{
-		//case types.ENGINES:
-		//	ac = playerClips [id].engines;
-		//	audioSource.loop = true; 
-		//	break;
-		case types.JUMP: 
+            //case types.ENGINES:
+            //	ac = playerClips [id].engines;
+            //	audioSource.loop = true; 
+            //	break;
+            case types.FALL:
+                ac = playerClips[id].fall;
+                audioSource.loop = false;
+                break;
+            case types.JUMP: 
 			ac = playerClips[id].jump; 
 			audioSource.loop = false; 
 			break;
