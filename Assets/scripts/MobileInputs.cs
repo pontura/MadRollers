@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,18 +28,35 @@ public class MobileInputs : MonoBehaviour
             Events.StartMultiplayerRace += StartMultiplayerRace;
             Events.OnGameOver += OnGameOver;
             Events.OnContinue += OnContinue;
+            Events.OnAvatarDie += OnAvatarDie;
+            Events.Respawn += Respawn;
         }
         else
         {
             Destroy(this);
         }
     }
+
+    private void Respawn()
+    {
+        panel.SetActive(true);
+    }
+
     void OnDestroy()
     {
         Events.StartMultiplayerRace -= StartMultiplayerRace;
         Events.OnGameOver -= OnGameOver;
         Events.OnContinue -= OnContinue;
+        Events.OnAvatarDie -= OnAvatarDie;
+        Events.Respawn -= Respawn;
     }
+
+    private void OnAvatarDie(CharacterBehavior behavior)
+    {
+        if(behavior.player.id == 0)
+            panel.SetActive(false);
+    }
+
     void OnContinue()
     {
         panel.SetActive(true);

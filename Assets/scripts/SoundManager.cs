@@ -36,7 +36,6 @@ public class SoundManager : MonoBehaviour
 
     public bool mute;
 
-    private AudioSource loopAudioSource;
     public float volume;
 
     void Start()
@@ -75,12 +74,6 @@ public class SoundManager : MonoBehaviour
         Events.OnAddExplotion -= OnAddExplotion;
         Events.SetSoundsVolume -= SetSoundsVolume;
         Events.MuteSounds -= MuteSounds;
-
-        if (loopAudioSource)
-        {
-            loopAudioSource = null;
-            loopAudioSource.Stop();
-        }
     }
     void MuteSounds(bool mute)
     {
@@ -137,9 +130,10 @@ public class SoundManager : MonoBehaviour
             audioSource.Stop();
             return;
         }
-        if (Time.time <= nextSoundTime && soundName != "combo")
+        if (soundName != "continueClip")
         {
-            return;
+            if (Time.time <= nextSoundTime && soundName != "combo")
+                return;
         }
         nextSoundTime = Time.time + delayToNextSound;
        

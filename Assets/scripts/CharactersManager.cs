@@ -9,6 +9,8 @@ public class CharactersManager : MonoBehaviour {
     public List<CharacterBehavior> characters;
     public List<CharacterBehavior> deadCharacters;
 
+    CharacterBehavior mainCharacter;
+
     private float separationX  = 4.5f;
 
     public float distance;
@@ -199,22 +201,27 @@ public class CharactersManager : MonoBehaviour {
 		if(distance<20)
              pos.x = (separationX * id) - ((separationX * 2) - separationX / 2);
 
-        CharacterBehavior cb = addCharacter(pos, id);
+        CharacterBehavior characterBeavior = addCharacter(pos, id);
+        if (id ==0)
+            mainCharacter = characterBeavior;
 
-        Events.ForceFrameRate(1);
-        return cb;
+        //Events.ForceFrameRate(1);
+        return characterBeavior;
     }
 	public CharacterBehavior addCharacter(Vector3 pos, int id)
 	{
         Events.OnAddNewPlayer(id);
-		CharacterBehavior newCharacter = null;
+        CharacterBehavior newCharacter = null;
 		foreach (CharacterBehavior cb in deadCharacters)
 		{
 			if (cb.player.id == id)
 				newCharacter = cb;
 		}
 		if (newCharacter == null)
-			newCharacter = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
+        {
+            newCharacter = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
+            if (id == 0) mainCharacter = newCharacter;
+        }
 		else
 			deadCharacters.Remove(newCharacter);
        
@@ -268,7 +275,10 @@ public class CharactersManager : MonoBehaviour {
             return;
 
         print("DIE: " + characters.Count);
-        
+
+        if (characterBehavior.player.id == 0) 
+            mainCharacter = null;
+
         characters.Remove(characterBehavior);
         totalCharacters = characters.Count;
         deadCharacters.Add(characterBehavior);
@@ -281,7 +291,7 @@ public class CharactersManager : MonoBehaviour {
             bool stillPlayingRealCharacters = false;
             foreach(CharacterBehavior cb in characters)
             {
-                if (cb.GetComponent<Automata>() == null)
+               // if (cb.GetComponent<Automata>() == null)
                     stillPlayingRealCharacters = true;
             }
             print("DIE: stillPlayingRealCharacters " + stillPlayingRealCharacters);
@@ -294,6 +304,7 @@ public class CharactersManager : MonoBehaviour {
     }
     IEnumerator GameOver(CharacterBehavior cb)
     {
+        Events.AllDead();
 		Events.OnSoundFX("deathFX");
         Game.Instance.GameOver();
         yield return new WaitForSeconds(0.05f);
@@ -307,17 +318,15 @@ public class CharactersManager : MonoBehaviour {
         else
             return  getMainCharacter().rotationY;
     }
-    CharacterBehavior cb;
     public CharacterBehavior getMainCharacter()
     {
-        if (cb != null) return cb;
+        if (mainCharacter != null) return mainCharacter;
         if (getTotalCharacters() <= 0)
         {
             Debug.LogError("[ERROR] No hay más characters y sigue pidiendo...");
           //  print("[ERROR] No hay más characters y sigue pidiendo...");
             return null;
         }
-        cb = characters[0];
         return characters[0];
     }
     public Vector3 getPositionMainCharacter()
@@ -328,20 +337,20 @@ public class CharactersManager : MonoBehaviour {
     {
         ///////retomar
         int totalCharacters = getTotalCharacters();
-        if (totalCharacters > 1 && !isAndroid)
+        if (mainCharacter == null)
         {
             Vector3 normalPosition = Vector3.zero;
             totalCharacters = 0;
-            foreach (CharacterBehavior cb in characters)
+            foreach (CharacterBehavior cbs in characters)
             {
                 totalCharacters++;
-                normalPosition += cb.transform.localPosition;
+                normalPosition += cbs.transform.localPosition;
             }
             if (totalCharacters > 0)
             {
                 normalPosition /= totalCharacters;
-                normalPosition.y += 0.15f + (totalCharacters / 3f);
-                normalPosition.z = distance - 2.3f - (totalCharacters / 2.5f);
+                normalPosition.y += 0.35f + (totalCharacters / 3f);
+                normalPosition.z = distance - 3.2f - (totalCharacters / 2f);
             }
             return normalPosition;
         }
@@ -351,7 +360,7 @@ public class CharactersManager : MonoBehaviour {
             if (totalCharacters == 0)
                 p = Vector3.zero;
             else
-                p = characters[0].transform.position;
+                p = mainCharacter.transform.position;
 
             p.y += 0.5f;
             p.z = distance - 1.9f;

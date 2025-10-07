@@ -15,6 +15,8 @@ public static class Events
 	public static System.Action<int> OnCharacterInit = delegate { };
 	public static System.Action<int, string> OnDrawScore = delegate { };
     public static System.Action ResetHandwritingText = delegate { };
+    public static System.Action AllDead = delegate { };
+    public static System.Action Respawn = delegate { };
     public static System.Action<bool> OnGameOver = delegate { };
     public static System.Action OnContinue = delegate { };
     public static System.Action<string> VoiceFromResources = delegate { };
