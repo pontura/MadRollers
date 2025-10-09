@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class ToturialSteps : MonoBehaviour
@@ -17,12 +19,29 @@ public class ToturialSteps : MonoBehaviour
 
     [SerializeField] MobileInputs inputs;
 
+    OnBoardingSteps[] onboardingSteps;
+
+    class OnBoardingSteps
+    {
+        public int step = 0;
+        public string[] texts;
+        public int[] panelsID;
+    }
+
     int stepID = 0;
     float timer;
     int missionActiveID;
     int last_missionActiveID;
     void Start()
     {
+        onboardingSteps = new OnBoardingSteps[1];
+        OnBoardingSteps ons = new OnBoardingSteps();
+        ons.texts = new string[3];
+        ons.panelsID = new int[3];
+        ons.texts[0] = "You’re down! But the show goes on!";        ons.panelsID[0] = 0;
+        ons.texts[1] = "As long as a teammate’s still up";          ons.panelsID[1] = 0;
+        ons.texts[2] = "Mash this button to respawn faster!";       ons.panelsID[2] = 1;
+        onboardingSteps[0] = ons;
 
         missionActiveID = Data.Instance.missions.MissionActiveID;
 
@@ -36,9 +55,14 @@ public class ToturialSteps : MonoBehaviour
             PlayerPrefs.SetInt("last_missionActiveID", missionActiveID);
             PlayerPrefs.SetInt("last_stepID", 0);
         }
-
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-        if (missionActiveID > 2)
+        int onboardingStepsDone = PlayerPrefs.GetInt("onboarding", 0);
+        print("onboardingStepsDone " + onboardingStepsDone);
+        if(onboardingStepsDone<1)
+        {
+            Events.OnAvatarDie += OnAvatarDie;
+        }
+        if (missionActiveID > 2 && onboardingStepsDone >= onboardingSteps.Length)
         {
             Destroy(panel.gameObject);
             Destroy(this);
@@ -49,6 +73,21 @@ public class ToturialSteps : MonoBehaviour
             Invoke("Init", 1);
         }
     }
+    private void OnDestroy()
+    {
+        Events.OnAvatarDie -= OnAvatarDie;
+    }
+
+    private void OnAvatarDie(CharacterBehavior cb)
+    {
+        if(cb.player.id == 0 && charactersManager.totalCharacters>0)
+        {
+            PlayerPrefs.SetInt("onboarding", 1);
+            steps = onboardingSteps[0];
+            InitOnBoarding();
+        }
+    }
+
     void Init()
     {
         panel.SetActive(false);
@@ -112,6 +151,7 @@ public class ToturialSteps : MonoBehaviour
         step_shot.gameObject.SetActive(false);
         step_generic.gameObject.SetActive(false);
     }
+    System.Action OnClose;
     public void OnClicked()
     {
         if (Time.realtimeSinceStartup < timer + 0.25f) return;
@@ -141,6 +181,8 @@ public class ToturialSteps : MonoBehaviour
         Events.OnGamePaused(false);
         Events.RalentaTo(1, 0.15f);
         panel.SetActive(false);
+        if (OnClose != null)
+            OnClose();
     }
     void InitPanel(int id)
     {
@@ -217,6 +259,37 @@ public class ToturialSteps : MonoBehaviour
             }
         }
         stepID++;
+        Time.timeScale = 0;
+        Events.OnGamePaused(true);
+    }
+
+
+    OnBoardingSteps steps;
+    void InitOnBoarding()
+    {
+        print("InitOnBoarding " + steps.step + " lenght; " +  steps.texts.Length);
+        if (steps.step >= steps.texts.Length)
+        {
+            OnClose = null;
+            return;
+        }
+        int panelID = steps.panelsID[steps.step];
+        StartCoroutine(InitOnBoardingC(panelID));
+    }
+    IEnumerator InitOnBoardingC(int panelID)
+    {
+        yield return new WaitForEndOfFrame();
+        panel.SetActive(true);
+        ResetAll();
+        OnClose = InitOnBoarding;
+        string t = steps.texts[steps.step];
+
+        if(panelID == 0)
+            step_generic.Open(t);
+        else if (panelID == 1)
+            step_jump.Open(t);
+
+        steps.step++;
         Time.timeScale = 0;
         Events.OnGamePaused(true);
     }

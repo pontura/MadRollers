@@ -8,7 +8,7 @@ public class ToturialStep : MonoBehaviour
     {
         gameObject.SetActive(true);
         field.text = text;
-    }   
+    }
     public void Close()
     {
         gameObject.SetActive(false);
