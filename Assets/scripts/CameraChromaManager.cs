@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DigitalRuby.SimpleLUT;
 
 public class CameraChromaManager : MonoBehaviour {
@@ -15,11 +13,6 @@ public class CameraChromaManager : MonoBehaviour {
 	}
 
 	void Start () {
-        if (Data.Instance.isAndroid)
-            Destroy(this);
-        if (Data.Instance.useOptimizedSettings)
-            return;
-
 		Events.OnCameraChroma += OnCameraChroma;
 	}
 	void OnDestroy () {
@@ -29,30 +22,47 @@ public class CameraChromaManager : MonoBehaviour {
 	{
 		simpleLut.enabled = true;
 		this.type = type;
-		StartCoroutine (Tint (Color.red, 0.005f));
+		StartCoroutine (Tint (type, 1));
 		//StartCoroutine (ChangeHue (150, 1));
 	}
-	IEnumerator Tint(Color c, float speed)
+	IEnumerator Tint(types type, float speed)
 	{
 		Color color = simpleLut.TintColor;
-		float finalValue = 175;
-		float value = 0.2f;
-
-		color.r = 1;
-		color.g = value;
-		color.b =  value;
+		float value = 0f;
+		
 		simpleLut.TintColor = color;
 
-		if (c == Color.red) {
-			while (value < 1) {
-				value += speed;
-				color.g = value;
-				color.b = value;
-				simpleLut.TintColor = color;
+		if (type == types.RED) {
+
+            value = 1;
+            color.r = value;
+            color.g = value;
+            color.b = value;
+            while (value >0.5f)
+            {
+                value -= speed*Time.deltaTime;
+                color.g = value;
+                color.b = value;
+                simpleLut.TintColor = color;
 				yield return new WaitForEndOfFrame ();
 			}
-		}
-		yield return null;
+		} else if (type == types.NONE)
+        {
+            value = 0.5f;
+            color.r = 1;
+            color.g = value;
+            color.b = value;
+            while (value < 1)
+            {
+                value += speed * Time.deltaTime;
+                color.g = value;
+                color.b = value;
+                simpleLut.TintColor = color;
+                yield return new WaitForEndOfFrame();
+            }
+            simpleLut.enabled = false;
+        }
+        yield return null;
 	}
 	IEnumerator ChangeHue(float newHue, float speed)
 	{

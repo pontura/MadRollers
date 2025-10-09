@@ -1,6 +1,4 @@
-using Unity.Jobs;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class ToturialSteps : MonoBehaviour
 {
@@ -22,9 +20,23 @@ public class ToturialSteps : MonoBehaviour
     int stepID = 0;
     float timer;
     int missionActiveID;
+    int last_missionActiveID;
     void Start()
     {
+
         missionActiveID = Data.Instance.missions.MissionActiveID;
+
+        last_missionActiveID = PlayerPrefs.GetInt("last_missionActiveID", -1);
+        int last_stepID = PlayerPrefs.GetInt("last_stepID", 0);
+
+        if(last_missionActiveID == missionActiveID)
+            stepID = last_stepID;
+        else
+        {
+            PlayerPrefs.SetInt("last_missionActiveID", missionActiveID);
+            PlayerPrefs.SetInt("last_stepID", 0);
+        }
+
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
         if (missionActiveID > 2)
         {
@@ -44,7 +56,7 @@ public class ToturialSteps : MonoBehaviour
         foreach (GameObject go in hideInToturial)
             go.SetActive(false);
 
-        if (missionActiveID == 0)
+        if (last_missionActiveID <0 || (missionActiveID == 0 &&  last_missionActiveID > missionActiveID))
         {
             moveGO.SetActive(false);
             jumpGO.SetActive(false);
@@ -132,6 +144,7 @@ public class ToturialSteps : MonoBehaviour
     }
     void InitPanel(int id)
     {
+        PlayerPrefs.SetInt("last_stepID", id);
         timer = Time.realtimeSinceStartup;
         panel.SetActive(true);
 

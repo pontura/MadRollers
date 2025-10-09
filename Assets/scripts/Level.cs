@@ -256,7 +256,6 @@ public class Level : MonoBehaviour {
         int _dist = 0;
         while(_dist<500)
         {
-            print("_____ADD ");
             _dist += 10;
             missions.OnUpdateDistance(_dist);
             yield return new WaitForEndOfFrame();

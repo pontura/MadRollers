@@ -86,7 +86,7 @@ public class ObjectPool : MonoBehaviour
             }
             else
             {
-                Debug.Log("_____________ agrega al pool : " + instanceName);
+              //  Debug.Log("_____________ agrega al pool : " + instanceName);
                 foreach (ObjectPoolEntry poe in Entries)
                 {
                     if (poe.Prefab.name == instanceName)

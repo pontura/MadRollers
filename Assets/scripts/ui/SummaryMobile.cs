@@ -54,18 +54,18 @@ public class SummaryMobile : MonoBehaviour
     {
         string result = "MISSION COMPLETE!";
         int starsNum = 0;
-       // ScoreData scoreData = UserData.Instance.hiscoresByMissions.GetScore(missionID);
-        if (score > 15000)
+
+        if (score > 12000)
         {
             result = "A glorious victory!";
             starsNum = 3;
         }
-        else if (score > 12000)
+        else if (score > 8000)
         {
             result = "A solid success!";
             starsNum = 2;
         }
-        else if (score > 8000)
+        else if (score > 4000)
         {
             result = "Job done, no heroics.";
             starsNum = 1;

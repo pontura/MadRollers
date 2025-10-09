@@ -188,7 +188,7 @@ public class Breakable : MonoBehaviour {
             BoxCollider bc = mr.gameObject.GetComponent<BoxCollider>();
             if (bc != null)
             {
-                print($"<color=#20E7B0>Borra collieder</color>");
+             //   print($"<color=#20E7B0>Borra collieder</color>");
                 bc.enabled = false;
             }
             if (mr.material.HasProperty("_Color"))
@@ -201,7 +201,7 @@ public class Breakable : MonoBehaviour {
             id++;
         }
         // Print Results
-        print($"<color=#20E7B0>Data setted</color>");
+  //      print($"<color=#20E7B0>Data setted</color>");
        // all = null;
     }
 
