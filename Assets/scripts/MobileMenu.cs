@@ -54,4 +54,9 @@ public class MobileMenu : MonoBehaviour
     {
         mobileMenuScreen.gameObject.SetActive(false);
     }
+    public void BuyIAP()
+    {
+        Events.BuyIAP();
+    }
+
 }
