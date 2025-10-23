@@ -56,7 +56,7 @@ public class MobileMenu : MonoBehaviour
     }
     public void BuyIAP()
     {
-        Events.BuyIAP();
+        Events.IAPInit();
     }
 
 }

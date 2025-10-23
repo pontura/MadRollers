@@ -19,8 +19,10 @@ public class LegacyIAPManager : MonoBehaviour, IStoreListener
     {
         Events.BuyIAP -= BuyIAP;
     }
-    void BuyIAP()
+    System.Action<bool> OnDone;
+    void BuyIAP(System.Action<bool> OnDone)
     {
+        this.OnDone = OnDone;
         BuyFree();
     }
     public void InitializePurchasing()
@@ -50,6 +52,7 @@ public class LegacyIAPManager : MonoBehaviour, IStoreListener
 
     public void OnInitializeFailed(InitializationFailureReason error)
     {
+        OnDone(false);
         Debug.LogError("IAP FALLÓ AL INICIALIZAR: " + error);
     }
 
@@ -60,11 +63,13 @@ public class LegacyIAPManager : MonoBehaviour, IStoreListener
             Debug.Log("Compra exitosa de FREE.");
             PlayerPrefs.SetInt("free_unlocked", 1);
         }
+        OnDone(true);
         return PurchaseProcessingResult.Complete;
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
+        OnDone(false);
         Debug.LogError("COMPRA FALLÓ: " + failureReason);
     }
 

@@ -2,12 +2,13 @@
 
 public class ScoreLine : MonoBehaviour {
 
-   // public Image avatarImage;
+    Animator anim;
     public TMPro.TMP_Text num;
     public TMPro.TMP_Text username;
     public TMPro.TMP_Text score;
 
 	public void Init (int _puesto, string _username, int _score) {
+        anim = GetComponent<Animator>();
         if (num != null)
         {
             if (_puesto != 0)
@@ -17,7 +18,15 @@ public class ScoreLine : MonoBehaviour {
         }
 		username.text = TruncateText(_username, 10);
 		score.text = Utils.FormatNumbers(_score);
-	}
+
+        if (anim == null) return;
+        if(_username == UserData.Instance.username)
+            anim.Play("me");
+        else if (_puesto == 1)
+            anim.Play("first");
+        else
+            anim.Play("idle");
+    }
     public string TruncateText(string text, int maxLength)
     {
         if (string.IsNullOrEmpty(text)) return "";

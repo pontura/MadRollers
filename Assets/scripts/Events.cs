@@ -11,7 +11,9 @@ public static class Events
     public static System.Action<Texture2D, int> OnHiscore = delegate { };   
 
 	public static System.Action AddNewCredit = delegate { };
-    public static System.Action BuyIAP = delegate { };
+
+    public static System.Action IAPInit = delegate { };
+    public static System.Action<System.Action<bool>> BuyIAP = delegate { };
 
     public static System.Action<int> OnCharacterInit = delegate { };
 	public static System.Action<int, string> OnDrawScore = delegate { };

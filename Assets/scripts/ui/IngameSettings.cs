@@ -12,6 +12,7 @@ public class IngameSettings : MonoBehaviour
     public TMPro.TMP_Text field;
     public TMPro.TMP_Text soundsField;
     public TMPro.TMP_Text fieldExit;
+    public TMPro.TMP_Text fieldBuy;
     bool audioOn = true;
     bool soundsOn = true;
 
@@ -38,6 +39,10 @@ public class IngameSettings : MonoBehaviour
     {
         audioOn = !audioOn;
         SetAudio();
+    }
+    public void Buy()
+    {
+        Events.IAPInit();
     }
     void SetAudio()
     {
