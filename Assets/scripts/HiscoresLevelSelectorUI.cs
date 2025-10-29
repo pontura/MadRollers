@@ -1,74 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class HiscoresLevelSelectorUI : MonoBehaviour
 {
-    public Text videogameTitleField;
-    public Text missionField;
-    public MissionButtonMobile missionButton;
-    public GameObject panel;
-    public HiscoresMobile hiscoresMobile;
-    int videoGameID = 0;
-    int missionID = 0;
-    public Transform missionscontainer;
-
-    void Start()
+    [SerializeField] HiscoresMobile hiscoresMobile;
+    [SerializeField] GameObject panel;
+    private void Start()
     {
-      //  panel.SetActive(false);
+        Close();
     }
     public void Init()
     {
-        //Events.SetHamburguerButton(false);
-        //panel.SetActive(true);
-        //InitMissions();        
+        panel.SetActive(true);
+        hiscoresMobile.Init(1,MissionsManager.Instance.MissionTorneo, null);
     }
-    public void NextVideogame(bool next)
-    {
-        if (next)
-            videoGameID++;
-        else
-            videoGameID--;
-        if (videoGameID < 0)
-            videoGameID = 0;
-        else if (videoGameID > 2)
-            videoGameID = 2;
-        InitMissions();
-    }
-    void InitMissions()
-    {
-        Clicked(videoGameID, missionID);
-        Utils.RemoveAllChildsIn(missionscontainer);
-        List<MissionsManager.MissionsData> missionData = MissionsManager.Instance.missions;
-        videogameTitleField.text = Data.Instance.videogamesData.all[videoGameID].name;
-        //int missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame(videoGameID).missionUnblockedID;
-        int missionUnblockedID = UserData.Instance.GetMissionUnlocked();
-
-
-        int id = 0;
-        foreach (MissionsManager.MissionsData data in missionData)
-        {
-            //MissionButtonMobile m = Instantiate(missionButton);
-            //m.transform.SetParent(missionscontainer);
-            //m.transform.localPosition = Vector3.zero;
-            //m.transform.localScale = Vector3.one;
-            //m.Init(this, videoGameID, id);
-
-
-            //id++;
-        }
-    }
-    public void Clicked(int videoGameID, int MissionActiveID)
-    {
-        hiscoresMobile.Init(videoGameID, MissionActiveID, MyScoreLoaded);
-        missionField.text = TextsManager.Instance.GetText("HI-SCORES") + " (" + (int)(MissionActiveID+1) + ")";
-    }
-    void MyScoreLoaded(int a)
-    { }
     public void Close()
     {
-        Events.SetHamburguerButton(true);
         panel.SetActive(false);
     }
 }

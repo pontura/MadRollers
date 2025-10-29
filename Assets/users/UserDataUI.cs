@@ -1,65 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class UserDataUI : MonoBehaviour
 {
-    public UserUIRegistrationPanel userRegistrationPanel;
-    public UserUIRegisteredPanel userRegisteredPanel;
-    public WebcamPhoto webcamPhoto;
-    UserData userData;
-    public UserRegistrationForm userRegistrationForm;
-    public Text DebbugText;
+    [SerializeField] TMPro.TMP_InputField m_InputField;
+    [SerializeField] GameObject panel;
 
     private void Start()
     {
-        Init();
+        Close();
+        Events.UpdateUserData += UpdateUserData;
     }
-    public void Init()
+    private void OnDestroy()
     {
-        userRegistrationForm.Init();
-        userData = UserData.Instance;
-        userRegistrationPanel.gameObject.SetActive(false);
-        userRegisteredPanel.gameObject.SetActive(false);
-        Invoke("SetPanelsIfLogged", 0.1f);
-        webcamPhoto = GetComponent<WebcamPhoto>();
+        Events.UpdateUserData -= UpdateUserData;
+    }
+    public void UpdateUserData()
+    {
+        panel.SetActive(true);
+        m_InputField.text = UserData.Instance.username;
+    }
+    public void UpdateName()
+    {
+        string newName = m_InputField.text;
+        if(newName.Length < 3 || newName.Length>15 || newName == UserData.Instance.username)
+            Events.OnAlertSignal("Name was not changed");
+        else
+            UserData.Instance.UpdateUserName(newName, OnSaved);
+    }
+    void OnSaved(bool success, string result)
+    {
+        if(!success)
+            Events.OnAlertSignal(result);
+        else
+            Events.OnUserDataUpdated();
+        Close();
+    }
+    public void Close()
+    {
+        panel.SetActive(false);
     }
     
-    void SetPanelsIfLogged()
-    {
-        //if (!userData.IsRegistered())
-        //{
-            userRegistrationPanel.gameObject.SetActive(true);
-            userRegistrationPanel.Init(this, userData.username);
-
-            userRegisteredPanel.gameObject.SetActive(false);
-        //} else
-        //{
-        //    userRegisteredPanel.gameObject.SetActive(true);
-        //    userRegisteredPanel.Init(this, userData.userID, userData.username);
-
-        //    userRegistrationPanel.gameObject.SetActive(false);
-        //}
-    }
-    public void EditData()
-    {
-        userRegisteredPanel.gameObject.SetActive(false);
-        userRegistrationPanel.gameObject.SetActive(true);
-        userRegistrationPanel.Init(this, userData.username);
-    }
-    public void EditDone()
-    {
-        userRegisteredPanel.gameObject.SetActive(true);
-        userRegistrationPanel.gameObject.SetActive(false);
-        userRegistrationPanel.Init(this, userData.username);
-    }
-     public void OnSubmit(string username)
-     {
-         userRegistrationForm.SaveUser(username);
-     }
-     public void OnUpload(string username)
-     {
-         userRegistrationForm.UploadUser(username);
-     }
 }

@@ -105,8 +105,8 @@ public class MissionButtonMobile : MonoBehaviour, IScrollCell
             missionSelectorMobile.ClickedABlockedButton();
         else if (missionSelectorMobile != null)
             missionSelectorMobile.Clicked(missionID);
-        else if (hiscoresLevelSelectorUI != null)
-            hiscoresLevelSelectorUI.Clicked(videoGameID, missionID);
+        //else if (hiscoresLevelSelectorUI != null)
+        //    hiscoresLevelSelectorUI.Clicked(videoGameID, missionID);
     }
     public void SetSelector(bool isOn)
     {
@@ -116,6 +116,8 @@ public class MissionButtonMobile : MonoBehaviour, IScrollCell
     {
         int starsNum = 0;
         ScoreData scoreData = UserData.Instance.hiscoresByMissions.GetScore(missionID);
+        if (scoreData == null) return;
+
         if (scoreData.score > 15000)
             starsNum = 3;
         else if (scoreData.score > 12000)

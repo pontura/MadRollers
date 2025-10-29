@@ -55,7 +55,7 @@ public class CharactersManager : MonoBehaviour {
         missions = Data.Instance.GetComponent<Missions>();
         StartCoroutine(AddCharactersInitials());
 
-        if (Data.Instance.missions.MissionActiveID != 0)
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL || Data.Instance.missions.MissionActiveID != 0)
             gameObject.AddComponent<AutomatasManager>();
     }
 
@@ -120,8 +120,9 @@ public class CharactersManager : MonoBehaviour {
         //if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID+2), 2); playerPositions.Add(2); };
         //if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID+3), 3); playerPositions.Add(3); };
 
-        if (Data.Instance.missions.MissionActiveID != 0)
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL || Data.Instance.missions.MissionActiveID != 0)
             Add3Automatas(pos);
+
         yield return null;
 	}
     void Add3Automatas(Vector3 pos)

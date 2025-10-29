@@ -9,9 +9,9 @@ public class ExtraAreasManager : MonoBehaviour
     int xtrasID;
     
     public bool isBossOn;
-    float delayToExtraArea = 4;
-    int startingDelay = 6;
-    int nextBossArea = 4;
+    float delayToExtraArea = 7;
+    int startingDelay = 12;
+    int nextBossArea = 7;
     int id;
     
 
@@ -35,7 +35,7 @@ public class ExtraAreasManager : MonoBehaviour
             return;
         }  
         Reset();
-        Invoke("Loop", 6);
+        Invoke("Loop", delayToExtraArea*2);
         ShuffleMissions(missions.MissionActive.areaSetData);
        // ShuffleMissions(Mission_Xtras.areaSetData);
     }
@@ -63,8 +63,7 @@ public class ExtraAreasManager : MonoBehaviour
     public void Init()
     {
         missions = GetComponent<Missions>();
-        Mission_Xtras = MissionsManager.Instance.missionsSurvival[1].data[0];
-       // Mission_Xtras = MissionsManager.Instance.LoadDataFromMission("survival", "boyland_extras").data[0];       
+         Mission_Xtras = MissionsManager.Instance.missionsSurvival[1].data[0];    
     }    
     public void SetExtraArea()
     {

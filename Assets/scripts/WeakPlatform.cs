@@ -83,7 +83,7 @@ public class WeakPlatform : SceneObject {
 		float MidZ = transform.lossyScale.z / 200;
 
 		Transform container = null;
-
+        if (transform == null || transform.parent == null) return;
 		SceneObject soc = transform.parent.gameObject.GetComponent<SceneObject> ();
         if (soc != null)
         {

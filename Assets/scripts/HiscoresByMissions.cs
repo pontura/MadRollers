@@ -36,6 +36,7 @@ public class HiscoresByMissions : MonoBehaviour
     }
     public ScoreData GetScore(int levelID)
     {
+        print("GetScore " + levelID);
         foreach (ScoreData sd in all)
             if (sd.level == levelID)
                 return sd;
@@ -74,9 +75,9 @@ public class HiscoresByMissions : MonoBehaviour
     {
         Events.OnMissionComplete -= OnMissionComplete;
     }    
-    public void SaveSurvivalScore()
+    public void SaveSurvivalScore(int videoGameID)
     {
-        Save(0, Data.Instance.multiplayerData.score);
+        Save(videoGameID, Data.Instance.multiplayerData.score);
     }
     void OnMissionComplete(int missionID)
     {
@@ -87,7 +88,7 @@ public class HiscoresByMissions : MonoBehaviour
     {
         Data.Instance.multiplayerData.score = 0;
     }
-    public void CheckToAddNewHiscore(string userID, int score, int videogame, int mission)
+    public void CheckToAddNewHiscore(string userID, int score, int mission)
     {
         Save(mission, score);
     }
@@ -296,6 +297,31 @@ public class HiscoresByMissions : MonoBehaviour
 
             await docRef.SetAsync(scoreData);
             Debug.Log($"🏆 Nuevo highscore para level {levelNumber}: {score}");
+        }
+    }
+    public async Task UpdateUserName(int levelNumber, string userID, string username)
+    {
+        var db = FirebaseFirestore.DefaultInstance;
+
+        DocumentReference docRef = db
+            .Collection("leaderboards")
+            .Document("level_" + levelNumber)
+            .Collection("scores")
+            .Document(userID);
+
+        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+        if (snapshot.Exists)
+        {
+            Dictionary<string, object> scoreData = new Dictionary<string, object>
+            {
+                { "timestamp", Timestamp.GetCurrentTimestamp() },
+                { "username", username },
+                { "userID", userID }
+            };
+
+            await docRef.SetAsync(scoreData);
+            Debug.Log($"🏆 Nuevo nombre para level {levelNumber}: {username}");
         }
     }
 }

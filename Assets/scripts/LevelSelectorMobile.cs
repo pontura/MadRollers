@@ -4,55 +4,42 @@ using UnityEngine.UI;
 public class LevelSelectorMobile : MonoBehaviour
 {
     VideogameData videogameData;
-    public GameObject torneoButton;
     public MissionSelectorMobile missionSelectorMobile;
 
     public AvatarThumb avatarThumb;
     public Text scoreField;
     public Text avatarName;
 
-    //public Text tournamentField;
-    //public Text hiscoresField;
-    //public Text pluginsField;
-
     int score;
     int scoreTo;
     
     void Start()
     {
+        Events.OnUserDataUpdated += OnUserDataUpdated;
         if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
             InitParty();
         else
             InitStoryMode();
     }
+    private void OnDestroy()
+    {
+        Events.OnUserDataUpdated -= OnUserDataUpdated;
+    }
+    void OnUserDataUpdated()
+    {
+        avatarName.text = UserData.Instance.username.ToUpper();
+    }
     void InitParty()
     {
         Events.OnMadRollersSFXStatus(false);
-        //missionSelectorMobile.Init();
-       // Data.Instance.multiplayerData.ResetAll();
-       // Events.OnResetMultiplayerData();
-       // Data.Instance.isReplay = false;
         missionSelectorMobile.Clicked(Data.Instance.missions.MissionActiveID);
     }
     void InitStoryMode()
     { 
-        //tournamentField.text = TextsManager.Instance.GetText("TOURNAMENT");
-        //hiscoresField.text = TextsManager.Instance.GetText("HI-SCORES");
-        //pluginsField.text = TextsManager.Instance.GetText("PLUG-INS");
-
-      //  avatarThumb.Init(UserData.Instance.userID);
         avatarName.text = UserData.Instance.username.ToUpper();
 
         scoreTo =  UserData.Instance.Score();
-      //  score = UserData.Instance.GetLastScoreWon();
-
-       // if (score == scoreTo || score == 0)
-            scoreField.text = Utils.FormatNumbers(scoreTo);
-        //else
-        //{           
-        //    LoopForScore();
-        //}
-
+        scoreField.text = Utils.FormatNumbers(scoreTo);
 
         Events.SetHamburguerButton(true);
         Events.OnMadRollersSFXStatus(false);
@@ -90,17 +77,16 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     public void Go()
     {
-       // Data.Instance.playMode = Data.PlayModes.STORYMODE;
         Data.Instance.LoadLevel("Game");
     }
     public void Torneo()
     {
-        if(UserData.Instance.data.missionUnlocked<=0)
-        {
-            Events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
-            return;
-        }
-        Data.Instance.videogamesData.actualID = UnityEngine.Random.Range(0, 3);
+        //if(UserData.Instance.data.missionUnlocked<=0)
+        //{
+        //    Events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
+        //    return;
+        //}
+        Data.Instance.videogamesData.actualID = 1;
         Data.Instance.missions.MissionActiveID = 0;
         Data.Instance.playMode = Data.PlayModes.SURVIVAL;
         Data.Instance.LoadLevel("Game");
@@ -112,11 +98,10 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     public void EditUser()
     {
-        Data.Instance.LoadLevel("Registration");
+        Events.UpdateUserData();
     }
     public void Plugins()
     {
         Events.OnAlertSignal("Todavía no puedes gastar tus pixeles para construir plugins! (Próximamente)");
-    }
-    
+    }    
 }

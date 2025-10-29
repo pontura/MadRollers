@@ -34,6 +34,12 @@ public class ToturialSteps : MonoBehaviour
     int last_missionActiveID;
     void Start()
     {
+        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+        {
+            Destroy(panel.gameObject);
+            Destroy(this);
+        }
+
         onboardingSteps = new OnBoardingSteps[1];
         OnBoardingSteps ons = new OnBoardingSteps();
         ons.texts = new string[3];

@@ -1,11 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using static HiscoresByMissions;
 
 public class SummaryMobile : MonoBehaviour
 {
+    public Animator anim;
     public GameObject panel;
     public TMPro.TMP_Text titleField;
 
@@ -20,7 +18,7 @@ public class SummaryMobile : MonoBehaviour
     public TMPro.TMP_Text hiscoreScoreField;
     public TMPro.TMP_Text hiscoreNameField;
     public TMPro.TMP_Text puestoField;
-    public TMPro.TMP_Text initialSignalTitleField;
+    public TMPro.TMP_Text initialSignalTitleField;  
 
     public GameObject hiscoreOtherPanel;
 
@@ -28,7 +26,6 @@ public class SummaryMobile : MonoBehaviour
 
     bool canClick;
     int missionID;
-    int videoGameID;
     int score;
 
     void Start()
@@ -41,14 +38,17 @@ public class SummaryMobile : MonoBehaviour
     
     public void Init()
     {
-        if (Data.Instance.playMode == Data.PlayModes.STORYMODE || Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-        {
-            Events.OnMadRollersSFXStatus(false);
-            hiscoreOtherPanel.SetActive(false);
-            Events.RalentaTo(0, 0.005f);
-            panel.SetActive(true);
-            StartCoroutine(InitCoroutine());
-        } 
+
+        Events.OnMadRollersSFXStatus(false);
+        hiscoreOtherPanel.SetActive(false);
+        Events.RalentaTo(0, 0.005f);
+        panel.SetActive(true);
+        StartCoroutine(InitCoroutine());
+
+        if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+            anim.Play("summaryMobile");
+        else if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+            anim.Play("summaryMobile_torneo");
     }
     void SetStars()
     {
@@ -87,21 +87,24 @@ public class SummaryMobile : MonoBehaviour
     bool canShowHiscores;
     IEnumerator InitCoroutine()
     {
-        missionID = Data.Instance.missions.MissionActiveID - 1;
-        titleField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
-        score = Data.Instance.multiplayerData.GetTotalScore();
-        scoreField.text = Utils.FormatNumbers(score);
-        SetStars();
-
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
-            UserData.Instance.hiscoresByMissions.SaveSurvivalScore();
-            videoGameID = MissionsManager.Instance.VideogameIDForTorneo;
+            missionID = MissionsManager.Instance.MissionTorneo;
+            UserData.Instance.hiscoresByMissions.SaveSurvivalScore(missionID);
+            titleField.text = "TORNEO";
         }
         else
-            videoGameID = Data.Instance.videogamesData.actualID;
+        {
+            missionID = Data.Instance.missions.MissionActiveID - 1;
+            SetStars();
+            titleField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
+        }
 
-        Debug.Log("____OnSaveScore: " + score);
+        score = Data.Instance.multiplayerData.GetTotalScore();
+        scoreField.text = Utils.FormatNumbers(score);
+       
+
+        Debug.Log("____OnSaveScore: " + score + " missionID: " + missionID);
         Events.OnSaveScore();
 
         yield return new WaitForSecondsRealtime(4);
@@ -115,21 +118,14 @@ public class SummaryMobile : MonoBehaviour
     }
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData hiscoreData)
     {
-        if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
-        {
-            videoGameID = MissionsManager.Instance.VideogameIDForTorneo;
-            missionID = 0;
-        }
 
-        UserData.Instance.hiscoresByMissions.CheckToAddNewHiscore(UserData.Instance.userID, score, videoGameID, missionID);
+        UserData.Instance.hiscoresByMissions.CheckToAddNewHiscore(UserData.Instance.userID, score, missionID);
         hiscores.InitLoaded(hiscoreData);
-
-     //   avatarImage.Init(UserData.Instance.userID);
         usernameField.text = UserData.Instance.username.ToUpper();
         
         if (hiscoreData == null || hiscoreData.all.Count < 1)
         {
-            Debug.Log("No ranking yet for videoGameID " + videoGameID + ", mission " + missionID);
+            Debug.Log("No ranking yet for  mission " + missionID);
         }
         else
         {

@@ -7,7 +7,7 @@ using UnityEditor;
 public class MissionsManager : MonoBehaviour
 {
     [SerializeField] GameObject thisPrefab;
-    public int VideogameIDForTorneo = 100;
+    public int MissionTorneo = 100;
     public TextAsset _all;
     public TextAsset _all_partymode;
     // public MissionsListInVideoGame all;

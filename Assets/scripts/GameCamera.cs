@@ -2,11 +2,9 @@ using UnityEngine;
 using System.Collections;
 using AlpacaSound.RetroPixelPro;
 using DG.Tweening;
-using Wilberforce.FinalVignette;
 
 public class GameCamera : MonoBehaviour 
 {
-  //  public FinalVignetteCommandBuffer vignette;
     public SpriteRenderer[] backgrundImage;
     public float fieldOfView;
 	public int team_id;

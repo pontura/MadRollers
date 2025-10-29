@@ -48,7 +48,7 @@ public class Missions : MonoBehaviour
             offset -= 40;
             MissionsManager.Instance.all = null;
             //MissionActive = MissionsManager.Instance.LoadDataFromMission("survival", "boyland").data[0];
-            MissionActive = MissionsManager.Instance.missionsSurvival[0].data[0];
+              MissionActive = MissionsManager.Instance.missionsSurvival[0].data[0];
             // extraAreasManager.Init();              
         }
         else
@@ -103,6 +103,7 @@ public class Missions : MonoBehaviour
         if (Data.Instance.playMode == Data.PlayModes.SURVIVAL)
         {
             MissionActive = MissionsManager.Instance.missionsSurvival[0].data[0];
+           // MissionActive = MissionsManager.Instance.missionsSurvival[0].data[0];
             extraAreasManager.Init();
         }
 
