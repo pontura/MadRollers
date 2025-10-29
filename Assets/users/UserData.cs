@@ -189,6 +189,7 @@ public class UserData : MonoBehaviour
                 _ = hiscoresByMissions.UpdateUserName(a, userId, newName);
             }
         }
+        _ = hiscoresByMissions.UpdateUserName(MissionsManager.Instance.MissionTorneo, userId, newName);
     }
     public bool CanPay(int price)
     {

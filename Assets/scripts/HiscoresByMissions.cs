@@ -313,9 +313,11 @@ public class HiscoresByMissions : MonoBehaviour
 
         if (snapshot.Exists)
         {
+            int score = snapshot.GetValue<int>("score");
             Dictionary<string, object> scoreData = new Dictionary<string, object>
             {
                 { "timestamp", Timestamp.GetCurrentTimestamp() },
+                { "score", score },
                 { "username", username },
                 { "userID", userID }
             };
