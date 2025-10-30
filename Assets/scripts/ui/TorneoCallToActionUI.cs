@@ -4,6 +4,7 @@ public class TorneoCallToActionUI : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text field;
     [SerializeField] GameObject panel;
+    bool dontShowAgain;
 
     private void Start()
     {
@@ -15,7 +16,8 @@ public class TorneoCallToActionUI : MonoBehaviour
         Events.OpenTorneoCallToAction -= OpenTorneoCallToAction;
     }
     public void OpenTorneoCallToAction(int id = 1)
-    { 
+    {
+        if (dontShowAgain) return;
         panel.SetActive(true);
         int torneoScore = UserData.Instance.hiscoresByMissions.GetTorneoScore();
         int torneoRank = UserData.Instance.hiscoresByMissions.torneoRank;
@@ -27,14 +29,21 @@ public class TorneoCallToActionUI : MonoBehaviour
                 field.text =  Utils.FormatNumbers(torneoScore) + " points in the Tournament. Wanna give it another shot?";
             return;
         } else if (torneoScore == 0)
+        {
             field.text = "You're not that bad... Looks like you're ready for a real match";
+            dontShowAgain = true;
+        }
         else if (!MissionsManager.Instance.HasPlayedTorneoToday())
+        {
             field.text = "No action from you in today’s tournament… yet";
+            dontShowAgain = true;
+        }
         else
             panel.SetActive(false);
     }
     public void GotoTorneo()
     {
+        Close();
         MissionsManager.Instance.PlayTorneo();
     }
     public void Close()
