@@ -52,6 +52,10 @@ public class LoadingAsset : MonoBehaviour {
             logo_vertical.sprite = Data.Instance.videogamesData.GetActualVideogameData().loadingSplash;
 
             int missionID = Data.Instance.missions.MissionActiveID;
+
+            if(Data.Instance.playMode == Data.PlayModes.SURVIVAL)
+                missionID = MissionsManager.Instance.MissionTorneo;
+
             UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);
             //HiscoreLoaded(null);
             missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
