@@ -16,7 +16,7 @@ public class ScoreLine : MonoBehaviour {
             else
                 num.text = "";
         }
-		username.text = TruncateText(_username, 10);
+		username.text = TruncateText(_username, 14);
 		score.text = Utils.FormatNumbers(_score);
 
         if (anim == null) return;
