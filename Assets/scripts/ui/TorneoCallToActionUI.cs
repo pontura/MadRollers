@@ -26,7 +26,7 @@ public class TorneoCallToActionUI : MonoBehaviour
             if(torneoRank>0)
                 field.text = "Rank " + torneoRank + ". " + torneoScore + " points. Wanna give it another shot?";
             else
-                field.text =  Utils.FormatNumbers(torneoScore) + " points in the Tournament. Wanna give it another shot?";
+                field.text =  Utils.FormatNumbers(torneoScore) + " points in the Competition. Wanna give it another shot?";
             return;
         } else if (torneoScore == 0)
         {
@@ -35,7 +35,7 @@ public class TorneoCallToActionUI : MonoBehaviour
         }
         else if (!MissionsManager.Instance.HasPlayedTorneoToday())
         {
-            field.text = "No action from you in today’s tournament… yet";
+            field.text = "No action today in the competition… yet";
             dontShowAgain = true;
         }
         else
