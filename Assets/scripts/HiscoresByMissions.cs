@@ -1,14 +1,9 @@
-﻿using Firebase;
-using Firebase.Auth;
-using Firebase.Extensions;
+﻿using Firebase.Auth;
 using Firebase.Firestore;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class HiscoresByMissions : MonoBehaviour
 {
@@ -17,6 +12,7 @@ public class HiscoresByMissions : MonoBehaviour
 
     public bool loaded;
     public List<ScoreData> all;
+    public int torneoRank;
 
     void AddNewHiscore(int levelID, int score)
     {
@@ -32,7 +28,13 @@ public class HiscoresByMissions : MonoBehaviour
             AddNewHiscore(levelID, score);
         else
             sd.score = score;
-
+    }
+    public int GetTorneoScore()
+    {
+        ScoreData scoreData = GetScore(MissionsManager.Instance.MissionTorneo);
+        if(scoreData == null) return 0;
+        else
+            return scoreData.score;
     }
     public ScoreData GetScore(int levelID)
     {
@@ -47,6 +49,7 @@ public class HiscoresByMissions : MonoBehaviour
     {
         public int level;
         public int score;
+        public int rank;
     }
 
     [Serializable]
@@ -99,7 +102,7 @@ public class HiscoresByMissions : MonoBehaviour
 
     private async void LoadHiscoreC(int mission, System.Action<MissionHiscoreData> OnDone)
     {
-        var topScores = await GetTopScores(mission, 50);
+        var topScores = await GetTopScores(mission, 100);
         MissionHiscoreData m = new MissionHiscoreData();
         m.all = new List<MissionHiscoreUserData>();
         foreach (var entry in topScores)
@@ -116,7 +119,7 @@ public class HiscoresByMissions : MonoBehaviour
         OnDone(m);
     }
    
-    public async Task<List<(string username, int score)>> GetTopScores(int level, int limit = 50)
+    async Task<List<(string username, int score)>> GetTopScores(int level, int limit = 100)
     {
         var db = FirebaseFirestore.DefaultInstance;
 
@@ -131,11 +134,18 @@ public class HiscoresByMissions : MonoBehaviour
 
         List<(string username, int score)> topList = new List<(string, int)>();
 
+        int rank = 1;
         foreach (var doc in snapshot.Documents)
         {
+            string _userID = doc.GetValue<string>("userID");
+            if(_userID == UserData.Instance.userID)
+            {
+                torneoRank = rank;
+            }
             string username = doc.ContainsField("username") ? doc.GetValue<string>("username") : "Anon";
             int score = doc.GetValue<int>("score");
             topList.Add((username, score));
+            rank++;
         }
 
         return topList;
@@ -163,11 +173,11 @@ public class HiscoresByMissions : MonoBehaviour
             {
                 int levelID = int.Parse(arr[1]);
                 AddNewHiscore(levelID, score);
-               
             }
         }
         int count = snapshot.Count;
         Debug.Log("🎮 El usuario " + userId  + " jugó " + count + " niveles.");
+        loaded = true;
         return count;
     }
     

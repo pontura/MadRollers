@@ -32,6 +32,8 @@ public class UserData : MonoBehaviour
     public int playerID; // Mad-Roller muñeco id
     private bool allDone;
     const string missionUnlocked = "missionUnlocked";
+
+   
     public bool IsReadyToInit() //if its logged or new in the game:
     {
         return allDone;
@@ -249,6 +251,11 @@ public class UserData : MonoBehaviour
     {
         data.missionUnlocked = await hiscoresByMissions.GetLevelsPlayedCount();
         Debug.Log("Niveles jugados: " + data.missionUnlocked);
+        hiscoresByMissions.LoadHiscore(MissionsManager.Instance.MissionTorneo, OnTorneoHiscoreLoaded);
+    }
+    void OnTorneoHiscoreLoaded(HiscoresByMissions.MissionHiscoreData data)
+    {
+        Debug.Log("Torneo hiscore cargado RANK: " + hiscoresByMissions.torneoRank);
     }
     public int Score()
     {

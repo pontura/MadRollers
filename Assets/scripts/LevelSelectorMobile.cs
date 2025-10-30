@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GooglePlayGames.BasicApi;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelSelectorMobile : MonoBehaviour
@@ -7,6 +8,7 @@ public class LevelSelectorMobile : MonoBehaviour
     public MissionSelectorMobile missionSelectorMobile;
 
     public AvatarThumb avatarThumb;
+    public TMPro.TMP_Text tournamentField;
     public Text scoreField;
     public Text avatarName;
 
@@ -35,7 +37,13 @@ public class LevelSelectorMobile : MonoBehaviour
         missionSelectorMobile.Clicked(Data.Instance.missions.MissionActiveID);
     }
     void InitStoryMode()
-    { 
+    {
+        int tournamentRank = UserData.Instance.hiscoresByMissions.torneoRank;
+        if (tournamentRank == 0)
+            tournamentField.text = "Survival Challenge";
+        else
+            tournamentField.text = "RANK " + tournamentRank;
+
         avatarName.text = UserData.Instance.username.ToUpper();
 
         scoreTo =  UserData.Instance.Score();
@@ -81,15 +89,7 @@ public class LevelSelectorMobile : MonoBehaviour
     }
     public void Torneo()
     {
-        //if(UserData.Instance.data.missionUnlocked<=0)
-        //{
-        //    Events.OnAlertSignal("TORNEO: Solo para Avanzados (desbloqueá los 3 juegos)");
-        //    return;
-        //}
-        Data.Instance.videogamesData.actualID = 1;
-        Data.Instance.missions.MissionActiveID = 0;
-        Data.Instance.playMode = Data.PlayModes.SURVIVAL;
-        Data.Instance.LoadLevel("Game");
+        MissionsManager.Instance.PlayTorneo();
     }
     public void ResetAll()
     {

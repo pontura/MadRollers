@@ -122,4 +122,7 @@ public static class Events
     public static System.Action<bool> MuteSounds = delegate { };
     public static System.Action UpdateUserData = delegate { };
     public static System.Action OnUserDataUpdated = delegate { };
+
+
+    public static System.Action<int> OpenTorneoCallToAction = delegate { };
 }

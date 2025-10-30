@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq.Expressions;
+using UnityEngine;
 
 public class MainMenuMobile : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class MainMenuMobile : MonoBehaviour
         welcomeField.text = "HELLO " + UserData.Instance.username.ToUpper();
        // registerField.text = TextsManager.Instance.GetText("REGISTER");
 
-        Events.OnJoystickClick += OnJoystickClick;
+       // Events.OnJoystickClick += OnJoystickClick;
         Events.OnInterfacesStart();
         DonePanel.SetActive(false);
         RegisterPanel.SetActive(false);
@@ -30,20 +31,35 @@ public class MainMenuMobile : MonoBehaviour
         //    RegisterPanel.SetActive(true);
 
         AddPlayers();
+        Loop();
     }
-    private void OnDestroy()
+    void Loop()
     {
-        Events.OnJoystickClick -= OnJoystickClick;
+        print("Loop");
+        if(UserData.Instance.hiscoresByMissions.loaded)
+        {
+            int torneoScore = UserData.Instance.hiscoresByMissions.GetTorneoScore();
+            int missionsPlayed = UserData.Instance.hiscoresByMissions.all.Count;
+            print("torneoScore " + torneoScore + " missionsPlayed: " + missionsPlayed);
+            if (missionsPlayed > 2)
+                Events.OpenTorneoCallToAction(0);
+        }
+        else
+            Invoke("Loop", 0.25f);
     }
-    bool done;
-    void OnJoystickClick()
-    {
-        if (done) return; done = true;
-     //   if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsRegistered())
-            Next();
-        //else
-        //    RegisterPressed();
-    }
+    //private void OnDestroy()
+    //{
+    //    Events.OnJoystickClick -= OnJoystickClick;
+    //}
+    //bool done;
+    //void OnJoystickClick()
+    //{
+    //    if (done) return; done = true;
+    // //   if (Data.Instance.playMode != Data.PlayModes.STORYMODE || UserData.Instance.IsRegistered())
+    //        Next();
+    //    //else
+    //    //    RegisterPressed();
+    //}
     //public void RegisterPressed()
     //{
     //    Data.Instance.LoadLevel("Registration");

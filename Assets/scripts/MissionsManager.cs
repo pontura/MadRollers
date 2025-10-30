@@ -16,6 +16,7 @@ public class MissionsManager : MonoBehaviour
     public List<MissionsData> missionsSurvival;
     public AreasManager areasManager;
     public LevelsThumbsData thumbs;
+    bool hasPlayedTorneoToday;
 
     [Serializable]
     public class MissionsList
@@ -34,6 +35,19 @@ public class MissionsManager : MonoBehaviour
     public MissionData GetMission(int id)
     {
         return missions[id].data[0];
+    }
+
+    public bool HasPlayedTorneoToday()
+    {
+        return hasPlayedTorneoToday;
+    }
+    public void PlayTorneo()
+    {
+        hasPlayedTorneoToday = true;
+        Data.Instance.videogamesData.actualID = 1;
+        Data.Instance.missions.MissionActiveID = 0;
+        Data.Instance.playMode = Data.PlayModes.SURVIVAL;
+        Data.Instance.LoadLevel("Game");
     }
     static MissionsManager mInstance = null;
     public static MissionsManager Instance

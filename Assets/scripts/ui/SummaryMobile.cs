@@ -108,6 +108,9 @@ public class SummaryMobile : MonoBehaviour
         Events.OnSaveScore();
 
         yield return new WaitForSecondsRealtime(4);
+
+        if (missionID > 2)
+            Events.OpenTorneoCallToAction(1);
         //Events.RalentaTo(0, 0.025f);
 
 
