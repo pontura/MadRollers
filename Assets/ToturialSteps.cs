@@ -68,7 +68,7 @@ public class ToturialSteps : MonoBehaviour
         {
             Events.OnAvatarDie += OnAvatarDie;
         }
-        if (missionActiveID > 2 && onboardingStepsDone >= onboardingSteps.Length)
+        if (missionActiveID > 2 || onboardingStepsDone >= onboardingSteps.Length)
         {
             Destroy(panel.gameObject);
             Destroy(this);

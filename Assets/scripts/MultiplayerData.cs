@@ -59,7 +59,8 @@ public class MultiplayerData : MonoBehaviour
 	{
         levelID_for_partyMode = 0;
         OnResetScores();
-        player1 = player2 = player3 = player4 = false;
+		player1 = true;
+		player2 = player3 = player4 = false;
 		player1_played = player2_played = player3_played = player4_played = false;		
 	}
     void OnReorderAvatarsByPosition(List<int> _players)
@@ -81,16 +82,6 @@ public class MultiplayerData : MonoBehaviour
 		if (player3) total++;
 		if (player4) total++;
 		return total;
-	}
-	public void AddNewCharacter(int playerID)
-	{
-		switch (playerID)
-		{
-		case 0: player1 = true; break;
-		case 1: player2 = true; break;
-		case 2: player3 = true; break;
-		case 3: player4 = true; break;
-		}
 	}
     public int GetScore(int playerID)
     {

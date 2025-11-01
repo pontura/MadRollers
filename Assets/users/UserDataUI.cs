@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class UserDataUI : MonoBehaviour
 {
@@ -8,16 +9,27 @@ public class UserDataUI : MonoBehaviour
     private void Start()
     {
         Close();
+        Events.CheckForName += CheckForName;
         Events.UpdateUserData += UpdateUserData;
     }
     private void OnDestroy()
     {
+        Events.CheckForName -= CheckForName;
         Events.UpdateUserData -= UpdateUserData;
     }
+
+    private void CheckForName()
+    {
+        print("has key:  " + PlayerPrefs.HasKey("usernameEdited"));
+        if(!PlayerPrefs.HasKey("usernameEdited"))
+            UpdateUserData();
+    }
+
     public void UpdateUserData()
     {
         panel.SetActive(true);
         m_InputField.text = UserData.Instance.username;
+        PlayerPrefs.SetString("usernameEdited", "done");
     }
     public void UpdateName()
     {

@@ -121,6 +121,7 @@ public static class Events
     public static System.Action<bool> MuteMusic = delegate { };
     public static System.Action<bool> MuteSounds = delegate { };
     public static System.Action UpdateUserData = delegate { };
+    public static System.Action CheckForName = delegate { };
     public static System.Action OnUserDataUpdated = delegate { };
 
 

@@ -142,7 +142,9 @@ public class LoadingScreen : MonoBehaviour {
     {
         print("LoopForUserReady IsReadyToInit " + UserData.Instance.IsReadyToInit());
         if (UserData.Instance.IsReadyToInit())
+        {
             Data.Instance.LoadLevel("MainMenuMobile");
+        }
         else
             Invoke("LoopForUserReady", 0.1f);
     }

@@ -17,7 +17,6 @@ public class MainMenuMobile : MonoBehaviour
         Data.Instance.videogamesData.Reset();
         Data.Instance.missions.Reset();
 
-        welcomeField.text = "HELLO " + UserData.Instance.username.ToUpper();
        // registerField.text = TextsManager.Instance.GetText("REGISTER");
 
        // Events.OnJoystickClick += OnJoystickClick;
@@ -38,6 +37,8 @@ public class MainMenuMobile : MonoBehaviour
         print("Loop");
         if(UserData.Instance.hiscoresByMissions.loaded)
         {
+            welcomeField.text = "HELLO " + UserData.Instance.username.ToUpper();
+            Events.CheckForName();
             int torneoScore = UserData.Instance.hiscoresByMissions.GetTorneoScore();
             int missionsPlayed = UserData.Instance.hiscoresByMissions.all.Count;
             print("torneoScore " + torneoScore + " missionsPlayed: " + missionsPlayed);
