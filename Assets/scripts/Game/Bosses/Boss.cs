@@ -31,7 +31,7 @@ public class Boss : SceneObject {
 
 		return false;
 	}
-	public void breakOut()
+	public virtual void breakOut()
 	{     
 		if (hits >= totalHits)
 			Killed ();		
@@ -53,7 +53,7 @@ public class Boss : SceneObject {
 		Death ();
 		Invoke ("Died", 0.2f);
 	}
-	void Died()
+	void Died()	
 	{
 
         MusicManager.Instance.BossMusic(false);
