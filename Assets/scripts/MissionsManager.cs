@@ -36,18 +36,22 @@ public class MissionsManager : MonoBehaviour
     {
         return missions[id].data[0];
     }
-
     public bool HasPlayedTorneoToday()
     {
         return hasPlayedTorneoToday;
     }
     public void PlayTorneo()
     {
-        hasPlayedTorneoToday = true;
-        Data.Instance.videogamesData.actualID = 1;
-        Data.Instance.missions.MissionActiveID = 0;
-        Data.Instance.playMode = Data.PlayModes.SURVIVAL;
-        Data.Instance.LoadLevel("Game");
+        if (UserData.Instance.IsTester())
+            Events.OpenRegister();
+        else
+        {
+            hasPlayedTorneoToday = true;
+            Data.Instance.videogamesData.actualID = 1;
+            Data.Instance.missions.MissionActiveID = 0;
+            Data.Instance.playMode = Data.PlayModes.SURVIVAL;
+            Data.Instance.LoadLevel("Game");
+        }
     }
     static MissionsManager mInstance = null;
     public static MissionsManager Instance

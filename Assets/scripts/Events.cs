@@ -125,5 +125,6 @@ public static class Events
     public static System.Action OnUserDataUpdated = delegate { };
 
 
+    public static System.Action OpenRegister = delegate { };
     public static System.Action<int> OpenTorneoCallToAction = delegate { };
 }

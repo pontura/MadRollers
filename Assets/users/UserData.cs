@@ -13,6 +13,13 @@ public class UserData : MonoBehaviour
     public string test_password = "1234567890";
     public string test_userID = "DMZgakyMpdTm8qTECRdgllItjJQ2";
     
+    public bool IsTester()
+    {
+#if UNITY_EDITOR
+        return false;
+#endif
+        return data.userID == test_userID;
+    }
 
     string assetBundles = "https://pontura.github.io/madrollers/";
     public string URL_assetBundles { get { return assetBundles; } }
@@ -90,8 +97,12 @@ public class UserData : MonoBehaviour
         data.username = username;
 
         allDone = true;
-        GetLevelsPlayedCount();
-        _ = GetUserData();
+
+        if (!IsTester())
+        {
+            GetLevelsPlayedCount();
+            _ = GetUserData();
+        }
     }
     public async Task<int?> GetUserData()
     {
@@ -132,6 +143,11 @@ public class UserData : MonoBehaviour
     }
     public void UpdateUserName(string newName, System.Action<bool, string> OnDone)
     {
+        if(IsTester())
+        {
+            OnDone(false, "You are not logged in");
+            return;
+        }
         print("new name: " + newName + " old name: " + username);
         if (newName != username)
             TrySetUsername(newName, OnDone);
@@ -270,7 +286,13 @@ public class UserData : MonoBehaviour
 
     public void SaveUserDataToServer(System.Action OnDone)
     {
-        _ = UpdateTotalScore(data.score, OnDone);
+        if(IsTester())
+        {
+            Debug.Log("Tester user doesnt save data to server!");
+            if(OnDone != null)
+                OnDone(); 
+        } else
+            _ = UpdateTotalScore(data.score, OnDone);
     }
 
     public async Task UpdateTotalScore(int score, System.Action OnDone)

@@ -58,7 +58,10 @@ public class LoadingAsset : MonoBehaviour {
 
             UserData.Instance.hiscoresByMissions.LoadHiscore(missionID, HiscoreLoaded);
             //HiscoreLoaded(null);
-            missionField.text = TextsManager.Instance.GetText("DISKETTE") + " " + (missionID + 1);
+            if(missionID == MissionsManager.Instance.MissionTorneo)
+                missionField.text = TextsManager.Instance.GetText("COMPETITION");
+            else
+                missionField.text = TextsManager.Instance.GetText("MISSION") + " " + (missionID + 1);
         }
 	}
     void HiscoreLoaded(HiscoresByMissions.MissionHiscoreData data)

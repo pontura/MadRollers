@@ -28,7 +28,7 @@ public class IapUIScreen : MonoBehaviour
     }
     public void Discord()
     {
-        Application.OpenURL("https://discord.gg/jKMZ9dbr");
+        Application.OpenURL("https://discord.gg/ZUPpdEHJYt");
         Close();
     }
     void OnReady(bool payed)
